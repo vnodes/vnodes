@@ -1,9 +1,8 @@
 packages:
-  - apps/*
-
+  - "apps/*"
+  - "libs/*"
 autoInstallPeers: true
-
 onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
-  - nx
+  - "@swc/core"
+  - "esbuild"
+  - "nx"

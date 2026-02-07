@@ -48,6 +48,20 @@
           "externalDependencies": ["@biomejs/biome"]
         }
       ]
+    },
+    "test": {
+      "cache": true,
+      "inputs": ["default", "^default", "{projectRoot}/"]
+    },
+    "@nx/js:swc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    }
+  },
+  "release": {
+    "version": {
+      "preVersionCommand": "pnpm dlx nx run-many -t build"
     }
   }
 }

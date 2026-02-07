@@ -15,18 +15,28 @@
     "@nx/node": "22.4.5",
     "@nx/workspace": "22.4.5",
     "@swc-node/register": "~1.9.1",
+    "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@types/node": "20.19.9",
     "esbuild": "^0.19.2",
     "nx": "22.4.5",
     "tslib": "^2.3.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "verdaccio": "^6.0.5"
   },
   "nx": {
     "targets": {
       "lint": {
         "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+      },
+      "local-registry": {
+        "executor": "@nx/js:verdaccio",
+        "options": {
+          "port": 4873,
+          "config": ".verdaccio/config.yml",
+          "storage": "tmp/local-registry/storage"
+        }
       }
     }
   }
