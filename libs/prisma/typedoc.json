@@ -1,4 +1,0 @@
-{
-  "tsconfig": "tsconfig.lib.json",
-  "out": "{workspaceRoot}/public/libs/prisma"
-}

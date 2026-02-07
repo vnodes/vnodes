@@ -46,8 +46,8 @@
       "doc": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "npx typedoc",
-          "cwd": "{projectRoot}"
+          "command": "npx typedoc --tsconfig libs/prisma/tsconfig.lib.json --entryPoints libs/prisma/src/index.ts --out public/libs/prisma",
+          "cwd": "{workspaceRoot}"
         }
       }
     }

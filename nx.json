@@ -51,7 +51,11 @@
     },
     "test": {
       "cache": true,
-      "inputs": ["default", "^default", "{projectRoot}/"]
+      "inputs": ["default", "^default", "{projectRoot}"]
+    },
+    "doc": {
+      "cache": true,
+      "inputs": ["default", "^default", "{projectRoot}"]
     },
     "@nx/js:swc": {
       "cache": true,
