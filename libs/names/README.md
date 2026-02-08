@@ -10,7 +10,7 @@
 
 ## @vnodes/names
 
-- [ ] Add project description
+Names library that provides all type of names
 
 ## Installation
 

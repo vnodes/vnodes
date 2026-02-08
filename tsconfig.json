@@ -1,16 +1,34 @@
 {
-    "extends": "./tsconfig.base.json",
-    "compileOnSave": false,
-    "files": [],
-    "references": [
-        {
-            "path": "./libs/prisma"
-        },
-        {
-            "path": "./plugins/cli"
-        },
-        {
-            "path": "./libs/names"
-        }
-    ]
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./libs/prisma"
+    },
+    {
+      "path": "./plugins/cli"
+    },
+    {
+      "path": "./libs/names"
+    },
+    {
+      "path": "./libs/crypto"
+    },
+    {
+      "path": "./libs/utils"
+    },
+    {
+      "path": "./libs/fs"
+    },
+    {
+      "path": "./libs/nest"
+    },
+    {
+      "path": "./libs/types"
+    },
+    {
+      "path": "./libs/errors"
+    }
+  ]
 }

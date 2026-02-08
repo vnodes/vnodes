@@ -1,0 +1,16 @@
+export enum NestClassType {
+    Module = "Module",
+    Service = "Service",
+    Controller = "Controller",
+    Resolver = "Resolver",
+    EventListener = "EventListener",
+    Scheduler = "Scheduler",
+    Filter = "Filter",
+    Interceptor = "Interceptor",
+    Guard = "Guard",
+    Pipe = "Pipe",
+    Middleware = "Middleware",
+    CreateDto = "CreateDto",
+    UpdateDto = "UpdateDto",
+    QueryDto = "QueryDto",
+}
