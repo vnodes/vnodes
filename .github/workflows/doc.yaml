@@ -1,0 +1,53 @@
+name: doc
+
+on:
+  push:
+    branches: [main] # Or your default branch
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Replace 'my-app' with your actual Nx project name
+      # Ensure your build output goes to a folder like 'dist/apps/my-app'
+      - name: Build
+        run: pnpm nx run-many -t doc
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # Nx typically builds to dist/apps/project-name
+      # Verify this path in your project.json or nx.json
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
