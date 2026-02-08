@@ -1,3 +1,3 @@
-export function nest(){ 
+export function nest() {
     return "nest";
 }
