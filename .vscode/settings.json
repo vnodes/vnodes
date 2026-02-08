@@ -6,5 +6,8 @@
     "source.addMissingImports.ts": "always",
     "source.removeUnusedImports": "always",
     "source.organizeImports.biome": "always"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   }
 }
