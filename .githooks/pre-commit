@@ -1,6 +1,7 @@
-#!/usr/bin/env node
+#!/bin/bash
 
-import { argv } from "node:process";
+# cd ..
 
-console.log(argv);
-console.log("Pre commit");
+npx nx run-many -t build
+npx nx run-many -t lint
+npx nx run-many -t test
