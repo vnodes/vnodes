@@ -36,6 +36,13 @@
           "stripLeadingPaths": true
         }
       },
+      "lint": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx @biomejs/biome check --write --unsafe",
+          "cwd": "{projectRoot}"
+        }
+      },
       "test": {
         "executor": "nx:run-commands",
         "options": {
@@ -52,7 +59,23 @@
       }
     }
   },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.13",
+    "@nestjs/config": "^4.0.3",
+    "@nestjs/core": "^11.1.13",
+    "@prisma/client": "^7.3.0",
+    "@prisma/adapter-better-sqlite3": "^7.3.0",
+    "@prisma/adapter-pg": "^7.3.0",
+    "better-sqlite3": "^12.6.2",
+    "pg": "^8.18.0"
+  },
   "dependencies": {
     "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.13",
+    "@types/node": "20.19.9",
+    "@types/pg": "^8.16.0",
+    "prisma": "^7.3.0"
   }
 }
