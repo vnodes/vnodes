@@ -7,11 +7,7 @@
         "type": {
             "type": "string",
             "description": "Project type",
-            "enum": [
-                "lib",
-                "api",
-                "db"
-            ],
+            "enum": ["lib", "api", "db"],
             "$default": {
                 "$source": "argv",
                 "index": 0
@@ -64,12 +60,5 @@
             "x-prompt": "What funding would you like to use?"
         }
     },
-    "required": [
-        "type",
-        "directory",
-        "org",
-        "email",
-        "homepage",
-        "funding"
-    ]
+    "required": ["type", "directory", "org", "email", "homepage", "funding"]
 }

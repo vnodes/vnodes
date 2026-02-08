@@ -15,6 +15,7 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
         email,
         homepage: options.homepage,
         org: options.org,
+        funding: options.funding,
         ...names(shortProjectName),
     });
     await formatFiles(tree);
