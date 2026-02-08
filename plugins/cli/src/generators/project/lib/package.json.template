@@ -1,7 +1,7 @@
 {
-    "name": "@vnodes/prisma",
-    "description": "Nestjs prisma module",
-    "homepage": "https://vnodes.github.io/vnodes/libs/prisma",
+    "name": "<%- projectName %>",
+    "description": "<%- >",
+    "homepage": "<%- homepage %>/<%- directory %>",
     "publishConfig": {
         "access": "public",
         "tag": "latest"
@@ -9,14 +9,14 @@
     "author": {
         "email": "robert.brightline@gmail.com",
         "name": "Robert Brightline",
-        "url": "https://vnodes.github.io/vnodes/libs/prisma"
+        "url": "<%- homepage %>/<%- directory %>"
     },
     "keywords": [
         "prisma",
         "orm",
         "nestjs"
     ],
-    "icon": "https://vnodes.github.io/vnodes/libs/prisma/assets/favicon.png",
+    "icon": "<%- homepage %>/<%- directory %>/assets/favicon.png",
     "funding": [
         {
             "type": "cashapp",
@@ -43,7 +43,7 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "libs/prisma/src",
+        "sourceRoot": "<%- directory %>/src",
         "targets": {
             "build": {
                 "executor": "@nx/js:swc",
@@ -51,10 +51,10 @@
                     "{options.outputPath}"
                 ],
                 "options": {
-                    "outputPath": "libs/prisma/dist",
-                    "main": "libs/prisma/src/index.ts",
-                    "tsConfig": "libs/prisma/tsconfig.lib.json",
-                    "skipTypeCheck": true,
+                    "outputPath": "<%- directory %>/dist",
+                    "main": "<%- directory %>/src/index.ts",
+                    "tsConfig": "<%- directory %>/tsconfig.lib.json",
+                    "skipTypeCheck": false,
                     "stripLeadingPaths": true
                 }
             },
@@ -74,29 +74,13 @@
             "doc": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx typedoc --tsconfig libs/prisma/tsconfig.lib.json --entryPoints libs/prisma/src/index.ts --out public/libs/prisma",
+                    "command": "npx typedoc --tsconfig <%- directory %>/tsconfig.lib.json --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %>",
                     "cwd": "{workspaceRoot}"
                 }
             }
         }
     },
-    "peerDependencies": {
-        "@nestjs/common": "^11.1.13",
-        "@nestjs/config": "^4.0.3",
-        "@nestjs/core": "^11.1.13",
-        "@prisma/client": "^7.3.0",
-        "@prisma/adapter-better-sqlite3": "^7.3.0",
-        "@prisma/adapter-pg": "^7.3.0",
-        "better-sqlite3": "^12.6.2",
-        "pg": "^8.18.0"
-    },
     "dependencies": {
         "@swc/helpers": "~0.5.11"
-    },
-    "devDependencies": {
-        "@nestjs/testing": "^11.1.13",
-        "@types/node": "20.19.9",
-        "@types/pg": "^8.16.0",
-        "prisma": "^7.3.0"
     }
 }

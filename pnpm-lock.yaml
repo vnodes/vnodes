@@ -54,6 +54,9 @@ importers:
       '@types/node':
         specifier: 20.19.9
         version: 20.19.9
+      '@vnodes/cli':
+        specifier: workspace:*
+        version: link:plugins/cli
       esbuild:
         specifier: ^0.19.2
         version: 0.19.12

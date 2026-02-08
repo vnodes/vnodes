@@ -1,8 +1,36 @@
-import { ConfigurableModuleBuilder, Module } from "@nestjs/common";
-import type { PrismaClientOptions } from "@prisma/client/runtime/client";
+import { type DynamicModule, Module, type Provider, type Type } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import type { PrismaClient } from "@prisma/client/extension";
 
-export const { ConfigurableModuleClass: PrismaConfigurableModuleClass, MODULE_OPTIONS_TOKEN: PrismaClientToken } =
-    new ConfigurableModuleBuilder<PrismaClientOptions>().build();
+@Module({
+    imports: [ConfigModule],
+})
+export class PrismaModule {
+    readonly NAME = `PrismaModule`;
 
-@Module({})
-export class PrismaModule extends PrismaConfigurableModuleClass {}
+    static readonly DEFAULT_GROUP_NAME = "default";
+
+    static clientToken(groupName = PrismaModule.DEFAULT_GROUP_NAME) {
+        return `PRISMA_CLIENT_FOR_${groupName}`.toUpperCase();
+    }
+
+    static repoToken(resourceName: string, groupName = PrismaModule.DEFAULT_GROUP_NAME) {
+        return `PRISMA_REPOSITORY_FOR_${resourceName}_${groupName}`.toUpperCase();
+    }
+
+    private static provideClient(
+        clientClass: Type<PrismaClient>,
+        groupName = PrismaModule.DEFAULT_GROUP_NAME,
+    ): Provider {
+        return {
+            inject: [ConfigService],
+            provide: PrismaModule.clientToken(),
+            useFactory() {},
+        };
+    }
+
+    private static provideRepository() {}
+    static forRoot(): DynamicModule {
+        return { module: PrismaModule };
+    }
+}
