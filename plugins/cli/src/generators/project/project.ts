@@ -13,6 +13,8 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
         projectName,
         directory: options.directory,
         email,
+        homepage: options.homepage,
+        org: options.org,
         ...names(shortProjectName),
     });
     await formatFiles(tree);

@@ -1,26 +1,22 @@
 {
     "name": "<%- projectName %>",
-    "description": "<%- >",
+    "description": "- [ ] add description",
     "homepage": "<%- homepage %>/<%- directory %>",
     "publishConfig": {
         "access": "public",
         "tag": "latest"
     },
     "author": {
-        "email": "robert.brightline@gmail.com",
+        "email": "<%- email %>",
         "name": "Robert Brightline",
         "url": "<%- homepage %>/<%- directory %>"
     },
-    "keywords": [
-        "prisma",
-        "orm",
-        "nestjs"
-    ],
+    "keywords": [],
     "icon": "<%- homepage %>/<%- directory %>/assets/favicon.png",
     "funding": [
         {
             "type": "cashapp",
-            "url": "https://cash.app/$puqlib"
+            "url": "<%- funding %>"
         }
     ],
     "version": "0.0.1",

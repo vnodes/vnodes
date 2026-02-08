@@ -102,5 +102,13 @@
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build"
     }
+  },
+  "generators": {
+    "@vnodes/cli:project": {
+      "org": "vnodes",
+      "email": "robert.brightline@gmail.com",
+      "homepage": "https://vnodes.github.io/vnodes",
+      "funding": "https://cash.app/$puqlib"
+    }
   }
 }

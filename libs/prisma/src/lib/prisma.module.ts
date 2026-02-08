@@ -1,6 +1,5 @@
-import { type DynamicModule, Module, type Provider, type Type } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import type { PrismaClient } from "@prisma/client/extension";
+import { type DynamicModule, Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
     imports: [ConfigModule],
@@ -17,19 +16,6 @@ export class PrismaModule {
     static repoToken(resourceName: string, groupName = PrismaModule.DEFAULT_GROUP_NAME) {
         return `PRISMA_REPOSITORY_FOR_${resourceName}_${groupName}`.toUpperCase();
     }
-
-    private static provideClient(
-        clientClass: Type<PrismaClient>,
-        groupName = PrismaModule.DEFAULT_GROUP_NAME,
-    ): Provider {
-        return {
-            inject: [ConfigService],
-            provide: PrismaModule.clientToken(),
-            useFactory() {},
-        };
-    }
-
-    private static provideRepository() {}
     static forRoot(): DynamicModule {
         return { module: PrismaModule };
     }
