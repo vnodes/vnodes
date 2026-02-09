@@ -6,8 +6,3 @@ export * from "./lib/names/normalize-name.js";
 export * from "./lib/names/pluralize.js";
 export * from "./lib/names/upercase-first.js";
 export * from "./lib/names/validate-name.js";
-export * from "./lib/nest/class-type.js";
-export * from "./lib/nest/get-class-type.js";
-export * from "./lib/nest/get-resource-name.js";
-export * from "./lib/nest/operation-name.js";
-export * from "./lib/nest/validate-class-name.js";

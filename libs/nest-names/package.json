@@ -1,18 +1,18 @@
 {
-    "name": "@vnodes/nest",
-    "description": "Nestjs common",
-    "homepage": "https://vnodes.github.io/vnodes/libs/nest",
+    "name": "@vnodes/nest-names",
+    "description": "- [ ] add description",
+    "homepage": "https://vnodes.github.io/vnodes/libs/nest-names",
     "publishConfig": {
         "access": "public",
         "tag": "latest"
     },
     "author": {
-        "email": "robert.brightline+vnodes-nest@gmail.com",
+        "email": "robert.brightline+vnodes-nest-names@gmail.com",
         "name": "Robert Brightline",
-        "url": "https://vnodes.github.io/vnodes/libs/nest"
+        "url": "https://vnodes.github.io/vnodes/libs/nest-names"
     },
     "keywords": [],
-    "icon": "https://vnodes.github.io/vnodes/libs/nest/assets/favicon.png",
+    "icon": "https://vnodes.github.io/vnodes/libs/nest-names/assets/favicon.png",
     "funding": [
         {
             "type": "cashapp",
@@ -39,7 +39,7 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "libs/nest/src",
+        "sourceRoot": "libs/nest-names/src",
         "targets": {
             "build": {
                 "executor": "@nx/js:swc",
@@ -47,9 +47,9 @@
                     "{options.outputPath}"
                 ],
                 "options": {
-                    "outputPath": "libs/nest/dist",
-                    "main": "libs/nest/src/index.ts",
-                    "tsConfig": "libs/nest/tsconfig.lib.json",
+                    "outputPath": "libs/nest-names/dist",
+                    "main": "libs/nest-names/src/index.ts",
+                    "tsConfig": "libs/nest-names/tsconfig.lib.json",
                     "skipTypeCheck": false,
                     "stripLeadingPaths": true
                 }
@@ -70,21 +70,15 @@
             "doc": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx typedoc --tsconfig libs/nest/tsconfig.lib.json --entryPoints libs/nest/src/index.ts --out public/libs/nest",
+                    "command": "npx typedoc --tsconfig libs/nest-names/tsconfig.lib.json --entryPoints libs/nest-names/src/index.ts --out public/libs/nest-names",
                     "cwd": "{workspaceRoot}"
                 }
             }
         }
     },
     "dependencies": {
-        "@nestjs/common": "^11.1.13",
-        "@nestjs/core": "^11.1.13",
         "@swc/helpers": "~0.5.11",
         "@vnodes/errors": "workspace:*",
-        "@vnodes/types": "workspace:*",
-        "@vnodes/utils": "workspace:*"
-    },
-    "devDependencies": {
-        "@nestjs/testing": "^11.1.13"
+        "@vnodes/types": "workspace:*"
     }
 }

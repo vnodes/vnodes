@@ -1,5 +1,5 @@
 import { InvalidResourceNameError } from "@vnodes/errors";
-import { NestClassType } from "@vnodes/types";
+import { ClassType } from "@vnodes/types";
 import { classTypeExp } from "./class-type.js";
 
 export function validateClassName(className: string) {
@@ -7,8 +7,7 @@ export function validateClassName(className: string) {
         return true;
     }
 
-    throw new InvalidResourceNameError(
-        `The resource name must end with ${NestClassType} and start with the resouce name`,
-        { className },
-    );
+    throw new InvalidResourceNameError(`The resource name must end with ${ClassType} and start with the resouce name`, {
+        className,
+    });
 }

@@ -129,6 +129,12 @@ importers:
 
   libs/nest:
     dependencies:
+      '@nestjs/common':
+        specifier: ^11.1.13
+        version: 11.1.13(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core':
+        specifier: ^11.1.13
+        version: 11.1.13(@nestjs/common@11.1.13(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
@@ -141,6 +147,22 @@ importers:
       '@vnodes/utils':
         specifier: workspace:*
         version: link:../utils
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.1.13
+        version: 11.1.13(@nestjs/common@11.1.13(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.13(@nestjs/common@11.1.13(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))
+
+  libs/nest-names:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.18
+      '@vnodes/errors':
+        specifier: workspace:*
+        version: link:../errors
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
 
   libs/prisma:
     dependencies:

@@ -1,4 +1,4 @@
-export enum NestClassType {
+export enum ClassType {
     Module = "Module",
     Service = "Service",
     Controller = "Controller",
