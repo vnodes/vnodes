@@ -32,6 +32,9 @@
     },
     {
       "path": "./libs/nest-names"
+    },
+    {
+      "path": "./libs/prisma-sqlite"
     }
   ]
 }

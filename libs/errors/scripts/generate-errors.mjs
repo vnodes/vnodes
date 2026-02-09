@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { writeTextFile } from "@vnodes/fs";
 import { errorCodes } from "./error-codes.mjs";
 import { errorNames } from "./error-names.mjs";
 
@@ -38,8 +38,9 @@ function generateErrorCode() {
     }`;
 }
 
-writeFileSync("src/lib/errors.ts", genearteErrors(), {
-    encoding: "utf-8",
-});
+async function writeFiles() {
+    await writeTextFile("src/lib/errors.ts", genearteErrors());
+    await writeTextFile("src/lib/error-code.ts", generateErrorCode());
+}
 
-writeFileSync("src/lib/error-code.ts", generateErrorCode(), { encoding: "utf-8" });
+writeFiles();
