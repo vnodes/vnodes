@@ -187,6 +187,24 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
+      '@vnodes/errors':
+        specifier: workspace:*
+        version: link:../errors
+      '@vnodes/names':
+        specifier: workspace:*
+        version: link:../names
+      '@vnodes/nest':
+        specifier: workspace:*
+        version: link:../nest
+      '@vnodes/nest-names':
+        specifier: workspace:*
+        version: link:../nest-names
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
+      '@vnodes/utils':
+        specifier: workspace:*
+        version: link:../utils
       better-sqlite3:
         specifier: ^12.6.2
         version: 12.6.2

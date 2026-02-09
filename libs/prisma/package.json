@@ -84,14 +84,20 @@
         "@nestjs/common": "^11.1.13",
         "@nestjs/config": "^4.0.3",
         "@nestjs/core": "^11.1.13",
-        "@prisma/client": "^7.3.0",
         "@prisma/adapter-better-sqlite3": "^7.3.0",
         "@prisma/adapter-pg": "^7.3.0",
+        "@prisma/client": "^7.3.0",
         "better-sqlite3": "^12.6.2",
         "pg": "^8.18.0"
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.11"
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/errors": "workspace:*",
+        "@vnodes/names": "workspace:*",
+        "@vnodes/nest": "workspace:*",
+        "@vnodes/nest-names": "workspace:*",
+        "@vnodes/types": "workspace:*",
+        "@vnodes/utils": "workspace:*"
     },
     "devDependencies": {
         "@nestjs/testing": "^11.1.13",

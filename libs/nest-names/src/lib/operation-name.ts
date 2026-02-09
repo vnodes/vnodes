@@ -1,5 +1,5 @@
-import { NestResourceOperation } from "@vnodes/types";
+import { ResourceOperation } from "@vnodes/types";
 
-export const operationNames = Object.values(NestResourceOperation);
+export const operationNames = Object.values(ResourceOperation);
 
 export const operationExp = new RegExp(`${operationNames.join("|")}$`);

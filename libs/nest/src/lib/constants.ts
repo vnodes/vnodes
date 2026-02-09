@@ -1,1 +1,1 @@
-export const DEFAULT_TOKEN = "INJECTION_TOKEN";
+export const DEFAULT_SCOPE = "DEFAULT_SCOPE";
