@@ -41,6 +41,12 @@
     },
     {
       "path": "./dbs/todo"
+    },
+    {
+      "path": "./apps/todo-api"
+    },
+    {
+      "path": "./libs/property"
     }
   ]
 }

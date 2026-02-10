@@ -20,8 +20,8 @@ enum Status {
 model Todo {
   id Int @id @default(autoincrement())
 
-  title       String  @unique
-  description String? @unique
+  title       String  @unique @db.VarChar(255)
+  description String? @db.VarChar(1000)
 
   status Status?
 }

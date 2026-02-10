@@ -1,10 +1,12 @@
 /** biome-ignore-all lint/style/useImportType: Nest */
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from "@nestjs/common";
+
+import { Param, ParseIntPipe } from "@nestjs/common";
+import { Body, Controller, ParamId, Query } from "@vnodes/nest";
 import { InjectRepo } from "@vnodes/prisma";
 import { Prisma, Status } from "@vnodes/todo";
 import { TodoCreateDto, TodoQueryDto, TodoUpdateDto } from "./todo.js";
 
-@Controller("todos")
+@Controller()
 export class TodoController {
     constructor(@InjectRepo() protected readonly repo: Prisma.TodoDelegate) {}
 
@@ -22,29 +24,24 @@ export class TodoController {
         return {};
     }
 
-    @Get()
     find(@Query() query: TodoQueryDto) {
         const { search, take, skip } = query;
         return this.repo.findMany({ take, skip, where: this.toWhere(search) });
     }
 
-    @Get(":id")
     findById(@Param("id", ParseIntPipe) id: number) {
         return this.repo.findUnique({ where: { id } });
     }
 
-    @Post()
     create(@Body() data: TodoCreateDto) {
         return this.repo.create({ data });
     }
 
-    @Put(":id")
-    update(@Param("id", ParseIntPipe) id: number, @Body() data: TodoUpdateDto) {
+    update(@ParamId() id: number, @Body() data: TodoUpdateDto) {
         return this.repo.update({ where: { id }, data });
     }
 
-    @Delete(":id")
-    delete(@Param("id", ParseIntPipe) id: number) {
+    delete(@ParamId() id: number) {
         return this.repo.delete({ where: { id } });
     }
 }

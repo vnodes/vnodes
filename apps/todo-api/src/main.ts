@@ -1,10 +1,10 @@
-import { Logger, ValidationPipe } from "@nestjs/common";
+import { Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { apiReference } from "@scalar/nestjs-api-reference";
-import { Constants } from "@vnodes/nest";
-import { AppModule } from "./app/app.module";
+import { Constants, GlobalValidationPipe } from "@vnodes/nest";
+import { AppModule } from "./app/app.module.js";
 
 async function main() {
     const logger = new Logger("Main");
@@ -19,12 +19,7 @@ async function main() {
     app.setGlobalPrefix(APP_PREFIX);
     app.enableCors();
 
-    app.useGlobalPipes(
-        new ValidationPipe({
-            transform: true,
-            forbidNonWhitelisted: true,
-        }),
-    );
+    app.useGlobalPipes(GlobalValidationPipe);
 
     const swaggerConfig = new DocumentBuilder()
         .setTitle(APP_ID)

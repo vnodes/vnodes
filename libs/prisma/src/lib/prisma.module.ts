@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/complexity/noStaticOnlyClass: Nest */
 import { type DynamicModule, Logger, Module } from "@nestjs/common";
-import type { ConfigService } from "@nestjs/config";
+import { ConfigModule, type ConfigService } from "@nestjs/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { UndefinedValueError } from "@vnodes/errors";
 import { names } from "@vnodes/names";
@@ -21,7 +21,9 @@ export type PrismaFeatureModuleOptions = {
     scope?: string;
 };
 
-@Module({})
+@Module({
+    imports: [ConfigModule],
+})
 export class PrismaModule {
     static logger = new Logger("PrismaModule Postgres");
     static forRoot(options: PrismaModuleOptions): DynamicModule {
