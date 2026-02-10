@@ -1,26 +1,25 @@
 import { ConfigService } from "@nestjs/config";
-import { createProvider } from "@vnodes/nest";
+import { Constants, createProvider } from "@vnodes/nest";
 import type { Any } from "@vnodes/types";
 
-export const DEFAULT_POSTGRES_SCOPE = "POSTGRES";
 export const {
     inject: __InjectClient,
     provideFactory: __provideClient,
     token: __getClientToken,
 } = createProvider<Any>();
 
-export function InjectClient(scope = DEFAULT_POSTGRES_SCOPE): ParameterDecorator {
+export function InjectClient(scope = Constants.POSTGRES): ParameterDecorator {
     return (...args) => {
-        __InjectClient(DEFAULT_POSTGRES_SCOPE, scope)(...args);
+        __InjectClient(Constants.POSTGRES, scope)(...args);
     };
 }
 export function provideClient<PrismasClient>(
     useFactory: (config: ConfigService) => PrismasClient,
-    scope = DEFAULT_POSTGRES_SCOPE,
+    scope = Constants.POSTGRES,
 ) {
-    return __provideClient(useFactory, DEFAULT_POSTGRES_SCOPE, scope, [ConfigService]);
+    return __provideClient(useFactory, Constants.POSTGRES, scope, [ConfigService]);
 }
 
-export function getClientToken(scope = DEFAULT_POSTGRES_SCOPE) {
-    return __getClientToken(DEFAULT_POSTGRES_SCOPE, scope);
+export function getClientToken(scope = Constants.POSTGRES) {
+    return __getClientToken(Constants.POSTGRES, scope);
 }

@@ -1,14 +1,14 @@
 import { UndefinedValueError } from "@vnodes/errors";
 import { names } from "@vnodes/names";
-import { createProvider } from "@vnodes/nest";
+import { Constants, createProvider } from "@vnodes/nest";
 import { getResourceName } from "@vnodes/nest-names";
 import type { Any, Cls } from "@vnodes/types";
 import { isNotDefined } from "@vnodes/utils";
-import { DEFAULT_SQLITE_SCOPE, getClientToken } from "./prisma-client.provider.js";
+import { getClientToken } from "./prisma-client.provider.js";
 
 export const { inject: __InjectRepo, provideFactory: __provideRepo, token: __getRepoToken } = createProvider<Cls>();
 
-export function InjectRepo(name?: string, scope = DEFAULT_SQLITE_SCOPE): ParameterDecorator {
+export function InjectRepo(name?: string, scope = Constants.SQLITE): ParameterDecorator {
     return (...args) => {
         if (isNotDefined(name)) {
             const target = args[0];
@@ -21,7 +21,7 @@ export function InjectRepo(name?: string, scope = DEFAULT_SQLITE_SCOPE): Paramet
     };
 }
 
-export function provideRepo(name: string, scope = DEFAULT_SQLITE_SCOPE) {
+export function provideRepo(name: string, scope = Constants.SQLITE) {
     return __provideRepo(
         (client: Any) => {
             const { camelCase } = names(name);
@@ -37,6 +37,6 @@ export function provideRepo(name: string, scope = DEFAULT_SQLITE_SCOPE) {
     );
 }
 
-export function getRepoToken(name: string, scope = DEFAULT_SQLITE_SCOPE): string {
+export function getRepoToken(name: string, scope = Constants.SQLITE): string {
     return __getRepoToken(name, scope);
 }

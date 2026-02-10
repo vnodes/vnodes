@@ -1,8 +1,6 @@
 import { ConfigService } from "@nestjs/config";
-import { createProvider } from "@vnodes/nest";
+import { Constants, createProvider } from "@vnodes/nest";
 import type { Any } from "@vnodes/types";
-
-export const DEFAULT_SQLITE_SCOPE = "SQLITE";
 
 export const {
     inject: __InjectClient,
@@ -10,18 +8,18 @@ export const {
     token: __getClientToken,
 } = createProvider<Any>();
 
-export function InjectClient(scope = DEFAULT_SQLITE_SCOPE): ParameterDecorator {
+export function InjectClient(scope = Constants.SQLITE): ParameterDecorator {
     return (...args) => {
-        __InjectClient(DEFAULT_SQLITE_SCOPE, scope)(...args);
+        __InjectClient(Constants.SQLITE, scope)(...args);
     };
 }
 export function provideClient<PrismasClient>(
     useFactory: (config: ConfigService) => PrismasClient,
-    scope = DEFAULT_SQLITE_SCOPE,
+    scope = Constants.SQLITE,
 ) {
-    return __provideClient(useFactory, DEFAULT_SQLITE_SCOPE, scope, [ConfigService]);
+    return __provideClient(useFactory, Constants.SQLITE, scope, [ConfigService]);
 }
 
-export function getClientToken(scope = DEFAULT_SQLITE_SCOPE) {
-    return __getClientToken(DEFAULT_SQLITE_SCOPE, scope);
+export function getClientToken(scope = Constants.SQLITE) {
+    return __getClientToken(Constants.SQLITE, scope);
 }

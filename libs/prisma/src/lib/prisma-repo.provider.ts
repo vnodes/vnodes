@@ -1,14 +1,15 @@
-import { UndefinedValueError } from "@vnodes/errors";
+import { Logger, type Provider } from "@nestjs/common";
+import { NotInjectedError, UndefinedValueError } from "@vnodes/errors";
 import { names } from "@vnodes/names";
-import { createProvider } from "@vnodes/nest";
+import { Constants, createProvider } from "@vnodes/nest";
 import { getResourceName } from "@vnodes/nest-names";
 import type { Any, Cls } from "@vnodes/types";
 import { isNotDefined } from "@vnodes/utils";
-import { DEFAULT_POSTGRES_SCOPE, getClientToken } from "./prisma-client.provider.js";
+import { getClientToken } from "./prisma-client.provider.js";
 
 export const { inject: __InjectRepo, provideFactory: __provideRepo, token: __getRepoToken } = createProvider<Cls>();
 
-export function InjectRepo(name?: string, scope = DEFAULT_POSTGRES_SCOPE): ParameterDecorator {
+export function InjectRepo(name?: string, scope = Constants.POSTGRES): ParameterDecorator {
     return (...args) => {
         if (isNotDefined(name)) {
             const target = args[0];
@@ -21,9 +22,17 @@ export function InjectRepo(name?: string, scope = DEFAULT_POSTGRES_SCOPE): Param
     };
 }
 
-export function provideRepo(name: string, scope = DEFAULT_POSTGRES_SCOPE) {
-    return __provideRepo(
+export function provideRepo(name: string, scope = Constants.POSTGRES): Provider {
+    const logger = new Logger("PrismaRepoProvider");
+    const clientToken = getClientToken(scope);
+
+    const provider = __provideRepo(
         (client: Any) => {
+            logger.log(`Injecting the client to the repository provider by the token ${clientToken}`);
+            if (isNotDefined(client)) {
+                throw new NotInjectedError(`The client is not injected to the repository provider`);
+            }
+
             const { camelCase } = names(name);
             const repo = client[camelCase];
             if (isNotDefined(repo)) {
@@ -33,10 +42,12 @@ export function provideRepo(name: string, scope = DEFAULT_POSTGRES_SCOPE) {
         },
         name,
         scope,
-        [getClientToken(scope)],
+        [clientToken],
     );
+
+    return provider;
 }
 
-export function getRepoToken(name: string, scope = DEFAULT_POSTGRES_SCOPE): string {
+export function getRepoToken(name: string, scope = Constants.POSTGRES): string {
     return __getRepoToken(name, scope);
 }

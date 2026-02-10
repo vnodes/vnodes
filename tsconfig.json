@@ -35,6 +35,12 @@
     },
     {
       "path": "./libs/prisma-sqlite"
+    },
+    {
+      "path": "./apps/suite"
+    },
+    {
+      "path": "./dbs/todo"
     }
   ]
 }

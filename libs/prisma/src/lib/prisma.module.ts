@@ -1,11 +1,13 @@
 /** biome-ignore-all lint/complexity/noStaticOnlyClass: Nest */
-import { type DynamicModule, Module } from "@nestjs/common";
-import { ConfigModule, type ConfigService } from "@nestjs/config";
+import { type DynamicModule, Logger, Module } from "@nestjs/common";
+import type { ConfigService } from "@nestjs/config";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { UndefinedValueError } from "@vnodes/errors";
 import { names } from "@vnodes/names";
+import { Constants } from "@vnodes/nest";
 import type { Cls } from "@vnodes/types";
 import { Pool } from "pg";
-import { DEFAULT_POSTGRES_SCOPE, getClientToken, provideClient } from "./prisma-client.provider.js";
+import { getClientToken, provideClient } from "./prisma-client.provider.js";
 import { getRepoToken, provideRepo } from "./prisma-repo.provider.js";
 
 export type PrismaModuleOptions = {
@@ -19,16 +21,19 @@ export type PrismaFeatureModuleOptions = {
     scope?: string;
 };
 
-@Module({
-    imports: [ConfigModule],
-})
+@Module({})
 export class PrismaModule {
+    static logger = new Logger("PrismaModule Postgres");
     static forRoot(options: PrismaModuleOptions): DynamicModule {
-        const scope = options.scope ?? DEFAULT_POSTGRES_SCOPE;
-        const databaseUrlKey = options.databaseUrlKey ?? "DATABASE_URL";
+        const scope = options.scope ?? Constants.POSTGRES;
+        const databaseUrlKey = options.databaseUrlKey ?? Constants.DATABASE_URL;
+
+        PrismaModule.logger.log(`Configuring the prisma module with the scope => ${scope} `);
 
         const useFactory = (config: ConfigService) => {
             const connectionString = config.getOrThrow(databaseUrlKey);
+
+            PrismaModule.logger.log(`Configuring the db pool with the conneciton string, ${connectionString}`);
 
             const pool = new Pool({
                 connectionString,
@@ -37,19 +42,35 @@ export class PrismaModule {
                 idleTimeoutMillis: 30000,
                 maxUses: 7500,
             });
+
             const adapter = new PrismaPg(pool);
-            return new options.clientClass({ adapter });
+
+            const instance = new options.clientClass({ adapter });
+
+            if (!instance) {
+                throw new UndefinedValueError(`The prisma client could not initialize`);
+            }
+
+            PrismaModule.logger.log("Successfully created the prisma client instance");
+
+            return instance;
         };
+
+        const clientToken = getClientToken(scope);
+        const clientProvider = provideClient(useFactory, scope);
+
+        PrismaModule.logger.log(`The root provided client token : ${clientToken}`);
 
         return {
             module: PrismaModule,
-            providers: [provideClient(useFactory, scope)],
-            exports: [getClientToken(scope)],
+            providers: [clientProvider],
+            exports: [clientToken],
+            global: true,
         };
     }
 
-    static forFeature(options: PrismaFeatureModuleOptions) {
-        const scope = options.scope ?? DEFAULT_POSTGRES_SCOPE;
+    static forFeature(options: PrismaFeatureModuleOptions): DynamicModule {
+        const scope = options.scope ?? Constants.POSTGRES;
 
         const repoProviders = options.models.map((modelName) => {
             const { camelCase } = names(modelName);

@@ -1,26 +1,26 @@
 import { Inject, type Provider as NestProvider } from "@nestjs/common";
 import type { Any, Cls, Provider } from "@vnodes/types";
-import { DEFAULT_SCOPE } from "./constants.js";
+import { Constants } from "./constants.js";
 
 export function createProvider<T>(): Provider<T, NestProvider> {
-    function inject(name = DEFAULT_SCOPE, scope = DEFAULT_SCOPE): ParameterDecorator {
+    function inject(name = Constants.SCOPE, scope = Constants.SCOPE): ParameterDecorator {
         return (...args) => {
             Inject(token(name, scope))(...args);
         };
     }
 
-    function token(name = DEFAULT_SCOPE, scope = DEFAULT_SCOPE) {
+    function token(name = Constants.SCOPE, scope = Constants.SCOPE) {
         return `${name}_${scope}`.toUpperCase();
     }
 
-    function provideValue(useValue: T, name = DEFAULT_SCOPE, scope = DEFAULT_SCOPE): NestProvider {
+    function provideValue(useValue: T, name = Constants.SCOPE, scope = Constants.SCOPE): NestProvider {
         return {
             provide: token(name, scope),
             useValue,
         };
     }
 
-    function provideClass<T>(useClass: Cls<T>, name = DEFAULT_SCOPE, scope = DEFAULT_SCOPE): NestProvider {
+    function provideClass<T>(useClass: Cls<T>, name = Constants.SCOPE, scope = Constants.SCOPE): NestProvider {
         return {
             provide: token(name, scope),
             useClass,
@@ -29,8 +29,8 @@ export function createProvider<T>(): Provider<T, NestProvider> {
 
     function provideFactory(
         useFactory: (...args: Any[]) => T,
-        name = DEFAULT_SCOPE,
-        scope = DEFAULT_SCOPE,
+        name = Constants.SCOPE,
+        scope = Constants.SCOPE,
         injects: Any[] = [],
     ): NestProvider {
         return {

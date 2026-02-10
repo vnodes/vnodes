@@ -11,4 +11,5 @@ export const errorNames = [
     ["AccessDenied", errorCodes.Unauthorized],
     ["FileOutOfScope", errorCodes.Unauthorized],
     ["Forbidden", errorCodes.Forbidden],
+    ["NotInjected", errorCodes.NotFound],
 ];

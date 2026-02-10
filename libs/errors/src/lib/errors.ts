@@ -59,3 +59,9 @@ export class ForbiddenError extends BaseError {
         super(message, 403, context);
     }
 }
+
+export class NotInjectedError extends BaseError {
+    constructor(message: string, context?: Record<string, string | number>) {
+        super(message, 404, context);
+    }
+}

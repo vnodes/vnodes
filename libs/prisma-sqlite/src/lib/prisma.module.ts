@@ -3,8 +3,9 @@ import { type DynamicModule, Module } from "@nestjs/common";
 import { ConfigModule, type ConfigService } from "@nestjs/config";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { names } from "@vnodes/names";
+import { Constants } from "@vnodes/nest";
 import type { Cls } from "@vnodes/types";
-import { DEFAULT_SQLITE_SCOPE, getClientToken, provideClient } from "./prisma-client.provider.js";
+import { getClientToken, provideClient } from "./prisma-client.provider.js";
 import { getRepoToken, provideRepo } from "./prisma-repo.provider.js";
 
 export type PrismaModuleOptions = {
@@ -23,8 +24,8 @@ export type PrismaFeatureModuleOptions = {
 })
 export class PrismaModule {
     static forRoot(options: PrismaModuleOptions): DynamicModule {
-        const scope = options.scope ?? DEFAULT_SQLITE_SCOPE;
-        const databaseUrlKey = options.databaseUrlKey ?? "DATABASE_URL";
+        const scope = options.scope ?? Constants.SQLITE;
+        const databaseUrlKey = options.databaseUrlKey ?? Constants.DATABASE_URL;
 
         const useFactory = (config: ConfigService) => {
             let connectionString = config.getOrThrow<string>(databaseUrlKey);
@@ -62,7 +63,7 @@ export class PrismaModule {
     }
 
     static forFeature(options: PrismaFeatureModuleOptions) {
-        const scope = options.scope ?? DEFAULT_SQLITE_SCOPE;
+        const scope = options.scope ?? Constants.SQLITE;
 
         const repoProviders = options.models.map((modelName) => {
             const { camelCase } = names(modelName);

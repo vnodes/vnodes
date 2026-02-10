@@ -10,5 +10,5 @@ export function isDefined<T>(value?: Optional<T>): value is T {
     if (value === undefined || value === null) {
         return false;
     }
-    return false;
+    return true;
 }
