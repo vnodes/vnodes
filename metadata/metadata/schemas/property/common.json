@@ -1,0 +1,49 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "CommonProperty",
+    "$id": "CommonProperty",
+    "properties": {
+        "name": {
+            "$ref": "./../enums/property-name.json"
+        },
+        "description": {
+            "type": "string"
+        },
+        "hint": {
+            "type": "string"
+        },
+        "label": {
+            "type": "string"
+        },
+        "inputType": {
+            "$ref": "./../enums/input-type.json"
+        },
+        "prefixText": {
+            "type": "string"
+        },
+        "suffixText": {
+            "type": "string"
+        },
+        "prefixIcon": {
+            "$ref": "./../enums/icon.json"
+        },
+        "suffixIcon": {
+            "$ref": "./../enums/icon.json"
+        },
+        "required": {
+            "description": "If set true, the property is required. By default all properties are requried.",
+            "default": true,
+            "type": "boolean"
+        },
+        "readonly": {
+            "description": "if set true, the property is not allowed to be updated by the regular operation",
+            "default": false,
+            "type": "boolean"
+        },
+        "internal": {
+            "description": "if set true, the property is hidden from the response",
+            "default": false,
+            "type": "boolean"
+        }
+    }
+}

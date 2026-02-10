@@ -1,0 +1,14 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "ModelName",
+    "oneOf": [
+        {
+            "enum": [
+                "User",
+                "Role",
+                "Permission",
+                "Category"
+            ]
+        }
+    ]
+}

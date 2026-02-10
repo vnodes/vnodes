@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "InputType",
+    "enum": [
+        "autocomplete",
+        "checkbox",
+        "chips",
+        "datepicker",
+        "daterange",
+        "form-field",
+        "input",
+        "radio",
+        "button-toggle",
+        "select",
+        "slider",
+        "slide-toggle",
+        "form"
+    ]
+}

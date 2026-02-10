@@ -422,6 +422,24 @@ importers:
         specifier: workspace:*
         version: link:../types
 
+  metadata/common-metadata:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.18
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
+
+  metadata/todo-metadata:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.18
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
+
   plugins/cli:
     dependencies:
       '@nx/devkit':

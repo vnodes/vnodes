@@ -2,15 +2,16 @@ packages:
   - apps/*
   - libs/*
   - dbs/*
+  - metadata/*
   - plugins/*
 
 autoInstallPeers: true
 
 onlyBuiltDependencies:
-  - '@nestjs/core'
-  - '@prisma/engines'
-  - '@scarf/scarf'
-  - '@swc/core'
+  - "@nestjs/core"
+  - "@prisma/engines"
+  - "@scarf/scarf"
+  - "@swc/core"
   - bcrypt
   - better-sqlite3
   - esbuild

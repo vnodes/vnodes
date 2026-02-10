@@ -1,0 +1,31 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "DateProperty",
+    "$id": "DateProperty",
+    "properties": {
+        "type": {
+            "const": "date"
+        },
+        "future": {
+            "type": "boolean"
+        },
+        "past": {
+            "type": "boolean"
+        },
+        "maxYearsBefore": {
+            "type": "integer"
+        },
+        "maxYearsAfter": {
+            "type": "integer"
+        },
+        "minYearsBefore": {
+            "type": "integer"
+        },
+        "minYearsAfter": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "type"
+    ]
+}

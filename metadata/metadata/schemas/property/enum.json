@@ -1,0 +1,13 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "EnumProperty",
+    "$id": "EnumProperty",
+    "properties": {
+        "type": {
+            "const": "enum"
+        }
+    },
+    "required": [
+        "type"
+    ]
+}

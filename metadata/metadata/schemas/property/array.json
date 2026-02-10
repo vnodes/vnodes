@@ -1,0 +1,15 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "ArrayProperty",
+    "properties": {
+        "type": {
+            "const": "array"
+        },
+        "items": {
+            "$ref": "./property.json"
+        }
+    },
+    "required": [
+        "type"
+    ]
+}

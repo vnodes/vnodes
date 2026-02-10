@@ -1,0 +1,16 @@
+export type StringFormat =
+    | "password"
+    | "date"
+    | "date_time"
+    | "time"
+    | "email"
+    | "credi-card"
+    | "uuid"
+    | "id"
+    | "uri"
+    | "ipv4"
+    | "ipv6"
+    | "hostname"
+    | "slug"
+    | "ssn"
+    | "phone";

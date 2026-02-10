@@ -47,6 +47,9 @@
     },
     {
       "path": "./libs/property"
+    },
+    {
+      "path": "./metadata/metadata"
     }
   ]
 }
