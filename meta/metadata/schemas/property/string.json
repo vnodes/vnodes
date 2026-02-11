@@ -30,7 +30,5 @@
             "$ref": "./../enums/string-format.json"
         }
     },
-    "required": [
-        "type"
-    ]
+    "required": ["type"]
 }

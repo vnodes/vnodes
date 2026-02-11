@@ -7,27 +7,35 @@
             "$ref": "./../enums/property-name.json"
         },
         "description": {
+            "description": "The description is used to explain the property's value, validations, and conditions.",
             "type": "string"
         },
         "hint": {
+            "description": "Detailed input description",
             "type": "string"
         },
         "label": {
+            "description": "Form input label",
             "type": "string"
         },
         "inputType": {
+            "description": "Form input type",
             "$ref": "./../enums/input-type.json"
         },
         "prefixText": {
+            "description": "Input helper prefix text such as %",
             "type": "string"
         },
         "suffixText": {
+            "description": "Input helper suffix text such as unit mm",
             "type": "string"
         },
         "prefixIcon": {
+            "description": "UI form input icon",
             "$ref": "./../enums/icon.json"
         },
         "suffixIcon": {
+            "description": "UI form input icon",
             "$ref": "./../enums/icon.json"
         },
         "required": {

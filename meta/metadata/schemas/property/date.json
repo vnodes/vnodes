@@ -3,6 +3,9 @@
     "title": "DateProperty",
     "$id": "DateProperty",
     "properties": {
+        "default": {
+            "default": "string"
+        },
         "type": {
             "const": "date"
         },

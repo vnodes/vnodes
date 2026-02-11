@@ -3,8 +3,17 @@
     "title": "NumberProperty",
     "$id": "NumberProperty",
     "properties": {
+        "desfault": {
+            "type": "integer"
+        },
         "type": {
             "const": "number"
+        },
+        "min": {
+            "type": "number"
+        },
+        "max": {
+            "type": "number"
         }
     },
     "required": [

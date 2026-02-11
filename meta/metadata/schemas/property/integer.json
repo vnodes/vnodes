@@ -3,8 +3,17 @@
     "title": "IntegerProperty",
     "$id": "IntegerProperty",
     "properties": {
+        "desfault": {
+            "type": "integer"
+        },
         "type": {
             "const": "integer"
+        },
+        "min": {
+            "type": "integer"
+        },
+        "max": {
+            "type": "integer"
         }
     },
     "required": [

@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Relation",
+    "$id": "Relation",
+    "properties": {
+        "name": {
+            "$ref": "./../enums/property-name.json"
+        },
+        "type": {
+            "$ref": "./../enums/relation-type.json"
+        },
+        "model": {
+            "$ref": "./../enums/model-name.json"
+        },
+        "onDelete": {
+            "$ref": "./../enums/relation-action.json"
+        },
+        "onUpdate": {
+            "$ref": "./../enums/relation-action.json"
+        }
+    }
+}

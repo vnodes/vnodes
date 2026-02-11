@@ -1,0 +1,58 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Model",
+    "$id": "Model",
+    "properties": {
+        "name": {
+            "$ref": "./../enums/model-name.json"
+        },
+        "abstract": {
+            "type": "boolean"
+        },
+        "description": {
+            "type": "string"
+        },
+        "extends": {
+            "type": "array",
+            "items": {
+                "$ref": "./../enums/model-name.json"
+            },
+            "uniqueItems": true
+        },
+        "properties": {
+            "type": "array",
+            "items": {
+                "$ref": "./../property/property.json"
+            }
+        },
+        "relations": {
+            "type": "array",
+            "items": {
+                "$ref": "./../property/relation.json"
+            }
+        },
+        "uniques": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": {
+                    "$ref": "./../enums/property-name.json"
+                },
+                "uniqueItems": true
+            }
+        },
+        "indexes": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": {
+                    "$ref": "./../enums/property-name.json"
+                },
+                "uniqueItems": true
+            }
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

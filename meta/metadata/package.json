@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/metadata",
-    "description": "- [ ] add description",
+    "description": "Metadata",
     "homepage": "https://vnodes.github.io/vnodes/metadata/metadata",
     "publishConfig": {
         "access": "public",
@@ -36,10 +36,11 @@
     "files": [
         "assets",
         "dist",
+        "schemas",
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "metadata/metadata/src",
+        "sourceRoot": "meta/metadata/src",
         "targets": {
             "build": {
                 "executor": "@nx/js:swc",
@@ -47,11 +48,23 @@
                     "{options.outputPath}"
                 ],
                 "options": {
-                    "outputPath": "metadata/metadata/dist",
-                    "main": "metadata/metadata/src/index.ts",
-                    "tsConfig": "metadata/metadata/tsconfig.lib.json",
+                    "outputPath": "meta/metadata/dist",
+                    "main": "meta/metadata/src/index.ts",
+                    "tsConfig": "meta/metadata/tsconfig.lib.json",
                     "skipTypeCheck": false,
                     "stripLeadingPaths": true
+                },
+                "dependsOn": [
+                    "generate-types"
+                ]
+            },
+            "generate-types": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "commands": [
+                        "npx json-schema-to-typescript model.json -o ../../src/lib//model.ts"
+                    ],
+                    "cwd": "{projectRoot}/schemas/model"
                 }
             },
             "lint": {
@@ -77,6 +90,10 @@
         }
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.11"
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/types": "workspace:*"
+    },
+    "devDependencies": {
+        "json-schema-to-typescript": "^15.0.4"
     }
 }

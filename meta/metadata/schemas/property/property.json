@@ -27,7 +27,7 @@
             "$ref": "./date.json"
         },
         {
-            "$ref": "./object.json"
+            "$ref": "./json.json"
         },
         {
             "$ref": "./enum.json"

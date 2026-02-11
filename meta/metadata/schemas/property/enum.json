@@ -1,0 +1,31 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "EnumProperty",
+    "$id": "EnumProperty",
+    "properties": {
+        "default": {
+            "default": "string"
+        },
+        "type": {
+            "const": "enum"
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "uniqueItems": true
+        }
+    },
+    "required": [
+        "type",
+        "values"
+    ]
+}

@@ -4,6 +4,7 @@ export * from "./lib/common.js";
 export * from "./lib/constants.js";
 export * from "./lib/icon.js";
 export * from "./lib/input-type.js";
+export * from "./lib/json-schema.js";
 export * from "./lib/metadata.js";
 export * from "./lib/model.js";
 export * from "./lib/names.js";

@@ -1,55 +1,55 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compileOnSave": false,
-  "files": [],
-  "references": [
-    {
-      "path": "./libs/prisma"
-    },
-    {
-      "path": "./plugins/cli"
-    },
-    {
-      "path": "./libs/names"
-    },
-    {
-      "path": "./libs/crypto"
-    },
-    {
-      "path": "./libs/utils"
-    },
-    {
-      "path": "./libs/fs"
-    },
-    {
-      "path": "./libs/nest"
-    },
-    {
-      "path": "./libs/types"
-    },
-    {
-      "path": "./libs/errors"
-    },
-    {
-      "path": "./libs/nest-names"
-    },
-    {
-      "path": "./libs/prisma-sqlite"
-    },
-    {
-      "path": "./apps/suite"
-    },
-    {
-      "path": "./dbs/todo"
-    },
-    {
-      "path": "./apps/todo-api"
-    },
-    {
-      "path": "./libs/property"
-    },
-    {
-      "path": "./metadata/metadata"
-    }
-  ]
+    "extends": "./tsconfig.base.json",
+    "compileOnSave": false,
+    "files": [],
+    "references": [
+        {
+            "path": "./libs/prisma"
+        },
+        {
+            "path": "./plugins/cli"
+        },
+        {
+            "path": "./libs/names"
+        },
+        {
+            "path": "./libs/crypto"
+        },
+        {
+            "path": "./libs/utils"
+        },
+        {
+            "path": "./libs/fs"
+        },
+        {
+            "path": "./libs/nest"
+        },
+        {
+            "path": "./libs/types"
+        },
+        {
+            "path": "./libs/errors"
+        },
+        {
+            "path": "./libs/nest-names"
+        },
+        {
+            "path": "./libs/prisma-sqlite"
+        },
+        {
+            "path": "./apps/suite"
+        },
+        {
+            "path": "./dbs/todo"
+        },
+        {
+            "path": "./apps/todo-api"
+        },
+        {
+            "path": "./libs/property"
+        },
+        {
+            "path": "./meta/metadata"
+        }
+    ]
 }

@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "ArrayProperty",
+    "properties": {
+        "type": {
+            "const": "array"
+        },
+        "items": {
+            "$ref": "./property.json"
+        },
+        "maxArrayLength": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "minArrayLength": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "uniqueItems": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "type",
+        "items"
+    ]
+}
