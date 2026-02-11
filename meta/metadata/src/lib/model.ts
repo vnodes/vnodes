@@ -5,7 +5,49 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type ModelName = "User" | "Role" | "Permission" | "Category";
+export type ModelName =
+    | "-- Auth"
+    | "User"
+    | "Role"
+    | "Permission"
+    | "Session"
+    | "AccessToken"
+    | "Profile"
+    | "--- HR"
+    | "Employee"
+    | "--- Inventory"
+    | "Store"
+    | "Warehouse"
+    | "Location"
+    | "Product"
+    | "ProductVariant"
+    | "Price"
+    | "Quantity"
+    | "PriceLevel"
+    | "Category"
+    | "Department"
+    | "Discount"
+    | "Cart"
+    | "Attibute"
+    | "Comment"
+    | "Like"
+    | "Review"
+    | "Supplier"
+    | "Manufacturer"
+    | "Make"
+    | "Model"
+    | "Customer"
+    | "--- Contact"
+    | "Contact"
+    | "Addresss"
+    | "Country"
+    | "State"
+    | "Email"
+    | "Phone"
+    | "--- Messageing"
+    | "Notification"
+    | "Inbox"
+    | "Message";
 export type Property = CommonProperty &
     (
         | ArrayProperty
@@ -29,7 +71,9 @@ export type PropertyName =
     | "name"
     | "description"
     | "price"
-    | "cost";
+    | "cost"
+    | "priceLevel"
+    | "discount";
 /**
  * Form input type
  */

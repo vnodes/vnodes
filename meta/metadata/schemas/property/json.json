@@ -6,7 +6,5 @@
             "const": "json"
         }
     },
-    "required": [
-        "type"
-    ]
+    "required": ["type"]
 }

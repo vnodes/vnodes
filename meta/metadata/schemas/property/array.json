@@ -20,8 +20,5 @@
             "type": "boolean"
         }
     },
-    "required": [
-        "type",
-        "items"
-    ]
+    "required": ["type", "items"]
 }

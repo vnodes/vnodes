@@ -9,7 +9,5 @@
             "const": "boolean"
         }
     },
-    "required": [
-        "type"
-    ]
+    "required": ["type"]
 }

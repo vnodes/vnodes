@@ -24,8 +24,5 @@
             "uniqueItems": true
         }
     },
-    "required": [
-        "type",
-        "values"
-    ]
+    "required": ["type", "values"]
 }

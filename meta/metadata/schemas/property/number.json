@@ -16,7 +16,5 @@
             "type": "number"
         }
     },
-    "required": [
-        "type"
-    ]
+    "required": ["type"]
 }

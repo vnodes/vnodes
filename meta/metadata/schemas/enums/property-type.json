@@ -2,14 +2,5 @@
     "$schema": "https://json-schema.org/draft-07/schema#",
     "title": "PropertyType",
     "$id": "PropertyType",
-    "enum": [
-        "string",
-        "number",
-        "integer",
-        "boolean",
-        "enum",
-        "json",
-        "date",
-        "array"
-    ]
+    "enum": ["string", "number", "integer", "boolean", "enum", "json", "date", "array"]
 }
