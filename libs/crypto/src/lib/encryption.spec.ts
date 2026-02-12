@@ -11,7 +11,7 @@ describe("encryption", () => {
 
         const encryptedData = await encrypter.encrypt(data, key, version);
         const decryptedData = await encrypter.decrypt(encryptedData, key);
-        const parts = encrypter.parts(encryptedData);
+        const parts = encrypter.getParts(encryptedData);
 
         assert.ok(parts);
         assert.ok(decryptedData);

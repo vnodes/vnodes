@@ -1,18 +1,18 @@
 {
-    "name": "@vnodes/metadata",
-    "description": "Metadata",
-    "homepage": "https://vnodes.github.io/vnodes/metadata/metadata",
+    "name": "@vnodes/typeorm",
+    "description": "Typeorm wrapper",
+    "homepage": "https://vnodes.github.io/vnodes/libs/typeorm",
     "publishConfig": {
         "access": "public",
         "tag": "latest"
     },
     "author": {
-        "email": "robert.brightline+vnodes-metadata@gmail.com",
+        "email": "robert.brightline+vnodes-typeorm@gmail.com",
         "name": "Robert Brightline",
-        "url": "https://vnodes.github.io/vnodes/metadata/metadata"
+        "url": "https://vnodes.github.io/vnodes/libs/typeorm"
     },
     "keywords": [],
-    "icon": "https://vnodes.github.io/vnodes/metadata/metadata/assets/favicon.png",
+    "icon": "https://vnodes.github.io/vnodes/libs/typeorm/assets/favicon.png",
     "funding": [
         {
             "type": "cashapp",
@@ -36,11 +36,10 @@
     "files": [
         "assets",
         "dist",
-        "schemas",
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "meta/metadata/src",
+        "sourceRoot": "libs/typeorm/src",
         "targets": {
             "build": {
                 "executor": "@nx/js:swc",
@@ -48,20 +47,11 @@
                     "{options.outputPath}"
                 ],
                 "options": {
-                    "outputPath": "meta/metadata/dist",
-                    "main": "meta/metadata/src/index.ts",
-                    "tsConfig": "meta/metadata/tsconfig.lib.json",
+                    "outputPath": "libs/typeorm/dist",
+                    "main": "libs/typeorm/src/index.ts",
+                    "tsConfig": "libs/typeorm/tsconfig.lib.json",
                     "skipTypeCheck": false,
                     "stripLeadingPaths": true
-                }
-            },
-            "generate-types": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "commands": [
-                        "npx json-schema-to-typescript model.json -o ../../src/lib//model.ts"
-                    ],
-                    "cwd": "{projectRoot}/schemas/model"
                 }
             },
             "lint": {
@@ -73,14 +63,14 @@
             "test": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
+                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
                     "cwd": "{projectRoot}"
                 }
             },
             "doc": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx typedoc --tsconfig metadata/metadata/tsconfig.lib.json --entryPoints metadata/metadata/src/index.ts --out public/metadata/metadata",
+                    "command": "npx typedoc --tsconfig libs/typeorm/tsconfig.lib.json --entryPoints libs/typeorm/src/index.ts --out public/libs/typeorm",
                     "cwd": "{workspaceRoot}"
                 }
             }
@@ -88,9 +78,12 @@
     },
     "dependencies": {
         "@swc/helpers": "~0.5.11",
-        "@vnodes/types": "workspace:*"
+        "@vnodes/metadata": "workspace:*",
+        "@vnodes/types": "workspace:*",
+        "typeorm": "^0.3.28",
+        "uuid": "^13.0.0"
     },
     "devDependencies": {
-        "json-schema-to-typescript": "^15.0.4"
+        "reflect-metadata": "^0.2.2"
     }
 }

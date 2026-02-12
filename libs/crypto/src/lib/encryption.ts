@@ -3,7 +3,7 @@ import type { CipherGCM, DecipherGCM } from "node:crypto";
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { Readable } from "node:stream";
 
-export type EncriptionParts = {
+export type EncryptionParts = {
     version: string;
     iv: string;
     authTag: string;
@@ -89,9 +89,9 @@ export class Encryption {
     /**
      * Split the encripted string by the delimeter and return the parts as object
      * @param encryptedData encrypted string
-     * @returns parts {@link EncriptionParts}
+     * @returns parts {@link EncryptionParts}
      */
-    public parts(encryptedData: string): EncriptionParts {
+    public getParts(encryptedData: string): EncryptionParts {
         const parts = encryptedData.split(delimeter);
         if (parts.length !== 4) {
             throw new Error(`Invalid encripted data!`);
@@ -116,7 +116,7 @@ export class Encryption {
         this.validateKey(key);
         const keyBuffer: Buffer = Buffer.isBuffer(key) ? key : Buffer.from(key, this.ENCODING);
 
-        const { authTag, content, iv } = this.parts(encryptedData);
+        const { authTag, content, iv } = this.getParts(encryptedData);
 
         // 2. Convert hex parts back to Buffers
         const ivBuffer: Buffer = Buffer.from(iv, this.ENCODING);
@@ -128,27 +128,9 @@ export class Encryption {
 
         decipher.setAuthTag(authTagBuffer);
 
-        // 4. Create a readable stream from the ciphertext buffer
-        const readableStream = Readable.from([contentBuffer]);
+        const plaintext = Buffer.concat([decipher.update(contentBuffer), decipher.final()]);
 
-        return new Promise((resolve, reject) => {
-            let plaintext = "";
-
-            // 5. Pipe the ciphertext through the decipher
-            readableStream
-                .pipe(decipher)
-                .on("data", (chunk: Buffer) => {
-                    // Collect the decrypted data chunk by chunk, converting to utf8
-                    plaintext += chunk.toString("utf8");
-                })
-                .on("end", () => {
-                    // Resolve with the final plaintext
-                    resolve(plaintext);
-                })
-                .on("error", (err) => {
-                    reject(err);
-                });
-        });
+        return plaintext.toString("utf8");
     }
 
     /**

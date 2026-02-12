@@ -10,7 +10,6 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "strictPropertyInitialization": false,
-        "esModuleInterop": true,
         "types": ["node"]
     },
     "include": ["src/**/*.ts"],
