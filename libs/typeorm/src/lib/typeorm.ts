@@ -1,3 +1,3 @@
-export function typeorm(){ 
+export function typeorm() {
     return "typeorm";
 }

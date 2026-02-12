@@ -22,7 +22,7 @@ describe("typeorm", () => {
         const sample = ds.getRepository(Sample);
         const category = ds.getRepository(Category);
 
-        const savedCategory = await category.save({ name: "cat 1" });
+        const _savedCategory = await category.save({ name: "cat 1" });
 
         const saved = await sample.save({
             stringArrayValue: ["1", "2", "3"],

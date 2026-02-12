@@ -1,3 +1,3 @@
-export function projectDb(){ 
+export function projectDb() {
     return "projectDb";
 }
