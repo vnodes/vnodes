@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: Nest */
 import { type ArgumentsHost, Catch, type ExceptionFilter } from "@nestjs/common";
 import { QueryFailedError } from "typeorm";
 

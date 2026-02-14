@@ -57,18 +57,20 @@ export function Relation(options: RelationOptions): PropertyDecorator {
             }
         }
 
-        switch (options.type) {
-            case "many-to-many":
-            case "one-to-many": {
-                JoinTable(joinOptions)(...args);
-                break;
+        if (options.join || options.joinBy)
+            switch (options.type) {
+                case "many-to-many":
+                case "one-to-many": {
+                    JoinTable(joinOptions)(...args);
+
+                    break;
+                }
+                case "one-to-one":
+                case "many-to-one": {
+                    JoinColumn(joinOptions)(...args);
+                    break;
+                }
             }
-            case "one-to-one":
-            case "many-to-one": {
-                JoinColumn(joinOptions)(...args);
-                break;
-            }
-        }
 
         const propertyOPtions = toPropertyOptions(options);
 

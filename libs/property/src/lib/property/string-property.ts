@@ -2,6 +2,7 @@ import type { ReferPropertyOptions } from "@vnodes/types";
 import {
     IsEmail,
     IsIP,
+    IsPhoneNumber,
     IsString,
     IsStrongPassword,
     IsUUID,
@@ -10,7 +11,7 @@ import {
     type ValidationOptions,
 } from "class-validator";
 
-export type AvailableStringFormat = "password" | "email" | "uuid7" | "ip4" | "ip6";
+export type AvailableStringFormat = "password" | "email" | "uuid7" | "ip4" | "ip6" | "phone";
 
 function StringFormat(
     options: Pick<ReferPropertyOptions<"string">, "format">,
@@ -39,6 +40,10 @@ function StringFormat(
             }
             case "ip6": {
                 IsIP("6", validationOptions)(...args);
+                break;
+            }
+            case "phone": {
+                IsPhoneNumber(undefined, validationOptions)(...args);
                 break;
             }
         }
