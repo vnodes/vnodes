@@ -20,4 +20,13 @@ export type Nullable<T> = T | null;
  */
 export type Optional<T> = T | undefined | null;
 
+/**
+ * Class type
+ */
 export type Cls<T = Any> = { new (...args: Any[]): T };
+
+export type KeyOf<T> = keyof T;
+
+export type Keys<T> = KeyOf<T>[];
+
+export type Value<T, K extends keyof T> = T[K];

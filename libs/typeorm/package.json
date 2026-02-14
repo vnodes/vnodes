@@ -76,14 +76,15 @@
             }
         }
     },
+    "peerDependencies": {
+        "@vnodes/property": "workspace:*",
+        "typeorm": "^0.3.28",
+        "reflect-metadata": "^0.2.2"
+    },
     "dependencies": {
         "@swc/helpers": "~0.5.11",
-        "@vnodes/metadata": "workspace:*",
         "@vnodes/types": "workspace:*",
-        "typeorm": "^0.3.28",
         "uuid": "^13.0.0"
     },
-    "devDependencies": {
-        "reflect-metadata": "^0.2.2"
-    }
+    "devDependencies": {}
 }

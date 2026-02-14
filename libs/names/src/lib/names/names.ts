@@ -1,6 +1,16 @@
-import type { Names } from "@vnodes/types";
 import { normalizeName } from "./normalize-name.js";
 import { uppercaseFirst } from "./upercase-first.js";
+
+export type Names = {
+    pascalCase: string;
+    camelCase: string;
+    kebabCase: string;
+    snakeCase: string;
+    upperSnakeCase: string;
+    dotCase: string;
+    titleCase: string;
+    sentenceCase: string;
+};
 export function names(name: string): Names {
     const normal = normalizeName(name);
 

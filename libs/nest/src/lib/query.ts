@@ -1,23 +1,30 @@
 import { Query as NestQuery } from "@nestjs/common";
-import { UndefinedValueError } from "@vnodes/errors";
 import type { Cls } from "@vnodes/types";
-import { isDefined, isNotDefined } from "@vnodes/utils";
 
 export function Query(dtoClass?: Cls): ParameterDecorator {
     return (...args) => {
-        NestQuery()(...args);
+        NestQuery({
+            transform(value) {
+                if (dtoClass) {
+                    return new dtoClass(value);
+                }
+                return value;
+            },
+        })(...args);
 
-        if (isDefined(dtoClass)) {
-            const target = args[0];
-            const propertyKey = args[1];
-            if (isNotDefined(propertyKey)) {
-                throw new UndefinedValueError(`Property key is undefiend`);
-            }
-            const descriptor = Object.getOwnPropertyDescriptor(target, propertyKey);
+        // if (dtoClass) {
+        //     const target = args[0];
+        //     const propertyKey = args[1];
+        //     if (propertyKey === undefined || propertyKey === null) {
+        //         throw new UndefinedValueError(`Property key is undefiend`);
+        //     }
+        //     const descriptor = Object.getOwnPropertyDescriptor(target, propertyKey);
 
-            if (isNotDefined(descriptor)) {
-                throw new UndefinedValueError(`Descriptor is not created`);
-            }
-        }
+        //     if (descriptor === undefined || descriptor === null) {
+        //         throw new UndefinedValueError(`Descriptor is not created`);
+        //     }
+
+        //     ApiQuery({ type: dtoClass })(target, propertyKey, descriptor);
+        // }
     };
 }

@@ -1,4 +1,5 @@
-import type { RelationOptions } from "@vnodes/metadata";
+import { Property } from "@vnodes/property";
+import type { RelationOptions } from "@vnodes/types";
 import {
     JoinColumn,
     JoinTable,
@@ -8,68 +9,69 @@ import {
     OneToOne,
     type RelationOptions as TRelationOptions,
 } from "typeorm";
+import { toPropertyOptions } from "../helpers/to-property-options.js";
 
 export function Relation(options: RelationOptions): PropertyDecorator {
     return (...args) => {
-        const relationClass = options.target;
-        const common: TRelationOptions = {
-            cascade: options.cascade,
-            eager: true,
-            nullable: true,
+        const relationOptions: TRelationOptions = {
+            cascade: options.cascade ?? ["insert"],
+            eager: options.eager !== false,
+            nullable: options.nullable !== false,
             onDelete: options.onDelete,
             onUpdate: options.onUpdate,
         };
 
+        const joinOptions = options.joinBy
+            ? {
+                  name: options.joinBy,
+              }
+            : {};
+
         switch (options.type) {
-            case "many-to-many": {
-                ManyToMany(() => relationClass, { ...common })(...args);
-                break;
-            }
-            case "many-to-one": {
-                ManyToOne(() => relationClass, { ...common })(...args);
+            case "many-to-many":
+            case "one-to-many": {
+                switch (options.type) {
+                    case "many-to-many": {
+                        ManyToMany(() => options.target, relationOptions)(...args);
+                        break;
+                    }
+                    case "one-to-many": {
+                        if (!options.inverseSide) {
+                            throw new Error("options.inverseSide is required!");
+                        }
+
+                        OneToMany(() => options.target, options.inverseSide, relationOptions)(...args);
+                        break;
+                    }
+                }
+
                 break;
             }
             case "one-to-one": {
-                OneToOne(() => relationClass, { ...common })(...args);
+                OneToOne(() => options.target, relationOptions)(...args);
                 break;
             }
-            case "one-to-many": {
-                const inverse = options.inverseColumn;
-                if (inverse !== undefined) {
-                    OneToMany(
-                        () => relationClass,
-                        (e) => e[inverse],
-                    )(...args);
-                } else {
-                    throw new Error("options.inverseColumn is requried!");
-                }
-
+            case "many-to-one": {
+                ManyToOne(() => options.target, relationOptions)(...args);
                 break;
             }
         }
 
-        // Joins
-
-        if (options.join === true || options.joinBy)
-            switch (options.type) {
-                case "many-to-many":
-                case "one-to-many": {
-                    if (options.join === true) {
-                        JoinTable()(...args);
-                    } else if (options.joinBy !== undefined) {
-                        JoinTable({ name: options.joinBy })(...args);
-                    }
-                    break;
-                }
-                case "many-to-one":
-                case "one-to-one": {
-                    if (options.join === true) {
-                        JoinColumn()(...args);
-                    } else if (options.joinBy !== undefined) {
-                        JoinColumn({ name: options.joinBy })(...args);
-                    }
-                    break;
-                }
+        switch (options.type) {
+            case "many-to-many":
+            case "one-to-many": {
+                JoinTable(joinOptions)(...args);
+                break;
             }
+            case "one-to-one":
+            case "many-to-one": {
+                JoinColumn(joinOptions)(...args);
+                break;
+            }
+        }
+
+        const propertyOPtions = toPropertyOptions(options);
+
+        Property(propertyOPtions)(...args);
     };
 }

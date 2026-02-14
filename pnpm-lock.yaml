@@ -73,48 +73,6 @@ importers:
         specifier: ^6.0.5
         version: 6.2.5(typanion@3.14.0)
 
-  apps/suite:
-    dependencies:
-      '@nestjs/common':
-        specifier: ^11.1.13
-        version: 11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/config':
-        specifier: ^4.0.3
-        version: 4.0.3(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@nestjs/core':
-        specifier: ^11.1.13
-        version: 11.1.13(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.13)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/event-emitter':
-        specifier: ^3.0.1
-        version: 3.0.1(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.13)
-      '@nestjs/platform-express':
-        specifier: ^11.1.13
-        version: 11.1.13(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.13)
-      '@nestjs/schedule':
-        specifier: ^6.1.1
-        version: 6.1.1(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.13)
-      '@nestjs/swagger':
-        specifier: ^11.2.6
-        version: 11.2.6(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.13)(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@scalar/nestjs-api-reference':
-        specifier: ^1.0.23
-        version: 1.0.23
-      '@vnodes/nest':
-        specifier: workspace:*
-        version: link:../../libs/nest
-      '@vnodes/prisma':
-        specifier: workspace:*
-        version: link:../../libs/prisma
-      '@vnodes/todo':
-        specifier: workspace:*
-        version: link:../../dbs/todo
-      class-transformer:
-        specifier: ^0.5.1
-        version: 0.5.1
-      class-validator:
-        specifier: ^0.14.3
-        version: 0.14.3
-
   apps/todo-api:
     dependencies:
       '@nestjs/common':
@@ -147,66 +105,24 @@ importers:
       '@vnodes/nest':
         specifier: workspace:*
         version: link:../../libs/nest
-      '@vnodes/prisma':
-        specifier: workspace:*
-        version: link:../../libs/prisma
       '@vnodes/property':
         specifier: workspace:*
         version: link:../../libs/property
-      '@vnodes/todo':
+      '@vnodes/typeorm':
         specifier: workspace:*
-        version: link:../../dbs/todo
+        version: link:../../libs/typeorm
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1
       class-validator:
         specifier: ^0.14.3
         version: 0.14.3
-
-  dbs/pms:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.18
-      better-sqlite3:
-        specifier: ^12.6.2
-        version: 12.6.2
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
       typeorm:
         specifier: ^0.3.28
         version: 0.3.28(babel-plugin-macros@3.1.0)(better-sqlite3@12.6.2)(mysql2@3.15.3)(pg@8.18.0)
-    devDependencies:
-      '@types/node':
-        specifier: ^25.2.3
-        version: 25.2.3
-
-  dbs/project-db:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.18
-      typeorm:
-        specifier: ^0.3.28
-        version: 0.3.28(babel-plugin-macros@3.1.0)(better-sqlite3@12.6.2)(mysql2@3.15.3)(pg@8.18.0)
-    devDependencies:
-      reflect-metadata:
-        specifier: ^0.2.2
-        version: 0.2.2
-
-  dbs/todo:
-    dependencies:
-      '@prisma/client':
-        specifier: ^7.3.0
-        version: 7.3.0(prisma@7.3.0(@types/react@19.2.13)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.18
-    devDependencies:
-      prisma:
-        specifier: ^7.3.0
-        version: 7.3.0(@types/react@19.2.13)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
 
   libs/crypto:
     dependencies:
@@ -282,31 +198,13 @@ importers:
       '@vnodes/names':
         specifier: workspace:*
         version: link:../names
-      '@vnodes/nest-names':
-        specifier: workspace:*
-        version: link:../nest-names
       '@vnodes/types':
         specifier: workspace:*
         version: link:../types
-      '@vnodes/utils':
-        specifier: workspace:*
-        version: link:../utils
     devDependencies:
       '@nestjs/testing':
         specifier: ^11.1.13
         version: 11.1.13(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.13)(@nestjs/platform-express@11.1.13)
-
-  libs/nest-names:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.18
-      '@vnodes/errors':
-        specifier: workspace:*
-        version: link:../errors
-      '@vnodes/types':
-        specifier: workspace:*
-        version: link:../types
 
   libs/prisma:
     dependencies:
@@ -328,24 +226,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
-      '@vnodes/errors':
-        specifier: workspace:*
-        version: link:../errors
-      '@vnodes/names':
-        specifier: workspace:*
-        version: link:../names
-      '@vnodes/nest':
-        specifier: workspace:*
-        version: link:../nest
-      '@vnodes/nest-names':
-        specifier: workspace:*
-        version: link:../nest-names
       '@vnodes/types':
         specifier: workspace:*
         version: link:../types
-      '@vnodes/utils':
-        specifier: workspace:*
-        version: link:../utils
       pg:
         specifier: ^8.18.0
         version: 8.18.0
@@ -383,40 +266,13 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
-      '@vnodes/errors':
-        specifier: workspace:*
-        version: link:../errors
-      '@vnodes/names':
-        specifier: workspace:*
-        version: link:../names
-      '@vnodes/nest':
-        specifier: workspace:*
-        version: link:../nest
-      '@vnodes/nest-names':
-        specifier: workspace:*
-        version: link:../nest-names
-      '@vnodes/types':
-        specifier: workspace:*
-        version: link:../types
-      '@vnodes/utils':
-        specifier: workspace:*
-        version: link:../utils
       better-sqlite3:
         specifier: ^12.6.2
         version: 12.6.2
     devDependencies:
-      '@nestjs/testing':
-        specifier: ^11.1.13
-        version: 11.1.13(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.13)(@nestjs/platform-express@11.1.13)
       '@types/better-sqlite3':
         specifier: ^7.6.13
         version: 7.6.13
-      '@types/node':
-        specifier: 20.19.9
-        version: 20.19.9
-      '@types/pg':
-        specifier: ^8.16.0
-        version: 8.16.0
       prisma:
         specifier: ^7.3.0
         version: 7.3.0(@types/react@19.2.13)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
@@ -444,53 +300,27 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
-      '@vnodes/crypto':
+      '@vnodes/property':
         specifier: workspace:*
-        version: link:../crypto
-      '@vnodes/metadata':
-        specifier: workspace:*
-        version: link:../../meta/metadata
+        version: link:../property
       '@vnodes/types':
         specifier: workspace:*
         version: link:../types
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
       typeorm:
         specifier: ^0.3.28
         version: 0.3.28(babel-plugin-macros@3.1.0)(better-sqlite3@12.6.2)(mysql2@3.15.3)(pg@8.18.0)
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
-    devDependencies:
-      reflect-metadata:
-        specifier: ^0.2.2
-        version: 0.2.2
 
   libs/types:
     dependencies:
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
-
-  libs/utils:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.18
-      '@vnodes/types':
-        specifier: workspace:*
-        version: link:../types
-
-  meta/metadata:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.18
-      '@vnodes/types':
-        specifier: workspace:*
-        version: link:../../libs/types
-    devDependencies:
-      json-schema-to-typescript:
-        specifier: ^15.0.4
-        version: 15.0.4
 
   plugins/cli:
     dependencies:
@@ -502,10 +332,6 @@ importers:
         version: 2.8.1
 
 packages:
-
-  '@apidevtools/json-schema-ref-parser@11.9.3':
-    resolution: {integrity: sha512-60vepv88RwcJtSHrD6MjIL6Ta3SOYbgfnkHb+ppAVK+o9mXprRtulx7VlRl3lN3bbvysAfCS7WMVfhUYemB0IQ==}
-    engines: {node: '>= 16'}
 
   '@babel/code-frame@7.29.0':
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
@@ -1522,9 +1348,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@jsdevtools/ono@7.1.3':
-    resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
-
   '@lukeed/csprng@1.1.0':
     resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
     engines: {node: '>=8'}
@@ -2148,9 +1971,6 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
-
-  '@types/lodash@4.17.23':
-    resolution: {integrity: sha512-RDvF6wTulMPjrNdCoYRC8gNR880JNGT8uB+REUpC2Ns4pRqQJhGz90wh7rgdXDPpCczF3VGktDuFGVnz8zP7HA==}
 
   '@types/luxon@3.7.1':
     resolution: {integrity: sha512-H3iskjFIAn5SlJU7OuxUmTEpebK6TKB8rxZShDslBMZJ5u9S//KM1sbdAisiSrqwLQncVjnpi2OK2J51h+4lsg==}
@@ -3939,11 +3759,6 @@ packages:
   json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
 
-  json-schema-to-typescript@15.0.4:
-    resolution: {integrity: sha512-Su9oK8DR4xCmDsLlyvadkXzX6+GGXJpbhwoLtOGArAG61dvbW4YQmSEno2y66ahpIdmLMg6YUf/QHLgiwvkrHQ==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
@@ -4586,11 +4401,6 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
-
-  prettier@3.8.1:
-    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
-    engines: {node: '>=14'}
-    hasBin: true
 
   pretty-format@30.2.0:
     resolution: {integrity: sha512-9uBdv/B4EefsuAL+pWqueZyZS2Ba+LxfFeQ9DN14HU4bN8bhaxKdkpjpB6fs9+pSjIBu+FXQHImEg8j/Lw0+vA==}
@@ -5464,12 +5274,6 @@ packages:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
 snapshots:
-
-  '@apidevtools/json-schema-ref-parser@11.9.3':
-    dependencies:
-      '@jsdevtools/ono': 7.1.3
-      '@types/json-schema': 7.0.15
-      js-yaml: 4.1.1
 
   '@babel/code-frame@7.29.0':
     dependencies:
@@ -6668,8 +6472,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@jsdevtools/ono@7.1.3': {}
-
   '@lukeed/csprng@1.1.0': {}
 
   '@microsoft/tsdoc@0.16.0': {}
@@ -7422,8 +7224,6 @@ snapshots:
   '@types/js-yaml@4.0.9': {}
 
   '@types/json-schema@7.0.15': {}
-
-  '@types/lodash@4.17.23': {}
 
   '@types/luxon@3.7.1': {}
 
@@ -9583,18 +9383,6 @@ snapshots:
 
   json-parse-even-better-errors@2.3.1: {}
 
-  json-schema-to-typescript@15.0.4:
-    dependencies:
-      '@apidevtools/json-schema-ref-parser': 11.9.3
-      '@types/json-schema': 7.0.15
-      '@types/lodash': 4.17.23
-      is-glob: 4.0.3
-      js-yaml: 4.1.1
-      lodash: 4.17.23
-      minimist: 1.2.8
-      prettier: 3.8.1
-      tinyglobby: 0.2.15
-
   json-schema-traverse@0.4.1: {}
 
   json-schema-traverse@1.0.0: {}
@@ -10191,8 +9979,6 @@ snapshots:
       tunnel-agent: 0.6.0
 
   prelude-ls@1.2.1: {}
-
-  prettier@3.8.1: {}
 
   pretty-format@30.2.0:
     dependencies:

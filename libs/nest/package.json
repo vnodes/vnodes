@@ -85,9 +85,7 @@
         "@swc/helpers": "~0.5.11",
         "@vnodes/errors": "workspace:*",
         "@vnodes/names": "workspace:*",
-        "@vnodes/nest-names": "workspace:*",
-        "@vnodes/types": "workspace:*",
-        "@vnodes/utils": "workspace:*"
+        "@vnodes/types": "workspace:*"
     },
     "devDependencies": {
         "@nestjs/testing": "^11.1.13"

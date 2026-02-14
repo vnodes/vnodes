@@ -1,14 +1,13 @@
-import type { PropertyOptions } from "@vnodes/metadata";
-
+import type { PropertyOptions } from "@vnodes/types";
 import type { ColumnOptions } from "typeorm";
 
 export function toColumnOptions(options: PropertyOptions): ColumnOptions {
     const common: ColumnOptions = {
         unique: options.unique === true,
-        nullable: !(options.requried === true),
+        nullable: !(options.required === true),
         select: !(options.internal === true),
         comment: options.description,
-        default: options.default,
+        default: options.default ?? null,
         update: !(options.readonly === true),
     };
 
@@ -56,6 +55,20 @@ export function toColumnOptions(options: PropertyOptions): ColumnOptions {
             };
         }
         case "json": {
+            return {
+                type: "jsonb",
+                ...common,
+            };
+        }
+
+        case "date": {
+            return {
+                type: "timestamptz",
+                ...common,
+            };
+        }
+
+        case "object": {
             return {
                 type: "jsonb",
                 ...common,

@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { PrismaModule } from "@vnodes/prisma";
-import { ModelName } from "@vnodes/todo";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import { TodoController } from "./todo.controller.js";
+import { Todo } from "./todo.entity.js";
 
 @Module({
-    imports: [PrismaModule.forFeature({ models: [ModelName.Todo] })],
+    imports: [TypeOrmModule.forFeature([Todo])],
     controllers: [TodoController],
 })
 export class TodoModule {}

@@ -3,7 +3,7 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { apiReference } from "@scalar/nestjs-api-reference";
-import { Constants, GlobalValidationPipe } from "@vnodes/nest";
+import { GlobalValidationPipe } from "@vnodes/nest";
 import { AppModule } from "./app/app.module.js";
 
 async function main() {
@@ -11,10 +11,10 @@ async function main() {
     const app = await NestFactory.create(AppModule);
 
     const config = app.get(ConfigService);
-    const APP_ID = config.getOrThrow(Constants.APP_ID, "suite");
-    const APP_PREFIX = config.getOrThrow(Constants.APP_PREFIX, "api");
-    const APP_VERSION = config.getOrThrow(Constants.APP_VERSION, "0.0.1");
-    const APP_DESCRIPTION = config.getOrThrow(Constants.APP_DESCRIPTION, "No description");
+    const APP_ID = config.getOrThrow("APP_ID", "suite");
+    const APP_PREFIX = config.getOrThrow("APP_PREFIX", "api");
+    const APP_VERSION = config.getOrThrow("APP_VERSION", "0.0.1");
+    const APP_DESCRIPTION = config.getOrThrow("APP_DESCRIPTION", "No description");
 
     app.setGlobalPrefix(APP_PREFIX);
     app.enableCors();
