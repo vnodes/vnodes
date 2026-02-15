@@ -1,7 +1,7 @@
-import { Buffer } from "node:buffer";
-import type { CipherGCM, DecipherGCM } from "node:crypto";
-import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
-import { Readable } from "node:stream";
+import { Buffer } from 'node:buffer';
+import type { CipherGCM, DecipherGCM } from 'node:crypto';
+import { createCipheriv, createDecipheriv, randomBytes } from 'node:crypto';
+import { Readable } from 'node:stream';
 
 export type EncryptionParts = {
     version: string;
@@ -10,7 +10,7 @@ export type EncryptionParts = {
     content: string;
 };
 
-const delimeter = ":::";
+const delimeter = ':::';
 
 /**
  * A utility class for aes-256-gcm encryption and decryption operations.
@@ -20,10 +20,10 @@ export class Encryption {
     // Static Properties (Configuration)
 
     constructor(
-        public readonly ALGORITHM: string = "aes-256-gcm",
+        public readonly ALGORITHM: string = 'aes-256-gcm',
         public readonly KEY_LENGTH: number = 32,
         public readonly IV_LENGTH: number = 12,
-        public readonly ENCODING: BufferEncoding = "hex",
+        public readonly ENCODING: BufferEncoding = 'hex',
     ) {}
 
     /**
@@ -55,7 +55,7 @@ export class Encryption {
         const cipher = createCipheriv(this.ALGORITHM, keyBuffer, iv) as CipherGCM;
 
         return new Promise((resolve, reject) => {
-            let ciphertext = "";
+            let ciphertext = '';
 
             // 3. Create a readable stream from the input data
             const readableStream = Readable.from([data]);
@@ -63,11 +63,11 @@ export class Encryption {
             // 4. Pipe the data through the cipher
             readableStream
                 .pipe(cipher)
-                .on("data", (chunk: Buffer) => {
+                .on('data', (chunk: Buffer) => {
                     // Collect the encrypted data chunk by chunk, converting to hex
                     ciphertext += chunk.toString(this.ENCODING);
                 })
-                .on("end", () => {
+                .on('end', () => {
                     const authTag: Buffer = cipher.getAuthTag();
 
                     // Resolve with the combined formatted string
@@ -80,7 +80,7 @@ export class Encryption {
                         ].join(delimeter),
                     );
                 })
-                .on("error", (err) => {
+                .on('error', (err) => {
                     reject(err);
                 });
         });
@@ -130,7 +130,7 @@ export class Encryption {
 
         const plaintext = Buffer.concat([decipher.update(contentBuffer), decipher.final()]);
 
-        return plaintext.toString("utf8");
+        return plaintext.toString('utf8');
     }
 
     /**

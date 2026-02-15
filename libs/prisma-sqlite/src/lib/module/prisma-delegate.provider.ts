@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: Nest */
 
-import { Inject, type Provider } from "@nestjs/common";
+import { Inject, type Provider } from '@nestjs/common';
 
-import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken } from "./prisma-client.provider.js";
+import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken } from './prisma-client.provider.js';
 
 export function getPrismaDelegateToken(resourceName: string, scope = DEFAULT_PRISMA_CLIENT_SCOPE) {
     return `${resourceName}_${scope}_PRISMA_DELEGATE_TOKEN`;

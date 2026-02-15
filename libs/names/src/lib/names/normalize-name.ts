@@ -1,10 +1,10 @@
-import { validateName } from "./validate-name.js";
+import { validateName } from './validate-name.js';
 
 export function normalizeName(name: string) {
     validateName(name);
 
-    name = name.replace(/([a-z])([A-Z])/g, "$1-$2");
-    name = name.replace(/[-_.]{1,}/g, "-");
+    name = name.replace(/([a-z])([A-Z])/g, '$1-$2');
+    name = name.replace(/[-_.]{1,}/g, '-');
     return name.toLowerCase();
 }
 

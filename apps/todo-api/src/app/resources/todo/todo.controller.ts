@@ -1,11 +1,11 @@
 /** biome-ignore-all lint/style/useImportType: Nest */
 
-import { InjectRepository } from "@nestjs/typeorm";
-import { Body, Controller, type IController, ParamId, ParamRelationId, ParamRelationName, Query } from "@vnodes/nest";
-import type { Repository } from "typeorm";
-import { Todo, TodoCreateDto, TodoQueryDto, TodoUpdateDto } from "./todo.entity.js";
+import { InjectRepository } from '@nestjs/typeorm';
+import { Body, Controller, type IController, ParamId, ParamRelationId, ParamRelationName, Query } from '@vnodes/nest';
+import type { Repository } from 'typeorm';
+import { Todo, TodoCreateDto, TodoQueryDto, TodoUpdateDto } from './todo.entity.js';
 
-@Controller("todos", Todo)
+@Controller('todos', Todo)
 export class TodoController implements IController {
     constructor(@InjectRepository(Todo) protected readonly repo: Repository<Todo>) {}
 

@@ -1,5 +1,5 @@
-import type { PropertyOptions } from "@vnodes/types";
-import type { ColumnOptions } from "typeorm";
+import type { PropertyOptions } from '@vnodes/types';
+import type { ColumnOptions } from 'typeorm';
 
 export function toColumnOptions(options: PropertyOptions): ColumnOptions {
     const common: ColumnOptions = {
@@ -12,41 +12,41 @@ export function toColumnOptions(options: PropertyOptions): ColumnOptions {
     };
 
     switch (options.type) {
-        case "string": {
+        case 'string': {
             return {
-                type: "text",
+                type: 'text',
                 ...common,
             };
         }
-        case "number": {
+        case 'number': {
             return {
-                type: "numeric",
+                type: 'numeric',
                 precision: options.precision ?? 19,
                 scale: options.scale ?? 4,
                 ...common,
             };
         }
 
-        case "integer": {
+        case 'integer': {
             return {
-                type: "int",
+                type: 'int',
                 ...common,
             };
         }
-        case "boolean": {
+        case 'boolean': {
             return {
-                type: "boolean",
+                type: 'boolean',
                 ...common,
             };
         }
-        case "enum": {
+        case 'enum': {
             return {
-                type: "enum",
+                type: 'enum',
                 enum: options.enum,
                 ...common,
             };
         }
-        case "array": {
+        case 'array': {
             const arrayItemsOptions = toColumnOptions(options.items);
             return {
                 type: arrayItemsOptions.type,
@@ -54,23 +54,23 @@ export function toColumnOptions(options: PropertyOptions): ColumnOptions {
                 ...common,
             };
         }
-        case "json": {
+        case 'json': {
             return {
-                type: "jsonb",
+                type: 'jsonb',
                 ...common,
             };
         }
 
-        case "date": {
+        case 'date': {
             return {
-                type: "timestamptz",
+                type: 'timestamptz',
                 ...common,
             };
         }
 
-        case "object": {
+        case 'object': {
             return {
-                type: "jsonb",
+                type: 'jsonb',
                 ...common,
             };
         }

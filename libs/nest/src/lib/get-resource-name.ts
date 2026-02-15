@@ -1,3 +1,3 @@
 export function getResourceName(className: string) {
-    return className.replace(/Controller/g, "");
+    return className.replace(/Controller/g, '');
 }

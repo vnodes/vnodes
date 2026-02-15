@@ -1,10 +1,10 @@
-import { Inject, type Provider } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { PrismaPg } from "@prisma/adapter-pg";
-import type { Cls } from "@vnodes/types";
-import { Pool } from "pg";
+import { Inject, type Provider } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { PrismaPg } from '@prisma/adapter-pg';
+import type { Cls } from '@vnodes/types';
+import { Pool } from 'pg';
 
-export const DEFAULT_PRISMA_CLIENT_SCOPE = "DEFAULT";
+export const DEFAULT_PRISMA_CLIENT_SCOPE = 'DEFAULT';
 
 export function getPrismaClientToken(scope = DEFAULT_PRISMA_CLIENT_SCOPE) {
     return `${scope}_PRISMA_CLIENT_TOKEN`;
@@ -15,7 +15,7 @@ export function providePrismaClient(prismaClientClass: Cls, scope = DEFAULT_PRIS
         inject: [ConfigService],
         provide: getPrismaClientToken(scope),
         useFactory(config: ConfigService) {
-            const connectionString = config.getOrThrow("DATABASE_URL");
+            const connectionString = config.getOrThrow('DATABASE_URL');
             const pool = new Pool({
                 connectionString,
                 max: 20,

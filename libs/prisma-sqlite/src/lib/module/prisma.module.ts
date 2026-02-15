@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/complexity/noStaticOnlyClass: NestJS */
-import { type DynamicModule, Module, type Type } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
-import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken, providePrismaClient } from "./prisma-client.provider.js";
-import { getPrismaDelegateToken, providePrismaDelegate } from "./prisma-delegate.provider.js";
+import { type DynamicModule, Module, type Type } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken, providePrismaClient } from './prisma-client.provider.js';
+import { getPrismaDelegateToken, providePrismaDelegate } from './prisma-delegate.provider.js';
 
 @Module({
     imports: [ConfigModule.forFeature(() => ({}))],

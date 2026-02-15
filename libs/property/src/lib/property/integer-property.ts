@@ -1,8 +1,8 @@
-import type { ReferPropertyOptions } from "@vnodes/types";
-import { IsInt, Max, Min, type ValidationOptions } from "class-validator";
+import type { ReferPropertyOptions } from '@vnodes/types';
+import { IsInt, Max, Min, type ValidationOptions } from 'class-validator';
 
 export function IntegerProperty(
-    options: ReferPropertyOptions<"integer">,
+    options: ReferPropertyOptions<'integer'>,
     validationOptions?: ValidationOptions,
 ): PropertyDecorator {
     return (...args) => {

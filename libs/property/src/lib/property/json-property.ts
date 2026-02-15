@@ -1,9 +1,9 @@
-import type { ReferPropertyOptions } from "@vnodes/types";
-import { Type } from "class-transformer";
-import { IsJSON, ValidateNested, type ValidationOptions } from "class-validator";
+import type { ReferPropertyOptions } from '@vnodes/types';
+import { Type } from 'class-transformer';
+import { IsJSON, ValidateNested, type ValidationOptions } from 'class-validator';
 
 export function JsonProperty(
-    options: ReferPropertyOptions<"json">,
+    options: ReferPropertyOptions<'json'>,
     validationOptions?: ValidationOptions,
 ): PropertyDecorator {
     return (...args) => {

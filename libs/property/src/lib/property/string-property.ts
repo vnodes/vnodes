@@ -1,4 +1,4 @@
-import type { ReferPropertyOptions } from "@vnodes/types";
+import type { ReferPropertyOptions } from '@vnodes/types';
 import {
     IsEmail,
     IsIP,
@@ -9,40 +9,40 @@ import {
     MaxLength,
     MinLength,
     type ValidationOptions,
-} from "class-validator";
+} from 'class-validator';
 
-export type AvailableStringFormat = "password" | "email" | "uuid7" | "ip4" | "ip6" | "phone";
+export type AvailableStringFormat = 'password' | 'email' | 'uuid7' | 'ip4' | 'ip6' | 'phone';
 
 function StringFormat(
-    options: Pick<ReferPropertyOptions<"string">, "format">,
+    options: Pick<ReferPropertyOptions<'string'>, 'format'>,
     validationOptions?: ValidationOptions,
 ): PropertyDecorator {
     return (...args) => {
         const { format } = options;
 
         switch (format as AvailableStringFormat) {
-            case "password": {
+            case 'password': {
                 IsStrongPassword({}, validationOptions)(...args);
                 break;
             }
-            case "email": {
+            case 'email': {
                 IsEmail({}, validationOptions)(...args);
                 break;
             }
-            case "uuid7": {
-                IsUUID("7", validationOptions)(...args);
+            case 'uuid7': {
+                IsUUID('7', validationOptions)(...args);
                 break;
             }
 
-            case "ip4": {
-                IsIP("4", validationOptions)(...args);
+            case 'ip4': {
+                IsIP('4', validationOptions)(...args);
                 break;
             }
-            case "ip6": {
-                IsIP("6", validationOptions)(...args);
+            case 'ip6': {
+                IsIP('6', validationOptions)(...args);
                 break;
             }
-            case "phone": {
+            case 'phone': {
                 IsPhoneNumber(undefined, validationOptions)(...args);
                 break;
             }
@@ -51,7 +51,7 @@ function StringFormat(
 }
 
 export function StringProperty(
-    options: ReferPropertyOptions<"string">,
+    options: ReferPropertyOptions<'string'>,
     validationOptions?: ValidationOptions,
 ): PropertyDecorator {
     return (...args) => {

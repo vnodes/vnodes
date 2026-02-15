@@ -1,5 +1,5 @@
-import type { PropertyOptions } from "@vnodes/types";
-import { IsDefined, IsNotEmpty, IsOptional, type ValidationOptions } from "class-validator";
+import type { PropertyOptions } from '@vnodes/types';
+import { IsDefined, IsNotEmpty, IsOptional, type ValidationOptions } from 'class-validator';
 
 export function CommonProperty(options: PropertyOptions, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {

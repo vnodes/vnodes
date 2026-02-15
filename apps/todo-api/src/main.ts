@@ -1,20 +1,20 @@
-import { Logger } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { NestFactory } from "@nestjs/core";
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { apiReference } from "@scalar/nestjs-api-reference";
-import { GlobalValidationPipe } from "@vnodes/nest";
-import { AppModule } from "./app/app.module.js";
+import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { apiReference } from '@scalar/nestjs-api-reference';
+import { GlobalValidationPipe } from '@vnodes/nest';
+import { AppModule } from './app/app.module.js';
 
 async function main() {
-    const logger = new Logger("Main");
+    const logger = new Logger('Main');
     const app = await NestFactory.create(AppModule);
 
     const config = app.get(ConfigService);
-    const APP_ID = config.getOrThrow("APP_ID", "suite");
-    const APP_PREFIX = config.getOrThrow("APP_PREFIX", "api");
-    const APP_VERSION = config.getOrThrow("APP_VERSION", "0.0.1");
-    const APP_DESCRIPTION = config.getOrThrow("APP_DESCRIPTION", "No description");
+    const APP_ID = config.getOrThrow('APP_ID', 'suite');
+    const APP_PREFIX = config.getOrThrow('APP_PREFIX', 'api');
+    const APP_VERSION = config.getOrThrow('APP_VERSION', '0.0.1');
+    const APP_DESCRIPTION = config.getOrThrow('APP_DESCRIPTION', 'No description');
 
     app.setGlobalPrefix(APP_PREFIX);
     app.enableCors();
@@ -28,13 +28,13 @@ async function main() {
         .addBearerAuth()
         .addApiKey(
             {
-                type: "apiKey",
-                name: "x-access-token",
-                in: "header",
+                type: 'apiKey',
+                name: 'x-access-token',
+                in: 'header',
             },
-            "access-token",
+            'access-token',
         )
-        .addCookieAuth("access-token", undefined, "access-token")
+        .addCookieAuth('access-token', undefined, 'access-token')
         .build();
 
     const document = SwaggerModule.createDocument(app, swaggerConfig, {
@@ -42,8 +42,8 @@ async function main() {
         operationIdFactory: (_, methodKey: string) => methodKey,
     });
 
-    SwaggerModule.setup("api", app, document);
-    app.use("/references", apiReference({ content: document }));
+    SwaggerModule.setup('api', app, document);
+    app.use('/references', apiReference({ content: document }));
 
     await app.listen(3000);
 

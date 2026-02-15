@@ -1,8 +1,8 @@
-import { Delete, Get, Controller as NestController, Post, Put, type Type } from "@nestjs/common";
-import { ApiBearerAuth, ApiOkResponse, ApiOperation } from "@nestjs/swagger";
-import { UndefinedValueError } from "@vnodes/errors";
-import { names, pluralize } from "@vnodes/names";
-import type { Any, KeyOf } from "@vnodes/types";
+import { Delete, Get, Controller as NestController, Post, Put, type Type } from '@nestjs/common';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { UndefinedValueError } from '@vnodes/errors';
+import { names, pluralize } from '@vnodes/names';
+import type { Any, KeyOf } from '@vnodes/types';
 
 export interface IController {
     find?: (...args: Any[]) => Any;
@@ -27,7 +27,7 @@ export function Controller(resourcePath?: string, entity?: Type): ClassDecorator
         const className = target.name;
         const prototype = target.prototype;
         const resourceName = (() => {
-            const extractedResourceName = className.replace("Controller", "");
+            const extractedResourceName = className.replace('Controller', '');
             const resourceNameVariants = names(extractedResourceName);
 
             if (!resourcePath) {
@@ -40,7 +40,7 @@ export function Controller(resourcePath?: string, entity?: Type): ClassDecorator
         ApiBearerAuth()(...classArgs);
         NestController(resourcePath)(...classArgs);
 
-        const methods = Object.getOwnPropertyNames(prototype).filter((e) => e !== "constructor");
+        const methods = Object.getOwnPropertyNames(prototype).filter((e) => e !== 'constructor');
         for (const methodName of methods) {
             const descriptor = Object.getOwnPropertyDescriptor(prototype, methodName);
 
@@ -51,55 +51,55 @@ export function Controller(resourcePath?: string, entity?: Type): ClassDecorator
             const methodArgs: Parameters<MethodDecorator> = [prototype, methodName, descriptor];
 
             switch (methodName as KeyOf<IController>) {
-                case "find": {
+                case 'find': {
                     Get()(prototype, methodName, descriptor);
                     ApiOperation({ summary: `Find all ${resourceName}` })(...methodArgs);
                     ApiOkResponse({ type: entity, isArray: true })(...methodArgs);
                     break;
                 }
-                case "findById": {
-                    Get(":id")(...methodArgs);
+                case 'findById': {
+                    Get(':id')(...methodArgs);
                     ApiOperation({ summary: `Find one ${resourceName} by id` })(...methodArgs);
                     ApiOkResponse({ type: entity })(...methodArgs);
                     break;
                 }
-                case "create": {
+                case 'create': {
                     Post()(...methodArgs);
                     ApiOperation({ summary: `Create one ${resourceName}` })(...methodArgs);
                     ApiOkResponse({ type: entity })(...methodArgs);
                     break;
                 }
-                case "update": {
-                    Put(":id")(...methodArgs);
+                case 'update': {
+                    Put(':id')(...methodArgs);
                     ApiOperation({ summary: `Update one ${resourceName} by id` })(...methodArgs);
                     ApiOkResponse({ type: entity })(...methodArgs);
                     break;
                 }
-                case "delete": {
-                    Delete(":id")(...methodArgs);
+                case 'delete': {
+                    Delete(':id')(...methodArgs);
                     ApiOperation({ summary: `Delete one ${resourceName} by id` })(...methodArgs);
                     ApiOkResponse({ type: entity })(...methodArgs);
                     break;
                 }
-                case "addRelation": {
-                    Put(":id/:relationName/:relationId")(...methodArgs);
-                    ApiOperation({ summary: "Add relation to the entity" })(...methodArgs);
+                case 'addRelation': {
+                    Put(':id/:relationName/:relationId')(...methodArgs);
+                    ApiOperation({ summary: 'Add relation to the entity' })(...methodArgs);
                     break;
                 }
-                case "removeRelation": {
-                    Delete(":id/:relationName/:relationId")(...methodArgs);
-                    ApiOperation({ summary: "Add relation to the entity" })(...methodArgs);
+                case 'removeRelation': {
+                    Delete(':id/:relationName/:relationId')(...methodArgs);
+                    ApiOperation({ summary: 'Add relation to the entity' })(...methodArgs);
                     break;
                 }
 
-                case "setRelation": {
-                    Post(":id/:relationName/:relationId")(...methodArgs);
-                    ApiOperation({ summary: "Set relation to the entity" })(...methodArgs);
+                case 'setRelation': {
+                    Post(':id/:relationName/:relationId')(...methodArgs);
+                    ApiOperation({ summary: 'Set relation to the entity' })(...methodArgs);
                     break;
                 }
-                case "unsetRelation": {
-                    Delete(":id/:relationName")(...methodArgs);
-                    ApiOperation({ summary: "Unset relation to the entity" })(...methodArgs);
+                case 'unsetRelation': {
+                    Delete(':id/:relationName')(...methodArgs);
+                    ApiOperation({ summary: 'Unset relation to the entity' })(...methodArgs);
                     break;
                 }
             }

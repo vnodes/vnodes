@@ -1,6 +1,6 @@
-import type { Any, Cls, Keys } from "@vnodes/types";
+import type { Any, Cls, KeyOf, Keys } from '@vnodes/types';
 
-export type PropertyType = "string" | "number" | "integer" | "boolean" | "date" | "enum" | "object" | "json" | "array";
+export type PropertyType = 'string' | 'number' | 'integer' | 'boolean' | 'date' | 'enum' | 'object' | 'json' | 'array';
 
 export type PropertyTypeOptions = {
     type: PropertyType;
@@ -24,10 +24,10 @@ export type CommonPropertyOptions = {
     format?: string;
 };
 
-export type GeneratedString = "uuid";
+export type GeneratedString = 'uuid';
 
 export type StringPropertyOptions = {
-    type: "string";
+    type: 'string';
     minLength?: number;
     maxLength?: number;
     default?: string;
@@ -40,46 +40,46 @@ export type CommonNumberPropertyOptions = {
 } & CommonPropertyOptions;
 
 export type NumberPropertyOptions = {
-    type: "number";
+    type: 'number';
     default?: number;
     precision?: number;
     scale?: number;
 } & CommonNumberPropertyOptions;
 
-export type Interval = "year" | "month" | "week" | "day" | "hour" | "minute" | "second" | "milisecond";
+export type Interval = 'year' | 'month' | 'week' | 'day' | 'hour' | 'minute' | 'second' | 'milisecond';
 
 export type IntegerPropertyOptions = {
-    type: "integer";
+    type: 'integer';
     default?: number;
     interval?: Interval;
     primaryId?: boolean;
 } & CommonNumberPropertyOptions;
 
 export type BooleanPropertyOptions = {
-    type: "boolean";
+    type: 'boolean';
     default?: boolean;
 };
 
 export type DatePropertyOptions = {
-    type: "date";
+    type: 'date';
     default?: Date;
-    timestamp?: "created-at" | "updated-at" | "deleted-at";
+    timestamp?: 'created-at' | 'updated-at' | 'deleted-at';
 };
 
 export type EnumPropertyOptions<T = Any> = {
-    type: "enum";
+    type: 'enum';
     enum: T;
     default?: T;
 };
 
 export type JsonPropertyOptions = {
-    type: "json";
+    type: 'json';
     target?: Cls;
     default?: Any;
 };
 
 export type ObjectPropertyOptions = {
-    type: "object";
+    type: 'object';
     default?: Any;
     target: Cls;
 };
@@ -96,8 +96,8 @@ export type PrimitivePropertyOptions = CommonPropertyOptions &
         | ObjectPropertyOptions
     );
 
-export type ReferArrayPropertyOptions<T extends { default?: Any }, D = T["default"]> = {
-    type: "array";
+export type ReferArrayPropertyOptions<T extends { default?: Any }, D = T['default']> = {
+    type: 'array';
     minArrayLength?: number;
     maxArrayLength?: number;
     items: T;
@@ -135,11 +135,11 @@ export type ReferPropertyOptions<T extends PropertyType> = PropertyOptions & { t
 
 // Relation options
 
-export type RelationType = "many-to-many" | "one-to-many" | "one-to-one" | "many-to-one";
+export type RelationType = 'many-to-many' | 'one-to-many' | 'one-to-one' | 'many-to-one';
 
-export type OnActionType = "RESTRICT" | "CASCADE" | "SET NULL" | "DEFAULT" | "NO ACTION";
+export type OnActionType = 'RESTRICT' | 'CASCADE' | 'SET NULL' | 'DEFAULT' | 'NO ACTION';
 
-export type CascadeType = boolean | ("insert" | "update" | "remove" | "soft-remove" | "recover")[];
+export type CascadeType = boolean | ('insert' | 'update' | 'remove' | 'soft-remove' | 'recover')[];
 
 export type RelationOptions<T = Any> = {
     type: RelationType;
@@ -154,12 +154,12 @@ export type RelationOptions<T = Any> = {
     inverseSide?: string | ((obj: Any) => Any);
 } & CommonPropertyOptions;
 
-export type ModelOptions<T> = {
+export type ModelOptions<T, R> = {
     name: string;
-    properties?: Record<string, PropertyOptions>;
-    relations?: Record<string, RelationOptions>;
-    uniques?: Keys<T>;
-    indexes?: Keys<T>;
+    properties?: Record<KeyOf<T>, PropertyOptions>;
+    relations?: Record<KeyOf<R>, RelationOptions>;
+    uniques?: Keys<T | R>;
+    indexes?: Keys<T | R>;
     operations?: Record<string, boolean>;
     events?: Record<string, (value: T) => Partial<T>>;
 };

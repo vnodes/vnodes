@@ -10,7 +10,7 @@
 
 ## @vnodes/contact-db
 
-Contact database models
+Contact database
 
 ## Installation
 

@@ -1,1 +1,1 @@
-export { Entity, Index, Unique } from "typeorm";
+export { Entity, Index, Unique } from 'typeorm';

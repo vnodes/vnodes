@@ -1,6 +1,6 @@
-import { writeTextFile } from "@vnodes/fs";
-import { errorCodes } from "./error-codes.mjs";
-import { errorNames } from "./error-names.mjs";
+import { writeTextFile } from '@vnodes/fs';
+import { errorCodes } from './error-codes.mjs';
+import { errorNames } from './error-names.mjs';
 
 /**
  * Create error class
@@ -14,7 +14,7 @@ function createErrror(name, code) {
         `    super(message, ${code}, context);`,
         `  }`,
         `}`,
-    ].join("\n");
+    ].join('\n');
 }
 
 function genearteErrors() {
@@ -24,7 +24,7 @@ function genearteErrors() {
         code.push(createErrror(error, errorCode));
     }
 
-    return code.join("\n\n");
+    return code.join('\n\n');
 }
 
 function generateErrorCode() {
@@ -32,15 +32,15 @@ function generateErrorCode() {
         .map(([name, statusCode]) => {
             return `${name} = ${statusCode}`;
         })
-        .join(", ");
+        .join(', ');
     return `export enum ErrorCode { 
       ${code} 
     }`;
 }
 
 async function writeFiles() {
-    await writeTextFile("src/lib/errors.ts", genearteErrors());
-    await writeTextFile("src/lib/error-code.ts", generateErrorCode());
+    await writeTextFile('src/lib/errors.ts', genearteErrors());
+    await writeTextFile('src/lib/error-code.ts', generateErrorCode());
 }
 
 writeFiles();

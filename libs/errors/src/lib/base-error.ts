@@ -1,13 +1,13 @@
-import { ErrorCode } from "./error-code.js";
+import { ErrorCode } from './error-code.js';
 
 function replaceParams(message: string, params?: Record<string, unknown>) {
     if (params) {
         const entries = Object.entries(params);
         for (const [key, value] of entries) {
-            message = message.replaceAll(new RegExp(`\\$${key}`, "g"), value ? value.toString() : "null");
+            message = message.replaceAll(new RegExp(`\\$${key}`, 'g'), value ? value.toString() : 'null');
         }
     } else {
-        message = message.replaceAll(/\$[\w]+/g, "null");
+        message = message.replaceAll(/\$[\w]+/g, 'null');
     }
 
     return message;

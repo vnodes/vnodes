@@ -1,1 +1,1 @@
-export const NO_EXPORTS = "NO_EXPORTS";
+export const NO_EXPORTS = 'NO_EXPORTS';

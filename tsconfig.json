@@ -43,7 +43,7 @@
       "path": "./dbs/contact-db"
     },
     {
-      "path": "./dbs/hr-db"
+      "path": "./plugins/prisma-plugins"
     }
   ]
 }

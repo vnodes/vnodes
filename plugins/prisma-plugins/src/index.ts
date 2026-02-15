@@ -1,0 +1,1 @@
+export const PRISMA_PLUGINS = 'PRISMA_PLUGINS';

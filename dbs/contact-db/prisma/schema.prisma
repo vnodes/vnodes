@@ -1,0 +1,110 @@
+/// @GeneratedFields([id, createdAt, updatedAt, deletedAt])
+generator client {
+  provider = "prisma-client"
+  output   = "../src/lib/client"
+}
+
+generator zod {
+  provider = "zod-schema"
+  output   = "../src/lib/zod"
+}
+
+generator httpClient {
+  provider = "http-client"
+  output   = "../src/lib/http-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ContactType {
+  CUSTOMER
+  EMPLOYEE
+  OTHER
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(uuid(7)) @db.Uuid
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  contacts Contact[]
+
+  /// @max(16000) @some(true)  
+  salary Decimal
+
+  attributes Json? @db.JsonB
+}
+
+model Address {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  /// @max(255)  @min(3)
+  street String
+
+  /// @max(255)
+  city String
+
+  /// @max(255)
+  state String
+
+  /// @max(255)
+  country String
+
+  /// @max(30)
+  zip String
+
+  contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+
+  @@index([state])
+  @@index([city])
+  @@index([street])
+}
+
+model Email {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  value String
+
+  contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Phone {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  value String
+
+  contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Contact {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  type ContactType
+
+  user User @relation(fields: [userId], references: [id])
+
+  userId Int
+
+  addresses Address[]
+  emails    Email[]
+  phones    Phone[]
+}
