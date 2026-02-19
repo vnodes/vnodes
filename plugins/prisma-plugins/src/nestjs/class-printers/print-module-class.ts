@@ -6,9 +6,9 @@ export function printModuleClass(model: DMMF.Model) {
     return [
         `import { Module } from '@nestjs/common';`,
         `import { PrismaModule } from '@vnodes/prisma';`,
-        `import { ${model.name}Controller } from './${modelNames.kebabCase}}.controller.js';`,
-        `import { ${model.name}Service } from './${modelNames.kebabCase}}.service.js';`,
-        `import { ${model.name}QueryService } from './${modelNames.kebabCase}}-query.service.js';`,
+        `import { ${model.name}Controller } from './${modelNames.kebabCase}.controller.js';`,
+        `import { ${model.name}Service } from './${modelNames.kebabCase}.service.js';`,
+        `import { ${model.name}QueryService } from './${modelNames.kebabCase}-query.service.js';`,
         ``,
         `@Module({`,
         `    imports: [PrismaModule.forFeature(['${modelNames.camelCase}'])],`,

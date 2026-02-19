@@ -104,9 +104,11 @@
         "class-validator": "^0.14.3",
         "express": "^5.2.1",
         "pg": "^8.18.0",
-        "reflect-metadata": "^0.2.2"
+        "reflect-metadata": "^0.2.2",
+        "rxjs": "^7.8.2"
     },
     "devDependencies": {
+        "@types/express": "^5.0.6",
         "@vnodes/prisma-plugins": "workspace:*",
         "prisma": "7.3.0"
     }

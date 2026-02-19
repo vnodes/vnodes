@@ -31,13 +31,15 @@ export function isGeneratedField(field: DMMF.Field) {
         }
     }
 
-    if (field.isId) {
+    if (FieldAnnotations.generated(field.documentation)) {
         return true;
     }
 
-    if (
-        [FieldAnnotations.generated, FieldAnnotations.internal].some((handler) => handler(field.documentation) !== null)
-    ) {
+    if (FieldAnnotations.generated(field.documentation)) {
+        return true;
+    }
+
+    if (FieldAnnotations.internal(field.documentation)) {
         return true;
     }
 

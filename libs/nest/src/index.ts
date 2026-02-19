@@ -11,3 +11,4 @@ export * from './lib/param-relation-name.js';
 export * from './lib/query.js';
 export * from './lib/query-args.js';
 export * from './lib/rest-path.js';
+export * from './lib/user-id.js';

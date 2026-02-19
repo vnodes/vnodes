@@ -16,14 +16,17 @@ import { isGeneratedField } from './is-generated-field.js';
  */
 export function isCreateInputField(field: DMMF.Field) {
     if (isGeneratedField(field)) {
+        console.log(`${field.name} is a generated field!`, '[isCreateInputField]');
         return false;
     }
 
     if (FieldAnnotations.internal(field.documentation)) {
+        console.log(`${field.name} is a internal field!`, '[isCreateInputField]');
         return false;
     }
 
     if (field.kind === 'object') {
+        console.log(`${field.name} is a object field!`, '[isCreateInputField]');
         return false;
     }
 

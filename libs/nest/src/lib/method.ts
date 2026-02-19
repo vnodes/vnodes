@@ -3,6 +3,7 @@ import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam } fr
 import type { Cls, KeyOf } from '@vnodes/types';
 import type { ResourceOperations } from './interfaces/resource-operations.js';
 import { RestParam, RestPath } from './rest-path.js';
+import { UserId } from './user-id.js';
 
 export type MethodOptions = {
     queryDto?: Cls;
@@ -54,6 +55,7 @@ export function Method(options: MethodOptions): MethodDecorator {
                 ApiBody({ type: () => createDto })(...args);
                 Body()(target, methodName, 0);
                 Reflect.defineMetadata('design:paramtypes', [createDto], target, methodName);
+                UserId()(target, methodName, 1);
                 break;
             }
             case 'update': {

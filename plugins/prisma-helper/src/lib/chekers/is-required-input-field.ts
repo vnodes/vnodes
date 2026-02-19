@@ -12,5 +12,6 @@ export function isRequiredField(field: DMMF.Field) {
 
         return true;
     }
+
     return false;
 }

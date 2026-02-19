@@ -62,8 +62,8 @@ model Todo {
   tags        String[] /// @maxitems(3)
   details     Json?
 
-  createdByUser User @relation(fields: [createdById], references: [id])
-  createdById   Int /// @readonly() @internal(userId)
+  createdByUser User? @relation(fields: [createdById], references: [id])
+  createdById   Int? /// @readonly() @internal(userId)
 
   userTodos UserTodo[]
 }
