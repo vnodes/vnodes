@@ -1,0 +1,61 @@
+{
+    "name": "@vnodes/cli",
+    "version": "0.0.1",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "!**/*.tsbuildinfo",
+        "generators.json"
+    ],
+    "nx": {
+        "targets": {
+            "build": {
+                "executor": "@nx/js:tsc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "plugins/cli/dist",
+                    "main": "plugins/cli/src/index.ts",
+                    "tsConfig": "plugins/cli/tsconfig.lib.json",
+                    "rootDir": "plugins/cli/src",
+                    "generatePackageJson": false,
+                    "assets": [
+                        {
+                            "input": "./plugins/cli/src",
+                            "glob": "**/!(*.ts)",
+                            "output": "."
+                        },
+                        {
+                            "input": "./plugins/cli/src",
+                            "glob": "**/*.d.ts",
+                            "output": "."
+                        }
+                    ]
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@nx/devkit": "22.4.5",
+        "tslib": "^2.3.0"
+    },
+    "generators": "./generators.json"
+}

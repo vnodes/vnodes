@@ -1,0 +1,113 @@
+{
+    "name": "@vnodes/todo-api",
+    "description": "- [ ] add description",
+    "homepage": "https://vnodes.github.io/vnodes/apps/todo-api",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-todo-api@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/apps/todo-api"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/apps/todo-api/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "apps/todo-api/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "apps/todo-api/dist",
+                    "main": "apps/todo-api/src/serve.ts",
+                    "tsConfig": "apps/todo-api/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig apps/todo-api/tsconfig.lib.json --entryPoints apps/todo-api/src/index.ts --out public/apps/todo-api",
+                    "cwd": "{workspaceRoot}"
+                }
+            },
+            "serve": {
+                "executor": "@nx/js:node",
+                "options": {
+                    "buildTarget": "@vnodes/todo-api:build",
+                    "watch": true
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@nestjs/common": "^11.1.13",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.13",
+        "@nestjs/event-emitter": "^3.0.1",
+        "@nestjs/platform-express": "^11.1.13",
+        "@nestjs/schedule": "^6.1.1",
+        "@nestjs/swagger": "^11.2.6",
+        "@prisma/adapter-pg": "7.3.0",
+        "@prisma/client": "7.3.0",
+        "@scalar/nestjs-api-reference": "^1.0.23",
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/contact-db": "workspace:*",
+        "@vnodes/nest": "workspace:*",
+        "@vnodes/prisma": "workspace:*",
+        "@vnodes/property": "workspace:*",
+        "@vnodes/types": "workspace:*",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.3",
+        "express": "^5.2.1",
+        "pg": "^8.18.0",
+        "reflect-metadata": "^0.2.2"
+    },
+    "devDependencies": {
+        "@vnodes/prisma-plugins": "workspace:*",
+        "prisma": "7.3.0"
+    }
+}

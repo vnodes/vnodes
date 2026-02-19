@@ -1,0 +1,20 @@
+packages:
+  - apps/*
+  - libs/*
+  - dbs/*
+  - meta/*
+  - plugins/*
+
+autoInstallPeers: true
+
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@prisma/engines'
+  - '@scarf/scarf'
+  - '@swc/core'
+  - bcrypt
+  - better-sqlite3
+  - esbuild
+  - nx
+  - prisma
+  - unrs-resolver

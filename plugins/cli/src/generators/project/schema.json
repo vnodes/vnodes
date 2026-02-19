@@ -1,0 +1,64 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "Project",
+    "title": "Project generator",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "description": "Project type",
+            "enum": ["lib", "api", "db"],
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "What type would you like to use?"
+        },
+        "directory": {
+            "type": "string",
+            "description": "Project directory",
+            "$default": {
+                "$source": "argv",
+                "index": 1
+            },
+            "x-prompt": "What directory would you like to use?"
+        },
+        "org": {
+            "type": "string",
+            "description": "Organization name",
+            "$default": {
+                "$source": "argv",
+                "index": 2
+            },
+            "x-prompt": "What org would you like to use?"
+        },
+        "email": {
+            "type": "string",
+            "description": "Developer emal",
+            "$default": {
+                "$source": "argv",
+                "index": 2
+            },
+            "x-prompt": "What email would you like to use?"
+        },
+        "homepage": {
+            "type": "string",
+            "description": "Homepage url",
+            "$default": {
+                "$source": "argv",
+                "index": 3
+            },
+            "x-prompt": "What homepage would you like to use?"
+        },
+        "funding": {
+            "type": "string",
+            "description": "Funding link",
+            "$default": {
+                "$source": "argv",
+                "index": 4
+            },
+            "x-prompt": "What funding would you like to use?"
+        }
+    },
+    "required": ["type", "directory", "org", "email", "homepage", "funding"]
+}

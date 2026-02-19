@@ -1,0 +1,82 @@
+{
+    "name": "<%- projectName %>",
+    "description": "- [ ] add description",
+    "homepage": "<%- homepage %>/<%- directory %>",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "<%- email %>",
+        "name": "Robert Brightline",
+        "url": "<%- homepage %>/<%- directory %>"
+    },
+    "keywords": [],
+    "icon": "<%- homepage %>/<%- directory %>/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "<%- funding %>"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "<%- directory %>/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "<%- directory %>/dist",
+                    "main": "<%- directory %>/src/index.ts",
+                    "tsConfig": "<%- directory %>/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig <%- directory %>/tsconfig.lib.json --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %>",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.11"
+    }
+}

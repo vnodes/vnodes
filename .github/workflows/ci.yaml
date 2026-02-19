@@ -1,0 +1,33 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 10 # Specify your pnpm version
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Derive appropriate SHAs
+        uses: nrwl/nx-set-shas@v4
+
+      # Nx automatically detects pnpm from your lockfile
+      - run: pnpm nx affected -t lint
+      - run: pnpm nx affected -t test --parallel=3
+      - run: pnpm nx affected -t build

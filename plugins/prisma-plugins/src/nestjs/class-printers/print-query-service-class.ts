@@ -1,0 +1,50 @@
+import type { DMMF } from '@prisma/generator-helper';
+import { isStringQueryField } from '@vnodes/prisma-helper';
+
+export function printQueryServiceClass(model: DMMF.Model) {
+    const stringQueries = model.fields
+        .filter(isStringQueryField)
+        .map((field) => {
+            return `{ ${field.name}: { contains: search, mode: 'insensitive' } }`;
+        })
+        .join(',\n');
+
+    return [
+        `import { Injectable } from '@nestjs/common';`,
+        `import type * as P from '../../prisma/client.js';`,
+        `import type { ${model.name}QueryDto } from './dtos/index.js';`,
+        ``,
+        `@Injectable()`,
+        `export class ${model.name}QueryService {`,
+        `    toOrderBy(query: ${model.name}QueryDto): P.Prisma.${model.name}OrderByWithRelationInput {`,
+        `        const { orderBy, orderDir } = query;`,
+        `        return { [orderBy ?? 'id']: orderDir ?? 'asc' };`,
+        `    }`,
+        ``,
+        `    toWhere(query: ${model.name}QueryDto): P.Prisma.${model.name}WhereInput | undefined {`,
+        `        const { search, withDeleted } = query;`,
+        `        const where: P.Prisma.${model.name}WhereInput = {};`,
+        `        if (search) {`,
+        `            where.OR = [`,
+        `                ${stringQueries}`,
+        `            ];`,
+        `        }`,
+        ``,
+        `        if (withDeleted === undefined) {`,
+        `            where.deletedAt = null;`,
+        `        }`,
+        ``,
+        `        return where;`,
+        `    }`,
+        ``,
+        `    toFindManyArgs(query: ${model.name}QueryDto): P.Prisma.${model.name}FindManyArgs {`,
+        `        return {`,
+        `            take: query.take ?? 20,`,
+        `            skip: query.skip ?? 0,`,
+        `            orderBy: this.toOrderBy(query),`,
+        `            where: this.toWhere(query),`,
+        `        };`,
+        `    }`,
+        `}`,
+    ].join('\n');
+}

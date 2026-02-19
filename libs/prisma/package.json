@@ -1,0 +1,102 @@
+{
+    "name": "@vnodes/prisma",
+    "description": "Nestjs prisma module",
+    "homepage": "https://vnodes.github.io/vnodes/libs/prisma",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/prisma"
+    },
+    "keywords": [
+        "prisma",
+        "orm",
+        "nestjs"
+    ],
+    "icon": "https://vnodes.github.io/vnodes/libs/prisma/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/prisma/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "libs/prisma/dist",
+                    "main": "libs/prisma/src/index.ts",
+                    "tsConfig": "libs/prisma/tsconfig.lib.json",
+                    "skipTypeCheck": true,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig libs/prisma/tsconfig.lib.json --entryPoints libs/prisma/src/index.ts --out public/libs/prisma",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.1.13",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.13",
+        "@prisma/adapter-pg": "^7.3.0",
+        "@prisma/client": "^7.3.0",
+        "pg": "^8.18.0"
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/names": "workspace:*",
+        "@vnodes/types": "workspace:*"
+    },
+    "devDependencies": {
+        "@nestjs/testing": "^11.1.13",
+        "@types/node": "20.19.9",
+        "@types/pg": "^8.16.0",
+        "prisma": "^7.3.0"
+    }
+}

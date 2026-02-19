@@ -1,0 +1,90 @@
+{
+    "name": "@vnodes/prisma-plugins",
+    "description": "- [ ] add description",
+    "homepage": "https://vnodes.github.io/vnodes/plugins/prisma-plugins",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-prisma-plugins@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/plugins/prisma-plugins"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/plugins/prisma-plugins/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "bin": {
+        "nestjs": "./bin/nestjs.mjs"
+    },
+    "files": [
+        "assets",
+        "dist",
+        "bin",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "plugins/prisma-plugins/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "plugins/prisma-plugins/dist",
+                    "main": "plugins/prisma-plugins/src/index.ts",
+                    "tsConfig": "plugins/prisma-plugins/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig plugins/prisma-plugins/tsconfig.lib.json --entryPoints plugins/prisma-plugins/src/index.ts --out public/plugins/prisma-plugins",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@prisma/generator-helper": "7.3.0",
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/fs": "workspace:*",
+        "@vnodes/names": "workspace:*",
+        "@vnodes/prisma-helper": "workspace:*"
+    }
+}

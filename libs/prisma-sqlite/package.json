@@ -1,0 +1,94 @@
+{
+    "name": "@vnodes/prisma-sqlite",
+    "description": "- [ ] add description",
+    "homepage": "https://vnodes.github.io/vnodes/libs/prisma-sqlite",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-prisma-sqlite@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/prisma-sqlite"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/libs/prisma-sqlite/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/prisma-sqlite/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "libs/prisma-sqlite/dist",
+                    "main": "libs/prisma-sqlite/src/index.ts",
+                    "tsConfig": "libs/prisma-sqlite/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig libs/prisma-sqlite/tsconfig.lib.json --entryPoints libs/prisma-sqlite/src/index.ts --out public/libs/prisma-sqlite",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.1.13",
+        "@nestjs/core": "^11.1.13",
+        "@nestjs/config": "^4.0.3",
+        "@prisma/adapter-better-sqlite3": "^7.3.0",
+        "@prisma/client": "^7.3.0",
+        "better-sqlite3": "^12.6.2"
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.11"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.13",
+        "prisma": "^7.3.0"
+    }
+}

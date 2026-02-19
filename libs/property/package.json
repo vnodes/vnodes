@@ -1,0 +1,88 @@
+{
+    "name": "@vnodes/property",
+    "description": "- [ ] add description",
+    "homepage": "https://vnodes.github.io/vnodes/libs/property",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-property@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/property"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/libs/property/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/property/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "libs/property/dist",
+                    "main": "libs/property/src/index.ts",
+                    "tsConfig": "libs/property/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig libs/property/tsconfig.lib.json --entryPoints libs/property/src/index.ts --out public/libs/property",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "peerDependencies": {
+        "@nestjs/swagger": "^11.2.6",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.3"
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/types": "workspace:*"
+    }
+}

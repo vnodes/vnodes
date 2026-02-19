@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/app/prisma"
+}
+
+generator nestjs {
+  provider = "nestjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Status {
+  NEW
+  IN_PROGRESS
+  DONE
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  firstName  String /// @maxlength(255)
+  lastName   String /// @maxlength(255)
+  middleName String /// @maxlength(255)
+
+  createdTodos Todo[]
+
+  userTodos UserTodo[]
+
+  @@unique([firstName, lastName, middleName])
+  @@index([firstName])
+  @@index([lastName])
+  @@index([middleName])
+}
+
+model Tag {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  value       String  @unique
+  description String?
+}
+
+model Todo {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  title       String   @unique /// @minlength(3) @maxlength(255)
+  description String /// @maxlength(400)
+  status      Status   @default(NEW)
+  score       Int      @default(0)
+  tags        String[] /// @maxitems(3)
+  details     Json?
+
+  createdByUser User @relation(fields: [createdById], references: [id])
+  createdById   Int /// @readonly() @internal(userId)
+
+  userTodos UserTodo[]
+}
+
+model UserTodo {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  todo   Todo @relation(fields: [todoId], references: [id])
+  todoId Int
+
+  @@unique([userId, todoId])
+  @@index([userId])
+  @@index([todoId])
+}

@@ -1,0 +1,107 @@
+{
+    "name": "@vnodes/contact-db",
+    "description": "- [ ] add description",
+    "homepage": "https://vnodes.github.io/vnodes/dbs/contact-db",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-contact-db@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/dbs/contact-db"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/dbs/contact-db/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./client": {
+            "types": "./dist/lib/client/client.d.ts",
+            "import": "./dist/lib/client/client.js",
+            "default": "./dist/lib/client/client.js"
+        },
+        "./browser": {
+            "types": "./dist/lib/client/browser.d.ts",
+            "import": "./dist/lib/client/browser.js",
+            "default": "./dist/lib/client/browser.js"
+        },
+        "./nestjs": {
+            "types": "./dist/lib/nestjs/index.d.ts",
+            "import": "./dist/lib/nestjs/index.js",
+            "default": "./dist/lib/nestjs/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "dbs/contact-db/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "dbs/contact-db/dist",
+                    "main": "dbs/contact-db/src/index.ts",
+                    "tsConfig": "dbs/contact-db/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig dbs/contact-db/tsconfig.lib.json --entryPoints dbs/contact-db/src/index.ts --out public/dbs/contact-db",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@prisma/adapter-pg": "7.3.0",
+        "@prisma/client": "7.3.0",
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/prisma-plugins": "workspace:*",
+        "@vnodes/property": "workspace:*",
+        "dotenv": "^17.3.1",
+        "pg": "^8.18.0",
+        "zod": "^4.3.6"
+    },
+    "devDependencies": {
+        "prisma": "7.3.0"
+    }
+}
