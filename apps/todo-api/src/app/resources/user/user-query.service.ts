@@ -13,9 +13,7 @@ export class UserQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.UserWhereInput = {};
         if (search) {
-            where.OR = [
-                
-            ];
+            where.OR = [];
         }
 
         if (withDeleted === undefined) {
