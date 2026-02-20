@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # cd ..
 
 npx nx run-many -t lint
