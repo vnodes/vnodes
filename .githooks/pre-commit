@@ -1,5 +1,5 @@
 #!/bin/bash
 # cd ..
-
+# Run lint first
 npx nx run-many -t lint
 npx nx run-many -t test build
