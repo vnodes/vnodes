@@ -10,5 +10,5 @@ import type { Any } from '@vnodes/types';
  */
 export const UserId = createParamDecorator((_data, context) => {
     const req = context.switchToHttp().getRequest<Any>();
-    return (req.userId || req.userid || req.user.id) ?? null;
+    return (req.userId || req.userid || req.user?.id) ?? null;
 });

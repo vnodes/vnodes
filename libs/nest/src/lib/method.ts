@@ -44,8 +44,7 @@ export function Method(options: MethodOptions): MethodDecorator {
                 ApiOperation({ summary: `Find one ${resourceName} by id` })(...args);
                 ApiOkResponse({ type: () => readDto })(...args);
                 ApiParam({ name: RestParam.ID, description: 'Entity id', example: 1 })(...args);
-                Param(`${RestParam.ID}`, ParseIntPipe)(target, methodName, 0);
-
+                Param(RestParam.ID, ParseIntPipe)(target, methodName, 0);
                 break;
             }
             case 'create': {
@@ -64,7 +63,7 @@ export function Method(options: MethodOptions): MethodDecorator {
                 ApiOkResponse({ type: () => readDto });
                 ApiBody({ type: () => updateDto })(...args);
                 ApiParam({ name: RestParam.ID, description: 'Entity id' })(...args);
-                Param(`${RestParam.ID}`, ParseIntPipe)(target, methodName, 0);
+                Param(RestParam.ID, ParseIntPipe)(target, methodName, 0);
                 Body()(target, methodName, 1);
                 Reflect.defineMetadata('design:paramtypes', [Number, updateDto], target, methodName);
                 break;
@@ -74,7 +73,7 @@ export function Method(options: MethodOptions): MethodDecorator {
                 ApiOperation({ summary: `Delete one ${resourceName} by id` })(...args);
                 ApiOkResponse({ type: readDto });
                 ApiParam({ name: RestParam.ID, description: 'Entity id', example: 1 })(...args);
-                Param(`${RestParam.ID}`, ParseIntPipe)(target, methodName, 0);
+                Param(RestParam.ID, ParseIntPipe)(target, methodName, 0);
 
                 break;
             }

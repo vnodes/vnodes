@@ -1,27 +1,29 @@
-import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { PrismaModule } from '@vnodes/prisma';
+import { AppInterceptor } from './app.interceptor.js';
 import { AppService } from './app.service.js';
-import { LoggerInterceptor } from './logger.interceptor.js';
-import { ResourceModule } from './resources/index.js';
+import { PrismaClient } from './prisma/client.js';
+
 @Module({
     imports: [
-        ConfigModule.forRoot({ cache: true, isGlobal: true }),
+        ConfigModule.forRoot({
+            cache: true,
+            isGlobal: true,
+        }),
         EventEmitterModule.forRoot({ delimiter: '.' }),
-        ScheduleModule.forRoot(),
-        ThrottlerModule.forRoot({ throttlers: [{ ttl: 60_000, limit: 100 }] }),
-        CacheModule.register({ ttl: 5_000 }),
-        ResourceModule,
+        PrismaModule.forRoot(PrismaClient, []),
+        ScheduleModule.forRoot()
     ],
+
     providers: [
         AppService,
         {
             provide: APP_INTERCEPTOR,
-            useClass: LoggerInterceptor,
+            useClass: AppInterceptor,
         },
     ],
 })

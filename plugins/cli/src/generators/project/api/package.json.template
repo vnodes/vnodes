@@ -1,22 +1,22 @@
 {
-    "name": "@vnodes/todo-api",
+    "name": "<%- projectName %>",
     "description": "- [ ] add description",
-    "homepage": "https://vnodes.github.io/vnodes/apps/todo-api",
+    "homepage": "<%- homepage %>/<%- directory %>",
     "publishConfig": {
         "access": "public",
         "tag": "latest"
     },
     "author": {
-        "email": "robert.brightline+vnodes-todo-api@gmail.com",
+        "email": "<%- email %>",
         "name": "Robert Brightline",
-        "url": "https://vnodes.github.io/vnodes/apps/todo-api"
+        "url": "<%- homepage %>/<%- directory %>"
     },
     "keywords": [],
-    "icon": "https://vnodes.github.io/vnodes/apps/todo-api/assets/favicon.png",
+    "icon": "<%- homepage %>/<%- directory %>/assets/favicon.png",
     "funding": [
         {
             "type": "cashapp",
-            "url": "https://cash.app/$puqlib"
+            "url": "<%- funding %>"
         }
     ],
     "version": "0.0.1",
@@ -39,7 +39,7 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "apps/todo-api/src",
+        "sourceRoot": "<%- directory %>/src",
         "targets": {
             "build": {
                 "executor": "@nx/js:swc",
@@ -47,9 +47,9 @@
                     "{options.outputPath}"
                 ],
                 "options": {
-                    "outputPath": "apps/todo-api/dist",
-                    "main": "apps/todo-api/src/serve.ts",
-                    "tsConfig": "apps/todo-api/tsconfig.lib.json",
+                    "outputPath": "<%- directory %>/dist",
+                    "main": "<%- directory %>/src/serve.ts",
+                    "tsConfig": "<%- directory %>/tsconfig.lib.json",
                     "skipTypeCheck": false,
                     "stripLeadingPaths": true
                 }
@@ -84,7 +84,6 @@
         }
     },
     "dependencies": {
-        "@nestjs/cache-manager": "^3.1.0",
         "@nestjs/common": "^11.1.13",
         "@nestjs/config": "^4.0.3",
         "@nestjs/core": "^11.1.13",
@@ -92,7 +91,6 @@
         "@nestjs/platform-express": "^11.1.13",
         "@nestjs/schedule": "^6.1.1",
         "@nestjs/swagger": "^11.2.6",
-        "@nestjs/throttler": "^6.5.0",
         "@prisma/adapter-pg": "7.3.0",
         "@prisma/client": "7.3.0",
         "@scalar/nestjs-api-reference": "^1.0.23",
@@ -102,11 +100,9 @@
         "@vnodes/prisma": "workspace:*",
         "@vnodes/property": "workspace:*",
         "@vnodes/types": "workspace:*",
-        "cache-manager": "^7.2.8",
         "class-transformer": "^0.5.1",
         "class-validator": "^0.14.3",
         "express": "^5.2.1",
-        "helmet": "^8.1.0",
         "pg": "^8.18.0",
         "reflect-metadata": "^0.2.2",
         "rxjs": "^7.8.2"

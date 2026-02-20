@@ -5,8 +5,8 @@ import type { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
 import { GlobalValidationPipe } from '@vnodes/nest';
-import helmet from 'helmet';
 import { AppModule } from './app/app.module.js';
+
 /**
  * Run the api
  */
@@ -20,21 +20,11 @@ export async function bootstrap() {
     const APP_PREFIX = config.getOrThrow('APP_PREFIX', 'api');
     const APP_VERSION = config.getOrThrow('APP_VERSION', '0.0.1');
     const APP_DESCRIPTION = config.getOrThrow('APP_DESCRIPTION', 'No description');
-    const ALLOWED_ORIGINS = config.get<string>('ALLOWED_ORIGINS')?.split(',');
 
     app.setGlobalPrefix(APP_PREFIX);
-
-    app.enableCors({ origin: ALLOWED_ORIGINS ?? '*' });
-
-    app.use(
-        helmet({
-            contentSecurityPolicy: false,
-        }),
-    );
+    app.enableCors();
 
     app.useGlobalPipes(GlobalValidationPipe);
-
-    app.enableShutdownHooks();
 
     const swaggerConfig = new DocumentBuilder()
         .setTitle(APP_ID)
@@ -58,7 +48,6 @@ export async function bootstrap() {
     });
 
     SwaggerModule.setup('api', app, document);
-
     app.use('/apis', apiReference({ content: document }));
 
     await app.listen(PORT);
