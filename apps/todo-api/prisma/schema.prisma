@@ -26,7 +26,7 @@ model User {
 
   firstName  String /// @maxlength(255)
   lastName   String /// @maxlength(255)
-  middleName String /// @maxlength(255)
+  middleName String? /// @maxlength(255)
 
   createdTodos Todo[]
 
@@ -63,7 +63,7 @@ model Todo {
   details     Json?
 
   createdByUser User? @relation(fields: [createdById], references: [id])
-  createdById   Int? /// @readonly() @internal(userId)
+  createdById   Int? /// @readonly()
 
   userTodos UserTodo[]
 }

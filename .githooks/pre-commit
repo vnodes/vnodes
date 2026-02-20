@@ -2,4 +2,5 @@
 
 # cd ..
 
-npx nx run-many -t build lint test
+npx nx run-many -t lint
+npx nx run-many -t test build

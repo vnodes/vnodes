@@ -205,7 +205,7 @@ export type UserGroupByOutputType = {
   deletedAt: Date | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName: string | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -239,7 +239,7 @@ export type UserWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   firstName?: Prisma.StringFilter<"User"> | string
   lastName?: Prisma.StringFilter<"User"> | string
-  middleName?: Prisma.StringFilter<"User"> | string
+  middleName?: Prisma.StringNullableFilter<"User"> | string | null
   createdTodos?: Prisma.TodoListRelationFilter
   userTodos?: Prisma.UserTodoListRelationFilter
 }
@@ -252,7 +252,7 @@ export type UserOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
-  middleName?: Prisma.SortOrder
+  middleName?: Prisma.SortOrderInput | Prisma.SortOrder
   createdTodos?: Prisma.TodoOrderByRelationAggregateInput
   userTodos?: Prisma.UserTodoOrderByRelationAggregateInput
 }
@@ -269,7 +269,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   firstName?: Prisma.StringFilter<"User"> | string
   lastName?: Prisma.StringFilter<"User"> | string
-  middleName?: Prisma.StringFilter<"User"> | string
+  middleName?: Prisma.StringNullableFilter<"User"> | string | null
   createdTodos?: Prisma.TodoListRelationFilter
   userTodos?: Prisma.UserTodoListRelationFilter
 }, "id" | "uuid" | "firstName_lastName_middleName">
@@ -282,7 +282,7 @@ export type UserOrderByWithAggregationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
-  middleName?: Prisma.SortOrder
+  middleName?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -301,7 +301,7 @@ export type UserScalarWhereWithAggregatesInput = {
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   firstName?: Prisma.StringWithAggregatesFilter<"User"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"User"> | string
-  middleName?: Prisma.StringWithAggregatesFilter<"User"> | string
+  middleName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -311,7 +311,7 @@ export type UserCreateInput = {
   deletedAt?: Date | string | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName?: string | null
   createdTodos?: Prisma.TodoCreateNestedManyWithoutCreatedByUserInput
   userTodos?: Prisma.UserTodoCreateNestedManyWithoutUserInput
 }
@@ -324,7 +324,7 @@ export type UserUncheckedCreateInput = {
   deletedAt?: Date | string | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName?: string | null
   createdTodos?: Prisma.TodoUncheckedCreateNestedManyWithoutCreatedByUserInput
   userTodos?: Prisma.UserTodoUncheckedCreateNestedManyWithoutUserInput
 }
@@ -336,7 +336,7 @@ export type UserUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdTodos?: Prisma.TodoUpdateManyWithoutCreatedByUserNestedInput
   userTodos?: Prisma.UserTodoUpdateManyWithoutUserNestedInput
 }
@@ -349,7 +349,7 @@ export type UserUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdTodos?: Prisma.TodoUncheckedUpdateManyWithoutCreatedByUserNestedInput
   userTodos?: Prisma.UserTodoUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -362,7 +362,7 @@ export type UserCreateManyInput = {
   deletedAt?: Date | string | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -372,7 +372,7 @@ export type UserUpdateManyMutationInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -383,7 +383,7 @@ export type UserUncheckedUpdateManyInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserFirstNameLastNameMiddleNameCompoundUniqueInput = {
@@ -433,6 +433,11 @@ export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
@@ -450,6 +455,10 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -464,10 +473,12 @@ export type UserCreateNestedOneWithoutCreatedTodosInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutCreatedTodosNestedInput = {
+export type UserUpdateOneWithoutCreatedTodosNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedTodosInput, Prisma.UserUncheckedCreateWithoutCreatedTodosInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedTodosInput
   upsert?: Prisma.UserUpsertWithoutCreatedTodosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedTodosInput, Prisma.UserUpdateWithoutCreatedTodosInput>, Prisma.UserUncheckedUpdateWithoutCreatedTodosInput>
 }
@@ -493,7 +504,7 @@ export type UserCreateWithoutCreatedTodosInput = {
   deletedAt?: Date | string | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName?: string | null
   userTodos?: Prisma.UserTodoCreateNestedManyWithoutUserInput
 }
 
@@ -505,7 +516,7 @@ export type UserUncheckedCreateWithoutCreatedTodosInput = {
   deletedAt?: Date | string | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName?: string | null
   userTodos?: Prisma.UserTodoUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -532,7 +543,7 @@ export type UserUpdateWithoutCreatedTodosInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userTodos?: Prisma.UserTodoUpdateManyWithoutUserNestedInput
 }
 
@@ -544,7 +555,7 @@ export type UserUncheckedUpdateWithoutCreatedTodosInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userTodos?: Prisma.UserTodoUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -555,7 +566,7 @@ export type UserCreateWithoutUserTodosInput = {
   deletedAt?: Date | string | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName?: string | null
   createdTodos?: Prisma.TodoCreateNestedManyWithoutCreatedByUserInput
 }
 
@@ -567,7 +578,7 @@ export type UserUncheckedCreateWithoutUserTodosInput = {
   deletedAt?: Date | string | null
   firstName: string
   lastName: string
-  middleName: string
+  middleName?: string | null
   createdTodos?: Prisma.TodoUncheckedCreateNestedManyWithoutCreatedByUserInput
 }
 
@@ -594,7 +605,7 @@ export type UserUpdateWithoutUserTodosInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdTodos?: Prisma.TodoUpdateManyWithoutCreatedByUserNestedInput
 }
 
@@ -606,7 +617,7 @@ export type UserUncheckedUpdateWithoutUserTodosInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  middleName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdTodos?: Prisma.TodoUncheckedUpdateManyWithoutCreatedByUserNestedInput
 }
 
@@ -729,7 +740,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     /**
      * @maxlength(255)
      */
-    middleName: string
+    middleName: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }

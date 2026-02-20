@@ -13,14 +13,16 @@ export class TagService implements ResourceOperations {
         @Inject(TagQueryService) protected readonly queryService: TagQueryService,
     ) {}
 
-async validateUniques(data: TagCreateDto | TagUpdateDto, id?: number) {
-    const uniqueFields: PickKey<P.Prisma.TagScalarFieldEnum, keyof TagCreateDto>[] = ['value'];
+async validateUniques(data: Partial<P.Prisma.TagModel>, id?: number) {
+    const uniqueFields: P.Prisma.TagScalarFieldEnum[] = ['value'];
 
     for (const field of uniqueFields) {
         if (data[field]) {
             const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
             if (found) {
-                throw new UnprocessableEntityException(`A  with this ${field} is already exist`);
+                throw new UnprocessableEntityException({
+                    errors: { [field]: { unique: `${field} must be unique` } },
+                });
             }
         }
     }

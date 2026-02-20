@@ -5,10 +5,7 @@ export function __inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.
     switch (field.kind) {
         case 'scalar': {
             switch (field.type as ScalarType) {
-                case 'Json': {
-                    return 'Object';
-                }
-
+                case 'Json':
                 case 'String': {
                     return 'String';
                 }

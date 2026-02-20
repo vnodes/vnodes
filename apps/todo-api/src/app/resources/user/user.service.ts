@@ -1,7 +1,6 @@
 import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
-import type { PickKey } from '@vnodes/types';
 import type * as P from '../../prisma/client.js';
 import type { UserCreateDto, UserQueryDto, UserUpdateDto } from './dtos/index.js';
 import { UserQueryService } from './user-query.service.js';
@@ -13,18 +12,20 @@ export class UserService implements ResourceOperations {
         @Inject(UserQueryService) protected readonly queryService: UserQueryService,
     ) {}
 
-async validateUniques(data: UserCreateDto | UserUpdateDto, id?: number) {
-    const uniqueFields: PickKey<P.Prisma.UserScalarFieldEnum, keyof UserCreateDto>[] = [];
+    async validateUniques(data: Partial<P.Prisma.UserModel>, id?: number) {
+        const uniqueFields: P.Prisma.UserScalarFieldEnum[] = [];
 
-    for (const field of uniqueFields) {
-        if (data[field]) {
-            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-            if (found) {
-                throw new UnprocessableEntityException(`A  with this ${field} is already exist`);
+        for (const field of uniqueFields) {
+            if (data[field]) {
+                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+                if (found) {
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
+                }
             }
         }
     }
-}
 
     async find(query: UserQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

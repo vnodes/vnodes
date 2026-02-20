@@ -1,7 +1,6 @@
 import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
-import type { PickKey } from '@vnodes/types';
 import type * as P from '../../prisma/client.js';
 import type { TodoCreateDto, TodoQueryDto, TodoUpdateDto } from './dtos/index.js';
 import { TodoQueryService } from './todo-query.service.js';
@@ -13,14 +12,16 @@ export class TodoService implements ResourceOperations {
         @Inject(TodoQueryService) protected readonly queryService: TodoQueryService,
     ) {}
 
-    async validateUniques(data: TodoCreateDto | TodoUpdateDto, id?: number) {
-        const uniqueFields: PickKey<P.Prisma.TodoScalarFieldEnum, keyof TodoCreateDto>[] = ['title'];
+    async validateUniques(data: Partial<P.Prisma.TodoModel>, id?: number) {
+        const uniqueFields: P.Prisma.TodoScalarFieldEnum[] = ['title'];
 
         for (const field of uniqueFields) {
             if (data[field]) {
                 const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
                 if (found) {
-                    throw new UnprocessableEntityException(`A  with this ${field} is already exist`);
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
                 }
             }
         }
@@ -42,9 +43,9 @@ export class TodoService implements ResourceOperations {
         }
     }
 
-    async create(data: TodoCreateDto, createdById: number) {
+    async create(data: TodoCreateDto) {
         await this.validateUniques(data);
-        return await this.repo.create({ data: { ...data, createdById } });
+        return await this.repo.create({ data });
     }
 
     async update(id: number, data: TodoUpdateDto) {

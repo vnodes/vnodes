@@ -1,10 +1,11 @@
 import type { DMMF } from '@prisma/generator-helper';
 import type { ScalarType } from '@vnodes/prisma-helper';
 
-export function __createDtoFieldType(field: DMMF.Field) {
+export function __createDtoFieldType(_model: DMMF.Model, field: DMMF.Field) {
     switch (field.kind) {
         case 'scalar': {
             switch (field.type as ScalarType) {
+                case 'Json':
                 case 'String': {
                     return 'string';
                 }
@@ -16,8 +17,7 @@ export function __createDtoFieldType(field: DMMF.Field) {
                 case 'Float': {
                     return 'number';
                 }
-                case 'Json':
-                    return 'string';
+
                 case 'DateTime':
                     return 'Date';
                 default:
@@ -32,8 +32,8 @@ export function __createDtoFieldType(field: DMMF.Field) {
     }
 }
 
-export function createDtoFieldType(field: DMMF.Field) {
-    const type = __createDtoFieldType(field);
+export function createDtoFieldType(model: DMMF.Model, field: DMMF.Field) {
+    const type = __createDtoFieldType(model, field);
 
     if (field.isList) {
         return `${type}[]`;

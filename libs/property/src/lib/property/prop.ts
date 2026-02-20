@@ -1,3 +1,4 @@
+import { randomInt, randomUUID } from 'node:crypto';
 import { ApiProperty, type ApiPropertyOptions } from '@nestjs/swagger';
 import type { Any } from '@vnodes/types';
 import { Type } from 'class-transformer';
@@ -53,27 +54,32 @@ export function itemType(type: ApiPropertyOptions['type']): ApiPropertyOptions['
     return type;
 }
 
+/**
+ * # Examples
+ * ```typescript
+ *   \@Prop({ type: String }) value: string;
+ *   \@Prop({ type: Number }) value: number;
+ *   \@Prop({ type: Boolean }) value: boolean;
+ *   \@Prop({ type: Date }) value: Date;
+ *   \@Prop({ type: CustomObject }) value: CustomObject;
+ *   \@Prop({ type: [String] }) value: string[];
+ * ```
+ * @param options
+ * @param validationOptions
+ * @returns
+ */
 export function Prop(options: ApiPropertyOptions, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {
         const type = itemType(options.type ?? Reflect.getMetadata('design:type', args[0], args[1]));
         const isArray = Array.isArray(options.type);
 
         const decorators = new Set<PropertyDecorator>();
+
         const applyDecorator = (...items: PropertyDecorator[]) => {
             for (const decorator of items) {
                 decorators.add(decorator);
             }
         };
-
-        if (!validationOptions) {
-            applyDecorator(ApiProperty(options));
-
-            if (options.required === false) {
-                applyDecorator(IsOptional(validationOptions));
-            } else {
-                applyDecorator(IsDefined(validationOptions), IsNotEmpty(validationOptions));
-            }
-        }
 
         const { minLength, maxLength, minimum, maximum, format, maxItems, minItems, enum: enumCls } = options;
 
@@ -91,13 +97,28 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
             applyDecorator(IsArray(validationOptions));
             applyDecorator(Prop({ ...options.items, type } as ApiPropertyOptions, { each: true }));
         } else if (options.enum) {
+            // Enum does not need any more options
         } else if (type === String) {
             applyDecorator(IsString(validationOptions));
+
+            if (options.required !== false) {
+                applyDecorator(IsNotEmpty(validationOptions));
+            }
+
+            if (!format) {
+                if (!options.example) {
+                    options.example = `some text ${randomInt(0, 1000)}`;
+                }
+            }
 
             if (format)
                 switch (format) {
                     case 'hostname': {
                         applyDecorator(IsFQDN({}, validationOptions));
+
+                        if (!options.example) {
+                            options.example = 'https://vnodes.github.io';
+                        }
                         break;
                     }
                     case 'duration': {
@@ -107,14 +128,23 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                                 message: '$property must be a valid duration',
                             }),
                         );
+                        if (!options.example) {
+                            options.example = 'P2D';
+                        }
                         break;
                     }
                     case 'password': {
                         applyDecorator(IsStrongPassword(undefined, validationOptions));
+                        if (!options.example) {
+                            options.example = '!Password123.';
+                        }
                         break;
                     }
                     case 'email': {
                         applyDecorator(IsEmail({}, validationOptions));
+                        if (!options.example) {
+                            options.example = 'example@gmail.com';
+                        }
                         break;
                     }
 
@@ -122,10 +152,16 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                     case 'date-time':
                     case 'date': {
                         applyDecorator(IsISO8601({}, validationOptions));
+                        if (!options.example) {
+                            options.example = new Date().toISOString();
+                        }
                         break;
                     }
                     case 'binary': {
                         applyDecorator(Matches(/^[0-1]{1,}$/, validationOptions));
+                        if (!options.example) {
+                            options.example = '011110010101';
+                        }
                         break;
                     }
                     case 'int32':
@@ -133,6 +169,9 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                     case 'float':
                     case 'double': {
                         applyDecorator(IsNumberString({}, validationOptions));
+                        if (!options.example) {
+                            options.example = '99';
+                        }
                         break;
                     }
                     case 'uri-reference':
@@ -151,18 +190,31 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                                 validationOptions,
                             ),
                         );
+
+                        if (!options.example) {
+                            options.example = 'https://vnodes.github.io';
+                        }
                         break;
                     }
                     case 'ipv4': {
                         applyDecorator(IsIP('4', validationOptions));
+                        if (!options.example) {
+                            options.example = '192.168.0.1';
+                        }
                         break;
                     }
                     case 'ipv6': {
                         applyDecorator(IsIP('6', validationOptions));
+                        if (!options.example) {
+                            options.example = '000:0000:0000:0000:000:0000';
+                        }
                         break;
                     }
                     case 'uuid': {
                         applyDecorator(IsUUID('all', validationOptions));
+                        if (!options.example) {
+                            options.example = randomUUID().toString();
+                        }
                         break;
                     }
                 }
@@ -174,23 +226,45 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                     case 'int32':
                     case 'int64': {
                         applyDecorator(IsInt(validationOptions));
+                        if (!options.example) {
+                            options.example = 99;
+                        }
                         break;
                     }
                     case 'byte': {
                         applyDecorator(Min(255));
                         applyDecorator(Max(255));
+                        if (!options.example) {
+                            options.example = 10001;
+                        }
                         break;
                     }
                 }
             }
         } else if (type === Boolean) {
             applyDecorator(IsBoolean(validationOptions));
+            if (!options.example) {
+                options.example = new Boolean(true);
+            }
         } else if (type === Date) {
             applyDecorator(IsDate(validationOptions));
+
+            if (!options.example) {
+                options.example = new Date().toISOString();
+            }
         } else {
-            if (!options.enum) {
-                applyDecorator(Type(() => type as Any));
-                applyDecorator(ValidateNested(validationOptions));
+            applyDecorator(Type(() => type as Any));
+            applyDecorator(ValidateNested(validationOptions));
+        }
+
+        // Swagger api property decorator
+        if (!validationOptions) {
+            applyDecorator(ApiProperty(options));
+
+            if (options.required === false) {
+                applyDecorator(IsOptional(validationOptions));
+            } else {
+                applyDecorator(IsDefined(validationOptions));
             }
         }
 

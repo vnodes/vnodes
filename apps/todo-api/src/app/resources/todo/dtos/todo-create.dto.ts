@@ -7,5 +7,6 @@ export class TodoCreateDto {
     @Prop({ type: String, enum: P.$Enums.Status }) status?: P.$Enums.Status;
     @Prop({ type: Number }) score: number;
     @Prop({ type: [String], maxItems: 3 }) tags?: string[];
-    @Prop({ type: Object, required: false }) details?: string;
+    @Prop({ type: String, required: false }) details?: string;
+    @Prop({ type: Number, required: false }) createdById?: number;
 }

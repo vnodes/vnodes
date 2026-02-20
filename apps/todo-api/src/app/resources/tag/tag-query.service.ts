@@ -13,9 +13,7 @@ export class TagQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.TagWhereInput = {};
         if (search) {
-            where.OR = [
-                
-            ];
+            where.OR = [];
         }
 
         if (withDeleted === undefined) {

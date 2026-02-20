@@ -20,12 +20,8 @@ export class TodoController implements ResourceOperations {
         return this.service.findByIdOrThrow(id);
     }
 
-    create(data: TodoCreateDto, userId: number) {
-        console.table({
-            userId,
-            data,
-        });
-        return this.service.create(data, userId);
+    create(data: TodoCreateDto) {
+        return this.service.create(data);
     }
 
     update(id: number, data: TodoUpdateDto) {
