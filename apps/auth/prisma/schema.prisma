@@ -25,8 +25,8 @@ model User {
   lastName   String
   middleName String?
 
-  /// @include
-  userRoles UserRole[]
+  userRoles UserRole[] /// @include
+  sessions  Session[]
 
   @@index([firstName])
   @@index([lastName])
@@ -91,4 +91,17 @@ model UserRole {
   roleId Int
 
   @@unique([userId, roleId])
+}
+
+model Session {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  ipAddress String?
+  deviceId  String?
 }

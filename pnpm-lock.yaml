@@ -120,6 +120,9 @@ importers:
       '@vnodes/contact-db':
         specifier: workspace:*
         version: link:../../dbs/contact-db
+      '@vnodes/crypto':
+        specifier: workspace:*
+        version: link:../../libs/crypto
       '@vnodes/nest':
         specifier: workspace:*
         version: link:../../libs/nest
