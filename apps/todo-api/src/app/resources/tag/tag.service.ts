@@ -12,20 +12,20 @@ export class TagService implements ResourceOperations {
         @Inject(TagQueryService) protected readonly queryService: TagQueryService,
     ) {}
 
-async validateUniques(data: Partial<P.Prisma.TagModel>, id?: number) {
-    const uniqueFields: P.Prisma.TagScalarFieldEnum[] = ['value'];
+    async validateUniques(data: Partial<P.Prisma.TagModel>, id?: number) {
+        const uniqueFields: P.Prisma.TagScalarFieldEnum[] = ['value'];
 
-    for (const field of uniqueFields) {
-        if (data[field]) {
-            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-            if (found) {
-                throw new UnprocessableEntityException({
-                    errors: { [field]: { unique: `${field} must be unique` } },
-                });
+        for (const field of uniqueFields) {
+            if (data[field]) {
+                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+                if (found) {
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
+                }
             }
         }
     }
-}
 
     async find(query: TagQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

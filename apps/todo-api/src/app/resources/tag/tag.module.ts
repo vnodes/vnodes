@@ -8,6 +8,6 @@ import { TagQueryService } from './tag-query.service.js';
     imports: [PrismaModule.forFeature(['tag'])],
     controllers: [TagController],
     providers: [TagService, TagQueryService],
-    exports: [TagService]
+    exports: [TagService],
 })
 export class TagModule {}

@@ -12,20 +12,20 @@ export class TodoService implements ResourceOperations {
         @Inject(TodoQueryService) protected readonly queryService: TodoQueryService,
     ) {}
 
-async validateUniques(data: Partial<P.Prisma.TodoModel>, id?: number) {
-    const uniqueFields: P.Prisma.TodoScalarFieldEnum[] = ['title'];
+    async validateUniques(data: Partial<P.Prisma.TodoModel>, id?: number) {
+        const uniqueFields: P.Prisma.TodoScalarFieldEnum[] = ['title'];
 
-    for (const field of uniqueFields) {
-        if (data[field]) {
-            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-            if (found) {
-                throw new UnprocessableEntityException({
-                    errors: { [field]: { unique: `${field} must be unique` } },
-                });
+        for (const field of uniqueFields) {
+            if (data[field]) {
+                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+                if (found) {
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
+                }
             }
         }
     }
-}
 
     async find(query: TodoQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

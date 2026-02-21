@@ -16,8 +16,8 @@ export class TodoQueryService {
         if (search) {
             where.OR = [
                 { title: { contains: search, mode: 'insensitive' } },
-{ description: { contains: search, mode: 'insensitive' } },
-{ tags: { has: search } }
+                { description: { contains: search, mode: 'insensitive' } },
+                { tags: { has: search } },
             ];
         }
 

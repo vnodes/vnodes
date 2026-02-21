@@ -16,8 +16,8 @@ export class UserQueryService {
         if (search) {
             where.OR = [
                 { firstName: { contains: search, mode: 'insensitive' } },
-{ lastName: { contains: search, mode: 'insensitive' } },
-{ middleName: { contains: search, mode: 'insensitive' } }
+                { lastName: { contains: search, mode: 'insensitive' } },
+                { middleName: { contains: search, mode: 'insensitive' } },
             ];
         }
 

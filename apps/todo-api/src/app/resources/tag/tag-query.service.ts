@@ -16,7 +16,7 @@ export class TagQueryService {
         if (search) {
             where.OR = [
                 { value: { contains: search, mode: 'insensitive' } },
-{ description: { contains: search, mode: 'insensitive' } }
+                { description: { contains: search, mode: 'insensitive' } },
             ];
         }
 
