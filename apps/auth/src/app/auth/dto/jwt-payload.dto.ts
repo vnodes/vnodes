@@ -9,5 +9,5 @@ export class JwtPayloadDto {
     /**
      * Permission ids as string
      */
-    @Prop() permissions: number[];
+    @Prop() permissions: string[];
 }

@@ -1,20 +1,50 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
-import { isCreateInputField } from '@vnodes/prisma-helper';
+import { FieldAnnotations, isCreateInputField } from '@vnodes/prisma-helper';
 
 export function printServiceClass(model: DMMF.Model) {
     const modelNames = names(model.name);
 
-    const uniqueFields = model.fields
-        .filter(isCreateInputField)
-        .filter((field) => field.isUnique)
-        .map((e) => {
-            return `'${e.name}'`;
-        })
-        .join(',');
+    const hasUniqueField = model.fields.some((field) => field.isUnique);
 
+    const uniqueFields = model.fields.filter(isCreateInputField).filter((field) => field.isUnique);
+
+    const uniqueFieldNames = hasUniqueField ? uniqueFields.map((field) => `"${field.name}"`).join(',') : '';
+
+    const hasHashField = model.fields.some((field) => FieldAnnotations.hash(field.documentation));
+    const hashedFields = hasHashField
+        ? model.fields
+              .filter((field) => {
+                  return FieldAnnotations.hash(field.documentation);
+              })
+              .map((field) => {
+                  return [`if(data.${field.name}) data.${field.name} = await hash(data.${field.name})`].join('\n');
+              })
+              .join('\n')
+        : '';
+    const printIf = (condition: boolean, text: string) => (condition ? text : '');
+
+    //  async findByUsername(username: string) {
+    //     return await this.repo.findUnique({ where: { username } });
+    // }
+
+    // async findByUuid(uuid: string) {
+    //     return await this.repo.findUnique({ where: { uuid } });
+    // }
+
+    const uniqueFieldFindOperations = uniqueFields
+        .map((field) => {
+            const fieldNames = names(field.name);
+            return [
+                `async findBy${fieldNames.pascalCase}(${fieldNames.camelCase}: P.Prisma.${model.name}Model['${fieldNames.camelCase}']) {`,
+                `return await this.repo.findUnique({ where: { ${fieldNames.camelCase} } })`,
+                `}`,
+            ].join('\n');
+        })
+        .join('\n');
     return [
         `import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';`,
+        printIf(hasHashField, "import { hash } from '@vnodes/crypto';"),
         `import type { ResourceOperations } from '@vnodes/nest';`,
         `import { InjectDelegate } from '@vnodes/prisma';`,
         `import type * as P from '../../prisma/client.js';`,
@@ -30,7 +60,7 @@ export function printServiceClass(model: DMMF.Model) {
         ``,
 
         `async validateUniques(data: Partial<P.Prisma.${modelNames.pascalCase}Model>, id?: number) {`,
-        `    const uniqueFields: P.Prisma.${modelNames.pascalCase}ScalarFieldEnum[] = [${uniqueFields}];`,
+        `    const uniqueFields: P.Prisma.${modelNames.pascalCase}ScalarFieldEnum[] = [${uniqueFieldNames}];`,
         ``,
         `    for (const field of uniqueFields) {`,
         `        if (data[field]) {`,
@@ -62,11 +92,13 @@ export function printServiceClass(model: DMMF.Model) {
         ``,
         `    async create(data: ${modelNames.pascalCase}CreateDto) {`,
         `        await this.validateUniques(data);`,
+        printIf(hasHashField, hashedFields),
         `        return await this.repo.create({ data });`,
         `    }`,
         ``,
         `    async update(id: number, data: ${modelNames.pascalCase}UpdateDto) {`,
         `        await this.validateUniques(data, id);`,
+        printIf(hasHashField, hashedFields),
         `        return await this.repo.update({ where: { id }, data });`,
         `    }`,
         ``,
@@ -85,6 +117,7 @@ export function printServiceClass(model: DMMF.Model) {
         `        const deletedAt = new Date();`,
         `        return await this.repo.update({ where: { id }, data: { deletedAt } });`,
         `    }`,
+        printIf(hasUniqueField, uniqueFieldFindOperations),
         `}`,
     ].join('\n');
 }

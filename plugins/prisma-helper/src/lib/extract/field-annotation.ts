@@ -113,6 +113,11 @@ export enum FieldAnnotation {
      * Include the relation relation
      */
     include = 'include',
+
+    /**
+     * Mark the field to be hashed
+     */
+    hash = 'hash',
 }
 
 export type FieldAnnotationName = keyof typeof FieldAnnotation;

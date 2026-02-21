@@ -1,4 +1,5 @@
 import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { hash } from '@vnodes/crypto';
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import type * as P from '../../prisma/client.js';
@@ -45,11 +46,13 @@ export class SessionService implements ResourceOperations {
 
     async create(data: SessionCreateDto) {
         await this.validateUniques(data);
+        if (data.token) data.token = await hash(data.token);
         return await this.repo.create({ data });
     }
 
     async update(id: number, data: SessionUpdateDto) {
         await this.validateUniques(data, id);
+        if (data.token) data.token = await hash(data.token);
         return await this.repo.update({ where: { id }, data });
     }
 

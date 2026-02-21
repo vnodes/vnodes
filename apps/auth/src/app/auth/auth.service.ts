@@ -43,7 +43,7 @@ export class AuthService {
         jwtPayload.sub = sessionId;
         jwtPayload.permissions = userData.userRoles.flatMap((r) =>
             r.role.rolePermissions.map((rp) => {
-                return rp.permissionId;
+                return `${rp.permission.scope}.${rp.permission.resource}.${rp.permission.operation}`;
             }),
         );
 

@@ -1,4 +1,5 @@
 import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { hash } from '@vnodes/crypto';
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import type * as P from '../../prisma/client.js';
@@ -45,11 +46,13 @@ export class UserService implements ResourceOperations {
 
     async create(data: UserCreateDto) {
         await this.validateUniques(data);
+        if (data.password) data.password = await hash(data.password);
         return await this.repo.create({ data });
     }
 
     async update(id: number, data: UserUpdateDto) {
         await this.validateUniques(data, id);
+        if (data.password) data.password = await hash(data.password);
         return await this.repo.update({ where: { id }, data });
     }
 
@@ -67,5 +70,9 @@ export class UserService implements ResourceOperations {
         await this.findByIdOrThrow(id);
         const deletedAt = new Date();
         return await this.repo.update({ where: { id }, data: { deletedAt } });
+    }
+
+    async findByUsername(username: P.Prisma.UserModel['username']) {
+        return await this.repo.findUnique({ where: { username } });
     }
 }

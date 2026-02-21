@@ -1,4 +1,5 @@
 import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import type * as P from '../../prisma/client.js';
@@ -49,11 +50,13 @@ export class AccessTokenPermissionService implements ResourceOperations {
 
     async create(data: AccessTokenPermissionCreateDto) {
         await this.validateUniques(data);
+
         return await this.repo.create({ data });
     }
 
     async update(id: number, data: AccessTokenPermissionUpdateDto) {
         await this.validateUniques(data, id);
+
         return await this.repo.update({ where: { id }, data });
     }
 

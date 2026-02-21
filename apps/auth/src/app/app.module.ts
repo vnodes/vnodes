@@ -1,12 +1,14 @@
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppService } from './app.service.js';
 import { AuthModule } from './auth/auth.module.js';
+import { AuthGuard } from './auth/guards/auth.guard.js';
+import { PermissionGuard } from './auth/guards/permission.guard.js';
 import { LoggerInterceptor } from './logger.interceptor.js';
 import { ResourceModule } from './resources/index.js';
 
@@ -29,6 +31,14 @@ import { ResourceModule } from './resources/index.js';
         {
             provide: APP_INTERCEPTOR,
             useClass: CacheInterceptor,
+        },
+        {
+            provide: APP_GUARD,
+            useClass: AuthGuard,
+        },
+        {
+            provide: APP_GUARD,
+            useClass: PermissionGuard,
         },
     ],
 })

@@ -1,4 +1,5 @@
 import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import type * as P from '../../prisma/client.js';
@@ -45,11 +46,13 @@ export class RoleService implements ResourceOperations {
 
     async create(data: RoleCreateDto) {
         await this.validateUniques(data);
+
         return await this.repo.create({ data });
     }
 
     async update(id: number, data: RoleUpdateDto) {
         await this.validateUniques(data, id);
+
         return await this.repo.update({ where: { id }, data });
     }
 
@@ -67,5 +70,8 @@ export class RoleService implements ResourceOperations {
         await this.findByIdOrThrow(id);
         const deletedAt = new Date();
         return await this.repo.update({ where: { id }, data: { deletedAt } });
+    }
+    async findByName(name: P.Prisma.RoleModel['name']) {
+        return await this.repo.findUnique({ where: { name } });
     }
 }

@@ -9,6 +9,7 @@ import { AuthService } from './auth.service.js';
         ConfigModule,
         PrismaModule.forFeature(['user', 'role', 'userRole', 'permission', 'session', 'accessToken']),
         JwtModule.registerAsync({
+            global: true,
             inject: [ConfigService],
             useFactory(config: ConfigService) {
                 const secret = config.getOrThrow('JWT_SECRET');
