@@ -1,6 +1,11 @@
 import { Inject } from '@nestjs/common';
 import { Controller, type ResourceOperations } from '@vnodes/nest';
-import { RolePermissionCreateDto, RolePermissionQueryDto, RolePermissionReadDto, RolePermissionUpdateDto } from './dtos/index.js';
+import {
+    RolePermissionCreateDto,
+    RolePermissionQueryDto,
+    RolePermissionReadDto,
+    RolePermissionUpdateDto,
+} from './dtos/index.js';
 import { RolePermissionService } from './role-permission.service.js';
 
 @Controller({

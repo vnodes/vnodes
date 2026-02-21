@@ -16,11 +16,11 @@ export class UserQueryService {
         if (search) {
             where.OR = [
                 { username: { contains: search, mode: 'insensitive' } },
-{ password: { contains: search, mode: 'insensitive' } },
-{ firstName: { contains: search, mode: 'insensitive' } },
-{ lastName: { contains: search, mode: 'insensitive' } },
-{ middleName: { contains: search, mode: 'insensitive' } },
-{ otp: { contains: search, mode: 'insensitive' } }
+                { password: { contains: search, mode: 'insensitive' } },
+                { firstName: { contains: search, mode: 'insensitive' } },
+                { lastName: { contains: search, mode: 'insensitive' } },
+                { middleName: { contains: search, mode: 'insensitive' } },
+                { otp: { contains: search, mode: 'insensitive' } },
             ];
         }
 
@@ -37,10 +37,10 @@ export class UserQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-include: this.toInclude(),
+            include: this.toInclude(),
         };
     }
-   toInclude(): P.Prisma.UserInclude {
-       return { userRoles: true, sessions: true };
-   }
+    toInclude(): P.Prisma.UserInclude {
+        return { userRoles: true, sessions: true };
+    }
 }

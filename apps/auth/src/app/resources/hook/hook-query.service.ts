@@ -16,7 +16,7 @@ export class HookQueryService {
         if (search) {
             where.OR = [
                 { url: { contains: search, mode: 'insensitive' } },
-{ event: { contains: search, mode: 'insensitive' } }
+                { event: { contains: search, mode: 'insensitive' } },
             ];
         }
 
@@ -33,8 +33,6 @@ export class HookQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-
         };
     }
-
 }

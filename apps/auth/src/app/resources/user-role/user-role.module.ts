@@ -8,6 +8,6 @@ import { UserRoleQueryService } from './user-role-query.service.js';
     imports: [PrismaModule.forFeature(['userRole'])],
     controllers: [UserRoleController],
     providers: [UserRoleService, UserRoleQueryService],
-    exports: [UserRoleService]
+    exports: [UserRoleService],
 })
 export class UserRoleModule {}

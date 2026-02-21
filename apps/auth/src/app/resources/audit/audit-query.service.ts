@@ -16,8 +16,8 @@ export class AuditQueryService {
         if (search) {
             where.OR = [
                 { actorId: { contains: search, mode: 'insensitive' } },
-{ resource: { contains: search, mode: 'insensitive' } },
-{ operation: { contains: search, mode: 'insensitive' } }
+                { resource: { contains: search, mode: 'insensitive' } },
+                { operation: { contains: search, mode: 'insensitive' } },
             ];
         }
 
@@ -34,8 +34,6 @@ export class AuditQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-
         };
     }
-
 }

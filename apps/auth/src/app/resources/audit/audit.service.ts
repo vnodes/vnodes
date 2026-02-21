@@ -2,8 +2,8 @@ import { Inject, Injectable, NotFoundException, UnprocessableEntityException } f
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import type * as P from '../../prisma/client.js';
-import type { AuditCreateDto, AuditQueryDto, AuditUpdateDto } from './dtos/index.js';
 import { AuditQueryService } from './audit-query.service.js';
+import type { AuditCreateDto, AuditQueryDto, AuditUpdateDto } from './dtos/index.js';
 
 @Injectable()
 export class AuditService implements ResourceOperations {
@@ -12,20 +12,20 @@ export class AuditService implements ResourceOperations {
         @Inject(AuditQueryService) protected readonly queryService: AuditQueryService,
     ) {}
 
-async validateUniques(data: Partial<P.Prisma.AuditModel>, id?: number) {
-    const uniqueFields: P.Prisma.AuditScalarFieldEnum[] = [];
+    async validateUniques(data: Partial<P.Prisma.AuditModel>, id?: number) {
+        const uniqueFields: P.Prisma.AuditScalarFieldEnum[] = [];
 
-    for (const field of uniqueFields) {
-        if (data[field]) {
-            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-            if (found) {
-                throw new UnprocessableEntityException({
-                    errors: { [field]: { unique: `${field} must be unique` } },
-                });
+        for (const field of uniqueFields) {
+            if (data[field]) {
+                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+                if (found) {
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
+                }
             }
         }
     }
-}
 
     async find(query: AuditQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

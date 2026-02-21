@@ -14,9 +14,7 @@ export class RolePermissionQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.RolePermissionWhereInput = {};
         if (search) {
-            where.OR = [
-                
-            ];
+            where.OR = [];
         }
 
         if (withDeleted !== YesNo.Yes) {
@@ -32,8 +30,6 @@ export class RolePermissionQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-
         };
     }
-
 }

@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
 import { Controller, type ResourceOperations } from '@vnodes/nest';
-import { AuditCreateDto, AuditQueryDto, AuditReadDto, AuditUpdateDto } from './dtos/index.js';
 import { AuditService } from './audit.service.js';
+import { AuditCreateDto, AuditQueryDto, AuditReadDto, AuditUpdateDto } from './dtos/index.js';
 
 @Controller({
     createDto: AuditCreateDto,

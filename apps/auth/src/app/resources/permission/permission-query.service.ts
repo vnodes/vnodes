@@ -16,8 +16,8 @@ export class PermissionQueryService {
         if (search) {
             where.OR = [
                 { scope: { contains: search, mode: 'insensitive' } },
-{ resource: { contains: search, mode: 'insensitive' } },
-{ operation: { contains: search, mode: 'insensitive' } }
+                { resource: { contains: search, mode: 'insensitive' } },
+                { operation: { contains: search, mode: 'insensitive' } },
             ];
         }
 
@@ -34,8 +34,6 @@ export class PermissionQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-
         };
     }
-
 }

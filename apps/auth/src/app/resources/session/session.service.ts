@@ -12,20 +12,20 @@ export class SessionService implements ResourceOperations {
         @Inject(SessionQueryService) protected readonly queryService: SessionQueryService,
     ) {}
 
-async validateUniques(data: Partial<P.Prisma.SessionModel>, id?: number) {
-    const uniqueFields: P.Prisma.SessionScalarFieldEnum[] = [];
+    async validateUniques(data: Partial<P.Prisma.SessionModel>, id?: number) {
+        const uniqueFields: P.Prisma.SessionScalarFieldEnum[] = [];
 
-    for (const field of uniqueFields) {
-        if (data[field]) {
-            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-            if (found) {
-                throw new UnprocessableEntityException({
-                    errors: { [field]: { unique: `${field} must be unique` } },
-                });
+        for (const field of uniqueFields) {
+            if (data[field]) {
+                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+                if (found) {
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
+                }
             }
         }
     }
-}
 
     async find(query: SessionQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

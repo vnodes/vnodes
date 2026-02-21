@@ -2,8 +2,12 @@ import { Inject, Injectable, NotFoundException, UnprocessableEntityException } f
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import type * as P from '../../prisma/client.js';
-import type { AccessTokenPermissionCreateDto, AccessTokenPermissionQueryDto, AccessTokenPermissionUpdateDto } from './dtos/index.js';
 import { AccessTokenPermissionQueryService } from './access-token-permission-query.service.js';
+import type {
+    AccessTokenPermissionCreateDto,
+    AccessTokenPermissionQueryDto,
+    AccessTokenPermissionUpdateDto,
+} from './dtos/index.js';
 
 @Injectable()
 export class AccessTokenPermissionService implements ResourceOperations {
@@ -12,20 +16,20 @@ export class AccessTokenPermissionService implements ResourceOperations {
         @Inject(AccessTokenPermissionQueryService) protected readonly queryService: AccessTokenPermissionQueryService,
     ) {}
 
-async validateUniques(data: Partial<P.Prisma.AccessTokenPermissionModel>, id?: number) {
-    const uniqueFields: P.Prisma.AccessTokenPermissionScalarFieldEnum[] = [];
+    async validateUniques(data: Partial<P.Prisma.AccessTokenPermissionModel>, id?: number) {
+        const uniqueFields: P.Prisma.AccessTokenPermissionScalarFieldEnum[] = [];
 
-    for (const field of uniqueFields) {
-        if (data[field]) {
-            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-            if (found) {
-                throw new UnprocessableEntityException({
-                    errors: { [field]: { unique: `${field} must be unique` } },
-                });
+        for (const field of uniqueFields) {
+            if (data[field]) {
+                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+                if (found) {
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
+                }
             }
         }
     }
-}
 
     async find(query: AccessTokenPermissionQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

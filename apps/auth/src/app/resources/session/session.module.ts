@@ -8,6 +8,6 @@ import { SessionQueryService } from './session-query.service.js';
     imports: [PrismaModule.forFeature(['session'])],
     controllers: [SessionController],
     providers: [SessionService, SessionQueryService],
-    exports: [SessionService]
+    exports: [SessionService],
 })
 export class SessionModule {}

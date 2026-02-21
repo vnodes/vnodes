@@ -8,6 +8,6 @@ import { AccessTokenQueryService } from './access-token-query.service.js';
     imports: [PrismaModule.forFeature(['accessToken'])],
     controllers: [AccessTokenController],
     providers: [AccessTokenService, AccessTokenQueryService],
-    exports: [AccessTokenService]
+    exports: [AccessTokenService],
 })
 export class AccessTokenModule {}

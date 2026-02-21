@@ -14,9 +14,7 @@ export class UserRoleQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.UserRoleWhereInput = {};
         if (search) {
-            where.OR = [
-                
-            ];
+            where.OR = [];
         }
 
         if (withDeleted !== YesNo.Yes) {
@@ -32,10 +30,10 @@ export class UserRoleQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-include: this.toInclude(),
+            include: this.toInclude(),
         };
     }
-   toInclude(): P.Prisma.UserRoleInclude {
-       return { user: true, role: true };
-   }
+    toInclude(): P.Prisma.UserRoleInclude {
+        return { user: true, role: true };
+    }
 }

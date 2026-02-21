@@ -1,6 +1,5 @@
 import { Prop } from '@vnodes/property';
 
-export class RoleCreateDto
-{
-@Prop({  }) name: string
+export class RoleCreateDto {
+    @Prop({}) name: string;
 }

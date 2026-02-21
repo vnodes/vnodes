@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
 import { Controller, type ResourceOperations } from '@vnodes/nest';
-import { AccessTokenCreateDto, AccessTokenQueryDto, AccessTokenReadDto, AccessTokenUpdateDto } from './dtos/index.js';
 import { AccessTokenService } from './access-token.service.js';
+import { AccessTokenCreateDto, AccessTokenQueryDto, AccessTokenReadDto, AccessTokenUpdateDto } from './dtos/index.js';
 
 @Controller({
     createDto: AccessTokenCreateDto,

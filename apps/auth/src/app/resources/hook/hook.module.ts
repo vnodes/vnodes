@@ -8,6 +8,6 @@ import { HookQueryService } from './hook-query.service.js';
     imports: [PrismaModule.forFeature(['hook'])],
     controllers: [HookController],
     providers: [HookService, HookQueryService],
-    exports: [HookService]
+    exports: [HookService],
 })
 export class HookModule {}

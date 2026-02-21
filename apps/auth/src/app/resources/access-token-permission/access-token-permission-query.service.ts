@@ -14,9 +14,7 @@ export class AccessTokenPermissionQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.AccessTokenPermissionWhereInput = {};
         if (search) {
-            where.OR = [
-                
-            ];
+            where.OR = [];
         }
 
         if (withDeleted !== YesNo.Yes) {
@@ -32,8 +30,6 @@ export class AccessTokenPermissionQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-
         };
     }
-
 }

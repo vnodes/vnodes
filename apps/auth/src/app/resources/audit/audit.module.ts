@@ -8,6 +8,6 @@ import { AuditQueryService } from './audit-query.service.js';
     imports: [PrismaModule.forFeature(['audit'])],
     controllers: [AuditController],
     providers: [AuditService, AuditQueryService],
-    exports: [AuditService]
+    exports: [AuditService],
 })
 export class AuditModule {}

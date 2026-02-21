@@ -16,8 +16,8 @@ export class SessionQueryService {
         if (search) {
             where.OR = [
                 { ipAddress: { contains: search, mode: 'insensitive' } },
-{ deviceId: { contains: search, mode: 'insensitive' } },
-{ token: { contains: search, mode: 'insensitive' } }
+                { deviceId: { contains: search, mode: 'insensitive' } },
+                { token: { contains: search, mode: 'insensitive' } },
             ];
         }
 
@@ -34,8 +34,6 @@ export class SessionQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-
         };
     }
-
 }

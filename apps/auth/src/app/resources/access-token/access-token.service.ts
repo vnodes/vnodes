@@ -2,8 +2,8 @@ import { Inject, Injectable, NotFoundException, UnprocessableEntityException } f
 import type { ResourceOperations } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import type * as P from '../../prisma/client.js';
-import type { AccessTokenCreateDto, AccessTokenQueryDto, AccessTokenUpdateDto } from './dtos/index.js';
 import { AccessTokenQueryService } from './access-token-query.service.js';
+import type { AccessTokenCreateDto, AccessTokenQueryDto, AccessTokenUpdateDto } from './dtos/index.js';
 
 @Injectable()
 export class AccessTokenService implements ResourceOperations {
@@ -12,20 +12,20 @@ export class AccessTokenService implements ResourceOperations {
         @Inject(AccessTokenQueryService) protected readonly queryService: AccessTokenQueryService,
     ) {}
 
-async validateUniques(data: Partial<P.Prisma.AccessTokenModel>, id?: number) {
-    const uniqueFields: P.Prisma.AccessTokenScalarFieldEnum[] = ['name'];
+    async validateUniques(data: Partial<P.Prisma.AccessTokenModel>, id?: number) {
+        const uniqueFields: P.Prisma.AccessTokenScalarFieldEnum[] = ['name'];
 
-    for (const field of uniqueFields) {
-        if (data[field]) {
-            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-            if (found) {
-                throw new UnprocessableEntityException({
-                    errors: { [field]: { unique: `${field} must be unique` } },
-                });
+        for (const field of uniqueFields) {
+            if (data[field]) {
+                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+                if (found) {
+                    throw new UnprocessableEntityException({
+                        errors: { [field]: { unique: `${field} must be unique` } },
+                    });
+                }
             }
         }
     }
-}
 
     async find(query: AccessTokenQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

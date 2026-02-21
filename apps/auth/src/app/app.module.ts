@@ -1,12 +1,12 @@
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { JwtModule } from '@nestjs/jwt';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppService } from './app.service.js';
+import { AuthModule } from './auth/auth.module.js';
 import { LoggerInterceptor } from './logger.interceptor.js';
 import { ResourceModule } from './resources/index.js';
 
@@ -17,15 +17,7 @@ import { ResourceModule } from './resources/index.js';
         ScheduleModule.forRoot(),
         ThrottlerModule.forRoot({ throttlers: [{ ttl: 60_000, limit: 100 }] }),
         CacheModule.register({ ttl: 10_000 }),
-        JwtModule.registerAsync({
-            global: true,
-            imports: [ConfigModule],
-            inject: [ConfigService],
-            useFactory(config: ConfigService) {
-                const secret = config.getOrThrow<string>('JWT_SECRET');
-                return { secret, signOptions: { expiresIn: '1y' } };
-            },
-        }),
+        AuthModule,
         ResourceModule,
     ],
     providers: [

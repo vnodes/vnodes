@@ -16,8 +16,8 @@ export class AccessTokenQueryService {
         if (search) {
             where.OR = [
                 { name: { contains: search, mode: 'insensitive' } },
-{ description: { contains: search, mode: 'insensitive' } },
-{ token: { contains: search, mode: 'insensitive' } }
+                { description: { contains: search, mode: 'insensitive' } },
+                { token: { contains: search, mode: 'insensitive' } },
             ];
         }
 
@@ -34,10 +34,10 @@ export class AccessTokenQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-include: this.toInclude(),
+            include: this.toInclude(),
         };
     }
-   toInclude(): P.Prisma.AccessTokenInclude {
-       return { accessTokenPermissions: true };
-   }
+    toInclude(): P.Prisma.AccessTokenInclude {
+        return { accessTokenPermissions: true };
+    }
 }
