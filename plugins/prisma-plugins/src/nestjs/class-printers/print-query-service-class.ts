@@ -2,7 +2,7 @@ import type { DMMF } from '@prisma/generator-helper';
 import { isStringQueryField } from '@vnodes/prisma-helper';
 
 export function printQueryServiceClass(model: DMMF.Model) {
-    const stringQueries = model.fields
+    const stringFilters = model.fields
         .filter(isStringQueryField)
         .filter((field) => {
             return field.name !== 'id' && field.name !== 'uuid';
@@ -14,6 +14,13 @@ export function printQueryServiceClass(model: DMMF.Model) {
             return `{ ${field.name}: { contains: search, mode: 'insensitive' } }`;
         })
         .join(',\n');
+
+    const includeProperties = model.fields
+        .filter((e) => e.kind === 'object')
+        .map((e) => {
+            return `${e.name}: true`;
+        })
+        .join(', ');
 
     return [
         `import { Injectable } from '@nestjs/common';`,
@@ -33,7 +40,7 @@ export function printQueryServiceClass(model: DMMF.Model) {
         `        const where: P.Prisma.${model.name}WhereInput = {};`,
         `        if (search) {`,
         `            where.OR = [`,
-        `                ${stringQueries}`,
+        `                ${stringFilters}`,
         `            ];`,
         `        }`,
         ``,
@@ -50,8 +57,15 @@ export function printQueryServiceClass(model: DMMF.Model) {
         `            skip: query.skip ?? 0,`,
         `            orderBy: this.toOrderBy(query),`,
         `            where: this.toWhere(query),`,
+        `            include: this.toInclude(),`,
+
         `        };`,
         `    }`,
+
+        `   toInclude(): P.Prisma.${model.name}Include {`,
+        `       return { ${includeProperties} };`,
+        `   }`,
+
         `}`,
     ].join('\n');
 }

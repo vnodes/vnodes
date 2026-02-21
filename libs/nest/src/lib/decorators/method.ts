@@ -1,7 +1,7 @@
 import { Body, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam } from '@nestjs/swagger';
 import type { Cls, KeyOf } from '@vnodes/types';
-import type { ResourceOperations } from './interfaces/resource-operations.js';
+import type { ResourceOperations } from '../interfaces/resource-operations.js';
 import { RestParam, RestPath } from './rest-path.js';
 import { UserId } from './user-id.js';
 

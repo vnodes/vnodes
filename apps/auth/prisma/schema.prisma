@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/app/prisma"
+}
+
+generator nestjs {
+  provider = "nestjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  username String @unique /// @format(email)
+  password String /// @hash() @format(password)
+
+  firstName  String
+  lastName   String
+  middleName String?
+
+  /// @include
+  userRoles UserRole[]
+
+  @@index([firstName])
+  @@index([lastName])
+  @@index([middleName])
+  @@index([username])
+}
+
+model Role {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  name      String    @unique
+
+  /// @include
+  rolePermissions RolePermission[]
+  userRoles       UserRole[]
+}
+
+model Permission {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  app       String
+  resource  String
+  operation String
+
+  rolePermissions RolePermission[]
+
+  @@unique([app, resource, operation])
+}
+
+model RolePermission {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
+
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  permissionId Int
+
+  @@unique([roleId, permissionId])
+}
+
+model UserRole {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  /// @include
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  /// @include
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
+
+  @@unique([userId, roleId])
+}

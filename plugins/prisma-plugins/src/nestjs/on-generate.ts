@@ -8,6 +8,7 @@ import { printModuleClass } from './class-printers/print-module-class.js';
 import { printQueryDtoClass } from './class-printers/print-query-dto-class.js';
 import { printQueryServiceClass } from './class-printers/print-query-service-class.js';
 import { printReadDtoClass } from './class-printers/print-read-dto-class.js';
+import { printResourceModuleClass } from './class-printers/print-resource-module-class.js';
 import { printServiceClass } from './class-printers/print-service-class.js';
 import { printUpdateDtoClass } from './class-printers/print-update-dto-class.js';
 
@@ -17,7 +18,8 @@ export default async function onGenerate(options: GeneratorOptions) {
     const packageName = '@vnodes/property';
     const clientBasePath = '../../../prisma';
 
-    const models = options.dmmf.datamodel.models;
+    const datamodel = options.dmmf.datamodel;
+    const models = datamodel.models;
 
     // const enumModels = options.dmmf.datamodel.enums;
 
@@ -107,7 +109,7 @@ export default async function onGenerate(options: GeneratorOptions) {
 
             await writeTextFile(join(baseDtoFilePath, 'index.ts'), content);
         }
-
+        // print module barel files
         {
             const content = [
                 `export * from './dtos/index.js';`,
@@ -119,5 +121,23 @@ export default async function onGenerate(options: GeneratorOptions) {
 
             await writeTextFile(join(baseResourcePath, 'index.ts'), content);
         }
+    }
+
+    // Print resource module
+    {
+        const filePath = join(output, 'resource.module.ts');
+        const content = printResourceModuleClass(datamodel);
+
+        await writeTextFile(filePath, content);
+    }
+
+    // Print resouce barrel file
+    {
+        const content = [
+            `export * from './resource.module.js';`,
+            datamodel.models.map((e) => `export * from './${names(e.name).kebabCase}/index.js'`).join('\n'),
+        ].join('\n');
+
+        writeTextFile(join(output, 'index.ts'), content);
     }
 }

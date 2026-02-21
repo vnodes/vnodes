@@ -1,0 +1,95 @@
+{
+    "name": "@vnodes/nest-auth",
+    "description": "- [ ] add description",
+    "homepage": "https://vnodes.github.io/vnodes/libs/nest-auth",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-nest-auth@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/nest-auth"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/libs/nest-auth/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/nest-auth/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "libs/nest-auth/dist",
+                    "main": "libs/nest-auth/src/index.ts",
+                    "tsConfig": "libs/nest-auth/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig libs/nest-auth/tsconfig.lib.json --entryPoints libs/nest-auth/src/index.ts --out public/libs/nest-auth",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@nestjs/common": "^11.1.13",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.13",
+        "@nestjs/jwt": "^11.0.2",
+        "@nestjs/swagger": "^11.2.6",
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/crypto": "workspace:*",
+        "@vnodes/nest": "workspace:*",
+        "@vnodes/property": "workspace:*",
+        "express": "^5.2.1",
+        "rxjs": "^7.8.2"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.6"
+    }
+}

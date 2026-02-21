@@ -1,5 +1,5 @@
 import type { Any } from '@vnodes/types';
-import type { RelationParam, UnsetRelationParam } from '../query-args.js';
+import type { RelationParam, UnsetRelationParam } from '../decorators/query-args.js';
 
 export interface ResourceOperations<
     Entity = Any,
