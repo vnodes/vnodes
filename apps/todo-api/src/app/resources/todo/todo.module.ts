@@ -8,5 +8,6 @@ import { TodoQueryService } from './todo-query.service.js';
     imports: [PrismaModule.forFeature(['todo'])],
     controllers: [TodoController],
     providers: [TodoService, TodoQueryService],
+    exports: [TodoService]
 })
 export class TodoModule {}

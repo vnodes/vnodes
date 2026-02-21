@@ -60,7 +60,6 @@ model Todo {
   status      Status   @default(NEW)
   score       Int      @default(0)
   tags        String[] /// @maxitems(3)
-  details     Json?
 
   createdByUser User? @relation(fields: [createdById], references: [id])
   createdById   Int? /// @readonly()

@@ -8,5 +8,6 @@ import { UserTodoQueryService } from './user-todo-query.service.js';
     imports: [PrismaModule.forFeature(['userTodo'])],
     controllers: [UserTodoController],
     providers: [UserTodoService, UserTodoQueryService],
+    exports: [UserTodoService]
 })
 export class UserTodoModule {}

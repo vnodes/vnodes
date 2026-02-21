@@ -14,6 +14,7 @@ export function printModuleClass(model: DMMF.Model) {
         `    imports: [PrismaModule.forFeature(['${modelNames.camelCase}'])],`,
         `    controllers: [${model.name}Controller],`,
         `    providers: [${model.name}Service, ${model.name}QueryService],`,
+        `    exports: [${model.name}Service]`,
         `})`,
         `export class ${model.name}Module {}`,
     ].join('\n');

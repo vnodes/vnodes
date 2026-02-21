@@ -70,14 +70,14 @@
             "doc": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx typedoc --tsconfig apps/todo-api/tsconfig.lib.json --entryPoints apps/todo-api/src/index.ts --out public/apps/todo-api",
+                    "command": "npx typedoc --tsconfig <%- directory %>/tsconfig.lib.json --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %>",
                     "cwd": "{workspaceRoot}"
                 }
             },
             "serve": {
                 "executor": "@nx/js:node",
                 "options": {
-                    "buildTarget": "@vnodes/todo-api:build",
+                    "buildTarget": "<%- projectName %>:build",
                     "watch": true
                 }
             }

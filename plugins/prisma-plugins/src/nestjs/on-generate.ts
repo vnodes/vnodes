@@ -25,10 +25,11 @@ export default async function onGenerate(options: GeneratorOptions) {
         const modelNames = names(model.name);
         const fileName = modelNames.kebabCase;
 
-        const imports = [
-            `import { ${decoratorName} } from '${packageName}';`,
-            `import * as P from '${clientBasePath}/client.js';`,
-        ].join('\n');
+        const imports = [`import { ${decoratorName} } from '${packageName}';`];
+
+        if (model.fields.some((e) => e.kind === 'enum')) {
+            imports.push(`import * as P from '${clientBasePath}/client.js';`);
+        }
 
         const toDtoFileName = (dtoName: string) => `${fileName}-${dtoName}.dto.ts`;
 
@@ -43,28 +44,28 @@ export default async function onGenerate(options: GeneratorOptions) {
         // Raed dto
         {
             const filePath = join(baseDtoFilePath, readDtoFileName);
-            const content = [imports, printReadDtoClass(model, 'Prop')].join('\n\n');
+            const content = [...imports, printReadDtoClass(model, 'Prop')].join('\n\n');
             await writeTextFile(filePath, content);
         }
 
         // Create dto
         {
             const filePath = join(baseDtoFilePath, createDtoFileName);
-            const content = [imports, printCreateDtoClass(model, 'Prop')].join('\n\n');
+            const content = [...imports, printCreateDtoClass(model, 'Prop')].join('\n\n');
             await writeTextFile(filePath, content);
         }
 
         // Update dto
         {
             const filePath = join(baseDtoFilePath, updateDtoFileName);
-            const content = [imports, printUpdateDtoClass(model, 'Prop')].join('\n\n');
+            const content = [printUpdateDtoClass(model)].join('\n\n');
             await writeTextFile(filePath, content);
         }
 
         // Query dto
         {
             const filePath = join(baseDtoFilePath, queryDtoFileName);
-            const content = [imports, printQueryDtoClass(model)].join('\n\n');
+            const content = [printQueryDtoClass(model)].join('\n\n');
             await writeTextFile(filePath, content);
         }
 

@@ -1,8 +1,4 @@
-import { Prop } from '@vnodes/property';
+import { PartialType } from '@nestjs/swagger';
+import { UserTodoCreateDto } from './user-todo-create.dto.js';
 
-export class UserTodoUpdateDto {
-    @Prop({ type: Number, required: false })
-    userId?: number;
-    @Prop({ type: Number, required: false })
-    todoId?: number;
-}
+export class UserTodoUpdateDto extends PartialType(UserTodoCreateDto) {}

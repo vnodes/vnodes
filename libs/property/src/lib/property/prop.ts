@@ -1,4 +1,3 @@
-import { randomInt, randomUUID } from 'node:crypto';
 import { ApiProperty, type ApiPropertyOptions } from '@nestjs/swagger';
 import type { Any } from '@vnodes/types';
 import { Type } from 'class-transformer';
@@ -68,7 +67,7 @@ export function itemType(type: ApiPropertyOptions['type']): ApiPropertyOptions['
  * @param validationOptions
  * @returns
  */
-export function Prop(options: ApiPropertyOptions, validationOptions?: ValidationOptions): PropertyDecorator {
+export function Prop(options: ApiPropertyOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {
         const type = itemType(options.type ?? Reflect.getMetadata('design:type', args[0], args[1]));
         const isArray = Array.isArray(options.type);
@@ -105,20 +104,11 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                 applyDecorator(IsNotEmpty(validationOptions));
             }
 
-            if (!format) {
-                if (!options.example) {
-                    options.example = `some text ${randomInt(0, 1000)}`;
-                }
-            }
-
             if (format)
                 switch (format) {
                     case 'hostname': {
                         applyDecorator(IsFQDN({}, validationOptions));
 
-                        if (!options.example) {
-                            options.example = 'https://vnodes.github.io';
-                        }
                         break;
                     }
                     case 'duration': {
@@ -128,23 +118,17 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                                 message: '$property must be a valid duration',
                             }),
                         );
-                        if (!options.example) {
-                            options.example = 'P2D';
-                        }
+
                         break;
                     }
                     case 'password': {
                         applyDecorator(IsStrongPassword(undefined, validationOptions));
-                        if (!options.example) {
-                            options.example = '!Password123.';
-                        }
+
                         break;
                     }
                     case 'email': {
                         applyDecorator(IsEmail({}, validationOptions));
-                        if (!options.example) {
-                            options.example = 'example@gmail.com';
-                        }
+
                         break;
                     }
 
@@ -152,16 +136,12 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                     case 'date-time':
                     case 'date': {
                         applyDecorator(IsISO8601({}, validationOptions));
-                        if (!options.example) {
-                            options.example = new Date().toISOString();
-                        }
+
                         break;
                     }
                     case 'binary': {
                         applyDecorator(Matches(/^[0-1]{1,}$/, validationOptions));
-                        if (!options.example) {
-                            options.example = '011110010101';
-                        }
+
                         break;
                     }
                     case 'int32':
@@ -169,9 +149,7 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                     case 'float':
                     case 'double': {
                         applyDecorator(IsNumberString({}, validationOptions));
-                        if (!options.example) {
-                            options.example = '99';
-                        }
+
                         break;
                     }
                     case 'uri-reference':
@@ -191,30 +169,21 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                             ),
                         );
 
-                        if (!options.example) {
-                            options.example = 'https://vnodes.github.io';
-                        }
                         break;
                     }
                     case 'ipv4': {
                         applyDecorator(IsIP('4', validationOptions));
-                        if (!options.example) {
-                            options.example = '192.168.0.1';
-                        }
+
                         break;
                     }
                     case 'ipv6': {
                         applyDecorator(IsIP('6', validationOptions));
-                        if (!options.example) {
-                            options.example = '000:0000:0000:0000:000:0000';
-                        }
+
                         break;
                     }
                     case 'uuid': {
                         applyDecorator(IsUUID('all', validationOptions));
-                        if (!options.example) {
-                            options.example = randomUUID().toString();
-                        }
+
                         break;
                     }
                 }
@@ -226,32 +195,21 @@ export function Prop(options: ApiPropertyOptions, validationOptions?: Validation
                     case 'int32':
                     case 'int64': {
                         applyDecorator(IsInt(validationOptions));
-                        if (!options.example) {
-                            options.example = 99;
-                        }
+
                         break;
                     }
                     case 'byte': {
                         applyDecorator(Min(255));
                         applyDecorator(Max(255));
-                        if (!options.example) {
-                            options.example = 10001;
-                        }
+
                         break;
                     }
                 }
             }
         } else if (type === Boolean) {
             applyDecorator(IsBoolean(validationOptions));
-            if (!options.example) {
-                options.example = new Boolean(true);
-            }
         } else if (type === Date) {
             applyDecorator(IsDate(validationOptions));
-
-            if (!options.example) {
-                options.example = new Date().toISOString();
-            }
         } else {
             applyDecorator(Type(() => type as Any));
             applyDecorator(ValidateNested(validationOptions));

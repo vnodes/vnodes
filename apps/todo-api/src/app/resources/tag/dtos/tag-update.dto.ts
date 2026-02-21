@@ -1,8 +1,4 @@
-import { Prop } from '@vnodes/property';
+import { PartialType } from '@nestjs/swagger';
+import { TagCreateDto } from './tag-create.dto.js';
 
-export class TagUpdateDto {
-    @Prop({ type: String, required: false })
-    value?: string;
-    @Prop({ type: String, required: false })
-    description?: string;
-}
+export class TagUpdateDto extends PartialType(TagCreateDto) {}

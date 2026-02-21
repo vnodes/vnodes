@@ -4,13 +4,20 @@ import { isStringQueryField } from '@vnodes/prisma-helper';
 export function printQueryServiceClass(model: DMMF.Model) {
     const stringQueries = model.fields
         .filter(isStringQueryField)
+        .filter((field) => {
+            return field.name !== 'id' && field.name !== 'uuid';
+        })
         .map((field) => {
+            if (field.isList) {
+                return `{ ${field.name}: { has: search } }`;
+            }
             return `{ ${field.name}: { contains: search, mode: 'insensitive' } }`;
         })
         .join(',\n');
 
     return [
         `import { Injectable } from '@nestjs/common';`,
+        `import { YesNo } from '@vnodes/property';`,
         `import type * as P from '../../prisma/client.js';`,
         `import type { ${model.name}QueryDto } from './dtos/index.js';`,
         ``,
@@ -30,7 +37,7 @@ export function printQueryServiceClass(model: DMMF.Model) {
         `            ];`,
         `        }`,
         ``,
-        `        if (withDeleted === undefined) {`,
+        `        if (withDeleted !== YesNo.Yes) {`,
         `            where.deletedAt = null;`,
         `        }`,
         ``,

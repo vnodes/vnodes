@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { YesNo } from '@vnodes/property';
 import type * as P from '../../prisma/client.js';
 import type { UserQueryDto } from './dtos/index.js';
 
@@ -13,10 +14,14 @@ export class UserQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.UserWhereInput = {};
         if (search) {
-            where.OR = [];
+            where.OR = [
+                { firstName: { contains: search, mode: 'insensitive' } },
+{ lastName: { contains: search, mode: 'insensitive' } },
+{ middleName: { contains: search, mode: 'insensitive' } }
+            ];
         }
 
-        if (withDeleted === undefined) {
+        if (withDeleted !== YesNo.Yes) {
             where.deletedAt = null;
         }
 

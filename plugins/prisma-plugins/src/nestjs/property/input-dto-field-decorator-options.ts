@@ -40,7 +40,11 @@ export function inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fi
 
     const decoratorOptionsType = field.isList ? `[${__decoratorOptionsType}]` : __decoratorOptionsType;
 
-    const options: string[] = [`type: ${decoratorOptionsType}`];
+    const options: string[] = [];
+
+    if (field.isList) {
+        options.push(`type: ${decoratorOptionsType}`);
+    }
 
     if (field.isRequired !== true) options.push('required: false');
 

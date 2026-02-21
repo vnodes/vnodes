@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { YesNo } from '@vnodes/property';
 import type * as P from '../../prisma/client.js';
 import type { UserTodoQueryDto } from './dtos/index.js';
 
@@ -13,10 +14,12 @@ export class UserTodoQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.UserTodoWhereInput = {};
         if (search) {
-            where.OR = [];
+            where.OR = [
+                
+            ];
         }
 
-        if (withDeleted === undefined) {
+        if (withDeleted !== YesNo.Yes) {
             where.deletedAt = null;
         }
 
