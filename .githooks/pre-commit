@@ -2,4 +2,5 @@
 # cd ..
 # Run lint first
 npx nx run-many -t lint
+git add .
 npx nx run-many -t test build
