@@ -72,8 +72,8 @@ export function inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fi
     if (maxLength !== undefined) options.push(`maxLength: ${maxLength}`);
     if (maxItems !== undefined) options.push(`maxItems: ${maxItems}`);
     if (minItems !== undefined) options.push(`minItems: ${minItems}`);
-    if (format !== undefined) options.push(`format: ${format}`);
-    if (description !== undefined) options.push(`description: ${description}`);
+    if (format !== undefined) options.push(`format: '${format}'`);
+    if (description !== undefined) options.push(`description: '${description}'`);
 
     if (field.kind === 'enum') options.push(`enum: P.$Enums.${field.type}`);
 

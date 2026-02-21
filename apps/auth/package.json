@@ -57,7 +57,8 @@
             "lint": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                    "command": "npx @biomejs/biome check --write --unsafe ./",
+                    "cwd": "{projectRoot}"
                 }
             },
             "test": {

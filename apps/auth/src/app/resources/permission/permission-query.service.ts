@@ -15,9 +15,9 @@ export class PermissionQueryService {
         const where: P.Prisma.PermissionWhereInput = {};
         if (search) {
             where.OR = [
-                { app: { contains: search, mode: 'insensitive' } },
-                { resource: { contains: search, mode: 'insensitive' } },
-                { operation: { contains: search, mode: 'insensitive' } },
+                { scope: { contains: search, mode: 'insensitive' } },
+{ resource: { contains: search, mode: 'insensitive' } },
+{ operation: { contains: search, mode: 'insensitive' } }
             ];
         }
 
@@ -34,10 +34,8 @@ export class PermissionQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-            include: this.toInclude(),
+
         };
     }
-    toInclude(): P.Prisma.PermissionInclude {
-        return { rolePermissions: true };
-    }
+
 }

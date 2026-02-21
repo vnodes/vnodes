@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { isStringQueryField } from '@vnodes/prisma-helper';
+import { hasInclude, isStringQueryField } from '@vnodes/prisma-helper';
 
 export function printQueryServiceClass(model: DMMF.Model) {
     const stringFilters = model.fields
@@ -21,6 +21,10 @@ export function printQueryServiceClass(model: DMMF.Model) {
             return `${e.name}: true`;
         })
         .join(', ');
+
+    const hasIncludeAnnotation = hasInclude(model);
+
+    const printIf = (condition: boolean, ...code: string[]) => (condition ? code.join('\n') : '');
 
     return [
         `import { Injectable } from '@nestjs/common';`,
@@ -57,14 +61,16 @@ export function printQueryServiceClass(model: DMMF.Model) {
         `            skip: query.skip ?? 0,`,
         `            orderBy: this.toOrderBy(query),`,
         `            where: this.toWhere(query),`,
-        `            include: this.toInclude(),`,
-
+        printIf(hasIncludeAnnotation, `include: this.toInclude(),`),
         `        };`,
         `    }`,
 
-        `   toInclude(): P.Prisma.${model.name}Include {`,
-        `       return { ${includeProperties} };`,
-        `   }`,
+        printIf(
+            hasIncludeAnnotation,
+            `   toInclude(): P.Prisma.${model.name}Include {`,
+            `       return { ${includeProperties} };`,
+            `   }`,
+        ),
 
         `}`,
     ].join('\n');

@@ -108,6 +108,11 @@ export enum FieldAnnotation {
      * Add description for the field
      */
     description = 'description',
+
+    /**
+     * Include the relation relation
+     */
+    include = 'include',
 }
 
 export type FieldAnnotationName = keyof typeof FieldAnnotation;

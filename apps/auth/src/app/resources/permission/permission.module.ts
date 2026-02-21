@@ -8,6 +8,6 @@ import { PermissionQueryService } from './permission-query.service.js';
     imports: [PrismaModule.forFeature(['permission'])],
     controllers: [PermissionController],
     providers: [PermissionService, PermissionQueryService],
-    exports: [PermissionService],
+    exports: [PermissionService]
 })
 export class PermissionModule {}

@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from '@vnodes/prisma';
+import { AuthService } from './auth.service.js';
 
 @Module({
     imports: [
         ConfigModule,
-        PrismaModule.forFeature(['user', 'role', 'userRole', 'permission', 'session']),
+        PrismaModule.forFeature(['user', 'role', 'userRole', 'permission', 'session', 'accessToken']),
         JwtModule.registerAsync({
             inject: [ConfigService],
             useFactory(config: ConfigService) {
@@ -20,5 +21,6 @@ import { PrismaModule } from '@vnodes/prisma';
             },
         }),
     ],
+    providers: [AuthService],
 })
 export class AuthModule {}

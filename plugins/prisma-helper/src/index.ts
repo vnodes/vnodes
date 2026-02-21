@@ -1,4 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/chekers/has-include.js';
 export * from './lib/chekers/is-create-input-field.js';
 export * from './lib/chekers/is-generated-field.js';
 export * from './lib/chekers/is-read-field.js';

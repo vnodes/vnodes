@@ -12,20 +12,20 @@ export class RoleService implements ResourceOperations {
         @Inject(RoleQueryService) protected readonly queryService: RoleQueryService,
     ) {}
 
-    async validateUniques(data: Partial<P.Prisma.RoleModel>, id?: number) {
-        const uniqueFields: P.Prisma.RoleScalarFieldEnum[] = ['name'];
+async validateUniques(data: Partial<P.Prisma.RoleModel>, id?: number) {
+    const uniqueFields: P.Prisma.RoleScalarFieldEnum[] = ['name'];
 
-        for (const field of uniqueFields) {
-            if (data[field]) {
-                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-                if (found) {
-                    throw new UnprocessableEntityException({
-                        errors: { [field]: { unique: `${field} must be unique` } },
-                    });
-                }
+    for (const field of uniqueFields) {
+        if (data[field]) {
+            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+            if (found) {
+                throw new UnprocessableEntityException({
+                    errors: { [field]: { unique: `${field} must be unique` } },
+                });
             }
         }
     }
+}
 
     async find(query: RoleQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

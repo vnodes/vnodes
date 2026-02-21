@@ -4,7 +4,9 @@
     "includes": [
       "**",
       "!**/node_modules",
-      "!**/dist"
+      "!**/dist",
+      "!**/assets",
+      "!**/generated"
     ]
   },
   "linter": {

@@ -1,7 +1,8 @@
 import { Prop } from '@vnodes/property';
 
-export class PermissionCreateDto {
-    @Prop({}) app: string;
-    @Prop({}) resource: string;
-    @Prop({}) operation: string;
+export class PermissionCreateDto
+{
+@Prop({  }) scope: string;
+@Prop({  }) resource: string;
+@Prop({  }) operation: string
 }

@@ -1,6 +1,10 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/app/prisma"
+  provider               = "prisma-client"
+  output                 = "../src/app/prisma"
+  importFileExtension    = "js"
+  moduleFormat           = "esm"
+  generatedFileExtension = "ts"
+  runtime                = "nodejs"
 }
 
 generator nestjs {
@@ -25,8 +29,10 @@ model User {
   lastName   String
   middleName String?
 
-  userRoles UserRole[] /// @include
-  sessions  Session[]
+  userRoles UserRole[] /// @include()
+  sessions  Session[] /// @include()
+
+  otp String?
 
   @@index([firstName])
   @@index([lastName])
@@ -41,9 +47,10 @@ model Role {
   deletedAt DateTime?
   name      String    @unique
 
-  /// @include
+  /// @include()
   rolePermissions RolePermission[]
-  userRoles       UserRole[]
+
+  userRoles UserRole[]
 }
 
 model Permission {
@@ -52,13 +59,17 @@ model Permission {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  app       String
+  scope     String
   resource  String
   operation String
 
-  rolePermissions RolePermission[]
+  rolePermissions        RolePermission[]
+  accessTokenPermissions AccessTokenPermission[]
 
-  @@unique([app, resource, operation])
+  @@unique([scope, resource, operation])
+  @@index([scope])
+  @@index([resource])
+  @@index([operation])
 }
 
 model RolePermission {
@@ -67,10 +78,10 @@ model RolePermission {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  role   Role @relation(fields: [roleId], references: [id])
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
   roleId Int
 
-  permission   Permission @relation(fields: [permissionId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
   permissionId Int
 
   @@unique([roleId, permissionId])
@@ -82,12 +93,10 @@ model UserRole {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  /// @include
-  user   User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade) /// @include()
   userId Int
 
-  /// @include
-  role   Role @relation(fields: [roleId], references: [id])
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade) /// @include() 
   roleId Int
 
   @@unique([userId, roleId])
@@ -99,9 +108,60 @@ model Session {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  user   User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
 
   ipAddress String?
   deviceId  String?
+  token     String /// @hash(true)
+}
+
+model AccessToken {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name        String  @unique
+  description String?
+
+  token String /// @hash(true)
+
+  accessTokenPermissions AccessTokenPermission[] /// @include()
+}
+
+model AccessTokenPermission {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id])
+  accessTokenId Int
+
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  permissionId Int
+}
+
+model Hook {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  url     String
+  payload Json?
+  event   String
+}
+
+model Audit {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  actorId   String
+  resource  String
+  operation String
+  input     Json
 }

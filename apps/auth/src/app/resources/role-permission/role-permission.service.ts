@@ -12,20 +12,20 @@ export class RolePermissionService implements ResourceOperations {
         @Inject(RolePermissionQueryService) protected readonly queryService: RolePermissionQueryService,
     ) {}
 
-    async validateUniques(data: Partial<P.Prisma.RolePermissionModel>, id?: number) {
-        const uniqueFields: P.Prisma.RolePermissionScalarFieldEnum[] = [];
+async validateUniques(data: Partial<P.Prisma.RolePermissionModel>, id?: number) {
+    const uniqueFields: P.Prisma.RolePermissionScalarFieldEnum[] = [];
 
-        for (const field of uniqueFields) {
-            if (data[field]) {
-                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-                if (found) {
-                    throw new UnprocessableEntityException({
-                        errors: { [field]: { unique: `${field} must be unique` } },
-                    });
-                }
+    for (const field of uniqueFields) {
+        if (data[field]) {
+            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+            if (found) {
+                throw new UnprocessableEntityException({
+                    errors: { [field]: { unique: `${field} must be unique` } },
+                });
             }
         }
     }
+}
 
     async find(query: RolePermissionQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

@@ -12,20 +12,20 @@ export class UserService implements ResourceOperations {
         @Inject(UserQueryService) protected readonly queryService: UserQueryService,
     ) {}
 
-    async validateUniques(data: Partial<P.Prisma.UserModel>, id?: number) {
-        const uniqueFields: P.Prisma.UserScalarFieldEnum[] = ['username'];
+async validateUniques(data: Partial<P.Prisma.UserModel>, id?: number) {
+    const uniqueFields: P.Prisma.UserScalarFieldEnum[] = ['username'];
 
-        for (const field of uniqueFields) {
-            if (data[field]) {
-                const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
-                if (found) {
-                    throw new UnprocessableEntityException({
-                        errors: { [field]: { unique: `${field} must be unique` } },
-                    });
-                }
+    for (const field of uniqueFields) {
+        if (data[field]) {
+            const found = await this.repo.findFirst({ where: { [field]: data[field], NOT: { id } } });
+            if (found) {
+                throw new UnprocessableEntityException({
+                    errors: { [field]: { unique: `${field} must be unique` } },
+                });
             }
         }
     }
+}
 
     async find(query: UserQueryDto) {
         return await this.repo.findMany(this.queryService.toFindManyArgs(query));

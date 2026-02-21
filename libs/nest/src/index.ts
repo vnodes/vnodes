@@ -1,6 +1,7 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
 export * from './lib/decorators/body.js';
 export * from './lib/decorators/controller.js';
+export * from './lib/decorators/device-id.js';
 export * from './lib/decorators/get-resource-name.js';
 export * from './lib/decorators/global-validation-pipe.js';
 export * from './lib/decorators/method.js';

@@ -50,6 +50,9 @@
     },
     {
       "path": "./libs/nest-auth"
+    },
+    {
+      "path": "./libs/utils"
     }
   ]
 }

@@ -8,6 +8,6 @@ import { UserQueryService } from './user-query.service.js';
     imports: [PrismaModule.forFeature(['user'])],
     controllers: [UserController],
     providers: [UserService, UserQueryService],
-    exports: [UserService],
+    exports: [UserService]
 })
 export class UserModule {}
