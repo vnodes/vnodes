@@ -28,7 +28,7 @@ export class LoginGuard implements CanActivate {
             try {
                 const payload: JwtPayloadDto = await this.jwtService.verifyAsync(token);
                 (req as Any).session = payload;
-            } catch (err) {
+            } catch (_err) {
                 throw new UnauthorizedException('Invalid token');
             }
             throw new BadRequestException('You already loged in');

@@ -55,11 +55,13 @@ export class AuthService {
 
         const jwtPayload = new JwtPayloadDto();
         jwtPayload.sub = sessionId;
-        jwtPayload.permissions = userData.userRoles.flatMap((r) =>
-            r.role.rolePermissions.map((rp) => {
-                return `${rp.permission.scope}.${rp.permission.resource}.${rp.permission.operation}`;
-            }),
-        );
+        jwtPayload.permissions = userData.userRoles
+            .flatMap((r) =>
+                r.role.rolePermissions.map((rp) => {
+                    return `${rp.permission.scope}.${rp.permission.resource}.${rp.permission.operation}`;
+                }),
+            )
+            .join(',');
 
         console.log('Created JWT: ', inspect(jwtPayload, true, 100));
         return jwtPayload;

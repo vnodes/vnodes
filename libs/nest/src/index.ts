@@ -15,3 +15,4 @@ export * from './lib/decorators/rest-path.js';
 export * from './lib/decorators/session-id.js';
 export * from './lib/decorators/user-id.js';
 export * from './lib/interfaces/resource-operations.js';
+export * from './lib/network/ipinfo.js';

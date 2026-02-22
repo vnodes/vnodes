@@ -12,21 +12,22 @@ export class PermissionGuard implements CanActivate {
         }
 
         const req = context.switchToHttp().getRequest();
-        const session = req.session;
+        const session = req.session as JwtPayloadDto;
+
+        const userPermissions = session.permissions ?? '';
+
         const resourceClass = context.getClass();
 
         const operation = context.getHandler().name;
         const resource = resourceClass.name.replace('Controller', '');
+        const requiredPermission = new RegExp(`auth.${resource}.${operation}`, 'i');
+        const adminPermission = /all.all.all/i;
 
-        if ((session as JwtPayloadDto).permissions.find((e) => e === 'all.all.all')) {
+        if (userPermissions.match(adminPermission)) {
             return true;
         }
 
-        if (
-            (session as JwtPayloadDto).permissions.find((e) =>
-                e.toLowerCase().endsWith(`${resource}.${operation}`.toLowerCase()),
-            )
-        ) {
+        if (userPermissions.match(requiredPermission)) {
             return true;
         }
         return false;

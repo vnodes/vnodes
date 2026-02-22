@@ -1,5 +1,4 @@
-import { Prop } from '@vnodes/property';
+import { PickType } from '@nestjs/swagger';
+import { CredentialDto } from './credential.dto.js';
 
-export class UpdatePasswordDto {
-    @Prop() password: string;
-}
+export class UpdatePasswordDto extends PickType(CredentialDto, ['password']) {}

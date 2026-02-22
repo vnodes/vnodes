@@ -23,14 +23,14 @@ model User {
   deletedAt DateTime?
 
   username String @unique /// @format(email)
-  password String /// @hash() @format(password)
+  password String /// @hash(true) @format(password)
 
   firstName  String
   lastName   String
   middleName String?
 
-  userRoles UserRole[] /// @include()
-  sessions  Session[] /// @include()
+  userRoles UserRole[] /// @include(true)
+  sessions  Session[] /// @include(true)
 
   otp String?
 
@@ -47,10 +47,8 @@ model Role {
   deletedAt DateTime?
   name      String    @unique
 
-  /// @include()
-  rolePermissions RolePermission[]
-
-  userRoles UserRole[]
+  rolePermissions RolePermission[] /// @include(true)
+  userRoles       UserRole[]
 }
 
 model Permission {
@@ -78,10 +76,10 @@ model RolePermission {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade) /// @include(true)
   roleId Int
 
-  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade) /// @include(true)
   permissionId Int
 
   @@unique([roleId, permissionId])
@@ -113,7 +111,14 @@ model Session {
 
   ipAddress String?
   deviceId  String?
-  token     String /// @hash(true)
+
+  city      String?
+  country   String?
+  region    String?
+  latitude  Float?
+  longitude Float?
+
+  userAgent String?
 }
 
 model AccessToken {
@@ -124,10 +129,9 @@ model AccessToken {
 
   name        String  @unique
   description String?
+  token       String /// @hash(true)
 
-  token String /// @hash(true)
-
-  accessTokenPermissions AccessTokenPermission[] /// @include()
+  accessTokenPermissions AccessTokenPermission[] /// @include(true)
 }
 
 model AccessTokenPermission {
@@ -136,10 +140,10 @@ model AccessTokenPermission {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id])
+  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade) /// @include(true)
   accessTokenId Int
 
-  permission   Permission @relation(fields: [permissionId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade) /// @include(true)
   permissionId Int
 }
 
@@ -160,8 +164,9 @@ model Audit {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  actorId   String
+  status    String
   resource  String
   operation String
   input     Json
+  actorId   String
 }

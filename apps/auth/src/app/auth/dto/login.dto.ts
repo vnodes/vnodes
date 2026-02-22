@@ -1,6 +1,3 @@
-import { Prop } from '@vnodes/property';
+import { CredentialDto } from './credential.dto.js';
 
-export class LoginDto {
-    @Prop() username: string;
-    @Prop() password: string;
-}
+export class LoginDto extends CredentialDto {}
