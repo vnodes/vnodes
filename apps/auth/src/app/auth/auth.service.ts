@@ -1,4 +1,5 @@
 import { randomInt } from 'node:crypto';
+import { inspect } from 'node:util';
 import { Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from '@vnodes/crypto';
@@ -25,20 +26,33 @@ export class AuthService {
         deviceId?: string,
         ipAddress?: string,
     ) {
-        const newSession = await this.sessionRepo.create({
-            data: { userId: user.id, token: 'not set', deviceId, ipAddress },
+        await this.sessionRepo.deleteMany({
+            where: {
+                OR: [{ deviceId, ipAddress }],
+            },
         });
-        const jwtPayload = this.createJwtPayload(newSession.id, user);
-        const signedToken = await this.jwtService.signAsync(jwtPayload);
 
-        await this.sessionRepo.update({ where: { id: newSession.id }, data: { token: await hash(signedToken) } });
-        return { token: signedToken };
+        const userId = user.id;
+
+        const session = await this.sessionRepo.create({
+            data: { userId, token: '', deviceId, ipAddress },
+        });
+        const sessionId = session.id;
+        const payload = await this.createJwtPayload(sessionId, user);
+        const token = await this.jwtService.signAsync({ ...payload });
+
+        const hashedToken = await hash(token);
+
+        await this.sessionRepo.update({ where: { id: sessionId }, data: { token: hashedToken } });
+        return { token };
     }
 
     protected async createJwtPayload(
         sessionId: number,
         userData: Awaited<ReturnType<AuthService['findByUsernameOrThrow']>>,
     ) {
+        console.log('Trying to create jwt payload ');
+
         const jwtPayload = new JwtPayloadDto();
         jwtPayload.sub = sessionId;
         jwtPayload.permissions = userData.userRoles.flatMap((r) =>
@@ -47,6 +61,7 @@ export class AuthService {
             }),
         );
 
+        console.log('Created JWT: ', inspect(jwtPayload, true, 100));
         return jwtPayload;
     }
 

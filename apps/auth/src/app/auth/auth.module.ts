@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from '@vnodes/prisma';
 import { AuthService } from './auth.service.js';
+import { AuthLoginController } from './auth-login.controller.js';
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { AuthService } from './auth.service.js';
             },
         }),
     ],
+    controllers: [AuthLoginController],
     providers: [AuthService],
 })
 export class AuthModule {}

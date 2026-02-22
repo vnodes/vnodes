@@ -6,6 +6,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppService } from './app.service.js';
+import { AppSeedModule } from './app-seed.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { AuthGuard } from './auth/guards/auth.guard.js';
 import { PermissionGuard } from './auth/guards/permission.guard.js';
@@ -21,6 +22,7 @@ import { ResourceModule } from './resources/index.js';
         CacheModule.register({ ttl: 10_000 }),
         AuthModule,
         ResourceModule,
+        AppSeedModule,
     ],
     providers: [
         AppService,

@@ -22,15 +22,15 @@ export class AuthGuard implements CanActivate {
 
         const token = req.headers.authorization?.split(' ').pop();
 
-        if (!token) throw new UnauthorizedException('No token ');
+        if (!token) throw new UnauthorizedException('No token provided');
 
         try {
             const payload: JwtPayloadDto = await this.jwtService.verifyAsync(token);
             (req as Any).session = payload;
+
+            return true;
         } catch {
             throw new UnauthorizedException('Invalid token');
         }
-
-        return false;
     }
 }
