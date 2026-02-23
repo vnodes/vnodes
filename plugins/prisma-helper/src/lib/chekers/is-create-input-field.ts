@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { FieldAnnotations } from '../extract/field-annotation.js';
+import { Annotations } from '../extract/field-annotation.js';
 import { isGeneratedField } from './is-generated-field.js';
 
 /**
@@ -20,7 +20,7 @@ export function isCreateInputField(field: DMMF.Field) {
         return false;
     }
 
-    if (FieldAnnotations.internal(field.documentation)) {
+    if (Annotations.internal(field.documentation)) {
         console.log(`${field.name} is a internal field!`, '[isCreateInputField]');
         return false;
     }

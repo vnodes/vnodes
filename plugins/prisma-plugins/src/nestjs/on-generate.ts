@@ -85,7 +85,7 @@ export default async function onGenerate(options: GeneratorOptions) {
         }
 
         // Controller class
-        {
+        if (model.documentation) {
             const filePath = join(baseResourcePath, `${fileName}.controller.ts`);
             const content = printControllerClass(model);
             await writeTextFile(filePath, content);
@@ -109,6 +109,7 @@ export default async function onGenerate(options: GeneratorOptions) {
 
             await writeTextFile(join(baseDtoFilePath, 'index.ts'), content);
         }
+
         // print module barel files
         {
             const content = [

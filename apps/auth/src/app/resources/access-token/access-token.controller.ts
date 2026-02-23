@@ -29,6 +29,6 @@ export class AccessTokenController implements ResourceOperations {
     }
 
     delete(id: number) {
-        return this.service.softDelete(id);
+        return this.service.delete(id);
     }
 }

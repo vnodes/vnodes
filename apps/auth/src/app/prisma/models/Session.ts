@@ -13,7 +13,7 @@ import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model Session
- *
+ * @readonly(true)
  */
 export type SessionModel = runtime.Types.Result.DefaultSelection<Prisma.$SessionPayload>;
 
@@ -38,34 +38,58 @@ export type SessionSumAggregateOutputType = {
 export type SessionMinAggregateOutputType = {
     id: number | null;
     createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
+    expiresAt: Date | null;
+    lastUsedAt: Date | null;
     userId: number | null;
-    ipAddress: string | null;
     deviceId: string | null;
-    token: string | null;
+    ip: string | null;
+    hostname: string | null;
+    city: string | null;
+    region: string | null;
+    country: string | null;
+    loc: string | null;
+    org: string | null;
+    postal: string | null;
+    timezone: string | null;
+    agent: string | null;
 };
 
 export type SessionMaxAggregateOutputType = {
     id: number | null;
     createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
+    expiresAt: Date | null;
+    lastUsedAt: Date | null;
     userId: number | null;
-    ipAddress: string | null;
     deviceId: string | null;
-    token: string | null;
+    ip: string | null;
+    hostname: string | null;
+    city: string | null;
+    region: string | null;
+    country: string | null;
+    loc: string | null;
+    org: string | null;
+    postal: string | null;
+    timezone: string | null;
+    agent: string | null;
 };
 
 export type SessionCountAggregateOutputType = {
     id: number;
     createdAt: number;
-    updatedAt: number;
-    deletedAt: number;
+    expiresAt: number;
+    lastUsedAt: number;
     userId: number;
-    ipAddress: number;
     deviceId: number;
-    token: number;
+    ip: number;
+    hostname: number;
+    city: number;
+    region: number;
+    country: number;
+    loc: number;
+    org: number;
+    postal: number;
+    timezone: number;
+    agent: number;
     _all: number;
 };
 
@@ -82,34 +106,58 @@ export type SessionSumAggregateInputType = {
 export type SessionMinAggregateInputType = {
     id?: true;
     createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
+    expiresAt?: true;
+    lastUsedAt?: true;
     userId?: true;
-    ipAddress?: true;
     deviceId?: true;
-    token?: true;
+    ip?: true;
+    hostname?: true;
+    city?: true;
+    region?: true;
+    country?: true;
+    loc?: true;
+    org?: true;
+    postal?: true;
+    timezone?: true;
+    agent?: true;
 };
 
 export type SessionMaxAggregateInputType = {
     id?: true;
     createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
+    expiresAt?: true;
+    lastUsedAt?: true;
     userId?: true;
-    ipAddress?: true;
     deviceId?: true;
-    token?: true;
+    ip?: true;
+    hostname?: true;
+    city?: true;
+    region?: true;
+    country?: true;
+    loc?: true;
+    org?: true;
+    postal?: true;
+    timezone?: true;
+    agent?: true;
 };
 
 export type SessionCountAggregateInputType = {
     id?: true;
     createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
+    expiresAt?: true;
+    lastUsedAt?: true;
     userId?: true;
-    ipAddress?: true;
     deviceId?: true;
-    token?: true;
+    ip?: true;
+    hostname?: true;
+    city?: true;
+    region?: true;
+    country?: true;
+    loc?: true;
+    org?: true;
+    postal?: true;
+    timezone?: true;
+    agent?: true;
     _all?: true;
 };
 
@@ -203,12 +251,20 @@ export type SessionGroupByArgs<
 export type SessionGroupByOutputType = {
     id: number;
     createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date | null;
+    expiresAt: Date | null;
+    lastUsedAt: Date | null;
     userId: number;
-    ipAddress: string | null;
     deviceId: string | null;
-    token: string;
+    ip: string | null;
+    hostname: string | null;
+    city: string | null;
+    region: string | null;
+    country: string | null;
+    loc: string | null;
+    org: string | null;
+    postal: string | null;
+    timezone: string | null;
+    agent: string | null;
     _count: SessionCountAggregateOutputType | null;
     _avg: SessionAvgAggregateOutputType | null;
     _sum: SessionSumAggregateOutputType | null;
@@ -234,24 +290,40 @@ export type SessionWhereInput = {
     NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[];
     id?: Prisma.IntFilter<'Session'> | number;
     createdAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
+    expiresAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
+    lastUsedAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
     userId?: Prisma.IntFilter<'Session'> | number;
-    ipAddress?: Prisma.StringNullableFilter<'Session'> | string | null;
     deviceId?: Prisma.StringNullableFilter<'Session'> | string | null;
-    token?: Prisma.StringFilter<'Session'> | string;
+    ip?: Prisma.StringNullableFilter<'Session'> | string | null;
+    hostname?: Prisma.StringNullableFilter<'Session'> | string | null;
+    city?: Prisma.StringNullableFilter<'Session'> | string | null;
+    region?: Prisma.StringNullableFilter<'Session'> | string | null;
+    country?: Prisma.StringNullableFilter<'Session'> | string | null;
+    loc?: Prisma.StringNullableFilter<'Session'> | string | null;
+    org?: Prisma.StringNullableFilter<'Session'> | string | null;
+    postal?: Prisma.StringNullableFilter<'Session'> | string | null;
+    timezone?: Prisma.StringNullableFilter<'Session'> | string | null;
+    agent?: Prisma.StringNullableFilter<'Session'> | string | null;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 };
 
 export type SessionOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+    expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+    lastUsedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     userId?: Prisma.SortOrder;
-    ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder;
     deviceId?: Prisma.SortOrderInput | Prisma.SortOrder;
-    token?: Prisma.SortOrder;
+    ip?: Prisma.SortOrderInput | Prisma.SortOrder;
+    hostname?: Prisma.SortOrderInput | Prisma.SortOrder;
+    city?: Prisma.SortOrderInput | Prisma.SortOrder;
+    region?: Prisma.SortOrderInput | Prisma.SortOrder;
+    country?: Prisma.SortOrderInput | Prisma.SortOrder;
+    loc?: Prisma.SortOrderInput | Prisma.SortOrder;
+    org?: Prisma.SortOrderInput | Prisma.SortOrder;
+    postal?: Prisma.SortOrderInput | Prisma.SortOrder;
+    timezone?: Prisma.SortOrderInput | Prisma.SortOrder;
+    agent?: Prisma.SortOrderInput | Prisma.SortOrder;
     user?: Prisma.UserOrderByWithRelationInput;
 };
 
@@ -262,12 +334,20 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<
         OR?: Prisma.SessionWhereInput[];
         NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[];
         createdAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
-        updatedAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
-        deletedAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
+        expiresAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
+        lastUsedAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
         userId?: Prisma.IntFilter<'Session'> | number;
-        ipAddress?: Prisma.StringNullableFilter<'Session'> | string | null;
         deviceId?: Prisma.StringNullableFilter<'Session'> | string | null;
-        token?: Prisma.StringFilter<'Session'> | string;
+        ip?: Prisma.StringNullableFilter<'Session'> | string | null;
+        hostname?: Prisma.StringNullableFilter<'Session'> | string | null;
+        city?: Prisma.StringNullableFilter<'Session'> | string | null;
+        region?: Prisma.StringNullableFilter<'Session'> | string | null;
+        country?: Prisma.StringNullableFilter<'Session'> | string | null;
+        loc?: Prisma.StringNullableFilter<'Session'> | string | null;
+        org?: Prisma.StringNullableFilter<'Session'> | string | null;
+        postal?: Prisma.StringNullableFilter<'Session'> | string | null;
+        timezone?: Prisma.StringNullableFilter<'Session'> | string | null;
+        agent?: Prisma.StringNullableFilter<'Session'> | string | null;
         user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     },
     'id'
@@ -276,12 +356,20 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<
 export type SessionOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+    expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+    lastUsedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     userId?: Prisma.SortOrder;
-    ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder;
     deviceId?: Prisma.SortOrderInput | Prisma.SortOrder;
-    token?: Prisma.SortOrder;
+    ip?: Prisma.SortOrderInput | Prisma.SortOrder;
+    hostname?: Prisma.SortOrderInput | Prisma.SortOrder;
+    city?: Prisma.SortOrderInput | Prisma.SortOrder;
+    region?: Prisma.SortOrderInput | Prisma.SortOrder;
+    country?: Prisma.SortOrderInput | Prisma.SortOrder;
+    loc?: Prisma.SortOrderInput | Prisma.SortOrder;
+    org?: Prisma.SortOrderInput | Prisma.SortOrder;
+    postal?: Prisma.SortOrderInput | Prisma.SortOrder;
+    timezone?: Prisma.SortOrderInput | Prisma.SortOrder;
+    agent?: Prisma.SortOrderInput | Prisma.SortOrder;
     _count?: Prisma.SessionCountOrderByAggregateInput;
     _avg?: Prisma.SessionAvgOrderByAggregateInput;
     _max?: Prisma.SessionMaxOrderByAggregateInput;
@@ -295,85 +383,149 @@ export type SessionScalarWhereWithAggregatesInput = {
     NOT?: Prisma.SessionScalarWhereWithAggregatesInput | Prisma.SessionScalarWhereWithAggregatesInput[];
     id?: Prisma.IntWithAggregatesFilter<'Session'> | number;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<'Session'> | Date | string;
-    updatedAt?: Prisma.DateTimeWithAggregatesFilter<'Session'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<'Session'> | Date | string | null;
+    expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<'Session'> | Date | string | null;
+    lastUsedAt?: Prisma.DateTimeNullableWithAggregatesFilter<'Session'> | Date | string | null;
     userId?: Prisma.IntWithAggregatesFilter<'Session'> | number;
-    ipAddress?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
     deviceId?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
-    token?: Prisma.StringWithAggregatesFilter<'Session'> | string;
+    ip?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    hostname?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    city?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    region?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    country?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    loc?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    org?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    postal?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    timezone?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
+    agent?: Prisma.StringNullableWithAggregatesFilter<'Session'> | string | null;
 };
 
 export type SessionCreateInput = {
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
-    ipAddress?: string | null;
+    expiresAt?: Date | string | null;
+    lastUsedAt?: Date | string | null;
     deviceId?: string | null;
-    token: string;
+    ip?: string | null;
+    hostname?: string | null;
+    city?: string | null;
+    region?: string | null;
+    country?: string | null;
+    loc?: string | null;
+    org?: string | null;
+    postal?: string | null;
+    timezone?: string | null;
+    agent?: string | null;
     user: Prisma.UserCreateNestedOneWithoutSessionsInput;
 };
 
 export type SessionUncheckedCreateInput = {
     id?: number;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
+    expiresAt?: Date | string | null;
+    lastUsedAt?: Date | string | null;
     userId: number;
-    ipAddress?: string | null;
     deviceId?: string | null;
-    token: string;
+    ip?: string | null;
+    hostname?: string | null;
+    city?: string | null;
+    region?: string | null;
+    country?: string | null;
+    loc?: string | null;
+    org?: string | null;
+    postal?: string | null;
+    timezone?: string | null;
+    agent?: string | null;
 };
 
 export type SessionUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    token?: Prisma.StringFieldUpdateOperationsInput | string;
+    ip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    hostname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    loc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     user?: Prisma.UserUpdateOneRequiredWithoutSessionsNestedInput;
 };
 
 export type SessionUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     userId?: Prisma.IntFieldUpdateOperationsInput | number;
-    ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    token?: Prisma.StringFieldUpdateOperationsInput | string;
+    ip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    hostname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    loc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type SessionCreateManyInput = {
     id?: number;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
+    expiresAt?: Date | string | null;
+    lastUsedAt?: Date | string | null;
     userId: number;
-    ipAddress?: string | null;
     deviceId?: string | null;
-    token: string;
+    ip?: string | null;
+    hostname?: string | null;
+    city?: string | null;
+    region?: string | null;
+    country?: string | null;
+    loc?: string | null;
+    org?: string | null;
+    postal?: string | null;
+    timezone?: string | null;
+    agent?: string | null;
 };
 
 export type SessionUpdateManyMutationInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    token?: Prisma.StringFieldUpdateOperationsInput | string;
+    ip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    hostname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    loc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type SessionUncheckedUpdateManyInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     userId?: Prisma.IntFieldUpdateOperationsInput | number;
-    ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    token?: Prisma.StringFieldUpdateOperationsInput | string;
+    ip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    hostname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    loc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type SessionListRelationFilter = {
@@ -389,12 +541,20 @@ export type SessionOrderByRelationAggregateInput = {
 export type SessionCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
+    expiresAt?: Prisma.SortOrder;
+    lastUsedAt?: Prisma.SortOrder;
     userId?: Prisma.SortOrder;
-    ipAddress?: Prisma.SortOrder;
     deviceId?: Prisma.SortOrder;
-    token?: Prisma.SortOrder;
+    ip?: Prisma.SortOrder;
+    hostname?: Prisma.SortOrder;
+    city?: Prisma.SortOrder;
+    region?: Prisma.SortOrder;
+    country?: Prisma.SortOrder;
+    loc?: Prisma.SortOrder;
+    org?: Prisma.SortOrder;
+    postal?: Prisma.SortOrder;
+    timezone?: Prisma.SortOrder;
+    agent?: Prisma.SortOrder;
 };
 
 export type SessionAvgOrderByAggregateInput = {
@@ -405,23 +565,39 @@ export type SessionAvgOrderByAggregateInput = {
 export type SessionMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
+    expiresAt?: Prisma.SortOrder;
+    lastUsedAt?: Prisma.SortOrder;
     userId?: Prisma.SortOrder;
-    ipAddress?: Prisma.SortOrder;
     deviceId?: Prisma.SortOrder;
-    token?: Prisma.SortOrder;
+    ip?: Prisma.SortOrder;
+    hostname?: Prisma.SortOrder;
+    city?: Prisma.SortOrder;
+    region?: Prisma.SortOrder;
+    country?: Prisma.SortOrder;
+    loc?: Prisma.SortOrder;
+    org?: Prisma.SortOrder;
+    postal?: Prisma.SortOrder;
+    timezone?: Prisma.SortOrder;
+    agent?: Prisma.SortOrder;
 };
 
 export type SessionMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
+    expiresAt?: Prisma.SortOrder;
+    lastUsedAt?: Prisma.SortOrder;
     userId?: Prisma.SortOrder;
-    ipAddress?: Prisma.SortOrder;
     deviceId?: Prisma.SortOrder;
-    token?: Prisma.SortOrder;
+    ip?: Prisma.SortOrder;
+    hostname?: Prisma.SortOrder;
+    city?: Prisma.SortOrder;
+    region?: Prisma.SortOrder;
+    country?: Prisma.SortOrder;
+    loc?: Prisma.SortOrder;
+    org?: Prisma.SortOrder;
+    postal?: Prisma.SortOrder;
+    timezone?: Prisma.SortOrder;
+    agent?: Prisma.SortOrder;
 };
 
 export type SessionSumOrderByAggregateInput = {
@@ -497,21 +673,37 @@ export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
 
 export type SessionCreateWithoutUserInput = {
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
-    ipAddress?: string | null;
+    expiresAt?: Date | string | null;
+    lastUsedAt?: Date | string | null;
     deviceId?: string | null;
-    token: string;
+    ip?: string | null;
+    hostname?: string | null;
+    city?: string | null;
+    region?: string | null;
+    country?: string | null;
+    loc?: string | null;
+    org?: string | null;
+    postal?: string | null;
+    timezone?: string | null;
+    agent?: string | null;
 };
 
 export type SessionUncheckedCreateWithoutUserInput = {
     id?: number;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
-    ipAddress?: string | null;
+    expiresAt?: Date | string | null;
+    lastUsedAt?: Date | string | null;
     deviceId?: string | null;
-    token: string;
+    ip?: string | null;
+    hostname?: string | null;
+    city?: string | null;
+    region?: string | null;
+    country?: string | null;
+    loc?: string | null;
+    org?: string | null;
+    postal?: string | null;
+    timezone?: string | null;
+    agent?: string | null;
 };
 
 export type SessionCreateOrConnectWithoutUserInput = {
@@ -546,51 +738,91 @@ export type SessionScalarWhereInput = {
     NOT?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[];
     id?: Prisma.IntFilter<'Session'> | number;
     createdAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
+    expiresAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
+    lastUsedAt?: Prisma.DateTimeNullableFilter<'Session'> | Date | string | null;
     userId?: Prisma.IntFilter<'Session'> | number;
-    ipAddress?: Prisma.StringNullableFilter<'Session'> | string | null;
     deviceId?: Prisma.StringNullableFilter<'Session'> | string | null;
-    token?: Prisma.StringFilter<'Session'> | string;
+    ip?: Prisma.StringNullableFilter<'Session'> | string | null;
+    hostname?: Prisma.StringNullableFilter<'Session'> | string | null;
+    city?: Prisma.StringNullableFilter<'Session'> | string | null;
+    region?: Prisma.StringNullableFilter<'Session'> | string | null;
+    country?: Prisma.StringNullableFilter<'Session'> | string | null;
+    loc?: Prisma.StringNullableFilter<'Session'> | string | null;
+    org?: Prisma.StringNullableFilter<'Session'> | string | null;
+    postal?: Prisma.StringNullableFilter<'Session'> | string | null;
+    timezone?: Prisma.StringNullableFilter<'Session'> | string | null;
+    agent?: Prisma.StringNullableFilter<'Session'> | string | null;
 };
 
 export type SessionCreateManyUserInput = {
     id?: number;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
-    ipAddress?: string | null;
+    expiresAt?: Date | string | null;
+    lastUsedAt?: Date | string | null;
     deviceId?: string | null;
-    token: string;
+    ip?: string | null;
+    hostname?: string | null;
+    city?: string | null;
+    region?: string | null;
+    country?: string | null;
+    loc?: string | null;
+    org?: string | null;
+    postal?: string | null;
+    timezone?: string | null;
+    agent?: string | null;
 };
 
 export type SessionUpdateWithoutUserInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    token?: Prisma.StringFieldUpdateOperationsInput | string;
+    ip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    hostname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    loc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type SessionUncheckedUpdateWithoutUserInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    token?: Prisma.StringFieldUpdateOperationsInput | string;
+    ip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    hostname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    loc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type SessionUncheckedUpdateManyWithoutUserInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    token?: Prisma.StringFieldUpdateOperationsInput | string;
+    ip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    hostname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    loc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type SessionSelect<
@@ -599,12 +831,20 @@ export type SessionSelect<
     {
         id?: boolean;
         createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
+        expiresAt?: boolean;
+        lastUsedAt?: boolean;
         userId?: boolean;
-        ipAddress?: boolean;
         deviceId?: boolean;
-        token?: boolean;
+        ip?: boolean;
+        hostname?: boolean;
+        city?: boolean;
+        region?: boolean;
+        country?: boolean;
+        loc?: boolean;
+        org?: boolean;
+        postal?: boolean;
+        timezone?: boolean;
+        agent?: boolean;
         user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['session']
@@ -616,12 +856,20 @@ export type SessionSelectCreateManyAndReturn<
     {
         id?: boolean;
         createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
+        expiresAt?: boolean;
+        lastUsedAt?: boolean;
         userId?: boolean;
-        ipAddress?: boolean;
         deviceId?: boolean;
-        token?: boolean;
+        ip?: boolean;
+        hostname?: boolean;
+        city?: boolean;
+        region?: boolean;
+        country?: boolean;
+        loc?: boolean;
+        org?: boolean;
+        postal?: boolean;
+        timezone?: boolean;
+        agent?: boolean;
         user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['session']
@@ -633,12 +881,20 @@ export type SessionSelectUpdateManyAndReturn<
     {
         id?: boolean;
         createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
+        expiresAt?: boolean;
+        lastUsedAt?: boolean;
         userId?: boolean;
-        ipAddress?: boolean;
         deviceId?: boolean;
-        token?: boolean;
+        ip?: boolean;
+        hostname?: boolean;
+        city?: boolean;
+        region?: boolean;
+        country?: boolean;
+        loc?: boolean;
+        org?: boolean;
+        postal?: boolean;
+        timezone?: boolean;
+        agent?: boolean;
         user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['session']
@@ -647,17 +903,40 @@ export type SessionSelectUpdateManyAndReturn<
 export type SessionSelectScalar = {
     id?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
-    deletedAt?: boolean;
+    expiresAt?: boolean;
+    lastUsedAt?: boolean;
     userId?: boolean;
-    ipAddress?: boolean;
     deviceId?: boolean;
-    token?: boolean;
+    ip?: boolean;
+    hostname?: boolean;
+    city?: boolean;
+    region?: boolean;
+    country?: boolean;
+    loc?: boolean;
+    org?: boolean;
+    postal?: boolean;
+    timezone?: boolean;
+    agent?: boolean;
 };
 
 export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
     runtime.Types.Extensions.GetOmit<
-        'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'userId' | 'ipAddress' | 'deviceId' | 'token',
+        | 'id'
+        | 'createdAt'
+        | 'expiresAt'
+        | 'lastUsedAt'
+        | 'userId'
+        | 'deviceId'
+        | 'ip'
+        | 'hostname'
+        | 'city'
+        | 'region'
+        | 'country'
+        | 'loc'
+        | 'org'
+        | 'postal'
+        | 'timezone'
+        | 'agent',
         ExtArgs['result']['session']
     >;
 export type SessionInclude<
@@ -687,15 +966,20 @@ export type $SessionPayload<
         {
             id: number;
             createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
+            expiresAt: Date | null;
+            lastUsedAt: Date | null;
             userId: number;
-            ipAddress: string | null;
             deviceId: string | null;
-            /**
-             * @hash(true)
-             */
-            token: string;
+            ip: string | null;
+            hostname: string | null;
+            city: string | null;
+            region: string | null;
+            country: string | null;
+            loc: string | null;
+            org: string | null;
+            postal: string | null;
+            timezone: string | null;
+            agent: string | null;
         },
         ExtArgs['result']['session']
     >;
@@ -1215,12 +1499,20 @@ export interface Prisma__SessionClient<
 export interface SessionFieldRefs {
     readonly id: Prisma.FieldRef<'Session', 'Int'>;
     readonly createdAt: Prisma.FieldRef<'Session', 'DateTime'>;
-    readonly updatedAt: Prisma.FieldRef<'Session', 'DateTime'>;
-    readonly deletedAt: Prisma.FieldRef<'Session', 'DateTime'>;
+    readonly expiresAt: Prisma.FieldRef<'Session', 'DateTime'>;
+    readonly lastUsedAt: Prisma.FieldRef<'Session', 'DateTime'>;
     readonly userId: Prisma.FieldRef<'Session', 'Int'>;
-    readonly ipAddress: Prisma.FieldRef<'Session', 'String'>;
     readonly deviceId: Prisma.FieldRef<'Session', 'String'>;
-    readonly token: Prisma.FieldRef<'Session', 'String'>;
+    readonly ip: Prisma.FieldRef<'Session', 'String'>;
+    readonly hostname: Prisma.FieldRef<'Session', 'String'>;
+    readonly city: Prisma.FieldRef<'Session', 'String'>;
+    readonly region: Prisma.FieldRef<'Session', 'String'>;
+    readonly country: Prisma.FieldRef<'Session', 'String'>;
+    readonly loc: Prisma.FieldRef<'Session', 'String'>;
+    readonly org: Prisma.FieldRef<'Session', 'String'>;
+    readonly postal: Prisma.FieldRef<'Session', 'String'>;
+    readonly timezone: Prisma.FieldRef<'Session', 'String'>;
+    readonly agent: Prisma.FieldRef<'Session', 'String'>;
 }
 
 // Custom InputTypes

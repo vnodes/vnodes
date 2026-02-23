@@ -39,27 +39,18 @@ export type AccessTokenPermissionSumAggregateOutputType = {
 
 export type AccessTokenPermissionMinAggregateOutputType = {
     id: number | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
     accessTokenId: number | null;
     permissionId: number | null;
 };
 
 export type AccessTokenPermissionMaxAggregateOutputType = {
     id: number | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
     accessTokenId: number | null;
     permissionId: number | null;
 };
 
 export type AccessTokenPermissionCountAggregateOutputType = {
     id: number;
-    createdAt: number;
-    updatedAt: number;
-    deletedAt: number;
     accessTokenId: number;
     permissionId: number;
     _all: number;
@@ -79,27 +70,18 @@ export type AccessTokenPermissionSumAggregateInputType = {
 
 export type AccessTokenPermissionMinAggregateInputType = {
     id?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
     accessTokenId?: true;
     permissionId?: true;
 };
 
 export type AccessTokenPermissionMaxAggregateInputType = {
     id?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
     accessTokenId?: true;
     permissionId?: true;
 };
 
 export type AccessTokenPermissionCountAggregateInputType = {
     id?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
     accessTokenId?: true;
     permissionId?: true;
     _all?: true;
@@ -198,9 +180,6 @@ export type AccessTokenPermissionGroupByArgs<
 
 export type AccessTokenPermissionGroupByOutputType = {
     id: number;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date | null;
     accessTokenId: number;
     permissionId: number;
     _count: AccessTokenPermissionCountAggregateOutputType | null;
@@ -227,9 +206,6 @@ export type AccessTokenPermissionWhereInput = {
     OR?: Prisma.AccessTokenPermissionWhereInput[];
     NOT?: Prisma.AccessTokenPermissionWhereInput | Prisma.AccessTokenPermissionWhereInput[];
     id?: Prisma.IntFilter<'AccessTokenPermission'> | number;
-    createdAt?: Prisma.DateTimeFilter<'AccessTokenPermission'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'AccessTokenPermission'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableFilter<'AccessTokenPermission'> | Date | string | null;
     accessTokenId?: Prisma.IntFilter<'AccessTokenPermission'> | number;
     permissionId?: Prisma.IntFilter<'AccessTokenPermission'> | number;
     accessToken?: Prisma.XOR<Prisma.AccessTokenScalarRelationFilter, Prisma.AccessTokenWhereInput>;
@@ -238,9 +214,6 @@ export type AccessTokenPermissionWhereInput = {
 
 export type AccessTokenPermissionOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     accessTokenId?: Prisma.SortOrder;
     permissionId?: Prisma.SortOrder;
     accessToken?: Prisma.AccessTokenOrderByWithRelationInput;
@@ -253,9 +226,6 @@ export type AccessTokenPermissionWhereUniqueInput = Prisma.AtLeast<
         AND?: Prisma.AccessTokenPermissionWhereInput | Prisma.AccessTokenPermissionWhereInput[];
         OR?: Prisma.AccessTokenPermissionWhereInput[];
         NOT?: Prisma.AccessTokenPermissionWhereInput | Prisma.AccessTokenPermissionWhereInput[];
-        createdAt?: Prisma.DateTimeFilter<'AccessTokenPermission'> | Date | string;
-        updatedAt?: Prisma.DateTimeFilter<'AccessTokenPermission'> | Date | string;
-        deletedAt?: Prisma.DateTimeNullableFilter<'AccessTokenPermission'> | Date | string | null;
         accessTokenId?: Prisma.IntFilter<'AccessTokenPermission'> | number;
         permissionId?: Prisma.IntFilter<'AccessTokenPermission'> | number;
         accessToken?: Prisma.XOR<Prisma.AccessTokenScalarRelationFilter, Prisma.AccessTokenWhereInput>;
@@ -266,9 +236,6 @@ export type AccessTokenPermissionWhereUniqueInput = Prisma.AtLeast<
 
 export type AccessTokenPermissionOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     accessTokenId?: Prisma.SortOrder;
     permissionId?: Prisma.SortOrder;
     _count?: Prisma.AccessTokenPermissionCountOrderByAggregateInput;
@@ -287,67 +254,42 @@ export type AccessTokenPermissionScalarWhereWithAggregatesInput = {
         | Prisma.AccessTokenPermissionScalarWhereWithAggregatesInput
         | Prisma.AccessTokenPermissionScalarWhereWithAggregatesInput[];
     id?: Prisma.IntWithAggregatesFilter<'AccessTokenPermission'> | number;
-    createdAt?: Prisma.DateTimeWithAggregatesFilter<'AccessTokenPermission'> | Date | string;
-    updatedAt?: Prisma.DateTimeWithAggregatesFilter<'AccessTokenPermission'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<'AccessTokenPermission'> | Date | string | null;
     accessTokenId?: Prisma.IntWithAggregatesFilter<'AccessTokenPermission'> | number;
     permissionId?: Prisma.IntWithAggregatesFilter<'AccessTokenPermission'> | number;
 };
 
 export type AccessTokenPermissionCreateInput = {
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     accessToken: Prisma.AccessTokenCreateNestedOneWithoutAccessTokenPermissionsInput;
     permission: Prisma.PermissionCreateNestedOneWithoutAccessTokenPermissionsInput;
 };
 
 export type AccessTokenPermissionUncheckedCreateInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     accessTokenId: number;
     permissionId: number;
 };
 
 export type AccessTokenPermissionUpdateInput = {
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     accessToken?: Prisma.AccessTokenUpdateOneRequiredWithoutAccessTokenPermissionsNestedInput;
     permission?: Prisma.PermissionUpdateOneRequiredWithoutAccessTokenPermissionsNestedInput;
 };
 
 export type AccessTokenPermissionUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     accessTokenId?: Prisma.IntFieldUpdateOperationsInput | number;
     permissionId?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
 export type AccessTokenPermissionCreateManyInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     accessTokenId: number;
     permissionId: number;
 };
 
-export type AccessTokenPermissionUpdateManyMutationInput = {
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-};
+export type AccessTokenPermissionUpdateManyMutationInput = {};
 
 export type AccessTokenPermissionUncheckedUpdateManyInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     accessTokenId?: Prisma.IntFieldUpdateOperationsInput | number;
     permissionId?: Prisma.IntFieldUpdateOperationsInput | number;
 };
@@ -364,9 +306,6 @@ export type AccessTokenPermissionOrderByRelationAggregateInput = {
 
 export type AccessTokenPermissionCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
     accessTokenId?: Prisma.SortOrder;
     permissionId?: Prisma.SortOrder;
 };
@@ -379,18 +318,12 @@ export type AccessTokenPermissionAvgOrderByAggregateInput = {
 
 export type AccessTokenPermissionMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
     accessTokenId?: Prisma.SortOrder;
     permissionId?: Prisma.SortOrder;
 };
 
 export type AccessTokenPermissionMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
     accessTokenId?: Prisma.SortOrder;
     permissionId?: Prisma.SortOrder;
 };
@@ -574,17 +507,11 @@ export type AccessTokenPermissionUncheckedUpdateManyWithoutAccessTokenNestedInpu
 };
 
 export type AccessTokenPermissionCreateWithoutPermissionInput = {
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     accessToken: Prisma.AccessTokenCreateNestedOneWithoutAccessTokenPermissionsInput;
 };
 
 export type AccessTokenPermissionUncheckedCreateWithoutPermissionInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     accessTokenId: number;
 };
 
@@ -636,25 +563,16 @@ export type AccessTokenPermissionScalarWhereInput = {
     OR?: Prisma.AccessTokenPermissionScalarWhereInput[];
     NOT?: Prisma.AccessTokenPermissionScalarWhereInput | Prisma.AccessTokenPermissionScalarWhereInput[];
     id?: Prisma.IntFilter<'AccessTokenPermission'> | number;
-    createdAt?: Prisma.DateTimeFilter<'AccessTokenPermission'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'AccessTokenPermission'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableFilter<'AccessTokenPermission'> | Date | string | null;
     accessTokenId?: Prisma.IntFilter<'AccessTokenPermission'> | number;
     permissionId?: Prisma.IntFilter<'AccessTokenPermission'> | number;
 };
 
 export type AccessTokenPermissionCreateWithoutAccessTokenInput = {
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     permission: Prisma.PermissionCreateNestedOneWithoutAccessTokenPermissionsInput;
 };
 
 export type AccessTokenPermissionUncheckedCreateWithoutAccessTokenInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     permissionId: number;
 };
 
@@ -703,63 +621,39 @@ export type AccessTokenPermissionUpdateManyWithWhereWithoutAccessTokenInput = {
 
 export type AccessTokenPermissionCreateManyPermissionInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     accessTokenId: number;
 };
 
 export type AccessTokenPermissionUpdateWithoutPermissionInput = {
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     accessToken?: Prisma.AccessTokenUpdateOneRequiredWithoutAccessTokenPermissionsNestedInput;
 };
 
 export type AccessTokenPermissionUncheckedUpdateWithoutPermissionInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     accessTokenId?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
 export type AccessTokenPermissionUncheckedUpdateManyWithoutPermissionInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     accessTokenId?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
 export type AccessTokenPermissionCreateManyAccessTokenInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     permissionId: number;
 };
 
 export type AccessTokenPermissionUpdateWithoutAccessTokenInput = {
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     permission?: Prisma.PermissionUpdateOneRequiredWithoutAccessTokenPermissionsNestedInput;
 };
 
 export type AccessTokenPermissionUncheckedUpdateWithoutAccessTokenInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     permissionId?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
 export type AccessTokenPermissionUncheckedUpdateManyWithoutAccessTokenInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     permissionId?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
@@ -768,9 +662,6 @@ export type AccessTokenPermissionSelect<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
-        createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
         accessTokenId?: boolean;
         permissionId?: boolean;
         accessToken?: boolean | Prisma.AccessTokenDefaultArgs<ExtArgs>;
@@ -784,9 +675,6 @@ export type AccessTokenPermissionSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
-        createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
         accessTokenId?: boolean;
         permissionId?: boolean;
         accessToken?: boolean | Prisma.AccessTokenDefaultArgs<ExtArgs>;
@@ -800,9 +688,6 @@ export type AccessTokenPermissionSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
-        createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
         accessTokenId?: boolean;
         permissionId?: boolean;
         accessToken?: boolean | Prisma.AccessTokenDefaultArgs<ExtArgs>;
@@ -813,9 +698,6 @@ export type AccessTokenPermissionSelectUpdateManyAndReturn<
 
 export type AccessTokenPermissionSelectScalar = {
     id?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    deletedAt?: boolean;
     accessTokenId?: boolean;
     permissionId?: boolean;
 };
@@ -823,7 +705,7 @@ export type AccessTokenPermissionSelectScalar = {
 export type AccessTokenPermissionOmit<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-    'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'accessTokenId' | 'permissionId',
+    'id' | 'accessTokenId' | 'permissionId',
     ExtArgs['result']['accessTokenPermission']
 >;
 export type AccessTokenPermissionInclude<
@@ -850,15 +732,18 @@ export type $AccessTokenPermissionPayload<
 > = {
     name: 'AccessTokenPermission';
     objects: {
+        /**
+         * @include(true)
+         */
         accessToken: Prisma.$AccessTokenPayload<ExtArgs>;
+        /**
+         * @include(true)
+         */
         permission: Prisma.$PermissionPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<
         {
             id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             accessTokenId: number;
             permissionId: number;
         },
@@ -1422,9 +1307,6 @@ export interface Prisma__AccessTokenPermissionClient<
  */
 export interface AccessTokenPermissionFieldRefs {
     readonly id: Prisma.FieldRef<'AccessTokenPermission', 'Int'>;
-    readonly createdAt: Prisma.FieldRef<'AccessTokenPermission', 'DateTime'>;
-    readonly updatedAt: Prisma.FieldRef<'AccessTokenPermission', 'DateTime'>;
-    readonly deletedAt: Prisma.FieldRef<'AccessTokenPermission', 'DateTime'>;
     readonly accessTokenId: Prisma.FieldRef<'AccessTokenPermission', 'Int'>;
     readonly permissionId: Prisma.FieldRef<'AccessTokenPermission', 'Int'>;
 }

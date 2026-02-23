@@ -30,6 +30,10 @@ export class AccessTokenPermissionQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
+            include: this.toInclude(),
         };
+    }
+    toInclude(): P.Prisma.AccessTokenPermissionInclude {
+        return { accessToken: true, permission: true };
     }
 }

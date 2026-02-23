@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { YesNo } from '@vnodes/property';
 import type * as P from '../../prisma/client.js';
 import type { AccessTokenQueryDto } from './dtos/index.js';
 
@@ -11,7 +10,7 @@ export class AccessTokenQueryService {
     }
 
     toWhere(query: AccessTokenQueryDto): P.Prisma.AccessTokenWhereInput | undefined {
-        const { search, withDeleted } = query;
+        const { search } = query;
         const where: P.Prisma.AccessTokenWhereInput = {};
         if (search) {
             where.OR = [
@@ -19,10 +18,6 @@ export class AccessTokenQueryService {
                 { description: { contains: search, mode: 'insensitive' } },
                 { token: { contains: search, mode: 'insensitive' } },
             ];
-        }
-
-        if (withDeleted !== YesNo.Yes) {
-            where.deletedAt = null;
         }
 
         return where;

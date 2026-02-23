@@ -29,6 +29,6 @@ export class RoleController implements ResourceOperations {
     }
 
     delete(id: number) {
-        return this.service.softDelete(id);
+        return this.service.delete(id);
     }
 }

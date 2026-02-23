@@ -15,9 +15,17 @@ export class SessionQueryService {
         const where: P.Prisma.SessionWhereInput = {};
         if (search) {
             where.OR = [
-                { ipAddress: { contains: search, mode: 'insensitive' } },
                 { deviceId: { contains: search, mode: 'insensitive' } },
-                { token: { contains: search, mode: 'insensitive' } },
+                { ip: { contains: search, mode: 'insensitive' } },
+                { hostname: { contains: search, mode: 'insensitive' } },
+                { city: { contains: search, mode: 'insensitive' } },
+                { region: { contains: search, mode: 'insensitive' } },
+                { country: { contains: search, mode: 'insensitive' } },
+                { loc: { contains: search, mode: 'insensitive' } },
+                { org: { contains: search, mode: 'insensitive' } },
+                { postal: { contains: search, mode: 'insensitive' } },
+                { timezone: { contains: search, mode: 'insensitive' } },
+                { agent: { contains: search, mode: 'insensitive' } },
             ];
         }
 

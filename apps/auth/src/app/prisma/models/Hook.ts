@@ -35,29 +35,19 @@ export type HookSumAggregateOutputType = {
 
 export type HookMinAggregateOutputType = {
     id: number | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
     url: string | null;
     event: string | null;
 };
 
 export type HookMaxAggregateOutputType = {
     id: number | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
     url: string | null;
     event: string | null;
 };
 
 export type HookCountAggregateOutputType = {
     id: number;
-    createdAt: number;
-    updatedAt: number;
-    deletedAt: number;
     url: number;
-    payload: number;
     event: number;
     _all: number;
 };
@@ -72,29 +62,19 @@ export type HookSumAggregateInputType = {
 
 export type HookMinAggregateInputType = {
     id?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
     url?: true;
     event?: true;
 };
 
 export type HookMaxAggregateInputType = {
     id?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
     url?: true;
     event?: true;
 };
 
 export type HookCountAggregateInputType = {
     id?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
     url?: true;
-    payload?: true;
     event?: true;
     _all?: true;
 };
@@ -188,11 +168,7 @@ export type HookGroupByArgs<
 
 export type HookGroupByOutputType = {
     id: number;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date | null;
     url: string;
-    payload: runtime.JsonValue | null;
     event: string;
     _count: HookCountAggregateOutputType | null;
     _avg: HookAvgAggregateOutputType | null;
@@ -218,21 +194,13 @@ export type HookWhereInput = {
     OR?: Prisma.HookWhereInput[];
     NOT?: Prisma.HookWhereInput | Prisma.HookWhereInput[];
     id?: Prisma.IntFilter<'Hook'> | number;
-    createdAt?: Prisma.DateTimeFilter<'Hook'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'Hook'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableFilter<'Hook'> | Date | string | null;
     url?: Prisma.StringFilter<'Hook'> | string;
-    payload?: Prisma.JsonNullableFilter<'Hook'>;
     event?: Prisma.StringFilter<'Hook'> | string;
 };
 
 export type HookOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     url?: Prisma.SortOrder;
-    payload?: Prisma.SortOrderInput | Prisma.SortOrder;
     event?: Prisma.SortOrder;
 };
 
@@ -242,11 +210,7 @@ export type HookWhereUniqueInput = Prisma.AtLeast<
         AND?: Prisma.HookWhereInput | Prisma.HookWhereInput[];
         OR?: Prisma.HookWhereInput[];
         NOT?: Prisma.HookWhereInput | Prisma.HookWhereInput[];
-        createdAt?: Prisma.DateTimeFilter<'Hook'> | Date | string;
-        updatedAt?: Prisma.DateTimeFilter<'Hook'> | Date | string;
-        deletedAt?: Prisma.DateTimeNullableFilter<'Hook'> | Date | string | null;
         url?: Prisma.StringFilter<'Hook'> | string;
-        payload?: Prisma.JsonNullableFilter<'Hook'>;
         event?: Prisma.StringFilter<'Hook'> | string;
     },
     'id'
@@ -254,11 +218,7 @@ export type HookWhereUniqueInput = Prisma.AtLeast<
 
 export type HookOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     url?: Prisma.SortOrder;
-    payload?: Prisma.SortOrderInput | Prisma.SortOrder;
     event?: Prisma.SortOrder;
     _count?: Prisma.HookCountOrderByAggregateInput;
     _avg?: Prisma.HookAvgOrderByAggregateInput;
@@ -272,88 +232,52 @@ export type HookScalarWhereWithAggregatesInput = {
     OR?: Prisma.HookScalarWhereWithAggregatesInput[];
     NOT?: Prisma.HookScalarWhereWithAggregatesInput | Prisma.HookScalarWhereWithAggregatesInput[];
     id?: Prisma.IntWithAggregatesFilter<'Hook'> | number;
-    createdAt?: Prisma.DateTimeWithAggregatesFilter<'Hook'> | Date | string;
-    updatedAt?: Prisma.DateTimeWithAggregatesFilter<'Hook'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<'Hook'> | Date | string | null;
     url?: Prisma.StringWithAggregatesFilter<'Hook'> | string;
-    payload?: Prisma.JsonNullableWithAggregatesFilter<'Hook'>;
     event?: Prisma.StringWithAggregatesFilter<'Hook'> | string;
 };
 
 export type HookCreateInput = {
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     url: string;
-    payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     event: string;
 };
 
 export type HookUncheckedCreateInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     url: string;
-    payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     event: string;
 };
 
 export type HookUpdateInput = {
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     url?: Prisma.StringFieldUpdateOperationsInput | string;
-    payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     event?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type HookUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     url?: Prisma.StringFieldUpdateOperationsInput | string;
-    payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     event?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type HookCreateManyInput = {
     id?: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
     url: string;
-    payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     event: string;
 };
 
 export type HookUpdateManyMutationInput = {
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     url?: Prisma.StringFieldUpdateOperationsInput | string;
-    payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     event?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type HookUncheckedUpdateManyInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     url?: Prisma.StringFieldUpdateOperationsInput | string;
-    payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     event?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type HookCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
     url?: Prisma.SortOrder;
-    payload?: Prisma.SortOrder;
     event?: Prisma.SortOrder;
 };
 
@@ -363,18 +287,12 @@ export type HookAvgOrderByAggregateInput = {
 
 export type HookMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
     url?: Prisma.SortOrder;
     event?: Prisma.SortOrder;
 };
 
 export type HookMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
     url?: Prisma.SortOrder;
     event?: Prisma.SortOrder;
 };
@@ -387,11 +305,7 @@ export type HookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
     runtime.Types.Extensions.GetSelect<
         {
             id?: boolean;
-            createdAt?: boolean;
-            updatedAt?: boolean;
-            deletedAt?: boolean;
             url?: boolean;
-            payload?: boolean;
             event?: boolean;
         },
         ExtArgs['result']['hook']
@@ -402,11 +316,7 @@ export type HookSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
-        createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
         url?: boolean;
-        payload?: boolean;
         event?: boolean;
     },
     ExtArgs['result']['hook']
@@ -417,11 +327,7 @@ export type HookSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
-        createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
         url?: boolean;
-        payload?: boolean;
         event?: boolean;
     },
     ExtArgs['result']['hook']
@@ -429,19 +335,12 @@ export type HookSelectUpdateManyAndReturn<
 
 export type HookSelectScalar = {
     id?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    deletedAt?: boolean;
     url?: boolean;
-    payload?: boolean;
     event?: boolean;
 };
 
 export type HookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-    runtime.Types.Extensions.GetOmit<
-        'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'url' | 'payload' | 'event',
-        ExtArgs['result']['hook']
-    >;
+    runtime.Types.Extensions.GetOmit<'id' | 'url' | 'event', ExtArgs['result']['hook']>;
 
 export type $HookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
     {
@@ -450,11 +349,7 @@ export type $HookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
         scalars: runtime.Types.Extensions.GetPayloadResult<
             {
                 id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                deletedAt: Date | null;
                 url: string;
-                payload: runtime.JsonValue | null;
                 event: string;
             },
             ExtArgs['result']['hook']
@@ -968,11 +863,7 @@ export interface Prisma__HookClient<
  */
 export interface HookFieldRefs {
     readonly id: Prisma.FieldRef<'Hook', 'Int'>;
-    readonly createdAt: Prisma.FieldRef<'Hook', 'DateTime'>;
-    readonly updatedAt: Prisma.FieldRef<'Hook', 'DateTime'>;
-    readonly deletedAt: Prisma.FieldRef<'Hook', 'DateTime'>;
     readonly url: Prisma.FieldRef<'Hook', 'String'>;
-    readonly payload: Prisma.FieldRef<'Hook', 'Json'>;
     readonly event: Prisma.FieldRef<'Hook', 'String'>;
 }
 

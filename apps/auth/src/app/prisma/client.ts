@@ -49,6 +49,11 @@ export { Prisma };
  */
 export type User = Prisma.UserModel;
 /**
+ * Model Otp
+ * @internal(true)
+ */
+export type Otp = Prisma.OtpModel;
+/**
  * Model Role
  *
  */
@@ -70,7 +75,7 @@ export type RolePermission = Prisma.RolePermissionModel;
 export type UserRole = Prisma.UserRoleModel;
 /**
  * Model Session
- *
+ * @readonly(true)
  */
 export type Session = Prisma.SessionModel;
 /**
@@ -90,6 +95,6 @@ export type AccessTokenPermission = Prisma.AccessTokenPermissionModel;
 export type Hook = Prisma.HookModel;
 /**
  * Model Audit
- *
+ * @readonly(true)
  */
 export type Audit = Prisma.AuditModel;

@@ -7,6 +7,6 @@ import { UserModule } from './user/user.module.js';
 import { UserTodoModule } from './user-todo/user-todo.module.js';
 
 @Module({
-    imports: [PrismaModule.forRoot(PrismaClient, []), TagModule, TodoModule, UserModule, UserTodoModule],
+    imports: [PrismaModule.forRoot(PrismaClient, []), UserModule, TagModule, TodoModule, UserTodoModule],
 })
 export class ResourceModule {}

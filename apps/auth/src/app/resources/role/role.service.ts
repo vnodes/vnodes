@@ -61,16 +61,6 @@ export class RoleService implements ResourceOperations {
         return await this.repo.delete({ where: { id } });
     }
 
-    async recover(id: number) {
-        await this.findByIdOrThrow(id);
-        return await this.repo.update({ where: { id }, data: { deletedAt: null } });
-    }
-
-    async softDelete(id: number) {
-        await this.findByIdOrThrow(id);
-        const deletedAt = new Date();
-        return await this.repo.update({ where: { id }, data: { deletedAt } });
-    }
     async findByName(name: P.Prisma.RoleModel['name']) {
         return await this.repo.findUnique({ where: { name } });
     }

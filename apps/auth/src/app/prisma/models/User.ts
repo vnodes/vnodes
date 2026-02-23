@@ -39,12 +39,10 @@ export type UserMinAggregateOutputType = {
     createdAt: Date | null;
     updatedAt: Date | null;
     deletedAt: Date | null;
+    fullName: string | null;
     username: string | null;
     password: string | null;
-    firstName: string | null;
-    lastName: string | null;
-    middleName: string | null;
-    otp: string | null;
+    isEmailVerified: boolean | null;
 };
 
 export type UserMaxAggregateOutputType = {
@@ -53,12 +51,10 @@ export type UserMaxAggregateOutputType = {
     createdAt: Date | null;
     updatedAt: Date | null;
     deletedAt: Date | null;
+    fullName: string | null;
     username: string | null;
     password: string | null;
-    firstName: string | null;
-    lastName: string | null;
-    middleName: string | null;
-    otp: string | null;
+    isEmailVerified: boolean | null;
 };
 
 export type UserCountAggregateOutputType = {
@@ -67,12 +63,11 @@ export type UserCountAggregateOutputType = {
     createdAt: number;
     updatedAt: number;
     deletedAt: number;
+    fullName: number;
     username: number;
     password: number;
-    firstName: number;
-    lastName: number;
-    middleName: number;
-    otp: number;
+    isEmailVerified: number;
+    tags: number;
     _all: number;
 };
 
@@ -90,12 +85,10 @@ export type UserMinAggregateInputType = {
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
+    fullName?: true;
     username?: true;
     password?: true;
-    firstName?: true;
-    lastName?: true;
-    middleName?: true;
-    otp?: true;
+    isEmailVerified?: true;
 };
 
 export type UserMaxAggregateInputType = {
@@ -104,12 +97,10 @@ export type UserMaxAggregateInputType = {
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
+    fullName?: true;
     username?: true;
     password?: true;
-    firstName?: true;
-    lastName?: true;
-    middleName?: true;
-    otp?: true;
+    isEmailVerified?: true;
 };
 
 export type UserCountAggregateInputType = {
@@ -118,12 +109,11 @@ export type UserCountAggregateInputType = {
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
+    fullName?: true;
     username?: true;
     password?: true;
-    firstName?: true;
-    lastName?: true;
-    middleName?: true;
-    otp?: true;
+    isEmailVerified?: true;
+    tags?: true;
     _all?: true;
 };
 
@@ -220,12 +210,11 @@ export type UserGroupByOutputType = {
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName: string | null;
-    otp: string | null;
+    isEmailVerified: boolean | null;
+    tags: string[];
     _count: UserCountAggregateOutputType | null;
     _avg: UserAvgAggregateOutputType | null;
     _sum: UserSumAggregateOutputType | null;
@@ -250,18 +239,18 @@ export type UserWhereInput = {
     OR?: Prisma.UserWhereInput[];
     NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
     id?: Prisma.IntFilter<'User'> | number;
-    uuid?: Prisma.StringFilter<'User'> | string;
+    uuid?: Prisma.UuidFilter<'User'> | string;
     createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
     deletedAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
+    fullName?: Prisma.StringFilter<'User'> | string;
     username?: Prisma.StringFilter<'User'> | string;
     password?: Prisma.StringFilter<'User'> | string;
-    firstName?: Prisma.StringFilter<'User'> | string;
-    lastName?: Prisma.StringFilter<'User'> | string;
-    middleName?: Prisma.StringNullableFilter<'User'> | string | null;
-    otp?: Prisma.StringNullableFilter<'User'> | string | null;
+    isEmailVerified?: Prisma.BoolNullableFilter<'User'> | boolean | null;
+    tags?: Prisma.StringNullableListFilter<'User'>;
     userRoles?: Prisma.UserRoleListRelationFilter;
     sessions?: Prisma.SessionListRelationFilter;
+    otp?: Prisma.XOR<Prisma.OtpNullableScalarRelationFilter, Prisma.OtpWhereInput> | null;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -270,14 +259,14 @@ export type UserOrderByWithRelationInput = {
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
     deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+    fullName?: Prisma.SortOrder;
     username?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
-    firstName?: Prisma.SortOrder;
-    lastName?: Prisma.SortOrder;
-    middleName?: Prisma.SortOrderInput | Prisma.SortOrder;
-    otp?: Prisma.SortOrderInput | Prisma.SortOrder;
+    isEmailVerified?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tags?: Prisma.SortOrder;
     userRoles?: Prisma.UserRoleOrderByRelationAggregateInput;
     sessions?: Prisma.SessionOrderByRelationAggregateInput;
+    otp?: Prisma.OtpOrderByWithRelationInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -291,13 +280,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
         createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
         updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
         deletedAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
+        fullName?: Prisma.StringFilter<'User'> | string;
         password?: Prisma.StringFilter<'User'> | string;
-        firstName?: Prisma.StringFilter<'User'> | string;
-        lastName?: Prisma.StringFilter<'User'> | string;
-        middleName?: Prisma.StringNullableFilter<'User'> | string | null;
-        otp?: Prisma.StringNullableFilter<'User'> | string | null;
+        isEmailVerified?: Prisma.BoolNullableFilter<'User'> | boolean | null;
+        tags?: Prisma.StringNullableListFilter<'User'>;
         userRoles?: Prisma.UserRoleListRelationFilter;
         sessions?: Prisma.SessionListRelationFilter;
+        otp?: Prisma.XOR<Prisma.OtpNullableScalarRelationFilter, Prisma.OtpWhereInput> | null;
     },
     'id' | 'uuid' | 'username'
 >;
@@ -308,12 +297,11 @@ export type UserOrderByWithAggregationInput = {
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
     deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+    fullName?: Prisma.SortOrder;
     username?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
-    firstName?: Prisma.SortOrder;
-    lastName?: Prisma.SortOrder;
-    middleName?: Prisma.SortOrderInput | Prisma.SortOrder;
-    otp?: Prisma.SortOrderInput | Prisma.SortOrder;
+    isEmailVerified?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tags?: Prisma.SortOrder;
     _count?: Prisma.UserCountOrderByAggregateInput;
     _avg?: Prisma.UserAvgOrderByAggregateInput;
     _max?: Prisma.UserMaxOrderByAggregateInput;
@@ -326,47 +314,46 @@ export type UserScalarWhereWithAggregatesInput = {
     OR?: Prisma.UserScalarWhereWithAggregatesInput[];
     NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[];
     id?: Prisma.IntWithAggregatesFilter<'User'> | number;
-    uuid?: Prisma.StringWithAggregatesFilter<'User'> | string;
+    uuid?: Prisma.UuidWithAggregatesFilter<'User'> | string;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
     updatedAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
     deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
+    fullName?: Prisma.StringWithAggregatesFilter<'User'> | string;
     username?: Prisma.StringWithAggregatesFilter<'User'> | string;
     password?: Prisma.StringWithAggregatesFilter<'User'> | string;
-    firstName?: Prisma.StringWithAggregatesFilter<'User'> | string;
-    lastName?: Prisma.StringWithAggregatesFilter<'User'> | string;
-    middleName?: Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-    otp?: Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
+    isEmailVerified?: Prisma.BoolNullableWithAggregatesFilter<'User'> | boolean | null;
+    tags?: Prisma.StringNullableListFilter<'User'>;
 };
 
 export type UserCreateInput = {
-    uuid?: string;
+    uuid: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName?: string | null;
-    otp?: string | null;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
     userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
     sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
+    otp?: Prisma.OtpCreateNestedOneWithoutUserInput;
 };
 
 export type UserUncheckedCreateInput = {
     id?: number;
-    uuid?: string;
+    uuid: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName?: string | null;
-    otp?: string | null;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
     userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
     sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
+    otp?: Prisma.OtpUncheckedCreateNestedOneWithoutUserInput;
 };
 
 export type UserUpdateInput = {
@@ -374,14 +361,14 @@ export type UserUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
     userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
     sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
+    otp?: Prisma.OtpUpdateOneWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -390,28 +377,27 @@ export type UserUncheckedUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
     userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
     sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
+    otp?: Prisma.OtpUncheckedUpdateOneWithoutUserNestedInput;
 };
 
 export type UserCreateManyInput = {
     id?: number;
-    uuid?: string;
+    uuid: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName?: string | null;
-    otp?: string | null;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
 };
 
 export type UserUpdateManyMutationInput = {
@@ -419,12 +405,11 @@ export type UserUpdateManyMutationInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
 };
 
 export type UserUncheckedUpdateManyInput = {
@@ -433,12 +418,19 @@ export type UserUncheckedUpdateManyInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
+};
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null;
+    has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null;
+    hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>;
+    hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>;
+    isEmpty?: boolean;
 };
 
 export type UserCountOrderByAggregateInput = {
@@ -447,12 +439,11 @@ export type UserCountOrderByAggregateInput = {
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
     deletedAt?: Prisma.SortOrder;
+    fullName?: Prisma.SortOrder;
     username?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
-    firstName?: Prisma.SortOrder;
-    lastName?: Prisma.SortOrder;
-    middleName?: Prisma.SortOrder;
-    otp?: Prisma.SortOrder;
+    isEmailVerified?: Prisma.SortOrder;
+    tags?: Prisma.SortOrder;
 };
 
 export type UserAvgOrderByAggregateInput = {
@@ -465,12 +456,10 @@ export type UserMaxOrderByAggregateInput = {
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
     deletedAt?: Prisma.SortOrder;
+    fullName?: Prisma.SortOrder;
     username?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
-    firstName?: Prisma.SortOrder;
-    lastName?: Prisma.SortOrder;
-    middleName?: Prisma.SortOrder;
-    otp?: Prisma.SortOrder;
+    isEmailVerified?: Prisma.SortOrder;
 };
 
 export type UserMinOrderByAggregateInput = {
@@ -479,12 +468,10 @@ export type UserMinOrderByAggregateInput = {
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
     deletedAt?: Prisma.SortOrder;
+    fullName?: Prisma.SortOrder;
     username?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
-    firstName?: Prisma.SortOrder;
-    lastName?: Prisma.SortOrder;
-    middleName?: Prisma.SortOrder;
-    otp?: Prisma.SortOrder;
+    isEmailVerified?: Prisma.SortOrder;
 };
 
 export type UserSumOrderByAggregateInput = {
@@ -494,6 +481,10 @@ export type UserSumOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
     is?: Prisma.UserWhereInput;
     isNot?: Prisma.UserWhereInput;
+};
+
+export type UserCreatetagsInput = {
+    set: string[];
 };
 
 export type StringFieldUpdateOperationsInput = {
@@ -508,8 +499,13 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null;
 };
 
-export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null;
+export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null;
+};
+
+export type UserUpdatetagsInput = {
+    set?: string[];
+    push?: string | string[];
 };
 
 export type IntFieldUpdateOperationsInput = {
@@ -518,6 +514,23 @@ export type IntFieldUpdateOperationsInput = {
     decrement?: number;
     multiply?: number;
     divide?: number;
+};
+
+export type UserCreateNestedOneWithoutOtpInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutOtpInput, Prisma.UserUncheckedCreateWithoutOtpInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutOtpInput;
+    connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutOtpNestedInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutOtpInput, Prisma.UserUncheckedCreateWithoutOtpInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutOtpInput;
+    upsert?: Prisma.UserUpsertWithoutOtpInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<
+        Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOtpInput, Prisma.UserUpdateWithoutOtpInput>,
+        Prisma.UserUncheckedUpdateWithoutOtpInput
+    >;
 };
 
 export type UserCreateNestedOneWithoutUserRolesInput = {
@@ -554,33 +567,107 @@ export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
     >;
 };
 
-export type UserCreateWithoutUserRolesInput = {
-    uuid?: string;
+export type UserCreateWithoutOtpInput = {
+    uuid: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName?: string | null;
-    otp?: string | null;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
+    userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
     sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutOtpInput = {
+    id?: number;
+    uuid: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string | null;
+    fullName: string;
+    username: string;
+    password: string;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
+    userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutOtpInput = {
+    where: Prisma.UserWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserCreateWithoutOtpInput, Prisma.UserUncheckedCreateWithoutOtpInput>;
+};
+
+export type UserUpsertWithoutOtpInput = {
+    update: Prisma.XOR<Prisma.UserUpdateWithoutOtpInput, Prisma.UserUncheckedUpdateWithoutOtpInput>;
+    create: Prisma.XOR<Prisma.UserCreateWithoutOtpInput, Prisma.UserUncheckedCreateWithoutOtpInput>;
+    where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutOtpInput = {
+    where?: Prisma.UserWhereInput;
+    data: Prisma.XOR<Prisma.UserUpdateWithoutOtpInput, Prisma.UserUncheckedUpdateWithoutOtpInput>;
+};
+
+export type UserUpdateWithoutOtpInput = {
+    uuid?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+    username?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
+    userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutOtpInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    uuid?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+    username?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
+    userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutUserRolesInput = {
+    uuid: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string | null;
+    fullName: string;
+    username: string;
+    password: string;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
+    otp?: Prisma.OtpCreateNestedOneWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutUserRolesInput = {
     id?: number;
-    uuid?: string;
+    uuid: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName?: string | null;
-    otp?: string | null;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
     sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
+    otp?: Prisma.OtpUncheckedCreateNestedOneWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutUserRolesInput = {
@@ -604,13 +691,13 @@ export type UserUpdateWithoutUserRolesInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
     sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
+    otp?: Prisma.OtpUpdateOneWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutUserRolesInput = {
@@ -619,42 +706,42 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
     sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
+    otp?: Prisma.OtpUncheckedUpdateOneWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutSessionsInput = {
-    uuid?: string;
+    uuid: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName?: string | null;
-    otp?: string | null;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
     userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+    otp?: Prisma.OtpCreateNestedOneWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutSessionsInput = {
     id?: number;
-    uuid?: string;
+    uuid: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string | null;
+    fullName: string;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    middleName?: string | null;
-    otp?: string | null;
+    isEmailVerified?: boolean | null;
+    tags?: Prisma.UserCreatetagsInput | string[];
     userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+    otp?: Prisma.OtpUncheckedCreateNestedOneWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -678,13 +765,13 @@ export type UserUpdateWithoutSessionsInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
     userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+    otp?: Prisma.OtpUpdateOneWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -693,13 +780,13 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    fullName?: Prisma.StringFieldUpdateOperationsInput | string;
     username?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    isEmailVerified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    tags?: Prisma.UserUpdatetagsInput | string[];
     userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+    otp?: Prisma.OtpUncheckedUpdateOneWithoutUserNestedInput;
 };
 
 /**
@@ -756,14 +843,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
             createdAt?: boolean;
             updatedAt?: boolean;
             deletedAt?: boolean;
+            fullName?: boolean;
             username?: boolean;
             password?: boolean;
-            firstName?: boolean;
-            lastName?: boolean;
-            middleName?: boolean;
-            otp?: boolean;
+            isEmailVerified?: boolean;
+            tags?: boolean;
             userRoles?: boolean | Prisma.User$userRolesArgs<ExtArgs>;
             sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>;
+            otp?: boolean | Prisma.User$otpArgs<ExtArgs>;
             _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
         },
         ExtArgs['result']['user']
@@ -778,12 +865,11 @@ export type UserSelectCreateManyAndReturn<
         createdAt?: boolean;
         updatedAt?: boolean;
         deletedAt?: boolean;
+        fullName?: boolean;
         username?: boolean;
         password?: boolean;
-        firstName?: boolean;
-        lastName?: boolean;
-        middleName?: boolean;
-        otp?: boolean;
+        isEmailVerified?: boolean;
+        tags?: boolean;
     },
     ExtArgs['result']['user']
 >;
@@ -797,12 +883,11 @@ export type UserSelectUpdateManyAndReturn<
         createdAt?: boolean;
         updatedAt?: boolean;
         deletedAt?: boolean;
+        fullName?: boolean;
         username?: boolean;
         password?: boolean;
-        firstName?: boolean;
-        lastName?: boolean;
-        middleName?: boolean;
-        otp?: boolean;
+        isEmailVerified?: boolean;
+        tags?: boolean;
     },
     ExtArgs['result']['user']
 >;
@@ -813,12 +898,11 @@ export type UserSelectScalar = {
     createdAt?: boolean;
     updatedAt?: boolean;
     deletedAt?: boolean;
+    fullName?: boolean;
     username?: boolean;
     password?: boolean;
-    firstName?: boolean;
-    lastName?: boolean;
-    middleName?: boolean;
-    otp?: boolean;
+    isEmailVerified?: boolean;
+    tags?: boolean;
 };
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
@@ -828,18 +912,18 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
         | 'createdAt'
         | 'updatedAt'
         | 'deletedAt'
+        | 'fullName'
         | 'username'
         | 'password'
-        | 'firstName'
-        | 'lastName'
-        | 'middleName'
-        | 'otp',
+        | 'isEmailVerified'
+        | 'tags',
         ExtArgs['result']['user']
     >;
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
     {
         userRoles?: boolean | Prisma.User$userRolesArgs<ExtArgs>;
         sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>;
+        otp?: boolean | Prisma.User$otpArgs<ExtArgs>;
         _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
     };
 export type UserIncludeCreateManyAndReturn<
@@ -854,13 +938,14 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
         name: 'User';
         objects: {
             /**
-             * @include()
+             * @include(true)
              */
             userRoles: Prisma.$UserRolePayload<ExtArgs>[];
             /**
-             * @include()
+             * @include(true)
              */
             sessions: Prisma.$SessionPayload<ExtArgs>[];
+            otp: Prisma.$OtpPayload<ExtArgs> | null;
         };
         scalars: runtime.Types.Extensions.GetPayloadResult<
             {
@@ -869,18 +954,17 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
                 createdAt: Date;
                 updatedAt: Date;
                 deletedAt: Date | null;
+                fullName: string;
                 /**
                  * @format(email)
                  */
                 username: string;
                 /**
-                 * @hash() @format(password)
+                 * @hash(true) @format(password)
                  */
                 password: string;
-                firstName: string;
-                lastName: string;
-                middleName: string | null;
-                otp: string | null;
+                isEmailVerified: boolean | null;
+                tags: string[];
             },
             ExtArgs['result']['user']
         >;
@@ -1371,6 +1455,14 @@ export interface Prisma__UserClient<
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, 'findMany', GlobalOmitOptions> | Null
     >;
+    otp<T extends Prisma.User$otpArgs<ExtArgs> = {}>(
+        args?: Prisma.Subset<T, Prisma.User$otpArgs<ExtArgs>>,
+    ): Prisma.Prisma__OtpClient<
+        runtime.Types.Result.GetResult<Prisma.$OtpPayload<ExtArgs>, T, 'findUniqueOrThrow', GlobalOmitOptions> | null,
+        null,
+        ExtArgs,
+        GlobalOmitOptions
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1407,12 +1499,11 @@ export interface UserFieldRefs {
     readonly createdAt: Prisma.FieldRef<'User', 'DateTime'>;
     readonly updatedAt: Prisma.FieldRef<'User', 'DateTime'>;
     readonly deletedAt: Prisma.FieldRef<'User', 'DateTime'>;
+    readonly fullName: Prisma.FieldRef<'User', 'String'>;
     readonly username: Prisma.FieldRef<'User', 'String'>;
     readonly password: Prisma.FieldRef<'User', 'String'>;
-    readonly firstName: Prisma.FieldRef<'User', 'String'>;
-    readonly lastName: Prisma.FieldRef<'User', 'String'>;
-    readonly middleName: Prisma.FieldRef<'User', 'String'>;
-    readonly otp: Prisma.FieldRef<'User', 'String'>;
+    readonly isEmailVerified: Prisma.FieldRef<'User', 'Boolean'>;
+    readonly tags: Prisma.FieldRef<'User', 'String[]'>;
 }
 
 // Custom InputTypes
@@ -1878,6 +1969,26 @@ export type User$sessionsArgs<
     skip?: number;
     distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[];
 };
+
+/**
+ * User.otp
+ */
+export type User$otpArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+    {
+        /**
+         * Select specific fields to fetch from the Otp
+         */
+        select?: Prisma.OtpSelect<ExtArgs> | null;
+        /**
+         * Omit specific fields from the Otp
+         */
+        omit?: Prisma.OtpOmit<ExtArgs> | null;
+        /**
+         * Choose, which related nodes to fetch as well
+         */
+        include?: Prisma.OtpInclude<ExtArgs> | null;
+        where?: Prisma.OtpWhereInput;
+    };
 
 /**
  * User without action

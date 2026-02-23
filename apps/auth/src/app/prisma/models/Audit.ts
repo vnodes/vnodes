@@ -13,7 +13,7 @@ import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model Audit
- *
+ * @readonly(true)
  */
 export type AuditModel = runtime.Types.Result.DefaultSelection<Prisma.$AuditPayload>;
 
@@ -36,32 +36,32 @@ export type AuditSumAggregateOutputType = {
 export type AuditMinAggregateOutputType = {
     id: number | null;
     createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
-    actorId: string | null;
+    status: string | null;
+    scope: string | null;
     resource: string | null;
     operation: string | null;
+    actorId: string | null;
 };
 
 export type AuditMaxAggregateOutputType = {
     id: number | null;
     createdAt: Date | null;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
-    actorId: string | null;
+    status: string | null;
+    scope: string | null;
     resource: string | null;
     operation: string | null;
+    actorId: string | null;
 };
 
 export type AuditCountAggregateOutputType = {
     id: number;
     createdAt: number;
-    updatedAt: number;
-    deletedAt: number;
-    actorId: number;
+    status: number;
+    scope: number;
     resource: number;
     operation: number;
     input: number;
+    actorId: number;
     _all: number;
 };
 
@@ -76,32 +76,32 @@ export type AuditSumAggregateInputType = {
 export type AuditMinAggregateInputType = {
     id?: true;
     createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
-    actorId?: true;
+    status?: true;
+    scope?: true;
     resource?: true;
     operation?: true;
+    actorId?: true;
 };
 
 export type AuditMaxAggregateInputType = {
     id?: true;
     createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
-    actorId?: true;
+    status?: true;
+    scope?: true;
     resource?: true;
     operation?: true;
+    actorId?: true;
 };
 
 export type AuditCountAggregateInputType = {
     id?: true;
     createdAt?: true;
-    updatedAt?: true;
-    deletedAt?: true;
-    actorId?: true;
+    status?: true;
+    scope?: true;
     resource?: true;
     operation?: true;
     input?: true;
+    actorId?: true;
     _all?: true;
 };
 
@@ -195,12 +195,12 @@ export type AuditGroupByArgs<
 export type AuditGroupByOutputType = {
     id: number;
     createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date | null;
-    actorId: string;
+    status: string;
+    scope: string;
     resource: string;
     operation: string;
     input: runtime.JsonValue;
+    actorId: string;
     _count: AuditCountAggregateOutputType | null;
     _avg: AuditAvgAggregateOutputType | null;
     _sum: AuditSumAggregateOutputType | null;
@@ -226,23 +226,23 @@ export type AuditWhereInput = {
     NOT?: Prisma.AuditWhereInput | Prisma.AuditWhereInput[];
     id?: Prisma.IntFilter<'Audit'> | number;
     createdAt?: Prisma.DateTimeFilter<'Audit'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'Audit'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableFilter<'Audit'> | Date | string | null;
-    actorId?: Prisma.StringFilter<'Audit'> | string;
+    status?: Prisma.StringFilter<'Audit'> | string;
+    scope?: Prisma.StringFilter<'Audit'> | string;
     resource?: Prisma.StringFilter<'Audit'> | string;
     operation?: Prisma.StringFilter<'Audit'> | string;
     input?: Prisma.JsonFilter<'Audit'>;
+    actorId?: Prisma.StringFilter<'Audit'> | string;
 };
 
 export type AuditOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-    actorId?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    scope?: Prisma.SortOrder;
     resource?: Prisma.SortOrder;
     operation?: Prisma.SortOrder;
     input?: Prisma.SortOrder;
+    actorId?: Prisma.SortOrder;
 };
 
 export type AuditWhereUniqueInput = Prisma.AtLeast<
@@ -252,12 +252,12 @@ export type AuditWhereUniqueInput = Prisma.AtLeast<
         OR?: Prisma.AuditWhereInput[];
         NOT?: Prisma.AuditWhereInput | Prisma.AuditWhereInput[];
         createdAt?: Prisma.DateTimeFilter<'Audit'> | Date | string;
-        updatedAt?: Prisma.DateTimeFilter<'Audit'> | Date | string;
-        deletedAt?: Prisma.DateTimeNullableFilter<'Audit'> | Date | string | null;
-        actorId?: Prisma.StringFilter<'Audit'> | string;
+        status?: Prisma.StringFilter<'Audit'> | string;
+        scope?: Prisma.StringFilter<'Audit'> | string;
         resource?: Prisma.StringFilter<'Audit'> | string;
         operation?: Prisma.StringFilter<'Audit'> | string;
         input?: Prisma.JsonFilter<'Audit'>;
+        actorId?: Prisma.StringFilter<'Audit'> | string;
     },
     'id'
 >;
@@ -265,12 +265,12 @@ export type AuditWhereUniqueInput = Prisma.AtLeast<
 export type AuditOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-    actorId?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    scope?: Prisma.SortOrder;
     resource?: Prisma.SortOrder;
     operation?: Prisma.SortOrder;
     input?: Prisma.SortOrder;
+    actorId?: Prisma.SortOrder;
     _count?: Prisma.AuditCountOrderByAggregateInput;
     _avg?: Prisma.AuditAvgOrderByAggregateInput;
     _max?: Prisma.AuditMaxOrderByAggregateInput;
@@ -284,97 +284,97 @@ export type AuditScalarWhereWithAggregatesInput = {
     NOT?: Prisma.AuditScalarWhereWithAggregatesInput | Prisma.AuditScalarWhereWithAggregatesInput[];
     id?: Prisma.IntWithAggregatesFilter<'Audit'> | number;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<'Audit'> | Date | string;
-    updatedAt?: Prisma.DateTimeWithAggregatesFilter<'Audit'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<'Audit'> | Date | string | null;
-    actorId?: Prisma.StringWithAggregatesFilter<'Audit'> | string;
+    status?: Prisma.StringWithAggregatesFilter<'Audit'> | string;
+    scope?: Prisma.StringWithAggregatesFilter<'Audit'> | string;
     resource?: Prisma.StringWithAggregatesFilter<'Audit'> | string;
     operation?: Prisma.StringWithAggregatesFilter<'Audit'> | string;
     input?: Prisma.JsonWithAggregatesFilter<'Audit'>;
+    actorId?: Prisma.StringWithAggregatesFilter<'Audit'> | string;
 };
 
 export type AuditCreateInput = {
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
-    actorId: string;
+    status: string;
+    scope: string;
     resource: string;
     operation: string;
     input: Prisma.JsonNullValueInput | runtime.InputJsonValue;
+    actorId: string;
 };
 
 export type AuditUncheckedCreateInput = {
     id?: number;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
-    actorId: string;
+    status: string;
+    scope: string;
     resource: string;
     operation: string;
     input: Prisma.JsonNullValueInput | runtime.InputJsonValue;
+    actorId: string;
 };
 
 export type AuditUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
+    scope?: Prisma.StringFieldUpdateOperationsInput | string;
     resource?: Prisma.StringFieldUpdateOperationsInput | string;
     operation?: Prisma.StringFieldUpdateOperationsInput | string;
     input?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
+    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type AuditUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
+    scope?: Prisma.StringFieldUpdateOperationsInput | string;
     resource?: Prisma.StringFieldUpdateOperationsInput | string;
     operation?: Prisma.StringFieldUpdateOperationsInput | string;
     input?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
+    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type AuditCreateManyInput = {
     id?: number;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string | null;
-    actorId: string;
+    status: string;
+    scope: string;
     resource: string;
     operation: string;
     input: Prisma.JsonNullValueInput | runtime.InputJsonValue;
+    actorId: string;
 };
 
 export type AuditUpdateManyMutationInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
+    scope?: Prisma.StringFieldUpdateOperationsInput | string;
     resource?: Prisma.StringFieldUpdateOperationsInput | string;
     operation?: Prisma.StringFieldUpdateOperationsInput | string;
     input?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
+    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type AuditUncheckedUpdateManyInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
+    scope?: Prisma.StringFieldUpdateOperationsInput | string;
     resource?: Prisma.StringFieldUpdateOperationsInput | string;
     operation?: Prisma.StringFieldUpdateOperationsInput | string;
     input?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
+    actorId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type AuditCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
-    actorId?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    scope?: Prisma.SortOrder;
     resource?: Prisma.SortOrder;
     operation?: Prisma.SortOrder;
     input?: Prisma.SortOrder;
+    actorId?: Prisma.SortOrder;
 };
 
 export type AuditAvgOrderByAggregateInput = {
@@ -384,21 +384,21 @@ export type AuditAvgOrderByAggregateInput = {
 export type AuditMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
-    actorId?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    scope?: Prisma.SortOrder;
     resource?: Prisma.SortOrder;
     operation?: Prisma.SortOrder;
+    actorId?: Prisma.SortOrder;
 };
 
 export type AuditMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
-    deletedAt?: Prisma.SortOrder;
-    actorId?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    scope?: Prisma.SortOrder;
     resource?: Prisma.SortOrder;
     operation?: Prisma.SortOrder;
+    actorId?: Prisma.SortOrder;
 };
 
 export type AuditSumOrderByAggregateInput = {
@@ -410,12 +410,12 @@ export type AuditSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
         {
             id?: boolean;
             createdAt?: boolean;
-            updatedAt?: boolean;
-            deletedAt?: boolean;
-            actorId?: boolean;
+            status?: boolean;
+            scope?: boolean;
             resource?: boolean;
             operation?: boolean;
             input?: boolean;
+            actorId?: boolean;
         },
         ExtArgs['result']['audit']
     >;
@@ -426,12 +426,12 @@ export type AuditSelectCreateManyAndReturn<
     {
         id?: boolean;
         createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
-        actorId?: boolean;
+        status?: boolean;
+        scope?: boolean;
         resource?: boolean;
         operation?: boolean;
         input?: boolean;
+        actorId?: boolean;
     },
     ExtArgs['result']['audit']
 >;
@@ -442,12 +442,12 @@ export type AuditSelectUpdateManyAndReturn<
     {
         id?: boolean;
         createdAt?: boolean;
-        updatedAt?: boolean;
-        deletedAt?: boolean;
-        actorId?: boolean;
+        status?: boolean;
+        scope?: boolean;
         resource?: boolean;
         operation?: boolean;
         input?: boolean;
+        actorId?: boolean;
     },
     ExtArgs['result']['audit']
 >;
@@ -455,17 +455,17 @@ export type AuditSelectUpdateManyAndReturn<
 export type AuditSelectScalar = {
     id?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
-    deletedAt?: boolean;
-    actorId?: boolean;
+    status?: boolean;
+    scope?: boolean;
     resource?: boolean;
     operation?: boolean;
     input?: boolean;
+    actorId?: boolean;
 };
 
 export type AuditOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
     runtime.Types.Extensions.GetOmit<
-        'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'actorId' | 'resource' | 'operation' | 'input',
+        'id' | 'createdAt' | 'status' | 'scope' | 'resource' | 'operation' | 'input' | 'actorId',
         ExtArgs['result']['audit']
     >;
 
@@ -478,12 +478,12 @@ export type $AuditPayload<
         {
             id: number;
             createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
-            actorId: string;
+            status: string;
+            scope: string;
             resource: string;
             operation: string;
             input: runtime.JsonValue;
+            actorId: string;
         },
         ExtArgs['result']['audit']
     >;
@@ -997,12 +997,12 @@ export interface Prisma__AuditClient<
 export interface AuditFieldRefs {
     readonly id: Prisma.FieldRef<'Audit', 'Int'>;
     readonly createdAt: Prisma.FieldRef<'Audit', 'DateTime'>;
-    readonly updatedAt: Prisma.FieldRef<'Audit', 'DateTime'>;
-    readonly deletedAt: Prisma.FieldRef<'Audit', 'DateTime'>;
-    readonly actorId: Prisma.FieldRef<'Audit', 'String'>;
+    readonly status: Prisma.FieldRef<'Audit', 'String'>;
+    readonly scope: Prisma.FieldRef<'Audit', 'String'>;
     readonly resource: Prisma.FieldRef<'Audit', 'String'>;
     readonly operation: Prisma.FieldRef<'Audit', 'String'>;
     readonly input: Prisma.FieldRef<'Audit', 'Json'>;
+    readonly actorId: Prisma.FieldRef<'Audit', 'String'>;
 }
 
 // Custom InputTypes

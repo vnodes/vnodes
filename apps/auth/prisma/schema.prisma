@@ -7,8 +7,8 @@ generator client {
   runtime                = "nodejs"
 }
 
-generator nestjs {
-  provider = "nestjs"
+generator prismaService {
+  provider = "prisma-service"
 }
 
 datasource db {
@@ -17,45 +17,44 @@ datasource db {
 
 model User {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
+  uuid      String    @unique @db.Uuid
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  username String @unique /// @format(email)
+  fullName String
+  username String @unique ///  @format(email)
   password String /// @hash(true) @format(password)
 
-  firstName  String
-  lastName   String
-  middleName String?
+  isEmailVerified Boolean?
 
   userRoles UserRole[] /// @include(true)
   sessions  Session[] /// @include(true)
 
-  otp String?
+  tags String[]
 
-  @@index([firstName])
-  @@index([lastName])
-  @@index([middleName])
+  otp Otp?
+
   @@index([username])
 }
 
-model Role {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-  name      String    @unique
+/// @internal(true)
+model Otp {
+  id     Int     @id @default(autoincrement())
+  value  String? /// @hash(true)
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int     @unique
+}
 
+model Role {
+  id              Int              @id @default(autoincrement())
+  name            String           @unique
   rolePermissions RolePermission[] /// @include(true)
   userRoles       UserRole[]
 }
 
 model Permission {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id Int @id @default(autoincrement())
 
   scope     String
   resource  String
@@ -71,10 +70,7 @@ model Permission {
 }
 
 model RolePermission {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id Int @id @default(autoincrement())
 
   role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade) /// @include(true)
   roleId Int
@@ -100,45 +96,41 @@ model UserRole {
   @@unique([userId, roleId])
 }
 
+/// @readonly(true)
 model Session {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  expiresAt  DateTime?
+  lastUsedAt DateTime?
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
 
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId Int
-
-  ipAddress String?
-  deviceId  String?
-
-  city      String?
-  country   String?
-  region    String?
-  latitude  Float?
-  longitude Float?
-
-  userAgent String?
+  deviceId String?
+  ip       String?
+  hostname String?
+  city     String?
+  region   String?
+  country  String?
+  loc      String?
+  org      String?
+  postal   String?
+  timezone String?
+  agent    String?
 }
 
 model AccessToken {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
 
   name        String  @unique
   description String?
-  token       String /// @hash(true)
+  token       String /// @hash(true) /// @readonly(true)
 
   accessTokenPermissions AccessTokenPermission[] /// @include(true)
 }
 
 model AccessTokenPermission {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id Int @id @default(autoincrement())
 
   accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade) /// @include(true)
   accessTokenId Int
@@ -148,25 +140,24 @@ model AccessTokenPermission {
 }
 
 model Hook {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  url     String
-  payload Json?
-  event   String
+  id    Int    @id @default(autoincrement())
+  url   String
+  event String
 }
 
+/// @readonly(true)
 model Audit {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
   status    String
+  scope     String
   resource  String
   operation String
   input     Json
   actorId   String
+
+  @@index([actorId])
+  @@index([status])
+  @@index([resource])
+  @@index([operation])
 }

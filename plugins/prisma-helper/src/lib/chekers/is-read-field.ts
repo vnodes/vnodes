@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { FieldAnnotations } from '../extract/field-annotation.js';
+import { Annotations } from '../extract/field-annotation.js';
 
 /**
  * Check the {@link field} should be in the response object
@@ -9,7 +9,7 @@ import { FieldAnnotations } from '../extract/field-annotation.js';
  * @returns boolean
  */
 export function isReadField(field: DMMF.Field) {
-    if (FieldAnnotations.hidden(field.documentation)) {
+    if (Annotations.hidden(field.documentation)) {
         return false;
     }
 

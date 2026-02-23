@@ -1,4 +1,4 @@
-import { Body, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam } from '@nestjs/swagger';
 import type { Cls, KeyOf } from '@vnodes/types';
 import type { ResourceOperations } from '../interfaces/resource-operations.js';
@@ -43,8 +43,8 @@ export function Method(options: MethodOptions): MethodDecorator {
                 Get(RestPath.ID)(...args);
                 ApiOperation({ summary: `Find one ${resourceName} by id` })(...args);
                 ApiOkResponse({ type: () => readDto })(...args);
-                ApiParam({ name: RestParam.ID, description: 'Entity id', example: 1 })(...args);
-                Param(RestParam.ID, ParseIntPipe)(target, methodName, 0);
+                ApiParam({ name: RestParam.ID, description: 'Unique id', example: '1' })(...args);
+                Param(RestParam.ID)(target, methodName, 0);
                 break;
             }
             case 'create': {
@@ -63,9 +63,9 @@ export function Method(options: MethodOptions): MethodDecorator {
                 ApiOkResponse({ type: () => readDto });
                 ApiBody({ type: () => updateDto })(...args);
                 ApiParam({ name: RestParam.ID, description: 'Entity id' })(...args);
-                Param(RestParam.ID, ParseIntPipe)(target, methodName, 0);
+                Param(RestParam.ID)(target, methodName, 0);
                 Body()(target, methodName, 1);
-                Reflect.defineMetadata('design:paramtypes', [Number, updateDto], target, methodName);
+                Reflect.defineMetadata('design:paramtypes', [String, updateDto], target, methodName);
                 break;
             }
             case 'delete': {
@@ -73,7 +73,7 @@ export function Method(options: MethodOptions): MethodDecorator {
                 ApiOperation({ summary: `Delete one ${resourceName} by id` })(...args);
                 ApiOkResponse({ type: readDto });
                 ApiParam({ name: RestParam.ID, description: 'Entity id', example: 1 })(...args);
-                Param(RestParam.ID, ParseIntPipe)(target, methodName, 0);
+                Param(RestParam.ID)(target, methodName, 0);
 
                 break;
             }

@@ -1,5 +1,5 @@
 import { Inject } from '@nestjs/common';
-import { Controller, type ResourceOperations } from '@vnodes/nest';
+import { Controller } from '@vnodes/nest';
 import { UserCreateDto, UserQueryDto, UserReadDto, UserUpdateDto } from './dtos/index.js';
 import { UserService } from './user.service.js';
 
@@ -9,26 +9,26 @@ import { UserService } from './user.service.js';
     queryDto: UserQueryDto,
     readDto: UserReadDto,
 })
-export class UserController implements ResourceOperations {
+export class UserController {
     constructor(@Inject(UserService) protected readonly service: UserService) {}
 
     find(query: UserQueryDto) {
         return this.service.find(query);
     }
 
-    findById(id: number) {
-        return this.service.findByIdOrThrow(id);
+    findById(id: string) {
+        return this.service.findByUuid(id);
     }
 
     create(data: UserCreateDto) {
         return this.service.create(data);
     }
 
-    update(id: number, data: UserUpdateDto) {
-        return this.service.update(id, data);
+    update(id: string, data: UserUpdateDto) {
+        return this.service.updateByUuid(id, data);
     }
 
-    delete(id: number) {
-        return this.service.softDelete(id);
+    delete(id: string) {
+        return this.service.deleteByUuid(id);
     }
 }

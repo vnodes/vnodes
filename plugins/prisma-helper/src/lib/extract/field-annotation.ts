@@ -1,4 +1,4 @@
-export enum FieldAnnotation {
+export enum Annotation {
     /**
      * Max value or max length
      */
@@ -118,13 +118,15 @@ export enum FieldAnnotation {
      * Mark the field to be hashed
      */
     hash = 'hash',
+
+    deletedAt = 'deletedAt',
 }
 
-export type FieldAnnotationName = keyof typeof FieldAnnotation;
+export type AnnotationName = keyof typeof Annotation;
 
 export function validateDocumentation(text: string) {
     const foundNotations = [...text.matchAll(/@([a-zA-Z]+)\(.*?\)/g)].map((e) => e[1].toLowerCase());
-    const actualNotations = Object.keys(FieldAnnotation).map((e) => e.toLowerCase());
+    const actualNotations = Object.keys(Annotation).map((e) => e.toLowerCase());
 
     for (const found of foundNotations) {
         if (!actualNotations.find((aa) => aa === found)) {
@@ -138,11 +140,11 @@ export function __createFieldAnnotationExpression(key: string) {
     return new RegExp(`@${key}\\(([^)]+)\\)`, 'i');
 }
 
-export type FieldAnnotationExtractionFn = (text?: string) => RegExpMatchArray | null | undefined;
+export type AnnotationExtractionFn = (text?: string) => RegExpMatchArray | null | undefined;
 
-export type FieldAnnotationExtractors = Record<FieldAnnotation, FieldAnnotationExtractionFn>;
+export type AnnotationExtractors = Record<Annotation, AnnotationExtractionFn>;
 
-export const FieldAnnotations = Object.values(FieldAnnotation).reduce<FieldAnnotationExtractors>((acc, value) => {
+export const Annotations = Object.values(Annotation).reduce<AnnotationExtractors>((acc, value) => {
     acc[value] = (text?: string) => {
         if (text) {
             text = text.replace(/\(\)/g, '(true)');
@@ -152,4 +154,4 @@ export const FieldAnnotations = Object.values(FieldAnnotation).reduce<FieldAnnot
         return result;
     };
     return acc;
-}, {} as FieldAnnotationExtractors);
+}, {} as AnnotationExtractors);

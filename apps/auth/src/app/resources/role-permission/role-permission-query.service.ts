@@ -30,6 +30,10 @@ export class RolePermissionQueryService {
             skip: query.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
+            include: this.toInclude(),
         };
+    }
+    toInclude(): P.Prisma.RolePermissionInclude {
+        return { role: true, permission: true };
     }
 }

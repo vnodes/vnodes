@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { FieldAnnotations } from '../extract/field-annotation.js';
+import { Annotations } from '../extract/field-annotation.js';
 
 /**
  * Check {@link field} has a named default or timestamp
@@ -31,15 +31,15 @@ export function isGeneratedField(field: DMMF.Field) {
         }
     }
 
-    if (FieldAnnotations.generated(field.documentation)) {
+    if (Annotations.generated(field.documentation)) {
         return true;
     }
 
-    if (FieldAnnotations.generated(field.documentation)) {
+    if (Annotations.generated(field.documentation)) {
         return true;
     }
 
-    if (FieldAnnotations.internal(field.documentation)) {
+    if (Annotations.internal(field.documentation)) {
         return true;
     }
 

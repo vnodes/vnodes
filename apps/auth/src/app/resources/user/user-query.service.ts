@@ -14,14 +14,9 @@ export class UserQueryService {
         const { search, withDeleted } = query;
         const where: P.Prisma.UserWhereInput = {};
         if (search) {
-            where.OR = [
-                { username: { contains: search, mode: 'insensitive' } },
-                { password: { contains: search, mode: 'insensitive' } },
-                { firstName: { contains: search, mode: 'insensitive' } },
-                { lastName: { contains: search, mode: 'insensitive' } },
-                { middleName: { contains: search, mode: 'insensitive' } },
-                { otp: { contains: search, mode: 'insensitive' } },
-            ];
+            where.OR = ['fullName', 'username', 'password'].map((e) => ({
+                [e]: { contains: search, mode: 'insensitive' },
+            }));
         }
 
         if (withDeleted !== YesNo.Yes) {
@@ -40,7 +35,8 @@ export class UserQueryService {
             include: this.toInclude(),
         };
     }
+
     toInclude(): P.Prisma.UserInclude {
-        return { userRoles: true, sessions: true };
+        return { userRoles: true, sessions: true, otp: true };
     }
 }

@@ -34,7 +34,8 @@
         }
     },
     "bin": {
-        "nestjs": "./bin/nestjs.mjs"
+        "nestjs": "./bin/nestjs.mjs",
+        "prisma-service": "./bin/prisma-service.mjs"
     },
     "files": [
         "assets",

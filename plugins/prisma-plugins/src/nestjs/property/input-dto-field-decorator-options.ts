@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { FieldAnnotations, type ScalarType } from '@vnodes/prisma-helper';
+import { Annotations, type ScalarType } from '@vnodes/prisma-helper';
 
 export function __inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Field) {
     switch (field.kind) {
@@ -48,14 +48,14 @@ export function inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fi
 
     if (field.isRequired !== true) options.push('required: false');
 
-    const _maximum = FieldAnnotations.max(field.documentation);
-    const _minimum = FieldAnnotations.min(field.documentation);
-    const _minLength = FieldAnnotations.minLength(field.documentation);
-    const _maxLength = FieldAnnotations.maxLength(field.documentation);
-    const _maxItems = FieldAnnotations.maxItems(field.documentation);
-    const _minItems = FieldAnnotations.minItems(field.documentation);
-    const _format = FieldAnnotations.format(field.documentation);
-    const _description = FieldAnnotations.description(field.documentation);
+    const _maximum = Annotations.max(field.documentation);
+    const _minimum = Annotations.min(field.documentation);
+    const _minLength = Annotations.minLength(field.documentation);
+    const _maxLength = Annotations.maxLength(field.documentation);
+    const _maxItems = Annotations.maxItems(field.documentation);
+    const _minItems = Annotations.minItems(field.documentation);
+    const _format = Annotations.format(field.documentation);
+    const _description = Annotations.description(field.documentation);
 
     const maximum = _maximum?.[1];
     const minimum = _minimum?.[1];

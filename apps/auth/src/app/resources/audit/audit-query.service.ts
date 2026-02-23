@@ -15,9 +15,11 @@ export class AuditQueryService {
         const where: P.Prisma.AuditWhereInput = {};
         if (search) {
             where.OR = [
-                { actorId: { contains: search, mode: 'insensitive' } },
+                { status: { contains: search, mode: 'insensitive' } },
+                { scope: { contains: search, mode: 'insensitive' } },
                 { resource: { contains: search, mode: 'insensitive' } },
                 { operation: { contains: search, mode: 'insensitive' } },
+                { actorId: { contains: search, mode: 'insensitive' } },
             ];
         }
 

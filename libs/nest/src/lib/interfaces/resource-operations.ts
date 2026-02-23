@@ -10,7 +10,7 @@ export interface ResourceOperations<
     ResponseMany = Any,
 > {
     find?(query: QueryDto, userId?: number, ...args: Any[]): ResponseMany;
-    findById?(id: number, userId?: number, ...args: Any[]): Response;
+    findById?(id: number, userId?: string, ...args: Any[]): Response;
     create?(data: CreateInput, userId?: number, ...args: Any[]): Response;
     update?(id: number, data: Partial<UpdateInput>, userId?: number, ...args: Any[]): Response;
     delete?(id: number, userId?: number, ...args: Any[]): Response;

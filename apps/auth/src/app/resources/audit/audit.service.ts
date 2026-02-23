@@ -60,15 +60,4 @@ export class AuditService implements ResourceOperations {
         await this.findByIdOrThrow(id);
         return await this.repo.delete({ where: { id } });
     }
-
-    async recover(id: number) {
-        await this.findByIdOrThrow(id);
-        return await this.repo.update({ where: { id }, data: { deletedAt: null } });
-    }
-
-    async softDelete(id: number) {
-        await this.findByIdOrThrow(id);
-        const deletedAt = new Date();
-        return await this.repo.update({ where: { id }, data: { deletedAt } });
-    }
 }

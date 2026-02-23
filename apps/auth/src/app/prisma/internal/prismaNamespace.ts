@@ -362,6 +362,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
     User: 'User',
+    Otp: 'Otp',
     Role: 'Role',
     Permission: 'Permission',
     RolePermission: 'RolePermission',
@@ -393,6 +394,7 @@ export type TypeMap<
     meta: {
         modelProps:
             | 'user'
+            | 'otp'
             | 'role'
             | 'permission'
             | 'rolePermission'
@@ -476,6 +478,80 @@ export type TypeMap<
                 count: {
                     args: Prisma.UserCountArgs<ExtArgs>;
                     result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number;
+                };
+            };
+        };
+        Otp: {
+            payload: Prisma.$OtpPayload<ExtArgs>;
+            fields: Prisma.OtpFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.OtpFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.OtpFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>;
+                };
+                findFirst: {
+                    args: Prisma.OtpFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.OtpFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>;
+                };
+                findMany: {
+                    args: Prisma.OtpFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>[];
+                };
+                create: {
+                    args: Prisma.OtpCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>;
+                };
+                createMany: {
+                    args: Prisma.OtpCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.OtpCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>[];
+                };
+                delete: {
+                    args: Prisma.OtpDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>;
+                };
+                update: {
+                    args: Prisma.OtpUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.OtpDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.OtpUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.OtpUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>[];
+                };
+                upsert: {
+                    args: Prisma.OtpUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>;
+                };
+                aggregate: {
+                    args: Prisma.OtpAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateOtp>;
+                };
+                groupBy: {
+                    args: Prisma.OtpGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.OtpGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.OtpCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.OtpCountAggregateOutputType> | number;
                 };
             };
         };
@@ -1189,21 +1265,25 @@ export const UserScalarFieldEnum = {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     deletedAt: 'deletedAt',
+    fullName: 'fullName',
     username: 'username',
     password: 'password',
-    firstName: 'firstName',
-    lastName: 'lastName',
-    middleName: 'middleName',
-    otp: 'otp',
+    isEmailVerified: 'isEmailVerified',
+    tags: 'tags',
 } as const;
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 
+export const OtpScalarFieldEnum = {
+    id: 'id',
+    value: 'value',
+    userId: 'userId',
+} as const;
+
+export type OtpScalarFieldEnum = (typeof OtpScalarFieldEnum)[keyof typeof OtpScalarFieldEnum];
+
 export const RoleScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     name: 'name',
 } as const;
 
@@ -1211,9 +1291,6 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 
 export const PermissionScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     scope: 'scope',
     resource: 'resource',
     operation: 'operation',
@@ -1223,9 +1300,6 @@ export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof
 
 export const RolePermissionScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     roleId: 'roleId',
     permissionId: 'permissionId',
 } as const;
@@ -1247,12 +1321,20 @@ export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typ
 export const SessionScalarFieldEnum = {
     id: 'id',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
+    expiresAt: 'expiresAt',
+    lastUsedAt: 'lastUsedAt',
     userId: 'userId',
-    ipAddress: 'ipAddress',
     deviceId: 'deviceId',
-    token: 'token',
+    ip: 'ip',
+    hostname: 'hostname',
+    city: 'city',
+    region: 'region',
+    country: 'country',
+    loc: 'loc',
+    org: 'org',
+    postal: 'postal',
+    timezone: 'timezone',
+    agent: 'agent',
 } as const;
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum];
@@ -1260,8 +1342,6 @@ export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeo
 export const AccessTokenScalarFieldEnum = {
     id: 'id',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     name: 'name',
     description: 'description',
     token: 'token',
@@ -1271,9 +1351,6 @@ export type AccessTokenScalarFieldEnum = (typeof AccessTokenScalarFieldEnum)[key
 
 export const AccessTokenPermissionScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     accessTokenId: 'accessTokenId',
     permissionId: 'permissionId',
 } as const;
@@ -1283,11 +1360,7 @@ export type AccessTokenPermissionScalarFieldEnum =
 
 export const HookScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     url: 'url',
-    payload: 'payload',
     event: 'event',
 } as const;
 
@@ -1296,12 +1369,12 @@ export type HookScalarFieldEnum = (typeof HookScalarFieldEnum)[keyof typeof Hook
 export const AuditScalarFieldEnum = {
     id: 'id',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
-    actorId: 'actorId',
+    status: 'status',
+    scope: 'scope',
     resource: 'resource',
     operation: 'operation',
     input: 'input',
+    actorId: 'actorId',
 } as const;
 
 export type AuditScalarFieldEnum = (typeof AuditScalarFieldEnum)[keyof typeof AuditScalarFieldEnum];
@@ -1312,13 +1385,6 @@ export const SortOrder = {
 } as const;
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
-
-export const NullableJsonNullValueInput = {
-    DbNull: DbNull,
-    JsonNull: JsonNull,
-} as const;
-
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput];
 
 export const JsonNullValueInput = {
     JsonNull: JsonNull,
@@ -1381,6 +1447,11 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>;
 
 /**
  * Reference to a field of type 'Json'
@@ -1505,6 +1576,7 @@ export type PrismaClientOptions = (
 };
 export type GlobalOmitConfig = {
     user?: Prisma.UserOmit;
+    otp?: Prisma.OtpOmit;
     role?: Prisma.RoleOmit;
     permission?: Prisma.PermissionOmit;
     rolePermission?: Prisma.RolePermissionOmit;

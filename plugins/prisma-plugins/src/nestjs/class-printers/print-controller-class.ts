@@ -3,6 +3,10 @@ import { names } from '@vnodes/names';
 
 export function printControllerClass(model: DMMF.Model) {
     const modelNames = names(model.name);
+
+    const hasUuid = model.fields.some((e) => e.name === 'uuid' && e.isUnique);
+    const idType = hasUuid ? 'string' : 'number';
+
     return [
         `import { Inject } from '@nestjs/common';`,
         `import { Controller, type ResourceOperations } from '@vnodes/nest';`,
@@ -22,7 +26,7 @@ export function printControllerClass(model: DMMF.Model) {
         `        return this.service.find(query);`,
         `    }`,
         ``,
-        `    findById(id: number) {`,
+        `    findById(id: ${idType}) {`,
         `        return this.service.findByIdOrThrow(id);`,
         `    }`,
         ``,
@@ -30,12 +34,12 @@ export function printControllerClass(model: DMMF.Model) {
         `        return this.service.create(data);`,
         `    }`,
         ``,
-        `    update(id: number, data: ${modelNames.pascalCase}UpdateDto) {`,
+        `    update(id: ${idType}, data: ${modelNames.pascalCase}UpdateDto) {`,
         `        return this.service.update(id, data);`,
         `    }`,
         ``,
-        `    delete(id: number) {`,
-        `        return this.service.softDelete(id);`,
+        `    delete(id: ${idType}) {`,
+        `        return this.service.delete(id);`,
         `    }`,
         `}`,
     ].join('\n');

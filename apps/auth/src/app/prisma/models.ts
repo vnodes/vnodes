@@ -3,6 +3,7 @@ export type * from './models/AccessToken.js';
 export type * from './models/AccessTokenPermission.js';
 export type * from './models/Audit.js';
 export type * from './models/Hook.js';
+export type * from './models/Otp.js';
 export type * from './models/Permission.js';
 export type * from './models/Role.js';
 export type * from './models/RolePermission.js';

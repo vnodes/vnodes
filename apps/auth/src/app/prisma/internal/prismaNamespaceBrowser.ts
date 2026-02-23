@@ -49,6 +49,7 @@ export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
     User: 'User',
+    Otp: 'Otp',
     Role: 'Role',
     Permission: 'Permission',
     RolePermission: 'RolePermission',
@@ -81,21 +82,25 @@ export const UserScalarFieldEnum = {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     deletedAt: 'deletedAt',
+    fullName: 'fullName',
     username: 'username',
     password: 'password',
-    firstName: 'firstName',
-    lastName: 'lastName',
-    middleName: 'middleName',
-    otp: 'otp',
+    isEmailVerified: 'isEmailVerified',
+    tags: 'tags',
 } as const;
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 
+export const OtpScalarFieldEnum = {
+    id: 'id',
+    value: 'value',
+    userId: 'userId',
+} as const;
+
+export type OtpScalarFieldEnum = (typeof OtpScalarFieldEnum)[keyof typeof OtpScalarFieldEnum];
+
 export const RoleScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     name: 'name',
 } as const;
 
@@ -103,9 +108,6 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 
 export const PermissionScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     scope: 'scope',
     resource: 'resource',
     operation: 'operation',
@@ -115,9 +117,6 @@ export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof
 
 export const RolePermissionScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     roleId: 'roleId',
     permissionId: 'permissionId',
 } as const;
@@ -139,12 +138,20 @@ export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typ
 export const SessionScalarFieldEnum = {
     id: 'id',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
+    expiresAt: 'expiresAt',
+    lastUsedAt: 'lastUsedAt',
     userId: 'userId',
-    ipAddress: 'ipAddress',
     deviceId: 'deviceId',
-    token: 'token',
+    ip: 'ip',
+    hostname: 'hostname',
+    city: 'city',
+    region: 'region',
+    country: 'country',
+    loc: 'loc',
+    org: 'org',
+    postal: 'postal',
+    timezone: 'timezone',
+    agent: 'agent',
 } as const;
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum];
@@ -152,8 +159,6 @@ export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeo
 export const AccessTokenScalarFieldEnum = {
     id: 'id',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     name: 'name',
     description: 'description',
     token: 'token',
@@ -163,9 +168,6 @@ export type AccessTokenScalarFieldEnum = (typeof AccessTokenScalarFieldEnum)[key
 
 export const AccessTokenPermissionScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     accessTokenId: 'accessTokenId',
     permissionId: 'permissionId',
 } as const;
@@ -175,11 +177,7 @@ export type AccessTokenPermissionScalarFieldEnum =
 
 export const HookScalarFieldEnum = {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
     url: 'url',
-    payload: 'payload',
     event: 'event',
 } as const;
 
@@ -188,12 +186,12 @@ export type HookScalarFieldEnum = (typeof HookScalarFieldEnum)[keyof typeof Hook
 export const AuditScalarFieldEnum = {
     id: 'id',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt',
-    actorId: 'actorId',
+    status: 'status',
+    scope: 'scope',
     resource: 'resource',
     operation: 'operation',
     input: 'input',
+    actorId: 'actorId',
 } as const;
 
 export type AuditScalarFieldEnum = (typeof AuditScalarFieldEnum)[keyof typeof AuditScalarFieldEnum];
@@ -204,13 +202,6 @@ export const SortOrder = {
 } as const;
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
-
-export const NullableJsonNullValueInput = {
-    DbNull: DbNull,
-    JsonNull: JsonNull,
-} as const;
-
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput];
 
 export const JsonNullValueInput = {
     JsonNull: JsonNull,

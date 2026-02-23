@@ -46,6 +46,7 @@ export class RolePermissionService implements ResourceOperations {
 
     async create(data: RolePermissionCreateDto) {
         await this.validateUniques(data);
+
         return await this.repo.create({ data });
     }
 
@@ -58,16 +59,5 @@ export class RolePermissionService implements ResourceOperations {
     async delete(id: number) {
         await this.findByIdOrThrow(id);
         return await this.repo.delete({ where: { id } });
-    }
-
-    async recover(id: number) {
-        await this.findByIdOrThrow(id);
-        return await this.repo.update({ where: { id }, data: { deletedAt: null } });
-    }
-
-    async softDelete(id: number) {
-        await this.findByIdOrThrow(id);
-        const deletedAt = new Date();
-        return await this.repo.update({ where: { id }, data: { deletedAt } });
     }
 }

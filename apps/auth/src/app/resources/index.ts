@@ -2,6 +2,7 @@ export * from './access-token/index.js';
 export * from './access-token-permission/index.js';
 export * from './audit/index.js';
 export * from './hook/index.js';
+export * from './otp/index.js';
 export * from './permission/index.js';
 export * from './resource.module.js';
 export * from './role/index.js';

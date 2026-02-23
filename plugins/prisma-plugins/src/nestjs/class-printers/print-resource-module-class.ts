@@ -1,9 +1,19 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
+import { Annotations } from '@vnodes/prisma-helper';
 
 export function printResourceModuleClass(datamodel: DMMF.Datamodel) {
-    const modules = datamodel.models.map((e) => `${e.name}Module`).join(',');
+    const notInternal = (e: DMMF.Model) => {
+        return !Annotations.internal(e.documentation);
+    };
+
+    const modules = datamodel.models
+        .filter(notInternal)
+        .map((e) => `${e.name}Module`)
+        .join(',');
+
     const moduleImports = datamodel.models
+        .filter(notInternal)
         .map(
             (e) =>
                 `import { ${e.name}Module } from './${names(e.name).kebabCase}/${names(e.name).kebabCase}.module.js'`,

@@ -1,4 +1,3 @@
-// @index(['./*/index.ts', './resource.module.ts'], f => `export * from '${f.path}.js'`)
 export * from './resource.module.js';
 export * from './tag/index.js';
 export * from './todo/index.js';

@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { FieldAnnotations } from '../extract/field-annotation.js';
+import { Annotations } from '../extract/field-annotation.js';
 
 /**
  * Check some of the relation fields have the **@include()** annotation
@@ -7,5 +7,5 @@ import { FieldAnnotations } from '../extract/field-annotation.js';
  * @returns
  */
 export function hasInclude(model: DMMF.Model) {
-    return model.fields.some((field) => field.kind === 'object' && FieldAnnotations.include(field.documentation));
+    return model.fields.some((field) => field.kind === 'object' && Annotations.include(field.documentation));
 }
