@@ -1,0 +1,430 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "Model",
+    "title": "Model",
+    "description": "Schema to design database models",
+    "properties": {
+        "name": {
+            "description": "Model name",
+            "$ref": "#/definitions/modelName"
+        },
+        "internal": {
+            "type": "boolean"
+        },
+        "readonly": {
+            "type": "boolean"
+        },
+        "encrypt": {
+            "type": "boolean"
+        },
+        "description": {
+            "type": "string"
+        },
+        "extends": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/modelName"
+            },
+            "minItems": 1
+        },
+        "properties": {
+            "patternProperties": {
+                "[a-zA-Z]": {
+                    "$ref": "#/definitions/property"
+                }
+            },
+            "propertyNames": {
+                "$ref": "#/definitions/propertyName"
+            }
+        },
+        "relations": {
+            "patternProperties": {
+                "[a-zA-Z]": {
+                    "$ref": "#/definitions/relation"
+                }
+            },
+            "propertyNames": {
+                "$ref": "#/definitions/propertyName"
+            }
+        },
+        "uniques": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "indexes": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "definitions": {
+        "property": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/common"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/string"
+                        },
+                        {
+                            "$ref": "#/definitions/integer"
+                        },
+                        {
+                            "$ref": "#/definitions/number"
+                        },
+                        {
+                            "$ref": "#/definitions/boolean"
+                        },
+                        {
+                            "$ref": "#/definitions/date"
+                        },
+                        {
+                            "$ref": "#/definitions/json"
+                        },
+                        {
+                            "$ref": "#/definitions/enum"
+                        }
+                    ]
+                }
+            ],
+            "required": [
+                "type"
+            ]
+        },
+        "common": {
+            "properties": {
+                "unique": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "required": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "readonly": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "internal": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "hidden": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "description": {
+                    "type": "string"
+                },
+                "inputComponent": {
+                    "$ref": "#/definitions/inputComponent"
+                },
+                "label": {
+                    "type": "string",
+                    "default": "Add label"
+                },
+                "hint": {
+                    "type": "string",
+                    "default": "Add hint"
+                },
+                "hash": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "encrypt": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "prefixText": {
+                    "type": "string"
+                },
+                "suffixText": {
+                    "type": "string"
+                },
+                "prefixIcon": {
+                    "$ref": "#/definitions/icon"
+                },
+                "suffixIcon": {
+                    "$ref": "#/definitions/icon"
+                },
+                "dependsOn": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/propertyName"
+                    },
+                    "uniqueItems": true
+                }
+            }
+        },
+        "string": {
+            "properties": {
+                "type": {
+                    "const": "string"
+                },
+                "minLength": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "maxLength": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "format": {
+                    "$ref": "#/definitions/stringFormat"
+                },
+                "notIn": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": false
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "Regular expression"
+                }
+            }
+        },
+        "integer": {
+            "properties": {
+                "type": {
+                    "const": "integer"
+                },
+                "minimum": {
+                    "type": "integer"
+                },
+                "maximum": {
+                    "type": "integer"
+                },
+                "notIn": {
+                    "type": "integer"
+                }
+            }
+        },
+        "boolean": {
+            "properties": {
+                "type": {
+                    "const": "boolean"
+                }
+            }
+        },
+        "number": {
+            "properties": {
+                "type": {
+                    "const": "number"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "notIn": {
+                    "type": "number"
+                }
+            }
+        },
+        "date": {
+            "properties": {
+                "type": {
+                    "const": "date"
+                },
+                "past": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "future": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "maxAge": {
+                    "type": "integer"
+                },
+                "minAge": {
+                    "type": "integer"
+                },
+                "maxMonth": {
+                    "type": "integer"
+                },
+                "minMonth": {
+                    "type": "integer"
+                },
+                "maxWeek": {
+                    "type": "integer"
+                },
+                "minWeek": {
+                    "type": "integer"
+                },
+                "maxDay": {
+                    "type": "integer"
+                },
+                "minDay": {
+                    "type": "integer"
+                },
+                "maxHour": {
+                    "type": "integer"
+                },
+                "minHour": {
+                    "type": "integer"
+                },
+                "maxMinute": {
+                    "type": "integer"
+                },
+                "minMinute": {
+                    "type": "integer"
+                },
+                "maxSecond": {
+                    "type": "integer"
+                },
+                "minSecond": {
+                    "type": "integer"
+                }
+            }
+        },
+        "enum": {
+            "properties": {
+                "type": {
+                    "const": "enum"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 2
+                }
+            },
+            "required": [
+                "values"
+            ]
+        },
+        "json": {
+            "properties": {
+                "type": {
+                    "const": "json"
+                }
+            }
+        },
+        "relation": {
+            "title": "Relation Property",
+            "$id": "relation",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "many-to-one",
+                        "many-to-many",
+                        "one-to-one",
+                        "one-to-many"
+                    ],
+                    "default": "many-to-one"
+                },
+                "relationLabel": {
+                    "type": "string"
+                },
+                "model": {
+                    "$ref": "#/definitions/modelName"
+                },
+                "inversedBy": {
+                    "description": "The relative column name in the target relation model",
+                    "$ref": "#/definitions/propertyName"
+                },
+                "mappedBy": {
+                    "description": "The relative column name in the target relation model",
+                    "$ref": "#/definitions/propertyName"
+                },
+                "references": {
+                    "description": "A list of reference columns to the model",
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "name": {
+                                "description": "The name of the column in this model",
+                                "$ref": "#/definitions/propertyName"
+                            },
+                            "reference": {
+                                "description": "The name of the column of the relation model",
+                                "$ref": "#/definitions/propertyName"
+                            }
+                        }
+                    },
+                    "patternProperties": {
+                        "[a-zA-Z]": {
+                            "$ref": "#/definitions/propertyName"
+                        }
+                    },
+                    "propertyNames": {
+                        "$ref": "#/definitions/propertyName"
+                    }
+                },
+                "onDelete": {
+                    "$ref": "#/definitions/relationAction"
+                },
+                "onUpdate": {
+                    "$ref": "#/definitions/relationAction"
+                },
+                "include": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "relationAction": {
+            "title": "Relation action",
+            "$id": "relationAction",
+            "description": "Relation operation type on delete and update operation",
+            "enum": [
+                "Cascade",
+                "SetNull",
+                "NoAction",
+                "Default",
+                "Restrict"
+            ]
+        },
+        "modelName": {
+            "title": "Model name",
+            "$id": "modelname",
+            "anyOf": [
+                {
+                    "$ref": "./enums/model-name.json"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^[A-Z][a-zA-Z0-9]*$"
+                }
+            ]
+        },
+        "propertyName": {
+            "title": "Property name",
+            "$id": "propertyName",
+            "anyOf": [
+                {
+                    "$ref": "./enums/property-name.json"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$"
+                }
+            ]
+        },
+        "icon": {
+            "anyOf": [
+                {
+                    "$ref": "./enums/icon.json"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "inputComponent": {
+            "$ref": "./enums/input-component.json"
+        },
+        "stringFormat": {
+            "$ref": "./enums/string-format.json"
+        }
+    }
+}

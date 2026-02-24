@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Model Names",
+    "$id": "modelName",
+    "description": "A list of model names",
+    "enum": [
+        "/// Abstract models",
+        "BaseIdModel",
+        "BaseTimestampModel",
+        "/// Auth models",
+        "User",
+        "Role",
+        "Permission",
+        "AccessToken",
+        "AccessTokenPermission",
+        "Session",
+        "Otp",
+        "RolePermission",
+        "UserRole",
+        "/// Inventory models",
+        "Product",
+        "Price",
+        "Quantity",
+        "PriceLevel",
+        "Store",
+        "Discount"
+    ]
+}

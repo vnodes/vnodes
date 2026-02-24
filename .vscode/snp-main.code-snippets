@@ -55,6 +55,7 @@
             "}",
             "",
             "main();"
-        ]
+        ],
+        "scope": "typescript"
     }
 }

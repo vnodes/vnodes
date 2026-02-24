@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Property Names",
+    "$id": "propertyName",
+    "description": "A list of property names",
+    "enum": [
+        "id",
+        "uuid",
+        "creatdAt",
+        "udpatedAt",
+        "deletedAt",
+        "name",
+        "description",
+        "status",
+        "/// Creentials",
+        "username",
+        "password",
+        "accessToken",
+        "otp",
+        "manager",
+        "owner",
+        "/// audit fields",
+        "createdBy",
+        "udpatedBy",
+        "deletedBy"
+    ]
+}

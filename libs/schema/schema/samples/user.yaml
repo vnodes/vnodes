@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=./../model.json
+name: User
+description: Auth user model
+
+properties:
+  username:
+    type: string
+    format: email
+    unique: true
+    required: true
+
+  password:
+    type: string
+    format: password
+    hash: true
+    required: true
+    hidden: true
+
+relations:
+  manager:
+    type: many-to-one
+    model: User
+    referenceProperties:
+      - name: managerId
+        reference: id
