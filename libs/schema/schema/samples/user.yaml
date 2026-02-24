@@ -16,6 +16,15 @@ properties:
     required: true
     hidden: true
 
+  some:
+    type: json
+    schema:
+      properties:
+        addresss:
+          type: string
+        city:
+          type: string
+
 relations:
   manager:
     type: many-to-one

@@ -56,7 +56,10 @@
         "indexes": {
             "type": "array",
             "items": {
-                "type": "string"
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
             }
         }
     },
@@ -307,6 +310,9 @@
             "properties": {
                 "type": {
                     "const": "json"
+                },
+                "schema": {
+                    "$ref": "#"
                 }
             }
         },
@@ -368,7 +374,12 @@
                     "$ref": "#/definitions/relationAction"
                 },
                 "include": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
+                },
+                "query": {
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },

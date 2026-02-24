@@ -22,6 +22,15 @@
         "/// audit fields",
         "createdBy",
         "udpatedBy",
-        "deletedBy"
+        "deletedBy",
+        "/// Contact fields",
+        "street",
+        "city",
+        "state",
+        "country",
+        "zip",
+        "phone",
+        "email",
+        "url"
     ]
 }
