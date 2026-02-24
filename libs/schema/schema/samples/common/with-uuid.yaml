@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=./../../model.json
+name: WithUuid
+type: abstract-model
+description: |
+  Defines a referenced (from other database table or service) unqiue uuid property
+
+properties:
+  uuid:
+    type: string
+    format: uuid
+    readonly: true
+    unique: true
+indexes:
+  - [uuid]

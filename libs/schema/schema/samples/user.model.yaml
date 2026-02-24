@@ -1,6 +1,10 @@
 # yaml-language-server: $schema=./../model.json
 name: User
 description: Auth user model
+extends:
+  - IdModel
+  - TimestampModel
+  - UuidModel
 
 properties:
   username:
@@ -16,19 +20,15 @@ properties:
     required: true
     hidden: true
 
-  some:
-    type: json
-    schema:
-      properties:
-        addresss:
-          type: string
-        city:
-          type: string
+  tags:
+    type: array
+    items:
+      type: string
 
 relations:
   manager:
     type: many-to-one
-    model: User
+    model: IdModel
     referenceProperties:
       - name: managerId
         reference: id

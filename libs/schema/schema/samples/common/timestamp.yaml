@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=./../../model.json
+
+type: abstract-model
+description: Abstract model that defines timestamp columns
+properties:
+  createdAt:
+    type: date
+    isCreatedAt: true
+  updatedAt:
+    type: date
+    isUpdatedAt: true
+  deletedAt:
+    type: date
+    isDeletedAt: true

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=./../../model.json
+name: WithGeneratedUuid
+type: abstract-model
+description: |
+  Defines a generated (by the system) unqiue uuid property
+
+properties:
+  uuid:
+    type: string
+    generated: uuid7
+    readonly: true
+    unique: true
+
+indexes:
+  - [uuid]

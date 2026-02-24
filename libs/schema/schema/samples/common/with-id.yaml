@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=./../../model.json
+name: WithId
+type: abstract-model
+description: Abstract model that defines the primary id column
+properties:
+  id:
+    type: integer
+    generated: autoincrement
+    isId: true

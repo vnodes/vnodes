@@ -3,34 +3,100 @@
     "title": "Property Names",
     "$id": "propertyName",
     "description": "A list of property names",
-    "enum": [
-        "id",
-        "uuid",
-        "creatdAt",
-        "udpatedAt",
-        "deletedAt",
-        "name",
-        "description",
-        "status",
-        "/// Creentials",
-        "username",
-        "password",
-        "accessToken",
-        "otp",
-        "manager",
-        "owner",
-        "/// audit fields",
-        "createdBy",
-        "udpatedBy",
-        "deletedBy",
-        "/// Contact fields",
-        "street",
-        "city",
-        "state",
-        "country",
-        "zip",
-        "phone",
-        "email",
-        "url"
+    "anyOf": [
+        {
+            "description": "Id properties",
+            "enum": [
+                "id",
+                "uuid"
+            ]
+        },
+        {
+            "description": "timestamp properties",
+            "enum": [
+                "createdAt",
+                "updatedAt",
+                "deletedAt",
+                "startedAt",
+                "endedAt",
+                "expiresAt",
+                "expiredAt",
+                "due"
+            ]
+        },
+        {
+            "description": "Name properties",
+            "enum": [
+                "name",
+                "description",
+                "firstName",
+                "lastName",
+                "middleName"
+            ]
+        },
+        {
+            "description": "Contact properties",
+            "enum": [
+                "street",
+                "city",
+                "state",
+                "country",
+                "province",
+                "zip",
+                "phone",
+                "email",
+                "website",
+                "url"
+            ]
+        },
+        {
+            "description": "Auth properties",
+            "enum": [
+                "username",
+                "password",
+                "accessToken",
+                "otp",
+                "token"
+            ]
+        },
+        {
+            "description": "Relative user properties",
+            "enum": [
+                "user",
+                "manager",
+                "employee",
+                "customer",
+                "owner",
+                "assignee"
+            ]
+        },
+        {
+            "description": "Relative audit user properties",
+            "enum": [
+                "createdBy",
+                "updatedBy",
+                "deletedBy",
+                "lastAccessedBy"
+            ]
+        },
+        {
+            "description": "Status properties",
+            "enum": [
+                "status",
+                "active",
+                "passive"
+            ]
+        },
+        {
+            "description": "Group properties",
+            "enum": [
+                "tag",
+                "tags",
+                "category",
+                "categories",
+                "department",
+                "departments"
+            ]
+        }
     ]
 }

@@ -3,26 +3,40 @@
     "title": "Model Names",
     "$id": "modelName",
     "description": "A list of model names",
-    "enum": [
-        "/// Abstract models",
-        "BaseIdModel",
-        "BaseTimestampModel",
-        "/// Auth models",
-        "User",
-        "Role",
-        "Permission",
-        "AccessToken",
-        "AccessTokenPermission",
-        "Session",
-        "Otp",
-        "RolePermission",
-        "UserRole",
-        "/// Inventory models",
-        "Product",
-        "Price",
-        "Quantity",
-        "PriceLevel",
-        "Store",
-        "Discount"
+    "anyOf": [
+        {
+            "description": "Abstract models",
+            "enum": [
+                "WithId",
+                "WithTimestamps",
+                "WithUuid",
+                "WithGeneratedUuid"
+            ]
+        },
+        {
+            "description": "Auth models",
+            "enum": [
+                "User",
+                "Role",
+                "Permission",
+                "AccessToken",
+                "AccessTokenPermission",
+                "Session",
+                "Otp",
+                "RolePermission",
+                "UserRole"
+            ]
+        },
+        {
+            "description": "Inventory models",
+            "enum": [
+                "Product",
+                "Price",
+                "Quantity",
+                "PriceLevel",
+                "Store",
+                "Discount"
+            ]
+        }
     ]
 }
