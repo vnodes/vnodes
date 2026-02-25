@@ -2,9 +2,9 @@
 name: User
 description: Auth user model
 extends:
-  - IdModel
-  - TimestampModel
-  - UuidModel
+  - WithId
+  - WithTimestamps
+  - WithUuid
 
 properties:
   username:
@@ -28,7 +28,7 @@ properties:
 relations:
   manager:
     type: many-to-one
-    model: IdModel
+    model: User
     referenceProperties:
       - name: managerId
         reference: id

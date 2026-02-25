@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "generated string",
+    "description": "A list of generated string types (postgres)",
+    "enum": [
+        "uuid4",
+        "uuid7"
+    ],
+    "additionalProperties": false
+}

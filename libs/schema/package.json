@@ -53,6 +53,18 @@
                     "tsConfig": "libs/schema/tsconfig.lib.json",
                     "skipTypeCheck": false,
                     "stripLeadingPaths": true
+                },
+                "dependsOn": [
+                    "generate-types"
+                ]
+            },
+            "generate-types": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "commands": [
+                        "npx json-schema-to-typescript ./model.json --inferStringEnumKeysFromValues=true --additionalProperties=false > ./../src/lib/schema.ts"
+                    ],
+                    "cwd": "{projectRoot}/schema"
                 }
             },
             "lint": {
@@ -79,5 +91,8 @@
     },
     "dependencies": {
         "@swc/helpers": "~0.5.11"
+    },
+    "devDependencies": {
+        "json-schema-to-typescript": "^15.0.4"
     }
 }

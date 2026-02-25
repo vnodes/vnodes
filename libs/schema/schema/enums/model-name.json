@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
-    "title": "Model Names",
-    "$id": "modelName",
+    "title": "model name",
     "description": "A list of model names",
     "anyOf": [
         {
@@ -17,15 +16,19 @@
         {
             "description": "Auth models",
             "enum": [
+                "Person",
+                "Profile",
                 "User",
+                "Employee",
+                "Customer",
                 "Role",
+                "RolePermission",
+                "UserRole",
                 "Permission",
                 "AccessToken",
                 "AccessTokenPermission",
                 "Session",
-                "Otp",
-                "RolePermission",
-                "UserRole"
+                "Otp"
             ]
         },
         {
@@ -36,7 +39,9 @@
                 "Quantity",
                 "PriceLevel",
                 "Store",
-                "Discount"
+                "Discount",
+                "Category",
+                "Department"
             ]
         },
         {
@@ -45,8 +50,21 @@
                 "Contact",
                 "Address",
                 "Email",
-                "Phone"
+                "Phone",
+                "Website",
+                "SocialMedia"
+            ]
+        },
+        {
+            "description": "Media",
+            "enum": [
+                "Media",
+                "File",
+                "Image",
+                "Avatar",
+                "Document"
             ]
         }
-    ]
+    ],
+    "additionalProperties": false
 }

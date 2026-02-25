@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
-    "title": "Icons",
-    "$id": "icon",
+    "title": "icon",
     "description": "A list of ui material icons",
     "enum": [
         "search",
@@ -3822,5 +3821,6 @@
         "nest_farsight_dual",
         "nest_farsight_heat",
         "fitbit_raquetball"
-    ]
+    ],
+    "additionalProperties": false
 }

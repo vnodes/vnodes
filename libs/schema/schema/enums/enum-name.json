@@ -1,13 +1,15 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
-    "title": "Enum names",
-    "$id": "enumName",
+    "title": "enum name",
+    "description": "A list of enum class names",
     "enum": [
+        "UserType",
         "Status",
         "Gender",
         "Priority",
         "Country",
         "CountryCode",
         "AddressType"
-    ]
+    ],
+    "additionalProperties": false
 }

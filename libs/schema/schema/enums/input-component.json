@@ -1,0 +1,50 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "input component",
+    "description": "A list of inptu component names",
+    "anyOf": [
+        {
+            "description": "Text inputs",
+            "enum": [
+                "text",
+                "textarea",
+                "texteditor"
+            ]
+        },
+        {
+            "description": "Number inputs",
+            "enum": [
+                "number",
+                "rate",
+                "number-range"
+            ]
+        },
+        {
+            "description": "Date inputs",
+            "enum": [
+                "date",
+                "datetime",
+                "time"
+            ]
+        },
+        {
+            "description": "Boolean inputs",
+            "enum": [
+                "switch",
+                "switch-group",
+                "checkbox",
+                "checkbox-group"
+            ]
+        },
+        {
+            "description": "Select inputs",
+            "enum": [
+                "select",
+                "select-list",
+                "autocomplete",
+                "radio"
+            ]
+        }
+    ],
+    "additionalProperties": false
+}

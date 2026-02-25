@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
-    "title": "Property Names",
-    "$id": "propertyName",
+    "title": "property name",
     "description": "A list of property names",
     "anyOf": [
         {
@@ -125,5 +124,6 @@
                 "productId"
             ]
         }
-    ]
+    ],
+    "additionalProperties": false
 }

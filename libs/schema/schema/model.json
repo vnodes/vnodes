@@ -1,17 +1,10 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
-    "$id": "Model",
-    "title": "Model",
-    "description": "Schema to design database models",
+    "title": "Model Options",
+    "description": "Schema to design data models",
     "properties": {
         "type": {
-            "description": "The model marked abstract is for providing common model options not an actual models",
-            "enum": [
-                "model",
-                "abstract-model",
-                "object"
-            ],
-            "default": true
+            "$ref": "./enums/model-type.json"
         },
         "name": {
             "description": "Model name",
@@ -38,8 +31,17 @@
         },
         "properties": {
             "patternProperties": {
-                "[a-zA-Z]": {
-                    "$ref": "#/definitions/property"
+                ".*": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/property"
+                        },
+                        {
+                            "required": [
+                                "type"
+                            ]
+                        }
+                    ]
                 }
             },
             "propertyNames": {
@@ -77,6 +79,7 @@
     },
     "definitions": {
         "property": {
+            "title": "property options",
             "oneOf": [
                 {
                     "$ref": "#/definitions/string-property"
@@ -108,6 +111,7 @@
             ]
         },
         "common": {
+            "title": "common options",
             "properties": {
                 "unique": {
                     "type": "boolean",
@@ -173,6 +177,7 @@
             }
         },
         "string": {
+            "title": "string options",
             "properties": {
                 "type": {
                     "const": "string"
@@ -211,13 +216,10 @@
                     "type": "string",
                     "description": "Regular expression"
                 }
-            },
-            "additionalProperties": {
-                "$ref": "#/definitions/common",
-                "additionalProperties": false
             }
         },
         "integer": {
+            "title": "integer options",
             "properties": {
                 "type": {
                     "const": "integer"
@@ -244,6 +246,7 @@
             }
         },
         "boolean": {
+            "title": "boolean options",
             "properties": {
                 "type": {
                     "const": "boolean"
@@ -255,6 +258,7 @@
             }
         },
         "number": {
+            "title": "number options",
             "properties": {
                 "type": {
                     "const": "number"
@@ -275,6 +279,7 @@
             }
         },
         "date": {
+            "title": "date options",
             "properties": {
                 "type": {
                     "const": "date"
@@ -348,13 +353,13 @@
             }
         },
         "enum": {
-            "title": "Enum property",
+            "title": "enum options",
             "properties": {
                 "type": {
                     "const": "enum"
                 },
                 "enum": {
-                    "$ref": "#/definitions/enumNames"
+                    "$ref": "#/definitions/enumModel"
                 }
             },
             "required": [
@@ -363,6 +368,7 @@
             ]
         },
         "json": {
+            "title": "json options",
             "properties": {
                 "type": {
                     "const": "json"
@@ -373,6 +379,7 @@
             }
         },
         "array": {
+            "title": "array options",
             "properties": {
                 "type": {
                     "const": "array"
@@ -391,6 +398,7 @@
             }
         },
         "string-property": {
+            "title": "string property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -401,6 +409,7 @@
             ]
         },
         "number-property": {
+            "title": "number property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -411,6 +420,7 @@
             ]
         },
         "integer-property": {
+            "title": "integer property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -421,6 +431,7 @@
             ]
         },
         "boolean-property": {
+            "title": "boolean property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -431,6 +442,7 @@
             ]
         },
         "json-property": {
+            "title": "json property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -441,6 +453,7 @@
             ]
         },
         "date-property": {
+            "title": "date property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -451,6 +464,7 @@
             ]
         },
         "enum-property": {
+            "title": "enum property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -461,6 +475,7 @@
             ]
         },
         "array-property": {
+            "title": "array property options",
             "allOf": [
                 {
                     "$ref": "#/definitions/common"
@@ -471,8 +486,7 @@
             ]
         },
         "relationAllOptions": {
-            "title": "Relation Property",
-            "$id": "relation",
+            "title": "relation all property options",
             "properties": {
                 "type": {
                     "enum": [
@@ -542,8 +556,7 @@
             }
         },
         "relationForOwner": {
-            "title": "Relation for owner",
-            "$id": "relationForOwner",
+            "title": "relation for owner options",
             "description": "Owner relation is auto configured",
             "properties": {
                 "type": {
@@ -555,6 +568,7 @@
             }
         },
         "relation": {
+            "title": "relation options",
             "oneOf": [
                 {
                     "$ref": "#/definitions/relationAllOptions"
@@ -566,7 +580,6 @@
         },
         "relationAction": {
             "title": "Relation action",
-            "$id": "relationAction",
             "description": "Relation operation type on delete and update operation",
             "enum": [
                 "Cascade",
@@ -577,26 +590,15 @@
             ]
         },
         "modelName": {
-            "title": "Model name",
-            "$id": "modelname",
+            "title": "model name",
             "anyOf": [
                 {
                     "$ref": "./enums/model-name.json"
                 }
             ]
         },
-        "enumNames": {
-            "title": "Model name",
-            "$id": "modelname",
-            "anyOf": [
-                {
-                    "$ref": "./enums/enum-name.json"
-                }
-            ]
-        },
         "propertyName": {
-            "title": "Property name",
-            "$id": "propertyName",
+            "title": "property name",
             "anyOf": [
                 {
                     "$ref": "./enums/property-name.json"
@@ -604,122 +606,23 @@
             ]
         },
         "icon": {
-            "anyOf": [
-                {
-                    "$ref": "./enums/icon.json"
-                },
-                {
-                    "type": "string"
-                }
-            ]
+            "title": "icon",
+            "$ref": "./enums/icon.json"
         },
         "inputComponent": {
-            "enum": [
-                "/// String inputs",
-                "text",
-                "textarea",
-                "texteditor",
-                "/// Number inputs",
-                "number",
-                "rate",
-                "number-range",
-                "/// Date inputs ",
-                "date",
-                "datetime",
-                "time",
-                "/// Boolean inputs",
-                "switch",
-                "switch-group",
-                "checkbox",
-                "checkbox-group",
-                "/// Enum inputs",
-                "select",
-                "select-list",
-                "autocomplete",
-                "radio"
-            ]
+            "$ref": "./enums/input-component.json"
         },
         "stringFormat": {
-            "title": "String format",
-            "$id": "stringFormat",
-            "enum": [
-                "email",
-                "password",
-                "username",
-                "token",
-                "apiKey",
-                "otp",
-                "hash",
-                "firstName",
-                "lastName",
-                "fullName",
-                "birthDate",
-                "gender",
-                "nationality",
-                "ssn",
-                "taxId",
-                "phoneNumber",
-                "url",
-                "domain",
-                "handle",
-                "slug",
-                "bio",
-                "ipv4",
-                "ipv6",
-                "address",
-                "street",
-                "city",
-                "state",
-                "province",
-                "zipCode",
-                "country",
-                "countryCode",
-                "latitude",
-                "longitude",
-                "currency",
-                "creditCard",
-                "iban",
-                "swift",
-                "sku",
-                "barcode",
-                "invoiceNumber",
-                "uuid",
-                "cuid",
-                "nanoid",
-                "objectId",
-                "json",
-                "xml",
-                "html",
-                "markdown",
-                "base64",
-                "hex",
-                "binary",
-                "date",
-                "time",
-                "datetime",
-                "timestamp",
-                "timezone",
-                "duration",
-                "filename",
-                "extension",
-                "mimeType",
-                "path",
-                "colorHex",
-                "colorRgb"
-            ]
+            "$ref": "./enums/string-format.json"
         },
         "generatedString": {
-            "title": "Generated string",
-            "$id": "generatedString",
-            "enum": [
-                "uuid7",
-                "uuid4"
-            ]
+            "$ref": "./enums/generated-string.json"
         },
         "generatedInteger": {
-            "enum": [
-                "autoincrement"
-            ]
+            "$ref": "./enums/generated-integer.json"
+        },
+        "enumModel": {
+            "$ref": "./enum-model.json"
         }
     }
 }

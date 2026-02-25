@@ -4,14 +4,6 @@ generator client {
   output   = "../src/lib/client"
 }
 
-generator nestDto {
-  provider                 = "nest-dto"
-  output                   = "../src/lib/nestjs"
-  propertyDecorator        = "Prop"
-  propertyDecoratorPackage = "@vnodes/property"
-  prismaClientPath         = "../../../client/client.js"
-}
-
 datasource db {
   provider = "postgresql"
 }

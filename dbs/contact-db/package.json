@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/contact-db",
-    "description": "- [ ] add description",
+    "description": "Contact database",
     "homepage": "https://vnodes.github.io/vnodes/dbs/contact-db",
     "publishConfig": {
         "access": "public",

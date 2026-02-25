@@ -1,0 +1,9 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "generated integer",
+    "description": "A list of generated number types (postgres)",
+    "enum": [
+        "autoincrement"
+    ],
+    "additionalProperties": false
+}

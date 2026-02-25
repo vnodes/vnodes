@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "model type",
+    "description": "There are 3 types of models, model for database model, abstract-model for common model feilds, object for input/output/dto models",
+    "anyOf": [
+        {
+            "description": "Database model",
+            "enum": [
+                "model"
+            ]
+        },
+        {
+            "description": "Abstract/common/base model to be extended by the other models",
+            "enum": [
+                "abstract-model"
+            ]
+        },
+        {
+            "description": "Input/Output/Dto object",
+            "enum": [
+                "object"
+            ]
+        }
+    ]
+}
