@@ -1,0 +1,47 @@
+name: Contact
+extends:
+  - WithId
+  - WithTimestamps
+
+properties:
+  firstName:
+    type: string
+    required: true
+    maxLength: 255
+    minLength: 1
+
+  lastName:
+    type: string
+    required: true
+    maxLength: 255
+    minLength: 1
+
+  middleName:
+    type: string
+    maxLength: 255
+    minLength: 1
+
+  gender:
+    type: enum
+    enum: Gender
+
+  dob:
+    type: date
+    maxAge: 200
+    minAge: 0
+
+relations:
+  addresses:
+    type: one-to-many
+    mappedBy: contact
+    model: Address
+
+  emails:
+    type: one-to-many
+    mappedBy: contact
+    model: Email
+
+  phones:
+    type: one-to-many
+    model: Phone
+    mappedBy: contact

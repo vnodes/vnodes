@@ -9,6 +9,7 @@
             "enum": [
                 "WithId",
                 "WithTimestamps",
+                "WithNotes",
                 "WithUuid",
                 "WithGeneratedUuid"
             ]
@@ -36,6 +37,15 @@
                 "PriceLevel",
                 "Store",
                 "Discount"
+            ]
+        },
+        {
+            "description": "Contact models",
+            "enum": [
+                "Contact",
+                "Address",
+                "Email",
+                "Phone"
             ]
         }
     ]

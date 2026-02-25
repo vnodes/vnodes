@@ -19,5 +19,16 @@
     },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
-    }
+    },
+
+    "yaml.schemas": {
+        "libs/schema/schema/model.json": ["*.model.yaml"],
+        "libs/schema/schema/enum.json": ["*.enum.yaml"]
+    },
+    "json.schemas": [
+        {
+            "fileMatch": ["*.model.yaml"],
+            "url": "libs/schema/schema/model.json"
+        }
+    ]
 }

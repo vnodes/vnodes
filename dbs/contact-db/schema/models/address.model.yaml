@@ -1,0 +1,39 @@
+name: Address
+
+extends:
+  - WithId
+  - WithTimestamps
+  - WithNotes
+
+properties:
+  street:
+    type: string
+    required: true
+
+  city:
+    type: string
+    required: true
+
+  state:
+    type: string
+    required: true
+
+  country:
+    type: enum
+    enum: Country
+    required: true
+
+  zip:
+    type: string
+    required: true
+
+relations:
+  contact:
+    type: owner
+    model: Contact
+
+uniques:
+  - [contactId, street]
+
+indexes:
+  - [contactId]

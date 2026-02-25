@@ -25,13 +25,23 @@
             ]
         },
         {
-            "description": "Name properties",
+            "description": "User profile properties",
             "enum": [
                 "name",
                 "description",
+                "fullName",
                 "firstName",
                 "lastName",
-                "middleName"
+                "middleName",
+                "gender",
+                "dob",
+                "age"
+            ]
+        },
+        {
+            "description": "user confidential information",
+            "enum": [
+                "ssn"
             ]
         },
         {
@@ -46,7 +56,13 @@
                 "phone",
                 "email",
                 "website",
-                "url"
+                "url",
+                "emails",
+                "contact",
+                "contacts",
+                "phones",
+                "address",
+                "addresses"
             ]
         },
         {
@@ -96,6 +112,15 @@
                 "categories",
                 "department",
                 "departments"
+            ]
+        },
+        {
+            "description": "Foreign keys",
+            "enum": [
+                "contactId",
+                "userId",
+                "categoryId",
+                "productId"
             ]
         }
     ]

@@ -1,0 +1,24 @@
+name: Phone
+
+extends:
+  - WithId
+  - WithTimestamps
+  - WithNotes
+
+properties:
+  phone:
+    type: string
+    format: phoneNumber
+    required: true
+
+relations:
+  contact:
+    type: owner
+    model: Contact
+
+uniques:
+  - [contactId, phone]
+
+indexes:
+  - [phone]
+  - [contactId]

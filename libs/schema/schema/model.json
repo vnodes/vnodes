@@ -59,7 +59,10 @@
         "uniques": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/propertyName"
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/propertyName"
+                }
             }
         },
         "indexes": {
@@ -345,20 +348,18 @@
             }
         },
         "enum": {
+            "title": "Enum property",
             "properties": {
                 "type": {
                     "const": "enum"
                 },
-                "values": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "minItems": 2
+                "enum": {
+                    "$ref": "#/definitions/enumNames"
                 }
             },
             "required": [
-                "values"
+                "type",
+                "enum"
             ]
         },
         "json": {
@@ -469,7 +470,7 @@
                 }
             ]
         },
-        "relation": {
+        "relationAllOptions": {
             "title": "Relation Property",
             "$id": "relation",
             "properties": {
@@ -481,6 +482,10 @@
                         "one-to-many"
                     ],
                     "default": "many-to-one"
+                },
+                "required": {
+                    "type": "boolean",
+                    "default": true
                 },
                 "relationLabel": {
                     "type": "string"
@@ -536,6 +541,29 @@
                 }
             }
         },
+        "relationForOwner": {
+            "title": "Relation for owner",
+            "$id": "relationForOwner",
+            "description": "Owner relation is auto configured",
+            "properties": {
+                "type": {
+                    "const": "owner"
+                },
+                "model": {
+                    "$ref": "#/definitions/modelName"
+                }
+            }
+        },
+        "relation": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/relationAllOptions"
+                },
+                {
+                    "$ref": "#/definitions/relationForOwner"
+                }
+            ]
+        },
         "relationAction": {
             "title": "Relation action",
             "$id": "relationAction",
@@ -554,6 +582,15 @@
             "anyOf": [
                 {
                     "$ref": "./enums/model-name.json"
+                }
+            ]
+        },
+        "enumNames": {
+            "title": "Model name",
+            "$id": "modelname",
+            "anyOf": [
+                {
+                    "$ref": "./enums/enum-name.json"
                 }
             ]
         },
