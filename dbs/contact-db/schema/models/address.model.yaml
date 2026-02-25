@@ -9,6 +9,7 @@ properties:
   type:
     type: enum
     enum: AddressType
+
   unit:
     type: string
   street:
