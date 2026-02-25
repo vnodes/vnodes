@@ -1,0 +1,4 @@
+name: AddressType
+values:
+  - Residential
+  - Commercial

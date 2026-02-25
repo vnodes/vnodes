@@ -24,11 +24,13 @@ properties:
   gender:
     type: enum
     enum: Gender
+    required: true
 
   dob:
     type: date
     maxAge: 200
     minAge: 0
+    required: true
 
 relations:
   addresses:

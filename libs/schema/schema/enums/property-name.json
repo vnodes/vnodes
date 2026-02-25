@@ -47,6 +47,8 @@
         {
             "description": "Contact properties",
             "enum": [
+                "type",
+                "unit",
                 "street",
                 "city",
                 "state",

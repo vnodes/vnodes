@@ -6,6 +6,11 @@ extends:
   - WithNotes
 
 properties:
+  type:
+    type: enum
+    enum: AddressType
+  unit:
+    type: string
   street:
     type: string
     required: true
