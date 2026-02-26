@@ -1,5 +1,6 @@
 import { type ExecutionContext, SetMetadata } from '@nestjs/common';
 import type { Reflector } from '@nestjs/core';
+
 export const PUBLIC_METADATA_KEY = 'PUBLIC_METADATA';
 
 export function PublicResource(): ClassDecorator {

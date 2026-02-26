@@ -1,5 +1,5 @@
-import { createParamDecorator } from '@nestjs/common';
-import type { Any } from '@vnodes/types';
+import { createParamDecorator, UnauthorizedException } from '@nestjs/common';
+import type { UserSession } from './user-session.js';
 
 /**
  * Extract the current session's id from the request. The function will check the keys for session's id
@@ -9,6 +9,11 @@ import type { Any } from '@vnodes/types';
  * - OR null
  */
 export const SessionId = createParamDecorator((_data, context) => {
-    const req = context.switchToHttp().getRequest<Any>();
-    return (req.sessionId || req.sessionid || req.session?.id) ?? null;
+    const req = context.switchToHttp().getRequest<Partial<UserSession>>();
+    const sessionId = req.session?.id;
+
+    if (sessionId === undefined || sessionId === null) {
+        throw new UnauthorizedException('User session not found or missing ID');
+    }
+    return sessionId;
 });

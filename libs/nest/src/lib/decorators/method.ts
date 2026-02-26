@@ -1,17 +1,16 @@
-import { Body, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Delete, Get, Param, Post, Put, Query, type Type } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam } from '@nestjs/swagger';
-import type { Cls, KeyOf } from '@vnodes/types';
 import type { ResourceOperations } from '../interfaces/resource-operations.js';
 import { RestParam, RestPath } from './rest-path.js';
 import { UserId } from './user-id.js';
 
 export type MethodOptions = {
-    queryDto?: Cls;
-    readDto?: Cls;
-    createDto?: Cls;
-    updateDto?: Cls;
-    relationDto?: Cls;
-    unsetRelationDto?: Cls;
+    queryDto?: Type;
+    readDto?: Type;
+    createDto?: Type;
+    updateDto?: Type;
+    relationDto?: Type;
+    unsetRelationDto?: Type;
 };
 
 export function Method(options: MethodOptions): MethodDecorator {
@@ -30,7 +29,7 @@ export function Method(options: MethodOptions): MethodDecorator {
 
         const resourceName = className.replace('Controller', '');
 
-        switch (methodName as KeyOf<ResourceOperations>) {
+        switch (methodName as keyof ResourceOperations) {
             case 'find': {
                 Get()(target, methodName, descriptor);
                 ApiOperation({ summary: `Find all ${resourceName}` })(...args);

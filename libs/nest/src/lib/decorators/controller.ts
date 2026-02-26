@@ -1,6 +1,5 @@
 import { Controller as NestController } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { UndefinedValueError } from '@vnodes/errors';
 import { names, pluralize } from '@vnodes/names';
 import { Method, type MethodOptions } from './method.js';
 
@@ -33,7 +32,7 @@ export function Controller(options: ControllerOptions): ClassDecorator {
             const descriptor = Object.getOwnPropertyDescriptor(prototype, methodName);
 
             if (!descriptor) {
-                throw new UndefinedValueError(`The descriptor for ${methodName} is undefined`);
+                throw new Error(`The descriptor for ${methodName} is undefined`);
             }
 
             const methodArgs: Parameters<MethodDecorator> = [prototype, methodName, descriptor];

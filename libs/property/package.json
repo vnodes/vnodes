@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/property",
-    "description": "- [ ] add description",
+    "description": "Unified property decorator of **swagger**, **class-validator**, and **class-transformer** decorators.",
     "homepage": "https://vnodes.github.io/vnodes/libs/property",
     "publishConfig": {
         "access": "public",

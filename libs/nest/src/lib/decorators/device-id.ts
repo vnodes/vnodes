@@ -1,6 +1,5 @@
 import { createParamDecorator } from '@nestjs/common';
-import type { Any } from '@vnodes/types';
-
+import type { Request } from 'express';
 /**
  * request.headers['X-device-id]
  * Whenever user interact with the system, the device is given a uuid
@@ -8,6 +7,6 @@ import type { Any } from '@vnodes/types';
  * Then the X-device-id is passed to the server with all requests
  */
 export const DeviceId = createParamDecorator((_data, context) => {
-    const req = context.switchToHttp().getRequest<Any>();
+    const req = context.switchToHttp().getRequest<Request>();
     return req.headers['X-device-id'];
 });

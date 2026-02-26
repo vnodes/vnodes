@@ -1,6 +1,5 @@
 import { ApiProperty, type ApiPropertyOptions } from '@nestjs/swagger';
-import type { Any } from '@vnodes/types';
-import { Type } from 'class-transformer';
+import { type ClassConstructor, Type } from 'class-transformer';
 import {
     ArrayMaxSize,
     ArrayMinSize,
@@ -211,7 +210,7 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
         } else if (type === Date) {
             applyDecorator(IsDate(validationOptions));
         } else {
-            applyDecorator(Type(() => type as Any));
+            applyDecorator(Type(() => type as ClassConstructor<unknown>));
             applyDecorator(ValidateNested(validationOptions));
         }
 

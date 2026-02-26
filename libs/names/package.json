@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/names",
-    "description": "- [ ] add description",
+    "description": "Names",
     "homepage": "https://vnodes.github.io/vnodes/libs/names",
     "publishConfig": {
         "access": "public",
@@ -77,8 +77,6 @@
         }
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.11",
-        "@vnodes/errors": "workspace:*",
-        "@vnodes/types": "workspace:*"
+        "@swc/helpers": "~0.5.11"
     }
 }

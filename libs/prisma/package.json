@@ -90,8 +90,7 @@
     },
     "dependencies": {
         "@swc/helpers": "~0.5.11",
-        "@vnodes/names": "workspace:*",
-        "@vnodes/types": "workspace:*"
+        "@vnodes/names": "workspace:*"
     },
     "devDependencies": {
         "@nestjs/testing": "^11.1.13",

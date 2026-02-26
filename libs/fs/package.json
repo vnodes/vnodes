@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/fs",
-    "description": "- [ ] add description",
+    "description": "File system library",
     "homepage": "https://vnodes.github.io/vnodes/libs/fs",
     "publishConfig": {
         "access": "public",
@@ -78,8 +78,6 @@
     },
     "dependencies": {
         "@swc/helpers": "~0.5.11",
-        "@vnodes/errors": "workspace:*",
-        "@vnodes/types": "workspace:*",
         "js-yaml": "^4.1.1"
     },
     "devDependencies": {

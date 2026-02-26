@@ -1,7 +1,6 @@
-import { Body as NestBody } from '@nestjs/common';
-import type { Cls } from '@vnodes/types';
+import { Body as NestBody, type Type } from '@nestjs/common';
 
-export function Body(_dtoClass?: Cls): ParameterDecorator {
+export function Body(_dtoClass?: Type): ParameterDecorator {
     return (...args) => {
         NestBody()(...args);
     };

@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/performance/noAccumulatingSpread: Nest */
 import { UnprocessableEntityException, ValidationPipe } from '@nestjs/common';
 
 export const GlobalValidationPipe = new ValidationPipe({
@@ -14,7 +13,9 @@ export const GlobalValidationPipe = new ValidationPipe({
             .map((e) => {
                 return { [e.property]: e.constraints };
             })
-            .reduce((p, c) => ({ ...p, ...c }), {});
+            .reduce((p, c) => {
+                return Object.assign(p, c);
+            }, {});
 
         throw new UnprocessableEntityException({ errors: newErrors });
     },

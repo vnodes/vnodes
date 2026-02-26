@@ -11,18 +11,17 @@ export type IpInfo = {
     readme: string;
 };
 
-export async function ipinfo(ipAddress: string): Promise<IpInfo> {
+export async function ipinfo(ipAddress: string): Promise<IpInfo | null> {
     const token = process.env.IPINFO_TOKEN;
 
     if (!token) {
         throw new Error('IPINFO_TOKEN is required');
     }
 
-    const response = await fetch(`https://api.ipinfo.io/lite/${ipAddress}?token=${token}/json`);
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch IP info: ${response.statusText}`);
+    try {
+        const response = await fetch(`https://api.ipinfo.io/lite/${ipAddress}?token=${token}/json`);
+        return (await response.json()) as IpInfo;
+    } catch {
+        return null;
     }
-
-    return (await response.json()) as IpInfo;
 }

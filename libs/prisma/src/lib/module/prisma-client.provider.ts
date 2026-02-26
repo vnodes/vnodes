@@ -1,8 +1,7 @@
-import { Inject, type Provider } from '@nestjs/common';
+import { Inject, type Provider, type Type } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 import type { PrismaClient, PrismaClientExtends } from '@prisma/client/extension';
-import type { Cls } from '@vnodes/types';
 import { Pool } from 'pg';
 
 export const DEFAULT_PRISMA_CLIENT_SCOPE = 'DEFAULT';
@@ -11,7 +10,7 @@ export function getPrismaClientToken(scope = DEFAULT_PRISMA_CLIENT_SCOPE) {
     return `${scope}_PRISMA_CLIENT_TOKEN`.toUpperCase();
 }
 
-export function providePrismaClient<T extends Cls<PrismaClientExtends>>(
+export function providePrismaClient<T extends Type<PrismaClientExtends>>(
     prismaClientClass: T,
     _extentions: ((client: PrismaClient) => PrismaClient)[],
     scope = DEFAULT_PRISMA_CLIENT_SCOPE,

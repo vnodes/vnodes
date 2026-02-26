@@ -10,7 +10,7 @@
 
 ## @vnodes/schema
 
-Project schema
+Schemas to design single source of truth
 
 ## Installation
 

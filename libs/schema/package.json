@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/schema",
-    "description": "Project schema",
+    "description": "Schemas to design single source of truth",
     "homepage": "https://vnodes.github.io/vnodes/libs/schema",
     "publishConfig": {
         "access": "public",

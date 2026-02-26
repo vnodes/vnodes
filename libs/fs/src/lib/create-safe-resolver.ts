@@ -1,5 +1,4 @@
 import { normalize, resolve } from 'node:path';
-import { FileOutOfScopeError } from '@vnodes/errors';
 
 export function createSafeResolver(basePath: string) {
     basePath = normalize(basePath);
@@ -9,6 +8,6 @@ export function createSafeResolver(basePath: string) {
         if (resolvedPath.startsWith(basePath)) {
             return resolvedPath;
         }
-        throw new FileOutOfScopeError('Resolved path is outside of the base path', { path: resolvedPath });
+        throw new Error(`The path, ${resolvedPath} is out of the defined scope , ${basePath}`);
     };
 }

@@ -22,37 +22,16 @@
             "path": "./libs/nest"
         },
         {
-            "path": "./libs/types"
-        },
-        {
-            "path": "./libs/errors"
-        },
-        {
             "path": "./libs/prisma-sqlite"
         },
         {
-            "path": "./apps/todo-api"
-        },
-        {
             "path": "./libs/property"
-        },
-        {
-            "path": "./dbs/contact-db"
         },
         {
             "path": "./plugins/prisma-plugins"
         },
         {
             "path": "./plugins/prisma-helper"
-        },
-        {
-            "path": "./apps/auth"
-        },
-        {
-            "path": "./libs/nest-auth"
-        },
-        {
-            "path": "./libs/utils"
         },
         {
             "path": "./libs/schema"
