@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/types",
-    "description": "- [ ] add description",
+    "description": "Common types",
     "homepage": "https://vnodes.github.io/vnodes/libs/types",
     "publishConfig": {
         "access": "public",

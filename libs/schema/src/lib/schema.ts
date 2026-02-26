@@ -6,17 +6,9 @@
  */
 
 /**
- * There are 3 types of models, model for database model, abstract-model for common model feilds, object for input/output/dto models
- */
-export type ModelType = "model" | "abstract-model" | "object";
-/**
- * Model name
- */
-export type ModelName = ModelName1;
-/**
  * A list of model names
  */
-export type ModelName1 =
+export type ModelName =
   | ("WithId" | "WithTimestamps" | "WithNotes" | "WithUuid" | "WithGeneratedUuid")
   | (
       | "Person"
@@ -36,7 +28,15 @@ export type ModelName1 =
   | ("Product" | "Price" | "Quantity" | "PriceLevel" | "Store" | "Discount" | "Category" | "Department")
   | ("Contact" | "Address" | "Email" | "Phone" | "Website" | "SocialMedia")
   | ("Media" | "File" | "Image" | "Avatar" | "Document");
-export type ModelName2 = ModelName1;
+/**
+ * There are 3 types of models, model for database model, abstract-model for common model feilds, object for input/output/dto models
+ */
+export type ModelType = "model" | "abstract-model" | "object";
+/**
+ * Model name
+ */
+export type ModelName1 = ModelName;
+export type ModelName2 = ModelName;
 export type PropertyOptions =
   | StringPropertyOptions
   | IntegerPropertyOptions
@@ -45,6 +45,7 @@ export type PropertyOptions =
   | DatePropertyOptions
   | JsonPropertyOptions
   | EnumPropertyOptions
+  | ObjectPropertyOptions
   | ArrayPropertyOptions;
 export type StringPropertyOptions = CommonOptions & StringOptions;
 /**
@@ -3997,7 +3998,7 @@ export type EnumPropertyOptions = CommonOptions & EnumOptions;
 /**
  * Scheam to design enum models
  */
-export type EnumModel =
+export type EnumModelOptions =
   | EnumName
   | {
       name: EnumName;
@@ -4009,7 +4010,8 @@ export type EnumModel =
 /**
  * A list of enum class names
  */
-export type EnumName = "UserType" | "Status" | "Gender" | "Priority" | "Country" | "CountryCode" | "AddressType";
+export type EnumName = "UserType" | "Status" | "Gender" | "Priority" | "Difficulty" | "CountryCode" | "AddressType";
+export type ObjectPropertyOptions = CommonOptions & ObjectOptions;
 export type ArrayPropertyOptions = CommonOptions & ArrayOptions;
 /**
  * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -4037,12 +4039,23 @@ export type PropertyName5 = PropertyName1;
  */
 export type RelationAction = "Cascade" | "SetNull" | "NoAction" | "Default" | "Restrict";
 
+export interface ProjectOptions {
+  name: string;
+  env?: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^[A-Z]{1,}$".
+     */
+    [k: string]: string;
+  };
+  models?: ModelName[] | ModelOptions;
+}
 /**
  * Schema to design data models
  */
 export interface ModelOptions {
   type?: ModelType;
-  name?: ModelName;
+  name?: ModelName1;
   internal?: boolean;
   readonly?: boolean;
   encrypt?: boolean;
@@ -4147,7 +4160,11 @@ export interface JsonOptions {
 }
 export interface EnumOptions {
   type: "enum";
-  enum: EnumModel;
+  enum: EnumModelOptions;
+}
+export interface ObjectOptions {
+  type?: "object";
+  model?: ModelName2;
 }
 export interface ArrayOptions {
   type?: "array";

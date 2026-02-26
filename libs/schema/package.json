@@ -62,7 +62,7 @@
                 "executor": "nx:run-commands",
                 "options": {
                     "commands": [
-                        "npx json-schema-to-typescript ./model.json --inferStringEnumKeysFromValues=true --additionalProperties=false > ./../src/lib/schema.ts"
+                        "npx json-schema-to-typescript ./project-model.json --inferStringEnumKeysFromValues=true --additionalProperties=false > ./../src/lib/schema.ts"
                     ],
                     "cwd": "{projectRoot}/schema"
                 }

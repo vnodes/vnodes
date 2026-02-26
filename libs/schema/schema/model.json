@@ -103,6 +103,9 @@
                     "$ref": "#/definitions/enum-property"
                 },
                 {
+                    "$ref": "#/definitions/object-property"
+                },
+                {
                     "$ref": "#/definitions/array-property"
                 }
             ],
@@ -397,6 +400,17 @@
                 }
             }
         },
+        "object": {
+            "title": "object options",
+            "properties": {
+                "type": {
+                    "const": "object"
+                },
+                "model": {
+                    "$ref": "#/definitions/modelName"
+                }
+            }
+        },
         "string-property": {
             "title": "string property options",
             "allOf": [
@@ -471,6 +485,17 @@
                 },
                 {
                     "$ref": "#/definitions/enum"
+                }
+            ]
+        },
+        "object-property": {
+            "title": "object property options",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/common"
+                },
+                {
+                    "$ref": "#/definitions/object"
                 }
             ]
         },

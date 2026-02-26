@@ -7,7 +7,7 @@
         "Status",
         "Gender",
         "Priority",
-        "Country",
+        "Difficulty",
         "CountryCode",
         "AddressType"
     ],
