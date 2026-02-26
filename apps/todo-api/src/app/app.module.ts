@@ -7,7 +7,6 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppService } from './app.service.js';
 import { LoggerInterceptor } from './logger.interceptor.js';
-import { ResourceModule } from './resources/index.js';
 
 @Module({
     imports: [
@@ -16,7 +15,6 @@ import { ResourceModule } from './resources/index.js';
         ScheduleModule.forRoot(),
         ThrottlerModule.forRoot({ throttlers: [{ ttl: 60_000, limit: 100 }] }),
         CacheModule.register({ ttl: 10_000 }),
-        ResourceModule,
     ],
     providers: [
         AppService,
