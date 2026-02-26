@@ -1,0 +1,164 @@
+{
+    "name": "@vnodes/nestjs",
+    "description": "Centeralized nestjs modules",
+    "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-nestjs@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/nestjs"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        "./bull": {
+            "types": "./dist/lib/nestjs/bull.d.ts",
+            "import": "./dist/lib/nestjs/bull.js",
+            "default": "./dist/lib/nestjs/bull.js"
+        },
+        "./cache": {
+            "types": "./dist/lib/nestjs/cache.d.ts",
+            "import": "./dist/lib/nestjs/cache.js",
+            "default": "./dist/lib/nestjs/cache.js"
+        },
+        "./common": {
+            "types": "./dist/lib/nestjs/common.d.ts",
+            "import": "./dist/lib/nestjs/common.js",
+            "default": "./dist/lib/nestjs/common.js"
+        },
+        "./config": {
+            "types": "./dist/lib/nestjs/config.d.ts",
+            "import": "./dist/lib/nestjs/config.js",
+            "default": "./dist/lib/nestjs/config.js"
+        },
+        "./core": {
+            "types": "./dist/lib/nestjs/core.d.ts",
+            "import": "./dist/lib/nestjs/core.js",
+            "default": "./dist/lib/nestjs/core.js"
+        },
+        "./event": {
+            "types": "./dist/lib/nestjs/event.d.ts",
+            "import": "./dist/lib/nestjs/event.js",
+            "default": "./dist/lib/nestjs/event.js"
+        },
+        "./graphql": {
+            "types": "./dist/lib/nestjs/graphql.d.ts",
+            "import": "./dist/lib/nestjs/graphql.js",
+            "default": "./dist/lib/nestjs/graphql.js"
+        },
+        "./jwt": {
+            "types": "./dist/lib/nestjs/jwt.d.ts",
+            "import": "./dist/lib/nestjs/jwt.js",
+            "default": "./dist/lib/nestjs/jwt.js"
+        },
+        "./platform": {
+            "types": "./dist/lib/nestjs/platform.d.ts",
+            "import": "./dist/lib/nestjs/platform.js",
+            "default": "./dist/lib/nestjs/platform.js"
+        },
+        "./schedule": {
+            "types": "./dist/lib/nestjs/schedule.d.ts",
+            "import": "./dist/lib/nestjs/schedule.js",
+            "default": "./dist/lib/nestjs/schedule.js"
+        },
+        "./swagger": {
+            "types": "./dist/lib/nestjs/swagger.d.ts",
+            "import": "./dist/lib/nestjs/swagger.js",
+            "default": "./dist/lib/nestjs/swagger.js"
+        },
+        "./throttler": {
+            "types": "./dist/lib/nestjs/throttler.d.ts",
+            "import": "./dist/lib/nestjs/throttler.js",
+            "default": "./dist/lib/nestjs/throttler.js"
+        },
+        "./websockets": {
+            "types": "./dist/lib/nestjs/websockets.d.ts",
+            "import": "./dist/lib/nestjs/websockets.js",
+            "default": "./dist/lib/nestjs/websockets.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/nestjs/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "libs/nestjs/dist",
+                    "main": "libs/nestjs/src/index.ts",
+                    "tsConfig": "libs/nestjs/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig libs/nestjs/tsconfig.lib.json --entryPoints libs/nestjs/src/index.ts --out public/libs/nestjs",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@nestjs/bull": "^11.0.4",
+        "@nestjs/cache-manager": "^3.1.0",
+        "@nestjs/common": "^11.1.14",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.14",
+        "@nestjs/event-emitter": "^3.0.1",
+        "@nestjs/graphql": "^13.2.4",
+        "@nestjs/jwt": "^11.0.2",
+        "@nestjs/platform-express": "^11.1.14",
+        "@nestjs/schedule": "^6.1.1",
+        "@nestjs/swagger": "^11.2.6",
+        "@nestjs/throttler": "^6.5.0",
+        "@nestjs/websockets": "^11.1.14",
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/names": "workspace:*",
+        "compression": "^1.8.1",
+        "express": "^5.2.1",
+        "helmet": "^8.1.0",
+        "rxjs": "^7.8.2"
+    },
+    "devDependencies": {
+        "@types/compression": "^1.8.1",
+        "@types/express": "^5.0.6",
+        "@types/helmet": "^4.0.0"
+    }
+}

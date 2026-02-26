@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import test, { describe } from 'node:test';
-import { Encryption } from './encryption.js';
+import { DELIMETER, Encryption } from './encryption.js';
 
 describe('encryption', () => {
     test('should work', async () => {
@@ -8,12 +8,17 @@ describe('encryption', () => {
         const encrypter = new Encryption();
         const key = encrypter.generateKey();
         const version = '0.0.1';
-
         const encryptedData = await encrypter.encrypt(data, key, version);
         const decryptedData = await encrypter.decrypt(encryptedData, key);
+
         const parts = encrypter.getParts(encryptedData);
 
-        assert.ok(parts);
-        assert.ok(decryptedData);
+        assert.equal(encryptedData.split(DELIMETER).length, 4);
+        assert.ok(parts.authTag);
+        assert.ok(parts.iv);
+        assert.ok(parts.content);
+        assert.ok(parts.version);
+        assert.equal(parts.version, Buffer.from('0.0.1').toString('hex'));
+        assert.equal(decryptedData, data);
     });
 });

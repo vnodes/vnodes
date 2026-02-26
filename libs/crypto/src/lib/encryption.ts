@@ -1,7 +1,6 @@
 import { Buffer } from 'node:buffer';
 import type { CipherGCM, DecipherGCM } from 'node:crypto';
 import { createCipheriv, createDecipheriv, randomBytes } from 'node:crypto';
-import { Readable } from 'node:stream';
 
 export type EncryptionParts = {
     version: string;
@@ -10,7 +9,7 @@ export type EncryptionParts = {
     content: string;
 };
 
-const delimeter = ':::';
+export const DELIMETER = ':::';
 
 /**
  * A utility class for aes-256-gcm encryption and decryption operations.
@@ -18,13 +17,10 @@ const delimeter = ':::';
  */
 export class Encryption {
     // Static Properties (Configuration)
-
-    constructor(
-        public readonly ALGORITHM: string = 'aes-256-gcm',
-        public readonly KEY_LENGTH: number = 32,
-        public readonly IV_LENGTH: number = 12,
-        public readonly ENCODING: BufferEncoding = 'hex',
-    ) {}
+    public readonly ALGORITHM: string = 'aes-256-gcm';
+    public readonly KEY_LENGTH: number = 32;
+    public readonly IV_LENGTH: number = 12;
+    public readonly ENCODING: BufferEncoding = 'hex';
 
     /**
      * Validates that the provided key is the correct length for the chosen algorithm.
@@ -55,34 +51,22 @@ export class Encryption {
         const cipher = createCipheriv(this.ALGORITHM, keyBuffer, iv) as CipherGCM;
 
         return new Promise((resolve, reject) => {
-            let ciphertext = '';
+            try {
+                let ciphertext = cipher.update(data).toString(this.ENCODING);
+                ciphertext = ciphertext + cipher.final().toString(this.ENCODING);
+                const authTag = cipher.getAuthTag();
 
-            // 3. Create a readable stream from the input data
-            const readableStream = Readable.from([data]);
-
-            // 4. Pipe the data through the cipher
-            readableStream
-                .pipe(cipher)
-                .on('data', (chunk: Buffer) => {
-                    // Collect the encrypted data chunk by chunk, converting to hex
-                    ciphertext += chunk.toString(this.ENCODING);
-                })
-                .on('end', () => {
-                    const authTag: Buffer = cipher.getAuthTag();
-
-                    // Resolve with the combined formatted string
-                    resolve(
-                        [
-                            version.toString(),
-                            iv.toString(this.ENCODING),
-                            authTag.toString(this.ENCODING),
-                            ciphertext,
-                        ].join(delimeter),
-                    );
-                })
-                .on('error', (err) => {
-                    reject(err);
-                });
+                resolve(
+                    [
+                        Buffer.from(version.toString()).toString('hex'),
+                        iv.toString(this.ENCODING),
+                        authTag.toString(this.ENCODING),
+                        ciphertext,
+                    ].join(DELIMETER),
+                );
+            } catch (err) {
+                reject(err);
+            }
         });
     }
 
@@ -92,7 +76,7 @@ export class Encryption {
      * @returns parts {@link EncryptionParts}
      */
     public getParts(encryptedData: string): EncryptionParts {
-        const parts = encryptedData.split(delimeter);
+        const parts = encryptedData.split(DELIMETER);
         if (parts.length !== 4) {
             throw new Error(`Invalid encripted data!`);
         }

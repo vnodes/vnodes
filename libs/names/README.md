@@ -10,7 +10,7 @@
 
 ## @vnodes/names
 
-Names library that provides all type of names
+Names
 
 ## Installation
 
