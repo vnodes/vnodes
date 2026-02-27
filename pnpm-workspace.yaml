@@ -15,6 +15,7 @@ onlyBuiltDependencies:
   - bcrypt
   - better-sqlite3
   - esbuild
+  - msgpackr-extract
   - nx
   - prisma
   - unrs-resolver

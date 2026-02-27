@@ -1,6 +1,12 @@
-import { Logger, type Type } from '@nestjs/common';
+import {
+    ClassSerializerInterceptor,
+    Logger,
+    type Type,
+    UnprocessableEntityException,
+    ValidationPipe,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import compresssion from 'compression';
 import helmet from 'helmet';
@@ -38,6 +44,21 @@ export async function boot(options: BootOptions) {
 
     app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: false }));
     app.use(compresssion());
+
+    app.useGlobalPipes(
+        new ValidationPipe({
+            transform: true,
+            errorHttpStatusCode: 422,
+            forbidNonWhitelisted: true,
+            transformOptions: {
+                enableImplicitConversion: true,
+            },
+            exceptionFactory(errors) {
+                throw new UnprocessableEntityException({ errors });
+            },
+        }),
+    );
+    app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
     const swaggerConfig = new DocumentBuilder()
         .setTitle(APP_ID)

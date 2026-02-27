@@ -24,6 +24,11 @@
     "exports": {
         "./package.json": "./package.json",
         ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./custom": {
             "types": "./dist/lib/custom/index.d.ts",
             "import": "./dist/lib/custom/index.js",
             "default": "./dist/lib/custom/index.js"
@@ -112,6 +117,16 @@
             "types": "./dist/lib/prisma/index.d.ts",
             "import": "./dist/lib/prisma/index.js",
             "default": "./dist/lib/prisma/index.js"
+        },
+        "./validator": {
+            "types": "./dist/lib/nestjs/validator.d.ts",
+            "import": "./dist/lib/nestjs/validator.js",
+            "default": "./dist/lib/nestjs/validator.js"
+        },
+        "./transformer": {
+            "types": "./dist/lib/nestjs/transformer.d.ts",
+            "import": "./dist/lib/nestjs/transformer.js",
+            "default": "./dist/lib/nestjs/transformer.js"
         }
     },
     "files": [

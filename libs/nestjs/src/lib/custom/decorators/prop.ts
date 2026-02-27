@@ -1,6 +1,6 @@
 import type { Type as ClsType } from '@nestjs/common';
 import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty } from '@nestjs/swagger';
-import { type ClassConstructor, Type } from 'class-transformer';
+import { type ClassConstructor, Expose, Type } from 'class-transformer';
 import {
     ArrayMaxSize,
     ArrayMinSize,
@@ -253,6 +253,7 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
 
         if (!validationOptions) {
             add(ApiProperty(options as __ApiPropertyOptions));
+            add(Expose());
 
             if (options.required === true) {
                 add(IsDefined(validationOptions));
