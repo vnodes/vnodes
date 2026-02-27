@@ -1,0 +1,92 @@
+{
+    "name": "@vnodes/sample-api",
+    "description": "Sample api",
+    "homepage": "https://vnodes.github.io/vnodes/apps/sample-api",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-sample-api@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/apps/sample-api"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/apps/sample-api/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "apps/sample-api/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "apps/sample-api/dist",
+                    "main": "apps/sample-api/src/serve.ts",
+                    "tsConfig": "apps/sample-api/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig apps/sample-api/tsconfig.lib.json --entryPoints apps/sample-api/src/index.ts --out public/apps/sample-api",
+                    "cwd": "{workspaceRoot}"
+                }
+            },
+            "serve": {
+                "executor": "@nx/js:node",
+                "options": {
+                    "buildTarget": "@vnodes/sample-api:build",
+                    "watch": true
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@vnodes/nestjs": "workspace:*"
+    },
+    "devDependencies": {
+        "prisma": "7.3.0"
+    }
+}

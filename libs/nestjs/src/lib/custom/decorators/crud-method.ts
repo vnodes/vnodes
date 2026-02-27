@@ -10,11 +10,11 @@ import {
     ApiUnauthorizedResponse,
     ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
-import { CrudMethodName, ParamKey, ParamKeyTemplate } from '../../constants/index.js';
+import { OperationName, ParamKey, ParamKeyTemplate } from '../../constants/index.js';
 import type { CrudControllerOptions } from './crud-controller-options.js';
 
 /**
- * Autowire method decorator by method name convention ({@link CrudMethodName})
+ * Autowire method decorator by method name convention ({@link OperationName})
  *
  * @param options object {@link CrudControllerOptions}
  * @returns decorator {@link MethodDecorator}
@@ -23,34 +23,34 @@ export function CrudMethod(options: CrudControllerOptions): MethodDecorator {
     return (...args) => {
         const methodName = args[1].toString();
 
-        if (!(methodName in CrudMethodName)) {
+        if (!(methodName in OperationName)) {
             return;
         }
 
         const target = args[0];
         const className = target.constructor.name;
 
-        switch (methodName as CrudMethodName) {
-            case CrudMethodName.CREATE_ONE: {
+        switch (methodName as OperationName) {
+            case OperationName.CREATE_ONE: {
                 Post()(...args);
                 ApiParam({ name: ParamKey.ID, required: true })(...args);
                 ApiCreatedResponse({ type: options.readDto })(...args);
                 ApiUnprocessableEntityResponse({ description: 'Input validation error' })(...args);
                 break;
             }
-            case CrudMethodName.FIND_ALL: {
+            case OperationName.FIND_ALL: {
                 Get()(...args);
                 ApiOkResponse({ type: [options.readDto] })(...args);
                 break;
             }
-            case CrudMethodName.FIND_ONE_BY_ID: {
+            case OperationName.FIND_ONE_BY_ID: {
                 Get(ParamKeyTemplate.ID)(...args);
                 ApiParam({ name: ParamKey.ID, required: true })(...args);
                 ApiOkResponse({ type: [options.readDto] })(...args);
                 ApiNotFoundResponse({ description: `Entity not found` })(...args);
                 break;
             }
-            case CrudMethodName.UPDATE_ONE_BY_ID: {
+            case OperationName.UPDATE_ONE_BY_ID: {
                 Put(ParamKeyTemplate.ID)(...args);
                 ApiParam({ name: ParamKey.ID, required: true })(...args);
                 ApiBody({ type: options.createDto })(...args);
@@ -58,7 +58,7 @@ export function CrudMethod(options: CrudControllerOptions): MethodDecorator {
                 ApiNotFoundResponse({ description: `Entity not found` })(...args);
                 break;
             }
-            case CrudMethodName.DELETE_ONE_BY_ID: {
+            case OperationName.DELETE_ONE_BY_ID: {
                 Delete(ParamKeyTemplate.ID)(...args);
                 ApiParam({ name: ParamKey.ID, required: true })(...args);
                 ApiOkResponse({ type: options.readDto })(...args);

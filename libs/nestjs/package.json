@@ -21,9 +21,6 @@
     ],
     "version": "0.0.1",
     "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
     "exports": {
         "./package.json": "./package.json",
         ".": {
@@ -110,6 +107,11 @@
             "types": "./dist/lib/nestjs/websockets.d.ts",
             "import": "./dist/lib/nestjs/websockets.js",
             "default": "./dist/lib/nestjs/websockets.js"
+        },
+        "./prisma": {
+            "types": "./dist/lib/prisma/index.d.ts",
+            "import": "./dist/lib/prisma/index.js",
+            "default": "./dist/lib/prisma/index.js"
         }
     },
     "files": [
@@ -169,15 +171,24 @@
         "@nestjs/swagger": "^11.2.6",
         "@nestjs/throttler": "^6.5.0",
         "@nestjs/websockets": "^11.1.14",
+        "@prisma/adapter-pg": "7.3.0",
+        "@prisma/client": "7.3.0",
         "@swc/helpers": "~0.5.11",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.3",
         "compression": "^1.8.1",
         "express": "^5.2.1",
         "helmet": "^8.1.0",
+        "pg": "^8.18.0",
         "rxjs": "^7.8.2"
     },
     "devDependencies": {
+        "@nestjs/testing": "^11.1.13",
         "@types/compression": "^1.8.1",
         "@types/express": "^5.0.6",
-        "@types/helmet": "^4.0.0"
+        "@types/helmet": "^4.0.0",
+        "@types/node": "20.19.9",
+        "@types/pg": "^8.16.0",
+        "@vnodes/nestjs": "workspace:*"
     }
 }
