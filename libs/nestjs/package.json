@@ -26,6 +26,21 @@
     "types": "./dist/index.d.ts",
     "exports": {
         "./package.json": "./package.json",
+        ".": {
+            "types": "./dist/lib/custom/index.d.ts",
+            "import": "./dist/lib/custom/index.js",
+            "default": "./dist/lib/custom/index.js"
+        },
+        "./helpers": {
+            "types": "./dist/lib/helpers/index.d.ts",
+            "import": "./dist/lib/helpers/index.js",
+            "default": "./dist/lib/helpers/index.js"
+        },
+        "./constants": {
+            "types": "./dist/lib/constants/index.d.ts",
+            "import": "./dist/lib/constants/index.js",
+            "default": "./dist/lib/constants/index.js"
+        },
         "./bull": {
             "types": "./dist/lib/nestjs/bull.d.ts",
             "import": "./dist/lib/nestjs/bull.js",
@@ -66,10 +81,15 @@
             "import": "./dist/lib/nestjs/jwt.js",
             "default": "./dist/lib/nestjs/jwt.js"
         },
-        "./platform": {
-            "types": "./dist/lib/nestjs/platform.d.ts",
-            "import": "./dist/lib/nestjs/platform.js",
-            "default": "./dist/lib/nestjs/platform.js"
+        "./platform-express": {
+            "types": "./dist/lib/nestjs/platform-express.d.ts",
+            "import": "./dist/lib/nestjs/platform-express.js",
+            "default": "./dist/lib/nestjs/platform-express.js"
+        },
+        "./express": {
+            "types": "./dist/lib/nestjs/express.d.ts",
+            "import": "./dist/lib/nestjs/express.js",
+            "default": "./dist/lib/nestjs/express.js"
         },
         "./schedule": {
             "types": "./dist/lib/nestjs/schedule.d.ts",
@@ -150,7 +170,6 @@
         "@nestjs/throttler": "^6.5.0",
         "@nestjs/websockets": "^11.1.14",
         "@swc/helpers": "~0.5.11",
-        "@vnodes/names": "workspace:*",
         "compression": "^1.8.1",
         "express": "^5.2.1",
         "helmet": "^8.1.0",

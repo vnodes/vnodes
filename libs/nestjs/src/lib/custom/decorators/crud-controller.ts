@@ -1,31 +1,35 @@
-import { Controller, type Type } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { names } from '@vnodes/names';
-
-export type CrudControllerOptions = {
-    readDto: Type;
-    createDto: Type;
-    updateDto: Type;
-    queryDto: Type;
-};
-
-export const EXTRACT_RESOURCE_NAME_EXP = /Controller/;
+import { pluralize, resourceNames } from '../../helpers/index.js';
+import type { CrudControllerOptions } from './crud-controller-options.js';
+import { CrudMethod } from './crud-method.js';
 
 /**
- * Autowire nestjs resource controller with crud operations
+ * Autowire controller decorator and method decorators ({@link CrudMethod})
+ * by class name and method name convention ({@link CrudMethodName})
  *
- * @returns
+ * @returns decorator {@link ClassDecorator}
  */
 export function CrudController(options: CrudControllerOptions): ClassDecorator {
     return (...args) => {
-        const targetClass = args[0];
-        const targetClassName = targetClass.name;
-        const __resourceName = targetClassName.replace(EXTRACT_RESOURCE_NAME_EXP, '');
-        const { kebabCase: resourcePath } = names(__resourceName);
+        const target = args[0];
+        const className = target.name;
+        const prototype = target.prototype;
+
+        const { kebabCase } = resourceNames(target.name);
+        const resourcePath = pluralize(kebabCase);
 
         Controller(resourcePath)(...args);
         ApiBearerAuth()(...args);
 
-        //
+        const controllerMethodNames = Object.getOwnPropertyNames(prototype).filter((e) => e !== 'constructor');
+
+        for (const methodName of controllerMethodNames) {
+            const descriptor = Object.getOwnPropertyDescriptor(prototype, methodName);
+            if (!descriptor)
+                throw new Error(`The method, ${methodName} in the class, ${className} does not have a descriptor`);
+
+            CrudMethod(options)(prototype, methodName, descriptor);
+        }
     };
 }
