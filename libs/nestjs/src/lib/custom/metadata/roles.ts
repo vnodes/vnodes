@@ -4,6 +4,6 @@ import { Metadata } from '../../constants/index.js';
 
 export const Roles = (...roles: string[]) => SetMetadata(Metadata.ROLES, roles.join(','));
 
-export function getRequiredRoles(reflector: Reflector, context: ExecutionContext): string {
-    return reflector.get<string>(Metadata.ROLES, context.getClass());
+export function getRequiredRoles(reflector: Reflector, context: ExecutionContext): string | undefined {
+    return reflector.get<string | undefined>(Metadata.ROLES, context.getClass());
 }

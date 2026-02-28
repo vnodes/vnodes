@@ -83,7 +83,8 @@ export class AuthUserManager {
     }
 
     async signToken() {
-        return await this.jwt.signAsync(this.toJwtPayload());
+        const token = await this.jwt.signAsync(this.toJwtPayload());
+        return token;
     }
 
     async verifyToken(jwtToken: string) {
