@@ -50,4 +50,4 @@ import { Env } from '../../constants/index.js';
     ],
     exports: [ConfigModule, EventEmitterModule, ScheduleModule, CacheModule, ThrottlerModule],
 })
-export class CommonModule {}
+export class RootModule {}

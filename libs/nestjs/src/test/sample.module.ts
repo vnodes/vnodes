@@ -1,5 +1,5 @@
 import { Module } from '@vnodes/nestjs/common';
-import { CommonModule } from '../lib/custom/index.js';
+import { RootModule } from '../lib/custom/index.js';
 
-@Module({ imports: [CommonModule] })
+@Module({ imports: [RootModule] })
 export class SampleModule {}

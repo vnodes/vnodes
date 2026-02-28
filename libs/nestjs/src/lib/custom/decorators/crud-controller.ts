@@ -1,10 +1,9 @@
-import { Controller, Logger } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { pluralize, resourceNames } from '../../helpers/index.js';
+import { ResourceName } from '../metadata/resource-name.js';
 import type { CrudControllerOptions } from './crud-controller-options.js';
 import { CrudMethod } from './crud-method.js';
-
-const logger = new Logger('CrudController');
 
 /**
  * Autowire controller decorator and method decorators ({@link CrudMethod})
@@ -18,10 +17,9 @@ export function CrudController(options?: CrudControllerOptions): ClassDecorator 
         const className = target.name;
         const prototype = target.prototype;
 
-        const { kebabCase } = resourceNames(target.name);
+        const { kebabCase, pascalCase } = resourceNames(target.name);
         const resourcePath = pluralize(kebabCase);
 
-        logger.debug(`resource path : ${resourcePath}`);
         const controllerMethodNames = Object.getOwnPropertyNames(prototype).filter((e) => e !== 'constructor');
 
         for (const methodName of controllerMethodNames) {
@@ -30,7 +28,7 @@ export function CrudController(options?: CrudControllerOptions): ClassDecorator 
                 throw new Error(`The method, ${methodName} in the class, ${className} does not have a descriptor`);
             CrudMethod(options)(prototype, methodName, descriptor);
         }
-
+        ResourceName(pascalCase)(...args);
         Controller(resourcePath)(...args);
         ApiBearerAuth()(...args);
 

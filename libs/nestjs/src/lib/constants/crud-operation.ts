@@ -1,4 +1,4 @@
-export enum OperationName {
+export enum CrudOperation {
     FIND_ALL = 'findMany',
     FIND_ONE_BY_ID = 'findOneById',
     UPDATE_ONE_BY_ID = 'updateOneById',

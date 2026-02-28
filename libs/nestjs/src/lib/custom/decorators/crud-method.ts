@@ -9,14 +9,17 @@ import {
     ApiUnauthorizedResponse,
     ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
-import { OperationName, ParamKeyTemplate } from '../../constants/index.js';
+import { resourceNames } from 'src/lib/helpers/resource-names.js';
+import { CrudOperation, ParamKeyTemplate } from '../../constants/index.js';
 import { names } from '../../helpers/names.js';
+import { OperationName } from '../metadata/operation-name.js';
+import { Permissions } from '../metadata/permissions.js';
 import { type CrudControllerOptions, resolveCrudControllerOptions } from './crud-controller-options.js';
 
 const logger = new Logger('CrudMethod');
 
 /**
- * Autowire method decorator by method name convention ({@link OperationName})
+ * Autowire method decorator by method name convention ({@link CrudOperation})
  *
  * @param options object {@link CrudControllerOptions}
  * @returns decorator {@link MethodDecorator}
@@ -26,12 +29,13 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
 
     return (...args) => {
         const target = args[0];
+
         const methodName = args[1].toString();
 
         logger.debug(`method name: ${methodName}`);
 
-        switch (methodName as OperationName) {
-            case OperationName.CREATE_ONE: {
+        switch (methodName as CrudOperation) {
+            case CrudOperation.CREATE_ONE: {
                 Post()(...args);
                 ApiCreatedResponse({ type: options.readDto })(...args);
                 ApiUnprocessableEntityResponse({ description: 'Input validation error' })(...args);
@@ -40,14 +44,14 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
 
                 break;
             }
-            case OperationName.FIND_ALL: {
+            case CrudOperation.FIND_ALL: {
                 Get()(...args);
                 ApiOkResponse({ type: [options.readDto] })(...args);
                 Query()(target, methodName, 0);
                 Reflect.defineMetadata('design:paramtypes', [options.queryDto], target, methodName);
                 break;
             }
-            case OperationName.FIND_ONE_BY_ID: {
+            case CrudOperation.FIND_ONE_BY_ID: {
                 Get(ParamKeyTemplate.ID)(...args);
                 ApiOkResponse({ type: options.readDto })(...args);
                 ApiNotFoundResponse({ description: `Entity not found` })(...args);
@@ -56,7 +60,7 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
                 Reflect.defineMetadata('design:paramtypes', [String], target, methodName);
                 break;
             }
-            case OperationName.UPDATE_ONE_BY_ID: {
+            case CrudOperation.UPDATE_ONE_BY_ID: {
                 Put(ParamKeyTemplate.ID)(...args);
                 ApiOkResponse({ type: options.readDto })(...args);
                 ApiNotFoundResponse({ description: `Entity not found` })(...args);
@@ -66,7 +70,7 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
                 Reflect.defineMetadata('design:paramtypes', [String, options.updateDto], target, methodName);
                 break;
             }
-            case OperationName.DELETE_ONE_BY_ID: {
+            case CrudOperation.DELETE_ONE_BY_ID: {
                 Delete(ParamKeyTemplate.ID)(...args);
                 ApiOkResponse({ type: options.readDto })(...args);
                 ApiNotFoundResponse({ description: `Entity not found` })(...args);
@@ -76,9 +80,17 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
                 break;
             }
             default: {
-                throw new Error(`${methodName} is not of ${Object.values(OperationName)}`);
+                throw new Error(`${methodName} is not of ${Object.values(CrudOperation)}`);
             }
         }
+
+        const className = target.constructor.name;
+        const { pascalCase: resourceName } = resourceNames(className);
+
+        const requiredPermission = `${resourceName}.${methodName}`;
+
+        OperationName(methodName)(...args);
+        Permissions(requiredPermission)(...args);
 
         ApiOperation({ summary: `${names(methodName).sentenceCase}` })(...args);
         ApiInternalServerErrorResponse({ description: 'Internal server error' })(...args);
