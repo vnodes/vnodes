@@ -1,0 +1,15 @@
+{
+    "prisma model": {
+        "prefix": "prisma model",
+        "body": [
+            "model $1 {",
+            "  id        Int       @id @default(autoincrement())",
+            "  createdAt DateTime  @default(now())",
+            "  updatedAt DateTime  @updatedAt",
+            "  deletedAt DateTime?",
+            "$0",
+            "}"
+        ],
+        "scope": "prisma"
+    }
+}

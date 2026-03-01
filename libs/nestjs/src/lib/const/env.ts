@@ -1,4 +1,6 @@
 export enum Env {
+    DOCS_PATH = 'DOCS_PATH',
+    API_PREFIX = 'API_PREFIX',
     APP_ID = 'APP_ID',
     APP_DESCRIPTION = 'APP_DESCRIPTION',
     PORT = 'PORT',

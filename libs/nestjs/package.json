@@ -33,10 +33,15 @@
             "import": "./dist/lib/auth/index.js",
             "default": "./dist/lib/auth/index.js"
         },
-        "./boot": {
-            "types": "./dist/lib/boot/index.d.ts",
-            "import": "./dist/lib/boot/index.js",
-            "default": "./dist/lib/boot/index.js"
+        "./boot-express": {
+            "types": "./dist/lib/boot-express/index.d.ts",
+            "import": "./dist/lib/boot-express/index.js",
+            "default": "./dist/lib/boot-express/index.js"
+        },
+        "./boot-fastify": {
+            "types": "./dist/lib/boot-fastify/index.d.ts",
+            "import": "./dist/lib/boot-fastify/index.js",
+            "default": "./dist/lib/boot-fastify/index.js"
         },
         "./const": {
             "types": "./dist/lib/const/index.d.ts",
@@ -213,6 +218,9 @@
         }
     },
     "dependencies": {
+        "@fastify/compress": "^8.3.1",
+        "@fastify/helmet": "^13.0.2",
+        "@fastify/static": "^9.0.0",
         "@nestjs/bull": "^11.0.4",
         "@nestjs/cache-manager": "^3.1.0",
         "@nestjs/common": "^11.1.14",
@@ -222,6 +230,7 @@
         "@nestjs/graphql": "^13.2.4",
         "@nestjs/jwt": "^11.0.2",
         "@nestjs/platform-express": "^11.1.14",
+        "@nestjs/platform-fastify": "^11.1.14",
         "@nestjs/schedule": "^6.1.1",
         "@nestjs/swagger": "^11.2.6",
         "@nestjs/throttler": "^6.5.0",

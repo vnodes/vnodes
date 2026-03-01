@@ -10,7 +10,7 @@
 
 ## @vnodes/nestjs
 
-- [ ] Add project description
+Nestjs  wrapper
 
 ## Installation
 

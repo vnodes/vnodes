@@ -1,1 +1,1 @@
-export { boot } from '@vnodes/nestjs/boot';
+export { boot } from '@vnodes/nestjs/boot-fastify';

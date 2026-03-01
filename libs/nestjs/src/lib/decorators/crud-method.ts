@@ -1,19 +1,20 @@
-import { Body, Delete, Get, Param, Post, Put, Query, UseInterceptors } from '@nestjs/common';
+import { UseInterceptors } from '@nestjs/common';
 import {
-    ApiCreatedResponse,
     ApiForbiddenResponse,
     ApiInternalServerErrorResponse,
-    ApiNotFoundResponse,
-    ApiOkResponse,
     ApiOperation,
     ApiUnauthorizedResponse,
-    ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
-import { CrudOperation, ParamKeyTemplate } from '../const/index.js';
+import { CrudOperation } from '../const/index.js';
 import { CacheEvictInterceptor } from '../interceptors/index.js';
 import { OperationName, Permissions } from '../metadata/index.js';
 import { names, resourceNames } from '../names/index.js';
+import { CreateMethod } from './create-method.js';
 import { CrudControllerOptions, resolveCrudControllerOptions } from './crud-controller-options.js';
+import { DeleteOneByIdMethod } from './delete-one-by-id-method.js';
+import { FindManyMethod } from './find-many-method.js';
+import { FindOneByIdMethod } from './find-one-by-id-mehtod.js';
+import { UpdateOneByIdMethod } from './update-one-by-id-method.js';
 
 /**
  * Autowire method decorator by method name convention ({@link CrudOperation})
@@ -31,47 +32,23 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
 
         switch (methodName as CrudOperation) {
             case CrudOperation.CREATE_ONE: {
-                Post()(...args);
-                ApiCreatedResponse({ type: options.readDto })(...args);
-                ApiUnprocessableEntityResponse({ description: 'Input validation error' })(...args);
-                Body()(target, methodName, 0);
-                Reflect.defineMetadata('design:paramtypes', [options.createDto], target, methodName);
-
+                CreateMethod(options)(...args);
                 break;
             }
             case CrudOperation.FIND_ALL: {
-                Get()(...args);
-                ApiOkResponse({ type: [options.readDto] })(...args);
-                Query()(target, methodName, 0);
-                Reflect.defineMetadata('design:paramtypes', [options.queryDto], target, methodName);
+                FindManyMethod(options)(...args);
                 break;
             }
             case CrudOperation.FIND_ONE_BY_ID: {
-                Get(ParamKeyTemplate.ID)(...args);
-                ApiOkResponse({ type: options.readDto })(...args);
-                ApiNotFoundResponse({ description: `Entity not found` })(...args);
-
-                Param('id')(target, methodName, 0);
-                Reflect.defineMetadata('design:paramtypes', [String], target, methodName);
+                FindOneByIdMethod(options)(...args);
                 break;
             }
             case CrudOperation.UPDATE_ONE_BY_ID: {
-                Put(ParamKeyTemplate.ID)(...args);
-                ApiOkResponse({ type: options.readDto })(...args);
-                ApiNotFoundResponse({ description: `Entity not found` })(...args);
-
-                Param('id')(target, methodName, 0);
-                Body()(target, methodName, 1);
-                Reflect.defineMetadata('design:paramtypes', [String, options.updateDto], target, methodName);
+                UpdateOneByIdMethod(options)(...args);
                 break;
             }
             case CrudOperation.DELETE_ONE_BY_ID: {
-                Delete(ParamKeyTemplate.ID)(...args);
-                ApiOkResponse({ type: options.readDto })(...args);
-                ApiNotFoundResponse({ description: `Entity not found` })(...args);
-
-                Param('id')(target, methodName, 0);
-                Reflect.defineMetadata('design:paramtypes', [String], target, methodName);
+                DeleteOneByIdMethod(options)(...args);
                 break;
             }
             default: {
@@ -79,6 +56,7 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
             }
         }
 
+        // Apply interceptors
         switch (methodName as CrudOperation) {
             case CrudOperation.UPDATE_ONE_BY_ID:
             case CrudOperation.DELETE_ONE_BY_ID:
@@ -97,6 +75,7 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
 
         const requiredPermission = `${resourceName}.${methodName}`;
 
+        // APply common decorators
         OperationName(methodName)(...args);
         Permissions(requiredPermission)(...args);
 

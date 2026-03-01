@@ -8,6 +8,12 @@ export type CrudControllerOptions = {
     queryDto?: Type;
 };
 
+export type CreateMethodOptions = Pick<CrudControllerOptions, 'createDto' | 'readDto'>;
+export type UpdateMethodOptions = Required<Pick<CrudControllerOptions, 'updateDto' | 'readDto'>>;
+export type DeleteMethodOptions = Required<Pick<CrudControllerOptions, 'readDto'>>;
+export type FindManyMethodOptions = Required<Pick<CrudControllerOptions, 'queryDto' | 'readDto'>>;
+export type FindOneByIdOptions = Required<Pick<CrudControllerOptions, 'readDto'>>;
+
 class DtoClass {
     @Prop() key: string;
     @Prop() value: string;

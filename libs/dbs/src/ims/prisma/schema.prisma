@@ -1,0 +1,52 @@
+generator client {
+  provider               = "prisma-client"
+  output                 = "../src"
+  runtime                = "nodejs"
+  importFileExtension    = "js"
+  generatedFileExtension = "ts"
+  moduleFormat           = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Store {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+}
+
+model Manufacturer {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+}
+
+model Product {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name        String
+  description String?
+  upc         String
+  sku         String  @unique
+
+  parent   Product? @relation("variants", fields: [parentId], references: [id], onDelete: SetNull)
+  parentId Int?
+
+  variants Product[] @relation("variants")
+
+  @@unique([name, parentId])
+  @@unique([upc, parentId])
+  @@index([name])
+  @@index([upc])
+}

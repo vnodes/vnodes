@@ -28,6 +28,8 @@ export function CrudController(options?: CrudControllerOptions): ClassDecorator 
                 throw new Error(`The method, ${methodName} in the class, ${className} does not have a descriptor`);
             CrudMethod(options)(prototype, methodName, descriptor);
         }
+
+        // Apply common decorators
         ResourceName(pascalCase)(...args);
         Controller(resourcePath)(...args);
         ApiBearerAuth()(...args);
