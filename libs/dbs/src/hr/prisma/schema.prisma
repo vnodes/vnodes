@@ -16,42 +16,168 @@ enum Gender {
   Female
 }
 
-model Occupation {
-  id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+enum ContactType {
+  Customer
+  Service
+  Vendor
+  Partner
+  Supplier
+  Manufacturer
+  Competitor
+}
 
-  name String @unique
-
-  users User[]
+enum PersonalOrWork {
+  Personal
+  Work
 }
 
 model Department {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   name String @unique
+
+  employees Employee[]
 }
 
-model User {
+model Occupation {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+
+  employees Employee[]
+}
+
+model Employee {
   id        Int       @id @default(autoincrement())
   uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  firstName  String
-  lastName   String
-  middleName String
+  firstName    String
+  lastName     String
+  middleName   String?
+  preferedName String?
+  gender       Gender
+  dob          DateTime
+  taxId        String
+  notes        String?
 
-  gender Gender
-  dob    DateTime
+  occupation   Occupation? @relation(fields: [occupationId], references: [id])
+  occupationId Int?
 
-  occupation   Occupation @relation(fields: [occupationId], references: [id], onDelete: Restrict)
-  occupationId Int
+  department   Department? @relation(fields: [departmentId], references: [id])
+  departmentId Int?
+
+  contact Contact?
+
+  clockIns ClockIn[]
+}
+
+model Contact {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  primaryEmail   Email? @relation("primary", fields: [primaryEmailId], references: [id], onDelete: SetNull)
+  primaryEmailId Int?
+
+  primaryPhone   Phone? @relation("primary", fields: [primaryPhoneId], references: [id], onDelete: SetNull)
+  primaryPhoneId Int?
+
+  primaryAddress   Address? @relation("primary", fields: [primaryAddressId], references: [id], onDelete: SetNull)
+  primaryAddressId Int?
+
+  emails    Email[]   @relation("owner")
+  phones    Phone[]   @relation("owner")
+  addresses Address[] @relation("owner")
+
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId Int      @unique
+}
+
+model Email {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  contactType PersonalOrWork @default(Personal)
+  email       String
+  notes       String?
+  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  contactId   Int
+  openTime    Json?          @default("[]")
+  contacts    Contact[]      @relation("primary")
+
+  @@unique([contactId, email])
+  @@index([email])
+  @@index([contactId])
+}
+
+model Phone {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  contactType PersonalOrWork @default(Personal)
+  phone       String
+  notes       String?
+  openTime    Json?          @default("[]")
+  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  contactId   Int
+
+  contacts Contact[] @relation("primary")
+
+  @@unique([contactId, phone])
+  @@index([phone])
+  @@index([contactId])
+}
+
+model Address {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  contactType PersonalOrWork @default(Personal)
+  street      String
+  city        String
+  notes       String?
+  openTime    Json?          @default("[]")
+
+  unit     String?
+  province String?
+  state    String?
+  country  String?
+  zip      String?
+
+  contact   Contact @relation("owner", fields: [contactId], references: [id])
+  contactId Int
+
+  contacts Contact[] @relation("primary")
+
+  @@index([contactId])
+}
+
+model ClockIn {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  clockIn   DateTime @default(now())
+  clockOut  DateTime @updatedAt
+  completed Boolean  @default(false)
+
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
 }

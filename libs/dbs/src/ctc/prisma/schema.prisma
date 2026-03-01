@@ -16,22 +16,23 @@ enum Gender {
   Female
 }
 
-enum UserType {
-  Employee
+enum ContactType {
   Customer
+  Service
+  Vendor
   Partner
   Supplier
   Manufacturer
+  Competitor
 }
 
-enum ContactType {
+enum PersonalOrWork {
   Personal
   Work
 }
 
 model Department {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
@@ -39,6 +40,17 @@ model Department {
   name String @unique
 
   contacts Contact[]
+}
+
+model Industry {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+
+  companies Company[]
 }
 
 model Company {
@@ -47,14 +59,34 @@ model Company {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name String @unique
+  industry   Industry? @relation(fields: [industryId], references: [id])
+  industryId Int?
+  name       String    @unique
+  profiles   String[]
+  openTime   Json?     @default("[]")
 
   contacts Contact[]
+  taxInfo  TaxInfo?
+}
+
+model TaxInfo {
+  id        Int      @id @default(autoincrement())
+  updatedAt DateTime @updatedAt
+
+  taxNumber     String  @unique // EIN, VAT, or Social Security
+  taxCountry    String // The jurisdiction for this tax ID
+  isTaxExempt   Boolean @default(false)
+  exemptionNote String?
+
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId Int?     @unique
+
+  contact   Contact? @relation(fields: [contactId], references: [id])
+  contactId Int?     @unique
 }
 
 model Occupation {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
@@ -66,19 +98,18 @@ model Occupation {
 
 model Contact {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
+  uuid      String    @unique @default(uuid(7)) @db.Uuid
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
+  userType     ContactType
   firstName    String
   lastName     String
-  middleName   String
+  middleName   String?
   preferedName String?
-
-  userType UserType
-
-  gender Gender
+  gender       Gender?
+  profiles     String[]
 
   company   Company? @relation(fields: [companyId], references: [id])
   companyId Int?
@@ -101,6 +132,8 @@ model Contact {
   emails    Email[]   @relation("owner")
   phones    Phone[]   @relation("owner")
   addresses Address[] @relation("owner")
+
+  taxInfo TaxInfo?
 }
 
 model Email {
@@ -109,14 +142,13 @@ model Email {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
+  contactType PersonalOrWork @default(Personal)
   email       String
-  contactType ContactType @default(Personal)
   notes       String?
-
-  contact   Contact @relation("owner", fields: [contactId], references: [id])
-  contactId Int
-
-  contacts Contact[] @relation("primary")
+  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  contactId   Int
+  openTime    Json?          @default("[]")
+  contacts    Contact[]      @relation("primary")
 
   @@unique([contactId, email])
   @@index([email])
@@ -129,12 +161,12 @@ model Phone {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
+  contactType PersonalOrWork @default(Personal)
   phone       String
-  contactType ContactType @default(Personal)
   notes       String?
-
-  contact   Contact @relation("owner", fields: [contactId], references: [id])
-  contactId Int
+  openTime    Json?          @default("[]")
+  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  contactId   Int
 
   contacts Contact[] @relation("primary")
 
@@ -149,10 +181,11 @@ model Address {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
+  contactType PersonalOrWork @default(Personal)
   street      String
   city        String
-  contactType ContactType @default(Personal)
   notes       String?
+  openTime    Json?          @default("[]")
 
   unit     String?
   province String?
