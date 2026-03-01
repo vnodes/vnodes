@@ -1,6 +1,7 @@
 import { randomInt } from 'node:crypto';
+import { CrudController } from '@vnodes/nestjs';
 import { NotFoundException } from '@vnodes/nestjs/common';
-import { CrudController } from '@vnodes/nestjs/custom';
+
 import { AppCreateDto, AppDto, AppQueryDto, AppUpdateDto } from './app.dto.js';
 
 @CrudController({
@@ -48,7 +49,7 @@ export class AppController {
         console.table({ id });
         const index = this.apps.findIndex((e) => e.id.toString() === id.toString());
 
-        if (index > 0) {
+        if (index >= 0) {
             return delete this.apps[index];
         }
         throw new NotFoundException();

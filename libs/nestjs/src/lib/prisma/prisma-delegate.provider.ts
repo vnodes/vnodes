@@ -6,8 +6,8 @@ export function getDelegateToken(resourceName: string, scope = DEFAULT_PRISMA_CL
     return `${resourceName}_${scope}_PRISMA_DELEGATE_TOKEN`.toUpperCase();
 }
 
-export function provideDelegate<PrismaClient, K extends string & keyof PrismaClient>(
-    resourceName: K,
+export function provideDelegate<PrismaClient, ResourceName extends string & keyof PrismaClient>(
+    resourceName: ResourceName,
     scope = DEFAULT_PRISMA_CLIENT_SCOPE,
 ): Provider {
     return {

@@ -1,9 +1,9 @@
 import { Module } from '@vnodes/nestjs/common';
-import { CommonModule } from '@vnodes/nestjs/custom';
+import { RootModule } from '@vnodes/nestjs/root';
 import { AppController } from './app.controller.js';
 
 @Module({
-    imports: [CommonModule],
+    imports: [RootModule],
     controllers: [AppController],
 })
 export class AppModule {}

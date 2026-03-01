@@ -1,22 +1,34 @@
-import { type CanActivate, type ExecutionContext, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import type { Request } from 'express';
-import { getRequiredPermissions, getRequiredRoles } from '../../custom/index.js';
+import { Request } from 'express';
+import { getPermissions, getRoles, isPublic } from '../../metadata/index.js';
 import { AuthUserService } from '../auth-user.service.js';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(
-        @Inject(Reflector) protected readonly reflector: Reflector,
-        @Inject(AuthUserService) protected readonly userService: AuthUserService,
+        protected readonly reflector: Reflector,
+        protected readonly userService: AuthUserService,
     ) {}
-    async canActivate(context: ExecutionContext) {
-        const req = context.switchToHttp().getRequest<Request>();
 
+    async canActivate(context: ExecutionContext) {
+        if (isPublic(this.reflector, context)) {
+            return true;
+        }
+
+        const req = context.switchToHttp().getRequest<Request>();
         const token = this.extractToken(req);
         const user = await this.userService.findByToken(token);
-        const permissions = getRequiredPermissions(this.reflector, context);
-        const roles = getRequiredRoles(this.reflector, context);
+        const permissions = getPermissions(this.reflector, context);
+        const roles = getRoles(this.reflector, context);
+
+        if (!permissions && !roles) {
+            return true;
+        }
+
+        if (user.isAdmin()) {
+            return true;
+        }
 
         if (permissions) {
             if (!user.hasPermissions(permissions)) {

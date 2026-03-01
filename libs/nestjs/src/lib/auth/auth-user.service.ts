@@ -1,6 +1,6 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { type AuthUser, AuthUserManager, type JwtPayload } from './auth-user.manager.js';
+import { AuthUser, AuthUserManager, JwtPayload } from './auth-user.manager.js';
 
 export enum AuthUserEvent {
     /**

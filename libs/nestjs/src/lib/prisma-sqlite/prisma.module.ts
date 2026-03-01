@@ -1,22 +1,17 @@
 import { type DynamicModule, Module, type Type } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
 import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken, providePrismaClient } from './prisma-client.provider.js';
-import { getDelegateToken, provideDelegate } from './prisma-delegate.provider.js';
+import { getPrismaDelegateToken, providePrismaDelegate } from './prisma-delegate.provider.js';
 
 @Module({
     imports: [ConfigModule.forFeature(() => ({}))],
 })
 export class PrismaModule {
     readonly NAME = PrismaModule.name;
-    static forRoot<PrismaClient>(
-        client: Type<PrismaClient>,
-        extentions: ((client: PrismaClient) => PrismaClient)[],
-        name = DEFAULT_PRISMA_CLIENT_SCOPE,
-    ): DynamicModule {
+    static forRoot(client: Type, name = DEFAULT_PRISMA_CLIENT_SCOPE): DynamicModule {
         return {
             module: PrismaModule,
-            providers: [providePrismaClient<PrismaClient>(client, extentions, name)],
+            providers: [providePrismaClient(client, name)],
             exports: [getPrismaClientToken(name)],
             global: true,
         };
@@ -27,11 +22,11 @@ export class PrismaModule {
         scope = DEFAULT_PRISMA_CLIENT_SCOPE,
     ): DynamicModule {
         const providers = resourceNames.map((resourceName) => {
-            return provideDelegate<PrismaClient, ResourceName>(resourceName, scope);
+            return providePrismaDelegate<PrismaClient, ResourceName>(resourceName, scope);
         });
 
         const tokens = resourceNames.map((resourceName) => {
-            return getDelegateToken(resourceName, scope);
+            return getPrismaDelegateToken(resourceName, scope);
         });
         return {
             module: PrismaModule,

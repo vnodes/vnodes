@@ -1,34 +1,22 @@
 import { ForbiddenException, UnauthorizedException } from '@nestjs/common';
-import type { JwtService } from '@nestjs/jwt';
-import { compare } from '../helpers/hash.js';
+import { JwtService } from '@nestjs/jwt';
+import { compare } from '../crypto/hash.js';
 
-export type JwtPayload = {
+export class JwtPayload {
     sub: number;
     username: string;
     version: string;
-};
+}
 
 export class AuthUser {
     id: number;
-
-    /**
-     * Updating the user.version will revoke all previous JWT tokens
-     */
     version: string;
-
     username: string;
     password: string;
-
-    /**
-     * Common seperated given permissions
-     */
     permissions?: string;
-
-    /**
-     * Commo seperated given roles
-     */
     roles?: string;
 }
+
 export class AuthUserManager {
     constructor(
         protected readonly user: AuthUser,
@@ -47,6 +35,12 @@ export class AuthUserManager {
         return this.user.version;
     }
 
+    isAdmin() {
+        if (this.user.roles) {
+            return /\badmin\b/i.test(this.user.roles);
+        }
+        return false;
+    }
     hasPermissions(requiredPermissions: string) {
         const items = requiredPermissions.split(',');
         for (const subject of items) {

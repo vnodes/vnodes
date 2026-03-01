@@ -28,20 +28,65 @@
             "import": "./dist/index.js",
             "default": "./dist/index.js"
         },
-        "./custom": {
-            "types": "./dist/lib/custom/index.d.ts",
-            "import": "./dist/lib/custom/index.js",
-            "default": "./dist/lib/custom/index.js"
+        "./auth": {
+            "types": "./dist/lib/auth/index.d.ts",
+            "import": "./dist/lib/auth/index.js",
+            "default": "./dist/lib/auth/index.js"
+        },
+        "./boot": {
+            "types": "./dist/lib/boot/index.d.ts",
+            "import": "./dist/lib/boot/index.js",
+            "default": "./dist/lib/boot/index.js"
+        },
+        "./const": {
+            "types": "./dist/lib/const/index.d.ts",
+            "import": "./dist/lib/const/index.js",
+            "default": "./dist/lib/const/index.js"
+        },
+        "./crypto": {
+            "types": "./dist/lib/crypto/index.d.ts",
+            "import": "./dist/lib/crypto/index.js",
+            "default": "./dist/lib/crypto/index.js"
+        },
+        "./decorators": {
+            "types": "./dist/lib/decorators/index.d.ts",
+            "import": "./dist/lib/decorators/index.js",
+            "default": "./dist/lib/decorators/index.js"
         },
         "./helpers": {
             "types": "./dist/lib/helpers/index.d.ts",
             "import": "./dist/lib/helpers/index.js",
             "default": "./dist/lib/helpers/index.js"
         },
-        "./constants": {
-            "types": "./dist/lib/constants/index.d.ts",
-            "import": "./dist/lib/constants/index.js",
-            "default": "./dist/lib/constants/index.js"
+        "./metadata": {
+            "types": "./dist/lib/metadata/index.d.ts",
+            "import": "./dist/lib/metadata/index.js",
+            "default": "./dist/lib/metadata/index.js"
+        },
+        "./names": {
+            "types": "./dist/lib/names/index.d.ts",
+            "import": "./dist/lib/names/index.js",
+            "default": "./dist/lib/names/index.js"
+        },
+        "./prisma": {
+            "types": "./dist/lib/prisma/index.d.ts",
+            "import": "./dist/lib/prisma/index.js",
+            "default": "./dist/lib/prisma/index.js"
+        },
+        "./prisma-sqlite": {
+            "types": "./dist/lib/prisma-sqlite/index.d.ts",
+            "import": "./dist/lib/prisma-sqlite/index.js",
+            "default": "./dist/lib/prisma-sqlite/index.js"
+        },
+        "./property": {
+            "types": "./dist/lib/property/index.d.ts",
+            "import": "./dist/lib/property/index.js",
+            "default": "./dist/lib/property/index.js"
+        },
+        "./root": {
+            "types": "./dist/lib/root/index.d.ts",
+            "import": "./dist/lib/root/index.js",
+            "default": "./dist/lib/root/index.js"
         },
         "./bull": {
             "types": "./dist/lib/nestjs/bull.d.ts",
@@ -113,11 +158,6 @@
             "import": "./dist/lib/nestjs/websockets.js",
             "default": "./dist/lib/nestjs/websockets.js"
         },
-        "./prisma": {
-            "types": "./dist/lib/prisma/index.d.ts",
-            "import": "./dist/lib/prisma/index.js",
-            "default": "./dist/lib/prisma/index.js"
-        },
         "./validator": {
             "types": "./dist/lib/nestjs/validator.d.ts",
             "import": "./dist/lib/nestjs/validator.js",
@@ -159,7 +199,7 @@
             "test": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
+                    "command": "npx tsx --tsconfig tsconfig.spec.json --test src/**/*.{spec,test}.ts",
                     "cwd": "{projectRoot}"
                 }
             },
@@ -186,6 +226,7 @@
         "@nestjs/swagger": "^11.2.6",
         "@nestjs/throttler": "^6.5.0",
         "@nestjs/websockets": "^11.1.14",
+        "@prisma/adapter-better-sqlite3": "^7.4.2",
         "@prisma/adapter-pg": "7.3.0",
         "@prisma/client": "7.3.0",
         "@swc/helpers": "~0.5.11",
@@ -196,6 +237,7 @@
         "express": "^5.2.1",
         "helmet": "^8.1.0",
         "pg": "^8.18.0",
+        "reflect-metadata": "^0.2.2",
         "rxjs": "^7.8.2"
     },
     "devDependencies": {

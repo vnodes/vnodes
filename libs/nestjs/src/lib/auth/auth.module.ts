@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { JwtModule } from '@nestjs/jwt';
-import { Env } from '../constants/env.js';
+import { Env } from '../const/env.js';
 import { AuthEventService } from './auth-event.service.js';
 import { AuthUserService } from './auth-user.service.js';
 

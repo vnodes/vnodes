@@ -1,11 +1,11 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import type { AuthUser } from './auth-user.manager.js';
+import { AuthUser } from './auth-user.manager.js';
 import { AuthUserEvent, AuthUserService } from './auth-user.service.js';
 
 @Injectable()
 export class AuthEventService {
-    constructor(@Inject(AuthUserService) protected readonly authUserService: AuthUserService) {}
+    constructor(protected readonly authUserService: AuthUserService) {}
 
     @OnEvent(AuthUserEvent.MODULE_INIT)
     loadUsers(users: AuthUser[]) {

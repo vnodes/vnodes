@@ -1,1 +1,1 @@
-export { boot } from '@vnodes/nestjs/custom';
+export { boot } from '@vnodes/nestjs/boot';

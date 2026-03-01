@@ -1,7 +1,0 @@
-export enum Metadata {
-    PUBLIC = 'PUBLIC',
-    ROLES = 'ROLES',
-    PERMISSIONS = 'PERMISSIONS',
-    RESOURCE_NAME = 'RESOURCE_NAME',
-    OPERATION_NAME = 'OPERATION_NAME',
-}
