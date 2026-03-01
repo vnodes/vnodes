@@ -31,6 +31,26 @@
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js",
             "default": "./dist/index.js"
+        },
+        "./ctc": {
+            "types": "./dist/ctc//index.d.ts",
+            "import": "./dist/ctc//index.js",
+            "default": "./dist/ctc//index.js"
+        },
+        "./hr": {
+            "types": "./dist/hr//index.d.ts",
+            "import": "./dist/hr//index.js",
+            "default": "./dist/hr//index.js"
+        },
+        "./ims": {
+            "types": "./dist/ims//index.d.ts",
+            "import": "./dist/ims//index.js",
+            "default": "./dist/ims//index.js"
+        },
+        "./pms": {
+            "types": "./dist/pms//index.d.ts",
+            "import": "./dist/pms//index.js",
+            "default": "./dist/pms//index.js"
         }
     },
     "files": [
