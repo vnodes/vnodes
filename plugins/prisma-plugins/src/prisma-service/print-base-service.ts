@@ -8,6 +8,7 @@ import {
     isStringField,
     isUnqiueField,
 } from '@vnodes/prisma-helper';
+import { printBaseController } from './print-base-controller.js';
 
 export type MethodOptions = {
     type: string;
@@ -15,13 +16,13 @@ export type MethodOptions = {
 } & Names;
 
 export function updateUniqueByMethods(options: MethodOptions) {
-    return `async updateBy${options.pascalCase}(${options.camelCase}: ${options.type}, data: UpdateInput){ 
+    return `async updateOneBy${options.pascalCase}(${options.camelCase}: ${options.type}, data: UpdateInput){ 
         return await this.repo.update({ where: { ${options.camelCase} }, data })
     }`;
 }
 
 export function findUniqueByMethod(options: MethodOptions) {
-    return `async findBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
+    return `async findOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
         return await this.repo.findUnique({ where: { ${options.camelCase} } })
     }`;
 }
@@ -31,20 +32,20 @@ export function findFirstByMethod(options: MethodOptions) {
         ? `{ ${options.camelCase}: { has: ${options.camelCase} } }`
         : `{ ${options.camelCase} } `;
 
-    return `async findBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
+    return `async findOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
         return await this.repo.findFirst({ where: ${whereOptions} })
     }`;
 }
 
 export function deleteUniqueByMethod(options: MethodOptions) {
-    return `async deleteBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
+    return `async deleteOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
         return await this.repo.delete({ where: { ${options.camelCase} } })
     }`;
 }
 
 export function softDeleteByMethod(options: MethodOptions) {
-    return `async softDeleteBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
-        return await this.repo.update({ where: { ${options.camelCase} }, data:{ deletedAt:new Date() } })
+    return `async softDeleteOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
+        return await this.repo.update({ where: { ${options.camelCase} }, data:{ deletedAt: new Date() } })
     }`;
 }
 
@@ -104,7 +105,7 @@ export function printFindManyArgshelper(modelName: string) {
     ].join('\n');
 }
 
-export function printService(model: DMMF.Model) {
+export function printBaseService(model: DMMF.Model) {
     const modelNames = names(model.name);
     const hasSoftDelete = hasSoftDeleteField(model);
     const { pascalCase } = modelNames;
@@ -171,13 +172,13 @@ export function printService(model: DMMF.Model) {
         printWhereHelper(pascalCase, noneUniqueTextFields, hasSoftDelete),
         printOrderByHelper(),
         printFindManyArgshelper(pascalCase),
-        `async find(query: QueryInput) { 
+        `async findMany(query: QueryInput) { 
             return await this.repo.findMany(this.toFindManyArgs(query))
         }`,
         findUniqueByMethods,
         findFirstByTextMethods,
         findFirstByNumberMethods,
-        `async create(data: CreateInput){ 
+        `async createOne(data: CreateInput){ 
             return await this.repo.create({ data })
         }`,
         updateByMethods,
@@ -196,10 +197,14 @@ export function printService(model: DMMF.Model) {
         `QueryInput extends QueryMany<P.${pascalCase}ScalarFieldEnum> = QueryMany<P.${pascalCase}ScalarFieldEnum>`,
     ].join(',');
 
-    return `export class ${pascalCase}DelegateService<${generics}> { 
+    const baseService = `export class Base${pascalCase}Service<${generics}> { 
 
         constructor(protected readonly repo: P.${pascalCase}Delegate){}
 
         ${allMethods}
     }`;
+
+    const baseController = printBaseController(model);
+
+    return [baseService, baseController].join('\n\n');
 }

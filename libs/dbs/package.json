@@ -132,7 +132,8 @@
     },
     "dependencies": {
         "@prisma/client": "7.3.0",
-        "@swc/helpers": "~0.5.11"
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/prisma-plugins": "workspace:*"
     },
     "devDependencies": {
         "dotenv": "^17.3.1",

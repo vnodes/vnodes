@@ -7,4 +7,5 @@ export * from './delete-one-by-id-method.js';
 export * from './dto.js';
 export * from './find-many-method.js';
 export * from './find-one-by-id-mehtod.js';
+export * from './helpers.js';
 export * from './update-one-by-id-method.js';

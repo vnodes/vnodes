@@ -23,7 +23,7 @@ import { UpdateOneByIdMethod } from './update-one-by-id-method.js';
  * @returns decorator {@link MethodDecorator}
  */
 export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
-    const options = resolveCrudControllerOptions(_options);
+    const options = resolveCrudControllerOptions({ ..._options });
 
     return (...args) => {
         const target = args[0];

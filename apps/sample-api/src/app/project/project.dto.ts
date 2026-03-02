@@ -1,32 +1,30 @@
-import { Project, ProjectCreateInput } from '@vnodes/dbs/pms';
-import { Dto } from '@vnodes/nestjs';
+import { Prisma, Project, ProjectCreateInput, QueryMany } from '@vnodes/dbs/pms';
+import { Prop } from '@vnodes/nestjs';
+import { PartialType } from '@vnodes/nestjs/swagger';
 
-@Dto()
 export class ProjectCreateDto implements ProjectCreateInput {
-    name: string;
+    @Prop({ required: true }) name: string;
 }
 
-@Dto()
-export class ProjectUpdateDto extends ProjectCreateDto {}
+export class ProjectUpdateDto extends PartialType(ProjectCreateDto) {}
 
-@Dto()
 export class ProjectReadDto implements Project {
-    name: string;
-    id: number;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date | null;
-    description: string | null;
+    @Prop() id: number;
+    @Prop() name: string;
+    @Prop() description: string | null;
+    @Prop() createdAt: Date;
+    @Prop() updatedAt: Date;
+    @Prop() deletedAt: Date | null;
     constructor(data: Partial<ProjectReadDto>) {
         Object.assign(this, data);
     }
 }
 
-@Dto()
-export class ProjectQueryDto {
-    orderBy: keyof ProjectReadDto;
-    orderDir: 'asc' | 'desc' = 'asc';
-    search: string;
-    skip = 0;
-    take = 20;
+export class ProjectQueryDto implements Required<QueryMany<Prisma.ProjectScalarFieldEnum>> {
+    @Prop() orderBy: Prisma.ProjectScalarFieldEnum;
+    @Prop() orderDir: 'asc' | 'desc' = 'asc';
+    @Prop() search: string;
+    @Prop() skip = 0;
+    @Prop() take = 20;
+    @Prop() withDeleted = false;
 }

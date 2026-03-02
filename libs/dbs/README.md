@@ -10,7 +10,7 @@
 
 ## @vnodes/dbs
 
-- [ ] Add project description
+Prisma database clients
 
 ## Installation
 

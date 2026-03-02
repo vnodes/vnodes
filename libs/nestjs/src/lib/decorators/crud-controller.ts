@@ -4,6 +4,7 @@ import { ResourceName } from '../metadata/index.js';
 import { pluralize, resourceNames } from '../names/index.js';
 import { CrudControllerOptions } from './crud-controller-options.js';
 import { CrudMethod } from './crud-method.js';
+import { getPropertyDescriptor, getPropertyNames } from './helpers.js';
 
 /**
  * Autowire controller decorator and method decorators ({@link CrudMethod})
@@ -20,13 +21,13 @@ export function CrudController(options?: CrudControllerOptions): ClassDecorator 
         const { kebabCase, pascalCase } = resourceNames(target.name);
         const resourcePath = pluralize(kebabCase);
 
-        const controllerMethodNames = Object.getOwnPropertyNames(prototype).filter((e) => e !== 'constructor');
+        const controllerMethodNames = getPropertyNames(prototype).filter((e) => e !== 'constructor');
 
         for (const methodName of controllerMethodNames) {
-            const descriptor = Object.getOwnPropertyDescriptor(prototype, methodName);
+            const descriptor = getPropertyDescriptor(prototype, methodName);
             if (!descriptor)
                 throw new Error(`The method, ${methodName} in the class, ${className} does not have a descriptor`);
-            CrudMethod(options)(prototype, methodName, descriptor);
+            CrudMethod({ ...options })(prototype, methodName, descriptor);
         }
 
         // Apply common decorators

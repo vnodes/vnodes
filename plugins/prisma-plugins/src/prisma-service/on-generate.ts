@@ -2,8 +2,8 @@ import { join } from 'node:path';
 import { inspect } from 'node:util';
 import type { GeneratorOptions } from '@prisma/generator-helper';
 import { writeTextFile } from '@vnodes/fs';
+import { printBaseService } from './print-base-service.js';
 import { printCommonCode } from './print-common-code.js';
-import { printService } from './print-prisma-service.js';
 
 export default async function onGenerate(options: GeneratorOptions) {
     const out = options.otherGenerators.find((e) => e.provider.value === 'prisma-client')?.output?.value;
@@ -25,7 +25,7 @@ export default async function onGenerate(options: GeneratorOptions) {
         if (model.name === 'User') {
             console.log(inspect(model.fields, true, 100));
         }
-        generatedServices.push(printService(model));
+        generatedServices.push(printBaseService(model));
     }
 
     await writeTextFile(filePath, generatedServices.join('\n\n'));

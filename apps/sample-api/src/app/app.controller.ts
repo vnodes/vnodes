@@ -5,10 +5,10 @@ import { NotFoundException } from '@vnodes/nestjs/common';
 import { AppCreateDto, AppDto, AppQueryDto, AppUpdateDto } from './app.dto.js';
 
 @CrudController({
-    readDto: AppDto,
-    createDto: AppCreateDto,
-    updateDto: AppUpdateDto,
-    queryDto: AppQueryDto,
+    readDto: () => AppDto,
+    createDto: () => AppCreateDto,
+    updateDto: () => AppUpdateDto,
+    queryDto: () => AppQueryDto,
 })
 export class AppController {
     readonly apps: AppDto[] = [];

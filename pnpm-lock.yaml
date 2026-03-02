@@ -106,6 +106,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
+      '@vnodes/prisma-plugins':
+        specifier: workspace:*
+        version: link:../../plugins/prisma-plugins
     devDependencies:
       dotenv:
         specifier: ^17.3.1

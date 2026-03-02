@@ -2,10 +2,10 @@ import { Type } from '@nestjs/common';
 import { Prop } from '../property/index.js';
 
 export type CrudControllerOptions = {
-    readDto?: Type;
-    createDto?: Type;
-    updateDto?: Type;
-    queryDto?: Type;
+    readDto?: () => Type;
+    createDto?: () => Type;
+    updateDto?: () => Type;
+    queryDto?: () => Type;
 };
 
 export type CreateMethodOptions = Pick<CrudControllerOptions, 'createDto' | 'readDto'>;
@@ -24,10 +24,10 @@ export function resolveCrudControllerOptions(options?: CrudControllerOptions): R
         options = {};
     }
 
-    if (!options.readDto) options.readDto = DtoClass;
-    if (!options.createDto) options.createDto = DtoClass;
-    if (!options.updateDto) options.updateDto = DtoClass;
-    if (!options.queryDto) options.queryDto = DtoClass;
+    if (!options.readDto) options.readDto = () => DtoClass;
+    if (!options.createDto) options.createDto = () => DtoClass;
+    if (!options.updateDto) options.updateDto = () => DtoClass;
+    if (!options.queryDto) options.queryDto = () => DtoClass;
 
     return options as Required<CrudControllerOptions>;
 }
