@@ -120,6 +120,11 @@ export enum Annotation {
     hash = 'hash',
 
     deletedAt = 'deletedAt',
+
+    /**
+     * Define the preferred ui component such as text, textarea, number, etc.
+     */
+    ui = 'ui',
 }
 
 export type AnnotationName = keyof typeof Annotation;
@@ -136,7 +141,6 @@ export function validateDocumentation(text: string) {
 }
 
 export function __createFieldAnnotationExpression(key: string) {
-    // /@(\w+)\(([^)]+)\)/g
     return new RegExp(`@${key}\\(([^)]+)\\)`, 'i');
 }
 

@@ -20,6 +20,7 @@ export default async function onGenerate(options: GeneratorOptions) {
     const generatedServices: string[] = [];
 
     generatedServices.push(printCommonCode());
+
     for (const model of _models) {
         if (model.name === 'User') {
             console.log(inspect(model.fields, true, 100));
