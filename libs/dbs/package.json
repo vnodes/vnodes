@@ -72,6 +72,40 @@
                     "tsConfig": "libs/dbs/tsconfig.lib.json",
                     "skipTypeCheck": false,
                     "stripLeadingPaths": true
+                },
+                "dependsOn": [
+                    "generate-prisma-ctc",
+                    "generate-prisma-hr",
+                    "generate-prisma-ims",
+                    "generate-prisma-pms"
+                ]
+            },
+            "generate-prisma-ims": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx prisma generate",
+                    "cwd": "{projectRoot}/src/ims"
+                }
+            },
+            "generate-prisma-hr": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx prisma generate",
+                    "cwd": "{projectRoot}/src/hr"
+                }
+            },
+            "generate-prisma-ctc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx prisma generate",
+                    "cwd": "{projectRoot}/src/ctc"
+                }
+            },
+            "generate-prisma-pms": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx prisma generate",
+                    "cwd": "{projectRoot}/src/pms"
                 }
             },
             "lint": {
@@ -97,6 +131,7 @@
         }
     },
     "dependencies": {
+        "@prisma/client": "7.3.0",
         "@swc/helpers": "~0.5.11"
     },
     "devDependencies": {

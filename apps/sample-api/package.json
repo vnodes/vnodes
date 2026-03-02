@@ -84,9 +84,7 @@
         }
     },
     "dependencies": {
+        "@vnodes/dbs": "workspace:*",
         "@vnodes/nestjs": "workspace:*"
-    },
-    "devDependencies": {
-        "prisma": "7.3.0"
     }
 }

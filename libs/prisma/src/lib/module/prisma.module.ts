@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/complexity/noStaticOnlyClass: NestJS */
+/** biome-ignore-all lint/suspicious/noExplicitAny: Prmsa lcient */
 import { type DynamicModule, Module, type Type } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import type { PrismaClient } from '@prisma/client/extension';
 
 import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken, providePrismaClient } from './prisma-client.provider.js';
 import { getDelegateToken, provideDelegate } from './prisma-delegate.provider.js';
@@ -10,9 +10,9 @@ import { getDelegateToken, provideDelegate } from './prisma-delegate.provider.js
     imports: [ConfigModule.forFeature(() => ({}))],
 })
 export class PrismaModule {
-    static forRoot<T extends Type<PrismaClient>>(
-        client: T,
-        extentions: ((client: T) => T)[],
+    static forRoot(
+        client: Type,
+        extentions: ((client: any) => any)[],
         name = DEFAULT_PRISMA_CLIENT_SCOPE,
     ): DynamicModule {
         return {
@@ -28,7 +28,7 @@ export class PrismaModule {
         scope = DEFAULT_PRISMA_CLIENT_SCOPE,
     ): DynamicModule {
         const providers = resourceNames.map((resourceName) => {
-            return provideDelegate<PrismaClient, K>(resourceName, scope);
+            return provideDelegate(resourceName, scope);
         });
 
         const tokens = resourceNames.map((resourceName) => {

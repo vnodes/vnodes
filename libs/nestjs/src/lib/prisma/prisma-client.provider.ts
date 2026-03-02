@@ -18,6 +18,7 @@ export function providePrismaClient<PrismaClient>(
         inject: [ConfigService],
         provide: getPrismaClientToken(scope),
         useFactory(config: ConfigService) {
+            const schema = config.getOrThrow('DATABASE_SCHEMA');
             const connectionString = config.getOrThrow('DATABASE_URL');
             const pool = new Pool({
                 connectionString,
@@ -27,7 +28,7 @@ export function providePrismaClient<PrismaClient>(
                 maxUses: 7500,
             });
 
-            const adapter = new PrismaPg(pool);
+            const adapter = new PrismaPg(pool, { schema });
 
             const prismaClient = new prismaClientClass({ adapter });
 

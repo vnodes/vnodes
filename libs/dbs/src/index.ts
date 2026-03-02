@@ -1,1 +1,1 @@
-export * from './lib/dbs.js'; 
+export * from '@prisma/client';

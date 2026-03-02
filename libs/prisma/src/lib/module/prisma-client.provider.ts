@@ -1,7 +1,7 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: Prismsa lcient */
 import { Inject, type Provider, type Type } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaPg } from '@prisma/adapter-pg';
-import type { PrismaClient, PrismaClientExtends } from '@prisma/client/extension';
 import { Pool } from 'pg';
 
 export const DEFAULT_PRISMA_CLIENT_SCOPE = 'DEFAULT';
@@ -10,9 +10,9 @@ export function getPrismaClientToken(scope = DEFAULT_PRISMA_CLIENT_SCOPE) {
     return `${scope}_PRISMA_CLIENT_TOKEN`.toUpperCase();
 }
 
-export function providePrismaClient<T extends Type<PrismaClientExtends>>(
-    prismaClientClass: T,
-    _extentions: ((client: PrismaClient) => PrismaClient)[],
+export function providePrismaClient(
+    prismaClientClass: Type,
+    _extentions: ((client: any) => any)[],
     scope = DEFAULT_PRISMA_CLIENT_SCOPE,
 ): Provider {
     return {
