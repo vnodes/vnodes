@@ -1,6 +1,6 @@
 import type { Type as ClsType } from '@nestjs/common';
 import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty } from '@nestjs/swagger';
-import { type ClassConstructor, Expose, Type } from 'class-transformer';
+import { type ClassConstructor, Expose, Transform, Type } from 'class-transformer';
 import {
     ArrayMaxSize,
     ArrayMinSize,
@@ -261,6 +261,28 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
                 add(IsOptional(validationOptions));
             }
         }
+
+        if (!isArray)
+            if (type === Number) {
+                Transform(({ value }) => {
+                    if (typeof value === 'string') {
+                        return +value;
+                    }
+                    return value;
+                })(...args);
+            } else if (type === Boolean) {
+                Transform(({ value }) => {
+                    if (typeof value === 'string') {
+                        if (value === 'true') {
+                            return true;
+                        } else if (value === 'false') {
+                            return false;
+                        }
+                        return undefined;
+                    }
+                    return value;
+                })(...args);
+            }
 
         for (const decorator of [...decorators]) {
             decorator(...args);

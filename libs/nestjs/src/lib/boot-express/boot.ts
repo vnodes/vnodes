@@ -42,6 +42,7 @@ export async function boot(options: BootOptions) {
     app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: false }));
     app.use(compresssion());
     app.useGlobalPipes(GlobalValidationPipe);
+
     app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
     // Configure swagger

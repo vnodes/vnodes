@@ -6,6 +6,7 @@ export const GlobalValidationPipe = new ValidationPipe({
     forbidNonWhitelisted: true,
     transformOptions: {
         enableImplicitConversion: true,
+        exposeUnsetFields: false,
     },
     exceptionFactory(errors) {
         throw new UnprocessableEntityException({ errors });

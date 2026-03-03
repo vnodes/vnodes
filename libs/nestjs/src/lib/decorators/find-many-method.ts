@@ -1,10 +1,9 @@
-import { Get, Query, Type } from '@nestjs/common';
+import { Get, Query, Type, UnprocessableEntityException, ValidationPipe } from '@nestjs/common';
 import { ApiOkResponse, ApiQuery } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
 import { FindManyMethodOptions } from './crud-controller-options.js';
-import { getPropertyDescriptor } from './helpers.js';
 
-function propertyNames(cls: Type) {
+export function propertyNames(cls: Type) {
     return Object.keys(
         plainToInstance(cls, {}, { exposeUnsetFields: true, exposeDefaultValues: true, strategy: 'exposeAll' }),
     );
@@ -17,20 +16,34 @@ export function FindManyMethod(options: FindManyMethodOptions): MethodDecorator 
 
         Get()(...args);
         ApiOkResponse({ type: options.readDto, isArray: true })(...args);
-        const descriptor = getPropertyDescriptor(target, methodName);
-        if (!descriptor) throw new Error('descriptor not found!');
-
-        ApiQuery({ required: false, default: 20, name: 'take', type: 'number' })(target, methodName, descriptor);
-        ApiQuery({ required: false, default: 0, name: 'skip', type: 'number' })(target, methodName, descriptor);
-        ApiQuery({ required: false, name: 'search', type: 'string' })(target, methodName, descriptor);
+        ApiQuery({ required: false, default: 20, name: 'take', type: Number })(...args);
+        ApiQuery({ required: false, default: 0, name: 'skip', type: Number })(...args);
+        ApiQuery({ required: false, name: 'search', type: String })(...args);
         ApiQuery({
+            type: String,
             required: false,
             name: 'orderBy',
-            enum: propertyNames(options.readDto()),
-        })(target, methodName, descriptor);
-        ApiQuery({ required: false, name: 'orderDir', enum: ['asc', 'desc'] })(target, methodName, descriptor);
-        ApiQuery({ required: false, name: 'withDeleted', type: 'boolean' })(target, methodName, descriptor);
+            enum: propertyNames(options.readDto),
+        })(...args);
+        ApiQuery({ required: false, name: 'orderDir', enum: ['asc', 'desc'] })(...args);
+        ApiQuery({ required: false, name: 'withDeleted', type: Boolean })(...args);
+        Query(
+            new ValidationPipe({
+                transform: true,
+                errorHttpStatusCode: 422,
+                forbidNonWhitelisted: true,
+                expectedType: options.queryDto,
+                transformOptions: {
+                    exposeUnsetFields: false,
+                    enableImplicitConversion: true,
+                },
+                exceptionFactory(errors) {
+                    throw new UnprocessableEntityException({ errors });
+                },
+            }),
+        )(target, methodName, 0);
+        // Reflect.defineMetadata('design:paramtypes', [options.queryDto], target);
 
-        Query()(target, methodName, 0);
+        // ApiQuery({ type: () => options.queryDto, required: false })(...args);
     };
 }

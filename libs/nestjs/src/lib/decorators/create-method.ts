@@ -1,5 +1,5 @@
 import { Body, Post } from '@nestjs/common';
-import { ApiCreatedResponse, ApiUnprocessableEntityResponse } from '@nestjs/swagger';
+import { ApiBody, ApiCreatedResponse, ApiUnprocessableEntityResponse } from '@nestjs/swagger';
 import { CreateMethodOptions } from './crud-controller-options.js';
 
 export function CreateMethod(options: Required<CreateMethodOptions>): MethodDecorator {
@@ -9,7 +9,7 @@ export function CreateMethod(options: Required<CreateMethodOptions>): MethodDeco
         Post()(...args);
         ApiCreatedResponse({ type: options.readDto })(...args);
         ApiUnprocessableEntityResponse({ description: 'Input validation error' })(...args);
+        ApiBody({ type: options.createDto })(...args);
         Body()(target, methodName, 0);
-        Reflect.defineMetadata('design:paramtypes', [options.createDto()], target, methodName);
     };
 }
