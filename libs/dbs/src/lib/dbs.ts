@@ -1,3 +1,3 @@
-export function dbs(){ 
-    return "dbs";
+export function dbs() {
+    return 'dbs';
 }

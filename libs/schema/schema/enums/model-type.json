@@ -5,21 +5,15 @@
     "anyOf": [
         {
             "description": "Database model",
-            "enum": [
-                "model"
-            ]
+            "enum": ["model"]
         },
         {
             "description": "Abstract/common/base model to be extended by the other models",
-            "enum": [
-                "abstract-model"
-            ]
+            "enum": ["abstract-model"]
         },
         {
             "description": "Input/Output/Dto object",
-            "enum": [
-                "object"
-            ]
+            "enum": ["object"]
         }
     ]
 }

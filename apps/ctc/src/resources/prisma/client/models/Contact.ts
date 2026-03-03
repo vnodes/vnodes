@@ -396,7 +396,7 @@ export type ContactScalarWhereWithAggregatesInput = {
 }
 
 export type ContactCreateInput = {
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -416,7 +416,7 @@ export type ContactCreateInput = {
 
 export type ContactUncheckedCreateInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -475,7 +475,7 @@ export type ContactUncheckedUpdateInput = {
 
 export type ContactCreateManyInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -785,7 +785,7 @@ export type ContactUncheckedUpdateOneWithoutPrimaryAddressNestedInput = {
 }
 
 export type ContactCreateWithoutEmailsInput = {
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -804,7 +804,7 @@ export type ContactCreateWithoutEmailsInput = {
 
 export type ContactUncheckedCreateWithoutEmailsInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -827,7 +827,7 @@ export type ContactCreateOrConnectWithoutEmailsInput = {
 }
 
 export type ContactCreateWithoutPrimaryEmailInput = {
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -846,7 +846,7 @@ export type ContactCreateWithoutPrimaryEmailInput = {
 
 export type ContactUncheckedCreateWithoutPrimaryEmailInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -965,7 +965,7 @@ export type ContactUncheckedUpdateWithoutPrimaryEmailInput = {
 }
 
 export type ContactCreateWithoutPhonesInput = {
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -984,7 +984,7 @@ export type ContactCreateWithoutPhonesInput = {
 
 export type ContactUncheckedCreateWithoutPhonesInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1007,7 +1007,7 @@ export type ContactCreateOrConnectWithoutPhonesInput = {
 }
 
 export type ContactCreateWithoutPrimaryPhoneInput = {
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1026,7 +1026,7 @@ export type ContactCreateWithoutPrimaryPhoneInput = {
 
 export type ContactUncheckedCreateWithoutPrimaryPhoneInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1145,7 +1145,7 @@ export type ContactUncheckedUpdateWithoutPrimaryPhoneInput = {
 }
 
 export type ContactCreateWithoutAddressesInput = {
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1164,7 +1164,7 @@ export type ContactCreateWithoutAddressesInput = {
 
 export type ContactUncheckedCreateWithoutAddressesInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1187,7 +1187,7 @@ export type ContactCreateOrConnectWithoutAddressesInput = {
 }
 
 export type ContactCreateWithoutPrimaryAddressInput = {
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1206,7 +1206,7 @@ export type ContactCreateWithoutPrimaryAddressInput = {
 
 export type ContactUncheckedCreateWithoutPrimaryAddressInput = {
   id?: number
-  uuid: string
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null

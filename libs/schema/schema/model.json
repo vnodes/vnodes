@@ -37,9 +37,7 @@
                             "$ref": "#/definitions/property"
                         },
                         {
-                            "required": [
-                                "type"
-                            ]
+                            "required": ["type"]
                         }
                     ]
                 }
@@ -109,9 +107,7 @@
                     "$ref": "#/definitions/array-property"
                 }
             ],
-            "required": [
-                "type"
-            ]
+            "required": ["type"]
         },
         "common": {
             "title": "common options",
@@ -365,10 +361,7 @@
                     "$ref": "#/definitions/enumModel"
                 }
             },
-            "required": [
-                "type",
-                "enum"
-            ]
+            "required": ["type", "enum"]
         },
         "json": {
             "title": "json options",
@@ -514,12 +507,7 @@
             "title": "relation all property options",
             "properties": {
                 "type": {
-                    "enum": [
-                        "many-to-one",
-                        "many-to-many",
-                        "one-to-one",
-                        "one-to-many"
-                    ],
+                    "enum": ["many-to-one", "many-to-many", "one-to-one", "one-to-many"],
                     "default": "many-to-one"
                 },
                 "required": {
@@ -606,13 +594,7 @@
         "relationAction": {
             "title": "Relation action",
             "description": "Relation operation type on delete and update operation",
-            "enum": [
-                "Cascade",
-                "SetNull",
-                "NoAction",
-                "Default",
-                "Restrict"
-            ]
+            "enum": ["Cascade", "SetNull", "NoAction", "Default", "Restrict"]
         },
         "modelName": {
             "title": "model name",

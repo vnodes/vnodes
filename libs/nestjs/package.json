@@ -1,284 +1,284 @@
 {
-  "name": "@vnodes/nestjs",
-  "description": "Centeralized nestjs modules",
-  "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  },
-  "author": {
-    "email": "robert.brightline+vnodes-nestjs@gmail.com",
-    "name": "Robert Brightline",
-    "url": "https://vnodes.github.io/vnodes/libs/nestjs"
-  },
-  "keywords": [],
-  "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
-  "funding": [
-    {
-      "type": "cashapp",
-      "url": "https://cash.app/$puqlib"
-    }
-  ],
-  "version": "0.0.1",
-  "type": "module",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+    "name": "@vnodes/nestjs",
+    "description": "Centeralized nestjs modules",
+    "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
     },
-    "./auth": {
-      "types": "./dist/lib/auth/index.d.ts",
-      "import": "./dist/lib/auth/index.js",
-      "default": "./dist/lib/auth/index.js"
+    "author": {
+        "email": "robert.brightline+vnodes-nestjs@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/nestjs"
     },
-    "./boot-express": {
-      "types": "./dist/lib/boot-express/index.d.ts",
-      "import": "./dist/lib/boot-express/index.js",
-      "default": "./dist/lib/boot-express/index.js"
-    },
-    "./boot-fastify": {
-      "types": "./dist/lib/boot-fastify/index.d.ts",
-      "import": "./dist/lib/boot-fastify/index.js",
-      "default": "./dist/lib/boot-fastify/index.js"
-    },
-    "./const": {
-      "types": "./dist/lib/const/index.d.ts",
-      "import": "./dist/lib/const/index.js",
-      "default": "./dist/lib/const/index.js"
-    },
-    "./crypto": {
-      "types": "./dist/lib/crypto/index.d.ts",
-      "import": "./dist/lib/crypto/index.js",
-      "default": "./dist/lib/crypto/index.js"
-    },
-    "./decorators": {
-      "types": "./dist/lib/decorators/index.d.ts",
-      "import": "./dist/lib/decorators/index.js",
-      "default": "./dist/lib/decorators/index.js"
-    },
-    "./helpers": {
-      "types": "./dist/lib/helpers/index.d.ts",
-      "import": "./dist/lib/helpers/index.js",
-      "default": "./dist/lib/helpers/index.js"
-    },
-    "./metadata": {
-      "types": "./dist/lib/metadata/index.d.ts",
-      "import": "./dist/lib/metadata/index.js",
-      "default": "./dist/lib/metadata/index.js"
-    },
-    "./names": {
-      "types": "./dist/lib/names/index.d.ts",
-      "import": "./dist/lib/names/index.js",
-      "default": "./dist/lib/names/index.js"
-    },
-    "./prisma-client": {
-      "types": "./dist/lib/nestjs/prisma-client.d.ts",
-      "import": "./dist/lib/nestjs/prisma-client.js",
-      "default": "./dist/lib/nestjs/prisma-client.js"
-    },
-    "./adapter-pg": {
-      "types": "./dist/lib/nestjs/adapter-pg.d.ts",
-      "import": "./dist/lib/nestjs/adapter-pg.js",
-      "default": "./dist/lib/nestjs/adapter-pg.js"
-    },
-    "./adapter-better-sqlite3": {
-      "types": "./dist/lib/nestjs/adapter-better-sqlite3.d.ts",
-      "import": "./dist/lib/nestjs/adapter-better-sqlite3.js",
-      "default": "./dist/lib/nestjs/adapter-better-sqlite3.js"
-    },
-    "./prisma": {
-      "types": "./dist/lib/prisma/index.d.ts",
-      "import": "./dist/lib/prisma/index.js",
-      "default": "./dist/lib/prisma/index.js"
-    },
-    "./prisma-sqlite": {
-      "types": "./dist/lib/prisma-sqlite/index.d.ts",
-      "import": "./dist/lib/prisma-sqlite/index.js",
-      "default": "./dist/lib/prisma-sqlite/index.js"
-    },
-    "./property": {
-      "types": "./dist/lib/property/index.d.ts",
-      "import": "./dist/lib/property/index.js",
-      "default": "./dist/lib/property/index.js"
-    },
-    "./root": {
-      "types": "./dist/lib/root/index.d.ts",
-      "import": "./dist/lib/root/index.js",
-      "default": "./dist/lib/root/index.js"
-    },
-    "./bull": {
-      "types": "./dist/lib/nestjs/bull.d.ts",
-      "import": "./dist/lib/nestjs/bull.js",
-      "default": "./dist/lib/nestjs/bull.js"
-    },
-    "./cache": {
-      "types": "./dist/lib/nestjs/cache.d.ts",
-      "import": "./dist/lib/nestjs/cache.js",
-      "default": "./dist/lib/nestjs/cache.js"
-    },
-    "./common": {
-      "types": "./dist/lib/nestjs/common.d.ts",
-      "import": "./dist/lib/nestjs/common.js",
-      "default": "./dist/lib/nestjs/common.js"
-    },
-    "./config": {
-      "types": "./dist/lib/nestjs/config.d.ts",
-      "import": "./dist/lib/nestjs/config.js",
-      "default": "./dist/lib/nestjs/config.js"
-    },
-    "./core": {
-      "types": "./dist/lib/nestjs/core.d.ts",
-      "import": "./dist/lib/nestjs/core.js",
-      "default": "./dist/lib/nestjs/core.js"
-    },
-    "./event": {
-      "types": "./dist/lib/nestjs/event.d.ts",
-      "import": "./dist/lib/nestjs/event.js",
-      "default": "./dist/lib/nestjs/event.js"
-    },
-    "./graphql": {
-      "types": "./dist/lib/nestjs/graphql.d.ts",
-      "import": "./dist/lib/nestjs/graphql.js",
-      "default": "./dist/lib/nestjs/graphql.js"
-    },
-    "./jwt": {
-      "types": "./dist/lib/nestjs/jwt.d.ts",
-      "import": "./dist/lib/nestjs/jwt.js",
-      "default": "./dist/lib/nestjs/jwt.js"
-    },
-    "./platform-express": {
-      "types": "./dist/lib/nestjs/platform-express.d.ts",
-      "import": "./dist/lib/nestjs/platform-express.js",
-      "default": "./dist/lib/nestjs/platform-express.js"
-    },
-    "./express": {
-      "types": "./dist/lib/nestjs/express.d.ts",
-      "import": "./dist/lib/nestjs/express.js",
-      "default": "./dist/lib/nestjs/express.js"
-    },
-    "./schedule": {
-      "types": "./dist/lib/nestjs/schedule.d.ts",
-      "import": "./dist/lib/nestjs/schedule.js",
-      "default": "./dist/lib/nestjs/schedule.js"
-    },
-    "./swagger": {
-      "types": "./dist/lib/nestjs/swagger.d.ts",
-      "import": "./dist/lib/nestjs/swagger.js",
-      "default": "./dist/lib/nestjs/swagger.js"
-    },
-    "./throttler": {
-      "types": "./dist/lib/nestjs/throttler.d.ts",
-      "import": "./dist/lib/nestjs/throttler.js",
-      "default": "./dist/lib/nestjs/throttler.js"
-    },
-    "./websockets": {
-      "types": "./dist/lib/nestjs/websockets.d.ts",
-      "import": "./dist/lib/nestjs/websockets.js",
-      "default": "./dist/lib/nestjs/websockets.js"
-    },
-    "./validator": {
-      "types": "./dist/lib/nestjs/validator.d.ts",
-      "import": "./dist/lib/nestjs/validator.js",
-      "default": "./dist/lib/nestjs/validator.js"
-    },
-    "./transformer": {
-      "types": "./dist/lib/nestjs/transformer.d.ts",
-      "import": "./dist/lib/nestjs/transformer.js",
-      "default": "./dist/lib/nestjs/transformer.js"
-    }
-  },
-  "files": [
-    "assets",
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "sourceRoot": "libs/nestjs/src",
-    "targets": {
-      "build": {
-        "executor": "@nx/js:swc",
-        "outputs": [
-          "{options.outputPath}"
-        ],
-        "options": {
-          "outputPath": "libs/nestjs/dist",
-          "main": "libs/nestjs/src/index.ts",
-          "tsConfig": "libs/nestjs/tsconfig.lib.json",
-          "skipTypeCheck": false,
-          "stripLeadingPaths": true
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
         }
-      },
-      "lint": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./auth": {
+            "types": "./dist/lib/auth/index.d.ts",
+            "import": "./dist/lib/auth/index.js",
+            "default": "./dist/lib/auth/index.js"
+        },
+        "./boot-express": {
+            "types": "./dist/lib/boot-express/index.d.ts",
+            "import": "./dist/lib/boot-express/index.js",
+            "default": "./dist/lib/boot-express/index.js"
+        },
+        "./boot-fastify": {
+            "types": "./dist/lib/boot-fastify/index.d.ts",
+            "import": "./dist/lib/boot-fastify/index.js",
+            "default": "./dist/lib/boot-fastify/index.js"
+        },
+        "./const": {
+            "types": "./dist/lib/const/index.d.ts",
+            "import": "./dist/lib/const/index.js",
+            "default": "./dist/lib/const/index.js"
+        },
+        "./crypto": {
+            "types": "./dist/lib/crypto/index.d.ts",
+            "import": "./dist/lib/crypto/index.js",
+            "default": "./dist/lib/crypto/index.js"
+        },
+        "./decorators": {
+            "types": "./dist/lib/decorators/index.d.ts",
+            "import": "./dist/lib/decorators/index.js",
+            "default": "./dist/lib/decorators/index.js"
+        },
+        "./helpers": {
+            "types": "./dist/lib/helpers/index.d.ts",
+            "import": "./dist/lib/helpers/index.js",
+            "default": "./dist/lib/helpers/index.js"
+        },
+        "./metadata": {
+            "types": "./dist/lib/metadata/index.d.ts",
+            "import": "./dist/lib/metadata/index.js",
+            "default": "./dist/lib/metadata/index.js"
+        },
+        "./names": {
+            "types": "./dist/lib/names/index.d.ts",
+            "import": "./dist/lib/names/index.js",
+            "default": "./dist/lib/names/index.js"
+        },
+        "./prisma-client": {
+            "types": "./dist/lib/nestjs/prisma-client.d.ts",
+            "import": "./dist/lib/nestjs/prisma-client.js",
+            "default": "./dist/lib/nestjs/prisma-client.js"
+        },
+        "./adapter-pg": {
+            "types": "./dist/lib/nestjs/adapter-pg.d.ts",
+            "import": "./dist/lib/nestjs/adapter-pg.js",
+            "default": "./dist/lib/nestjs/adapter-pg.js"
+        },
+        "./adapter-better-sqlite3": {
+            "types": "./dist/lib/nestjs/adapter-better-sqlite3.d.ts",
+            "import": "./dist/lib/nestjs/adapter-better-sqlite3.js",
+            "default": "./dist/lib/nestjs/adapter-better-sqlite3.js"
+        },
+        "./prisma": {
+            "types": "./dist/lib/prisma/index.d.ts",
+            "import": "./dist/lib/prisma/index.js",
+            "default": "./dist/lib/prisma/index.js"
+        },
+        "./prisma-sqlite": {
+            "types": "./dist/lib/prisma-sqlite/index.d.ts",
+            "import": "./dist/lib/prisma-sqlite/index.js",
+            "default": "./dist/lib/prisma-sqlite/index.js"
+        },
+        "./property": {
+            "types": "./dist/lib/property/index.d.ts",
+            "import": "./dist/lib/property/index.js",
+            "default": "./dist/lib/property/index.js"
+        },
+        "./root": {
+            "types": "./dist/lib/root/index.d.ts",
+            "import": "./dist/lib/root/index.js",
+            "default": "./dist/lib/root/index.js"
+        },
+        "./bull": {
+            "types": "./dist/lib/nestjs/bull.d.ts",
+            "import": "./dist/lib/nestjs/bull.js",
+            "default": "./dist/lib/nestjs/bull.js"
+        },
+        "./cache": {
+            "types": "./dist/lib/nestjs/cache.d.ts",
+            "import": "./dist/lib/nestjs/cache.js",
+            "default": "./dist/lib/nestjs/cache.js"
+        },
+        "./common": {
+            "types": "./dist/lib/nestjs/common.d.ts",
+            "import": "./dist/lib/nestjs/common.js",
+            "default": "./dist/lib/nestjs/common.js"
+        },
+        "./config": {
+            "types": "./dist/lib/nestjs/config.d.ts",
+            "import": "./dist/lib/nestjs/config.js",
+            "default": "./dist/lib/nestjs/config.js"
+        },
+        "./core": {
+            "types": "./dist/lib/nestjs/core.d.ts",
+            "import": "./dist/lib/nestjs/core.js",
+            "default": "./dist/lib/nestjs/core.js"
+        },
+        "./event": {
+            "types": "./dist/lib/nestjs/event.d.ts",
+            "import": "./dist/lib/nestjs/event.js",
+            "default": "./dist/lib/nestjs/event.js"
+        },
+        "./graphql": {
+            "types": "./dist/lib/nestjs/graphql.d.ts",
+            "import": "./dist/lib/nestjs/graphql.js",
+            "default": "./dist/lib/nestjs/graphql.js"
+        },
+        "./jwt": {
+            "types": "./dist/lib/nestjs/jwt.d.ts",
+            "import": "./dist/lib/nestjs/jwt.js",
+            "default": "./dist/lib/nestjs/jwt.js"
+        },
+        "./platform-express": {
+            "types": "./dist/lib/nestjs/platform-express.d.ts",
+            "import": "./dist/lib/nestjs/platform-express.js",
+            "default": "./dist/lib/nestjs/platform-express.js"
+        },
+        "./express": {
+            "types": "./dist/lib/nestjs/express.d.ts",
+            "import": "./dist/lib/nestjs/express.js",
+            "default": "./dist/lib/nestjs/express.js"
+        },
+        "./schedule": {
+            "types": "./dist/lib/nestjs/schedule.d.ts",
+            "import": "./dist/lib/nestjs/schedule.js",
+            "default": "./dist/lib/nestjs/schedule.js"
+        },
+        "./swagger": {
+            "types": "./dist/lib/nestjs/swagger.d.ts",
+            "import": "./dist/lib/nestjs/swagger.js",
+            "default": "./dist/lib/nestjs/swagger.js"
+        },
+        "./throttler": {
+            "types": "./dist/lib/nestjs/throttler.d.ts",
+            "import": "./dist/lib/nestjs/throttler.js",
+            "default": "./dist/lib/nestjs/throttler.js"
+        },
+        "./websockets": {
+            "types": "./dist/lib/nestjs/websockets.d.ts",
+            "import": "./dist/lib/nestjs/websockets.js",
+            "default": "./dist/lib/nestjs/websockets.js"
+        },
+        "./validator": {
+            "types": "./dist/lib/nestjs/validator.d.ts",
+            "import": "./dist/lib/nestjs/validator.js",
+            "default": "./dist/lib/nestjs/validator.js"
+        },
+        "./transformer": {
+            "types": "./dist/lib/nestjs/transformer.d.ts",
+            "import": "./dist/lib/nestjs/transformer.js",
+            "default": "./dist/lib/nestjs/transformer.js"
         }
-      },
-      "test": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "npx tsx --tsconfig tsconfig.spec.json --test src/**/*.{spec,test}.ts",
-          "cwd": "{projectRoot}"
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/nestjs/src",
+        "targets": {
+            "build": {
+                "executor": "@nx/js:swc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "libs/nestjs/dist",
+                    "main": "libs/nestjs/src/index.ts",
+                    "tsConfig": "libs/nestjs/tsconfig.lib.json",
+                    "skipTypeCheck": false,
+                    "stripLeadingPaths": true
+                }
+            },
+            "lint": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+                }
+            },
+            "test": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx tsx --tsconfig tsconfig.spec.json --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "doc": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "npx typedoc --tsconfig libs/nestjs/tsconfig.lib.json --entryPoints libs/nestjs/src/index.ts --out public/libs/nestjs",
+                    "cwd": "{workspaceRoot}"
+                }
+            }
         }
-      },
-      "doc": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "npx typedoc --tsconfig libs/nestjs/tsconfig.lib.json --entryPoints libs/nestjs/src/index.ts --out public/libs/nestjs",
-          "cwd": "{workspaceRoot}"
+    },
+    "dependencies": {
+        "@fastify/compress": "^8.3.1",
+        "@fastify/helmet": "^13.0.2",
+        "@fastify/static": "^9.0.0",
+        "@nestjs/bull": "^11.0.4",
+        "@nestjs/cache-manager": "^3.1.0",
+        "@nestjs/common": "^11.1.14",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.14",
+        "@nestjs/event-emitter": "^3.0.1",
+        "@nestjs/graphql": "^13.2.4",
+        "@nestjs/jwt": "^11.0.2",
+        "@nestjs/platform-express": "^11.1.14",
+        "@nestjs/platform-fastify": "^11.1.14",
+        "@nestjs/schedule": "^6.1.1",
+        "@nestjs/swagger": "^11.2.6",
+        "@nestjs/throttler": "^6.5.0",
+        "@nestjs/websockets": "^11.1.14",
+        "@prisma/adapter-better-sqlite3": "^7.4.2",
+        "@prisma/adapter-pg": "7.3.0",
+        "@swc/helpers": "~0.5.11",
+        "bcrypt": "^6.0.0",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.3",
+        "compression": "^1.8.1",
+        "express": "^5.2.1",
+        "helmet": "^8.1.0",
+        "pg": "^8.18.0",
+        "reflect-metadata": "^0.2.2",
+        "rxjs": "^7.8.2"
+    },
+    "devDependencies": {
+        "@nestjs/testing": "^11.1.13",
+        "@types/bcrypt": "^6.0.0",
+        "@types/compression": "^1.8.1",
+        "@types/express": "^5.0.6",
+        "@types/helmet": "^4.0.0",
+        "@types/node": "20.19.9",
+        "@types/pg": "^8.16.0",
+        "@vnodes/nestjs": "workspace:*"
+    },
+    "peerDependencies": {
+        "@prisma/client": "7.3.0"
+    },
+    "peerDependenciesMeta": {
+        "@prisma/client": {
+            "optional": false
         }
-      }
     }
-  },
-  "dependencies": {
-    "@fastify/compress": "^8.3.1",
-    "@fastify/helmet": "^13.0.2",
-    "@fastify/static": "^9.0.0",
-    "@nestjs/bull": "^11.0.4",
-    "@nestjs/cache-manager": "^3.1.0",
-    "@nestjs/common": "^11.1.14",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.14",
-    "@nestjs/event-emitter": "^3.0.1",
-    "@nestjs/graphql": "^13.2.4",
-    "@nestjs/jwt": "^11.0.2",
-    "@nestjs/platform-express": "^11.1.14",
-    "@nestjs/platform-fastify": "^11.1.14",
-    "@nestjs/schedule": "^6.1.1",
-    "@nestjs/swagger": "^11.2.6",
-    "@nestjs/throttler": "^6.5.0",
-    "@nestjs/websockets": "^11.1.14",
-    "@prisma/adapter-better-sqlite3": "^7.4.2",
-    "@prisma/adapter-pg": "7.3.0",
-    "@swc/helpers": "~0.5.11",
-    "bcrypt": "^6.0.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.3",
-    "compression": "^1.8.1",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0",
-    "pg": "^8.18.0",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
-  },
-  "devDependencies": {
-    "@nestjs/testing": "^11.1.13",
-    "@types/bcrypt": "^6.0.0",
-    "@types/compression": "^1.8.1",
-    "@types/express": "^5.0.6",
-    "@types/helmet": "^4.0.0",
-    "@types/node": "20.19.9",
-    "@types/pg": "^8.16.0",
-    "@vnodes/nestjs": "workspace:*"
-  },
-  "peerDependencies": {
-    "@prisma/client": "7.3.0"
-  },
-  "peerDependenciesMeta": {
-    "@prisma/client": {
-      "optional": false
-    }
-  }
 }

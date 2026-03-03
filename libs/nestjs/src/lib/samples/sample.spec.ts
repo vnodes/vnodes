@@ -2,8 +2,8 @@ import assert from 'node:assert';
 import test, { describe } from 'node:test';
 import 'reflect-metadata';
 
-function Prop(): PropertyDecorator {
-    return (...args) => {};
+function _Prop(): PropertyDecorator {
+    return (..._args) => {};
 }
 
 class Sample {

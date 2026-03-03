@@ -6,7 +6,7 @@ import { names } from '@vnodes/names';
 export default async function onGenerate(options: GeneratorOptions) {
     const prismaClientOut = options.otherGenerators.find((e) => e.provider.value === 'prisma-client')?.output?.value;
 
-    const output = options.generator.config.output;
+    const output = options.generator.output?.value;
 
     if (!output) {
         throw new Error('output is required!');

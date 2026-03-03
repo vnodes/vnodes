@@ -11,6 +11,11 @@ generator serviceClasses {
   provider = "prisma-service"
 }
 
+generator nestjsDto {
+  provider = "nestjs-dto"
+  output   = "../src/resources"
+}
+
 datasource db {
   provider = "postgresql"
 }

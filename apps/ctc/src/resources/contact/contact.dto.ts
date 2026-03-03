@@ -1,1 +1,1 @@
-export class ContactDto {}
+/// contact

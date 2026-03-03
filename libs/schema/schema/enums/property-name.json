@@ -5,43 +5,19 @@
     "anyOf": [
         {
             "description": "Id properties",
-            "enum": [
-                "id",
-                "uuid"
-            ]
+            "enum": ["id", "uuid"]
         },
         {
             "description": "timestamp properties",
-            "enum": [
-                "createdAt",
-                "updatedAt",
-                "deletedAt",
-                "startedAt",
-                "endedAt",
-                "expiresAt",
-                "expiredAt",
-                "due"
-            ]
+            "enum": ["createdAt", "updatedAt", "deletedAt", "startedAt", "endedAt", "expiresAt", "expiredAt", "due"]
         },
         {
             "description": "User profile properties",
-            "enum": [
-                "name",
-                "description",
-                "fullName",
-                "firstName",
-                "lastName",
-                "middleName",
-                "gender",
-                "dob",
-                "age"
-            ]
+            "enum": ["name", "description", "fullName", "firstName", "lastName", "middleName", "gender", "dob", "age"]
         },
         {
             "description": "user confidential information",
-            "enum": [
-                "ssn"
-            ]
+            "enum": ["ssn"]
         },
         {
             "description": "Contact properties",
@@ -68,61 +44,27 @@
         },
         {
             "description": "Auth properties",
-            "enum": [
-                "username",
-                "password",
-                "accessToken",
-                "otp",
-                "token"
-            ]
+            "enum": ["username", "password", "accessToken", "otp", "token"]
         },
         {
             "description": "Relative user properties",
-            "enum": [
-                "user",
-                "manager",
-                "employee",
-                "customer",
-                "owner",
-                "assignee"
-            ]
+            "enum": ["user", "manager", "employee", "customer", "owner", "assignee"]
         },
         {
             "description": "Relative audit user properties",
-            "enum": [
-                "createdBy",
-                "updatedBy",
-                "deletedBy",
-                "lastAccessedBy"
-            ]
+            "enum": ["createdBy", "updatedBy", "deletedBy", "lastAccessedBy"]
         },
         {
             "description": "Status properties",
-            "enum": [
-                "status",
-                "active",
-                "passive"
-            ]
+            "enum": ["status", "active", "passive"]
         },
         {
             "description": "Group properties",
-            "enum": [
-                "tag",
-                "tags",
-                "category",
-                "categories",
-                "department",
-                "departments"
-            ]
+            "enum": ["tag", "tags", "category", "categories", "department", "departments"]
         },
         {
             "description": "Foreign keys",
-            "enum": [
-                "contactId",
-                "userId",
-                "categoryId",
-                "productId"
-            ]
+            "enum": ["contactId", "userId", "categoryId", "productId"]
         }
     ],
     "additionalProperties": false

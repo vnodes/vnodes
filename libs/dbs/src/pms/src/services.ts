@@ -3,90 +3,102 @@ export type QueryMany<T> = {
     take?: number;
     skip?: number;
     search?: string;
-    orderBy?:T
-    orderDir?: P.SortOrder
-    withDeleted?: boolean
+    orderBy?: T;
+    orderDir?: P.SortOrder;
+    withDeleted?: boolean;
 };
 
-export class BaseProjectService<CreateInput extends P.ProjectCreateInput = P.ProjectCreateInput, UpdateInput extends P.ProjectUpdateInput = P.ProjectUpdateInput,QueryInput extends QueryMany<P.ProjectScalarFieldEnum> = QueryMany<P.ProjectScalarFieldEnum>> { 
+export class BaseProjectService<
+    CreateInput extends P.ProjectCreateInput = P.ProjectCreateInput,
+    UpdateInput extends P.ProjectUpdateInput = P.ProjectUpdateInput,
+    QueryInput extends QueryMany<P.ProjectScalarFieldEnum> = QueryMany<P.ProjectScalarFieldEnum>,
+> {
+    constructor(protected readonly repo: P.ProjectDelegate) {}
 
-        constructor(protected readonly repo: P.ProjectDelegate){}
-
-        toWhere(query?: QueryInput){
-const whereQuery:P.ProjectWhereInput = query?.search ?   { OR: [ { name: { contains: query.search, mode: "insensitive" } },{ description: { contains: query.search, mode: "insensitive" } } ] } : {}
-if(!query?.withDeleted){ 
-            whereQuery.deletedAt = null; 
+    toWhere(query?: QueryInput) {
+        const whereQuery: P.ProjectWhereInput = query?.search
+            ? {
+                  OR: [
+                      { name: { contains: query.search, mode: 'insensitive' } },
+                      { description: { contains: query.search, mode: 'insensitive' } },
+                  ],
+              }
+            : {};
+        if (!query?.withDeleted) {
+            whereQuery.deletedAt = null;
         }
-return whereQuery
-}
-toOrderBy(query?: QueryInput){
-if(query?.orderBy){
-   return { [query.orderBy]: query.orderDir ?? 'asc' }  
-}
-return undefined
-}
-toFindManyArgs(query?: QueryInput ):P.ProjectFindManyArgs {
-    return {
-        take: query?.take ?? 20,
-        skip: query?.skip ?? 0,
-        orderBy: this.toOrderBy(query),
-        where: this.toWhere(query)
+        return whereQuery;
     }
-}
-async findMany(query: QueryInput) { 
-            return await this.repo.findMany(this.toFindManyArgs(query))
+    toOrderBy(query?: QueryInput) {
+        if (query?.orderBy) {
+            return { [query.orderBy]: query.orderDir ?? 'asc' };
         }
-async findOneById(id: number){ 
-        return await this.repo.findUnique({ where: { id } })
+        return undefined;
     }
-async findOneByUuid(uuid: string){ 
-        return await this.repo.findUnique({ where: { uuid } })
+    toFindManyArgs(query?: QueryInput): P.ProjectFindManyArgs {
+        return {
+            take: query?.take ?? 20,
+            skip: query?.skip ?? 0,
+            orderBy: this.toOrderBy(query),
+            where: this.toWhere(query),
+        };
     }
-async findOneByName(name: string){ 
-        return await this.repo.findFirst({ where: { name }  })
+    async findMany(query: QueryInput) {
+        return await this.repo.findMany(this.toFindManyArgs(query));
     }
-async findOneByDescription(description: string){ 
-        return await this.repo.findFirst({ where: { description }  })
+    async findOneById(id: number) {
+        return await this.repo.findUnique({ where: { id } });
     }
-async findOneByCount(count: number){ 
-        return await this.repo.findFirst({ where: { count }  })
+    async findOneByUuid(uuid: string) {
+        return await this.repo.findUnique({ where: { uuid } });
     }
-async findOneByCounts(counts: number){ 
-        return await this.repo.findFirst({ where: { counts: { has: counts } } })
+    async findOneByName(name: string) {
+        return await this.repo.findFirst({ where: { name } });
     }
-async findOneByCountMoreThan(count: number){ 
-        return await this.repo.findFirst({ where: {count: { gte: count } } })
+    async findOneByDescription(description: string) {
+        return await this.repo.findFirst({ where: { description } });
     }
-async findOneByCountLessThan(count: number){ 
-        return await this.repo.findFirst({ where: {count: { lte: count } } })
+    async findOneByCount(count: number) {
+        return await this.repo.findFirst({ where: { count } });
     }
-async createOne(data: CreateInput){ 
-            return await this.repo.create({ data })
-        }
-async updateOneById(id: number, data: UpdateInput){ 
-        return await this.repo.update({ where: { id }, data })
+    async findOneByCounts(counts: number) {
+        return await this.repo.findFirst({ where: { counts: { has: counts } } });
     }
-async updateOneByUuid(uuid: string, data: UpdateInput){ 
-        return await this.repo.update({ where: { uuid }, data })
+    async findOneByCountMoreThan(count: number) {
+        return await this.repo.findFirst({ where: { count: { gte: count } } });
     }
-async deleteOneById(id: number){ 
-        return await this.repo.delete({ where: { id } })
+    async findOneByCountLessThan(count: number) {
+        return await this.repo.findFirst({ where: { count: { lte: count } } });
     }
-async deleteOneByUuid(uuid: string){ 
-        return await this.repo.delete({ where: { uuid } })
+    async createOne(data: CreateInput) {
+        return await this.repo.create({ data });
     }
-async softDeleteOneById(id: number){ 
-        return await this.repo.update({ where: { id }, data:{ deletedAt: new Date() } })
+    async updateOneById(id: number, data: UpdateInput) {
+        return await this.repo.update({ where: { id }, data });
     }
-async softDeleteOneByUuid(uuid: string){ 
-        return await this.repo.update({ where: { uuid }, data:{ deletedAt: new Date() } })
+    async updateOneByUuid(uuid: string, data: UpdateInput) {
+        return await this.repo.update({ where: { uuid }, data });
     }
+    async deleteOneById(id: number) {
+        return await this.repo.delete({ where: { id } });
     }
+    async deleteOneByUuid(uuid: string) {
+        return await this.repo.delete({ where: { uuid } });
+    }
+    async softDeleteOneById(id: number) {
+        return await this.repo.update({ where: { id }, data: { deletedAt: new Date() } });
+    }
+    async softDeleteOneByUuid(uuid: string) {
+        return await this.repo.update({ where: { uuid }, data: { deletedAt: new Date() } });
+    }
+}
 
-
-    export class BaseProjectController<CreateInput extends P.ProjectCreateInput = P.ProjectCreateInput, UpdateInput extends P.ProjectUpdateInput = P.ProjectUpdateInput,QueryInput extends QueryMany<P.ProjectScalarFieldEnum> = QueryMany<P.ProjectScalarFieldEnum>> {
-
-    constructor(protected readonly service: BaseProjectService){}
+export class BaseProjectController<
+    CreateInput extends P.ProjectCreateInput = P.ProjectCreateInput,
+    UpdateInput extends P.ProjectUpdateInput = P.ProjectUpdateInput,
+    QueryInput extends QueryMany<P.ProjectScalarFieldEnum> = QueryMany<P.ProjectScalarFieldEnum>,
+> {
+    constructor(protected readonly service: BaseProjectService) {}
 
     findMany(query: QueryInput) {
         return this.service.findMany(query);
@@ -107,6 +119,4 @@ async softDeleteOneByUuid(uuid: string){
     deleteOneById(id: string) {
         return this.service.deleteOneByUuid(id);
     }
-        
-    }
-    
+}

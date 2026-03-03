@@ -5,45 +5,23 @@
     "anyOf": [
         {
             "description": "Text inputs",
-            "enum": [
-                "text",
-                "textarea",
-                "texteditor"
-            ]
+            "enum": ["text", "textarea", "texteditor"]
         },
         {
             "description": "Number inputs",
-            "enum": [
-                "number",
-                "rate",
-                "number-range"
-            ]
+            "enum": ["number", "rate", "number-range"]
         },
         {
             "description": "Date inputs",
-            "enum": [
-                "date",
-                "datetime",
-                "time"
-            ]
+            "enum": ["date", "datetime", "time"]
         },
         {
             "description": "Boolean inputs",
-            "enum": [
-                "switch",
-                "switch-group",
-                "checkbox",
-                "checkbox-group"
-            ]
+            "enum": ["switch", "switch-group", "checkbox", "checkbox-group"]
         },
         {
             "description": "Select inputs",
-            "enum": [
-                "select",
-                "select-list",
-                "autocomplete",
-                "radio"
-            ]
+            "enum": ["select", "select-list", "autocomplete", "radio"]
         }
     ],
     "additionalProperties": false

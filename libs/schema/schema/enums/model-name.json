@@ -5,13 +5,7 @@
     "anyOf": [
         {
             "description": "Abstract models",
-            "enum": [
-                "WithId",
-                "WithTimestamps",
-                "WithNotes",
-                "WithUuid",
-                "WithGeneratedUuid"
-            ]
+            "enum": ["WithId", "WithTimestamps", "WithNotes", "WithUuid", "WithGeneratedUuid"]
         },
         {
             "description": "Auth models",
@@ -33,37 +27,15 @@
         },
         {
             "description": "Inventory models",
-            "enum": [
-                "Product",
-                "Price",
-                "Quantity",
-                "PriceLevel",
-                "Store",
-                "Discount",
-                "Category",
-                "Department"
-            ]
+            "enum": ["Product", "Price", "Quantity", "PriceLevel", "Store", "Discount", "Category", "Department"]
         },
         {
             "description": "Contact models",
-            "enum": [
-                "Contact",
-                "Address",
-                "Email",
-                "Phone",
-                "Website",
-                "SocialMedia"
-            ]
+            "enum": ["Contact", "Address", "Email", "Phone", "Website", "SocialMedia"]
         },
         {
             "description": "Media",
-            "enum": [
-                "Media",
-                "File",
-                "Image",
-                "Avatar",
-                "Document"
-            ]
+            "enum": ["Media", "File", "Image", "Avatar", "Document"]
         }
     ],
     "additionalProperties": false
