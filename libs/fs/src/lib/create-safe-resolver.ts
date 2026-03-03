@@ -1,5 +1,9 @@
 import { normalize, resolve } from 'node:path';
-
+/**
+ * Create a safe scopeed resolver
+ * @param basePath
+ * @returns
+ */
 export function createSafeResolver(basePath: string) {
     basePath = normalize(basePath);
     return function safeResolve(...paths: string[]): string {
