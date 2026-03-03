@@ -21,14 +21,17 @@ export function printResourceModuleClass(datamodel: DMMF.Datamodel) {
         .join('\n');
 
     return [
-        `import { Module } from '@nestjs/common';`,
-        `import { PrismaModule } from '@vnodes/prisma';`,
-        `import { PrismaClient } from '../prisma/client.js';`,
-        moduleImports,
-        ``,
-        `@Module({`,
-        `    imports: [PrismaModule.forRoot(PrismaClient, []), ${modules}],`,
-        `})`,
-        `export class ResourceModule {}`,
+        `
+import { Module } from '@vnodes/nestjs/common';
+import { PrismaModule } from '@vnodes/nestjs/prisma';
+${moduleImports}
+import { PrismaClient } from './prisma/index.js';
+
+@Module({
+    imports: [PrismaModule.forRoot(PrismaClient, []), ${modules}],
+})
+export class ResourceModule {}
+
+`,
     ].join('\n');
 }

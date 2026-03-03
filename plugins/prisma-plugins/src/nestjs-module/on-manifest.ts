@@ -2,9 +2,8 @@ import type { GeneratorManifest } from '@prisma/generator-helper';
 
 export default function onManifest(): GeneratorManifest {
     return {
-        prettyName: 'Nestjs dto generator',
+        defaultOutput: 'src/resources',
+        prettyName: 'Nestjs module generator',
         version: '0.0.1',
-        requiresGenerators: ['prisma-client'],
-        defaultOutput: 'generated',
     };
 }

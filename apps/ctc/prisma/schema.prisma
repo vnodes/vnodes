@@ -11,8 +11,8 @@ generator serviceClasses {
   provider = "prisma-service"
 }
 
-generator nestjsDto {
-  provider = "nestjs-dto"
+generator nestjsModule {
+  provider = "nestjs-module"
   output   = "../src/resources"
 }
 

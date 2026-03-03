@@ -34,7 +34,7 @@
         }
     },
     "bin": {
-        "nestjs-dto": "./bin/nestjs-dto.mjs",
+        "nestjs-module": "./bin/nestjs-module.mjs",
         "prisma-service": "./bin/prisma-service.mjs"
     },
     "files": [
