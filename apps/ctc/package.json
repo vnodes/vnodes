@@ -1,22 +1,22 @@
 {
-    "name": "<%- projectName %>",
-    "description": "<%- projectName %>",
-    "homepage": "<%- homepage %>/<%- directory %>",
+    "name": "@vnodes/ctc",
+    "description": "@vnodes/ctc",
+    "homepage": "https://vnodes.github.io/vnodes/apps/ctc",
     "publishConfig": {
         "access": "public",
         "tag": "latest"
     },
     "author": {
-        "email": "<%- email %>",
+        "email": "robert.brightline+vnodes-ctc@gmail.com",
         "name": "Robert Brightline",
-        "url": "<%- homepage %>/<%- directory %>"
+        "url": "https://vnodes.github.io/vnodes/apps/ctc"
     },
     "keywords": [],
-    "icon": "<%- homepage %>/<%- directory %>/assets/favicon.png",
+    "icon": "https://vnodes.github.io/vnodes/apps/ctc/assets/favicon.png",
     "funding": [
         {
             "type": "cashapp",
-            "url": "<%- funding %>"
+            "url": "https://cash.app/$puqlib"
         }
     ],
     "version": "0.0.1",
@@ -39,7 +39,7 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "<%- directory %>/src",
+        "sourceRoot": "apps/ctc/src",
         "targets": {
             "build": {
                 "executor": "@nx/js:swc",
@@ -47,9 +47,9 @@
                     "{options.outputPath}"
                 ],
                 "options": {
-                    "outputPath": "<%- directory %>/dist",
-                    "main": "<%- directory %>/src/boot.ts",
-                    "tsConfig": "<%- directory %>/tsconfig.lib.json",
+                    "outputPath": "apps/ctc/dist",
+                    "main": "apps/ctc/src/boot.ts",
+                    "tsConfig": "apps/ctc/tsconfig.lib.json",
                     "skipTypeCheck": false,
                     "stripLeadingPaths": true
                 }
@@ -63,33 +63,35 @@
             "test": {
                 "executor": "nx:run-commands",
                 "options": {
-                "command": "npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
-                "cwd": "{projectRoot}"
+                    "command": "npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
+                    "cwd": "{projectRoot}"
                 }
             },
             "doc": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx typedoc --tsconfig <%- directory %>/tsconfig.lib.json --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %>",
+                    "command": "npx typedoc --tsconfig apps/ctc/tsconfig.lib.json --entryPoints apps/ctc/src/index.ts --out public/apps/ctc",
                     "cwd": "{workspaceRoot}"
                 }
             },
             "serve": {
                 "executor": "@nx/js:node",
                 "options": {
-                    "buildTarget": "<%- projectName %>:build",
+                    "buildTarget": "@vnodes/ctc:build",
                     "watch": true
                 }
             }
         }
     },
-  "dependencies": {
-    "@swc/helpers": "~0.5.11",
-    "@vnodes/nestjs": "workspace:*"
-  },
-  "devDependencies": {
-    "dotenv": "17.3.1",
-    "prisma": "7.3.0",
-    "@vnodes/prisma-plugins": "workspace:*"
-  }
+    "dependencies": {
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/nestjs": "workspace:*",
+        "@prisma/client": "7.3.0"
+    },
+    "devDependencies": {
+        "@prisma/client": "7.3.0",
+        "@vnodes/prisma-plugins": "workspace:*",
+        "dotenv": "17.3.1",
+        "prisma": "7.3.0"
+    }
 }

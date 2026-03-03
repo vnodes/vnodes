@@ -79,6 +79,28 @@ importers:
         specifier: ^6.0.5
         version: 6.2.5(typanion@3.14.0)
 
+  apps/ctc:
+    dependencies:
+      '@prisma/client':
+        specifier: 7.3.0
+        version: 7.3.0(prisma@7.3.0(@types/react@19.2.13)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.18
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../../libs/nestjs
+    devDependencies:
+      '@vnodes/prisma-plugins':
+        specifier: workspace:*
+        version: link:../../plugins/prisma-plugins
+      dotenv:
+        specifier: 17.3.1
+        version: 17.3.1
+      prisma:
+        specifier: 7.3.0
+        version: 7.3.0(@types/react@19.2.13)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+
   apps/sample-api:
     dependencies:
       '@swc/helpers':

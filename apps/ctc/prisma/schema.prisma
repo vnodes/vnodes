@@ -1,0 +1,120 @@
+generator client {
+  provider               = "prisma-client"
+  output                 = "../src/resources/prisma/client"
+  runtime                = "nodejs"
+  importFileExtension    = "js"
+  generatedFileExtension = "ts"
+  moduleFormat           = "esm"
+}
+
+generator serviceClasses {
+  provider = "prisma-service"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Gender {
+  Male
+  Female
+}
+
+enum PersonalOrWork {
+  Personal
+  Work
+}
+
+model Contact {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7)) @db.Uuid
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  firstName    String
+  lastName     String
+  middleName   String?
+  preferedName String?
+  gender       Gender?
+  profiles     String[]
+
+  primaryEmail   Email? @relation("primary", fields: [primaryEmailId], references: [id], onDelete: SetNull)
+  primaryEmailId Int?   @unique
+
+  primaryPhone   Phone? @relation("primary", fields: [primaryPhoneId], references: [id], onDelete: SetNull)
+  primaryPhoneId Int?   @unique
+
+  primaryAddress   Address? @relation("primary", fields: [primaryAddressId], references: [id], onDelete: SetNull)
+  primaryAddressId Int?     @unique
+
+  emails    Email[]   @relation("owner")
+  phones    Phone[]   @relation("owner")
+  addresses Address[] @relation("owner")
+}
+
+model Email {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  contactType PersonalOrWork @default(Personal)
+  email       String
+  notes       String?
+  openTime    Json?          @default("[]")
+  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  contactId   Int
+
+  primarContact Contact? @relation("primary")
+
+  @@unique([contactId, email])
+  @@index([email])
+  @@index([contactId])
+}
+
+model Phone {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  contactType PersonalOrWork @default(Personal)
+  phone       String
+  notes       String?
+  openTime    Json?          @default("[]")
+  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  contactId   Int
+
+  primarContact Contact? @relation("primary")
+
+  @@unique([contactId, phone])
+  @@index([phone])
+  @@index([contactId])
+}
+
+model Address {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  contactType PersonalOrWork @default(Personal)
+  street      String
+  city        String
+  notes       String?
+  openTime    Json?          @default("[]")
+
+  unit     String?
+  province String?
+  state    String?
+  country  String?
+  zip      String?
+
+  contact   Contact @relation("owner", fields: [contactId], references: [id])
+  contactId Int
+
+  primarContact Contact? @relation("primary")
+
+  @@index([contactId])
+}
