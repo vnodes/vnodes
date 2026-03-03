@@ -28,74 +28,96 @@ export type AggregateProject = {
 
 export type ProjectAvgAggregateOutputType = {
   id: number | null
+  count: number | null
+  counts: number | null
 }
 
 export type ProjectSumAggregateOutputType = {
   id: number | null
+  count: number | null
+  counts: number[]
 }
 
 export type ProjectMinAggregateOutputType = {
   id: number | null
+  uuid: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
   name: string | null
   description: string | null
+  count: number | null
 }
 
 export type ProjectMaxAggregateOutputType = {
   id: number | null
+  uuid: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
   name: string | null
   description: string | null
+  count: number | null
 }
 
 export type ProjectCountAggregateOutputType = {
   id: number
+  uuid: number
   createdAt: number
   updatedAt: number
   deletedAt: number
   name: number
   description: number
+  count: number
+  counts: number
   _all: number
 }
 
 
 export type ProjectAvgAggregateInputType = {
   id?: true
+  count?: true
+  counts?: true
 }
 
 export type ProjectSumAggregateInputType = {
   id?: true
+  count?: true
+  counts?: true
 }
 
 export type ProjectMinAggregateInputType = {
   id?: true
+  uuid?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
   name?: true
   description?: true
+  count?: true
 }
 
 export type ProjectMaxAggregateInputType = {
   id?: true
+  uuid?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
   name?: true
   description?: true
+  count?: true
 }
 
 export type ProjectCountAggregateInputType = {
   id?: true
+  uuid?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
   name?: true
   description?: true
+  count?: true
+  counts?: true
   _all?: true
 }
 
@@ -187,11 +209,14 @@ export type ProjectGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ProjectGroupByOutputType = {
   id: number
+  uuid: string
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
   name: string
   description: string | null
+  count: number | null
+  counts: number[]
   _count: ProjectCountAggregateOutputType | null
   _avg: ProjectAvgAggregateOutputType | null
   _sum: ProjectSumAggregateOutputType | null
@@ -219,24 +244,31 @@ export type ProjectWhereInput = {
   OR?: Prisma.ProjectWhereInput[]
   NOT?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   id?: Prisma.IntFilter<"Project"> | number
+  uuid?: Prisma.StringFilter<"Project"> | string
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   name?: Prisma.StringFilter<"Project"> | string
   description?: Prisma.StringNullableFilter<"Project"> | string | null
+  count?: Prisma.IntNullableFilter<"Project"> | number | null
+  counts?: Prisma.IntNullableListFilter<"Project">
 }
 
 export type ProjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  count?: Prisma.SortOrderInput | Prisma.SortOrder
+  counts?: Prisma.SortOrder
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  uuid?: string
   name?: string
   AND?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   OR?: Prisma.ProjectWhereInput[]
@@ -245,15 +277,20 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   description?: Prisma.StringNullableFilter<"Project"> | string | null
-}, "id" | "name">
+  count?: Prisma.IntNullableFilter<"Project"> | number | null
+  counts?: Prisma.IntNullableListFilter<"Project">
+}, "id" | "uuid" | "name">
 
 export type ProjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  count?: Prisma.SortOrderInput | Prisma.SortOrder
+  counts?: Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
   _avg?: Prisma.ProjectAvgOrderByAggregateInput
   _max?: Prisma.ProjectMaxOrderByAggregateInput
@@ -266,106 +303,157 @@ export type ProjectScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProjectScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProjectScalarWhereWithAggregatesInput | Prisma.ProjectScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Project"> | number
+  uuid?: Prisma.StringWithAggregatesFilter<"Project"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
   name?: Prisma.StringWithAggregatesFilter<"Project"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  count?: Prisma.IntNullableWithAggregatesFilter<"Project"> | number | null
+  counts?: Prisma.IntNullableListFilter<"Project">
 }
 
 export type ProjectCreateInput = {
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   name: string
   description?: string | null
+  count?: number | null
+  counts?: Prisma.ProjectCreatecountsInput | number[]
 }
 
 export type ProjectUncheckedCreateInput = {
   id?: number
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   name: string
   description?: string | null
+  count?: number | null
+  counts?: Prisma.ProjectCreatecountsInput | number[]
 }
 
 export type ProjectUpdateInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  counts?: Prisma.ProjectUpdatecountsInput | number[]
 }
 
 export type ProjectUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  counts?: Prisma.ProjectUpdatecountsInput | number[]
 }
 
 export type ProjectCreateManyInput = {
   id?: number
+  uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   name: string
   description?: string | null
+  count?: number | null
+  counts?: Prisma.ProjectCreatecountsInput | number[]
 }
 
 export type ProjectUpdateManyMutationInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  counts?: Prisma.ProjectUpdatecountsInput | number[]
 }
 
 export type ProjectUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  counts?: Prisma.ProjectUpdatecountsInput | number[]
+}
+
+export type IntNullableListFilter<$PrismaModel = never> = {
+  equals?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  has?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  hasEvery?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  hasSome?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type ProjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  count?: Prisma.SortOrder
+  counts?: Prisma.SortOrder
 }
 
 export type ProjectAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  count?: Prisma.SortOrder
+  counts?: Prisma.SortOrder
 }
 
 export type ProjectMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type ProjectMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  count?: Prisma.SortOrder
 }
 
 export type ProjectSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  count?: Prisma.SortOrder
+  counts?: Prisma.SortOrder
+}
+
+export type ProjectCreatecountsInput = {
+  set: number[]
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -376,12 +464,21 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type ProjectUpdatecountsInput = {
+  set?: number[]
+  push?: number | number[]
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -396,52 +493,67 @@ export type IntFieldUpdateOperationsInput = {
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  uuid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
   description?: boolean
+  count?: boolean
+  counts?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  uuid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
   description?: boolean
+  count?: boolean
+  counts?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  uuid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
   description?: boolean
+  count?: boolean
+  counts?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectScalar = {
   id?: boolean
+  uuid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
   description?: boolean
+  count?: boolean
+  counts?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "name" | "description", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uuid" | "createdAt" | "updatedAt" | "deletedAt" | "name" | "description" | "count" | "counts", ExtArgs["result"]["project"]>
 
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    uuid: string
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
     name: string
     description: string | null
+    count: number | null
+    counts: number[]
   }, ExtArgs["result"]["project"]>
   composites: {}
 }
@@ -866,11 +978,14 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface ProjectFieldRefs {
   readonly id: Prisma.FieldRef<"Project", 'Int'>
+  readonly uuid: Prisma.FieldRef<"Project", 'String'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly name: Prisma.FieldRef<"Project", 'String'>
   readonly description: Prisma.FieldRef<"Project", 'String'>
+  readonly count: Prisma.FieldRef<"Project", 'Int'>
+  readonly counts: Prisma.FieldRef<"Project", 'Int[]'>
 }
     
 

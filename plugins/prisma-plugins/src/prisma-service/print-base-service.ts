@@ -37,6 +37,18 @@ export function findFirstByMethod(options: MethodOptions) {
     }`;
 }
 
+export function findFirstByMoreThanMethod(options: MethodOptions) {
+    return `async findOneBy${options.pascalCase}MoreThan(${options.camelCase}: ${options.type}){ 
+        return await this.repo.findFirst({ where: {${options.camelCase}: { gte: ${options.camelCase} } } })
+    }`;
+}
+
+export function findFirstByLessThanMethod(options: MethodOptions) {
+    return `async findOneBy${options.pascalCase}LessThan(${options.camelCase}: ${options.type}){ 
+        return await this.repo.findFirst({ where: {${options.camelCase}: { lte: ${options.camelCase} } } })
+    }`;
+}
+
 export function deleteUniqueByMethod(options: MethodOptions) {
     return `async deleteOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
         return await this.repo.delete({ where: { ${options.camelCase} } })
@@ -49,8 +61,8 @@ export function softDeleteByMethod(options: MethodOptions) {
     }`;
 }
 
-export function printWhereHelper(modelName: string, noneUniqueTextFields: DMMF.Field[], hasSoftDelete: boolean) {
-    const containsQuery = noneUniqueTextFields
+export function printWhereHelper(modelName: string, noneIdTextFields: DMMF.Field[], hasSoftDelete: boolean) {
+    const containsQuery = noneIdTextFields
         .map((e) => {
             if (e.isList) {
                 return `{ ${e.name}: { has: query.search } }`;
@@ -61,7 +73,7 @@ export function printWhereHelper(modelName: string, noneUniqueTextFields: DMMF.F
         .join(',');
 
     const deletedAtOperation = hasSoftDelete
-        ? `if(!query.withDeleted){ 
+        ? `if(!query?.withDeleted){ 
             whereQuery.deletedAt = null; 
         }`
         : undefined;
@@ -69,8 +81,8 @@ export function printWhereHelper(modelName: string, noneUniqueTextFields: DMMF.F
     const whereQuery = containsQuery.trim() ? `{ OR: [ ${containsQuery} ] } ` : '{}';
 
     return [
-        `toWhere(query: QueryInput){`,
-        `const whereQuery:P.${modelName}WhereInput = ${whereQuery}`,
+        `toWhere(query?: QueryInput){`,
+        `const whereQuery:P.${modelName}WhereInput = query?.search ?   ${whereQuery}: {}`,
         deletedAtOperation,
         `return whereQuery`,
 
@@ -82,8 +94,8 @@ export function printWhereHelper(modelName: string, noneUniqueTextFields: DMMF.F
 
 export function printOrderByHelper() {
     return [
-        `toOrderBy(query: QueryInput){`,
-        `if(query.orderBy){`,
+        `toOrderBy(query?: QueryInput){`,
+        `if(query?.orderBy){`,
         `   return { [query.orderBy]: query.orderDir ?? 'asc' }  `,
         `}`,
         'return undefined',
@@ -94,10 +106,10 @@ export function printOrderByHelper() {
 
 export function printFindManyArgshelper(modelName: string) {
     return [
-        `toFindManyArgs(query: QueryInput ):P.${modelName}FindManyArgs {`,
+        `toFindManyArgs(query?: QueryInput ):P.${modelName}FindManyArgs {`,
         `    return {`,
-        `        take: query.take ?? 20,`,
-        `        skip: query.skip ?? 0,`,
+        `        take: query?.take ?? 20,`,
+        `        skip: query?.skip ?? 0,`,
         `        orderBy: this.toOrderBy(query),`,
         `        where: this.toWhere(query)`,
         `    }`,
@@ -109,11 +121,16 @@ export function printBaseService(model: DMMF.Model) {
     const modelNames = names(model.name);
     const hasSoftDelete = hasSoftDeleteField(model);
     const { pascalCase } = modelNames;
-    const uniqueFields = model.fields.filter(isUnqiueField);
-    const noneUniqueTextFields = model.fields.filter(isStringField).filter((e) => !isUnqiueField(e));
+    const idFields = model.fields.filter(isUnqiueField).filter((e) => e.name === 'id' || e.name === 'uuid');
+    const noneIdTextFields = model.fields.filter(isStringField).filter((e) => {
+        if (e.name === 'id' || e.name === 'uuid') {
+            return false;
+        }
+        return true;
+    });
     const noneUniqueNumberFields = model.fields.filter(isNumberField).filter((e) => !isUnqiueField(e));
-
-    const updateByMethods = uniqueFields
+    const noneUniqueNoneArrayFields = noneUniqueNumberFields.filter((e) => !e.isList);
+    const updateByMethods = idFields
         .map((field) => {
             return updateUniqueByMethods({
                 ...names(field.name),
@@ -122,7 +139,7 @@ export function printBaseService(model: DMMF.Model) {
         })
         .join('\n');
 
-    const findUniqueByMethods = uniqueFields
+    const findUniqueByMethods = idFields
         .map((field) => {
             return findUniqueByMethod({
                 ...names(field.name),
@@ -131,7 +148,7 @@ export function printBaseService(model: DMMF.Model) {
         })
         .join('\n');
 
-    const findFirstByTextMethods = noneUniqueTextFields
+    const findFirstByTextMethods = noneIdTextFields
         .map((field) => {
             return findFirstByMethod({
                 ...names(field.name),
@@ -151,7 +168,24 @@ export function printBaseService(model: DMMF.Model) {
         })
         .join('\n');
 
-    const deleteByMethods = uniqueFields
+    const numberFindMoreLessMethods = noneUniqueNoneArrayFields
+        .map((field) => {
+            return [
+                findFirstByMoreThanMethod({
+                    ...names(field.name),
+                    type: fieldItemTypeAsString(field),
+                    isList: field.isList,
+                }),
+                findFirstByLessThanMethod({
+                    ...names(field.name),
+                    type: fieldItemTypeAsString(field),
+                    isList: field.isList,
+                }),
+            ].join('\n');
+        })
+        .join('\n');
+
+    const deleteByMethods = idFields
         .map((field) => {
             return deleteUniqueByMethod({
                 ...names(field.name),
@@ -161,7 +195,7 @@ export function printBaseService(model: DMMF.Model) {
         .join('\n');
 
     const softDeleteMethods = hasSoftDeleteField(model)
-        ? uniqueFields
+        ? idFields
               .map((field) => {
                   return softDeleteByMethod({ ...names(field.name), type: fieldTypeAsString(field) });
               })
@@ -169,7 +203,7 @@ export function printBaseService(model: DMMF.Model) {
         : undefined;
 
     const allMethods = [
-        printWhereHelper(pascalCase, noneUniqueTextFields, hasSoftDelete),
+        printWhereHelper(pascalCase, noneIdTextFields, hasSoftDelete),
         printOrderByHelper(),
         printFindManyArgshelper(pascalCase),
         `async findMany(query: QueryInput) { 
@@ -178,6 +212,7 @@ export function printBaseService(model: DMMF.Model) {
         findUniqueByMethods,
         findFirstByTextMethods,
         findFirstByNumberMethods,
+        numberFindMoreLessMethods,
         `async createOne(data: CreateInput){ 
             return await this.repo.create({ data })
         }`,
