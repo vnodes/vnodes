@@ -10,7 +10,7 @@
 
 ## <%- projectName %>
 
-- [ ] Add project description
+<%- projectName %>
 
 ## Installation
 

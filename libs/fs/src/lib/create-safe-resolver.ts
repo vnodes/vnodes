@@ -1,17 +1,18 @@
-import { normalize, resolve } from 'node:path';
+import { resolve } from 'node:path';
+
 /**
  * Create a safe scopeed resolver
- * @param basePath
+ * @param rootPath
  * @returns
  */
-export function createSafeResolver(basePath: string) {
-    basePath = normalize(basePath);
+export function createSafeResolver(rootPath: string) {
+    rootPath = resolve(rootPath);
     return function safeResolve(...paths: string[]): string {
-        const resolvedPath = resolve(basePath, ...paths);
+        const resolvedPath = resolve(rootPath, ...paths);
 
-        if (resolvedPath.startsWith(basePath)) {
+        if (resolvedPath.startsWith(rootPath)) {
             return resolvedPath;
         }
-        throw new Error(`The path, ${resolvedPath} is out of the defined scope , ${basePath}`);
+        throw new Error(`The path, ${resolvedPath} is out of the defined scope , ${rootPath}`);
     };
 }

@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/prisma-helper",
-  "description": "- [ ] add description",
+  "description": "Helper function for prisma plugins",
   "homepage": "https://vnodes.github.io/vnodes/plugins/prisma-helper",
   "publishConfig": {
     "access": "public",

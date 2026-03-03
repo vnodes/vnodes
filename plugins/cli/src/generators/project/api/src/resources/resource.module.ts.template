@@ -1,0 +1,9 @@
+import { Module } from '@vnodes/nestjs/common';
+import { PrismaModule } from '@vnodes/nestjs/prisma';
+import { RootModule } from '@vnodes/nestjs/root';
+import { PrismaClient } from './prisma/index.js';
+
+@Module({
+    imports: [PrismaModule.forRoot(PrismaClient, [])],
+})
+export class ResourceModule {}

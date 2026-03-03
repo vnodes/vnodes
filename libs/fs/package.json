@@ -63,7 +63,7 @@
       "test": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "npx tsx --test src/**/*.{spec,test}.ts",
+          "command": "npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
           "cwd": "{projectRoot}"
         }
       },

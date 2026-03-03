@@ -1,6 +1,6 @@
 {
     "name": "<%- projectName %>",
-    "description": "- [ ] add description",
+    "description": "<%- projectName %>",
     "homepage": "<%- homepage %>/<%- directory %>",
     "publishConfig": {
         "access": "public",
@@ -63,8 +63,8 @@
             "test": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
-                    "cwd": "{projectRoot}"
+                "command": "npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
+                "cwd": "{projectRoot}"
                 }
             },
             "doc": {
@@ -83,37 +83,13 @@
             }
         }
     },
-    "dependencies": {
-        "@nestjs/cache-manager": "^3.1.0",
-        "@nestjs/common": "^11.1.13",
-        "@nestjs/config": "^4.0.3",
-        "@nestjs/core": "^11.1.13",
-        "@nestjs/event-emitter": "^3.0.1",
-        "@nestjs/platform-express": "^11.1.13",
-        "@nestjs/schedule": "^6.1.1",
-        "@nestjs/swagger": "^11.2.6",
-        "@nestjs/throttler": "^6.5.0",
-        "@prisma/adapter-pg": "7.3.0",
-        "@prisma/client": "7.3.0",
-        "@scalar/nestjs-api-reference": "^1.0.23",
-        "@swc/helpers": "~0.5.11",
-        "@vnodes/contact-db": "workspace:*",
-        "@vnodes/nest": "workspace:*",
-        "@vnodes/prisma": "workspace:*",
-        "@vnodes/property": "workspace:*",
-        "@vnodes/types": "workspace:*",
-        "cache-manager": "^7.2.8",
-        "class-transformer": "^0.5.1",
-        "class-validator": "^0.14.3",
-        "express": "^5.2.1",
-        "helmet": "^8.1.0",
-        "pg": "^8.18.0",
-        "reflect-metadata": "^0.2.2",
-        "rxjs": "^7.8.2"
-    },
-    "devDependencies": {
-        "@types/express": "^5.0.6",
-        "@vnodes/prisma-plugins": "workspace:*",
-        "prisma": "7.3.0"
-    }
+  "dependencies": {
+    "@swc/helpers": "~0.5.11",
+    "@vnodes/nestjs": "workspace:*"
+  },
+  "devDependencies": {
+    "dotenv": "17.3.1",
+    "prisma": "7.3.0",
+    "@vnodes/prisma-plugins": "workspace:*"
+  }
 }

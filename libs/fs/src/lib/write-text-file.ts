@@ -5,7 +5,7 @@ export async function writeTextFile(filePath: string, content: string, controlle
     const directory = dirname(filePath);
 
     await mkdir(directory, { recursive: true });
-    return await writeFile(filePath, content, {
+    await writeFile(filePath, content, {
         encoding: 'utf-8',
         signal: controller?.signal,
     });

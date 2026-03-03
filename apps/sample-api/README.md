@@ -10,7 +10,7 @@
 
 ## @vnodes/sample-api
 
-- [ ] Add project description
+Sample api
 
 ## Installation
 

@@ -1,10 +1,14 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/app/prisma"
+  provider               = "prisma-client"
+  output                 = "../src/resources/prisma/client"
+  runtime                = "nodejs"
+  importFileExtension    = "js"
+  generatedFileExtension = "ts"
+  moduleFormat           = "esm"
 }
 
-generator nestjs {
-  provider = "nestjs"
+generator serviceClasses {
+  provider = "prisma-service"
 }
 
 datasource db {

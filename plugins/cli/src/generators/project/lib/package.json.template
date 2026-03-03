@@ -1,6 +1,6 @@
 {
     "name": "<%- projectName %>",
-    "description": "- [ ] add description",
+    "description": "<%- projectName %>",
     "homepage": "<%- homepage %>/<%- directory %>",
     "publishConfig": {
         "access": "public",
@@ -63,8 +63,8 @@
             "test": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx tsx --tsconfig tsconfig.lib.json --test src/**/*.{spec,test}.ts",
-                    "cwd": "{projectRoot}"
+                "command": "npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
+                "cwd": "{projectRoot}"
                 }
             },
             "doc": {
