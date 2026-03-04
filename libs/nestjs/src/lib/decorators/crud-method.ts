@@ -1,4 +1,3 @@
-import { UseInterceptors } from '@nestjs/common';
 import {
     ApiForbiddenResponse,
     ApiInternalServerErrorResponse,
@@ -6,8 +5,7 @@ import {
     ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { CrudOperation } from '../const/index.js';
-import { CacheEvictInterceptor } from '../interceptors/index.js';
-import { OperationName, Permissions } from '../metadata/index.js';
+import { EmitResponse, OperationName, Permissions } from '../metadata/index.js';
 import { names, resourceNames } from '../names/index.js';
 import { CreateMethod } from './create-method.js';
 import { CrudControllerOptions, resolveCrudControllerOptions } from './crud-controller-options.js';
@@ -27,8 +25,15 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
 
     return (...args) => {
         const target = args[0];
-
         const methodName = args[1].toString();
+        const className = target.constructor.name;
+
+        const { pascalCase } = resourceNames(className);
+
+        const requiredPermission = `${pascalCase}.${methodName}`;
+
+        OperationName(methodName)(...args);
+        Permissions(requiredPermission)(...args);
 
         switch (methodName as CrudOperation) {
             case CrudOperation.CREATE_ONE: {
@@ -56,12 +61,14 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
             }
         }
 
-        // Apply interceptors
+        // Apply CacheEvictInterceptor
         switch (methodName as CrudOperation) {
             case CrudOperation.UPDATE_ONE_BY_ID:
             case CrudOperation.DELETE_ONE_BY_ID:
             case CrudOperation.CREATE_ONE: {
-                UseInterceptors(CacheEvictInterceptor)(...args);
+                if (options.emit) {
+                    EmitResponse()(...args);
+                }
                 break;
             }
             case CrudOperation.FIND_ALL:
@@ -69,15 +76,6 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
                 break;
             }
         }
-
-        const className = target.constructor.name;
-        const { pascalCase: resourceName } = resourceNames(className);
-
-        const requiredPermission = `${resourceName}.${methodName}`;
-
-        // APply common decorators
-        OperationName(methodName)(...args);
-        Permissions(requiredPermission)(...args);
 
         ApiOperation({ summary: `${names(methodName).sentenceCase}` })(...args);
         ApiInternalServerErrorResponse({ description: 'Internal server error' })(...args);

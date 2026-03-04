@@ -6,6 +6,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { Env } from '../const/index.js';
+import { EmitResponseInterceptor } from '../interceptors/emit-response.interceptor.js';
 
 @Global()
 @Module({
@@ -42,6 +43,10 @@ import { Env } from '../const/index.js';
         {
             provide: APP_INTERCEPTOR,
             useClass: CacheInterceptor,
+        },
+        {
+            provide: APP_INTERCEPTOR,
+            useClass: EmitResponseInterceptor,
         },
         {
             provide: APP_GUARD,

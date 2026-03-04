@@ -6,6 +6,7 @@ export type CrudControllerOptions = {
     createDto?: Type;
     updateDto?: Type;
     queryDto?: Type;
+    emit?: boolean;
 };
 
 export type CreateMethodOptions = Pick<CrudControllerOptions, 'createDto' | 'readDto'>;

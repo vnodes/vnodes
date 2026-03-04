@@ -5,6 +5,7 @@ export enum Metadata {
     PERMISSIONS = 'PERMISSIONS',
     RESOURCE_NAME = 'RESOURCE_NAME',
     OPERATION_NAME = 'OPERATION_NAME',
+    EMIT_RESPONSE = 'EMIT_RESPONSE',
 }
 
 export const { set: ResourceName, get: getResourceName } = createMetadata<string>(Metadata.ROLES);
@@ -15,4 +16,6 @@ export const { set: Permissions, get: getPermissions } = createMetadata<string>(
 
 export const { set: Roles, get: getRoles } = createMetadata<string>(Metadata.ROLES);
 
-export const { set: Public, get: isPublic } = createMetadataWithoutValue(Metadata.ROLES);
+export const { set: Public, get: isPublic } = createMetadataWithoutValue(Metadata.PUBLIC);
+
+export const { set: EmitResponse, get: isEmitResponse } = createMetadataWithoutValue(Metadata.EMIT_RESPONSE);

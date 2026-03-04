@@ -1,14 +1,19 @@
 import { type Names, names } from './names.js';
 
 /**
- * Extract the resource name from the {@link controllerName}
+ * Extract the resource name from the {@link targetClassName}
  *
- * @param controllerName controller class name
+ * @param targetClassName controller class name
  * @returns names object {@link Names}
  */
-export function resourceNames(controllerName: string): Names {
-    if (!controllerName.endsWith('Controller')) {
-        throw new Error(`Controller class name must end with 'Controller' but found ${controllerName}`);
+export function resourceNames(targetClassName: string): Names {
+    if (!/Controller|Service|EventListener|Interceptor|Middleware|Module|Pipe|Dto$/.test(targetClassName)) {
+        throw new Error(`Invalid class name ${targetClassName}`);
     }
-    return names(controllerName.replace('Controller', ''));
+    const resourceName = targetClassName.replace(
+        /Controller|Service|EventListener|Interceptor|Middleware|Module|Pipe|Dto/g,
+        '',
+    );
+
+    return names(resourceName);
 }

@@ -5,6 +5,7 @@ export * from './crud-controller-options.js';
 export * from './crud-method.js';
 export * from './delete-one-by-id-method.js';
 export * from './dto.js';
+export * from './event-listener.js';
 export * from './find-many-method.js';
 export * from './find-one-by-id-mehtod.js';
 export * from './helpers.js';

@@ -1,4 +1,3 @@
-
 import { CrudController } from '@vnodes/nestjs';
 import { Inject } from '@vnodes/nestjs/common';
 import { BaseContactController } from '../prisma/index.js';
@@ -10,11 +9,10 @@ import { ContactService } from './contact.service.js';
     readDto: ContactReadDto,
     createDto: ContactCreateDto,
     updateDto: ContactUpdateDto,
+    emit: true,
 })
 export class ContactController extends BaseContactController {
     constructor(@Inject(ContactService) service: ContactService) {
         super(service);
     }
 }
-
-        
