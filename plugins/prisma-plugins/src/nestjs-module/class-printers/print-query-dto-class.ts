@@ -1,14 +1,18 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { ClassNameSuffix } from '../class/class-name-suffix.js';
+import { names } from '@vnodes/names';
 
 export function printQueryDtoClass(model: DMMF.Model) {
+    const { pascalCase } = names(model.name);
     return [
-        `import { BaseQueryDto, PropOptional } from '@vnodes/property';`,
-        `import * as P from '../../../prisma/client.js';`,
-        ``,
-        `export class ${model.name}${ClassNameSuffix.QueryDto} extends BaseQueryDto {`,
-        `    @PropOptional({ enum: P.Prisma.${model.name}ScalarFieldEnum }) orderBy?: P.Prisma.${model.name}ScalarFieldEnum;`,
-        `    @PropOptional({ enum: P.Prisma.SortOrder }) orderDir?: P.Prisma.SortOrder;`,
-        `}`,
+        `
+export class ${pascalCase}QueryDto implements P.QueryMany<P.Prisma.${pascalCase}ScalarFieldEnum> {
+    @Prop() take?: number;
+    @Prop() skip?: number;
+    @Prop() search?: string;
+    @Prop() orderBy?: P.Prisma.${pascalCase}ScalarFieldEnum;
+    @Prop() orderDir?: P.Prisma.SortOrder;
+    @Prop() withDeleted?: boolean;
+}
+`,
     ].join('\n');
 }

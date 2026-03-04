@@ -6,7 +6,7 @@ export function isRequiredField(field: DMMF.Field) {
     }
 
     if (field.isRequired) {
-        if (field.default) {
+        if ((field.default as DMMF.FieldDefault)?.name) {
             return false;
         }
 

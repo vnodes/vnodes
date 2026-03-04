@@ -46,7 +46,9 @@ export function inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fi
         options.push(`type: ${decoratorOptionsType}`);
     }
 
-    if (field.isRequired !== true) options.push('required: false');
+    if (!field.isList) {
+        if (field.isRequired === true) options.push('required: true');
+    }
 
     const _maximum = Annotations.max(field.documentation);
     const _minimum = Annotations.min(field.documentation);
@@ -77,5 +79,10 @@ export function inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fi
 
     if (field.kind === 'enum') options.push(`enum: P.$Enums.${field.type}`);
 
-    return `{ ${options.join(',')} }`;
+    const optionsAsString = options.join(',').trim();
+    if (optionsAsString) {
+        return `{ ${optionsAsString} }`;
+    }
+
+    return '';
 }

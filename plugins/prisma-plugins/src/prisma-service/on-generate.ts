@@ -29,4 +29,14 @@ export default async function onGenerate(options: GeneratorOptions) {
     }
 
     await writeTextFile(filePath, generatedServices.join('\n\n'));
+
+    const barralFileContent = `
+export * from './client.js';
+export * from './commonInputTypes.js';
+export * from './enums.js';
+export * from './models.js';
+export * from './services.js';
+    `;
+
+    await writeTextFile(join(out, 'index.ts'), barralFileContent);
 }

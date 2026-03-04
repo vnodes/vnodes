@@ -8,8 +8,7 @@ export function printServiceClass(model: DMMF.Model) {
         `
 import { Injectable } from '@vnodes/nestjs/common';
 import { InjectDelegate } from '@vnodes/nestjs/prisma';
-import { Base${pascalCase}Service } from '../prisma/client/services.js';
-import { Prisma } from '../prisma/index.js';
+import { Prisma, Base${pascalCase}Service } from '../prisma/index.js';
 
 @Injectable()
 export class ${pascalCase}Service extends Base${pascalCase}Service {

@@ -1,4 +1,7 @@
-export * from './client/client.js';
-export * from './client/enums.js';
-export * from './client/models.js';
-export * from './client/services.js';
+
+export * from './client.js';
+export * from './commonInputTypes.js';
+export * from './enums.js';
+export * from './models.js';
+export * from './services.js';
+    

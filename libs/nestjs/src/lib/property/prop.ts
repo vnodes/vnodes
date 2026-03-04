@@ -1,5 +1,5 @@
-import type { Type as ClsType } from '@nestjs/common';
-import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty } from '@nestjs/swagger';
+/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
+import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
 import { type ClassConstructor, Expose, Transform, Type } from 'class-transformer';
 import {
     ArrayMaxSize,
@@ -30,15 +30,7 @@ import {
     type ValidationOptions,
 } from 'class-validator';
 
-// biome-ignore lint/complexity/noBannedTypes: Property type metadata
-export type __PrimitivePropertyType = ClsType<String> | ClsType<Number> | ClsType<Boolean> | ClsType<Date> | ClsType;
-export type PropertyType = __PrimitivePropertyType | [PropertyType];
-
-export type ApiPropertyOptions = Omit<__ApiPropertyOptions, 'type'> & {
-    type?: () => PropertyType;
-};
-
-export function resolvePropertyType(type: PropertyType): PropertyType {
+export function resolvePropertyType(type: ApiPropertyOptions['type']) {
     if (Array.isArray(type)) {
         return resolvePropertyType(type[0]);
     }
@@ -90,7 +82,13 @@ export function resolveApiPropertyOptions(options?: ApiPropertyOptions): ApiProp
 export function Prop(options: ApiPropertyOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {
         options = resolveApiPropertyOptions(options);
-        const type = resolvePropertyType(options.type?.() ?? Reflect.getMetadata('design:type', args[0], args[1]));
+
+        if (typeof options.type === 'string') {
+            throw new Error(
+                'Type indicator is not supported! Pass the actual type class such as String, Number, Boolean etc.',
+            );
+        }
+        const type = resolvePropertyType(options.type ?? Reflect.getMetadata('design:type', args[0], args[1]));
         const isArray = Array.isArray(type);
 
         const decorators = new Set<PropertyDecorator>();
@@ -115,9 +113,8 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
 
         if (isArray) {
             add(IsArray(validationOptions));
-            add(Prop({ ...options.items, type: () => type }, { each: true }));
+            add(Prop({ ...options.items, type } as any, { each: true }));
         } else if (options.enum) {
-            // Enum does not need any more options
         } else if (type === String) {
             add(IsString(validationOptions));
 

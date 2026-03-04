@@ -6,11 +6,15 @@ import { printUpdateDtoClass } from './print-update-dto-class.js';
 
 export function printDtoClasses(model: DMMF.Model) {
     return [
-        `import { PartialType } from '@vnodes/nestjs/swagger';`,
-        `import { Prop } from '@vnodes/nestjs';`,
-        printCreateDtoClass(model, 'Prop'),
-        printUpdateDtoClass(model),
+        `
+import { Prop } from '@vnodes/nestjs';
+import { PartialType } from '@vnodes/nestjs/swagger';
+import * as P from '../prisma/index.js';
+`,
+
         printQueryDtoClass(model),
         printReadDtoClass(model, 'Prop'),
+        printCreateDtoClass(model, 'Prop'),
+        printUpdateDtoClass(model),
     ].join('\n');
 }

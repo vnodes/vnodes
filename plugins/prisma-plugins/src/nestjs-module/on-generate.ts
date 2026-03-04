@@ -9,7 +9,7 @@ import { printResourceModuleClass } from './class-printers/print-resource-module
 import { printServiceClass } from './class-printers/print-service-class.js';
 
 export default async function onGenerate(options: GeneratorOptions) {
-    const output = options.generator.config.output ?? 'src/app/resources';
+    const output = options.generator.config.output ?? 'src/resources';
     const decoratorName = 'Prop';
     const packageName = '@vnodes/property';
     const clientBasePath = '../../../prisma';
@@ -48,7 +48,7 @@ export default async function onGenerate(options: GeneratorOptions) {
         }
 
         // Controller class
-        if (model.documentation) {
+        {
             const filePath = join(baseResourcePath, controllerFilename);
             const content = printControllerClass(model);
             await writeTextFile(filePath, content);
@@ -61,13 +61,11 @@ export default async function onGenerate(options: GeneratorOptions) {
             await writeTextFile(filePath, content);
         }
 
-        // print module barel files
-
         {
             const bexp = (name: string) => `export * from './${name.replace('.ts', '.js')}';`;
             const content = [
-                bexp(dtoFilename),
                 bexp(controllerFilename),
+                bexp(dtoFilename),
                 bexp(moduleFilename),
                 bexp(serviceFilename),
             ].join('\n');
