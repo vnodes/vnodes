@@ -17,19 +17,10 @@ export class EmitResponseInterceptor<T> implements NestInterceptor<T> {
     intercept(context: ExecutionContext, next: CallHandler): Observable<T> {
         return next.handle().pipe(
             tap(async (data) => {
-                console.log(
-                    'Is emit response: ',
-                    isEmitResponse(this.reflector, context),
-                    context.getClass().name,
-                    context.getHandler().name,
-                );
-
                 if (isEmitResponse(this.reflector, context)) {
                     const resourceName = getResourceName(this.reflector, context);
                     const operationName = getOperationName(this.reflector, context);
-
                     const eventName = `${resourceName}.${operationName}`;
-                    console.log('Emitting event : ', eventName);
                     this.emitter.emit(eventName, data);
                 }
             }),

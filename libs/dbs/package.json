@@ -101,13 +101,6 @@
                     "cwd": "{projectRoot}/src/ctc"
                 }
             },
-            "generate-prisma-pms": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx prisma generate",
-                    "cwd": "{projectRoot}/src/pms"
-                }
-            },
             "lint": {
                 "executor": "nx:run-commands",
                 "options": {

@@ -1,5 +1,5 @@
 import { join } from 'node:path';
-import { formatFiles, generateFiles, installPackagesTask, names, type Tree, updateJson } from '@nx/devkit';
+import { formatFiles, generateFiles, names, type Tree, updateJson } from '@nx/devkit';
 import type { ProjectGeneratorSchema } from './schema';
 
 export async function projectGenerator(tree: Tree, options: ProjectGeneratorSchema) {
@@ -31,8 +31,6 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
     });
 
     await formatFiles(tree);
-
-    installPackagesTask(tree, true);
 }
 
 export default projectGenerator;

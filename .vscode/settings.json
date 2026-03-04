@@ -20,7 +20,6 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-
     "yaml.schemas": {
         "libs/schema/schema/model.json": ["*.model.yaml"],
         "libs/schema/schema/enum-model.json": ["*.enum.yaml"]
