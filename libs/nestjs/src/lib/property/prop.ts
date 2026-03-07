@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
+/** biome-ignore-all lint/suspicious/noExplicitAny: some*/
 import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
 import { type ClassConstructor, Expose, Transform, Type } from 'class-transformer';
 import {
@@ -30,6 +30,9 @@ import {
     type ValidationOptions,
 } from 'class-validator';
 
+export function isEnumType(type: string) {
+    return /\{\s*(\s*(\w+)\s*:\s*(['"`])\2\3\s*,?\s*)+\s*\}/g.test(type);
+}
 export function resolvePropertyType(type: ApiPropertyOptions['type']) {
     if (Array.isArray(type)) {
         return resolvePropertyType(type[0]);
@@ -53,11 +56,11 @@ export function resolvePropertyType(type: ApiPropertyOptions['type']) {
 }
 
 /**
- *
+ * Resolve the property required option. If the *required* options is not true, the property is considered optional
  * @param options
  * @returns
  */
-export function resolveApiPropertyOptions(options?: ApiPropertyOptions): ApiPropertyOptions {
+export function resolvePropertyRequiredPropertyOption(options?: ApiPropertyOptions): ApiPropertyOptions {
     if (!options) options = {};
     if (options.required !== true) {
         options.required = false;
@@ -74,6 +77,8 @@ export function resolveApiPropertyOptions(options?: ApiPropertyOptions): ApiProp
  *   \@Prop({ type: Date }) value: Date;
  *   \@Prop({ type: CustomObject }) value: CustomObject;
  *   \@Prop({ type: [String] }) value: string[];
+ *   \@Prop({ enum: EnumClss }) value: EnumClss;
+ *   \@Prop({ type:[EnumClss] enum: EnumClss }) value: EnumClss;
  * ```
  * @param options
  * @param validationOptions
@@ -81,14 +86,29 @@ export function resolveApiPropertyOptions(options?: ApiPropertyOptions): ApiProp
  */
 export function Prop(options: ApiPropertyOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {
-        options = resolveApiPropertyOptions(options);
+        options = resolvePropertyRequiredPropertyOption(options);
 
         if (typeof options.type === 'string') {
             throw new Error(
                 'Type indicator is not supported! Pass the actual type class such as String, Number, Boolean etc.',
             );
         }
-        const type = resolvePropertyType(options.type ?? Reflect.getMetadata('design:type', args[0], args[1]));
+
+        let type: ApiPropertyOptions['type'] = options.type;
+
+        let isEnumClass: boolean = false;
+
+        if (!type) {
+            const reflectedType = Reflect.getMetadata('design:type', args[0], args[1]);
+            isEnumClass = isEnumType(`${reflectedType}`);
+            if (isEnumClass) {
+                type = String;
+                options.enum = reflectedType;
+            } else {
+                type = resolvePropertyType(reflectedType);
+            }
+        }
+
         const isArray = Array.isArray(type);
 
         const decorators = new Set<PropertyDecorator>();
@@ -113,8 +133,12 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
 
         if (isArray) {
             add(IsArray(validationOptions));
-            add(Prop({ ...options.items, type } as any, { each: true }));
+
+            if (Array.isArray(type)) {
+                add(Prop({ ...options.items, type: type[0] } as any, { each: true }));
+            }
         } else if (options.enum) {
+            add(IsEnum(options.enum, validationOptions));
         } else if (type === String) {
             add(IsString(validationOptions));
 
@@ -243,7 +267,7 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
             add(IsBoolean(validationOptions));
         } else if (type === Date) {
             add(IsDate(validationOptions));
-        } else {
+        } else if (!options.enum) {
             add(Type(() => type as ClassConstructor<unknown>));
             add(ValidateNested(validationOptions));
         }

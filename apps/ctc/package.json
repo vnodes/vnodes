@@ -63,7 +63,7 @@
             "test": {
                 "executor": "nx:run-commands",
                 "options": {
-                    "command": "npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
+                    "command": "NODE_OPTIONS=\"--import tsx\" npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
                     "cwd": "{projectRoot}"
                 }
             },
@@ -87,13 +87,14 @@
         "@swc/helpers": "~0.5.11"
     },
     "devDependencies": {
+        "@nestjs/testing": "^11.1.13",
         "@prisma/client": "7.3.0",
         "@vnodes/prisma-plugins": "workspace:*",
         "dotenv": "17.3.1",
         "prisma": "7.3.0"
     },
     "peerDependencies": {
-        "@vnodes/nestjs": "workspace:*",
-        "@prisma/client": "7.3.0"
+        "@prisma/client": "7.3.0",
+        "@vnodes/nestjs": "workspace:*"
     }
 }
