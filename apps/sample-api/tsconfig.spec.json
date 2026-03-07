@@ -4,6 +4,8 @@
         "baseUrl": ".",
         "rootDir": "src",
         "outDir": "dist",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
         "emitDeclarationOnly": true,
         "forceConsistentCasingInFileNames": true,

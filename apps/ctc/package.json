@@ -60,13 +60,6 @@
                     "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
                 }
             },
-            "test": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "NODE_OPTIONS=\"--import tsx\" npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
-                    "cwd": "{projectRoot}"
-                }
-            },
             "doc": {
                 "executor": "nx:run-commands",
                 "options": {

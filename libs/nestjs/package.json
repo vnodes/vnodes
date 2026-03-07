@@ -78,6 +78,11 @@
             "import": "./dist/lib/nestjs/prisma-client.js",
             "default": "./dist/lib/nestjs/prisma-client.js"
         },
+        "./reflect-metadata": {
+            "types": "./dist/lib/nestjs/reflect-metadata.d.ts",
+            "import": "./dist/lib/nestjs/reflect-metadata.js",
+            "default": "./dist/lib/nestjs/reflect-metadata.js"
+        },
         "./adapter-pg": {
             "types": "./dist/lib/nestjs/adapter-pg.d.ts",
             "import": "./dist/lib/nestjs/adapter-pg.js",

@@ -6,8 +6,8 @@ export class ContactQueryDto implements P.QueryMany<P.Prisma.ContactScalarFieldE
     @Prop() take?: number;
     @Prop() skip?: number;
     @Prop() search?: string;
-    @Prop({ enum: P.Prisma.ContactScalarFieldEnum }) orderBy?: P.Prisma.ContactScalarFieldEnum;
-    @Prop({ enum: P.Prisma.SortOrder }) orderDir?: P.Prisma.SortOrder;
+    @Prop() orderBy?: P.Prisma.ContactScalarFieldEnum;
+    @Prop() orderDir?: P.Prisma.SortOrder;
     @Prop() withDeleted?: boolean;
 }
 
