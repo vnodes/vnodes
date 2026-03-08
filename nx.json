@@ -94,6 +94,13 @@
         "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
       }
     },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "@vnodes/ctc:build",
+        "watch": true
+      }
+    },
     "@nx/js:swc": {
       "cache": true,
       "dependsOn": [

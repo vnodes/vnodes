@@ -41,32 +41,11 @@
     "nx": {
         "sourceRoot": "apps/ctc/src",
         "targets": {
-            "build": {
-                "executor": "@nx/js:swc",
-                "outputs": [
-                    "{options.outputPath}"
-                ],
-                "options": {
-                    "outputPath": "apps/ctc/dist",
-                    "main": "apps/ctc/src/boot.ts",
-                    "tsConfig": "apps/ctc/tsconfig.lib.json",
-                    "skipTypeCheck": false,
-                    "stripLeadingPaths": true
-                }
-            },
-            "lint": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
-                }
-            },
-            "serve": {
-                "executor": "@nx/js:node",
-                "options": {
-                    "buildTarget": "@vnodes/ctc:build",
-                    "watch": true
-                }
-            }
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {},
+            "serve": {}
         }
     },
     "dependencies": {

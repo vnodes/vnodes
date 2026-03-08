@@ -19,38 +19,12 @@
         "generators.json"
     ],
     "nx": {
+        "sourceRoot": "plugins/cli/src",
         "targets": {
-            "build": {
-                "executor": "@nx/js:tsc",
-                "outputs": [
-                    "{options.outputPath}"
-                ],
-                "options": {
-                    "outputPath": "plugins/cli/dist",
-                    "main": "plugins/cli/src/index.ts",
-                    "tsConfig": "plugins/cli/tsconfig.lib.json",
-                    "rootDir": "plugins/cli/src",
-                    "generatePackageJson": false,
-                    "assets": [
-                        {
-                            "input": "./plugins/cli/src",
-                            "glob": "**/!(*.ts)",
-                            "output": "."
-                        },
-                        {
-                            "input": "./plugins/cli/src",
-                            "glob": "**/*.d.ts",
-                            "output": "."
-                        }
-                    ]
-                }
-            },
-            "lint": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
-                }
-            }
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
         }
     },
     "dependencies": {
