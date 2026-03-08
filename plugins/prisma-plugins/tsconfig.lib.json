@@ -13,19 +13,10 @@
         "types": ["node"]
     },
     "include": ["src/**/*.ts"],
-    "exclude": [
-      "src/**/*.test.ts",
-      "src/**/*.spec.ts"
-    ],
+    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
     "references": [
       {
         "path": "../prisma-helper/tsconfig.lib.json"
-      },
-      {
-        "path": "../../libs/names/tsconfig.lib.json"
-      },
-      {
-        "path": "../../libs/fs/tsconfig.lib.json"
       }
     ]
 }

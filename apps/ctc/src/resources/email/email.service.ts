@@ -1,7 +1,6 @@
-
 import { Injectable } from '@vnodes/nestjs/common';
 import { InjectDelegate } from '@vnodes/nestjs/prisma';
-import { Prisma, BaseEmailService } from '../prisma/index.js';
+import { BaseEmailService, Prisma } from '../prisma/index.js';
 
 @Injectable()
 export class EmailService extends BaseEmailService {

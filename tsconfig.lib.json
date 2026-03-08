@@ -1,6 +1,6 @@
 {
-    "extends": "../../tsconfig.base.json",
     "compilerOptions": {
+        "composite": true,
         "baseUrl": ".",
         "rootDir": "src",
         "outDir": "dist",
@@ -13,5 +13,6 @@
         "types": ["node"]
     },
     "include": ["src/**/*.ts"],
-    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"]
+    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
+    "references": []
 }
