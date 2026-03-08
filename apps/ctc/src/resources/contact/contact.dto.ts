@@ -1,5 +1,8 @@
 import { Prop } from '@vnodes/nestjs';
 import { PartialType } from '@vnodes/nestjs/swagger';
+import * as AddressDtos from '../address/address.dto.js';
+import * as EmailDtos from '../email/email.dto.js';
+import * as PhoneDtos from '../phone/phone.dto.js';
 import * as P from '../prisma/index.js';
 
 export class ContactQueryDto implements P.QueryMany<P.Prisma.ContactScalarFieldEnum> {
@@ -23,15 +26,15 @@ export class ContactReadDto {
     @Prop() preferedName?: string;
     @Prop({ enum: P.$Enums.Gender }) gender?: P.$Enums.Gender;
     @Prop({ type: [String] }) profiles?: string[];
-    @Prop() primaryEmail?: P.Email;
+    @Prop() primaryEmail?: EmailDtos.EmailReadDto;
     @Prop() primaryEmailId?: number;
-    @Prop() primaryPhone?: P.Phone;
+    @Prop() primaryPhone?: PhoneDtos.PhoneReadDto;
     @Prop() primaryPhoneId?: number;
-    @Prop() primaryAddress?: P.Address;
+    @Prop() primaryAddress?: AddressDtos.AddressReadDto;
     @Prop() primaryAddressId?: number;
-    @Prop() emails?: P.Email[];
-    @Prop() phones?: P.Phone[];
-    @Prop() addresses?: P.Address[];
+    @Prop({ type: [EmailDtos.EmailReadDto] }) emails?: EmailDtos.EmailReadDto[];
+    @Prop({ type: [PhoneDtos.PhoneReadDto] }) phones?: PhoneDtos.PhoneReadDto[];
+    @Prop({ type: [AddressDtos.AddressReadDto] }) addresses?: AddressDtos.AddressReadDto[];
 }
 export class ContactCreateDto {
     @Prop({ required: true }) firstName: string;

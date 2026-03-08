@@ -12,6 +12,7 @@ import {
     type ValidationOptions,
 } from 'class-validator';
 import { ArrayProp } from './array-prop.js';
+import { isClassType } from './is-class-type.js';
 import { normalizePropertyOptions } from './normalize-property-options.js';
 import { NumberProp } from './number-prop.js';
 import { StringProp } from './string-prop.js';
@@ -60,11 +61,12 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
             add(IsBoolean(validationOptions));
         } else if (options.type === Date) {
             add(IsDate(validationOptions));
-        } else {
-            if (typeof options.type === 'function') {
-                options.type = (options.type as CallableFunction)();
-            }
+        } else if (isClassType(options.type)) {
+            options.type = new (options.type as any)();
             add(Type(() => options.type as ClassConstructor<unknown>));
+            add(ValidateNested(validationOptions));
+        } else if (typeof options.type === 'function') {
+            add(Type(options.type as () => ClassConstructor<any>));
             add(ValidateNested(validationOptions));
         }
 

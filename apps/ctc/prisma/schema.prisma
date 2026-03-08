@@ -25,7 +25,7 @@ enum Gender {
   Female
 }
 
-enum PersonalOrWork {
+enum ContactType {
   Personal
   Work
 }
@@ -44,18 +44,26 @@ model Contact {
   gender       Gender?
   profiles     String[]
 
-  primaryEmail   Email? @relation("primary", fields: [primaryEmailId], references: [id], onDelete: SetNull) /// @include(true)
+  /// @include(true)
+  primaryEmail   Email? @relation("primary", fields: [primaryEmailId], references: [id], onDelete: SetNull)
   primaryEmailId Int?   @unique
 
-  primaryPhone   Phone? @relation("primary", fields: [primaryPhoneId], references: [id], onDelete: SetNull) /// @include(true)
+  /// @include(true)
+  primaryPhone   Phone? @relation("primary", fields: [primaryPhoneId], references: [id], onDelete: SetNull)
   primaryPhoneId Int?   @unique
 
-  primaryAddress   Address? @relation("primary", fields: [primaryAddressId], references: [id], onDelete: SetNull) /// @include(true)
+  /// @include(true)
+  primaryAddress   Address? @relation("primary", fields: [primaryAddressId], references: [id], onDelete: SetNull)
   primaryAddressId Int?     @unique
 
-  emails    Email[]   @relation("owner") /// @include(true)
-  phones    Phone[]   @relation("owner") /// @include(true)
-  addresses Address[] @relation("owner") /// @include(true)
+  /// @include(true)
+  emails Email[] @relation("owner")
+
+  /// @include(true)
+  phones Phone[] @relation("owner")
+
+  /// @include(true)
+  addresses Address[] @relation("owner")
 }
 
 model Email {
@@ -64,11 +72,11 @@ model Email {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  contactType PersonalOrWork @default(Personal)
+  contactType ContactType @default(Personal)
   email       String
   notes       String?
-  openTime    Json?          @default("[]")
-  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  openTime    Json?       @default("[]")
+  contact     Contact     @relation("owner", fields: [contactId], references: [id])
   contactId   Int
 
   primarContact Contact? @relation("primary")
@@ -84,11 +92,11 @@ model Phone {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  contactType PersonalOrWork @default(Personal)
+  contactType ContactType @default(Personal)
   phone       String
   notes       String?
-  openTime    Json?          @default("[]")
-  contact     Contact        @relation("owner", fields: [contactId], references: [id])
+  openTime    Json?       @default("[]")
+  contact     Contact     @relation("owner", fields: [contactId], references: [id])
   contactId   Int
 
   primarContact Contact? @relation("primary")
@@ -104,11 +112,11 @@ model Address {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  contactType PersonalOrWork @default(Personal)
+  contactType ContactType @default(Personal)
   street      String
   city        String
   notes       String?
-  openTime    Json?          @default("[]")
+  openTime    Json?       @default("[]")
 
   unit     String?
   province String?

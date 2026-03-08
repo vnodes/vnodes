@@ -29,7 +29,7 @@ export function __inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.
             return 'String';
         }
         case 'object': {
-            return field.type;
+            return `${field.type}Dtos.${field.type}CreateDto`;
         }
         case 'unsupported': {
             throw new Error('Unsupported');

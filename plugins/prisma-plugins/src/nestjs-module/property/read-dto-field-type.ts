@@ -1,7 +1,7 @@
 import type { DMMF } from '@prisma/generator-helper';
 import type { ScalarType } from '@vnodes/prisma-helper';
 
-export function __createDtoFieldType(_model: DMMF.Model, field: DMMF.Field) {
+export function __readDtoFieldType(_model: DMMF.Model, field: DMMF.Field) {
     switch (field.kind) {
         case 'scalar': {
             switch (field.type as ScalarType) {
@@ -27,14 +27,14 @@ export function __createDtoFieldType(_model: DMMF.Model, field: DMMF.Field) {
         case 'enum':
             return `P.$Enums.${field.type}`;
         case 'object':
-            return `${field.type}Dtos.${field.type}CreateDto`;
+            return `${field.type}Dtos.${field.type}ReadDto`;
         case 'unsupported':
             throw new Error(`Unsupported type: ${field.kind}`);
     }
 }
 
-export function createDtoFieldType(model: DMMF.Model, field: DMMF.Field) {
-    const type = __createDtoFieldType(model, field);
+export function readDtoFieldType(model: DMMF.Model, field: DMMF.Field) {
+    const type = __readDtoFieldType(model, field);
 
     if (field.isList) {
         return `${type}[]`;
