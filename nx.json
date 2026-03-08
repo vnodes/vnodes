@@ -19,7 +19,7 @@
         },
         "build": {
           "targetName": "build",
-          "configName": "tsconfig.lib.json",
+          "configName": "tsconfig.json",
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
@@ -46,7 +46,7 @@
       "options": {
         "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/index.ts",
-        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "tsConfig": "{projectRoot}/tsconfig.json",
         "swcrc": ".swcrc",
         "skipTypeCheck": false,
         "stripLeadingPaths": true
@@ -91,7 +91,7 @@
         "{projectRoot}"
       ],
       "options": {
-        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.json"
       }
     },
     "serve": {

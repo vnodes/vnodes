@@ -1,4 +1,9 @@
 {
     "extends": "./tsconfig.base.json",
-    "compileOnSave": false
+    "compileOnSave": false,
+    "references": [
+      {
+        "path": "./libs/fs"
+      }
+    ]
 }
