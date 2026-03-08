@@ -4,6 +4,42 @@
     "references": [
       {
         "path": "./libs/fs"
+      },
+      {
+        "path": "./plugins/prisma-plugins"
+      },
+      {
+        "path": "./plugins/prisma-helper"
+      },
+      {
+        "path": "./libs/prisma-sqlite"
+      },
+      {
+        "path": "./libs/property"
+      },
+      {
+        "path": "./plugins/cli"
+      },
+      {
+        "path": "./libs/crypto"
+      },
+      {
+        "path": "./libs/nestjs"
+      },
+      {
+        "path": "./libs/prisma"
+      },
+      {
+        "path": "./libs/schema"
+      },
+      {
+        "path": "./libs/names"
+      },
+      {
+        "path": "./libs/nest"
+      },
+      {
+        "path": "./apps/ctc"
       }
     ]
 }
