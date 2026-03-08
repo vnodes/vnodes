@@ -15,7 +15,7 @@ export function ArrayProp(options: ApiPropertyOptions, validationOptions?: Valid
         if (minItems) add(ArrayMinSize(minItems, validationOptions));
         if (maxItems) add(ArrayMaxSize(maxItems, validationOptions));
 
-        for (const propertyDecorator of decorators) {
+        for (const propertyDecorator of [...decorators]) {
             propertyDecorator(...args);
         }
     };

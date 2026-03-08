@@ -6,7 +6,7 @@ import { UpdateMethodOptions } from './crud-controller-options.js';
 export function UpdateOneByIdMethod(options: UpdateMethodOptions): MethodDecorator {
     return (...args) => {
         const target = args[0];
-        const methodName = args[1].toString();
+        const methodName = args[1];
 
         Put(ParamKeyTemplate.ID)(...args);
         ApiOkResponse({ type: options.readDto })(...args);
@@ -15,5 +15,6 @@ export function UpdateOneByIdMethod(options: UpdateMethodOptions): MethodDecorat
         ApiBody({ type: options.updateDto })(...args);
         Param('id')(target, methodName, 0);
         Body()(target, methodName, 1);
+        Reflect.defineMetadata('design:paramtypes', [Number, options.updateDto], target, methodName);
     };
 }

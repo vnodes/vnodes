@@ -18,13 +18,14 @@ export function StringProp(options: ApiPropertyOptions, validationOptions?: Vali
         if (options.required === true) {
             add(IsNotEmpty(validationOptions));
         }
+
         if (format) add(StringFormatProp(options, validationOptions));
 
         if (minLength) add(MinLength(minLength, validationOptions));
         if (maxLength) add(MaxLength(maxLength, validationOptions));
         if (pattern) add(Matches(pattern, undefined, validationOptions));
 
-        for (const propertyDecorator of decorators) {
+        for (const propertyDecorator of [...decorators]) {
             propertyDecorator(...args);
         }
     };

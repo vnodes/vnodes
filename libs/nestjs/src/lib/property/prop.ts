@@ -16,10 +16,6 @@ import { normalizePropertyOptions } from './normalize-property-options.js';
 import { NumberProp } from './number-prop.js';
 import { StringProp } from './string-prop.js';
 
-function __Prop(): PropertyDecorator {
-    return () => {};
-}
-
 /**
  * # Examples
  * ```typescript
@@ -38,7 +34,6 @@ function __Prop(): PropertyDecorator {
  */
 export function Prop(options: ApiPropertyOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {
-        __Prop()(...args);
         options = normalizePropertyOptions(options, args[0], args[1]);
 
         const decorators = new Set<PropertyDecorator>();

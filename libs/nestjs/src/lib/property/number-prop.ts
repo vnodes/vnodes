@@ -15,7 +15,7 @@ export function NumberProp(options: ApiPropertyOptions, validationOptions?: Vali
         if (minimum !== undefined) add(Min(minimum, validationOptions));
         if (maximum !== undefined) add(Max(maximum, validationOptions));
 
-        for (const propertyDecorator of decorators) {
+        for (const propertyDecorator of [...decorators]) {
             propertyDecorator(...args);
         }
     };

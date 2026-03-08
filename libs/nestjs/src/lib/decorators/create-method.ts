@@ -5,11 +5,12 @@ import { CreateMethodOptions } from './crud-controller-options.js';
 export function CreateMethod(options: Required<CreateMethodOptions>): MethodDecorator {
     return (...args) => {
         const target = args[0];
-        const methodName = args[1].toString();
+        const methodName = args[1];
         Post()(...args);
         ApiCreatedResponse({ type: options.readDto })(...args);
         ApiUnprocessableEntityResponse({ description: 'Input validation error' })(...args);
         ApiBody({ type: options.createDto })(...args);
         Body()(target, methodName, 0);
+        Reflect.defineMetadata('design:paramtypes', [options.createDto], target, methodName);
     };
 }

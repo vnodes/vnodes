@@ -44,6 +44,7 @@ export class BaseContactService<
             skip: query?.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
+            include: { emails: true, addresses: true, phones: true },
         };
     }
     async findMany(query: QueryInput) {

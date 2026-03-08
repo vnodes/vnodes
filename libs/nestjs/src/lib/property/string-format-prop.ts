@@ -25,7 +25,6 @@ export function StringFormatProp(options: ApiPropertyOptions, validationOptions?
         switch (format) {
             case 'hostname': {
                 add(IsFQDN({}, validationOptions));
-
                 break;
             }
             case 'duration': {
@@ -35,7 +34,6 @@ export function StringFormatProp(options: ApiPropertyOptions, validationOptions?
                         message: '$property must be a valid duration',
                     }),
                 );
-
                 break;
             }
             case 'password': {
@@ -51,10 +49,10 @@ export function StringFormatProp(options: ApiPropertyOptions, validationOptions?
                         validationOptions,
                     ),
                 );
-
                 break;
             }
             case 'email': {
+                console.log('Applying email validator : ');
                 add(IsEmail({}, validationOptions));
                 break;
             }
@@ -62,7 +60,6 @@ export function StringFormatProp(options: ApiPropertyOptions, validationOptions?
             case 'date-time':
             case 'date': {
                 add(IsISO8601({}, validationOptions));
-
                 break;
             }
             case 'binary': {
@@ -92,27 +89,23 @@ export function StringFormatProp(options: ApiPropertyOptions, validationOptions?
                         validationOptions,
                     ),
                 );
-
                 break;
             }
             case 'ipv4': {
                 add(IsIP('4', validationOptions));
-
                 break;
             }
             case 'ipv6': {
                 add(IsIP('6', validationOptions));
-
                 break;
             }
             case 'uuid': {
                 add(IsUUID('all', validationOptions));
-
                 break;
             }
         }
 
-        for (const propertyDecorator of decorators) {
+        for (const propertyDecorator of [...decorators]) {
             propertyDecorator(...args);
         }
     };
