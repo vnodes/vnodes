@@ -3,47 +3,44 @@
     "compileOnSave": false,
     "files": [],
     "references": [
-        {
-            "path": "./libs/prisma"
-        },
-        {
-            "path": "./plugins/cli"
-        },
-        {
-            "path": "./libs/names"
-        },
-        {
-            "path": "./libs/crypto"
-        },
-        {
-            "path": "./libs/fs"
-        },
-        {
-            "path": "./libs/nest"
-        },
-        {
-            "path": "./libs/prisma-sqlite"
-        },
-        {
-            "path": "./libs/property"
-        },
-        {
-            "path": "./plugins/prisma-plugins"
-        },
-        {
-            "path": "./plugins/prisma-helper"
-        },
-        {
-            "path": "./libs/schema"
-        },
-        {
-            "path": "./libs/nestjs"
-        },
-        {
-            "path": "./libs/dbs"
-        },
-        {
-            "path": "./apps/ctc"
-        }
+      {
+        "path": "./libs/prisma"
+      },
+      {
+        "path": "./plugins/cli"
+      },
+      {
+        "path": "./libs/names"
+      },
+      {
+        "path": "./libs/crypto"
+      },
+      {
+        "path": "./libs/fs"
+      },
+      {
+        "path": "./libs/nest"
+      },
+      {
+        "path": "./libs/prisma-sqlite"
+      },
+      {
+        "path": "./libs/property"
+      },
+      {
+        "path": "./plugins/prisma-plugins"
+      },
+      {
+        "path": "./plugins/prisma-helper"
+      },
+      {
+        "path": "./libs/schema"
+      },
+      {
+        "path": "./libs/nestjs"
+      },
+      {
+        "path": "./apps/ctc"
+      }
     ]
 }
