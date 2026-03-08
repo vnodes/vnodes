@@ -5,12 +5,12 @@
 ![Bundle size](https://img.shields.io/bundlephobia/min/@vnodes/fs)
 
 <p align="center">
-  <img src="https://vnodes.github.io/vnodes/libs/fs/assets/favicon.png" alt="Logo"  width="200" height="200" style="border-radius: 100%"/>
+  <img   srcset="./assets/favicon.png, https://vnodes.github.io/vnodes/libs/fs/assets/favicon.png" alt="Logo"  width="200" height="200" style="border-radius: 100%"/>
 </p>
 
 ## @vnodes/fs
 
-- [ ] Add project description
+Nodejs IO
 
 ## Installation
 

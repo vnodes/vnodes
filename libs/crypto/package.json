@@ -41,39 +41,10 @@
     "nx": {
         "sourceRoot": "libs/crypto/src",
         "targets": {
-            "build": {
-                "executor": "@nx/js:swc",
-                "outputs": [
-                    "{options.outputPath}"
-                ],
-                "options": {
-                    "outputPath": "libs/crypto/dist",
-                    "main": "libs/crypto/src/index.ts",
-                    "tsConfig": "libs/crypto/tsconfig.lib.json",
-                    "skipTypeCheck": false,
-                    "stripLeadingPaths": true
-                }
-            },
-            "lint": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
-                }
-            },
-            "test": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
-                    "cwd": "{projectRoot}"
-                }
-            },
-            "doc": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx typedoc --tsconfig libs/crypto/tsconfig.lib.json --entryPoints libs/crypto/src/index.ts --out public/libs/crypto",
-                    "cwd": "{workspaceRoot}"
-                }
-            }
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
         }
     },
     "dependencies": {

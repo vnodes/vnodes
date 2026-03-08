@@ -38,18 +38,25 @@
     }
   ],
   "targetDefaults": {
-    "@nx/esbuild:esbuild": {
-      "cache": true,
-      "dependsOn": [
-        "^build"
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": [
+        "{options.outputPath}"
       ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "options": {
+        "outputPath": "{projectRoot}/dist",
+        "main": "{projectRoot}/src/index.ts",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "skipTypeCheck": false,
+        "stripLeadingPaths": true
+      }
     },
     "lint": {
       "cache": true,
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+      },
       "inputs": [
         "default",
         "^default",
@@ -63,6 +70,11 @@
     },
     "test": {
       "cache": true,
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx --test src/**/*.{spec,test}.ts",
+        "cwd": "{projectRoot}"
+      },
       "inputs": [
         "default",
         "^default",
@@ -71,11 +83,15 @@
     },
     "doc": {
       "cache": true,
+      "executor": "nx:run-commands",
       "inputs": [
         "default",
         "^default",
         "{projectRoot}"
-      ]
+      ],
+      "options": {
+        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
+      }
     },
     "@nx/js:swc": {
       "cache": true,

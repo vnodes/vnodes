@@ -14,5 +14,16 @@
         "types": ["node"]
     },
     "include": ["src/**/*.ts"],
-    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"]
+    "exclude": [
+      "src/**/*.test.ts",
+      "src/**/*.spec.ts"
+    ],
+    "references": [
+      {
+        "path": "../../plugins/prisma-plugins/tsconfig.lib.json"
+      },
+      {
+        "path": "../../libs/nestjs/tsconfig.lib.json"
+      }
+    ]
 }

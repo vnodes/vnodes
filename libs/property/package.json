@@ -41,39 +41,10 @@
     "nx": {
         "sourceRoot": "libs/property/src",
         "targets": {
-            "build": {
-                "executor": "@nx/js:swc",
-                "outputs": [
-                    "{options.outputPath}"
-                ],
-                "options": {
-                    "outputPath": "libs/property/dist",
-                    "main": "libs/property/src/index.ts",
-                    "tsConfig": "libs/property/tsconfig.lib.json",
-                    "skipTypeCheck": false,
-                    "stripLeadingPaths": true
-                }
-            },
-            "lint": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
-                }
-            },
-            "test": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
-                    "cwd": "{projectRoot}"
-                }
-            },
-            "doc": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx typedoc --tsconfig libs/property/tsconfig.lib.json --entryPoints libs/property/src/index.ts --out public/libs/property",
-                    "cwd": "{workspaceRoot}"
-                }
-            }
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
         }
     },
     "peerDependencies": {

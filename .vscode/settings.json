@@ -29,5 +29,6 @@
             "fileMatch": ["*.model.yaml"],
             "url": "libs/schema/schema/model.json"
         }
-    ]
+    ],
+    "livePreview.defaultPreviewPath": "/public/libs/fs/hierarchy.html"
 }

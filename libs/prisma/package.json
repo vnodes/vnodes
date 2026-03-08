@@ -45,39 +45,10 @@
     "nx": {
         "sourceRoot": "libs/prisma/src",
         "targets": {
-            "build": {
-                "executor": "@nx/js:swc",
-                "outputs": [
-                    "{options.outputPath}"
-                ],
-                "options": {
-                    "outputPath": "libs/prisma/dist",
-                    "main": "libs/prisma/src/index.ts",
-                    "tsConfig": "libs/prisma/tsconfig.lib.json",
-                    "skipTypeCheck": true,
-                    "stripLeadingPaths": true
-                }
-            },
-            "lint": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
-                }
-            },
-            "test": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
-                    "cwd": "{projectRoot}"
-                }
-            },
-            "doc": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx typedoc --tsconfig libs/prisma/tsconfig.lib.json --entryPoints libs/prisma/src/index.ts --out public/libs/prisma",
-                    "cwd": "{workspaceRoot}"
-                }
-            }
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
         }
     },
     "peerDependencies": {

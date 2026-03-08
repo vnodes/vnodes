@@ -41,39 +41,10 @@
     "nx": {
         "sourceRoot": "libs/prisma-sqlite/src",
         "targets": {
-            "build": {
-                "executor": "@nx/js:swc",
-                "outputs": [
-                    "{options.outputPath}"
-                ],
-                "options": {
-                    "outputPath": "libs/prisma-sqlite/dist",
-                    "main": "libs/prisma-sqlite/src/index.ts",
-                    "tsConfig": "libs/prisma-sqlite/tsconfig.lib.json",
-                    "skipTypeCheck": false,
-                    "stripLeadingPaths": true
-                }
-            },
-            "lint": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
-                }
-            },
-            "test": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx tsx --test src/**/*.{spec,test}.ts",
-                    "cwd": "{projectRoot}"
-                }
-            },
-            "doc": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx typedoc --tsconfig libs/prisma-sqlite/tsconfig.lib.json --entryPoints libs/prisma-sqlite/src/index.ts --out public/libs/prisma-sqlite",
-                    "cwd": "{workspaceRoot}"
-                }
-            }
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
         }
     },
     "peerDependencies": {

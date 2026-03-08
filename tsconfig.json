@@ -40,9 +40,6 @@
             "path": "./libs/nestjs"
         },
         {
-            "path": "./apps/sample-api"
-        },
-        {
             "path": "./libs/dbs"
         },
         {
