@@ -43,7 +43,7 @@ export function readDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fie
 
     const options: string[] = [];
 
-    if (field.isList) {
+    if (field.isList || field.kind === 'object') {
         options.push(`type: ${decoratorOptionsType}`);
     }
 

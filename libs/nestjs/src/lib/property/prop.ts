@@ -37,6 +37,8 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
     return (...args) => {
         options = normalizePropertyOptions(options, args[0], args[1]);
 
+        const safeType = options.type;
+
         const decorators = new Set<PropertyDecorator>();
         const add = (...propertyDecorators: PropertyDecorator[]) => {
             for (const propertyDecorator of propertyDecorators) {
@@ -71,7 +73,7 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
         }
 
         if (!validationOptions) {
-            add(ApiProperty(options as __ApiPropertyOptions));
+            add(ApiProperty({ ...options, type: safeType } as __ApiPropertyOptions));
             add(Expose());
 
             if (options.required === true) {

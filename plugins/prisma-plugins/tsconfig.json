@@ -6,19 +6,16 @@
         "rootDir": "src",
         "outDir": "dist"
     },
-    "exclude": [
-      "src/**/*.test.ts",
-      "src/**/*.spec.ts"
-    ],
+    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
     "references": [
-      {
-        "path": "../prisma-helper"
-      },
-      {
-        "path": "../../libs/names"
-      },
-      {
-        "path": "../../libs/fs"
-      }
+        {
+            "path": "../prisma-helper"
+        },
+        {
+            "path": "../../libs/names"
+        },
+        {
+            "path": "../../libs/fs"
+        }
     ]
 }

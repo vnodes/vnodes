@@ -9,7 +9,7 @@ export function printDtoImports(model: DMMF.Model) {
                 .filter((f) => f.kind === 'object' && Annotations.include(f.documentation))
                 .map((f) => {
                     const { kebabCase } = names(f.type);
-                    return `import * as ${f.type}Dtos from '../${kebabCase}/${kebabCase}.dto.ts'`;
+                    return `import * as ${f.type}Dtos from '../${kebabCase}/${kebabCase}.dto.js'`;
                 }),
         ),
     ].join('\n');
