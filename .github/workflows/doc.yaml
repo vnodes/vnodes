@@ -1,48 +1,48 @@
-name: doc
+name: gh
 
 on:
   push:
-    branches: [main] # Or your default branch
+    branches:
+      - main
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 9.8.0
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: "pnpm"
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
 
-      # Replace 'my-app' with your actual Nx project name
-      # Ensure your build output goes to a folder like 'dist/apps/my-app'
-      - name: Build
-        run: pnpm nx run-many -t doc
+      - name: Build main app
+        run: npx nx run-many -t doc
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
-      # Nx typically builds to dist/apps/project-name
-      # Verify this path in your project.json or nx.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
