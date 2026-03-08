@@ -22,5 +22,5 @@
         "noInterop": false
     },
     "sourceMaps": true,
-    "exclude": [".*\\.spec\\.", ".*\\.test\\.", "dist"]
+    "exclude": [".*\\.spec\\.", ".*\\.test\\.", "dist","node_modules"]
 }
