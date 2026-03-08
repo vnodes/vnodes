@@ -1,6 +1,7 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { type Names, names } from '@vnodes/names';
 import {
+    Annotations,
     fieldItemTypeAsString,
     fieldTypeAsString,
     hasSoftDeleteField,
@@ -111,12 +112,24 @@ export function printFindManyArgshelper(modelName: string) {
         `        take: query?.take ?? 20,`,
         `        skip: query?.skip ?? 0,`,
         `        orderBy: this.toOrderBy(query),`,
-        `        where: this.toWhere(query)`,
+        `        where: this.toWhere(query),`,
+        `        include: this.toInclude()`,
         `    }`,
         `}`,
     ].join('\n');
 }
 
+export function printIncludeHelper(model: DMMF.Model) {
+    const includedFields = model.fields
+        .filter((e) => e.kind === 'object')
+        .filter((e) => Annotations.include(e.documentation))
+        .map((e) => `${e.name}: true`)
+        .join(',');
+
+    const result = includedFields.length > 0 ? `{${includedFields}}` : undefined;
+
+    return [`toInclude(){`, ``, `return  ${result}`, `}`].join('\n');
+}
 export function printBaseService(model: DMMF.Model) {
     const modelNames = names(model.name);
     const hasSoftDelete = hasSoftDeleteField(model);
@@ -203,6 +216,7 @@ export function printBaseService(model: DMMF.Model) {
         : undefined;
 
     const allMethods = [
+        printIncludeHelper(model),
         printWhereHelper(pascalCase, noneIdTextFields, hasSoftDelete),
         printOrderByHelper(),
         printFindManyArgshelper(pascalCase),

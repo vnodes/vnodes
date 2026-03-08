@@ -14,6 +14,9 @@ export function isReadField(field: DMMF.Field) {
     }
 
     if (field.kind === 'object') {
+        if (Annotations.include(field.documentation)) {
+            return true;
+        }
         return false;
     }
 

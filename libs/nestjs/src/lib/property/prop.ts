@@ -51,7 +51,7 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
             add(ArrayProp(options, validationOptions));
             add(Prop({ ...options.items, type: options.type[0] } as any, { each: true }));
         } else if (options.enum) {
-            add(IsEnum(options.enum, validationOptions));
+            add(IsEnum(options.enum, { ...validationOptions, message: `$property should be one of ${options.enum}` }));
         } else if (options.type === String) {
             add(StringProp(options, validationOptions));
         } else if (options.type === Number) {
@@ -61,6 +61,9 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
         } else if (options.type === Date) {
             add(IsDate(validationOptions));
         } else {
+            if (typeof options.type === 'function') {
+                options.type = (options.type as CallableFunction)();
+            }
             add(Type(() => options.type as ClassConstructor<unknown>));
             add(ValidateNested(validationOptions));
         }

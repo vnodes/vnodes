@@ -28,9 +28,11 @@ export function __inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.
         case 'enum': {
             return 'String';
         }
-        case 'object':
+        case 'object': {
+            return field.type;
+        }
         case 'unsupported': {
-            return 'any';
+            throw new Error('Unsupported');
         }
     }
 }
@@ -76,9 +78,6 @@ export function inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fi
     if (minItems !== undefined) options.push(`minItems: ${minItems}`);
     if (format !== undefined) options.push(`format: '${format}'`);
     if (description !== undefined) options.push(`description: '${description}'`);
-
-    if (field.kind === 'enum') options.push(`enum: P.$Enums.${field.type}`);
-
     const optionsAsString = options.join(',').trim();
     if (optionsAsString) {
         return `{ ${optionsAsString} }`;

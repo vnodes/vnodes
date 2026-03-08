@@ -15,6 +15,16 @@ export class BaseContactService<
 > {
     constructor(protected readonly repo: P.ContactDelegate) {}
 
+    toInclude() {
+        return {
+            primaryEmail: true,
+            primaryPhone: true,
+            primaryAddress: true,
+            emails: true,
+            phones: true,
+            addresses: true,
+        };
+    }
     toWhere(query?: QueryInput) {
         const whereQuery: P.ContactWhereInput = query?.search
             ? {
@@ -44,7 +54,7 @@ export class BaseContactService<
             skip: query?.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
-            include: { emails: true, addresses: true, phones: true },
+            include: this.toInclude(),
         };
     }
     async findMany(query: QueryInput) {
@@ -129,6 +139,9 @@ export class BaseEmailService<
 > {
     constructor(protected readonly repo: P.EmailDelegate) {}
 
+    toInclude() {
+        return undefined;
+    }
     toWhere(query?: QueryInput) {
         const whereQuery: P.EmailWhereInput = query?.search
             ? {
@@ -155,6 +168,7 @@ export class BaseEmailService<
             skip: query?.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
+            include: this.toInclude(),
         };
     }
     async findMany(query: QueryInput) {
@@ -227,6 +241,9 @@ export class BasePhoneService<
 > {
     constructor(protected readonly repo: P.PhoneDelegate) {}
 
+    toInclude() {
+        return undefined;
+    }
     toWhere(query?: QueryInput) {
         const whereQuery: P.PhoneWhereInput = query?.search
             ? {
@@ -253,6 +270,7 @@ export class BasePhoneService<
             skip: query?.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
+            include: this.toInclude(),
         };
     }
     async findMany(query: QueryInput) {
@@ -325,6 +343,9 @@ export class BaseAddressService<
 > {
     constructor(protected readonly repo: P.AddressDelegate) {}
 
+    toInclude() {
+        return undefined;
+    }
     toWhere(query?: QueryInput) {
         const whereQuery: P.AddressWhereInput = query?.search
             ? {
@@ -357,6 +378,7 @@ export class BaseAddressService<
             skip: query?.skip ?? 0,
             orderBy: this.toOrderBy(query),
             where: this.toWhere(query),
+            include: this.toInclude(),
         };
     }
     async findMany(query: QueryInput) {

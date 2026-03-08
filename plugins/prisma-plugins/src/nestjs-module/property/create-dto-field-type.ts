@@ -26,8 +26,9 @@ export function __createDtoFieldType(_model: DMMF.Model, field: DMMF.Field) {
         }
         case 'enum':
             return `P.$Enums.${field.type}`;
-        case 'unsupported':
         case 'object':
+            return `P.${field.type}`;
+        case 'unsupported':
             throw new Error(`Unsupported type: ${field.kind}`);
     }
 }

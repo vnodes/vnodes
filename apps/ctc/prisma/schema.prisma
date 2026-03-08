@@ -44,18 +44,18 @@ model Contact {
   gender       Gender?
   profiles     String[]
 
-  primaryEmail   Email? @relation("primary", fields: [primaryEmailId], references: [id], onDelete: SetNull)
+  primaryEmail   Email? @relation("primary", fields: [primaryEmailId], references: [id], onDelete: SetNull) /// @include(true)
   primaryEmailId Int?   @unique
 
-  primaryPhone   Phone? @relation("primary", fields: [primaryPhoneId], references: [id], onDelete: SetNull)
+  primaryPhone   Phone? @relation("primary", fields: [primaryPhoneId], references: [id], onDelete: SetNull) /// @include(true)
   primaryPhoneId Int?   @unique
 
-  primaryAddress   Address? @relation("primary", fields: [primaryAddressId], references: [id], onDelete: SetNull)
+  primaryAddress   Address? @relation("primary", fields: [primaryAddressId], references: [id], onDelete: SetNull) /// @include(true)
   primaryAddressId Int?     @unique
 
-  emails    Email[]   @relation("owner")
-  phones    Phone[]   @relation("owner")
-  addresses Address[] @relation("owner")
+  emails    Email[]   @relation("owner") /// @include(true)
+  phones    Phone[]   @relation("owner") /// @include(true)
+  addresses Address[] @relation("owner") /// @include(true)
 }
 
 model Email {

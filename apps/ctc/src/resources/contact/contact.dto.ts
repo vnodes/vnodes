@@ -23,16 +23,22 @@ export class ContactReadDto {
     @Prop() preferedName?: string;
     @Prop({ enum: P.$Enums.Gender }) gender?: P.$Enums.Gender;
     @Prop({ type: [String] }) profiles?: string[];
+    @Prop() primaryEmail?: P.Email;
     @Prop() primaryEmailId?: number;
+    @Prop() primaryPhone?: P.Phone;
     @Prop() primaryPhoneId?: number;
+    @Prop() primaryAddress?: P.Address;
     @Prop() primaryAddressId?: number;
+    @Prop() emails?: P.Email[];
+    @Prop() phones?: P.Phone[];
+    @Prop() addresses?: P.Address[];
 }
 export class ContactCreateDto {
     @Prop({ required: true }) firstName: string;
     @Prop({ required: true }) lastName: string;
     @Prop() middleName?: string;
     @Prop() preferedName?: string;
-    @Prop({ enum: P.$Enums.Gender }) gender?: P.$Enums.Gender;
+    @Prop() gender?: P.$Enums.Gender;
     @Prop({ type: [String] }) profiles?: string[];
     @Prop() primaryEmailId?: number;
     @Prop() primaryPhoneId?: number;
