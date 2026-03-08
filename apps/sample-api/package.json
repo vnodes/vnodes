@@ -67,13 +67,6 @@
                     "cwd": "{projectRoot}"
                 }
             },
-            "doc": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx typedoc --tsconfig apps/sample-api/tsconfig.lib.json --entryPoints apps/sample-api/src/index.ts --out public/apps/sample-api",
-                    "cwd": "{workspaceRoot}"
-                }
-            },
             "serve": {
                 "executor": "@nx/js:node",
                 "options": {

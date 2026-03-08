@@ -60,13 +60,6 @@
                     "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
                 }
             },
-            "doc": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx typedoc --tsconfig apps/ctc/tsconfig.lib.json --entryPoints apps/ctc/src/index.ts --out public/apps/ctc",
-                    "cwd": "{workspaceRoot}"
-                }
-            },
             "serve": {
                 "executor": "@nx/js:node",
                 "options": {
