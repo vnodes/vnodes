@@ -12,6 +12,6 @@ export function FindOneByIdMethod(options: FindOneByIdOptions): MethodDecorator 
         ApiNotFoundResponse({ description: `Entity not found` })(...args);
         ApiParam({ name: 'id', type: 'string' })(...args);
         Param('id')(target, methodName, 0);
-        Reflect.defineMetadata('design:paramtypes', [Number], target, methodName);
+        Reflect.defineMetadata('design:paramtypes', [String], target, methodName);
     };
 }

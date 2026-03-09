@@ -1,3 +1,4 @@
+
 import { CrudController } from '@vnodes/nestjs';
 import { Inject } from '@vnodes/nestjs/common';
 import { BasePhoneController } from '../prisma/index.js';
@@ -15,3 +16,5 @@ export class PhoneController extends BasePhoneController {
         super(service);
     }
 }
+
+        

@@ -1,12 +1,11 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
-      "default"
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json"
     ],
     "sharedGlobals": []
   },
@@ -35,14 +34,20 @@
           "name": "docker:run"
         }
       }
+    },
+    {
+      "plugin": "@nx/vitest",
+      "options": {
+        "testTargetName": "test",
+        "ciTargetName": "test-ci",
+        "testMode": "watch"
+      }
     }
   ],
   "targetDefaults": {
     "build": {
       "executor": "@nx/js:swc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/index.ts",
@@ -63,9 +68,7 @@
         "^default",
         "{workspaceRoot}/biome.json",
         {
-          "externalDependencies": [
-            "@biomejs/biome"
-          ]
+          "externalDependencies": ["@biomejs/biome"]
         }
       ]
     },
@@ -76,20 +79,12 @@
         "command": "npx tsx --test src/**/*.{spec,test}.ts",
         "cwd": "{projectRoot}"
       },
-      "inputs": [
-        "default",
-        "^default",
-        "{projectRoot}"
-      ]
+      "inputs": ["default", "^default", "{projectRoot}"]
     },
     "doc": {
       "cache": true,
       "executor": "nx:run-commands",
-      "inputs": [
-        "default",
-        "^default",
-        "{projectRoot}"
-      ],
+      "inputs": ["default", "^default", "{projectRoot}"],
       "options": {
         "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.json"
       }
@@ -103,23 +98,13 @@
     },
     "@nx/js:swc": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     },
     "@nx/js:tsc": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "release": {

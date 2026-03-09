@@ -24,8 +24,8 @@ export class EmailReadDto {
     @Prop() contactId?: number;
 }
 export class EmailCreateDto {
-    @Prop({ required: true }) contactType: P.$Enums.ContactType;
-    @Prop({ required: true }) email: string;
+    @Prop({ required: true, enum: P.$Enums.ContactType }) contactType: P.$Enums.ContactType;
+    @Prop({ required: true, format: 'email' }) email: string;
     @Prop() notes?: string;
     @Prop() openTime?: string;
     @Prop({ required: true }) contactId: number;

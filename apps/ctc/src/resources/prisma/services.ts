@@ -116,6 +116,7 @@ export class BaseContactController<
     }
 
     findOneById(id: string) {
+        console.log('UUID: ', id);
         return this.service.findOneByUuid(id);
     }
 

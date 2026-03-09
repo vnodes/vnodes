@@ -15,6 +15,6 @@ export function UpdateOneByIdMethod(options: UpdateMethodOptions): MethodDecorat
         ApiBody({ type: options.updateDto })(...args);
         Param('id')(target, methodName, 0);
         Body()(target, methodName, 1);
-        Reflect.defineMetadata('design:paramtypes', [Number, options.updateDto], target, methodName);
+        Reflect.defineMetadata('design:paramtypes', [String, options.updateDto], target, methodName);
     };
 }
