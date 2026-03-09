@@ -9,7 +9,7 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "noPropertyAccessFromIndexSignature": true,
-        "baseUrl": "./src",
+        "baseUrl": "./",
         "module": "nodenext",
         "moduleResolution": "nodenext",
         "types": ["vitest/globals", "vitest/importMeta", "vite/client", "node", "vitest"]

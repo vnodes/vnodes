@@ -32,7 +32,7 @@ enum ContactType {
 
 model Contact {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7)) @db.Uuid
+  uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?

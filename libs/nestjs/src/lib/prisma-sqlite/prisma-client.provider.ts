@@ -32,6 +32,7 @@ export function providePrismaClient(prismaClientClass: Type, scope = DEFAULT_PRI
                     url: connectionString,
                     timeout: 5000,
                 },
+
                 {
                     timestampFormat: 'iso8601',
                 },

@@ -283,7 +283,7 @@ export type ContactWhereInput = {
   OR?: Prisma.ContactWhereInput[]
   NOT?: Prisma.ContactWhereInput | Prisma.ContactWhereInput[]
   id?: Prisma.IntFilter<"Contact"> | number
-  uuid?: Prisma.UuidFilter<"Contact"> | string
+  uuid?: Prisma.StringFilter<"Contact"> | string
   createdAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Contact"> | Date | string | null
@@ -380,7 +380,7 @@ export type ContactScalarWhereWithAggregatesInput = {
   OR?: Prisma.ContactScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ContactScalarWhereWithAggregatesInput | Prisma.ContactScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Contact"> | number
-  uuid?: Prisma.UuidWithAggregatesFilter<"Contact"> | string
+  uuid?: Prisma.StringWithAggregatesFilter<"Contact"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Contact"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Contact"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Contact"> | Date | string | null

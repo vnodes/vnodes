@@ -1,25 +1,22 @@
 {
-  "compilerOptions": {
-    "composite": true,
-    "declarationMap": true,
-    "importHelpers": true,
-    "isolatedModules": true,
-    "lib": ["ESNext"],
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": false,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es2022",
-    "customConditions": ["@vnodes/source"],
-    "paths": {
-      "@vnodes/ctc-e2e": ["apps/ctc-e2e/src/index.ts"]
+    "compilerOptions": {
+        "composite": true,
+        "declarationMap": true,
+        "importHelpers": true,
+        "isolatedModules": true,
+        "lib": ["ESNext"],
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "strictPropertyInitialization": false,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "es2022",
+        "customConditions": ["@vnodes/source"]
     }
-  }
 }
