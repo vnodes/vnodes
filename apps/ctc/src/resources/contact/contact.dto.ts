@@ -43,7 +43,7 @@ export class ContactCreateDto
 @Prop({ required: true }) lastName: string;
 @Prop() middleName?: string;
 @Prop() preferedName?: string;
-@Prop() gender?: P.$Enums.Gender;
+@Prop({ enum: P.$Enums.Gender }) gender?: P.$Enums.Gender;
 @Prop({ type: [String] }) profiles?: string[];
 @Prop() primaryEmailId?: number;
 @Prop() primaryPhoneId?: number;

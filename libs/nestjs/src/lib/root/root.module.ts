@@ -1,12 +1,13 @@
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { Env } from '../const/index.js';
 import { CacheEvictInterceptor, EmitResponseInterceptor } from '../interceptors/index.js';
+import { PrismaExceptionFilter } from '../interceptors/prisma-exception.filter.js';
 
 @Global()
 @Module({
@@ -44,6 +45,7 @@ import { CacheEvictInterceptor, EmitResponseInterceptor } from '../interceptors/
             provide: APP_INTERCEPTOR,
             useClass: CacheInterceptor,
         },
+
         {
             provide: APP_INTERCEPTOR,
             useClass: CacheEvictInterceptor,
@@ -51,6 +53,10 @@ import { CacheEvictInterceptor, EmitResponseInterceptor } from '../interceptors/
         {
             provide: APP_INTERCEPTOR,
             useClass: EmitResponseInterceptor,
+        },
+        {
+            provide: APP_FILTER,
+            useClass: PrismaExceptionFilter,
         },
         {
             provide: APP_GUARD,

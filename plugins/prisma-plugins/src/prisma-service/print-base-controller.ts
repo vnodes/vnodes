@@ -19,8 +19,6 @@ export function printBaseController(model: DMMF.Model) {
         ? 'Uuid'
         : 'Id';
 
-    const numOrStr = findByKey === 'Id' ? '+' : '';
-
     return `
     export class Base${model.name}Controller<${generics}> {
 
@@ -31,7 +29,7 @@ export function printBaseController(model: DMMF.Model) {
     }
 
     findOneById(id: string) {
-        return this.service.findOneBy${findByKey}(${numOrStr}id);
+        return this.service.findOneBy${findByKey}(id);
     }
 
     createOne(data: CreateInput) {
@@ -39,11 +37,11 @@ export function printBaseController(model: DMMF.Model) {
     }
 
     updateOneById(id: string, data: UpdateInput) {
-        return this.service.updateOneBy${findByKey}(${numOrStr}id, data);
+        return this.service.updateOneBy${findByKey}(id, data);
     }
 
     deleteOneById(id: string) {
-        return this.service.deleteOneBy${findByKey}(${numOrStr}id);
+        return this.service.deleteOneBy${findByKey}(id);
     }
         
     }

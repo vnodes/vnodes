@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { Annotations, type ScalarType } from '@vnodes/prisma-helper';
+import { Annotations, isEnumField, type ScalarType } from '@vnodes/prisma-helper';
 
 export function __inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Field) {
     switch (field.kind) {
@@ -44,7 +44,9 @@ export function inputDtoFieldDecoratorOptions(_model: DMMF.Model, field: DMMF.Fi
 
     const options: string[] = [];
 
-    if (field.isList) {
+    if (isEnumField(field)) {
+        options.push(`enum: P.$Enums.${field.type}`);
+    } else if (field.isList || field.kind === 'object') {
         options.push(`type: ${decoratorOptionsType}`);
     }
 

@@ -17,14 +17,16 @@ export type MethodOptions = {
 } & Names;
 
 export function updateUniqueByMethods(options: MethodOptions) {
-    return `async updateOneBy${options.pascalCase}(${options.camelCase}: ${options.type}, data: UpdateInput){ 
-        return await this.repo.update({ where: { ${options.camelCase} }, data })
+    const isNum = options.type === 'number' ? '+' : '';
+    return `async updateOneBy${options.pascalCase}(${options.camelCase}: string, data: UpdateInput){ 
+        return await this.repo.update({ where: { ${options.camelCase}:${isNum}${options.camelCase} }, data })
     }`;
 }
 
 export function findUniqueByMethod(options: MethodOptions) {
-    return `async findOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
-        return await this.repo.findUnique({ where: { ${options.camelCase} } })
+    const isNum = options.type === 'number' ? '+' : '';
+    return `async findOneBy${options.pascalCase}(${options.camelCase}: string){ 
+        return await this.repo.findUnique({ where: { ${options.camelCase}:${isNum}${options.camelCase} } })
     }`;
 }
 
@@ -51,14 +53,16 @@ export function findFirstByLessThanMethod(options: MethodOptions) {
 }
 
 export function deleteUniqueByMethod(options: MethodOptions) {
-    return `async deleteOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
-        return await this.repo.delete({ where: { ${options.camelCase} } })
+    const isNum = options.type === 'number' ? '+' : '';
+    return `async deleteOneBy${options.pascalCase}(${options.camelCase}: string){ 
+        return await this.repo.delete({ where: { ${options.camelCase}:${isNum}${options.camelCase} } })
     }`;
 }
 
 export function softDeleteByMethod(options: MethodOptions) {
-    return `async softDeleteOneBy${options.pascalCase}(${options.camelCase}: ${options.type}){ 
-        return await this.repo.update({ where: { ${options.camelCase} }, data:{ deletedAt: new Date() } })
+    const isNum = options.type === 'number' ? '+' : '';
+    return `async softDeleteOneBy${options.pascalCase}(${options.camelCase}: string){ 
+        return await this.repo.update({ where: { ${options.camelCase}:${isNum}${options.camelCase} }, data:{ deletedAt: new Date() } })
     }`;
 }
 

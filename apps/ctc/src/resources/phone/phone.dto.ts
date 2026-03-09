@@ -26,7 +26,7 @@ export class PhoneReadDto
 }
 export class PhoneCreateDto
 {
-@Prop({ required: true }) contactType: P.$Enums.ContactType;
+@Prop({ enum: P.$Enums.ContactType,required: true }) contactType: P.$Enums.ContactType;
 @Prop({ required: true }) phone: string;
 @Prop() notes?: string;
 @Prop() openTime?: string;

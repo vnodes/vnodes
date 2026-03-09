@@ -12,22 +12,24 @@ export class EmailQueryDto implements P.QueryMany<P.Prisma.EmailScalarFieldEnum>
     @Prop() withDeleted?: boolean;
 }
 
-export class EmailReadDto {
-    @Prop() id?: number;
-    @Prop() createdAt?: Date;
-    @Prop() updatedAt?: Date;
-    @Prop() deletedAt?: Date;
-    @Prop({ enum: P.$Enums.ContactType }) contactType?: P.$Enums.ContactType;
-    @Prop() email?: string;
-    @Prop() notes?: string;
-    @Prop() openTime?: string;
-    @Prop() contactId?: number;
+export class EmailReadDto
+{
+@Prop() id?: number;
+@Prop() createdAt?: Date;
+@Prop() updatedAt?: Date;
+@Prop() deletedAt?: Date;
+@Prop({ enum: P.$Enums.ContactType }) contactType?: P.$Enums.ContactType;
+@Prop() email?: string;
+@Prop() notes?: string;
+@Prop() openTime?: string;
+@Prop() contactId?: number
 }
-export class EmailCreateDto {
-    @Prop({ required: true, enum: P.$Enums.ContactType }) contactType: P.$Enums.ContactType;
-    @Prop({ required: true, format: 'email' }) email: string;
-    @Prop() notes?: string;
-    @Prop() openTime?: string;
-    @Prop({ required: true }) contactId: number;
+export class EmailCreateDto
+{
+@Prop({ enum: P.$Enums.ContactType,required: true }) contactType: P.$Enums.ContactType;
+@Prop({ required: true }) email: string;
+@Prop() notes?: string;
+@Prop() openTime?: string;
+@Prop({ required: true }) contactId: number
 }
 export class EmailUpdateDto extends PartialType(EmailCreateDto) {}

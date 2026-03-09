@@ -32,7 +32,7 @@ export class AddressReadDto
 }
 export class AddressCreateDto
 {
-@Prop({ required: true }) contactType: P.$Enums.ContactType;
+@Prop({ enum: P.$Enums.ContactType,required: true }) contactType: P.$Enums.ContactType;
 @Prop({ required: true }) street: string;
 @Prop({ required: true }) city: string;
 @Prop() notes?: string;

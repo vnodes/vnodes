@@ -1,5 +1,4 @@
 import { join } from 'node:path';
-import { inspect } from 'node:util';
 import type { GeneratorOptions } from '@prisma/generator-helper';
 import { writeTextFile } from '@vnodes/fs';
 import { printBaseService } from './print-base-service.js';
@@ -22,9 +21,6 @@ export default async function onGenerate(options: GeneratorOptions) {
     generatedServices.push(printCommonCode());
 
     for (const model of _models) {
-        if (model.name === 'User') {
-            console.log(inspect(model.fields, true, 100));
-        }
         generatedServices.push(printBaseService(model));
     }
 
