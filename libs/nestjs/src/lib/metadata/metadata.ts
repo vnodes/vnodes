@@ -8,14 +8,69 @@ export enum Metadata {
     EMIT_RESPONSE = 'EMIT_RESPONSE',
 }
 
-export const { set: ResourceName, get: getResourceName } = createMetadata<string>(Metadata.ROLES);
+export const {
+    /**
+     * Set resource name
+     */
+    set: ResourceName,
+    /**
+     * Get resource name
+     */
+    get: getResourceName,
+} = createMetadata<string>(Metadata.ROLES);
 
-export const { set: OperationName, get: getOperationName } = createMetadata<string>(Metadata.OPERATION_NAME);
+export const {
+    /**
+     * Set operation name
+     */
+    set: OperationName,
+    /**
+     * Get operation name
+     */
+    get: getOperationName,
+} = createMetadata<string>(Metadata.OPERATION_NAME);
 
-export const { set: Permissions, get: getPermissions } = createMetadata<string>(Metadata.PERMISSIONS);
+export const {
+    /**
+     * Set permissions
+     */
+    set: Permissions,
+    /**
+     * Get permissions
+     */
+    get: getPermissions,
+} = createMetadata<string[]>(Metadata.PERMISSIONS);
 
-export const { set: Roles, get: getRoles } = createMetadata<string>(Metadata.ROLES);
+export const {
+    /**
+     * Set roles
+     */
+    set: Roles,
+    /**
+     * Get roles
+     */
+    get: getRoles,
+} = createMetadata<string[]>(Metadata.ROLES);
 
-export const { set: Public, get: isPublic } = createMetadataWithoutValue(Metadata.PUBLIC);
+export const {
+    /**
+     * Set resource as public
+     */
+    set: Public,
+    /**
+     * Check the resource is public or not
+     */
+    get: isPublic,
+} = createMetadataWithoutValue(Metadata.PUBLIC);
 
-export const { set: EmitResponse, get: isEmitResponse } = createMetadataWithoutValue(Metadata.EMIT_RESPONSE);
+export const {
+    /**
+     * Mark the resource to emit operation response payload
+     */
+    set: EmitResponse,
+
+    /**
+     * Check the resource is marked to emit response payload
+     */
+    get: isEmitResponse,
+} = createMetadataWithoutValue(Metadata.EMIT_RESPONSE);
