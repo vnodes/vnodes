@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/crypto",
-    "description": "- [ ] add description",
+    "description": "Hashing and encription functions",
     "homepage": "https://vnodes.github.io/vnodes/libs/crypto",
     "publishConfig": {
         "access": "public",
@@ -11,7 +11,10 @@
         "name": "Robert Brightline",
         "url": "https://vnodes.github.io/vnodes/libs/crypto"
     },
-    "keywords": [],
+    "keywords": [
+        "hash",
+        "encript"
+    ],
     "icon": "https://vnodes.github.io/vnodes/libs/crypto/assets/favicon.png",
     "funding": [
         {

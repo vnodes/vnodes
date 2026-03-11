@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 
 /**
  * Create a safe scopeed resolver
+ *
  * @param rootPath
  * @returns
  */

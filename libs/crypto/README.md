@@ -10,7 +10,7 @@
 
 ## @vnodes/crypto
 
-Hashing and encription library
+Hashing and encription functions
 
 ## Installation
 

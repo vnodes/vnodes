@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/fs",
-    "description": "File system library",
+    "description": "IO",
     "homepage": "https://vnodes.github.io/vnodes/libs/fs",
     "publishConfig": {
         "access": "public",

@@ -10,6 +10,7 @@ import { writeYamlFile } from './write-yaml-file.js';
 
 /**
  * Create a scopped IO functions
+ *
  * @param rootPath
  * @returns
  */
