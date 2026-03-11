@@ -24,11 +24,13 @@ export class AuthUserManager {
     ) {}
 
     protected get permisisons() {
-        return this.user.permissions ? this.user.permissions.split(',') : [];
+        const arr = this.user.permissions ? this.user.permissions.split(',') : [];
+        return new Set<string>(arr);
     }
 
     protected get roles() {
-        return this.user.roles ? this.user.roles.split(',') : [];
+        const arr = this.user.roles ? this.user.roles.split(',') : [];
+        return new Set<string>(arr);
     }
 
     private get version() {
@@ -36,29 +38,21 @@ export class AuthUserManager {
     }
 
     isAdmin() {
-        if (this.user.roles) {
-            return /\badmin\b/i.test(this.user.roles);
-        }
-        return false;
-    }
-    hasPermissions(requiredPermissions: string) {
-        const items = requiredPermissions.split(',');
-        for (const subject of items) {
-            if (!this.permisisons.includes(subject)) {
-                throw new ForbiddenException('Insufficient permissions');
-            }
-        }
-        return true;
+        return this.roles.has('Admin');
     }
 
-    hasRoles(requiredRoles: string) {
-        const items = requiredRoles.split(',');
-        for (const subject of items) {
-            if (!this.roles.includes(subject)) {
-                throw new ForbiddenException('Insufficient roles');
-            }
+    hasPermissions(requiredPermissions: string[]) {
+        if (requiredPermissions.every((permission) => this.permisisons.has(permission))) {
+            return true;
         }
-        return true;
+        throw new ForbiddenException('Insufficient permissions');
+    }
+
+    hasRoles(requiredRoles: string[]) {
+        if (requiredRoles.some((role) => this.roles.has(role))) {
+            return true;
+        }
+        throw new ForbiddenException('Insufficient role');
     }
 
     toJwtPayload(): JwtPayload {

@@ -16,6 +16,8 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
         homepage: options.homepage,
         org: options.org,
         funding: options.funding,
+        username: options.username,
+        password: options.password,
         ...names(shortProjectName),
     });
 

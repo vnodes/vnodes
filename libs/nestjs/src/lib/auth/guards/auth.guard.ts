@@ -22,6 +22,10 @@ export class AuthGuard implements CanActivate {
         const permissions = getPermissions(this.reflector, context);
         const roles = getRoles(this.reflector, context);
 
+        if (permissions?.length === 0 && roles.length === 0) {
+            return true;
+        }
+
         if (!permissions && !roles) {
             return true;
         }

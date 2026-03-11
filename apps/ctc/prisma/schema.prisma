@@ -30,6 +30,7 @@ enum ContactType {
   Work
 }
 
+/// @emit()
 model Contact {
   id        Int       @id @default(autoincrement())
   uuid      String    @unique @default(uuid(7))
@@ -44,25 +45,25 @@ model Contact {
   gender       Gender?
   profiles     String[]
 
-  /// @include(true)
+  /// @include()
   primaryEmail   Email? @relation("primary", fields: [primaryEmailId], references: [id], onDelete: SetNull)
   primaryEmailId Int?   @unique
 
-  /// @include(true)
+  /// @include()
   primaryPhone   Phone? @relation("primary", fields: [primaryPhoneId], references: [id], onDelete: SetNull)
   primaryPhoneId Int?   @unique
 
-  /// @include(true)
+  /// @include()
   primaryAddress   Address? @relation("primary", fields: [primaryAddressId], references: [id], onDelete: SetNull)
   primaryAddressId Int?     @unique
 
-  /// @include(true)
+  /// @include()
   emails Email[] @relation("owner")
 
-  /// @include(true)
+  /// @include()
   phones Phone[] @relation("owner")
 
-  /// @include(true)
+  /// @include()
   addresses Address[] @relation("owner")
 }
 

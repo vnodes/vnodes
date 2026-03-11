@@ -33,7 +33,7 @@ export function CrudMethod(_options?: CrudControllerOptions): MethodDecorator {
         const requiredPermission = `${pascalCase}.${methodName}`;
 
         OperationName(methodName)(...args);
-        Permissions(requiredPermission)(...args);
+        Permissions([requiredPermission])(...args);
 
         switch (methodName as CrudOperation) {
             case CrudOperation.CREATE_ONE: {

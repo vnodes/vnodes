@@ -5,4 +5,6 @@ export interface ProjectGeneratorSchema {
     email: string;
     homepage: string;
     funding: string;
+    username: string;
+    password: string;
 }

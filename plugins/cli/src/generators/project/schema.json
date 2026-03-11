@@ -58,7 +58,25 @@
                 "index": 4
             },
             "x-prompt": "What funding would you like to use?"
+        },
+        "username": {
+            "type": "string",
+            "description": "Dev database username",
+            "$default": {
+                "$source": "argv",
+                "index": 5
+            },
+            "x-prompt": "What is the dev database username?"
+        },
+        "password": {
+            "type": "string",
+            "description": "Dev database password",
+            "$default": {
+                "$source": "argv",
+                "index": 6
+            },
+            "x-prompt": "What is the dev database password"
         }
     },
-    "required": ["type", "directory", "org", "email", "homepage", "funding"]
+    "required": ["type", "directory", "org", "email", "homepage", "funding", "username", "password"]
 }

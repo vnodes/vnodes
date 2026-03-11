@@ -125,6 +125,11 @@ export enum Annotation {
      * Define the preferred ui component such as text, textarea, number, etc.
      */
     ui = 'ui',
+
+    /**
+     * Model annotated with emit will emit the create and update responses
+     */
+    emit = 'emit',
 }
 
 export type AnnotationName = keyof typeof Annotation;

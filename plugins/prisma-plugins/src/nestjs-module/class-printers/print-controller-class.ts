@@ -1,8 +1,11 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
+import { Annotations } from '@vnodes/prisma-helper';
 
 export function printControllerClass(model: DMMF.Model) {
     const { pascalCase, kebabCase } = names(model.name);
+
+    const emit = Annotations.emit(model.documentation) ? 'emit: true' : '';
 
     return [
         `
@@ -17,6 +20,7 @@ import { ${pascalCase}Service } from './${kebabCase}.service.js';
     readDto: ${pascalCase}ReadDto,
     createDto: ${pascalCase}CreateDto,
     updateDto: ${pascalCase}UpdateDto,
+    ${emit}
 })
 export class ${pascalCase}Controller extends Base${pascalCase}Controller {
     constructor(@Inject(${pascalCase}Service) service: ${pascalCase}Service) {

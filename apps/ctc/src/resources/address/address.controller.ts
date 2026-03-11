@@ -1,4 +1,3 @@
-
 import { CrudController } from '@vnodes/nestjs';
 import { Inject } from '@vnodes/nestjs/common';
 import { BaseAddressController } from '../prisma/index.js';
@@ -16,5 +15,3 @@ export class AddressController extends BaseAddressController {
         super(service);
     }
 }
-
-        

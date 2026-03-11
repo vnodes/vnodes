@@ -62,8 +62,6 @@ describe('Contact API', () => {
         const res = await req(`/${created.uuid}`, {
             method: 'DELETE',
         });
-        console.log(res.status);
-        console.log(res.statusText);
         expect(res.status).toEqual(200);
     });
 });
