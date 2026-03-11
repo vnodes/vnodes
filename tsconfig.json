@@ -43,6 +43,9 @@
     },
     {
       "path": "./apps/ctc-e2e"
+    },
+    {
+      "path": "./libs/core"
     }
   ]
 }

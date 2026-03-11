@@ -27,7 +27,7 @@
     "exports": {
         "./package.json": "./package.json",
         ".": {
-            "@vnodes/source": "./src/index.ts",
+            "@<%- org %>/source": "./src/index.ts",
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js",
             "default": "./dist/index.js"
@@ -41,42 +41,16 @@
     "nx": {
         "sourceRoot": "<%- directory %>/src",
         "targets": {
-            "build": {
-                "executor": "@nx/js:swc",
-                "outputs": [
-                    "{options.outputPath}"
-                ],
-                "options": {
-                    "outputPath": "<%- directory %>/dist",
-                    "main": "<%- directory %>/src/index.ts",
-                    "tsConfig": "<%- directory %>/tsconfig.lib.json",
-                    "skipTypeCheck": false,
-                    "stripLeadingPaths": true
-                }
-            },
-            "lint": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
-                }
-            },
-            "test": {
-                "executor": "nx:run-commands",
-                "options": {
-                "command": "npx tsx --tsconfig ./tsconfig.spec.json --test src/**/*.{spec,test}.ts",
-                "cwd": "{projectRoot}"
-                }
-            },
-            "doc": {
-                "executor": "nx:run-commands",
-                "options": {
-                    "command": "npx typedoc --tsconfig <%- directory %>/tsconfig.lib.json --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %>",
-                    "cwd": "{workspaceRoot}"
-                }
-            }
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {},
+            "serve": {}
         }
     },
     "dependencies": {
         "@swc/helpers": "~0.5.11"
-    }
+    },
+    "devDependencies": {},
+    "peerDependencies": {}
 }

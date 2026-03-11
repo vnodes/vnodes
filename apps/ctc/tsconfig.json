@@ -1,18 +1,21 @@
 {
-    "extends": ["../../tsconfig.base.json"],
-    "compilerOptions": {
-        "baseUrl": ".",
-        "rootDir": "src",
-        "outDir": "dist"
+  "extends": ["../../tsconfig.base.json"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "../../libs/core"
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
-    "references": [
-        {
-            "path": "../../plugins/prisma-plugins"
-        },
-        {
-            "path": "../../libs/nestjs"
-        }
-    ]
+    {
+      "path": "../../plugins/prisma-plugins"
+    },
+    {
+      "path": "../../libs/nestjs"
+    }
+  ]
 }

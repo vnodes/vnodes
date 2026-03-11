@@ -1,6 +1,7 @@
 {
     "name": "@vnodes/crypto",
     "description": "Hashing and encription functions",
+    "version": "0.0.1",
     "homepage": "https://vnodes.github.io/vnodes/libs/crypto",
     "publishConfig": {
         "access": "public",
@@ -22,7 +23,6 @@
             "url": "https://cash.app/$puqlib"
         }
     ],
-    "version": "0.0.1",
     "type": "module",
     "main": "./dist/index.js",
     "module": "./dist/index.js",

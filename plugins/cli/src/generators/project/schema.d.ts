@@ -1,5 +1,5 @@
 export interface ProjectGeneratorSchema {
-    type: 'lib' | 'api' | 'db';
+    type: 'lib' | 'api';
     directory: string;
     org: string;
     email: string;

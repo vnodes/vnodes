@@ -7,7 +7,10 @@
         "type": {
             "type": "string",
             "description": "Project type",
-            "enum": ["lib", "api", "db"],
+            "enum": [
+                "lib",
+                "api"
+            ],
             "$default": {
                 "$source": "argv",
                 "index": 0
@@ -78,5 +81,14 @@
             "x-prompt": "What is the dev database password"
         }
     },
-    "required": ["type", "directory", "org", "email", "homepage", "funding", "username", "password"]
+    "required": [
+        "type",
+        "directory",
+        "org",
+        "email",
+        "homepage",
+        "funding",
+        "username",
+        "password"
+    ]
 }

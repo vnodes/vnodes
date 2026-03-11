@@ -49,7 +49,8 @@
         }
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.11"
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/core": "workspace:*"
     },
     "devDependencies": {
         "@nestjs/testing": "^11.1.13",
