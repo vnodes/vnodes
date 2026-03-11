@@ -11,7 +11,9 @@
         "name": "Robert Brightline",
         "url": "https://vnodes.github.io/vnodes/libs/names"
     },
-    "keywords": [],
+    "keywords": [
+        "names"
+    ],
     "icon": "https://vnodes.github.io/vnodes/libs/names/assets/favicon.png",
     "funding": [
         {
@@ -35,8 +37,7 @@
     },
     "files": [
         "assets",
-        "dist",
-        "!**/*.tsbuildinfo"
+        "dist"
     ],
     "nx": {
         "sourceRoot": "libs/names/src",

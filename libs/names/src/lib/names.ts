@@ -11,6 +11,7 @@ export type Names = {
     titleCase: string;
     sentenceCase: string;
 };
+
 export function names(name: string): Names {
     const normal = normalizeName(name);
 

@@ -1,4 +1,5 @@
-/** biome-ignore-all lint/complexity/noStaticOnlyClass: just for this*/
+/** biome-ignore-all lint/complexity/noStaticOnlyClass: No Static */
+
 import { normalizeName } from './normalize-name.js';
 
 /**

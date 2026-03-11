@@ -1,15 +1,11 @@
 {
     "extends": ["../../tsconfig.base.json"],
-    "include": ["src/**/*.ts"],
     "compilerOptions": {
         "baseUrl": ".",
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/.tsbuildinfo"
     },
-    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
-    "references": [
-        {
-            "path": "../names"
-        }
-    ]
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"]
 }
