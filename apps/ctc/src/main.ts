@@ -1,5 +1,8 @@
-import {} from '@vnodes/core/platform-express';
 import { boot } from '@vnodes/nestjs/boot-fastify';
 import { AppModule } from './app.module.js';
 
-boot({ appModule: AppModule });
+async function main() {
+    await boot({ appModule: AppModule });
+}
+
+main();
