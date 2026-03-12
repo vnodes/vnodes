@@ -1,8 +1,9 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
-export * from './lib/is-kebab-case.js';
-export * from './lib/lowercase-first.js';
-export * from './lib/names.js';
-export * from './lib/normalize-name.js';
-export * from './lib/pluralize.js';
-export * from './lib/upercase-first.js';
-export * from './lib/validate-name.js';
+export * from './is-kebab-case.js';
+export * from './is-snake-case.js';
+export * from './lowercase-first.js';
+export * from './names.js';
+export * from './normalize-name.js';
+export * from './pluralize.js';
+export * from './upercase-first.js';
+export * from './validate-name.js';

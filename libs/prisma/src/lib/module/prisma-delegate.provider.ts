@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: Primsa client */
 import { Inject, type Provider } from '@nestjs/common';
 
 import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken } from './prisma-client.provider.js';
@@ -11,7 +10,7 @@ export function provideDelegate(resourceName: string, scope = DEFAULT_PRISMA_CLI
     return {
         inject: [getPrismaClientToken(scope)],
         provide: getDelegateToken(resourceName, scope),
-        useFactory(client: any) {
+        useFactory(client) {
             return client[resourceName];
         },
     };

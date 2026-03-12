@@ -7,13 +7,5 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
-  "references": [
-    {
-      "path": "../autowire"
-    },
-    {
-      "path": "../property"
-    }
-  ]
+  "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"]
 }

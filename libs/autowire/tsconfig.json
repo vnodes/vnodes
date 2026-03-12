@@ -10,10 +10,7 @@
   "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
   "references": [
     {
-      "path": "../autowire"
-    },
-    {
-      "path": "../property"
+      "path": "../names"
     }
   ]
 }

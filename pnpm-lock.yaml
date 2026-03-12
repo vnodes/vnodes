@@ -129,6 +129,28 @@ importers:
 
   apps/ctc-e2e: {}
 
+  libs/autowire:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.1.14
+        version: 11.1.16(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core':
+        specifier: ^11.1.14
+        version: 11.1.16(@nestjs/common@11.1.16(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.16)(@nestjs/websockets@11.1.16)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/swagger':
+        specifier: ^11.2.6
+        version: 11.2.6(@fastify/static@9.0.0)(@nestjs/common@11.1.16(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.16)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.19
+      '@vnodes/names':
+        specifier: workspace:*
+        version: link:../names
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.1.13
+        version: 11.1.16(@nestjs/common@11.1.16(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.16)(@nestjs/platform-express@11.1.16)
+
   libs/core:
     dependencies:
       '@fastify/compress':
@@ -188,12 +210,18 @@ importers:
       '@prisma/adapter-pg':
         specifier: 7.3.0
         version: 7.3.0
-      '@prisma/client':
-        specifier: 7.3.0
-        version: 7.3.0(prisma@7.3.0(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.19
+      '@vnodes/autowire':
+        specifier: workspace:*
+        version: link:../autowire
+      '@vnodes/metadata':
+        specifier: workspace:*
+        version: link:../metadata
+      '@vnodes/property':
+        specifier: workspace:*
+        version: link:../property
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
@@ -269,6 +297,18 @@ importers:
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
+
+  libs/metadata:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.1.14
+        version: 11.1.16(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core':
+        specifier: ^11.1.14
+        version: 11.1.16(@nestjs/common@11.1.16(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.16)(@nestjs/websockets@11.1.16)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.19
 
   libs/names:
     dependencies:
