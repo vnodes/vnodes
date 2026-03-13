@@ -35,26 +35,44 @@ export class UserManager {
         protected readonly jwt: JwtService,
     ) {}
 
+    /**
+     * Get the user data
+     */
     get user(): User {
         return new User(this.userData);
     }
 
+    /**
+     * Get the set of user permissions
+     */
     get permisisons() {
         return new Set<string>(this.userData.permissions ?? []);
     }
 
+    /**
+     * Get the set of user roles
+     */
     get roles() {
         return new Set<string>(this.userData.roles ?? []);
     }
 
+    /**
+     * Get the user version
+     */
     get version() {
         return this.userData.version;
     }
 
+    /**
+     * Check the user has the "admin" role
+     */
     isAdmin() {
         return this.roles.has('admin');
     }
 
+    /**
+     * Check the user has all {@link requiredPermissions} or throw {@link ForbiddenException}
+     */
     hasPermissions(requiredPermissions: string[]) {
         if (requiredPermissions.every((permission) => this.permisisons.has(permission))) {
             return true;
@@ -62,6 +80,9 @@ export class UserManager {
         throw new ForbiddenException('Insufficient permissions');
     }
 
+    /**
+     * Check the user has one of the {@link requiredRoles} or throw {@link ForbiddenException}
+     */
     hasRoles(requiredRoles: string[]) {
         if (requiredRoles.some((role) => this.roles.has(role))) {
             return true;
@@ -69,6 +90,10 @@ export class UserManager {
         throw new ForbiddenException('Insufficient role');
     }
 
+    /**
+     * Create the jwt payload object {@link JwtPayload}
+     * @returns -- {@link JwtPayload}
+     */
     toJwtPayload(): JwtPayload {
         return {
             sub: this.userData.id,
@@ -77,6 +102,11 @@ export class UserManager {
         };
     }
 
+    /**
+     * Compare the plain password with the hashed password
+     * @param password plain password
+     * @returns boolean or throw {@link UnauthorizedException}
+     */
     async comparePassword(password: string) {
         if (await compare(password, this.userData.password)) {
             return true;
@@ -84,11 +114,20 @@ export class UserManager {
         throw new UnauthorizedException(`Wrong password`);
     }
 
+    /**
+     * Sign the jwt token
+     * @returns jwt token
+     */
     async signToken() {
         const token = await this.jwt.signAsync(this.toJwtPayload());
         return token;
     }
 
+    /**
+     * Verify jwt {@link token}
+     * @param token jwt token
+     * @returns string or throw {@link UnauthorizedException} that indicated invalid or old versioned token
+     */
     async verifyToken(token: string) {
         const jwtPayload = await this.jwt.verifyAsync<JwtPayload>(token);
 

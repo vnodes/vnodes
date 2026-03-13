@@ -6,6 +6,7 @@ import { ForgotPasswordDto } from './dto/forgot-password.dto.js';
 import { LoginDto } from './dto/login.dto.js';
 import { AuthService } from './services/auth.service.js';
 
+@Throttle({ default: { limit: 6, ttl: 30_000 } })
 @Controller('auth')
 export class AuthController {
     constructor(protected readonly authService: AuthService) {}
@@ -22,7 +23,6 @@ export class AuthController {
     }
 
     @Public()
-    @Throttle({ default: { limit: 3, ttl: 30_000 } })
     @Post('forgot-password')
     forgotPassword(@Body() body: ForgotPasswordDto) {
         return this.authService.forgotPassword(body);
