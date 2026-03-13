@@ -17,6 +17,9 @@
     },
     {
       "path": "../autowire"
+    },
+    {
+      "path": "../auth"
     }
   ]
 }
