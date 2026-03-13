@@ -13,9 +13,6 @@
     },
     {
       "path": "../../plugins/prisma-plugins"
-    },
-    {
-      "path": "../../libs/nestjs"
     }
   ]
 }

@@ -24,9 +24,6 @@
             "path": "./libs/crypto"
         },
         {
-            "path": "./libs/nestjs"
-        },
-        {
             "path": "./libs/prisma"
         },
         {
@@ -34,9 +31,6 @@
         },
         {
             "path": "./libs/names"
-        },
-        {
-            "path": "./libs/nest"
         },
         {
             "path": "./apps/ctc"

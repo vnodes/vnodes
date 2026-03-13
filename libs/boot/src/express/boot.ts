@@ -25,9 +25,9 @@ export async function boot(options: ExpressBootOptions) {
     });
 
     const config = app.get(ConfigService);
-    const API_PREFIX = config.getOrThrow<string>('API_PREFIX', 'api');
-    const PORT = config.getOrThrow<string | number>('PORT', 3000);
-    const TRUST_PROXY = config.getOrThrow<number>('TRUST_PROXY', 0);
+    const API_PREFIX = config.get<string>('API_PREFIX', 'api');
+    const PORT = config.get<string | number>('PORT', 3000);
+    const TRUST_PROXY = config.get<number>('TRUST_PROXY', 0);
 
     // Global prefix
     app.setGlobalPrefix(API_PREFIX);

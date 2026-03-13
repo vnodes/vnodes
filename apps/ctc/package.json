@@ -49,8 +49,7 @@
         }
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.11",
-        "@vnodes/core": "workspace:*"
+        "@swc/helpers": "~0.5.11"
     },
     "devDependencies": {
         "@nestjs/testing": "^11.1.13",
@@ -60,6 +59,14 @@
     },
     "peerDependencies": {
         "@prisma/client": "7.3.0",
-        "@vnodes/nestjs": "workspace:*"
+        "@vnodes/core": "workspace:*"
+    },
+    "peerDependenciesMeta": {
+        "@vnodes/core": {
+            "optional": false
+        },
+        "@prisma/client": {
+            "optional": false
+        }
     }
 }

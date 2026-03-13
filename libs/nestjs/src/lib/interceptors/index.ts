@@ -1,3 +1,0 @@
-// @index(['./**/*.ts', '!./**/*.spec.ts', '!./**/{main,serve,index}.ts', '!./**/prisma', '!./**/generated'], f => `export * from '${f.path}.js'`)
-export * from './cache-evict.interceptor.js';
-export * from './emit-response.interceptor.js';
