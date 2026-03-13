@@ -1,1 +1,1 @@
-export * from '@nestjs/swagger'
+export * from '@nestjs/swagger';

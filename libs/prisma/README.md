@@ -10,7 +10,7 @@
 
 ## @vnodes/prisma
 
-Nestjs prisma module
+Nestjs prisma postgres module
 
 ## Installation
 

@@ -1,8 +1,7 @@
 import { CommonModule, Module } from '@vnodes/core/common';
-import { SomeController } from './app.controller.js';
+import { ResourceModule } from './resources/resource.module.js';
 
 @Module({
-    imports: [CommonModule],
-    controllers: [SomeController],
+    imports: [CommonModule, ResourceModule],
 })
 export class AppModule {}

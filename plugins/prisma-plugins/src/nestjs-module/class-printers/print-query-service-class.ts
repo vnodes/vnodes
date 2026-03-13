@@ -28,7 +28,7 @@ export function printQueryServiceClass(model: DMMF.Model) {
 
     return [
         `import { Injectable } from '@nestjs/common';`,
-        `import { YesNo } from '@vnodes/property';`,
+        `import { YesNo } from '@vnodes/core/property';`,
         `import type * as P from '../../prisma/client.js';`,
         `import type { ${model.name}QueryDto } from './dtos/index.js';`,
         ``,

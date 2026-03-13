@@ -1,1 +1,1 @@
-export * from '@nestjs/graphql'
+export * from '@nestjs/graphql';

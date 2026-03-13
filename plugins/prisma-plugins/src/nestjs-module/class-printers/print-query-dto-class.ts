@@ -6,11 +6,11 @@ export function printQueryDtoClass(model: DMMF.Model) {
     return [
         `
 export class ${pascalCase}QueryDto implements P.QueryMany<P.Prisma.${pascalCase}ScalarFieldEnum> {
-    @Prop() take?: number;
-    @Prop() skip?: number;
+    @Prop({ minimum: 0 }) take?: number;
+    @Prop({ minimum: 0 }) skip?: number;
     @Prop() search?: string;
-    @Prop() orderBy?: P.Prisma.${pascalCase}ScalarFieldEnum;
-    @Prop() orderDir?: P.Prisma.SortOrder;
+    @Prop({ enum: P.Prisma.${pascalCase}ScalarFieldEnum }) orderBy?: P.Prisma.${pascalCase}ScalarFieldEnum;
+    @Prop({ enum: P.Prisma.SortOrder }) orderDir?: P.Prisma.SortOrder;
     @Prop() withDeleted?: boolean;
 }
 `,

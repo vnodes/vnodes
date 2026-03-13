@@ -1,1 +1,1 @@
-export * from '@prisma/adapter-better-sqlite3'
+export * from '@prisma/adapter-better-sqlite3';

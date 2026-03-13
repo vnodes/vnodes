@@ -1,43 +1,43 @@
 {
-  "extends": ["../../tsconfig.base.json"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": "src",
-    "outDir": "dist",
-    "tsBuildInfoFile": "dist/.tsbuildinfo"
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
-  "references": [
-    {
-      "path": "../fs"
+    "extends": ["../../tsconfig.base.json"],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/.tsbuildinfo"
     },
-    {
-      "path": "../property"
-    },
-    {
-      "path": "../prisma-sqlite"
-    },
-    {
-      "path": "../prisma"
-    },
-    {
-      "path": "../names"
-    },
-    {
-      "path": "../metadata"
-    },
-    {
-      "path": "../crypto"
-    },
-    {
-      "path": "../boot"
-    },
-    {
-      "path": "../autowire"
-    },
-    {
-      "path": "../auth"
-    }
-  ]
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
+    "references": [
+        {
+            "path": "../fs"
+        },
+        {
+            "path": "../property"
+        },
+        {
+            "path": "../prisma-sqlite"
+        },
+        {
+            "path": "../prisma"
+        },
+        {
+            "path": "../names"
+        },
+        {
+            "path": "../metadata"
+        },
+        {
+            "path": "../crypto"
+        },
+        {
+            "path": "../boot"
+        },
+        {
+            "path": "../autowire"
+        },
+        {
+            "path": "../auth"
+        }
+    ]
 }

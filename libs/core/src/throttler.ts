@@ -1,1 +1,1 @@
-export * from '@nestjs/throttler'
+export * from '@nestjs/throttler';

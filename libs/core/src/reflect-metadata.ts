@@ -1,1 +1,1 @@
-export * from 'reflect-metadata'
+export * from 'reflect-metadata';

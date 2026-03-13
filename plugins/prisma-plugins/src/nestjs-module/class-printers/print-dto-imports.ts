@@ -15,8 +15,8 @@ export function printDtoImports(model: DMMF.Model) {
     ].join('\n');
 
     return [
-        `import { Prop } from '@vnodes/nestjs';`,
-        `import { PartialType } from '@vnodes/nestjs/swagger';`,
+        `import { Prop } from '@vnodes/core/property';`,
+        `import { PartialType } from '@vnodes/core/swagger';`,
         dtoImports,
         `import * as P from '../prisma/index.js';`,
     ].join('\n');

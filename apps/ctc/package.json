@@ -34,10 +34,14 @@
         }
     },
     "files": [
+        "bin",
         "assets",
         "dist",
         "!**/*.tsbuildinfo"
     ],
+    "bin": {
+        "serve": "node ./bin/serve.mjs"
+    },
     "nx": {
         "sourceRoot": "apps/ctc/src",
         "targets": {

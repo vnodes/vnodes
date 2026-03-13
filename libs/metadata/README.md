@@ -10,7 +10,7 @@
 
 ## @vnodes/metadata
 
-@vnodes/metadata
+Nestjs metadata decorators
 
 ## Installation
 

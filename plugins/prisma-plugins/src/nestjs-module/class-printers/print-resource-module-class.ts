@@ -22,8 +22,8 @@ export function printResourceModuleClass(datamodel: DMMF.Datamodel) {
 
     return [
         `
-import { Module } from '@vnodes/nestjs/common';
-import { PrismaModule } from '@vnodes/nestjs/prisma';
+import { Module } from '@vnodes/core/common';
+import { PrismaModule } from '@vnodes/core/prisma';
 ${moduleImports}
 import { PrismaClient } from './prisma/index.js';
 

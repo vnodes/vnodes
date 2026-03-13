@@ -1,1 +1,1 @@
-export * from '@nestjs/config'
+export * from '@nestjs/config';

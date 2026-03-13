@@ -1,6 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
 export * from './array-prop.js';
-export * from './index copy.js';
 export * from './is-class-type.js';
 export * from './is-enum-type.js';
 export * from './normalize-property-options.js';

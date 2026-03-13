@@ -1,1 +1,1 @@
-export * from '@nestjs/websockets'
+export * from '@nestjs/websockets';

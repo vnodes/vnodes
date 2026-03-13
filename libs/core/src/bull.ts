@@ -1,1 +1,1 @@
-export * from '@nestjs/bull'
+export * from '@nestjs/bull';

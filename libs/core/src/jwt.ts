@@ -1,1 +1,1 @@
-export * from '@nestjs/jwt'
+export * from '@nestjs/jwt';

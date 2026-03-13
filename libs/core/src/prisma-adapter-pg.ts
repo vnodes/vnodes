@@ -1,1 +1,1 @@
-export * from '@prisma/adapter-pg'
+export * from '@prisma/adapter-pg';

@@ -1,1 +1,1 @@
-export * from '@nestjs/schedule'
+export * from '@nestjs/schedule';

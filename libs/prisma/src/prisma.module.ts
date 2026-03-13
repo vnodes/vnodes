@@ -22,10 +22,7 @@ export class PrismaModule {
         };
     }
 
-    static forFeature<PrismaClient, K extends string & keyof PrismaClient>(
-        resourceNames: K[],
-        scope = DEFAULT_PRISMA_CLIENT_SCOPE,
-    ): DynamicModule {
+    static forFeature(resourceNames: string[], scope = DEFAULT_PRISMA_CLIENT_SCOPE): DynamicModule {
         const providers = resourceNames.map((resourceName) => {
             return provideDelegate(resourceName, scope);
         });

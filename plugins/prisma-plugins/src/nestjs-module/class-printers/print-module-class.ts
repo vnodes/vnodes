@@ -5,8 +5,8 @@ export function printModuleClass(model: DMMF.Model) {
     const { pascalCase, kebabCase } = names(model.name);
     return [
         `
-import { Module } from '@vnodes/nestjs/common';
-import { PrismaModule } from '@vnodes/nestjs/prisma';
+import { Module } from '@vnodes/core/common';
+import { PrismaModule } from '@vnodes/core/prisma';
 import { ${pascalCase}Controller } from './${kebabCase}.controller.js';
 import { ${pascalCase}Service } from './${kebabCase}.service.js';
 

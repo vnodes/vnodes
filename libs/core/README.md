@@ -10,7 +10,7 @@
 
 ## @vnodes/core
 
-Nestjs common modules
+Nestjs centerilized dependencies
 
 ## Installation
 

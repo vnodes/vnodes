@@ -10,7 +10,7 @@
 
 ## @vnodes/boot
 
-@vnodes/boot
+Nestjs common modules, interceptors, configuration, and bootstrap functions
 
 ## Installation
 

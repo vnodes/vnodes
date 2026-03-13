@@ -10,7 +10,7 @@
 
 ## @vnodes/auth
 
-@vnodes/auth
+Nestjs authentication and authorization module
 
 ## Installation
 

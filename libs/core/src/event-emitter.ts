@@ -1,1 +1,1 @@
-export * from '@nestjs/event-emitter'
+export * from '@nestjs/event-emitter';

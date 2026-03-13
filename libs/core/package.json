@@ -1,269 +1,269 @@
 {
-  "name": "@vnodes/core",
-  "description": "Nestjs common modules",
-  "homepage": "https://vnodes.github.io/vnodes/libs/core",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  },
-  "author": {
-    "email": "robert.brightline+vnodes-core@gmail.com",
-    "name": "Robert Brightline",
-    "url": "https://vnodes.github.io/vnodes/libs/core"
-  },
-  "keywords": [],
-  "icon": "https://vnodes.github.io/vnodes/libs/core/assets/favicon.png",
-  "funding": [
-    {
-      "type": "cashapp",
-      "url": "https://cash.app/$puqlib"
+    "name": "@vnodes/core",
+    "description": "Nestjs centerilized dependencies",
+    "homepage": "https://vnodes.github.io/vnodes/libs/core",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-core@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/core"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/libs/core/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        "./auth": {
+            "types": "./dist/auth.d.ts",
+            "import": "./dist/auth.js",
+            "default": "./dist/auth.js"
+        },
+        "./fs": {
+            "types": "./dist/fs.d.ts",
+            "import": "./dist/fs.js",
+            "default": "./dist/fs.js"
+        },
+        "./prisma": {
+            "types": "./dist/prisma.d.ts",
+            "import": "./dist/prisma.js",
+            "default": "./dist/prisma.js"
+        },
+        "./prisma-sqlite": {
+            "types": "./dist/prisma-sqlite.d.ts",
+            "import": "./dist/prisma-sqlite.js",
+            "default": "./dist/prisma-sqlite.js"
+        },
+        "./property": {
+            "types": "./dist/property.d.ts",
+            "import": "./dist/property.js",
+            "default": "./dist/property.js"
+        },
+        "./metadata": {
+            "types": "./dist/metadata.d.ts",
+            "import": "./dist/metadata.js",
+            "default": "./dist/metadata.js"
+        },
+        "./autowire": {
+            "types": "./dist/autowire.d.ts",
+            "import": "./dist/autowire.js",
+            "default": "./dist/autowire.js"
+        },
+        "./fastify-compress": {
+            "types": "./dist/fastify-compress.d.ts",
+            "import": "./dist/fastify-compress.js",
+            "default": "./dist/fastify-compress.js"
+        },
+        "./fastify-helmet": {
+            "types": "./dist/fastify-helmet.d.ts",
+            "import": "./dist/fastify-helmet.js",
+            "default": "./dist/fastify-helmet.js"
+        },
+        "./fastify-static": {
+            "types": "./dist/fastify-static.d.ts",
+            "import": "./dist/fastify-static.js",
+            "default": "./dist/fastify-static.js"
+        },
+        "./bull": {
+            "types": "./dist/bull.d.ts",
+            "import": "./dist/bull.js",
+            "default": "./dist/bull.js"
+        },
+        "./cache-manager": {
+            "types": "./dist/cache-manager.d.ts",
+            "import": "./dist/cache-manager.js",
+            "default": "./dist/cache-manager.js"
+        },
+        "./common": {
+            "types": "./dist/common.d.ts",
+            "import": "./dist/common.js",
+            "default": "./dist/common.js"
+        },
+        "./config": {
+            "types": "./dist/config.d.ts",
+            "import": "./dist/config.js",
+            "default": "./dist/config.js"
+        },
+        "./core": {
+            "types": "./dist/core.d.ts",
+            "import": "./dist/core.js",
+            "default": "./dist/core.js"
+        },
+        "./event-emitter": {
+            "types": "./dist/event-emitter.d.ts",
+            "import": "./dist/event-emitter.js",
+            "default": "./dist/event-emitter.js"
+        },
+        "./graphql": {
+            "types": "./dist/graphql.d.ts",
+            "import": "./dist/graphql.js",
+            "default": "./dist/graphql.js"
+        },
+        "./jwt": {
+            "types": "./dist/jwt.d.ts",
+            "import": "./dist/jwt.js",
+            "default": "./dist/jwt.js"
+        },
+        "./fastify": {
+            "types": "./dist/fastify.d.ts",
+            "import": "./dist/fastify.js",
+            "default": "./dist/fastify.js"
+        },
+        "./schedule": {
+            "types": "./dist/schedule.d.ts",
+            "import": "./dist/schedule.js",
+            "default": "./dist/schedule.js"
+        },
+        "./swagger": {
+            "types": "./dist/swagger.d.ts",
+            "import": "./dist/swagger.js",
+            "default": "./dist/swagger.js"
+        },
+        "./throttler": {
+            "types": "./dist/throttler.d.ts",
+            "import": "./dist/throttler.js",
+            "default": "./dist/throttler.js"
+        },
+        "./websockets": {
+            "types": "./dist/websockets.d.ts",
+            "import": "./dist/websockets.js",
+            "default": "./dist/websockets.js"
+        },
+        "./prisma-adapter-better-sqlite3": {
+            "types": "./dist/prisma-adapter-better-sqlite3.d.ts",
+            "import": "./dist/prisma-adapter-better-sqlite3.js",
+            "default": "./dist/prisma-adapter-better-sqlite3.js"
+        },
+        "./prisma-adapter-pg": {
+            "types": "./dist/prisma-adapter-pg.d.ts",
+            "import": "./dist/prisma-adapter-pg.js",
+            "default": "./dist/prisma-adapter-pg.js"
+        },
+        "./swc-helpers": {
+            "types": "./dist/swc-helpers.d.ts",
+            "import": "./dist/swc-helpers.js",
+            "default": "./dist/swc-helpers.js"
+        },
+        "./crypto": {
+            "types": "./dist/crypto.d.ts",
+            "import": "./dist/crypto.js",
+            "default": "./dist/crypto.js"
+        },
+        "./class-transformer": {
+            "types": "./dist/class-transformer.d.ts",
+            "import": "./dist/class-transformer.js",
+            "default": "./dist/class-transformer.js"
+        },
+        "./class-validator": {
+            "types": "./dist/class-validator.d.ts",
+            "import": "./dist/class-validator.js",
+            "default": "./dist/class-validator.js"
+        },
+        "./compression": {
+            "types": "./dist/compression.d.ts",
+            "import": "./dist/compression.js",
+            "default": "./dist/compression.js"
+        },
+        "./express": {
+            "types": "./dist/express.d.ts",
+            "import": "./dist/express.js",
+            "default": "./dist/express.js"
+        },
+        "./helmet": {
+            "types": "./dist/helmet.d.ts",
+            "import": "./dist/helmet.js",
+            "default": "./dist/helmet.js"
+        },
+        "./pg": {
+            "types": "./dist/pg.d.ts",
+            "import": "./dist/pg.js",
+            "default": "./dist/pg.js"
+        },
+        "./reflect-metadata": {
+            "types": "./dist/reflect-metadata.d.ts",
+            "import": "./dist/reflect-metadata.js",
+            "default": "./dist/reflect-metadata.js"
+        },
+        "./rxjs": {
+            "types": "./dist/rxjs.d.ts",
+            "import": "./dist/rxjs.js",
+            "default": "./dist/rxjs.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/core/src",
+        "targets": {
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {},
+            "serve": {}
+        }
+    },
+    "dependencies": {
+        "@fastify/compress": "^8.3.1",
+        "@fastify/helmet": "^13.0.2",
+        "@fastify/static": "^9.0.0",
+        "@nestjs/bull": "^11.0.4",
+        "@nestjs/cache-manager": "^3.1.0",
+        "@nestjs/common": "^11.1.14",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.14",
+        "@nestjs/event-emitter": "^3.0.1",
+        "@nestjs/graphql": "^13.2.4",
+        "@nestjs/jwt": "^11.0.2",
+        "@nestjs/platform-express": "^11.1.14",
+        "@nestjs/platform-fastify": "^11.1.14",
+        "@nestjs/schedule": "^6.1.1",
+        "@nestjs/swagger": "^11.2.6",
+        "@nestjs/throttler": "^6.5.0",
+        "@nestjs/websockets": "^11.1.14",
+        "@prisma/adapter-better-sqlite3": "^7.4.2",
+        "@prisma/adapter-pg": "7.3.0",
+        "@swc/helpers": "~0.5.11",
+        "@vnodes/auth": "workspace:*",
+        "@vnodes/autowire": "workspace:*",
+        "@vnodes/boot": "workspace:*",
+        "@vnodes/crypto": "workspace:*",
+        "@vnodes/metadata": "workspace:*",
+        "@vnodes/names": "workspace:*",
+        "@vnodes/prisma": "workspace:*",
+        "@vnodes/prisma-sqlite": "workspace:*",
+        "@vnodes/property": "workspace:*",
+        "bcrypt": "^6.0.0",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.3",
+        "compression": "^1.8.1",
+        "express": "^5.2.1",
+        "helmet": "^8.1.0",
+        "pg": "^8.18.0",
+        "reflect-metadata": "^0.2.2",
+        "rxjs": "^7.8.2"
+    },
+    "devDependencies": {
+        "@nestjs/testing": "^11.1.13",
+        "@types/bcrypt": "^6.0.0",
+        "@types/compression": "^1.8.1",
+        "@types/express": "^5.0.6",
+        "@types/helmet": "^4.0.0",
+        "@types/node": "20.19.9",
+        "@types/pg": "^8.16.0"
     }
-  ],
-  "version": "0.0.1",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    "./auth": {
-      "types": "./dist/auth.d.ts",
-      "import": "./dist/auth.js",
-      "default": "./dist/auth.js"
-    },
-    "./fs": {
-      "types": "./dist/fs.d.ts",
-      "import": "./dist/fs.js",
-      "default": "./dist/fs.js"
-    },
-    "./prisma": {
-      "types": "./dist/prisma.d.ts",
-      "import": "./dist/prisma.js",
-      "default": "./dist/prisma.js"
-    },
-    "./prisma-sqlite": {
-      "types": "./dist/prisma-sqlite.d.ts",
-      "import": "./dist/prisma-sqlite.js",
-      "default": "./dist/prisma-sqlite.js"
-    },
-    "./property": {
-      "types": "./dist/property.d.ts",
-      "import": "./dist/property.js",
-      "default": "./dist/property.js"
-    },
-    "./metadata": {
-      "types": "./dist/metadata.d.ts",
-      "import": "./dist/metadata.js",
-      "default": "./dist/metadata.js"
-    },
-    "./autowire": {
-      "types": "./dist/autowire.d.ts",
-      "import": "./dist/autowire.js",
-      "default": "./dist/autowire.js"
-    },
-    "./fastify-compress": {
-      "types": "./dist/fastify-compress.d.ts",
-      "import": "./dist/fastify-compress.js",
-      "default": "./dist/fastify-compress.js"
-    },
-    "./fastify-helmet": {
-      "types": "./dist/fastify-helmet.d.ts",
-      "import": "./dist/fastify-helmet.js",
-      "default": "./dist/fastify-helmet.js"
-    },
-    "./fastify-static": {
-      "types": "./dist/fastify-static.d.ts",
-      "import": "./dist/fastify-static.js",
-      "default": "./dist/fastify-static.js"
-    },
-    "./bull": {
-      "types": "./dist/bull.d.ts",
-      "import": "./dist/bull.js",
-      "default": "./dist/bull.js"
-    },
-    "./cache-manager": {
-      "types": "./dist/cache-manager.d.ts",
-      "import": "./dist/cache-manager.js",
-      "default": "./dist/cache-manager.js"
-    },
-    "./common": {
-      "types": "./dist/common.d.ts",
-      "import": "./dist/common.js",
-      "default": "./dist/common.js"
-    },
-    "./config": {
-      "types": "./dist/config.d.ts",
-      "import": "./dist/config.js",
-      "default": "./dist/config.js"
-    },
-    "./core": {
-      "types": "./dist/core.d.ts",
-      "import": "./dist/core.js",
-      "default": "./dist/core.js"
-    },
-    "./event-emitter": {
-      "types": "./dist/event-emitter.d.ts",
-      "import": "./dist/event-emitter.js",
-      "default": "./dist/event-emitter.js"
-    },
-    "./graphql": {
-      "types": "./dist/graphql.d.ts",
-      "import": "./dist/graphql.js",
-      "default": "./dist/graphql.js"
-    },
-    "./jwt": {
-      "types": "./dist/jwt.d.ts",
-      "import": "./dist/jwt.js",
-      "default": "./dist/jwt.js"
-    },
-    "./fastify": {
-      "types": "./dist/fastify.d.ts",
-      "import": "./dist/fastify.js",
-      "default": "./dist/fastify.js"
-    },
-    "./schedule": {
-      "types": "./dist/schedule.d.ts",
-      "import": "./dist/schedule.js",
-      "default": "./dist/schedule.js"
-    },
-    "./swagger": {
-      "types": "./dist/swagger.d.ts",
-      "import": "./dist/swagger.js",
-      "default": "./dist/swagger.js"
-    },
-    "./throttler": {
-      "types": "./dist/throttler.d.ts",
-      "import": "./dist/throttler.js",
-      "default": "./dist/throttler.js"
-    },
-    "./websockets": {
-      "types": "./dist/websockets.d.ts",
-      "import": "./dist/websockets.js",
-      "default": "./dist/websockets.js"
-    },
-    "./prisma-adapter-better-sqlite3": {
-      "types": "./dist/prisma-adapter-better-sqlite3.d.ts",
-      "import": "./dist/prisma-adapter-better-sqlite3.js",
-      "default": "./dist/prisma-adapter-better-sqlite3.js"
-    },
-    "./prisma-adapter-pg": {
-      "types": "./dist/prisma-adapter-pg.d.ts",
-      "import": "./dist/prisma-adapter-pg.js",
-      "default": "./dist/prisma-adapter-pg.js"
-    },
-    "./swc-helpers": {
-      "types": "./dist/swc-helpers.d.ts",
-      "import": "./dist/swc-helpers.js",
-      "default": "./dist/swc-helpers.js"
-    },
-    "./crypto": {
-      "types": "./dist/crypto.d.ts",
-      "import": "./dist/crypto.js",
-      "default": "./dist/crypto.js"
-    },
-    "./class-transformer": {
-      "types": "./dist/class-transformer.d.ts",
-      "import": "./dist/class-transformer.js",
-      "default": "./dist/class-transformer.js"
-    },
-    "./class-validator": {
-      "types": "./dist/class-validator.d.ts",
-      "import": "./dist/class-validator.js",
-      "default": "./dist/class-validator.js"
-    },
-    "./compression": {
-      "types": "./dist/compression.d.ts",
-      "import": "./dist/compression.js",
-      "default": "./dist/compression.js"
-    },
-    "./express": {
-      "types": "./dist/express.d.ts",
-      "import": "./dist/express.js",
-      "default": "./dist/express.js"
-    },
-    "./helmet": {
-      "types": "./dist/helmet.d.ts",
-      "import": "./dist/helmet.js",
-      "default": "./dist/helmet.js"
-    },
-    "./pg": {
-      "types": "./dist/pg.d.ts",
-      "import": "./dist/pg.js",
-      "default": "./dist/pg.js"
-    },
-    "./reflect-metadata": {
-      "types": "./dist/reflect-metadata.d.ts",
-      "import": "./dist/reflect-metadata.js",
-      "default": "./dist/reflect-metadata.js"
-    },
-    "./rxjs": {
-      "types": "./dist/rxjs.d.ts",
-      "import": "./dist/rxjs.js",
-      "default": "./dist/rxjs.js"
-    }
-  },
-  "files": [
-    "assets",
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "sourceRoot": "libs/core/src",
-    "targets": {
-      "build": {},
-      "lint": {},
-      "test": {},
-      "doc": {},
-      "serve": {}
-    }
-  },
-  "dependencies": {
-    "@fastify/compress": "^8.3.1",
-    "@fastify/helmet": "^13.0.2",
-    "@fastify/static": "^9.0.0",
-    "@nestjs/bull": "^11.0.4",
-    "@nestjs/cache-manager": "^3.1.0",
-    "@nestjs/common": "^11.1.14",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.14",
-    "@nestjs/event-emitter": "^3.0.1",
-    "@nestjs/graphql": "^13.2.4",
-    "@nestjs/jwt": "^11.0.2",
-    "@nestjs/platform-express": "^11.1.14",
-    "@nestjs/platform-fastify": "^11.1.14",
-    "@nestjs/schedule": "^6.1.1",
-    "@nestjs/swagger": "^11.2.6",
-    "@nestjs/throttler": "^6.5.0",
-    "@nestjs/websockets": "^11.1.14",
-    "@prisma/adapter-better-sqlite3": "^7.4.2",
-    "@prisma/adapter-pg": "7.3.0",
-    "@swc/helpers": "~0.5.11",
-    "@vnodes/auth": "workspace:*",
-    "@vnodes/autowire": "workspace:*",
-    "@vnodes/boot": "workspace:*",
-    "@vnodes/crypto": "workspace:*",
-    "@vnodes/metadata": "workspace:*",
-    "@vnodes/names": "workspace:*",
-    "@vnodes/prisma": "workspace:*",
-    "@vnodes/prisma-sqlite": "workspace:*",
-    "@vnodes/property": "workspace:*",
-    "bcrypt": "^6.0.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.3",
-    "compression": "^1.8.1",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0",
-    "pg": "^8.18.0",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
-  },
-  "devDependencies": {
-    "@nestjs/testing": "^11.1.13",
-    "@types/bcrypt": "^6.0.0",
-    "@types/compression": "^1.8.1",
-    "@types/express": "^5.0.6",
-    "@types/helmet": "^4.0.0",
-    "@types/node": "20.19.9",
-    "@types/pg": "^8.16.0"
-  }
 }
