@@ -31,6 +31,21 @@
       "import": "./dist/auth.js",
       "default": "./dist/auth.js"
     },
+    "./fs": {
+      "types": "./dist/fs.d.ts",
+      "import": "./dist/fs.js",
+      "default": "./dist/fs.js"
+    },
+    "./prisma": {
+      "types": "./dist/prisma.d.ts",
+      "import": "./dist/prisma.js",
+      "default": "./dist/prisma.js"
+    },
+    "./prisma-sqlite": {
+      "types": "./dist/prisma-sqlite.d.ts",
+      "import": "./dist/prisma-sqlite.js",
+      "default": "./dist/prisma-sqlite.js"
+    },
     "./property": {
       "types": "./dist/property.d.ts",
       "import": "./dist/property.js",
@@ -101,15 +116,10 @@
       "import": "./dist/jwt.js",
       "default": "./dist/jwt.js"
     },
-    "./platform-express": {
-      "types": "./dist/platform-express.d.ts",
-      "import": "./dist/platform-express.js",
-      "default": "./dist/platform-express.js"
-    },
-    "./platform-fastify": {
-      "types": "./dist/platform-fastify.d.ts",
-      "import": "./dist/platform-fastify.js",
-      "default": "./dist/platform-fastify.js"
+    "./fastify": {
+      "types": "./dist/fastify.d.ts",
+      "import": "./dist/fastify.js",
+      "default": "./dist/fastify.js"
     },
     "./schedule": {
       "types": "./dist/schedule.d.ts",
@@ -146,10 +156,10 @@
       "import": "./dist/swc-helpers.js",
       "default": "./dist/swc-helpers.js"
     },
-    "./bcrypt": {
-      "types": "./dist/bcrypt.d.ts",
-      "import": "./dist/bcrypt.js",
-      "default": "./dist/bcrypt.js"
+    "./crypto": {
+      "types": "./dist/crypto.d.ts",
+      "import": "./dist/crypto.js",
+      "default": "./dist/crypto.js"
     },
     "./class-transformer": {
       "types": "./dist/class-transformer.d.ts",
@@ -230,7 +240,12 @@
     "@swc/helpers": "~0.5.11",
     "@vnodes/auth": "workspace:*",
     "@vnodes/autowire": "workspace:*",
+    "@vnodes/boot": "workspace:*",
+    "@vnodes/crypto": "workspace:*",
     "@vnodes/metadata": "workspace:*",
+    "@vnodes/names": "workspace:*",
+    "@vnodes/prisma": "workspace:*",
+    "@vnodes/prisma-sqlite": "workspace:*",
     "@vnodes/property": "workspace:*",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",

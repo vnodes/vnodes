@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { AccessTokenDto } from 'src/dto/access-token.dto.js';
-import { ForgotPasswordDto } from 'src/dto/forgot-password.dto.js';
-import { LoginDto } from 'src/dto/login.dto.js';
-import { LoginWithOtpDto } from 'src/dto/login-with-otp.dto.js';
-import { MessageDto } from 'src/dto/message.dto.js';
-import { OtpResponseDto } from 'src/dto/otp-response-dto.js';
+import { AccessTokenDto } from '../dto/access-token.dto.js';
+import { ForgotPasswordDto } from '../dto/forgot-password.dto.js';
+import { LoginDto } from '../dto/login.dto.js';
+import { LoginWithOtpDto } from '../dto/login-with-otp.dto.js';
+import { MessageDto } from '../dto/message.dto.js';
+import { OtpResponseDto } from '../dto/otp-response-dto.js';
 import { UserService } from './user.service.js';
 
 @Injectable()

@@ -10,7 +10,7 @@
 
 ## @vnodes/prisma-sqlite
 
-- [ ] Add project description
+Nestjs prisma better-sqlite module
 
 ## Installation
 

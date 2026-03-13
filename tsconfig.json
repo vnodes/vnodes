@@ -1,60 +1,63 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compileOnSave": false,
-  "references": [
-    {
-      "path": "./libs/fs"
-    },
-    {
-      "path": "./plugins/prisma-plugins"
-    },
-    {
-      "path": "./plugins/prisma-helper"
-    },
-    {
-      "path": "./libs/prisma-sqlite"
-    },
-    {
-      "path": "./libs/property"
-    },
-    {
-      "path": "./plugins/cli"
-    },
-    {
-      "path": "./libs/crypto"
-    },
-    {
-      "path": "./libs/nestjs"
-    },
-    {
-      "path": "./libs/prisma"
-    },
-    {
-      "path": "./libs/schema"
-    },
-    {
-      "path": "./libs/names"
-    },
-    {
-      "path": "./libs/nest"
-    },
-    {
-      "path": "./apps/ctc"
-    },
-    {
-      "path": "./apps/ctc-e2e"
-    },
-    {
-      "path": "./libs/core"
-    },
-    {
-      "path": "./libs/autowire"
-    },
-    {
-      "path": "./libs/metadata"
-    },
-    {
-      "path": "./libs/auth"
-    }
-  ]
+    "extends": "./tsconfig.base.json",
+    "compileOnSave": false,
+    "references": [
+        {
+            "path": "./libs/fs"
+        },
+        {
+            "path": "./plugins/prisma-plugins"
+        },
+        {
+            "path": "./plugins/prisma-helper"
+        },
+        {
+            "path": "./libs/prisma-sqlite"
+        },
+        {
+            "path": "./libs/property"
+        },
+        {
+            "path": "./plugins/cli"
+        },
+        {
+            "path": "./libs/crypto"
+        },
+        {
+            "path": "./libs/nestjs"
+        },
+        {
+            "path": "./libs/prisma"
+        },
+        {
+            "path": "./libs/schema"
+        },
+        {
+            "path": "./libs/names"
+        },
+        {
+            "path": "./libs/nest"
+        },
+        {
+            "path": "./apps/ctc"
+        },
+        {
+            "path": "./apps/ctc-e2e"
+        },
+        {
+            "path": "./libs/core"
+        },
+        {
+            "path": "./libs/autowire"
+        },
+        {
+            "path": "./libs/metadata"
+        },
+        {
+            "path": "./libs/auth"
+        },
+        {
+            "path": "./libs/boot"
+        }
+    ]
 }

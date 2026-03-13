@@ -44,8 +44,7 @@
       "build": {},
       "lint": {},
       "test": {},
-      "doc": {},
-      "serve": {}
+      "doc": {}
     }
   },
   "dependencies": {

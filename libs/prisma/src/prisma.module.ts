@@ -2,7 +2,6 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: Prmsa lcient */
 import { type DynamicModule, Module, type Type } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
 import { DEFAULT_PRISMA_CLIENT_SCOPE, getPrismaClientToken, providePrismaClient } from './prisma-client.provider.js';
 import { getDelegateToken, provideDelegate } from './prisma-delegate.provider.js';
 

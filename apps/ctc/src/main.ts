@@ -1,4 +1,4 @@
-import { boot } from '@vnodes/nestjs/boot-fastify';
+import { boot } from '@vnodes/core/fastify';
 import { AppModule } from './app.module.js';
 
 async function main() {

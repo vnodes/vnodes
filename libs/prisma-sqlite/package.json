@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/prisma-sqlite",
-    "description": "- [ ] add description",
+    "description": "Nestjs prisma better-sqlite module",
     "homepage": "https://vnodes.github.io/vnodes/libs/prisma-sqlite",
     "publishConfig": {
         "access": "public",

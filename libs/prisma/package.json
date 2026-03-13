@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/prisma",
-    "description": "Nestjs prisma module",
+    "description": "Nestjs prisma postgres module",
     "homepage": "https://vnodes.github.io/vnodes/libs/prisma",
     "publishConfig": {
         "access": "public",
@@ -57,11 +57,11 @@
         "@nestjs/core": "^11.1.13",
         "@prisma/adapter-pg": "^7.3.0",
         "@prisma/client": "^7.3.0",
+        "@vnodes/names": "workspace:*",
         "pg": "^8.18.0"
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.11",
-        "@vnodes/names": "workspace:*"
+        "@swc/helpers": "~0.5.11"
     },
     "devDependencies": {
         "@nestjs/testing": "^11.1.13",

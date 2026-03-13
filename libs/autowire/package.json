@@ -48,9 +48,7 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11",
-    "@vnodes/metadata": "workspace:*",
-    "@vnodes/names": "workspace:*"
+    "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
     "@nestjs/testing": "^11.1.13"
@@ -58,6 +56,8 @@
   "peerDependencies": {
     "@nestjs/common": "^11.1.14",
     "@nestjs/core": "^11.1.14",
-    "@nestjs/swagger": "^11.2.6"
+    "@nestjs/swagger": "^11.2.6",
+    "@vnodes/metadata": "workspace:*",
+    "@vnodes/names": "workspace:*"
   }
 }

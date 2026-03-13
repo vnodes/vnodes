@@ -3,7 +3,15 @@ import { Reflector } from '@nestjs/core';
 
 export function createMetadata<T>(name: string) {
     const token = () => `${name}_METADATA_TOKEN`.toUpperCase();
+
+    /**
+     * Set metadata decorator
+     */
     const set = (value: T) => SetMetadata(token(), value);
+
+    /**
+     * Get metadata value
+     */
     const get = (reflector: Reflector, context: ExecutionContext) =>
         reflector.getAllAndOverride<T>(token(), [context.getClass(), context.getHandler()]);
     return {
@@ -15,7 +23,15 @@ export function createMetadata<T>(name: string) {
 
 export function createBooleanMetadata(name: string) {
     const token = () => `${name}_METADATA_TOKEN`.toUpperCase();
+    /**
+     * Set metadata decorator
+     */
     const set = () => SetMetadata(token(), true);
+
+    /**
+     * Get metadata value
+     * @return boolean
+     */
     const get = (reflector: Reflector, context: ExecutionContext) =>
         reflector.getAllAndOverride(token(), [context.getClass(), context.getHandler()]);
     return {
@@ -26,6 +42,10 @@ export function createBooleanMetadata(name: string) {
 }
 
 export const { get: isPublic, set: Public, token: publicMetadataToken } = createBooleanMetadata('PUBLIC');
+
+/**
+ * SOme doc
+ */
 export const {
     get: isEmitResponse,
     set: EmitResponse,

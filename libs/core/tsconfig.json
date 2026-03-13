@@ -10,10 +10,28 @@
   "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
   "references": [
     {
+      "path": "../fs"
+    },
+    {
       "path": "../property"
     },
     {
+      "path": "../prisma-sqlite"
+    },
+    {
+      "path": "../prisma"
+    },
+    {
+      "path": "../names"
+    },
+    {
       "path": "../metadata"
+    },
+    {
+      "path": "../crypto"
+    },
+    {
+      "path": "../boot"
     },
     {
       "path": "../autowire"
