@@ -1,18 +1,18 @@
 {
-  "name": "@vnodes/autowire",
-  "description": "Decorators that autowire resource controller and methods",
-  "homepage": "https://vnodes.github.io/vnodes/libs/autowire",
+  "name": "@vnodes/auth",
+  "description": "@vnodes/auth",
+  "homepage": "https://vnodes.github.io/vnodes/libs/auth",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "author": {
-    "email": "robert.brightline+vnodes-autowire@gmail.com",
+    "email": "robert.brightline+vnodes-auth@gmail.com",
     "name": "Robert Brightline",
-    "url": "https://vnodes.github.io/vnodes/libs/autowire"
+    "url": "https://vnodes.github.io/vnodes/libs/auth"
   },
   "keywords": [],
-  "icon": "https://vnodes.github.io/vnodes/libs/autowire/assets/favicon.png",
+  "icon": "https://vnodes.github.io/vnodes/libs/auth/assets/favicon.png",
   "funding": [
     {
       "type": "cashapp",
@@ -39,25 +39,31 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/autowire/src",
+    "sourceRoot": "libs/auth/src",
     "targets": {
       "build": {},
       "lint": {},
       "test": {},
-      "doc": {}
+      "doc": {},
+      "serve": {}
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11",
-    "@vnodes/metadata": "workspace:*",
-    "@vnodes/names": "workspace:*"
+    "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
     "@nestjs/testing": "^11.1.13"
   },
   "peerDependencies": {
     "@nestjs/common": "^11.1.14",
+    "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^11.1.14",
-    "@nestjs/swagger": "^11.2.6"
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/swagger": "^11.2.6",
+    "@nestjs/throttler": "^6.5.0",
+    "@vnodes/crypto": "workspace:*",
+    "@vnodes/metadata": "workspace:*",
+    "@vnodes/property": "workspace:*"
   }
 }

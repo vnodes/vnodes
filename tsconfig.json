@@ -52,6 +52,9 @@
     },
     {
       "path": "./libs/metadata"
+    },
+    {
+      "path": "./libs/auth"
     }
   ]
 }

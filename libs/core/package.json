@@ -26,6 +26,16 @@
   "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
+    "./property": {
+      "types": "./dist/property.d.ts",
+      "import": "./dist/property.js",
+      "default": "./dist/property.js"
+    },
+    "./metadata": {
+      "types": "./dist/metadata.d.ts",
+      "import": "./dist/metadata.js",
+      "default": "./dist/metadata.js"
+    },
     "./autowire": {
       "types": "./dist/autowire.d.ts",
       "import": "./dist/autowire.js",
@@ -198,9 +208,9 @@
     "@fastify/static": "^9.0.0",
     "@nestjs/bull": "^11.0.4",
     "@nestjs/cache-manager": "^3.1.0",
-    "@nestjs/common": "^11.1.14",
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^11.1.14",
+    "@nestjs/common": "^11.1.14",
     "@nestjs/event-emitter": "^3.0.1",
     "@nestjs/graphql": "^13.2.4",
     "@nestjs/jwt": "^11.0.2",

@@ -18,7 +18,7 @@ export class SomeCreate {
 
 @AutoController()
 export class SomeController {
-    createOne(@Body() body: SomeCreate, @UserId() userId: number) {
+    createOne(@Body() body: SomeCreate, userId: number) {
         return { body, userId };
     }
     find(query: SomeQuery) {
