@@ -1,3 +1,13 @@
+## 0.0.5 (2026-03-14)
+
+### 🚀 Features
+
+- publish configuration ([169032b](https://github.com/vnodes/vnodes/commit/169032b))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.3 (2026-03-14)
 
 ### 🚀 Features
