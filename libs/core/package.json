@@ -210,11 +210,7 @@
   "nx": {
     "sourceRoot": "libs/core/src",
     "targets": {
-      "build": {},
-      "lint": {},
-      "test": {},
-      "doc": {},
-      "serve": {}
+      "build": {}
     }
   },
   "dependencies": {
