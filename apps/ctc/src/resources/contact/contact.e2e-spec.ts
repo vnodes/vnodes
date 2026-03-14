@@ -1,11 +1,7 @@
 import assert from 'node:assert';
 import { before, describe, it } from 'node:test';
-
-describe('Contact API', () => {
+describe('Contacts', () => {
     const data = {
-        firstName: 'First name',
-        lastName: 'Last name',
-        gender: 'Male',
     };
 
     let created: any;

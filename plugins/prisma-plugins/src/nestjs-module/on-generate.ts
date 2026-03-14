@@ -4,6 +4,7 @@ import { writeTextFile } from '@vnodes/fs';
 import { names } from '@vnodes/names';
 import { printControllerClass } from './class-printers/print-controller-class.js';
 import { printDtoClasses } from './class-printers/print-dto-classes.js';
+import { printE2ESpec } from './class-printers/print-e2e-spec.js';
 import { printModuleClass } from './class-printers/print-module-class.js';
 import { printResourceModuleClass } from './class-printers/print-resource-module-class.js';
 import { printServiceClass } from './class-printers/print-service-class.js';
@@ -32,6 +33,7 @@ export default async function onGenerate(options: GeneratorOptions) {
         const controllerFilename = `${kebabCase}.controller.ts`;
         const serviceFilename = `${kebabCase}.service.ts`;
         const moduleFilename = `${kebabCase}.module.ts`;
+        const e2eFilename = `${kebabCase}.e2e-spec.ts`;
 
         const baseResourcePath = join(output, kebabCase);
 
@@ -58,6 +60,12 @@ export default async function onGenerate(options: GeneratorOptions) {
         {
             const filePath = join(baseResourcePath, moduleFilename);
             const content = printModuleClass(model);
+            await writeTextFile(filePath, content);
+        }
+        // E2e test
+        {
+            const filePath = join(baseResourcePath, e2eFilename);
+            const content = printE2ESpec(model);
             await writeTextFile(filePath, content);
         }
 

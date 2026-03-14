@@ -37,13 +37,6 @@
           "name": "docker:run"
         }
       }
-    },
-    {
-      "plugin": "@nx/vitest",
-      "options": {
-        "testTargetName": "e2e",
-        "ciTargetName": "test-ci"
-      }
     }
   ],
   "targetDefaults": {
@@ -105,6 +98,15 @@
       ],
       "options": {
         "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.json --skipErrorChecking true"
+      }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node --test --experimental-strip-types src/**/*.e2e-spec.ts"
+        ],
+        "cwd": "{projectRoot}"
       }
     },
     "serve": {
