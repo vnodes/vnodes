@@ -1,72 +1,72 @@
 {
-  "name": "@vnodes/prisma",
-  "description": "Nestjs prisma postgres module",
-  "homepage": "https://vnodes.github.io/vnodes/libs/prisma",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  },
-  "author": {
-    "email": "robert.brightline@gmail.com",
-    "name": "Robert Brightline",
-    "url": "https://vnodes.github.io/vnodes/libs/prisma"
-  },
-  "keywords": [
-    "prisma",
-    "orm",
-    "nestjs"
-  ],
-  "icon": "https://vnodes.github.io/vnodes/libs/prisma/assets/favicon.png",
-  "funding": [
-    {
-      "type": "cashapp",
-      "url": "https://cash.app/$puqlib"
+    "name": "@vnodes/prisma",
+    "description": "Nestjs prisma postgres module",
+    "homepage": "https://vnodes.github.io/vnodes/libs/prisma",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/prisma"
+    },
+    "keywords": [
+        "prisma",
+        "orm",
+        "nestjs"
+    ],
+    "icon": "https://vnodes.github.io/vnodes/libs/prisma/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.5",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/prisma/src",
+        "targets": {
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
+        }
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.1.13",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.13",
+        "@prisma/adapter-pg": "^7.3.0",
+        "@prisma/client": "^7.3.0",
+        "@vnodes/names": "workspace:*",
+        "pg": "^8.18.0"
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.11"
+    },
+    "devDependencies": {
+        "@nestjs/testing": "^11.1.13",
+        "@types/node": "20.19.9",
+        "@types/pg": "^8.16.0",
+        "prisma": "^7.3.0"
     }
-  ],
-  "version": "0.0.5",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "assets",
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "sourceRoot": "libs/prisma/src",
-    "targets": {
-      "build": {},
-      "lint": {},
-      "test": {},
-      "doc": {}
-    }
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^11.1.13",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.13",
-    "@prisma/adapter-pg": "^7.3.0",
-    "@prisma/client": "^7.3.0",
-    "@vnodes/names": "workspace:*",
-    "pg": "^8.18.0"
-  },
-  "dependencies": {
-    "@swc/helpers": "~0.5.11"
-  },
-  "devDependencies": {
-    "@nestjs/testing": "^11.1.13",
-    "@types/node": "20.19.9",
-    "@types/pg": "^8.16.0",
-    "prisma": "^7.3.0"
-  }
 }

@@ -22,6 +22,7 @@ export function providePrismaClient(
             const connectionString = config.getOrThrow('DATABASE_URL');
             const pool = new Pool({
                 connectionString,
+
                 max: 20,
                 connectionTimeoutMillis: 2000,
                 idleTimeoutMillis: 30000,
@@ -29,7 +30,8 @@ export function providePrismaClient(
                 statement_timeout: 1000,
             });
 
-            const adapter = new PrismaPg(pool);
+            const schema = config.getOrThrow('DATABASE_SCHEMA');
+            const adapter = new PrismaPg(pool, { schema });
 
             const prismaClient = new prismaClientClass({ adapter });
 

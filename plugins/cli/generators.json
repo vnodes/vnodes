@@ -9,6 +9,11 @@
             "factory": "./dist/generators/init/init",
             "schema": "./dist/generators/init/schema.json",
             "description": "init generator"
+        },
+        "api-e2e": {
+            "factory": "./src/generators/project/api-e2e/api-e2e",
+            "schema": "./src/generators/project/api-e2e/schema.json",
+            "description": "api-e2e generator"
         }
     }
 }

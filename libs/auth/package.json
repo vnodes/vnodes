@@ -1,68 +1,68 @@
 {
-  "name": "@vnodes/auth",
-  "description": "Nestjs authentication and authorization module",
-  "homepage": "https://vnodes.github.io/vnodes/libs/auth",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  },
-  "author": {
-    "email": "robert.brightline+vnodes-auth@gmail.com",
-    "name": "Robert Brightline",
-    "url": "https://vnodes.github.io/vnodes/libs/auth"
-  },
-  "keywords": [],
-  "icon": "https://vnodes.github.io/vnodes/libs/auth/assets/favicon.png",
-  "funding": [
-    {
-      "type": "cashapp",
-      "url": "https://cash.app/$puqlib"
+    "name": "@vnodes/auth",
+    "description": "Nestjs authentication and authorization module",
+    "homepage": "https://vnodes.github.io/vnodes/libs/auth",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-auth@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/libs/auth"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/libs/auth/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.5",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/auth/src",
+        "targets": {
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.11"
+    },
+    "devDependencies": {
+        "@nestjs/testing": "^11.1.13"
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.1.14",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.14",
+        "@nestjs/event-emitter": "^3.0.1",
+        "@nestjs/jwt": "^11.0.2",
+        "@nestjs/swagger": "^11.2.6",
+        "@nestjs/throttler": "^6.5.0",
+        "@vnodes/crypto": "workspace:*",
+        "@vnodes/metadata": "workspace:*",
+        "@vnodes/property": "workspace:*"
     }
-  ],
-  "version": "0.0.5",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "assets",
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "sourceRoot": "libs/auth/src",
-    "targets": {
-      "build": {},
-      "lint": {},
-      "test": {},
-      "doc": {}
-    }
-  },
-  "dependencies": {
-    "@swc/helpers": "~0.5.11"
-  },
-  "devDependencies": {
-    "@nestjs/testing": "^11.1.13"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^11.1.14",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.14",
-    "@nestjs/event-emitter": "^3.0.1",
-    "@nestjs/jwt": "^11.0.2",
-    "@nestjs/swagger": "^11.2.6",
-    "@nestjs/throttler": "^6.5.0",
-    "@vnodes/crypto": "workspace:*",
-    "@vnodes/metadata": "workspace:*",
-    "@vnodes/property": "workspace:*"
-  }
 }

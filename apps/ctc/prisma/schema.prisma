@@ -32,11 +32,11 @@ enum ContactType {
 
 /// @emit()
 model Contact {
-  id        Int       @id @default(autoincrement())
-  uuid      String?   @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id             Int       @id @default(autoincrement())
+  externalUserId String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime?
 
   firstName    String
   lastName     String

@@ -1,54 +1,54 @@
 {
-  "name": "@vnodes/prisma-helper",
-  "description": "Helper function for prisma plugins",
-  "homepage": "https://vnodes.github.io/vnodes/plugins/prisma-helper",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  },
-  "author": {
-    "email": "robert.brightline+vnodes-prisma-helper@gmail.com",
-    "name": "Robert Brightline",
-    "url": "https://vnodes.github.io/vnodes/plugins/prisma-helper"
-  },
-  "keywords": [],
-  "icon": "https://vnodes.github.io/vnodes/plugins/prisma-helper/assets/favicon.png",
-  "funding": [
-    {
-      "type": "cashapp",
-      "url": "https://cash.app/$puqlib"
+    "name": "@vnodes/prisma-helper",
+    "description": "Helper function for prisma plugins",
+    "homepage": "https://vnodes.github.io/vnodes/plugins/prisma-helper",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "author": {
+        "email": "robert.brightline+vnodes-prisma-helper@gmail.com",
+        "name": "Robert Brightline",
+        "url": "https://vnodes.github.io/vnodes/plugins/prisma-helper"
+    },
+    "keywords": [],
+    "icon": "https://vnodes.github.io/vnodes/plugins/prisma-helper/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "version": "0.0.2",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "plugins/prisma-helper/src",
+        "targets": {
+            "build": {},
+            "lint": {},
+            "test": {},
+            "doc": {}
+        }
+    },
+    "dependencies": {
+        "@prisma/generator-helper": "7.3.0",
+        "@swc/helpers": "~0.5.11"
     }
-  ],
-  "version": "0.0.2",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "assets",
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "sourceRoot": "plugins/prisma-helper/src",
-    "targets": {
-      "build": {},
-      "lint": {},
-      "test": {},
-      "doc": {}
-    }
-  },
-  "dependencies": {
-    "@prisma/generator-helper": "7.3.0",
-    "@swc/helpers": "~0.5.11"
-  }
 }

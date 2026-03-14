@@ -1,0 +1,4 @@
+{
+  "name": "@<%- projectName %>-e2e",
+  "version": "0.0.0"
+}

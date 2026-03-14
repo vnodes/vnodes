@@ -1,4 +1,4 @@
-generator clientGenerator {
+generator client {
   provider               = "prisma-client"
   output                 = "../src/resources/prisma"
   runtime                = "nodejs"
@@ -7,11 +7,11 @@ generator clientGenerator {
   moduleFormat           = "esm"
 }
 
-generator simplifiedServiceClassesGenerator {
+generator serviceClasses {
   provider = "prisma-service"
 }
 
-generator nestjsModulesGenerator {
+generator nestjsModule {
   provider = "nestjs-module"
   output   = "../src/resources"
 }

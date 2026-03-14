@@ -24,6 +24,9 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "bin": {
+        "serve": "./bin/serve.mjs"
+    },
     "exports": {
         "./package.json": "./package.json",
         ".": {
@@ -35,6 +38,7 @@
     },
     "files": [
         "assets",
+        "bin",
         "dist",
         "!**/*.tsbuildinfo"
     ],
@@ -48,17 +52,25 @@
             "serve": {}
         }
     },
-    "dependencies": {
-        "@swc/helpers": "~0.5.11"
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.13",
+    "@vnodes/prisma-plugins": "workspace:*",
+    "dotenv": "17.3.1",
+    "prisma": "7.3.0"
+  },
+  "peerDependencies": {
+    "@prisma/client": "7.3.0",
+    "@vnodes/core": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@vnodes/core": {
+      "optional": false
     },
-    "devDependencies": {
-        "@nestjs/testing": "^11.1.13",
-        "@vnodes/prisma-plugins": "workspace:*",
-        "dotenv": "17.3.1",
-        "prisma": "7.3.0"
-    },
-    "peerDependencies": {
-        "@prisma/client": "7.3.0",
-        "@vnodes/nestjs": "workspace:*"
+    "@prisma/client": {
+      "optional": false
     }
+  }
 }

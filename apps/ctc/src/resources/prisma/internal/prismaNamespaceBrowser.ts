@@ -75,7 +75,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const ContactScalarFieldEnum = {
   id: 'id',
-  uuid: 'uuid',
+  externalUserId: 'externalUserId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',

@@ -11,7 +11,9 @@
         "noPropertyAccessFromIndexSignature": true,
         "baseUrl": "./",
         "module": "nodenext",
-        "moduleResolution": "nodenext"
+        "moduleResolution": "nodenext",
+
+        "types": ["vitest/globals", "vitest/importMeta", "vite/client", "node", "vitest"]
     },
     "include": ["src/**/*.test.ts", "src/**/*.spec.ts"]
 }

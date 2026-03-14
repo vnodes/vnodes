@@ -7,6 +7,8 @@ out-tsc
 public
 tsconfig.tsbuildinfo
 
+migrations
+
 # dependencies
 node_modules
 

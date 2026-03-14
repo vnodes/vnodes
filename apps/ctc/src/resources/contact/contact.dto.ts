@@ -17,7 +17,7 @@ export class ContactQueryDto implements P.QueryMany<P.Prisma.ContactScalarFieldE
 export class ContactReadDto
 {
 @Prop() id?: number;
-@Prop() uuid?: string;
+@Prop() externalUserId?: string;
 @Prop() createdAt?: Date;
 @Prop() updatedAt?: Date;
 @Prop() deletedAt?: Date;
@@ -39,7 +39,7 @@ export class ContactReadDto
 }
 export class ContactCreateDto
 {
-@Prop() uuid?: string;
+@Prop() externalUserId?: string;
 @Prop({ required: true }) firstName: string;
 @Prop({ required: true }) lastName: string;
 @Prop() middleName?: string;

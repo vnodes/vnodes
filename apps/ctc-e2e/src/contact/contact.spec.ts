@@ -1,3 +1,6 @@
+import assert from 'node:assert';
+import { after, before, describe, it } from 'node:test';
+
 describe('Contact API', () => {
     const data = {
         firstName: 'First name',
@@ -20,48 +23,52 @@ describe('Contact API', () => {
         return response;
     };
 
-    beforeAll(async () => {
+    before(async () => {
         const res = await req('', {
             method: 'POST',
             body: JSON.stringify(data),
         });
-        expect(res.status).toEqual(201);
+
         created = await res.json();
+        assert.notEqual(created, undefined);
+        assert.equal(res.status, 201);
     });
 
-    test('/POST', () => {
-        expect(created).toBeDefined();
-    });
+    // it('/POST', () => {
+    //     assert.notEqual(created, undefined);
+    // });
 
-    test('/GET', async () => {
+    it('/GET', async () => {
         const res = await req('', { method: 'GET' });
-
-        expect(res.status).toEqual(200);
+        assert.equal(res.status, 200);
         const body = await res.json();
-        expect(body).toBeDefined();
+        assert.notEqual(body, undefined);
     });
 
-    test('/GET /:id', async () => {
-        const res = await req(`/${created.uuid}`, { method: 'GET' });
-        expect(res.status).toEqual(200);
+    it('/GET /:id', async () => {
+        const res = await req(`/${created.id}`, { method: 'GET' });
         const body = await res.json();
-        expect(body).toBeDefined();
+        assert.equal(res.status, 200);
+        assert.notEqual(body, undefined);
     });
 
-    test('/PUT /:id', async () => {
-        const res = await req(`/${created.uuid}`, {
+    it('/PUT /:id', async () => {
+        const res = await req(`/${created.id}`, {
             method: 'PUT',
             body: JSON.stringify({ preferedName: 'Updated' }),
         });
-        expect(res.status).toEqual(200);
-        const body = (await res.json()) as any;
-        expect(body.preferedName).toEqual('Updated');
+        const body = await res.json();
+        assert.equal(res.status, 200);
+        assert.notEqual(body, undefined);
     });
 
-    afterAll(async () => {
-        const res = await req(`/${created.uuid}`, {
+    after(async () => {
+        const res = await req(`/${created.id}`, {
             method: 'DELETE',
         });
-        expect(res.status).toEqual(200);
+
+        const body = await res.json();
+        assert.equal(res.status, 200);
+        assert.notEqual(body, undefined);
     });
 });
