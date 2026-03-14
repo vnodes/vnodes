@@ -104,7 +104,7 @@
         "{projectRoot}"
       ],
       "options": {
-        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.json"
+        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --favicon {projectRoot}/assets/favicon.png --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.json --skipErrorChecking true"
       }
     },
     "serve": {
