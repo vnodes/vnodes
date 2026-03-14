@@ -1,114 +1,114 @@
 {
-    "name": "@vnodes/boot",
-    "description": "Nestjs common modules, interceptors, configuration, and bootstrap functions",
-    "homepage": "https://vnodes.github.io/vnodes/libs/boot",
-    "publishConfig": {
-        "access": "public",
-        "tag": "latest"
-    },
-    "author": {
-        "email": "robert.brightline+vnodes-boot@gmail.com",
-        "name": "Robert Brightline",
-        "url": "https://vnodes.github.io/vnodes/libs/boot"
-    },
-    "keywords": [],
-    "icon": "https://vnodes.github.io/vnodes/libs/boot/assets/favicon.png",
-    "funding": [
-        {
-            "type": "cashapp",
-            "url": "https://cash.app/$puqlib"
-        }
-    ],
-    "version": "0.0.1",
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        },
-        "./express": {
-            "types": "./dist/express/index.d.ts",
-            "import": "./dist/express/index.js",
-            "default": "./dist/express/index.js"
-        },
-        "./fastify": {
-            "types": "./dist/fastify/index.d.ts",
-            "import": "./dist/fastify/index.js",
-            "default": "./dist/fastify/index.js"
-        },
-        "./helpers": {
-            "types": "./dist/helpers/index.d.ts",
-            "import": "./dist/helpers/index.js",
-            "default": "./dist/helpers/index.js"
-        },
-        "./interceptors": {
-            "types": "./dist/interceptors/index.d.ts",
-            "import": "./dist/interceptors/index.js",
-            "default": "./dist/interceptors/index.js"
-        },
-        "./pipes": {
-            "types": "./dist/pipes/index.d.ts",
-            "import": "./dist/pipes/index.js",
-            "default": "./dist/pipes/index.js"
-        },
-        "./swagger": {
-            "types": "./dist/swagger/index.d.ts",
-            "import": "./dist/swagger/index.js",
-            "default": "./dist/swagger/index.js"
-        },
-        "./common": {
-            "types": "./dist/common/index.d.ts",
-            "import": "./dist/common/index.js",
-            "default": "./dist/common/index.js"
-        }
-    },
-    "files": [
-        "assets",
-        "dist",
-        "!**/*.tsbuildinfo"
-    ],
-    "nx": {
-        "sourceRoot": "libs/boot/src",
-        "targets": {
-            "build": {},
-            "lint": {},
-            "test": {},
-            "doc": {},
-            "serve": {}
-        }
-    },
-    "dependencies": {
-        "@swc/helpers": "~0.5.11"
-    },
-    "devDependencies": {
-        "@nestjs/testing": "^11.1.13",
-        "@types/compression": "^1.8.1",
-        "@types/express": "^5.0.6",
-        "@types/helmet": "^4.0.0",
-        "@types/node": "20.19.9"
-    },
-    "peerDependencies": {
-        "@fastify/compress": "^8.3.1",
-        "@fastify/helmet": "^13.0.2",
-        "@fastify/static": "^9.0.0",
-        "@nestjs/cache-manager": "^3.1.0",
-        "@nestjs/common": "^11.1.14",
-        "@nestjs/config": "^4.0.3",
-        "@nestjs/core": "^11.1.14",
-        "@nestjs/event-emitter": "^3.0.1",
-        "@nestjs/platform-express": "^11.1.14",
-        "@nestjs/platform-fastify": "^11.1.14",
-        "@nestjs/swagger": "^11.2.6",
-        "@nestjs/schedule": "^6.1.1",
-        "@nestjs/throttler": "^6.5.0",
-        "@vnodes/metadata": "workspace:*",
-        "compression": "^1.8.1",
-        "rxjs": "^7.8.2"
+  "name": "@vnodes/boot",
+  "description": "Nestjs common modules, interceptors, configuration, and bootstrap functions",
+  "homepage": "https://vnodes.github.io/vnodes/libs/boot",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "author": {
+    "email": "robert.brightline+vnodes-boot@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io/vnodes/libs/boot"
+  },
+  "keywords": [],
+  "icon": "https://vnodes.github.io/vnodes/libs/boot/assets/favicon.png",
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
     }
+  ],
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./express": {
+      "types": "./dist/express/index.d.ts",
+      "import": "./dist/express/index.js",
+      "default": "./dist/express/index.js"
+    },
+    "./fastify": {
+      "types": "./dist/fastify/index.d.ts",
+      "import": "./dist/fastify/index.js",
+      "default": "./dist/fastify/index.js"
+    },
+    "./helpers": {
+      "types": "./dist/helpers/index.d.ts",
+      "import": "./dist/helpers/index.js",
+      "default": "./dist/helpers/index.js"
+    },
+    "./interceptors": {
+      "types": "./dist/interceptors/index.d.ts",
+      "import": "./dist/interceptors/index.js",
+      "default": "./dist/interceptors/index.js"
+    },
+    "./pipes": {
+      "types": "./dist/pipes/index.d.ts",
+      "import": "./dist/pipes/index.js",
+      "default": "./dist/pipes/index.js"
+    },
+    "./swagger": {
+      "types": "./dist/swagger/index.d.ts",
+      "import": "./dist/swagger/index.js",
+      "default": "./dist/swagger/index.js"
+    },
+    "./common": {
+      "types": "./dist/common/index.d.ts",
+      "import": "./dist/common/index.js",
+      "default": "./dist/common/index.js"
+    }
+  },
+  "files": [
+    "assets",
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/boot/src",
+    "targets": {
+      "build": {},
+      "lint": {},
+      "test": {},
+      "doc": {},
+      "serve": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.13",
+    "@types/compression": "^1.8.1",
+    "@types/express": "^5.0.6",
+    "@types/helmet": "^4.0.0",
+    "@types/node": "20.19.9"
+  },
+  "peerDependencies": {
+    "@fastify/compress": "^8.3.1",
+    "@fastify/helmet": "^13.0.2",
+    "@fastify/static": "^9.0.0",
+    "@nestjs/cache-manager": "^3.1.0",
+    "@nestjs/common": "^11.1.14",
+    "@nestjs/config": "^4.0.3",
+    "@nestjs/core": "^11.1.14",
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/platform-express": "^11.1.14",
+    "@nestjs/platform-fastify": "^11.1.14",
+    "@nestjs/swagger": "^11.2.6",
+    "@nestjs/schedule": "^6.1.1",
+    "@nestjs/throttler": "^6.5.0",
+    "@vnodes/metadata": "workspace:*",
+    "compression": "^1.8.1",
+    "rxjs": "^7.8.2"
+  }
 }
