@@ -1,7 +1,7 @@
 {
   "name": "@vnodes/crypto",
   "description": "Hashing and encription functions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://vnodes.github.io/vnodes/libs/crypto",
   "publishConfig": {
     "access": "public",

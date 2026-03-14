@@ -1,3 +1,17 @@
+## 0.0.3 (2026-03-14)
+
+### 🚀 Features
+
+- added serve bin ([b7b3e01](https://github.com/vnodes/vnodes/commit/b7b3e01))
+
+### 🩹 Fixes
+
+- fixed dependencies ([0ee9bba](https://github.com/vnodes/vnodes/commit/0ee9bba))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.2 (2026-03-14)
 
 ### 🚀 Features
