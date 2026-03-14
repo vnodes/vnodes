@@ -1,3 +1,15 @@
+## 0.0.6 (2026-03-14)
+
+### 🚀 Features
+
+- fixed the uuid strategy ([390b954](https://github.com/vnodes/vnodes/commit/390b954))
+- created tests and fixed schema env ([07b075c](https://github.com/vnodes/vnodes/commit/07b075c))
+- fixed the basic testing and configuraiton ([b96e89b](https://github.com/vnodes/vnodes/commit/b96e89b))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.5 (2026-03-14)
 
 ### 🚀 Features
