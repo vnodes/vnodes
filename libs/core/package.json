@@ -242,6 +242,7 @@
     "@vnodes/autowire": "workspace:*",
     "@vnodes/boot": "workspace:*",
     "@vnodes/crypto": "workspace:*",
+    "@vnodes/fs": "workspace:*",
     "@vnodes/metadata": "workspace:*",
     "@vnodes/names": "workspace:*",
     "@vnodes/prisma": "workspace:*",

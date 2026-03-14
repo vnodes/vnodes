@@ -136,6 +136,21 @@
     }
   },
   "release": {
+    "projects": [
+      "ctc",
+      "auth",
+      "autowire",
+      "boot",
+      "core",
+      "crypto",
+      "fs",
+      "metadata",
+      "names",
+      "prisma",
+      "prisma-sqlite",
+      "property",
+      "schema"
+    ],
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build"
     }
