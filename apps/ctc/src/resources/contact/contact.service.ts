@@ -1,6 +1,6 @@
 import { Injectable } from '@vnodes/core/common';
 import { InjectDelegate } from '@vnodes/core/prisma';
-import { BaseContactService, Prisma } from '../prisma/index.js';
+import { Prisma, BaseContactService } from '../prisma/index.js';
 
 @Injectable()
 export class ContactService extends BaseContactService {

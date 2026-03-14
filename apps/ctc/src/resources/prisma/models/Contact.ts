@@ -243,7 +243,7 @@ export type ContactGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ContactGroupByOutputType = {
   id: number
-  uuid: string
+  uuid: string | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -283,7 +283,7 @@ export type ContactWhereInput = {
   OR?: Prisma.ContactWhereInput[]
   NOT?: Prisma.ContactWhereInput | Prisma.ContactWhereInput[]
   id?: Prisma.IntFilter<"Contact"> | number
-  uuid?: Prisma.StringFilter<"Contact"> | string
+  uuid?: Prisma.StringNullableFilter<"Contact"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Contact"> | Date | string | null
@@ -306,7 +306,7 @@ export type ContactWhereInput = {
 
 export type ContactOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  uuid?: Prisma.SortOrder
+  uuid?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -355,7 +355,7 @@ export type ContactWhereUniqueInput = Prisma.AtLeast<{
 
 export type ContactOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  uuid?: Prisma.SortOrder
+  uuid?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -380,7 +380,7 @@ export type ContactScalarWhereWithAggregatesInput = {
   OR?: Prisma.ContactScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ContactScalarWhereWithAggregatesInput | Prisma.ContactScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Contact"> | number
-  uuid?: Prisma.StringWithAggregatesFilter<"Contact"> | string
+  uuid?: Prisma.StringNullableWithAggregatesFilter<"Contact"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Contact"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Contact"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Contact"> | Date | string | null
@@ -396,7 +396,7 @@ export type ContactScalarWhereWithAggregatesInput = {
 }
 
 export type ContactCreateInput = {
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -416,7 +416,7 @@ export type ContactCreateInput = {
 
 export type ContactUncheckedCreateInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -435,7 +435,7 @@ export type ContactUncheckedCreateInput = {
 }
 
 export type ContactUpdateInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -455,7 +455,7 @@ export type ContactUpdateInput = {
 
 export type ContactUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -475,7 +475,7 @@ export type ContactUncheckedUpdateInput = {
 
 export type ContactCreateManyInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -491,7 +491,7 @@ export type ContactCreateManyInput = {
 }
 
 export type ContactUpdateManyMutationInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -505,7 +505,7 @@ export type ContactUpdateManyMutationInput = {
 
 export type ContactUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -605,8 +605,8 @@ export type ContactCreateprofilesInput = {
   set: string[]
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -617,8 +617,8 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
+export type StringFieldUpdateOperationsInput = {
+  set?: string
 }
 
 export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -785,7 +785,7 @@ export type ContactUncheckedUpdateOneWithoutPrimaryAddressNestedInput = {
 }
 
 export type ContactCreateWithoutEmailsInput = {
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -804,7 +804,7 @@ export type ContactCreateWithoutEmailsInput = {
 
 export type ContactUncheckedCreateWithoutEmailsInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -827,7 +827,7 @@ export type ContactCreateOrConnectWithoutEmailsInput = {
 }
 
 export type ContactCreateWithoutPrimaryEmailInput = {
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -846,7 +846,7 @@ export type ContactCreateWithoutPrimaryEmailInput = {
 
 export type ContactUncheckedCreateWithoutPrimaryEmailInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -880,7 +880,7 @@ export type ContactUpdateToOneWithWhereWithoutEmailsInput = {
 }
 
 export type ContactUpdateWithoutEmailsInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -899,7 +899,7 @@ export type ContactUpdateWithoutEmailsInput = {
 
 export type ContactUncheckedUpdateWithoutEmailsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -928,7 +928,7 @@ export type ContactUpdateToOneWithWhereWithoutPrimaryEmailInput = {
 }
 
 export type ContactUpdateWithoutPrimaryEmailInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -947,7 +947,7 @@ export type ContactUpdateWithoutPrimaryEmailInput = {
 
 export type ContactUncheckedUpdateWithoutPrimaryEmailInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -965,7 +965,7 @@ export type ContactUncheckedUpdateWithoutPrimaryEmailInput = {
 }
 
 export type ContactCreateWithoutPhonesInput = {
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -984,7 +984,7 @@ export type ContactCreateWithoutPhonesInput = {
 
 export type ContactUncheckedCreateWithoutPhonesInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1007,7 +1007,7 @@ export type ContactCreateOrConnectWithoutPhonesInput = {
 }
 
 export type ContactCreateWithoutPrimaryPhoneInput = {
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1026,7 +1026,7 @@ export type ContactCreateWithoutPrimaryPhoneInput = {
 
 export type ContactUncheckedCreateWithoutPrimaryPhoneInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1060,7 +1060,7 @@ export type ContactUpdateToOneWithWhereWithoutPhonesInput = {
 }
 
 export type ContactUpdateWithoutPhonesInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1079,7 +1079,7 @@ export type ContactUpdateWithoutPhonesInput = {
 
 export type ContactUncheckedUpdateWithoutPhonesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1108,7 +1108,7 @@ export type ContactUpdateToOneWithWhereWithoutPrimaryPhoneInput = {
 }
 
 export type ContactUpdateWithoutPrimaryPhoneInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1127,7 +1127,7 @@ export type ContactUpdateWithoutPrimaryPhoneInput = {
 
 export type ContactUncheckedUpdateWithoutPrimaryPhoneInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1145,7 +1145,7 @@ export type ContactUncheckedUpdateWithoutPrimaryPhoneInput = {
 }
 
 export type ContactCreateWithoutAddressesInput = {
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1164,7 +1164,7 @@ export type ContactCreateWithoutAddressesInput = {
 
 export type ContactUncheckedCreateWithoutAddressesInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1187,7 +1187,7 @@ export type ContactCreateOrConnectWithoutAddressesInput = {
 }
 
 export type ContactCreateWithoutPrimaryAddressInput = {
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1206,7 +1206,7 @@ export type ContactCreateWithoutPrimaryAddressInput = {
 
 export type ContactUncheckedCreateWithoutPrimaryAddressInput = {
   id?: number
-  uuid?: string
+  uuid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1240,7 +1240,7 @@ export type ContactUpdateToOneWithWhereWithoutAddressesInput = {
 }
 
 export type ContactUpdateWithoutAddressesInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1259,7 +1259,7 @@ export type ContactUpdateWithoutAddressesInput = {
 
 export type ContactUncheckedUpdateWithoutAddressesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1288,7 +1288,7 @@ export type ContactUpdateToOneWithWhereWithoutPrimaryAddressInput = {
 }
 
 export type ContactUpdateWithoutPrimaryAddressInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1307,7 +1307,7 @@ export type ContactUpdateWithoutPrimaryAddressInput = {
 
 export type ContactUncheckedUpdateWithoutPrimaryAddressInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  uuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1505,7 +1505,7 @@ export type $ContactPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    uuid: string
+    uuid: string | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null

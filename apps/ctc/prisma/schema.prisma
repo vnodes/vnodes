@@ -33,7 +33,7 @@ enum ContactType {
 /// @emit()
 model Contact {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
+  uuid      String?   @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
