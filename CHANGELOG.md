@@ -1,3 +1,47 @@
+## 0.0.2 (2026-03-14)
+
+### 🚀 Features
+
+- creatd safe io factory ([23b5919](https://github.com/vnodes/vnodes/commit/23b5919))
+- initialized the nestjs dto generator ([bd380c1](https://github.com/vnodes/vnodes/commit/bd380c1))
+- created initial dto generator ([b39e940](https://github.com/vnodes/vnodes/commit/b39e940))
+- created nestjs module generator ([792a5e4](https://github.com/vnodes/vnodes/commit/792a5e4))
+- generated and tested the nestjs modules ([f044c59](https://github.com/vnodes/vnodes/commit/f044c59))
+- created event emitter functinality ([fc11424](https://github.com/vnodes/vnodes/commit/fc11424))
+- created root project initializer ([ddac996](https://github.com/vnodes/vnodes/commit/ddac996))
+- fixed the enum property definitions ([cece963](https://github.com/vnodes/vnodes/commit/cece963))
+- include feature ([82578e1](https://github.com/vnodes/vnodes/commit/82578e1))
+- creating tests ([c5c5014](https://github.com/vnodes/vnodes/commit/c5c5014))
+- created input-text component ([8095196](https://github.com/vnodes/vnodes/commit/8095196))
+- dev configuration ([b8fc20f](https://github.com/vnodes/vnodes/commit/b8fc20f))
+- configured the core module that provides all modules ([88a78c0](https://github.com/vnodes/vnodes/commit/88a78c0))
+- working of conventional decorators that configure entire system by naming conventions ([820e4f8](https://github.com/vnodes/vnodes/commit/820e4f8))
+- creating wrapper module that provides all required modules to centerlize the dependencies ([5c2c828](https://github.com/vnodes/vnodes/commit/5c2c828))
+- created the auth module ([5e231cb](https://github.com/vnodes/vnodes/commit/5e231cb))
+- added the auth module to the core package ([db01e4c](https://github.com/vnodes/vnodes/commit/db01e4c))
+- configured the core packages ([df0039c](https://github.com/vnodes/vnodes/commit/df0039c))
+- configured the core package ([9ad5715](https://github.com/vnodes/vnodes/commit/9ad5715))
+- fixed the auto controller decorator ([214db46](https://github.com/vnodes/vnodes/commit/214db46))
+
+### 🩹 Fixes
+
+- fixed the paramtypes metadata ([3be8120](https://github.com/vnodes/vnodes/commit/3be8120))
+- fixed the included properties in read dto ([b2bf3f1](https://github.com/vnodes/vnodes/commit/b2bf3f1))
+- remvoed extra configuration ([1b2c006](https://github.com/vnodes/vnodes/commit/1b2c006))
+- remvoed extra configuration ([218452f](https://github.com/vnodes/vnodes/commit/218452f))
+- removed extra configuration ([06d15db](https://github.com/vnodes/vnodes/commit/06d15db))
+- clean up unncessary files ([2dbcef0](https://github.com/vnodes/vnodes/commit/2dbcef0))
+- clean up tsconfig files ([c7f5df7](https://github.com/vnodes/vnodes/commit/c7f5df7))
+- fixed tscofnigs ([a55cd9e](https://github.com/vnodes/vnodes/commit/a55cd9e))
+- simplifed the tsconfig ([298f26f](https://github.com/vnodes/vnodes/commit/298f26f))
+- fixed the reference link ([6dd5e00](https://github.com/vnodes/vnodes/commit/6dd5e00))
+- fixed the enum property options ([a784d96](https://github.com/vnodes/vnodes/commit/a784d96))
+- removed the prisma type definitions from the uuid column becuase it validates the input! ([5b69b39](https://github.com/vnodes/vnodes/commit/5b69b39))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.1 (2026-03-03)
 
 ### 🚀 Features
