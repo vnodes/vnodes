@@ -1,4 +1,4 @@
-import { Get, Param, Query } from '@nestjs/common';
+import { Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
 import { AutoControllerOptions } from './auto-controller-options.js';
 export enum FindMethodName {
@@ -38,7 +38,7 @@ export function AutoGet(options: AutoControllerOptions): MethodDecorator {
             case FindMethodName.findOneById: {
                 __FindOneByIdMethod()(...args);
                 ApiOkResponse({ type: options.readDto })(...args);
-                Param('id')(args[0], args[1], 0);
+                Param('id', ParseIntPipe)(args[0], args[1], 0);
                 Reflect.defineMetadata('design:paramtypes', [Number], args[0], args[1]);
                 break;
             }

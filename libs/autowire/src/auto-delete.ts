@@ -1,4 +1,4 @@
-import { Delete, Param } from '@nestjs/common';
+import { Delete, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
 import { AutoControllerOptions } from './auto-controller-options.js';
 
@@ -26,7 +26,7 @@ export function AutoDelete(options: AutoControllerOptions): MethodDecorator {
             case DeleteMethodName.deleteOneById: {
                 __DeleteOneByIdMethod()(...args);
                 ApiOkResponse({ type: options.readDto })(...args);
-                Param('id')(args[0], args[1], 0);
+                Param('id', ParseIntPipe)(args[0], args[1], 0);
                 Reflect.defineMetadata('design:paramtypes', [Number], args[0], args[1]);
 
                 break;

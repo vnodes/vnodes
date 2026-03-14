@@ -1,4 +1,4 @@
-import { Body, Put } from '@nestjs/common';
+import { Body, Param, ParseIntPipe, Put } from '@nestjs/common';
 import { AutoControllerOptions } from './auto-controller-options.js';
 
 export enum UpdateMethodName {
@@ -24,12 +24,14 @@ export function AutoPut(options: AutoControllerOptions): MethodDecorator {
         switch (methodName.toString() as UpdateMethodName) {
             case UpdateMethodName.updateOneById: {
                 __UpdateOneByIdMethod()(...args);
+                Param('id', ParseIntPipe)(args[0], args[1], 0);
                 Body()(args[0], args[1], 1);
                 Reflect.defineMetadata('design:paramtypes', [Number, options.updateDto], args[0], args[1]);
                 break;
             }
             case UpdateMethodName.updateOneByUuid: {
                 __UpdateOneByUuid()(...args);
+                Param('uuid')(args[0], args[1], 0);
                 Body()(args[0], args[1], 1);
                 Reflect.defineMetadata('design:paramtypes', [String, options.updateDto], args[0], args[1]);
 

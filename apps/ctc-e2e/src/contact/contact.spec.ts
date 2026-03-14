@@ -1,5 +1,5 @@
 import assert from 'node:assert';
-import { after, before, describe, it } from 'node:test';
+import { before, describe, it } from 'node:test';
 
 describe('Contact API', () => {
     const data = {
@@ -12,7 +12,6 @@ describe('Contact API', () => {
 
     const req = async (url: string = '', options: RequestInit = {}) => {
         const baseUrl = 'http://localhost:3000/api/contacts';
-
         const response = await fetch(`${baseUrl}${url}`, {
             ...options,
             headers: {
@@ -34,9 +33,16 @@ describe('Contact API', () => {
         assert.equal(res.status, 201);
     });
 
-    // it('/POST', () => {
-    //     assert.notEqual(created, undefined);
-    // });
+    it('/POST', async () => {
+        const res = await req('', {
+            method: 'POST',
+            body: JSON.stringify(data),
+        });
+
+        const created2 = await res.json();
+        assert.notEqual(created2, undefined);
+        assert.equal(res.status, 201);
+    });
 
     it('/GET', async () => {
         const res = await req('', { method: 'GET' });
@@ -61,12 +67,8 @@ describe('Contact API', () => {
         assert.equal(res.status, 200);
         assert.notEqual(body, undefined);
     });
-
-    after(async () => {
-        const res = await req(`/${created.id}`, {
-            method: 'DELETE',
-        });
-
+    it('/DELETE /:id', async () => {
+        const res = await req(`/${created.id}`, { method: 'DELETE', body: '{}' });
         const body = await res.json();
         assert.equal(res.status, 200);
         assert.notEqual(body, undefined);
