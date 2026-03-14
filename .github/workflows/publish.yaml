@@ -1,0 +1,68 @@
+name: publish
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint-test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # Updated to v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10.24.0
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        name: Setup Node
+        with:
+          node-version: 22.19.0
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Lint, test, and build all projects
+        run: npx nx run-many -t test build
+
+  publish:
+    needs: lint-test-build
+    environment: Env
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10.24.0
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        name: Setup Node
+        with:
+          node-version: 22.19.0
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build All
+        run: npx nx run-many -t build --all
+
+      - name: Publish to NPM
+        run: npx nx release publish
