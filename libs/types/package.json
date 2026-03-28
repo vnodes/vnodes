@@ -1,0 +1,50 @@
+{
+    "name": "@vnodes/types",
+    "version": "0.0.1",
+    "description": "Common types",
+    "keywords": [
+        "types"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline@gmail.com",
+        "url": "https://vnodes.github.io"
+    },
+    "homepage": "https://vnodes.github.io/vnodes/libs/types",
+    "icon": "https://vnodes.github.io/vnodes/libs/types/assets/favicon.png",
+    "funding": [
+        {
+            "type": "cashapp",
+            "url": "https://cash.app/$puqlib"
+        }
+    ],
+    "bin": {
+        "version": "./bin/version.mjs"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/types/src",
+        "targets": {
+            "build": {}
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.18"
+    }
+}

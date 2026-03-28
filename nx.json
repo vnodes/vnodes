@@ -95,5 +95,17 @@
         "version": {
             "preVersionCommand": "pnpm dlx nx run-many -t build"
         }
+    },
+    "generators": {
+        "@vnodes/plugin:project": {
+            "projectType": "lib",
+            "homepage": "https://vnodes.github.io/vnodes",
+            "email": "robert.brightline@gmail.com",
+            "author": "Robert Brightline",
+            "funding": "https://cash.app/$puqlib",
+            "reponame": "vnodes",
+            "orgname": "vnodes",
+            "version": "0.0.1"
+        }
     }
 }

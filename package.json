@@ -6,7 +6,6 @@
   "scripts": {
     "prepare": "husky"
   },
-  "private": true,
   "devDependencies": {
     "@biomejs/biome": "^2.4.8",
     "@nx/js": "22.6.1",

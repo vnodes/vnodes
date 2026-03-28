@@ -88,6 +88,30 @@ importers:
         specifier: ~4.0.8
         version: 4.0.18(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(tsx@4.21.0)(yaml@2.8.3)
 
+  libs/fs:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+
+  libs/types:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+
+  plugins/plugin:
+    dependencies:
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
+  plugins/prisma-plugin:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+
 packages:
 
   '@acemir/cssom@0.9.31':
