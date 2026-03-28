@@ -4,15 +4,29 @@
     "title": "",
     "type": "object",
     "properties": {
-        "name": {
+        "projectType": {
             "type": "string",
-            "description": "",
             "$default": {
                 "$source": "argv",
                 "index": 0
             },
-            "x-prompt": "What name would you like to use?"
-        }
+            "x-prompt": "Which project-type would you like to use?"
+        },
+        "directory": {
+            "type": "string",
+            "$default": {
+                "$source": "argv",
+                "index": 1
+            },
+            "x-prompt": "Which diretory would you like to use?"
+        },
+        "homepage": { "type": "string" },
+        "email": { "type": "string" },
+        "author": { "type": "string" },
+        "funding": { "type": "string" },
+        "reponame": { "type": "string" },
+        "orgname": { "type": "string" },
+        "version": { "type": "string" }
     },
-    "required": ["name"]
+    "required": ["projectType", "directory"]
 }
