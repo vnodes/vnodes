@@ -15,5 +15,8 @@
     },
     "[protobuf]": {
         "editor.defaultFormatter": "tooltitudeteam.tooltitude-pb"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
     }
 }
