@@ -6,7 +6,14 @@
     "properties": {
         "projectType": {
             "type": "string",
-            "enum": ["lib", "api", "cli", "prisma", "prisma-extention", "graphql"],
+            "enum": [
+                "lib",
+                "api",
+                "cli",
+                "prisma",
+                "prisma-extention",
+                "graphql"
+            ],
             "$default": {
                 "$source": "argv",
                 "index": 0
@@ -21,13 +28,30 @@
             },
             "x-prompt": "Which diretory would you like to use?"
         },
-        "homepage": { "type": "string" },
-        "email": { "type": "string" },
-        "author": { "type": "string" },
-        "funding": { "type": "string" },
-        "reponame": { "type": "string" },
-        "orgname": { "type": "string" },
-        "version": { "type": "string" }
+        "homepage": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string"
+        },
+        "author": {
+            "type": "string"
+        },
+        "funding": {
+            "type": "string"
+        },
+        "reponame": {
+            "type": "string"
+        },
+        "orgname": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string"
+        }
     },
-    "required": ["projectType", "directory"]
+    "required": [
+        "projectType",
+        "directory"
+    ]
 }

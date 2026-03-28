@@ -1,6 +1,6 @@
 import * as path from 'node:path';
-import { addProjectConfiguration, formatFiles, generateFiles, names, type Tree } from '@nx/devkit';
-import { ProjectGeneratorSchema } from './schema.d.js';
+import { formatFiles, generateFiles, names, type Tree, updateJson } from '@nx/devkit';
+import { ProjectGeneratorSchema } from './schema.js';
 
 export async function projectGenerator(tree: Tree, options: ProjectGeneratorSchema) {
     options = new ProjectGeneratorSchema(options);
@@ -12,17 +12,18 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
     const projectName = `@${options.orgname}/${shortProjectName}`;
     const shortProjectNames = names(shortProjectName);
 
-    addProjectConfiguration(tree, shortProjectName, {
-        root: projectRoot,
-        projectType: 'library',
-        sourceRoot: `${projectRoot}/src`,
-        targets: {},
-    });
+    options.email = options.email.split('@').join(`+${options.reponame}-${shortProjectNames.fileName}@`);
+
     generateFiles(tree, path.join(__dirname, options.projectType), projectRoot, {
         ...shortProjectNames,
-
         projectName,
         ...options,
+    });
+
+    await updateJson(tree, 'tsconfig.json', (value) => {
+        value.references ??= [];
+        value.references.push({ path: `./${options.directory}` });
+        return value;
     });
     await formatFiles(tree);
 }

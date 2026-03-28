@@ -1,13 +1,16 @@
 {
-    "extends": "./tsconfig.base.json",
-    "compileOnSave": false,
-    "files": [],
-    "references": [
-        {
-            "path": "./plugins/plugin"
-        },
-        {
-            "path": "./plugins/prisma-plugin"
-        }
-    ]
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./plugins/plugin"
+    },
+    {
+      "path": "./plugins/prisma-plugin"
+    },
+    {
+      "path": "./libs/fs"
+    }
+  ]
 }

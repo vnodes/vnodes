@@ -15,8 +15,8 @@
   },
   "files": [
     "dist",
-    "!**/*.tsbuildinfo",
-    "generators.json"
+    "generators.json",
+    "!**/*.tsbuildinfo"
   ],
   "nx": {
     "targets": {
