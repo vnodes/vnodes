@@ -1,0 +1,99 @@
+{
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "analytics": false,
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "production": [
+            "default",
+            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+            "!{projectRoot}/tsconfig.spec.json"
+        ],
+        "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    },
+    "plugins": [
+        {
+            "plugin": "@nx/vitest",
+            "options": {
+                "testTargetName": "test",
+                "ciTargetName": "test-ci",
+                "testMode": "watch"
+            }
+        }
+    ],
+    "targetDefaults": {
+        "@nx/js:swc": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"]
+        },
+        "test": {
+            "dependsOn": ["^build"]
+        },
+        "lint": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npx @biomejs/biome check --write --unsafe {projectRoot}"
+            },
+            "cache": true,
+            "inputs": ["default", "^default", "{projectRoot}"]
+        },
+        "build": {
+            "executor": "@nx/js:swc",
+            "outputs": ["{options.outputPath}"],
+            "cache": true,
+            "options": {
+                "outputPath": "{projectRoot}/dist",
+                "main": "{projectRoot}/src/index.ts",
+                "tsConfig": "{projectRoot}/tsconfig.lib.json",
+                "skipTypeCheck": false,
+                "stripLeadingPaths": true
+            }
+        },
+        "serve": {
+            "executor": "@nx/js:node",
+            "options": {
+                "buildTarget": "{projectName}:build",
+                "watch": true
+            }
+        },
+        "doc": {
+            "cache": true,
+            "executor": "nx:run-commands",
+            "inputs": ["^default", "{projectRoot}"],
+            "options": {
+                "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json --skipErrorChecking true"
+            }
+        },
+        "prisma-generate": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npx prisma generate",
+                "cwd": "{projectRoot}"
+            }
+        },
+        "prisma-migrate": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npx prisma migrate dev --name updated",
+                "cwd": "{projectRoot}"
+            }
+        },
+        "prisma-reset": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npx prisma migrate reset --force",
+                "cwd": "{projectRoot}"
+            }
+        },
+        "@nx/js:tsc": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"]
+        }
+    },
+    "release": {
+        "version": {
+            "preVersionCommand": "pnpm dlx nx run-many -t build"
+        }
+    }
+}

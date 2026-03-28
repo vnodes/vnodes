@@ -1,0 +1,35 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.4.8/schema.json",
+    "files": {
+        "includes": ["**", "!**/node_modules", "!**/dist", "!**/assets", "!**/generated"]
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "style": {
+                "useImportType": "on",
+                "useFilenamingConvention": {
+                    "level": "error",
+                    "options": {
+                        "strictCase": true,
+                        "filenameCases": ["kebab-case"]
+                    }
+                }
+            }
+        }
+    },
+    "formatter": {
+        "lineWidth": 120,
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "javascript": {
+        "parser": {
+            "unsafeParameterDecoratorsEnabled": true
+        },
+        "formatter": {
+            "quoteStyle": "single"
+        }
+    }
+}

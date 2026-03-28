@@ -1,0 +1,19 @@
+{
+    "editor.defaultFormatter": "biomejs.biome",
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "[dotenv]": {
+        "editor.defaultFormatter": "IronGeek.vscode-env"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.biome": "always",
+        "source.addMissingImports.ts": "always",
+        "source.removeUnusedImports": "always",
+        "source.organizeImports.biome": "always",
+        "source.fixAll.ts": "always"
+    },
+    "[protobuf]": {
+        "editor.defaultFormatter": "tooltitudeteam.tooltitude-pb"
+    }
+}
