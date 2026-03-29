@@ -39,12 +39,20 @@
     "nx": {
         "sourceRoot": "apps/sample-api/src",
         "targets": {
-            "build": {},
+            "build": {
+                "options": {
+                    "main": "{projectRoot}/src/main.ts"
+                }
+            },
             "doc": {},
-            "lint": {}
+            "lint": {},
+            "serve": {}
+        },
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
         }
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.18"
+        "@vnodes/nestjs": "workspace:*"
     }
 }

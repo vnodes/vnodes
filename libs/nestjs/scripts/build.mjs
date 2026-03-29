@@ -5,33 +5,55 @@ import { readJsonFile, updateJsonFile, writeTextFile } from '@vnodes/fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const rootdir = 'nestjs';
+
+function createFilename(packageName) {
+    return packageName
+        .replace(/@/g, '')
+        .replace(/(nestjs|vnodes)\//, '')
+        .split(/\//)
+        .join('-');
+}
+
 export async function build() {
     const jsonFilePath = join(__dirname, '..', 'package.json');
 
     const packageJson = await readJsonFile(jsonFilePath);
 
-    const dependencies = Object.keys(packageJson.dependencies);
+    const allPackages = Object.keys(packageJson.dependencies);
 
-    for (const d of dependencies) {
-        if (d === 'fastify' || d === 'express' || d === '@fastify/compress' || d === '@fastify/helmet') {
+    const ignoredPackages = [
+        'graphql',
+        'bcrypt',
+        'fastify',
+        'express',
+        '@fastify/compress',
+        '@fastify/helmet',
+        'helmet',
+        'compress',
+        'multer',
+    ];
+
+    for (const packageName of allPackages) {
+        if (ignoredPackages.includes(packageName)) {
             continue;
         }
-        const fileName = d.split(/\//).join('-').replace('@', '');
+        const fileName = createFilename(packageName);
 
-        await writeTextFile(join(__dirname, '..', 'src', `${fileName}.ts`), `export * from '${d}';`);
+        await writeTextFile(join(__dirname, '..', 'src', rootdir, `${fileName}.ts`), `export * from '${packageName}';`);
     }
+
     await updateJsonFile(jsonFilePath, async (value) => {
         const exports = Object.keys(value.dependencies)
+
             .map((e) => {
-                return e.split(/\//).join('-').replace('@', '');
-            })
-            .map((e) => {
+                const filename = createFilename(e);
                 return [
-                    `./${e}`,
+                    `./${filename}`,
                     {
-                        types: `./dist/${e}.d.ts`,
-                        import: `./dist/${e}.js`,
-                        default: `./dist/${e}.js`,
+                        types: `./dist/nestjs/${filename}.d.ts`,
+                        import: `./dist/nestjs/${filename}.js`,
+                        default: `./dist/nestjs/${filename}.js`,
                     },
                 ];
             })

@@ -34,16 +34,10 @@
       "path": "./libs/crypto"
     },
     {
-      "path": "./libs/nestjs-auth"
-    },
-    {
       "path": "./libs/prop"
     },
     {
       "path": "./libs/utils"
-    },
-    {
-      "path": "./libs/nestjs-boot"
     },
     {
       "path": "./libs/nestjs"
@@ -53,6 +47,9 @@
     },
     {
       "path": "./libs/errors"
+    },
+    {
+      "path": "./libs/prisma"
     }
   ]
 }

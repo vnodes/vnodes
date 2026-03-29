@@ -2,7 +2,19 @@ import { writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const errors = ['AccessDenied', 'Required', 'NotImplemented'];
+const errors = [
+    'AccessDenied',
+    'Required',
+    'Undefined',
+    'Null',
+    'NotImplemented',
+    'NotNumber',
+    'NotString',
+    'NotBoolean',
+    'NotObject',
+    'EmptyString',
+    'InvalidDate',
+];
 
 const set = new Set();
 

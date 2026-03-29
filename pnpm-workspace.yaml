@@ -2,7 +2,7 @@ packages:
   - apps/*
   - plugins/*
   - libs/*
-  - databases/*
+  - dbs/*
 
 autoInstallPeers: true
 

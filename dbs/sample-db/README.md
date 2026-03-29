@@ -10,7 +10,7 @@
 
 ## @vnodes/sample-db
 
-IO
+Prisma | Sample database
 
 ## Installation
 
