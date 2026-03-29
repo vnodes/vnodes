@@ -6,7 +6,7 @@ export class YamlFile<T> extends AbstractFile<T> {
     override read() {
         return readYamlFile<T>(this.resolve());
     }
-    
+
     override async write(content: T) {
         await writeYamlFile<T>(this.resolve(), content);
     }
