@@ -1,71 +1,158 @@
 {
-    "name": "@vnodes/nestjs",
-    "version": "0.0.1",
-    "description": "@vnodes/nestjs",
-    "keywords": [
-        "nestjs"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-nestjs@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
-    },
-    "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
-    "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
-    },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        }
-    },
-    "files": [
-        "dist",
-        "bin",
-        "!**/*.tsbuildinfo"
-    ],
-    "nx": {
-        "sourceRoot": "libs/nestjs/src",
-        "targets": {
-            "build": {},
-            "doc": {},
-            "lint": {}
-        }
-    },
-    "dependencies": {
-        "@fastify/compress": "^8.3.1",
-        "@fastify/helmet": "^13.0.2",
-        "@nestjs/common": "^11.1.17",
-        "@nestjs/core": "^11.1.17",
-        "@nestjs/event-emitter": "^3.0.1",
-        "@nestjs/graphql": "^13.2.4",
-        "@nestjs/jwt": "^11.0.2",
-        "@nestjs/platform-express": "^11.1.17",
-        "@nestjs/platform-fastify": "^11.1.17",
-        "@nestjs/schedule": "^6.1.1",
-        "@nestjs/swagger": "^11.2.6",
-        "@nestjs/throttler": "^6.5.0",
-        "@swc/helpers": "~0.5.18",
-        "class-transformer": "^0.5.1",
-        "class-validator": "^0.15.1",
-        "express": "^5.2.1",
-        "fastify": "^5.8.4",
-        "helmet": "^8.1.0"
-    },
-    "devDependencies": {
-        "@vnodes/fs": "workspace:*",
-        "@vnodes/types": "workspace:*"
-    }
+ "name": "@vnodes/nestjs",
+ "version": "0.0.1",
+ "description": "@vnodes/nestjs",
+ "keywords": [
+  "nestjs"
+ ],
+ "author": {
+  "name": "Robert Brightline",
+  "email": "robert.brightline+vnodes-nestjs@gmail.com",
+  "url": "https://vnodes.github.io/vnodes"
+ },
+ "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
+ "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
+ "funding": [
+  "https://cash.app/$puqlib"
+ ],
+ "bin": {
+  "version": "./bin/version.mjs"
+ },
+ "type": "module",
+ "main": "./dist/index.js",
+ "module": "./dist/index.js",
+ "types": "./dist/index.d.ts",
+ "exports": {
+  "./package.json": "./package.json",
+  ".": {
+   "@vnodes/source": "./src/index.ts",
+   "types": "./dist/index.d.ts",
+   "import": "./dist/index.js",
+   "default": "./dist/index.js"
+  },
+  "./fastify-compress": {
+   "types": "./dist/fastify-compress.d.ts",
+   "import": "./dist/fastify-compress.js",
+   "default": "./dist/fastify-compress.js"
+  },
+  "./fastify-helmet": {
+   "types": "./dist/fastify-helmet.d.ts",
+   "import": "./dist/fastify-helmet.js",
+   "default": "./dist/fastify-helmet.js"
+  },
+  "./nestjs-common": {
+   "types": "./dist/nestjs-common.d.ts",
+   "import": "./dist/nestjs-common.js",
+   "default": "./dist/nestjs-common.js"
+  },
+  "./nestjs-core": {
+   "types": "./dist/nestjs-core.d.ts",
+   "import": "./dist/nestjs-core.js",
+   "default": "./dist/nestjs-core.js"
+  },
+  "./nestjs-event-emitter": {
+   "types": "./dist/nestjs-event-emitter.d.ts",
+   "import": "./dist/nestjs-event-emitter.js",
+   "default": "./dist/nestjs-event-emitter.js"
+  },
+  "./nestjs-graphql": {
+   "types": "./dist/nestjs-graphql.d.ts",
+   "import": "./dist/nestjs-graphql.js",
+   "default": "./dist/nestjs-graphql.js"
+  },
+  "./nestjs-jwt": {
+   "types": "./dist/nestjs-jwt.d.ts",
+   "import": "./dist/nestjs-jwt.js",
+   "default": "./dist/nestjs-jwt.js"
+  },
+  "./nestjs-platform-express": {
+   "types": "./dist/nestjs-platform-express.d.ts",
+   "import": "./dist/nestjs-platform-express.js",
+   "default": "./dist/nestjs-platform-express.js"
+  },
+  "./nestjs-platform-fastify": {
+   "types": "./dist/nestjs-platform-fastify.d.ts",
+   "import": "./dist/nestjs-platform-fastify.js",
+   "default": "./dist/nestjs-platform-fastify.js"
+  },
+  "./nestjs-schedule": {
+   "types": "./dist/nestjs-schedule.d.ts",
+   "import": "./dist/nestjs-schedule.js",
+   "default": "./dist/nestjs-schedule.js"
+  },
+  "./nestjs-swagger": {
+   "types": "./dist/nestjs-swagger.d.ts",
+   "import": "./dist/nestjs-swagger.js",
+   "default": "./dist/nestjs-swagger.js"
+  },
+  "./nestjs-throttler": {
+   "types": "./dist/nestjs-throttler.d.ts",
+   "import": "./dist/nestjs-throttler.js",
+   "default": "./dist/nestjs-throttler.js"
+  },
+  "./class-transformer": {
+   "types": "./dist/class-transformer.d.ts",
+   "import": "./dist/class-transformer.js",
+   "default": "./dist/class-transformer.js"
+  },
+  "./class-validator": {
+   "types": "./dist/class-validator.d.ts",
+   "import": "./dist/class-validator.js",
+   "default": "./dist/class-validator.js"
+  },
+  "./express": {
+   "types": "./dist/express.d.ts",
+   "import": "./dist/express.js",
+   "default": "./dist/express.js"
+  },
+  "./fastify": {
+   "types": "./dist/fastify.d.ts",
+   "import": "./dist/fastify.js",
+   "default": "./dist/fastify.js"
+  },
+  "./helmet": {
+   "types": "./dist/helmet.d.ts",
+   "import": "./dist/helmet.js",
+   "default": "./dist/helmet.js"
+  }
+ },
+ "files": [
+  "dist",
+  "bin",
+  "!**/*.tsbuildinfo"
+ ],
+ "nx": {
+  "sourceRoot": "libs/nestjs/src",
+  "targets": {
+   "build-script": {},
+   "build": {},
+   "doc": {},
+   "lint": {}
+  }
+ },
+ "dependencies": {
+  "@fastify/compress": "^8.3.1",
+  "@fastify/helmet": "^13.0.2",
+  "@nestjs/common": "^11.1.17",
+  "@nestjs/core": "^11.1.17",
+  "@nestjs/event-emitter": "^3.0.1",
+  "@nestjs/graphql": "^13.2.4",
+  "@nestjs/jwt": "^11.0.2",
+  "@nestjs/platform-express": "^11.1.17",
+  "@nestjs/platform-fastify": "^11.1.17",
+  "@nestjs/schedule": "^6.1.1",
+  "@nestjs/swagger": "^11.2.6",
+  "@nestjs/throttler": "^6.5.0",
+  "class-transformer": "^0.5.1",
+  "class-validator": "^0.15.1",
+  "express": "^5.2.1",
+  "fastify": "^5.8.4",
+  "helmet": "^8.1.0"
+ },
+ "devDependencies": {
+  "@swc/helpers": "~0.5.18",
+  "@types/express": "^5.0.6",
+  "@vnodes/fs": "workspace:*",
+  "@vnodes/types": "workspace:*"
+ }
 }

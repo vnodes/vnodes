@@ -1,32 +1,48 @@
-// import { dirname, join } from 'node:path';
-// import { fileURLToPath } from 'node:url';
-// import { updateJsonFile } from '@vnodes/fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { readJsonFile, updateJsonFile, writeTextFile } from '@vnodes/fs';
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// export async function build() {
-//     const jsonFilePath = join(__dirname, '..', 'package.json');
+export async function build() {
+    const jsonFilePath = join(__dirname, '..', 'package.json');
 
-//     updateJsonFile(jsonFilePath, async (value) => {
-//         const exports = Object.keys(value.dependencies)
-//             .map((e) => s.split(/\//).pop())
-//             .map((e) => {
-//                 return [
-//                     `./${e}`,
-//                     {
-//                         types: `./dist/${e}/index.d.ts`,
-//                         import: `./dist/${e}/index.js`,
-//                         default: `./dist/${e}/index.js`,
-//                     },
-//                 ];
-//             })
-//             .reduce((p, [key, value]) => {
-//                 p[key] = value;
-//                 return p;
-//             }, {});
+    const packageJson = await readJsonFile(jsonFilePath);
 
-//         value.exports = { ...value.exports, ...exports };
-//         return value;
-//     });
-// }
+    const dependencies = Object.keys(packageJson.dependencies);
+
+    for (const d of dependencies) {
+        if (d === 'fastify' || d === 'express' || d === '@fastify/compress' || d === '@fastify/helmet') {
+            continue;
+        }
+        const fileName = d.split(/\//).join('-').replace('@', '');
+
+        await writeTextFile(join(__dirname, '..', 'src', `${fileName}.ts`), `export * from '${d}';`);
+    }
+    await updateJsonFile(jsonFilePath, async (value) => {
+        const exports = Object.keys(value.dependencies)
+            .map((e) => {
+                return e.split(/\//).join('-').replace('@', '');
+            })
+            .map((e) => {
+                return [
+                    `./${e}`,
+                    {
+                        types: `./dist/${e}.d.ts`,
+                        import: `./dist/${e}.js`,
+                        default: `./dist/${e}.js`,
+                    },
+                ];
+            })
+            .reduce((p, [key, value]) => {
+                p[key] = value;
+                return p;
+            }, {});
+
+        value.exports = { ...value.exports, ...exports };
+        return value;
+    });
+}
+
+build();
