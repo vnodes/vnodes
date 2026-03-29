@@ -1,4 +1,4 @@
-export type ProjectType = 'lib' | 'api' | 'cli' | 'prisma' | 'prisma-extention' | 'graphql';
+export type ProjectType = 'lib' | 'api' | 'cli' | 'prisma' | 'prisma-extention' | 'gql' | 'grpc';
 
 export class ProjectGeneratorSchema {
     projectType: ProjectType;

@@ -11,6 +11,48 @@
     },
     {
       "path": "./libs/fs"
+    },
+    {
+      "path": "./dbs/sample-db"
+    },
+    {
+      "path": "./apps/sample-api"
+    },
+    {
+      "path": "./apps/sample-gql"
+    },
+    {
+      "path": "./apps/sample-service"
+    },
+    {
+      "path": "./libs/types"
+    },
+    {
+      "path": "./libs/names"
+    },
+    {
+      "path": "./libs/crypto"
+    },
+    {
+      "path": "./libs/nestjs-auth"
+    },
+    {
+      "path": "./libs/prop"
+    },
+    {
+      "path": "./libs/utils"
+    },
+    {
+      "path": "./libs/nestjs-boot"
+    },
+    {
+      "path": "./libs/nestjs"
+    },
+    {
+      "path": "./libs/env"
+    },
+    {
+      "path": "./libs/errors"
     }
   ]
 }

@@ -12,7 +12,8 @@
                 "cli",
                 "prisma",
                 "prisma-extention",
-                "graphql"
+                "gql",
+                "grpc"
             ],
             "$default": {
                 "$source": "argv",

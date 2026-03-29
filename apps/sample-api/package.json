@@ -1,0 +1,50 @@
+{
+    "name": "@vnodes/sample-api",
+    "version": "0.0.1",
+    "description": "@vnodes/sample-api",
+    "keywords": [
+        "sample-api"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-sample-api@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
+    },
+    "homepage": "https://vnodes.github.io/vnodes/apps/sample-api",
+    "icon": "https://vnodes.github.io/vnodes/apps/sample-api/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
+    "bin": {
+        "version": "./bin/version.mjs"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "bin",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "apps/sample-api/src",
+        "targets": {
+            "build": {},
+            "doc": {},
+            "lint": {}
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.18"
+    }
+}

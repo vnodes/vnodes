@@ -10,7 +10,7 @@
 
 ## <%- projectName %>
 
-IO
+<%- projectName %>
 
 ## Installation
 

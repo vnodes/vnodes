@@ -15,6 +15,7 @@
             "recommended": true,
             "style": {
                 "useImportType": "on",
+                "useNodejsImportProtocol": "error",
                 "useFilenamingConvention": {
                     "level": "error",
                     "options": {
