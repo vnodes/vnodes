@@ -10,7 +10,7 @@
 
 ## @vnodes/autowire
 
-@vnodes/autowire
+Smart nestjs decorators.
 
 ## Installation
 

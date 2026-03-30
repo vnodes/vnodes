@@ -1,17 +1,17 @@
 {
-    "name": "@vnodes/sample-api",
+    "name": "@vnodes/net",
     "version": "0.0.1",
-    "description": "@vnodes/sample-api",
+    "description": "@vnodes/net",
     "keywords": [
-        "sample-api"
+        "net"
     ],
     "author": {
         "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-sample-api@gmail.com",
+        "email": "robert.brightline+vnodes-net@gmail.com",
         "url": "https://vnodes.github.io/vnodes"
     },
-    "homepage": "https://vnodes.github.io/vnodes/apps/sample-api",
-    "icon": "https://vnodes.github.io/vnodes/apps/sample-api/assets/favicon.png",
+    "homepage": "https://vnodes.github.io/vnodes/libs/net",
+    "icon": "https://vnodes.github.io/vnodes/libs/net/assets/favicon.png",
     "funding": [
         "https://cash.app/$puqlib"
     ],
@@ -37,25 +37,14 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "apps/sample-api/src",
+        "sourceRoot": "libs/net/src",
         "targets": {
-            "build": {
-                "options": {
-                    "main": "{projectRoot}/src/main.ts"
-                }
-            },
+            "build": {},
             "doc": {},
-            "lint": {},
-            "serve": {}
+            "lint": {}
         }
     },
     "dependencies": {
         "@swc/helpers": "~0.5.18"
-    },
-    "devDependencies": {
-        "@vnodes/nestjs": "workspace:*"
-    },
-    "peerDependencies": {
-        "@vnodes/nestjs": "workspace:*"
     }
 }

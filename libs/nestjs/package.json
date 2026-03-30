@@ -239,6 +239,21 @@
    "types": "./dist/nestjs/rxjs.d.ts",
    "import": "./dist/nestjs/rxjs.js",
    "default": "./dist/nestjs/rxjs.js"
+  },
+  "./scalar-nestjs-api-reference": {
+   "types": "./dist/nestjs/scalar-nestjs-api-reference.d.ts",
+   "import": "./dist/nestjs/scalar-nestjs-api-reference.js",
+   "default": "./dist/nestjs/scalar-nestjs-api-reference.js"
+  },
+  "./boot-fastify": {
+   "types": "./dist/nestjs/boot-fastify.d.ts",
+   "import": "./dist/nestjs/boot-fastify.js",
+   "default": "./dist/nestjs/boot-fastify.js"
+  },
+  "./net": {
+   "types": "./dist/nestjs/net.d.ts",
+   "import": "./dist/nestjs/net.js",
+   "default": "./dist/nestjs/net.js"
   }
  },
  "files": [
@@ -277,13 +292,16 @@
   "@nestjs/throttler": "^6.5.0",
   "@prisma/adapter-pg": "^7.6.0",
   "@prisma/client": "^7.6.0",
+  "@scalar/nestjs-api-reference": "^1.1.5",
   "@vnodes/auth": "workspace:*",
   "@vnodes/autowire": "workspace:*",
+  "@vnodes/boot-fastify": "workspace:*",
   "@vnodes/crypto": "workspace:*",
   "@vnodes/env": "workspace:*",
   "@vnodes/errors": "workspace:*",
   "@vnodes/fs": "workspace:*",
   "@vnodes/names": "workspace:*",
+  "@vnodes/net": "workspace:*",
   "@vnodes/prisma": "workspace:*",
   "@vnodes/prop": "workspace:*",
   "@vnodes/types": "workspace:*",

@@ -59,6 +59,12 @@
     },
     {
       "path": "./libs/metadata"
+    },
+    {
+      "path": "./libs/boot-fastify"
+    },
+    {
+      "path": "./libs/net"
     }
   ]
 }
