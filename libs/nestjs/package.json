@@ -209,6 +209,36 @@
    "types": "./dist/nestjs/terminus.d.ts",
    "import": "./dist/nestjs/terminus.js",
    "default": "./dist/nestjs/terminus.js"
+  },
+  "./prisma-adapter-pg": {
+   "types": "./dist/nestjs/prisma-adapter-pg.d.ts",
+   "import": "./dist/nestjs/prisma-adapter-pg.js",
+   "default": "./dist/nestjs/prisma-adapter-pg.js"
+  },
+  "./prisma-client": {
+   "types": "./dist/nestjs/prisma-client.d.ts",
+   "import": "./dist/nestjs/prisma-client.js",
+   "default": "./dist/nestjs/prisma-client.js"
+  },
+  "./auth": {
+   "types": "./dist/nestjs/auth.d.ts",
+   "import": "./dist/nestjs/auth.js",
+   "default": "./dist/nestjs/auth.js"
+  },
+  "./autowire": {
+   "types": "./dist/nestjs/autowire.d.ts",
+   "import": "./dist/nestjs/autowire.js",
+   "default": "./dist/nestjs/autowire.js"
+  },
+  "./pg": {
+   "types": "./dist/nestjs/pg.d.ts",
+   "import": "./dist/nestjs/pg.js",
+   "default": "./dist/nestjs/pg.js"
+  },
+  "./rxjs": {
+   "types": "./dist/nestjs/rxjs.d.ts",
+   "import": "./dist/nestjs/rxjs.js",
+   "default": "./dist/nestjs/rxjs.js"
   }
  },
  "files": [
@@ -245,6 +275,10 @@
   "@nestjs/swagger": "^11.2.6",
   "@nestjs/terminus": "^11.1.1",
   "@nestjs/throttler": "^6.5.0",
+  "@prisma/adapter-pg": "^7.6.0",
+  "@prisma/client": "^7.6.0",
+  "@vnodes/auth": "workspace:*",
+  "@vnodes/autowire": "workspace:*",
   "@vnodes/crypto": "workspace:*",
   "@vnodes/env": "workspace:*",
   "@vnodes/errors": "workspace:*",
@@ -263,7 +297,9 @@
   "graphql": "^16.13.2",
   "helmet": "^8.1.0",
   "ioredis": "^5.10.1",
-  "multer": "^2.1.1"
+  "multer": "^2.1.1",
+  "pg": "^8.20.0",
+  "rxjs": "^7.8.2"
  },
  "devDependencies": {
   "@swc/helpers": "~0.5.18",

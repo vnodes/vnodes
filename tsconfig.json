@@ -50,6 +50,15 @@
     },
     {
       "path": "./libs/prisma"
+    },
+    {
+      "path": "./libs/auth"
+    },
+    {
+      "path": "./libs/autowire"
+    },
+    {
+      "path": "./libs/metadata"
     }
   ]
 }

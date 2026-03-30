@@ -1,0 +1,59 @@
+{
+    "name": "@vnodes/metadata",
+    "version": "0.0.1",
+    "description": "@vnodes/metadata",
+    "keywords": [
+        "metadata"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-metadata@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
+    },
+    "homepage": "https://vnodes.github.io/vnodes/libs/metadata",
+    "icon": "https://vnodes.github.io/vnodes/libs/metadata/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
+    "bin": {
+        "version": "./bin/version.mjs"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "bin",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/metadata/src",
+        "targets": {
+            "build": {},
+            "doc": {},
+            "lint": {}
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.18",
+        "@vnodes/env": "workspace:*"
+    },
+    "devDependencies": {
+        "@nestjs/common": "^11.1.17",
+        "@nestjs/core": "^11.1.17"
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.1.17",
+        "@nestjs/core": "^11.1.17"
+    }
+}

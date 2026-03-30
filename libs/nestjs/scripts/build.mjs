@@ -32,6 +32,7 @@ export async function build() {
         'helmet',
         'compress',
         'multer',
+        'pg',
     ];
 
     for (const packageName of allPackages) {

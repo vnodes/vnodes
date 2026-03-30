@@ -4,7 +4,7 @@ import { definedOrThrow, diToken } from '@vnodes/utils';
 import { prismaClientToken } from './prisma-client.provider.js';
 
 export function prismaDelegateToken(modelName: string, profile = '') {
-    const key = `${modelName}_${DI.DB_REPOSITORY}`;
+    const key = `${modelName}_${DI.DB_REPO}`;
     return diToken(key, profile);
 }
 
