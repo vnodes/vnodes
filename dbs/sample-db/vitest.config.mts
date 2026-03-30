@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/dbs/sample-db',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/sample-db',
         watch: false,
         globals: true,
         environment: 'node',

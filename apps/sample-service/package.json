@@ -39,7 +39,12 @@
     "nx": {
         "sourceRoot": "apps/sample-service/src",
         "targets": {
-            "build": {},
+            "build": {
+                "options": {
+                    "main": "{projectRoot}/src/main.ts"
+                }
+            },
+            "serve": {},
             "doc": {},
             "lint": {}
         }

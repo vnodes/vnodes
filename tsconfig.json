@@ -65,6 +65,9 @@
     },
     {
       "path": "./libs/net"
+    },
+    {
+      "path": "./libs/boot-grpc"
     }
   ]
 }

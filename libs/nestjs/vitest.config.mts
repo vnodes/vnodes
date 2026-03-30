@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/libs/nestjs',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/nestjs',
         watch: false,
         globals: true,
         environment: 'node',

@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/libs/autowire',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/autowire',
         watch: false,
         globals: true,
         environment: 'node',

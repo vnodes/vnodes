@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/libs/errors',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/errors',
         watch: false,
         globals: true,
         environment: 'node',

@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/libs/prisma',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/prisma',
         watch: false,
         globals: true,
         environment: 'node',

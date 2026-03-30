@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/libs/crypto',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/crypto',
         watch: false,
         globals: true,
         environment: 'node',

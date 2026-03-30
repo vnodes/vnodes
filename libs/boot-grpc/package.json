@@ -1,17 +1,17 @@
 {
-    "name": "@vnodes/boot-fastify",
+    "name": "@vnodes/boot-grpc",
     "version": "0.0.1",
-    "description": "@vnodes/boot-fastify",
+    "description": "@vnodes/boot-grpc",
     "keywords": [
-        "boot-fastify"
+        "boot-grpc"
     ],
     "author": {
         "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-boot-fastify@gmail.com",
+        "email": "robert.brightline+vnodes-boot-grpc@gmail.com",
         "url": "https://vnodes.github.io/vnodes"
     },
-    "homepage": "https://vnodes.github.io/vnodes/libs/boot-fastify",
-    "icon": "https://vnodes.github.io/vnodes/libs/boot-fastify/assets/favicon.png",
+    "homepage": "https://vnodes.github.io/vnodes/libs/boot-grpc",
+    "icon": "https://vnodes.github.io/vnodes/libs/boot-grpc/assets/favicon.png",
     "funding": [
         "https://cash.app/$puqlib"
     ],
@@ -37,7 +37,7 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "libs/boot-fastify/src",
+        "sourceRoot": "libs/boot-grpc/src",
         "targets": {
             "build": {},
             "doc": {},
@@ -52,9 +52,6 @@
         "@nestjs/config": "^4.0.3",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.17",
-        "@nestjs/platform-fastify": "^11.1.17",
-        "@nestjs/swagger": "^11.2.6",
-        "@scalar/nestjs-api-reference": "^1.1.5",
         "@vnodes/env": "workspace:*",
         "@vnodes/net": "workspace:*",
         "@vnodes/prop": "workspace:*"
@@ -64,9 +61,6 @@
         "@nestjs/config": "^4.0.3",
         "@nestjs/core": "^11.1.17",
         "@nestjs/microservices": "^11.1.17",
-        "@nestjs/platform-fastify": "^11.1.17",
-        "@nestjs/swagger": "^11.2.6",
-        "@scalar/nestjs-api-reference": "^1.1.5",
         "@vnodes/env": "workspace:*",
         "@vnodes/net": "workspace:*",
         "@vnodes/prop": "workspace:*"

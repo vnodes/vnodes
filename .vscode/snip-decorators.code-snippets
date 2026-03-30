@@ -1,0 +1,54 @@
+{
+    "property decorator": {
+        "prefix": "property decorator",
+        "body": [
+            "export type $1Options = {} ",
+            "export function $1(options: $1Options): PropertyDecorator {",
+            "    return (...args) => {",
+            "       $0",
+            "        //",
+            "    };",
+            "}"
+        ],
+        "scope": "typescript"
+    },
+    "class decorator": {
+        "prefix": "class decorator",
+        "body": [
+            "export type $1Options = {} ",
+            "export function $1(options: $1Options): ClassDecorator {",
+            "    return (...args) => {",
+            "       $0",
+            "        //",
+            "    };",
+            "}"
+        ],
+        "scope": "typescript"
+    },
+    "method decorator": {
+        "prefix": "method decorator",
+        "body": [
+            "export type $1Options = {} ",
+            "export function $1(options: $1Options): MethodDecorator {",
+            "    return (...args) => {",
+            "       $0",
+            "        //",
+            "    };",
+            "}"
+        ],
+        "scope": "typescript"
+    },
+    "parameter decorator": {
+        "prefix": "parameter decorator",
+        "body": [
+            "export type $1Options = {} ",
+            "export function $1(options: $1Options): ParameterDecorator {",
+            "    return (...args) => {",
+            "       $0",
+            "        //",
+            "    };",
+            "}"
+        ],
+        "scope": "typescript"
+    }
+}

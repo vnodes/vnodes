@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/libs/boot-fastify',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/boot-fastify',
         watch: false,
         globals: true,
         environment: 'node',

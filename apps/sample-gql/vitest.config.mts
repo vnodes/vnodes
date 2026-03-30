@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/apps/sample-gql',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/sample-gql',
         watch: false,
         globals: true,
         environment: 'node',

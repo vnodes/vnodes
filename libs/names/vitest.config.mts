@@ -4,7 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../node_modules/.vite/libs/names',
     test: {
-        name: '@vnodes/types',
+        name: '@vnodes/names',
         watch: false,
         globals: true,
         environment: 'node',

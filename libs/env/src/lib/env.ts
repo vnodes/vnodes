@@ -1,9 +1,12 @@
 export class Env {
+    static readonly NODE_ENV = 'NODE_ENV';
     static readonly APP_ID = 'APP_ID';
     static readonly APP_DESC = 'APP_DESC';
     static readonly PORT = 'PORT';
     static readonly HOST = 'HOST';
     static readonly API_PREFIX = 'API_PREFIX';
+
+    static readonly ALLOWED_ORIGINS = 'ALLOWED_ORIGINS';
 
     static readonly DB_NAME = 'DB_NAME';
     static readonly DB_URL = 'DB_URL';
