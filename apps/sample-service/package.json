@@ -34,6 +34,7 @@
     "files": [
         "dist",
         "bin",
+        "scripts",
         "!**/*.tsbuildinfo"
     ],
     "nx": {
@@ -44,12 +45,18 @@
                     "main": "{projectRoot}/src/main.ts"
                 }
             },
+            "build-script": {},
             "serve": {},
             "doc": {},
             "lint": {}
         }
     },
     "dependencies": {
+        "@grpc/grpc-js": "^1.14.3",
+        "@grpc/proto-loader": "^0.8.0",
         "@swc/helpers": "~0.5.18"
+    },
+    "devDependencies": {
+        "ts-proto": "^2.11.6"
     }
 }

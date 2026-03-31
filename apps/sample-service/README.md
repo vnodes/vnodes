@@ -10,7 +10,7 @@
 
 ## @vnodes/sample-service
 
-IO
+Sample gRpc Service
 
 ## Installation
 

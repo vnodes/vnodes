@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package api.v1;
+
+
+// --- Enums ---
+
+enum Status {
+  STATUS_UNKNOWN = 0;
+  STATUS_ACTIVE = 1;
+  STATUS_PASSIVE = 2;
+}
+
+// --- Data Messages ---
+
+message Category {
+  int32 id = 1;
+  string name = 2;
+  bool active = 3;
+  // Unix timestamp in milliseconds
+  int64 created_at = 4;
+  int64 updated_at = 5;
+
+  repeated Sample samples = 6;
+}
+
+message Sample {
+  int32 id = 1;
+  string name = 2;
+  bool active = 3;
+  optional int32 category_id = 4;
+  // Unix timestamp in milliseconds
+  int64 created_at = 5;
+  int64 updated_at = 6;
+
+  optional Category category = 7;
+}
+
+// --- CRUD Service ---
+
+service SampleService {
+  rpc Create(CreateSampleRequest) returns (Sample);
+  rpc FindOne(GetSampleRequest) returns (Sample);
+  rpc Update(UpdateSampleRequest) returns (Sample);
+  rpc Delete(DeleteSampleRequest) returns (Sample);
+}
+
+// --- Request Messages ---
+
+message CreateSampleRequest {
+  string name = 1;
+  int32 category_id = 2;
+}
+
+message UpdateSampleRequest {
+  int32 id = 1;
+  optional string name = 2;
+  optional int32 category_id = 3;
+  optional bool active = 4;
+}
+
+message GetSampleRequest {
+  int32 id = 1;
+}
+
+message DeleteSampleRequest {
+  int32 id = 1;
+}
