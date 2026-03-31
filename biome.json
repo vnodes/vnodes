@@ -6,7 +6,8 @@
             "!**/node_modules",
             "!**/dist",
             "!**/assets",
-            "!**/generated"
+            "!**/generated",
+            "!**/scripts"
         ]
     },
     "linter": {

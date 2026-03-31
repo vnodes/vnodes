@@ -45,7 +45,6 @@
                     "main": "{projectRoot}/src/main.ts"
                 }
             },
-            "build-script": {},
             "serve": {},
             "doc": {},
             "lint": {}
