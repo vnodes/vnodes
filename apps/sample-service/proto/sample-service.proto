@@ -2,13 +2,11 @@ syntax = "proto3";
 
 package api.v1;
 
-
 // --- Enums ---
 
-enum Status {
-  STATUS_UNKNOWN = 0;
-  STATUS_ACTIVE = 1;
-  STATUS_PASSIVE = 2;
+enum SortOrder {
+  ASC = 0;
+  DESC = 1;
 }
 
 // --- Data Messages ---
@@ -17,10 +15,8 @@ message Category {
   int32 id = 1;
   string name = 2;
   bool active = 3;
-  // Unix timestamp in milliseconds
   int64 created_at = 4;
   int64 updated_at = 5;
-
   repeated Sample samples = 6;
 }
 
@@ -29,40 +25,99 @@ message Sample {
   string name = 2;
   bool active = 3;
   optional int32 category_id = 4;
-  // Unix timestamp in milliseconds
   int64 created_at = 5;
   int64 updated_at = 6;
-
   optional Category category = 7;
 }
 
-// --- CRUD Service ---
+// --- Query & Filter Inputs ---
 
-service SampleService {
-  rpc Create(CreateSampleRequest) returns (Sample);
-  rpc FindOne(GetSampleRequest) returns (Sample);
-  rpc Update(UpdateSampleRequest) returns (Sample);
-  rpc Delete(DeleteSampleRequest) returns (Sample);
+message CategoryWhereInput {
+  optional int32 id = 1;
+  optional string name = 2;
+  optional bool active = 3;
 }
 
-// --- Request Messages ---
+message SampleWhereInput {
+  optional int32 id = 1;
+  optional string name = 2;
+  optional bool active = 3;
+  optional int32 category_id = 4;
+}
 
-message CreateSampleRequest {
+message CategoryOrderByInput {
+  optional SortOrder id = 1;
+  optional SortOrder name = 2;
+}
+
+// --- Request Objects ---
+
+message FindManyCategoryRequest {
+  optional CategoryWhereInput where = 1;
+  optional CategoryOrderByInput order_by = 2;
+  optional int32 skip = 3;
+  optional int32 take = 4;
+}
+
+message FindManySampleRequest {
+  optional SampleWhereInput where = 1;
+  optional int32 skip = 2;
+  optional int32 take = 3;
+}
+
+message UniqueIdRequest {
+  int32 id = 1;
+}
+
+message CreateCategoryInput {
   string name = 1;
-  int32 category_id = 2;
+  optional bool active = 2;
 }
 
-message UpdateSampleRequest {
+message UpdateCategoryInput {
+  int32 id = 1;
+  optional string name = 2;
+  optional bool active = 3;
+}
+
+message CreateSampleInput {
+  string name = 1;
+  optional int32 category_id = 2;
+}
+
+message UpdateSampleInput {
   int32 id = 1;
   optional string name = 2;
   optional int32 category_id = 3;
   optional bool active = 4;
 }
 
-message GetSampleRequest {
-  int32 id = 1;
+// --- Response Wrappers ---
+
+message CategoryList {
+  repeated Category nodes = 1;
+  int32 total_count = 2;
 }
 
-message DeleteSampleRequest {
-  int32 id = 1;
+message SampleList {
+  repeated Sample nodes = 1;
+  int32 total_count = 2;
+}
+
+// --- Services ---
+
+service CategoryService {
+  rpc Create(CreateCategoryInput) returns (Category);
+  rpc FindMany(FindManyCategoryRequest) returns (CategoryList);
+  rpc FindOneById(UniqueIdRequest) returns (Category);
+  rpc Update(UpdateCategoryInput) returns (Category);
+  rpc Delete(UniqueIdRequest) returns (Category);
+}
+
+service SampleService {
+  rpc Create(CreateSampleInput) returns (Sample);
+  rpc FindMany(FindManySampleRequest) returns (SampleList);
+  rpc FindOneById(UniqueIdRequest) returns (Sample);
+  rpc Update(UpdateSampleInput) returns (Sample);
+  rpc Delete(UniqueIdRequest) returns (Sample);
 }
