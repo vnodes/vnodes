@@ -53,7 +53,8 @@
         "reflect-metadata": "^0.2.2"
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.18"
+        "@swc/helpers": "~0.5.18",
+        "@vnodes/types": "workspace:*"
     },
     "devDependencies": {
         "@nestjs/common": "^11.1.17",

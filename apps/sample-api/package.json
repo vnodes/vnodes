@@ -53,9 +53,13 @@
         "@swc/helpers": "~0.5.18"
     },
     "devDependencies": {
-        "@vnodes/nestjs": "workspace:*"
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/types": "workspace:*",
+        "@vnodes/sample-db": "workspace:*"
     },
     "peerDependencies": {
-        "@vnodes/nestjs": "workspace:*"
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/types": "workspace:*",
+        "@vnodes/sample-db": "workspace:*"
     }
 }

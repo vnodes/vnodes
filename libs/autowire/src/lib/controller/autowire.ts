@@ -12,6 +12,11 @@ export type AutowireOptions = {
     readDto: Type;
 };
 
+/**
+ * Autowire rest controller and its methods {@link AutowireMethodName}
+ * @param options
+ * @returns
+ */
 export function Autowire(options: AutowireOptions): ClassDecorator {
     return (...args) => {
         const target = args[0];

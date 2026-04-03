@@ -108,3 +108,13 @@ export class InvalidDateError extends Error {
         }
     }
 }
+export class UnsupportedError extends Error {
+    constructor(message = '') {
+        super(message);
+        Object.setPrototypeOf(this, UnsupportedError.prototype);
+        this.name = this.constructor.name;
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, this.constructor);
+        }
+    }
+}

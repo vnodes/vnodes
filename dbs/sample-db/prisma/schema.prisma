@@ -3,6 +3,7 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
+
 datasource db {
   provider = "postgresql"
 }
@@ -19,8 +20,11 @@ model Category {
   updatedAt DateTime @updatedAt
   active    Boolean  @default(true)
 
-  name    String   @unique
+  name String @unique
+
   samples Sample[]
+
+  @@index([active])
 }
 
 model Sample {
@@ -32,6 +36,6 @@ model Sample {
 
   name String @unique
 
-  category   Category? @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId Int?
 }

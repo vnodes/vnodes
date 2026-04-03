@@ -37,6 +37,14 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "@prisma/generator-helper": "^7.6.0",
+    "@swc/helpers": "~0.5.18",
+    "@vnodes/fs": "workspace:*"
+  },
+  "devDependencies": {
+    "@vnodes/errors": "workspace:*"
+  },
+  "peerDependencies": {
+    "@vnodes/errors": "workspace:*"
   }
 }

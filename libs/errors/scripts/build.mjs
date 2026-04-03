@@ -14,6 +14,7 @@ const errors = [
     'NotObject',
     'EmptyString',
     'InvalidDate',
+    'Unsupported'
 ];
 
 const set = new Set();

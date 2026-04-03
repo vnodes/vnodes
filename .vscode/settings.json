@@ -2,9 +2,6 @@
     "[dotenv]": {
         "editor.defaultFormatter": "IronGeek.vscode-env"
     },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
@@ -15,23 +12,11 @@
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
     "[typescript]": {
-        "editor.defaultFormatter": "fronterior.biome-monorepo",
+        "editor.defaultFormatter": "biomejs.biome",
         "editor.codeActionsOnSave": {
-            "source.addMissingImports.ts": "always",
-            "source.biome": "always",
             "source.fixAll.biome": "always",
-            "source.fixAll.ts": "always",
             "source.organizeImports.biome": "always",
             "source.removeUnusedImports": "always"
         }
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "fronterior.biome-monorepo"
-    },
-    "[jsonl]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
+    }
 }

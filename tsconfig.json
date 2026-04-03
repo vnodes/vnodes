@@ -68,6 +68,9 @@
     },
     {
       "path": "./libs/boot-grpc"
+    },
+    {
+      "path": "./plugins/prisma-plugin-helpers"
     }
   ]
 }

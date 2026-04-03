@@ -13,8 +13,8 @@ importers:
         version: 22.6.1(nx@22.6.1(@swc-node/register@1.11.1(@swc/core@1.15.21(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.21(@swc/helpers@0.5.19)))
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.8
-        version: 2.4.8
+        specifier: ^2.4.10
+        version: 2.4.10
       '@nx/js':
         specifier: 22.6.1
         version: 22.6.1(@babel/traverse@7.29.0)(@swc-node/register@1.11.1(@swc/core@1.15.21(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.21(@swc/helpers@0.5.19))(nx@22.6.1(@swc-node/register@1.11.1(@swc/core@1.15.21(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.21(@swc/helpers@0.5.19)))(verdaccio@6.3.2(typanion@3.14.0))
@@ -100,6 +100,12 @@ importers:
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
+      '@vnodes/sample-db':
+        specifier: workspace:*
+        version: link:../../dbs/sample-db
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
 
   apps/sample-gql:
     dependencies:
@@ -141,6 +147,9 @@ importers:
       '@prisma/client':
         specifier: ^7.6.0
         version: 7.6.0(prisma@7.6.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../../libs/prop
       pg:
         specifier: ^8.20.0
         version: 8.20.0
@@ -159,9 +168,6 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
-      '@vnodes/metadata':
-        specifier: workspace:*
-        version: link:../metadata
     devDependencies:
       '@nestjs/common':
         specifier: ^11.1.17
@@ -172,9 +178,15 @@ importers:
       '@vnodes/errors':
         specifier: workspace:*
         version: link:../errors
+      '@vnodes/metadata':
+        specifier: workspace:*
+        version: link:../metadata
       '@vnodes/names':
         specifier: workspace:*
         version: link:../names
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
       '@vnodes/utils':
         specifier: workspace:*
         version: link:../utils
@@ -508,6 +520,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
     devDependencies:
       '@nestjs/common':
         specifier: ^11.1.17
@@ -554,9 +569,41 @@ importers:
 
   plugins/prisma-plugin:
     dependencies:
+      '@prisma/generator-helper':
+        specifier: ^7.6.0
+        version: 7.6.0
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+      '@vnodes/fs':
+        specifier: workspace:*
+        version: link:../../libs/fs
+    devDependencies:
+      '@vnodes/errors':
+        specifier: workspace:*
+        version: link:../../libs/errors
+
+  plugins/prisma-plugin-helpers:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+    devDependencies:
+      '@prisma/generator-helper':
+        specifier: ^7.6.0
+        version: 7.6.0
+      '@vnodes/errors':
+        specifier: workspace:*
+        version: link:../../libs/errors
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../../libs/prop
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
+      '@vnodes/utils':
+        specifier: workspace:*
+        version: link:../../libs/utils
 
 packages:
 
@@ -1289,55 +1336,55 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@biomejs/biome@2.4.8':
-    resolution: {integrity: sha512-ponn0oKOky1oRXBV+rlSaUlixUxf1aZvWC19Z41zBfUOUesthrQqL3OtiAlSB1EjFjyWpn98Q64DHelhA6jNlA==}
+  '@biomejs/biome@2.4.10':
+    resolution: {integrity: sha512-xxA3AphFQ1geij4JTHXv4EeSTda1IFn22ye9LdyVPoJU19fNVl0uzfEuhsfQ4Yue/0FaLs2/ccVi4UDiE7R30w==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.4.8':
-    resolution: {integrity: sha512-ARx0tECE8I7S2C2yjnWYLNbBdDoPdq3oyNLhMglmuctThwUsuzFWRKrHmIGwIRWKz0Mat9DuzLEDp52hGnrxGQ==}
+  '@biomejs/cli-darwin-arm64@2.4.10':
+    resolution: {integrity: sha512-vuzzI1cWqDVzOMIkYyHbKqp+AkQq4K7k+UCXWpkYcY/HDn1UxdsbsfgtVpa40shem8Kax4TLDLlx8kMAecgqiw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.4.8':
-    resolution: {integrity: sha512-Jg9/PsB9vDCJlANE8uhG7qDhb5w0Ix69D7XIIc8IfZPUoiPrbLm33k2Ig3NOJ/7nb3UbesFz3D1aDKm9DvzjhQ==}
+  '@biomejs/cli-darwin-x64@2.4.10':
+    resolution: {integrity: sha512-14fzASRo+BPotwp7nWULy2W5xeUyFnTaq1V13Etrrxkrih+ez/2QfgFm5Ehtf5vSjtgx/IJycMMpn5kPd5ZNaA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.4.8':
-    resolution: {integrity: sha512-Zo9OhBQDJ3IBGPlqHiTISloo5H0+FBIpemqIJdW/0edJ+gEcLR+MZeZozcUyz3o1nXkVA7++DdRKQT0599j9jA==}
+  '@biomejs/cli-linux-arm64-musl@2.4.10':
+    resolution: {integrity: sha512-WrJY6UuiSD/Dh+nwK2qOTu8kdMDlLV3dLMmychIghHPAysWFq1/DGC1pVZx8POE3ZkzKR3PUUnVrtZfMfaJjyQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-arm64@2.4.8':
-    resolution: {integrity: sha512-5CdrsJct76XG2hpKFwXnEtlT1p+4g4yV+XvvwBpzKsTNLO9c6iLlAxwcae2BJ7ekPGWjNGw9j09T5KGPKKxQig==}
+  '@biomejs/cli-linux-arm64@2.4.10':
+    resolution: {integrity: sha512-7MH1CMW5uuxQ/s7FLST63qF8B3Hgu2HRdZ7tA1X1+mk+St4JOuIrqdhIBnnyqeyWJNI+Bww7Es5QZ0wIc1Cmkw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64-musl@2.4.8':
-    resolution: {integrity: sha512-Gi8quv8MEuDdKaPFtS2XjEnMqODPsRg6POT6KhoP+VrkNb+T2ywunVB+TvOU0LX1jAZzfBr+3V1mIbBhzAMKvw==}
+  '@biomejs/cli-linux-x64-musl@2.4.10':
+    resolution: {integrity: sha512-kDTi3pI6PBN6CiczsWYOyP2zk0IJI08EWEQyDMQWW221rPaaEz6FvjLhnU07KMzLv8q3qSuoB93ua6inSQ55Tw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64@2.4.8':
-    resolution: {integrity: sha512-PdKXspVEaMCQLjtZCn6vfSck/li4KX9KGwSDbZdgIqlrizJ2MnMcE3TvHa2tVfXNmbjMikzcfJpuPWH695yJrw==}
+  '@biomejs/cli-linux-x64@2.4.10':
+    resolution: {integrity: sha512-tZLvEEi2u9Xu1zAqRjTcpIDGVtldigVvzug2fTuPG0ME/g8/mXpRPcNgLB22bGn6FvLJpHHnqLnwliOu8xjYrg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-win32-arm64@2.4.8':
-    resolution: {integrity: sha512-LoFatS0tnHv6KkCVpIy3qZCih+MxUMvdYiPWLHRri7mhi2vyOOs8OrbZBcLTUEWCS+ktO72nZMy4F96oMhkOHQ==}
+  '@biomejs/cli-win32-arm64@2.4.10':
+    resolution: {integrity: sha512-umwQU6qPzH+ISTf/eHyJ/QoQnJs3V9Vpjz2OjZXe9MVBZ7prgGafMy7yYeRGnlmDAn87AKTF3Q6weLoMGpeqdQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.4.8':
-    resolution: {integrity: sha512-vAn7iXDoUbqFXqVocuq1sMYAd33p8+mmurqJkWl6CtIhobd/O6moe4rY5AJvzbunn/qZCdiDVcveqtkFh1e7Hg==}
+  '@biomejs/cli-win32-x64@2.4.10':
+    resolution: {integrity: sha512-aW/JU5GuyH4uxMrNYpoC2kjaHlyJGLgIa3XkhPEZI0uKhZhJZU8BuEyJmvgzSPQNGozBwWjC972RaNdcJ9KyJg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -2450,6 +2497,9 @@ packages:
   '@prisma/dev@0.24.3':
     resolution: {integrity: sha512-ffHlQuKXZiaDt9Go0OnCTdJZrHxK0k7omJKNV86/VjpsXu5EIHZLK0T7JSWgvNlJwh56kW9JFu9v0qJciFzepg==}
 
+  '@prisma/dmmf@7.6.0':
+    resolution: {integrity: sha512-OZFEOEziUnJJMx2vu3twM5jEIsEyCRDPXq2Y/2XMBNPhnscKvbDWS3DAYyWmH8jqkDn4VqyE1UCvEFt30Pqbww==}
+
   '@prisma/driver-adapter-utils@7.6.0':
     resolution: {integrity: sha512-D8j3p0RnhLuufMaRLX6QqtGgPC5Ao3l5oFP6Q5AL0rTHi4vna+NzGEipwCsfvcSvaGFCbsH3lsTMbb4WvY+ovA==}
 
@@ -2461,6 +2511,12 @@ packages:
 
   '@prisma/fetch-engine@7.6.0':
     resolution: {integrity: sha512-N575Ni95c3FkduWY/eKTHqNYgNbceZ1tQaSknVtJjpKmiiBXmniESn/GTxsDvICC4ZeiNrXxioGInzQrCdx16w==}
+
+  '@prisma/generator-helper@7.6.0':
+    resolution: {integrity: sha512-Wnb7NypN2581AXsaDdfGM6Guvfg6ahs0ooWHhFwD+/mrE3rI122cNRWMV9W1hqyt5OITs+3TV2M6GZZ16NcwjQ==}
+
+  '@prisma/generator@7.6.0':
+    resolution: {integrity: sha512-F09ZN/QVlKuvoAKEnHZB3LBbooKQTrio7NrKhI7tf0C9XZuCoALP/F7gADpTayXDmPaII1Klit3SJmJsfantEw==}
 
   '@prisma/get-platform@7.2.0':
     resolution: {integrity: sha512-k1V0l0Td1732EHpAfi2eySTezyllok9dXb6UQanajkJQzPUGi3vO2z7jdkz67SypFTdmbnyGYxvEvYZdZsMAVA==}
@@ -7769,39 +7825,39 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@biomejs/biome@2.4.8':
+  '@biomejs/biome@2.4.10':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.4.8
-      '@biomejs/cli-darwin-x64': 2.4.8
-      '@biomejs/cli-linux-arm64': 2.4.8
-      '@biomejs/cli-linux-arm64-musl': 2.4.8
-      '@biomejs/cli-linux-x64': 2.4.8
-      '@biomejs/cli-linux-x64-musl': 2.4.8
-      '@biomejs/cli-win32-arm64': 2.4.8
-      '@biomejs/cli-win32-x64': 2.4.8
+      '@biomejs/cli-darwin-arm64': 2.4.10
+      '@biomejs/cli-darwin-x64': 2.4.10
+      '@biomejs/cli-linux-arm64': 2.4.10
+      '@biomejs/cli-linux-arm64-musl': 2.4.10
+      '@biomejs/cli-linux-x64': 2.4.10
+      '@biomejs/cli-linux-x64-musl': 2.4.10
+      '@biomejs/cli-win32-arm64': 2.4.10
+      '@biomejs/cli-win32-x64': 2.4.10
 
-  '@biomejs/cli-darwin-arm64@2.4.8':
+  '@biomejs/cli-darwin-arm64@2.4.10':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.4.8':
+  '@biomejs/cli-darwin-x64@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.4.8':
+  '@biomejs/cli-linux-arm64-musl@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.4.8':
+  '@biomejs/cli-linux-arm64@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.4.8':
+  '@biomejs/cli-linux-x64-musl@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.4.8':
+  '@biomejs/cli-linux-x64@2.4.10':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.4.8':
+  '@biomejs/cli-win32-arm64@2.4.10':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.4.8':
+  '@biomejs/cli-win32-x64@2.4.10':
     optional: true
 
   '@borewit/text-codec@0.2.2': {}
@@ -9027,6 +9083,8 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@prisma/dmmf@7.6.0': {}
+
   '@prisma/driver-adapter-utils@7.6.0':
     dependencies:
       '@prisma/debug': 7.6.0
@@ -9045,6 +9103,14 @@ snapshots:
       '@prisma/debug': 7.6.0
       '@prisma/engines-version': 7.6.0-1.75cbdc1eb7150937890ad5465d861175c6624711
       '@prisma/get-platform': 7.6.0
+
+  '@prisma/generator-helper@7.6.0':
+    dependencies:
+      '@prisma/debug': 7.6.0
+      '@prisma/dmmf': 7.6.0
+      '@prisma/generator': 7.6.0
+
+  '@prisma/generator@7.6.0': {}
 
   '@prisma/get-platform@7.2.0':
     dependencies:
