@@ -1,40 +1,42 @@
-import { DMMF } from "@prisma/generator-helper";
-import { Printer } from "./printer.js";
-import { DtoDecoratorPrinter } from "./dto-decorator-printer.js";
-import { extractPropOptions, propType, isRequiredProp, parsePropOptions, ParsedPropOptions } from "@vnodes/prisma-plugin-helpers";
-import { joinLines } from "@vnodes/utils";
-import { DtoGeneratorOptions } from "../types/dto-generator-options.js";
+import type { DMMF } from '@prisma/generator-helper';
+import {
+    extractPropOptions,
+    isRequiredProp,
+    type ParsedPropOptions,
+    parsePropOptions,
+    propType,
+} from '@vnodes/prisma-plugin-helpers';
+import { joinBySpace } from '@vnodes/utils';
+import type { DtoGeneratorOptions } from '../types/dto-generator-options.js';
+import { DtoDecoratorPrinter } from './dto-decorator-printer.js';
 
-
-export class DtoPropertyPrinter implements Printer {
+export class DtoPropertyPrinter {
     constructor(
         protected readonly datamodel: DMMF.Datamodel,
         protected readonly model: DMMF.Model,
         protected readonly field: DMMF.Field,
-        protected readonly decoratorPrinter: typeof DtoDecoratorPrinter,
-        protected readonly generatorOptions: DtoGeneratorOptions
-    ) { }
+        protected readonly generatorOptions: DtoGeneratorOptions,
+    ) {}
 
     protected annotations(): ParsedPropOptions {
-
         if (this.field.documentation) {
-
-            return parsePropOptions(extractPropOptions(this.field.documentation))
+            return parsePropOptions(extractPropOptions(this.field.documentation));
         }
         return {};
     }
 
     protected isRequired() {
-        return isRequiredProp(this.field, this.annotations()) ? "" : "?";
+        return isRequiredProp(this.field, this.annotations()) ? '' : '?';
     }
 
     protected printPropetyDefinition() {
-        return `${this.field.name}${this.isRequired()}:${propType(this.field)};`
+        return `${this.field.name}${this.isRequired()}:${propType(this.field)};`;
     }
+
     print(): string {
-        return joinLines(
-            new this.decoratorPrinter(this.datamodel, this.model, this.field, this.generatorOptions).print(),
-            this.printPropetyDefinition()
-        )
+        return joinBySpace(
+            new DtoDecoratorPrinter(this.datamodel, this.model, this.field, this.generatorOptions).print(),
+            this.printPropetyDefinition(),
+        );
     }
 }

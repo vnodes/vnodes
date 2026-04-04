@@ -15,9 +15,13 @@
     }
   },
   "files": [
+    "bin",
     "dist",
     "!**/*.tsbuildinfo"
   ],
+  "bin": {
+    "dto": "./bin/dto.mjs"
+  },
   "nx": {
     "sourceRoot": "plugins/prisma-plugin/src",
     "targets": {

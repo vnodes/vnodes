@@ -3,6 +3,10 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
+generator dto {
+  provider = "dto"
+  output   = "../src/generated/dtos"
+}
 
 datasource db {
   provider = "postgresql"

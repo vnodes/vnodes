@@ -1,4 +1,4 @@
-import type { FactoryProvider } from '@nestjs/common';
+import { type FactoryProvider, Inject } from '@nestjs/common';
 import { DI } from '@vnodes/env';
 import { definedOrThrow, diToken } from '@vnodes/utils';
 import { prismaClientToken } from './prisma-client.provider.js';
@@ -19,5 +19,11 @@ export function providePrismaDelegate<ModelName extends string, PrismaClient ext
             const delegate = client[modelName];
             return definedOrThrow(delegate);
         },
+    };
+}
+
+export function InjectDelegate(modelName: string, profile = ''): ParameterDecorator {
+    return (...args) => {
+        Inject(prismaDelegateToken(modelName, profile))(...args);
     };
 }

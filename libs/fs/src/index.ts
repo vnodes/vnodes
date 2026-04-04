@@ -10,6 +10,7 @@ export * from './lib/read/read-text-file.js';
 export * from './lib/read/read-yaml-file.js';
 export * from './lib/update/update-json-file.js';
 export * from './lib/update/update-yaml-file.js';
+export * from './lib/write/append-text-file.js';
 export * from './lib/write/write-json-file.js';
 export * from './lib/write/write-text-file.js';
 export * from './lib/write/write-yaml-file.js';
