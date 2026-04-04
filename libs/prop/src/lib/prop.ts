@@ -1,4 +1,4 @@
-import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty, type ApiPropertyOptions } from '@nestjs/swagger';
+import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty } from '@nestjs/swagger';
 import type { Any } from '@vnodes/types';
 import { type ClassConstructor, Expose, Type } from 'class-transformer';
 import {
@@ -14,6 +14,7 @@ import { ArrayProp } from './array-prop.js';
 import { isClassType } from './is-class-type.js';
 import { normalizePropertyOptions } from './normalize-property-options.js';
 import { NumberProp } from './number-prop.js';
+import type { PropOptions } from './prop-options.js';
 import { StringProp } from './string-prop.js';
 
 /**
@@ -35,7 +36,7 @@ import { StringProp } from './string-prop.js';
  * @param validationOptions property validation options from class-validator
  * @returns -- {@link PropertyDecorator}
  */
-export function Prop(options: ApiPropertyOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
+export function Prop(options: PropOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {
         options = normalizePropertyOptions(options, args[0], args[1]);
 
@@ -92,4 +93,14 @@ export function Prop(options: ApiPropertyOptions = {}, validationOptions?: Valid
     };
 }
 
-Prop({ readOnly: true, writeOnly: true });
+export function OptionalProp(options: PropOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
+    return (...args) => {
+        Prop(
+            {
+                ...options,
+                required: false,
+            } as PropOptions,
+            validationOptions,
+        )(...args);
+    };
+}

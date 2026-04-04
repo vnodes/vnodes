@@ -1,7 +1,7 @@
 import type { DMMF } from '@prisma/generator-helper';
 import type { ParsedPropOptions } from './parse-annotations.js';
 
-export function isRequired(field: DMMF.Field, options: ParsedPropOptions) {
+export function isRequiredField(field: DMMF.Field, options: ParsedPropOptions) {
     if (options.required === 'true') {
         return true;
     }
