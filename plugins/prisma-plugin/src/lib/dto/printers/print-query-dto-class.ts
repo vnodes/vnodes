@@ -1,8 +1,9 @@
 import { DMMF } from "@prisma/generator-helper";
+import { joinLines } from "@vnodes/utils";
 
 export function printQueryDtoClass(model: DMMF.Model) {
 
-    return [
+    return joinLines(
         `export class ${model.name}QueryDto {`,
         `    @Prop({ minimum: 1 }) take?: number;`,
         `    @Prop({ minimum: 0 }) skip?: number;`,
@@ -11,6 +12,6 @@ export function printQueryDtoClass(model: DMMF.Model) {
         `    @Prop() search?: string;`,
         `    @Prop() withDeleted?: boolean;`,
         `}`,
+    )
 
-    ].join('\n\t')
 }

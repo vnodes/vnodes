@@ -582,9 +582,18 @@ importers:
       '@vnodes/errors':
         specifier: workspace:*
         version: link:../../libs/errors
+      '@vnodes/names':
+        specifier: workspace:*
+        version: link:../../libs/names
       '@vnodes/prisma-plugin-helpers':
         specifier: workspace:*
         version: link:../prisma-plugin-helpers
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
+      '@vnodes/utils':
+        specifier: workspace:*
+        version: link:../../libs/utils
 
   plugins/prisma-plugin-helpers:
     dependencies:

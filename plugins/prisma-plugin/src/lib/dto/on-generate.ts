@@ -1,12 +1,23 @@
 import type { GeneratorOptions } from '@prisma/generator-helper';
-import { printDtoClasses } from './printers/print-dto-classes.js';
 import { writeTextFile } from '@vnodes/fs';
 import { join } from 'path';
-import { RequiredError } from '@vnodes/errors';
+import { InvalidDateError, RequiredError } from '@vnodes/errors';
 import { names } from '@vnodes/names';
 
 export default async function onGenerate(options: GeneratorOptions) {
     const output = options.generator.output?.value;
+
+    const propertyDecorator: string = options.generator.config.propertyDecorator as string;
+    const propertyDecoratorPackage: string = options.generator.config.propertyDecoratorPackage as string;
+
+    if (typeof propertyDecorator !== 'string') {
+        throw new InvalidDateError(`propertyDecorator configuration should be string`)
+    }
+
+    if (typeof propertyDecoratorPackage !== 'string') {
+        throw new InvalidDateError(`propertyDecorator configuration should be string`)
+    }
+
     if (!output) throw new RequiredError()
     const models = options.dmmf.datamodel.models;
 
@@ -15,7 +26,7 @@ export default async function onGenerate(options: GeneratorOptions) {
     for (const model of models) {
 
         const fileName = `${names(model.name).kebab}.dto.ts`;
-        const content = printDtoClasses(model)
+        const content = '';
         await writeTextFile(join(output, fileName), content)
     }
 

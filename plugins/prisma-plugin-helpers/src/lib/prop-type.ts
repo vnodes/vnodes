@@ -1,7 +1,10 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { UnsupportedError } from '@vnodes/errors';
 
-export function __fieldType(field: DMMF.Field) {
+
+
+
+export function __propType(field: DMMF.Field) {
     switch (field.kind) {
         case 'enum':
         case 'object': {
@@ -40,6 +43,6 @@ export function __fieldType(field: DMMF.Field) {
     }
 }
 
-export function fieldType(field: DMMF.Field) {
-    return `${__fieldType(field)}${field.isList ? '[]' : ''}`;
+export function propType(field: DMMF.Field) {
+    return `${__propType(field)}${field.isList ? '[]' : ''}`;
 }

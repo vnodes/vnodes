@@ -10,13 +10,6 @@
     },
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features",
-        "editor.codeActionsOnSave": {
-            "source.fixAll.biome": "always",
-            "source.organizeImports.biome": "always",
-            "source.removeUnusedImports": "always"
-        }
     }
+            
 }

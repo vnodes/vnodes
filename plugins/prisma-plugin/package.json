@@ -44,11 +44,15 @@
   "devDependencies": {
     "@vnodes/errors": "workspace:*",
     "@vnodes/names": "workspace:*",
-    "@vnodes/prisma-plugin-helpers": "workspace:*"
+    "@vnodes/prisma-plugin-helpers": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*"
   },
   "peerDependencies": {
     "@vnodes/errors": "workspace:*",
     "@vnodes/names": "workspace:*",
-    "@vnodes/prisma-plugin-helpers": "workspace:*"
+    "@vnodes/prisma-plugin-helpers": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*"
   }
 }
