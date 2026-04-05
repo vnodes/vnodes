@@ -120,6 +120,7 @@ export class NestjsPrinter {
         const fieldType = propType(field);
         return joinLines(
             `async deleteOneBy${pascal}Hard(${camel}: ${fieldType}){ `,
+            `    await this.findOneBy${pascal}OrThrow(${camel})`,
             `    return await this.repo.delete({ where: { ${camel} } })`,
             `}`,
         );
@@ -131,6 +132,7 @@ export class NestjsPrinter {
         const softDeleteFieldName = softDeleteField.name;
         return joinLines(
             `async deleteOneBy${pascal}(${camel}: ${fieldType}){ `,
+            `    await this.findOneBy${pascal}OrThrow(${camel})`,
             `    return await this.repo.update({ where: { ${camel}, ${softDeleteFieldName}: null }, data:{ ${softDeleteFieldName}: new Date() } })`,
             `}`,
         );
@@ -187,6 +189,7 @@ export class NestjsPrinter {
             return joinLines(
                 `   async updateOneBy${pascal}(${camel}:${propType(field)}, data: ${this.updateDtoName}) {`,
                 `        await this.findOneBy${pascal}OrThrow(${camel})`,
+                `        await this.isUnique(data)`,
                 `        return await this.repo.update({ where: { ${camel} }, data });`,
                 `    }`,
             );
@@ -200,11 +203,13 @@ export class NestjsPrinter {
 
             return joinLines(
                 `   async findOneBy${pascal}(${camel}: ${propType(field)}){`,
-                `     return  await this.repo.findFirst({ where: { ${camel} } })`,
+                `     return await this.repo.findFirst({ where: { ${camel} } })`,
                 `   }`,
 
                 `   async findOneBy${pascal}OrThrow(${camel}: ${propType(field)}){`,
-                `     return await this.repo.findFirstOrThrow({ where: { ${camel} } })`,
+                `     const found =  await this.findOneBy${pascal}(${camel})`,
+                `     if(!found) throw new NotFoundException('Not found by ${camel}')`,
+                `     return found;`,
                 `   }`,
 
                 `   async findManyBy${pascal}(${camel}: ${propType(field)}){`,
@@ -222,15 +227,42 @@ export class NestjsPrinter {
             .map((field) => {
                 return joinLines(
                     `   async find${field.type}Of(id: number){ `,
-                    `      const result = await this.repo.findUniqueOrThrow({`,
+                    `      const result = await this.repo.findUnique({`,
                     `          where: { id },`,
                     `          select: { ${field.name}: true }`,
                     `      })`,
-                    `      return result.${field.name}`,
+                    `      return result?.${field.name}`,
                     `   }`,
                 );
             })
             .join('\n');
+    }
+
+    protected printIsUnqieuMethod() {
+        const uniqueFields = this.model.fields
+            .filter((field) => field.isUnique)
+            .map((field) => `'${field.name}'`)
+            .join(',');
+        return `
+    async isUnique(data: Partial<Prisma.SampleModel>) {
+        const uniqueData = pick(data, [${uniqueFields}]);
+        const uniqueKeys = keys(uniqueData);
+        const errors: ValidationError[] = [];
+
+        for (const key of uniqueKeys) {
+            const found = await this.repo.findUnique({ where: { [key]: uniqueData[key] } });
+            if (found) {
+                errors.push({ property: key, constraints: { unique: \`\${key} must be unique\` } });
+            }
+        }
+
+        if (errors.length > 0) {
+            throw new UnprocessableEntityException({ errors });
+        }
+
+        return;
+    }
+        `;
     }
 
     protected printService() {
@@ -238,12 +270,17 @@ export class NestjsPrinter {
             `export class ${this.serviceName} {`,
             `    constructor(protected readonly repo: Prisma.${this.model.name}Delegate) {}`,
             ``,
+
+            this.printIsUnqieuMethod(),
+            `
+            `,
             `   async findMany(query: ${this.queryDtoName}) {`,
-            `        return await this.repo.findMany(normalize${this.queryDtoName}(query));`,
+            `       return await this.repo.findMany(normalize${this.queryDtoName}(query));`,
             `    }`,
             ``,
             ``,
             `   async createOne(data: ${this.createDtoName}) {`,
+            `        await this.isUnique(data)`,
             `        return await this.repo.create({ data });`,
             `    }`,
 
