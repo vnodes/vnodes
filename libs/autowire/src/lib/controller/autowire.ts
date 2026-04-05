@@ -29,8 +29,6 @@ export function Autowire(options: AutowireOptions): ClassDecorator {
 
         const methodNames = getMethodNames(target);
 
-        console.log('method names: ', methodNames);
-
         for (const methodName of methodNames) {
             const descriptor = definedOrThrow(getInheritedPropertyDescriptor(target, methodName));
             const methodArgs = [prototype, methodName, descriptor] as Parameters<MethodDecorator>;
