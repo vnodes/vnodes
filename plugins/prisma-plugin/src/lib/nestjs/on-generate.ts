@@ -4,7 +4,7 @@ import { InvalidDateError, RequiredError } from '@vnodes/errors';
 import { writeTextFile } from '@vnodes/fs';
 import { joinLines } from '@vnodes/utils';
 import { printCommonCode } from './common/print-common-code.js';
-import { DtoClassPrinter } from './printers/dto-class-printer.js';
+import { NestjsPrinter } from './printers/nestjs-printer.js';
 import type { DtoGeneratorOptions } from './types/dto-generator-options.js';
 
 export default async function onGenerate(options: GeneratorOptions) {
@@ -14,7 +14,7 @@ export default async function onGenerate(options: GeneratorOptions) {
     const propertyDecoratorPackage: string =
         (options.generator.config.propertyDecoratorPackage as string) ?? '@vnodes/prop';
     const prismaClientPath: string = (options.generator.config.prismaClientPath as string) ?? '../prisma/client.js';
-    const fileName: string = (options.generator.config.fileName as string) ?? 'dtos.ts';
+    const fileName: string = (options.generator.config.fileName as string) ?? 'nestjs.ts';
 
     if (typeof propertyDecorator !== 'string') {
         throw new InvalidDateError(`propertyDecorator configuration should be string`);
@@ -41,7 +41,7 @@ export default async function onGenerate(options: GeneratorOptions) {
     contents.push(printCommonCode(dtoGeneratorOptions));
 
     for (const model of models) {
-        contents.push(new DtoClassPrinter(datamodel, model, dtoGeneratorOptions).print());
+        contents.push(new NestjsPrinter(datamodel, model, dtoGeneratorOptions).print());
     }
 
     await writeTextFile(join(output, fileName), joinLines(...contents));

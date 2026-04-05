@@ -27,7 +27,9 @@ export function Autowire(options: AutowireOptions): ClassDecorator {
         const PATH = pluralize(kebab);
         Controller(PATH)(...args);
 
-        const methodNames = getMethodNames(prototype);
+        const methodNames = getMethodNames(target);
+
+        console.log('method names: ', methodNames);
 
         for (const methodName of methodNames) {
             const descriptor = definedOrThrow(getInheritedPropertyDescriptor(target, methodName));

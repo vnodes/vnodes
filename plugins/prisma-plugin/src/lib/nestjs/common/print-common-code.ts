@@ -9,6 +9,8 @@ export function printCommonCode(generatorOptions: DtoGeneratorOptions) {
         `import {${propertyDecorator}} from '${propertyDecoratorPackage}'`,
         `import { Prisma } from '${prismaClientPath}';`,
         ``,
+
+        ``,
         `export class PaginationDto {`,
         `@${propertyDecorator}({ minimum: 1 }) take?: number`,
         `@${propertyDecorator}({ minimum: 0 }) skip?: number`,

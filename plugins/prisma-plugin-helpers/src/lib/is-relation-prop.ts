@@ -1,5 +1,5 @@
-import { DMMF } from "@prisma/generator-helper";
+import type { DMMF } from '@prisma/generator-helper';
 
 export function isRelationProp(field: DMMF.Field) {
-    return field.kind === 'object'
+    return field.kind === 'object';
 }

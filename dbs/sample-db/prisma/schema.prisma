@@ -3,9 +3,9 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
-generator dto {
-  provider = "dto"
-  output   = "../src/generated/dtos"
+generator nestjs {
+  provider = "nestjs"
+  output   = "../src/generated/nestjs"
 }
 
 datasource db {

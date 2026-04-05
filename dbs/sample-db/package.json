@@ -55,10 +55,10 @@
             "import": "./dist/generated/prisma/commonInputTypes.js",
             "default": "./dist/generated/prisma/commonInputTypes.js"
         },
-        "./dtos": {
-            "types": "./dist/generated/dtos/dtos.d.ts",
-            "import": "./dist/generated/dtos/dtos.js",
-            "default": "./dist/generated/dtos/dtos.js"
+        "./nestjs": {
+            "types": "./dist/generated/nestjs/nestjs.d.ts",
+            "import": "./dist/generated/nestjs/nestjs.js",
+            "default": "./dist/generated/nestjs/nestjs.js"
         }
     },
     "files": [

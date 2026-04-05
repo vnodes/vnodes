@@ -1,1 +1,1 @@
-export * from './lib/sample-db.js';
+export const sampleDb = 'sample-db';

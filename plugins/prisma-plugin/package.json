@@ -20,7 +20,7 @@
     "!**/*.tsbuildinfo"
   ],
   "bin": {
-    "dto": "./bin/dto.mjs"
+    "nestjs": "./bin/nestjs.mjs"
   },
   "nx": {
     "sourceRoot": "plugins/prisma-plugin/src",

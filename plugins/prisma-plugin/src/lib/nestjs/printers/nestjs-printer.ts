@@ -2,10 +2,12 @@ import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
 import {
     extractPropOptions,
-    isFindByField,
+    isCountProp,
+    isFindByProp,
     isInputProp,
     isRelationProp,
-    isSearchableField,
+    isSearchProp,
+    isSoftDeleteProp,
     parsePropOptions,
     propType,
 } from '@vnodes/prisma-plugin-helpers';
@@ -13,7 +15,7 @@ import { joinLines } from '@vnodes/utils';
 import type { DtoGeneratorOptions } from '../types/dto-generator-options.js';
 import { DtoPropertyPrinter } from './dto-property-printer.js';
 
-export class DtoClassPrinter {
+export class NestjsPrinter {
     protected readonly readDtoName: string;
     protected readonly createDtoName: string;
     protected readonly updateDtoName: string;
@@ -89,7 +91,7 @@ export class DtoClassPrinter {
 
     protected printQueryParserFn() {
         const searchQuery = this.model.fields
-            .filter(isSearchableField)
+            .filter(isSearchProp)
             .map((e) => {
                 return `{ ${e.name}: { contains: search, mode: 'insensitive' } }`;
             })
@@ -113,47 +115,118 @@ export class DtoClassPrinter {
         );
     }
 
-    protected printUpdateAndDeleteMethods() {
-        return this.model.fields
-            .filter((field) => {
-                return field.isUnique || field.isId;
-            })
-            .map((field) => {
-                const { pascal, camel } = names(field.name);
+    protected __printHardDeleteMethod(field: DMMF.Field) {
+        const { pascal, camel } = names(field.name);
+        const fieldType = propType(field);
+        return joinLines(
+            `async deleteOneBy${pascal}Hard(${camel}: ${fieldType}){ `,
+            `    return await this.repo.delete({ where: { ${camel} } })`,
+            `}`,
+        );
+    }
 
-                return joinLines(
-                    ``,
-                    `   async updateOneBy${pascal}(${camel}:${propType(field)}, data: ${this.updateDtoName}) {`,
-                    `        await this.findOneBy${pascal}OrThrow(${camel})`,
-                    `        return await this.repo.update({ where: { ${camel} }, data });`,
-                    `    }`,
+    protected __printSoftDeleteMethod(field: DMMF.Field, softDeleteField: DMMF.Field) {
+        const { pascal, camel } = names(field.name);
+        const fieldType = propType(field);
+        const softDeleteFieldName = softDeleteField.name;
+        return joinLines(
+            `async deleteOneBy${pascal}(${camel}: ${fieldType}){ `,
+            `    return await this.repo.update({ where: { ${camel}, ${softDeleteFieldName}: null }, data:{ ${softDeleteFieldName}: new Date() } })`,
+            `}`,
+        );
+    }
+    protected printDeleteMethods() {
+        const deleteMethods: string[] = [];
+        const deleteByFields = this.model.fields.filter((field) => {
+            return field.isUnique || field.isId;
+        });
+        const softDeleteField = this.model.fields.find(isSoftDeleteProp);
 
-                    `    async deleteOneBy${pascal}(${camel}:${propType(field)}) {`,
-                    `        await this.findOneBy${pascal}OrThrow(${camel})`,
-                    `        return await this.repo.update({ where: { ${camel} }, data: { deletedAt: new Date() } });`,
-                    `    }`,
+        // Soft delete methods
+        if (softDeleteField) {
+            const softDeleteMethods = deleteByFields.map((field) => {
+                return this.__printSoftDeleteMethod(field, softDeleteField);
+            });
 
-                    `    async deleteOneBy${pascal}Hard(${camel}:${propType(field)}) {`,
-                    `        await this.findOneBy${pascal}OrThrow(${camel})`,
-                    `        return await this.repo.delete({ where: { ${camel} } });`,
-                    `    }`,
-                );
-            })
-            .join('\n');
+            deleteMethods.push(...softDeleteMethods);
+        }
+
+        // Hard delete methods
+        {
+            const methods = deleteByFields.map((field) => {
+                return this.__printHardDeleteMethod(field);
+            });
+            deleteMethods.push(...methods);
+        }
+        return joinLines(...deleteMethods);
+    }
+
+    protected printCountMethods() {
+        const countFields = this.model.fields.filter(isCountProp);
+
+        const countMethods = countFields.map((field) => {
+            const { pascal, camel } = names(field.name);
+            const fieldType = propType(field);
+            return joinLines(
+                `async countBy${pascal}(${camel}: ${fieldType} ){ `,
+                `    return await this.repo.count({ where:{ ${camel} } })`,
+                `}`,
+            );
+        });
+
+        return joinLines(...countMethods);
+    }
+
+    protected printUpdateMethods() {
+        const updateByFields = this.model.fields.filter((field) => {
+            return field.isUnique || field.isId;
+        });
+        const updateMethods = updateByFields.map((field) => {
+            const { pascal, camel } = names(field.name);
+
+            return joinLines(
+                `   async updateOneBy${pascal}(${camel}:${propType(field)}, data: ${this.updateDtoName}) {`,
+                `        await this.findOneBy${pascal}OrThrow(${camel})`,
+                `        return await this.repo.update({ where: { ${camel} }, data });`,
+                `    }`,
+            );
+        });
+        return joinLines(...updateMethods);
     }
     protected printFindByMethods() {
+        const findByFields = this.model.fields.filter(isFindByProp);
+        const findBymethods = findByFields.map((field) => {
+            const { pascal, camel } = names(field.name);
+
+            return joinLines(
+                `   async findOneBy${pascal}(${camel}: ${propType(field)}){`,
+                `     return  await this.repo.findFirst({ where: { ${camel} } })`,
+                `   }`,
+
+                `   async findOneBy${pascal}OrThrow(${camel}: ${propType(field)}){`,
+                `     return await this.repo.findFirstOrThrow({ where: { ${camel} } })`,
+                `   }`,
+
+                `   async findManyBy${pascal}(${camel}: ${propType(field)}){`,
+                `     return await this.repo.findMany({ where: { ${camel} } })`,
+                `   }`,
+            );
+        });
+
+        return joinLines(...findBymethods);
+    }
+
+    protected printFindRelationMethods() {
         return this.model.fields
-            .filter(isFindByField)
+            .filter((field) => field.kind === 'object')
             .map((field) => {
-                const { pascal, camel } = names(field.name);
-
                 return joinLines(
-                    `   async findOneBy${pascal}(${camel}:${propType(field)}){`,
-                    `     return this.repo.findFirst({ where: { ${camel} } })`,
-                    `   }`,
-
-                    `   async findOneBy${pascal}OrThrow(${camel}:${propType(field)}){`,
-                    `     return this.repo.findFirstOrThrow({ where: { ${camel} } })`,
+                    `   async find${field.type}Of(id: number){ `,
+                    `      const result = await this.repo.findUniqueOrThrow({`,
+                    `          where: { id },`,
+                    `          select: { ${field.name}: true }`,
+                    `      })`,
+                    `      return result.${field.name}`,
                     `   }`,
                 );
             })
@@ -175,7 +248,12 @@ export class DtoClassPrinter {
             `    }`,
 
             this.printFindByMethods(),
-            this.printUpdateAndDeleteMethods(),
+            this.printUpdateMethods(),
+            this.printDeleteMethods(),
+
+            this.printFindRelationMethods(),
+            this.printCountMethods(),
+
             `}`,
         );
     }
