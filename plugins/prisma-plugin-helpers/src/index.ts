@@ -1,6 +1,7 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts'], f => `export * from '${f.path}.js'`)
 export * from './lib/dto-name-suffixes.js';
 export * from './lib/extract-prop-options.js';
+export * from './lib/is-find-by-field.js';
 export * from './lib/is-input-prop.js';
 export * from './lib/is-relation-prop.js';
 export * from './lib/is-requried-prop.js';
