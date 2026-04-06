@@ -20,6 +20,10 @@ export class Env {
     static readonly DB_POOL_QUERY_TIMEOUT = 'DB_POOL_QUERY_TIMEOUT';
     static readonly DB_POOL_LOCK_TIMEOUT = 'DB_POOL_LOCK_TIMEOUT';
 
+    static readonly CACHE_TTL = 'CACHE_TTL';
+    static readonly THROTTLE_TTL = 'THROTTLE_TTL';
+    static readonly THROTTLE_LIMIT = 'THROTTLE_LIMIT';
+
     readonly APP_ID: string;
     readonly APP_DESC: string;
     readonly PORT: string;
@@ -37,6 +41,10 @@ export class Env {
     readonly DB_POOL_STATEMENT_TIMEOUT: string;
     readonly DB_POOL_QUERY_TIMEOUT: string;
     readonly DB_POOL_LOCK_TIMEOUT: string;
+
+    readonly CACHE_TTL: string;
+    readonly THROTTLE_TTL: string;
+    readonly THROTTLE_LIMIT: string;
 
     constructor(private readonly _prefix = '') {
         this.APP_ID = this.pre(Env.APP_ID);
@@ -56,6 +64,10 @@ export class Env {
         this.DB_POOL_STATEMENT_TIMEOUT = this.pre(Env.DB_POOL_STATEMENT_TIMEOUT);
         this.DB_POOL_QUERY_TIMEOUT = this.pre(Env.DB_POOL_QUERY_TIMEOUT);
         this.DB_POOL_LOCK_TIMEOUT = this.pre(Env.DB_POOL_LOCK_TIMEOUT);
+
+        this.CACHE_TTL = this.pre(Env.CACHE_TTL);
+        this.THROTTLE_TTL = this.pre(Env.THROTTLE_TTL);
+        this.THROTTLE_LIMIT = this.pre(Env.THROTTLE_LIMIT);
     }
 
     private pre(key: string) {

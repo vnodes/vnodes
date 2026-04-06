@@ -6,17 +6,9 @@
         "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
         "emitDeclarationOnly": true,
         "forceConsistentCasingInFileNames": true,
-        "types": [
-            "node"
-        ]
+        "types": ["node"]
     },
-    "include": [
-        "src/**/*.ts"
-    ],
+    "include": ["src/**/*.ts"],
     "references": [],
-    "exclude": [
-        "vitest.config.ts",
-        "src/**/*.test.ts",
-        "src/**/*.spec.ts"
-    ]
+    "exclude": ["vitest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
 }

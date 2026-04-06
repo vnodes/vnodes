@@ -1,1 +1,1 @@
-export { PartialType, PickType, OmitType, IntersectionType, type ApiPropertyOptions } from '@nestjs/swagger'
+export { type ApiPropertyOptions, IntersectionType, OmitType, PartialType, PickType } from '@nestjs/swagger';

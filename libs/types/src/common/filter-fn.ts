@@ -1,1 +1,1 @@
-export type FilterFn<T> = (value: T, index?: number, data?: T[]) => boolean
+export type FilterFn<T> = (value: T, index?: number, data?: T[]) => boolean;

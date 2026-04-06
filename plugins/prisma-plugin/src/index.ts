@@ -1,1 +1,1 @@
-export * from './lib/prisma-plugin.js';
+export * from './lib/nestjs/imp/index.js';

@@ -1,0 +1,89 @@
+import { type ExecutionContext, SetMetadata } from '@nestjs/common';
+import type { Reflector } from '@nestjs/core';
+
+export function createMetadata<T>(name: string) {
+    const token = () => `${name}_METADATA_TOKEN`.toUpperCase();
+
+    /**
+     * Set metadata decorator
+     */
+    const set = (value: T) => SetMetadata(token(), value);
+
+    /**
+     * Get metadata value
+     */
+    const get = (reflector: Reflector, context: ExecutionContext) =>
+        reflector.getAllAndOverride<T | undefined>(token(), [context.getClass(), context.getHandler()]);
+    return {
+        get,
+        set,
+        token,
+    };
+}
+
+export function createBooleanMetadata(name: string) {
+    const token = () => `${name}_METADATA_TOKEN`.toUpperCase();
+    /**
+     * Set metadata decorator
+     */
+    const set = () => SetMetadata(token(), true);
+
+    /**
+     * Get metadata value
+     * @return boolean
+     */
+    const get = (reflector: Reflector, context: ExecutionContext) =>
+        reflector.getAllAndOverride<boolean | undefined>(token(), [context.getClass(), context.getHandler()]);
+    return {
+        get,
+        set,
+        token,
+    };
+}
+
+export const { get: isPublic, set: Public, token: publicMetadataToken } = createBooleanMetadata('PUBLIC');
+
+/**
+ * Bypass the authorization process (do not check the permissions and roles)
+ */
+export const {
+    get: isByPassAuthorization,
+    set: ByPassAutorization,
+    token: byPassAutorizationMetadataToken,
+} = createBooleanMetadata('BY_PASS_AUTHORIZATION');
+
+export const {
+    get: isIDProjection,
+    set: IDProjection,
+    token: idProjectionToken,
+} = createBooleanMetadata('ID_PROJECTION');
+/**
+ * SOme doc
+ */
+export const {
+    get: isEmitResponse,
+    set: EmitResponse,
+    token: emitMetadataToken,
+} = createBooleanMetadata('EMIT_RESPONSE');
+
+export const {
+    get: getResourceName,
+    set: ResourceName,
+    token: resourceNameMetadataToken,
+} = createMetadata<string>('RESOURCE_NAME');
+
+export const {
+    get: getOperationName,
+    set: OperationName,
+    token: operationNameMetadataToken,
+} = createMetadata<string>('OPERATION_NAME');
+
+export const {
+    get: getPermissions,
+    set: Permissions,
+    token: permissionsMetadataToken,
+} = createMetadata<string[]>('PERMISSIONS');
+
+export const { get: getRoles, set: Roles, token: rolesMetadataToken } = createMetadata<string[]>('ROLES');
+
+export const { get: getProfile, set: Profile, token: profileMetadataToken } = createMetadata<string>('PROFILE');

@@ -21,6 +21,6 @@ export class DtoDecoratorPrinter {
     }
 
     print(): string {
-        return `@${this.generatorOptions.propertyDecorator}(${this.printOptions()})`;
+        return `@Prop(${this.printOptions()})`;
     }
 }

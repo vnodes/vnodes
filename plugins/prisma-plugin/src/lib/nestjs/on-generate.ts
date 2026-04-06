@@ -3,9 +3,10 @@ import type { GeneratorOptions } from '@prisma/generator-helper';
 import { InvalidDateError, RequiredError } from '@vnodes/errors';
 import { writeTextFile } from '@vnodes/fs';
 import { joinLines } from '@vnodes/utils';
-import { printCommonCode } from './common/print-common-code.js';
-import { NestjsPrinter } from './printers/nestjs-printer.js';
-import type { DtoGeneratorOptions } from './types/dto-generator-options.js';
+import { printCommonCode } from './imp/common/print-common-code.js';
+import { printNestjsPrinters } from './imp/index.js';
+import { NestjsPrinter } from './imp/printers/nestjs-printer.js';
+import type { DtoGeneratorOptions } from './imp/types/dto-generator-options.js';
 
 export default async function onGenerate(options: GeneratorOptions) {
     const output = options.generator.output?.value;
@@ -29,8 +30,6 @@ export default async function onGenerate(options: GeneratorOptions) {
     const dtoGeneratorOptions: DtoGeneratorOptions = {
         output,
         prismaClientPath,
-        propertyDecorator,
-        propertyDecoratorPackage,
         fileName,
     };
 
@@ -43,6 +42,8 @@ export default async function onGenerate(options: GeneratorOptions) {
     for (const model of models) {
         contents.push(new NestjsPrinter(datamodel, model, dtoGeneratorOptions).print());
     }
+
+    contents.push(printNestjsPrinters());
 
     await writeTextFile(join(output, fileName), joinLines(...contents));
 }

@@ -156,6 +156,12 @@ importers:
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
+      '@vnodes/prisma-plugin':
+        specifier: workspace:*
+        version: link:../../plugins/prisma-plugin
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
       pg:
         specifier: ^8.20.0
         version: 8.20.0
@@ -270,6 +276,10 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+    devDependencies:
+      '@types/bcrypt':
+        specifier: ^6.0.0
+        version: 6.0.0
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
@@ -486,6 +496,9 @@ importers:
       '@types/multer':
         specifier: ^2.1.0
         version: 2.1.0
+      '@vnodes/metadata':
+        specifier: workspace:*
+        version: link:../metadata
 
   libs/net:
     dependencies:
@@ -3000,6 +3013,9 @@ packages:
 
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
+
+  '@types/bcrypt@6.0.0':
+    resolution: {integrity: sha512-/oJGukuH3D2+D+3H4JWLaAsJ/ji86dhRidzZ/Od7H/i8g+aCmvkeCc6Ni/f9uxGLSQVCRZkX2/lqEFG2BvWtlQ==}
 
   '@types/body-parser@1.19.6':
     resolution: {integrity: sha512-HLFeCYgz89uk22N5Qg3dvGvsv46B8GLvKKo1zKG4NybA8U2DiEO3w9lqGg29t/tfLRJpJ6iQxnVw4OnB7MoM9g==}
@@ -9535,6 +9551,10 @@ snapshots:
   '@types/babel__traverse@7.28.0':
     dependencies:
       '@babel/types': 7.29.0
+
+  '@types/bcrypt@6.0.0':
+    dependencies:
+      '@types/node': 20.19.9
 
   '@types/body-parser@1.19.6':
     dependencies:

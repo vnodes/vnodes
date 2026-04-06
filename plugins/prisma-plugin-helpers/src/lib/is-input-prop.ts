@@ -3,7 +3,7 @@ import { isRelationProp } from './is-relation-prop.js';
 import { isTimestampProp } from './is-timestamp-prop.js';
 import type { ParsedPropOptions } from './parse-prop-options.js';
 
-export function isInputProp(field: DMMF.Field, propOptions: ParsedPropOptions) {
+export function isInputProp(field: DMMF.Field, _propOptions: ParsedPropOptions) {
     if (field.isId) {
         return false;
     }

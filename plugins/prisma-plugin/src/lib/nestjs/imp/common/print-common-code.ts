@@ -12,6 +12,7 @@ export function printCommonCode(generatorOptions: DtoGeneratorOptions) {
         `import { Prop } from '@vnodes/nestjs/prop';`,
         `import { PartialType } from '@vnodes/nestjs/swagger';`,
         `import { keys, pick } from '@vnodes/nestjs/utils';`,
+        `import type { Names } from '@vnodes/types'`,
         `import { Prisma } from '${prismaClientPath}';`,
         ``,
         ``,

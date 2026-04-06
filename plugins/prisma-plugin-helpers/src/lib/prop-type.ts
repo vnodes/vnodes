@@ -1,9 +1,6 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { UnsupportedError } from '@vnodes/errors';
 
-
-
-
 export function __propType(field: DMMF.Field) {
     switch (field.kind) {
         case 'enum':
