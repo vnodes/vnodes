@@ -12,9 +12,8 @@
         "forceConsistentCasingInFileNames": true
     },
     "include": [
-        "vitest.config.ms",
+        "vitest.config.mts",
         "src/**/*.spec.ts",
-        "src/**/*.d.ts"
     ],
     "references": [
         {

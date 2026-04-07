@@ -13,8 +13,7 @@
     },
     "include": [
         "vitest.config.mts",
-        "src/**/*.spec.ts",
-        "src/**/*.d.ts"
+        "src/**/*.spec.ts"
     ],
     "references": [
         {
