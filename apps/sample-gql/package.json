@@ -1,50 +1,50 @@
 {
-    "name": "@vnodes/sample-gql",
-    "version": "0.0.1",
-    "description": "@vnodes/sample-gql",
-    "keywords": [
-        "sample-gql"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-sample-gql@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
-    },
-    "homepage": "https://vnodes.github.io/vnodes/apps/sample-gql",
-    "icon": "https://vnodes.github.io/vnodes/apps/sample-gql/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
-    },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        }
-    },
-    "files": [
-        "dist",
-        "bin",
-        "!**/*.tsbuildinfo"
-    ],
-    "nx": {
-        "sourceRoot": "apps/sample-gql/src",
-        "targets": {
-            "build": {},
-            "doc": {},
-            "lint": {}
-        }
-    },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
+  "name": "@vnodes/sample-gql",
+  "version": "0.0.50",
+  "description": "@vnodes/sample-gql",
+  "keywords": [
+    "sample-gql"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-sample-gql@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/apps/sample-gql",
+  "icon": "https://vnodes.github.io/vnodes/apps/sample-gql/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "apps/sample-gql/src",
+    "targets": {
+      "build": {},
+      "doc": {},
+      "lint": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  }
 }

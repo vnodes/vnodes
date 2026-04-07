@@ -1,74 +1,74 @@
 {
-    "name": "@vnodes/sample-service",
-    "version": "0.0.1",
-    "description": "@vnodes/sample-service",
-    "keywords": [
-        "sample-service"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-sample-service@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
-    },
-    "homepage": "https://vnodes.github.io/vnodes/apps/sample-service",
-    "icon": "https://vnodes.github.io/vnodes/apps/sample-service/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
-    },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        }
-    },
-    "files": [
-        "dist",
-        "bin",
-        "scripts",
-        "!**/*.tsbuildinfo"
-    ],
-    "nx": {
-        "sourceRoot": "apps/sample-service/src",
-        "targets": {
-            "build": {
-                "options": {
-                    "main": "{projectRoot}/src/main.ts"
-                }
-            },
-            "build-script": {},
-            "serve": {},
-            "doc": {},
-            "lint": {}
-        }
-    },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
-    },
-    "devDependencies": {
-        "@grpc/grpc-js": "^1.14.3",
-        "@grpc/proto-loader": "^0.8.0",
-        "@nestjs/microservices": "^11.1.17",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/sample-db": "workspace:*",
-        "rxjs": "^7.8.2",
-        "ts-proto": "^2.11.6"
-    },
-    "peerDependencies": {
-        "@grpc/grpc-js": "^1.14.3",
-        "@grpc/proto-loader": "^0.8.0",
-        "@nestjs/microservices": "^11.1.17",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/sample-db": "workspace:*",
-        "rxjs": "^7.8.2"
+  "name": "@vnodes/sample-service",
+  "version": "0.0.50",
+  "description": "@vnodes/sample-service",
+  "keywords": [
+    "sample-service"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-sample-service@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/apps/sample-service",
+  "icon": "https://vnodes.github.io/vnodes/apps/sample-service/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "scripts",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "apps/sample-service/src",
+    "targets": {
+      "build": {
+        "options": {
+          "main": "{projectRoot}/src/main.ts"
+        }
+      },
+      "build-script": {},
+      "serve": {},
+      "doc": {},
+      "lint": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "devDependencies": {
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
+    "@nestjs/microservices": "^11.1.17",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/sample-db": "workspace:*",
+    "rxjs": "^7.8.2",
+    "ts-proto": "^2.11.6"
+  },
+  "peerDependencies": {
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
+    "@nestjs/microservices": "^11.1.17",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/sample-db": "workspace:*",
+    "rxjs": "^7.8.2"
+  }
 }

@@ -1,97 +1,97 @@
 {
-    "name": "@vnodes/sample-db",
-    "version": "0.0.1",
-    "description": "@vnodes/sample-db",
-    "keywords": [
-        "sample-db"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-sample-db@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
+  "name": "@vnodes/sample-db",
+  "version": "0.0.50",
+  "description": "@vnodes/sample-db",
+  "keywords": [
+    "sample-db"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-sample-db@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/dbs/sample-db",
+  "icon": "https://vnodes.github.io/vnodes/dbs/sample-db/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "homepage": "https://vnodes.github.io/vnodes/dbs/sample-db",
-    "icon": "https://vnodes.github.io/vnodes/dbs/sample-db/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
+    "./client": {
+      "types": "./dist/generated/prisma/client.d.ts",
+      "import": "./dist/generated/prisma/client.js",
+      "default": "./dist/generated/prisma/client.js"
     },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        },
-        "./client": {
-            "types": "./dist/generated/prisma/client.d.ts",
-            "import": "./dist/generated/prisma/client.js",
-            "default": "./dist/generated/prisma/client.js"
-        },
-        "./browser": {
-            "types": "./dist/generated/prisma/browser.d.ts",
-            "import": "./dist/generated/prisma/browser.js",
-            "default": "./dist/generated/prisma/browser.js"
-        },
-        "./enums": {
-            "types": "./dist/generated/prisma/enums.d.ts",
-            "import": "./dist/generated/prisma/enums.js",
-            "default": "./dist/generated/prisma/enums.js"
-        },
-        "./models": {
-            "types": "./dist/generated/prisma/models.d.ts",
-            "import": "./dist/generated/prisma/models.js",
-            "default": "./dist/generated/prisma/models.js"
-        },
-        "./common": {
-            "types": "./dist/generated/prisma/commonInputTypes.d.ts",
-            "import": "./dist/generated/prisma/commonInputTypes.js",
-            "default": "./dist/generated/prisma/commonInputTypes.js"
-        },
-        "./nestjs": {
-            "types": "./dist/generated/nestjs/nestjs.d.ts",
-            "import": "./dist/generated/nestjs/nestjs.js",
-            "default": "./dist/generated/nestjs/nestjs.js"
-        }
+    "./browser": {
+      "types": "./dist/generated/prisma/browser.d.ts",
+      "import": "./dist/generated/prisma/browser.js",
+      "default": "./dist/generated/prisma/browser.js"
     },
-    "files": [
-        "dist",
-        "bin",
-        "!**/*.tsbuildinfo"
-    ],
-    "nx": {
-        "sourceRoot": "dbs/sample-db/src",
-        "targets": {
-            "build": {},
-            "doc": {},
-            "lint": {},
-            "prisma-generate": {},
-            "prisma-migrate": {},
-            "prisma-reset": {}
-        }
+    "./enums": {
+      "types": "./dist/generated/prisma/enums.d.ts",
+      "import": "./dist/generated/prisma/enums.js",
+      "default": "./dist/generated/prisma/enums.js"
     },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
+    "./models": {
+      "types": "./dist/generated/prisma/models.d.ts",
+      "import": "./dist/generated/prisma/models.js",
+      "default": "./dist/generated/prisma/models.js"
     },
-    "devDependencies": {
-        "@prisma/adapter-pg": "^7.6.0",
-        "@prisma/client": "^7.6.0",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/prisma-plugin": "workspace:*",
-        "pg": "^8.20.0",
-        "prisma": "^7.6.0"
+    "./common": {
+      "types": "./dist/generated/prisma/commonInputTypes.d.ts",
+      "import": "./dist/generated/prisma/commonInputTypes.js",
+      "default": "./dist/generated/prisma/commonInputTypes.js"
     },
-    "peerDependencies": {
-        "@prisma/adapter-pg": "^7.6.0",
-        "@prisma/client": "^7.6.0",
-        "@vnodes/nestjs": "workspace:*",
-        "pg": "^8.20.0"
+    "./nestjs": {
+      "types": "./dist/generated/nestjs/nestjs.d.ts",
+      "import": "./dist/generated/nestjs/nestjs.js",
+      "default": "./dist/generated/nestjs/nestjs.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "dbs/sample-db/src",
+    "targets": {
+      "build": {},
+      "doc": {},
+      "lint": {},
+      "prisma-generate": {},
+      "prisma-migrate": {},
+      "prisma-reset": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "devDependencies": {
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/prisma-plugin": "workspace:*",
+    "pg": "^8.20.0",
+    "prisma": "^7.6.0"
+  },
+  "peerDependencies": {
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "@vnodes/nestjs": "workspace:*",
+    "pg": "^8.20.0"
+  }
 }
