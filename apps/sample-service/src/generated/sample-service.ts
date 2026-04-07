@@ -12,7 +12,7 @@
 import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
 import type { Observable } from 'rxjs';
 
-export const protobufPackage = 'api.v1';
+export const protobufPackage = 'sample';
 
 export enum SortOrder {
     ASC = 0,
@@ -107,7 +107,7 @@ export interface SampleList {
     totalCount: number;
 }
 
-export const API_V1_PACKAGE_NAME = 'api.v1';
+export const API_V1_PACKAGE_NAME = 'sample';
 
 export interface CategoryServiceClient {
     create(request: CreateCategoryInput): Observable<Category>;

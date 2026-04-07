@@ -1,6 +1,7 @@
+/** biome-ignore-all lint/style/useImportType: DI */
 import { type CallHandler, type ExecutionContext, Injectable, type NestInterceptor } from '@nestjs/common';
-import type { Reflector } from '@nestjs/core';
-import type { EventEmitter2 } from '@nestjs/event-emitter';
+import { Reflector } from '@nestjs/core';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { getOperationName, getResourceName, isEmitResponse } from '@vnodes/metadata';
 import { type Observable, tap } from 'rxjs';
 

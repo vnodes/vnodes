@@ -23,6 +23,7 @@ export async function build() {
     const allPackages = Object.keys(packageJson.dependencies);
 
     const ignoredPackages = [
+        "@swc/helpers",
         'graphql',
         'bcrypt',
         'fastify',

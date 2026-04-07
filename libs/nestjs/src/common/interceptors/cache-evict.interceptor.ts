@@ -1,4 +1,6 @@
-import type { Cache } from '@nestjs/cache-manager';
+/** biome-ignore-all lint/style/useImportType: DI */
+
+import { Cache } from '@nestjs/cache-manager';
 import { type CallHandler, type ExecutionContext, Injectable, type NestInterceptor } from '@nestjs/common';
 import { type Observable, tap } from 'rxjs';
 
