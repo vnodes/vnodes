@@ -43,7 +43,10 @@
       "build": {
         "options": {
           "main": "{projectRoot}/src/main.ts"
-        }
+        },
+        "dependsOn": [
+          "@vnodes/sample-db:build"
+        ]
       },
       "build-script": {},
       "serve": {},

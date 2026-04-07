@@ -40,6 +40,9 @@
     "sourceRoot": "apps/sample-gql/src",
     "targets": {
       "build": {},
+      "dependsOn": [
+        "@vnodes/sample-db:build"
+      ],
       "doc": {},
       "lint": {}
     }
