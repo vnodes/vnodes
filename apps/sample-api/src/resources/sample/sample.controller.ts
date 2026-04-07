@@ -1,3 +1,4 @@
+
 /** biome-ignore-all lint/style/useImportType: NeedMetadata */
 
 import { Autowire, ParamID, type ResourceController } from '@vnodes/nestjs/autowire';
@@ -34,3 +35,4 @@ export class SampleController implements ResourceController {
         return this.service.deleteOneById(id);
     }
 }
+

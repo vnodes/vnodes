@@ -7,11 +7,14 @@ packages:
 autoInstallPeers: true
 
 onlyBuiltDependencies:
+  - '@apollo/protobufjs'
   - '@nestjs/core'
   - '@prisma/engines'
   - '@scarf/scarf'
   - '@swc/core'
+  - bcrypt
   - esbuild
   - nx
   - prisma
+  - protobufjs
   - unrs-resolver

@@ -115,19 +115,25 @@ importers:
 
   apps/sample-service:
     dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+    devDependencies:
       '@grpc/grpc-js':
         specifier: ^1.14.3
         version: 1.14.3
       '@grpc/proto-loader':
         specifier: ^0.8.0
         version: 0.8.0
-      '@swc/helpers':
-        specifier: ~0.5.18
-        version: 0.5.19
-    devDependencies:
       '@nestjs/microservices':
         specifier: ^11.1.17
         version: 11.1.17(@grpc/grpc-js@1.14.3)(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(cache-manager@7.2.8)(ioredis@5.10.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../../libs/nestjs
+      '@vnodes/sample-db':
+        specifier: workspace:*
+        version: link:../../dbs/sample-db
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -429,6 +435,9 @@ importers:
       '@vnodes/fs':
         specifier: workspace:*
         version: link:../fs
+      '@vnodes/metadata':
+        specifier: workspace:*
+        version: link:../metadata
       '@vnodes/names':
         specifier: workspace:*
         version: link:../names
@@ -496,9 +505,6 @@ importers:
       '@types/multer':
         specifier: ^2.1.0
         version: 2.1.0
-      '@vnodes/metadata':
-        specifier: workspace:*
-        version: link:../metadata
 
   libs/net:
     dependencies:

@@ -52,17 +52,23 @@
         }
     },
     "dependencies": {
-        "@grpc/grpc-js": "^1.14.3",
-        "@grpc/proto-loader": "^0.8.0",
         "@swc/helpers": "~0.5.18"
     },
     "devDependencies": {
+        "@grpc/grpc-js": "^1.14.3",
+        "@grpc/proto-loader": "^0.8.0",
         "@nestjs/microservices": "^11.1.17",
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/sample-db": "workspace:*",
         "rxjs": "^7.8.2",
         "ts-proto": "^2.11.6"
     },
     "peerDependencies": {
+        "@grpc/grpc-js": "^1.14.3",
+        "@grpc/proto-loader": "^0.8.0",
         "@nestjs/microservices": "^11.1.17",
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/sample-db": "workspace:*",
         "rxjs": "^7.8.2"
     }
 }
