@@ -13,7 +13,7 @@ vi.mock('@nx/devkit', async () => {
 describe('project generator', () => {
     describe('generate library', () => {
         const tree: Tree = createTreeWithEmptyWorkspace();
-        const options: ProjectGeneratorSchema = new ProjectGeneratorSchema({
+        const options = new ProjectGeneratorSchema({
             directory: 'test/test',
             projectType: 'lib',
         });

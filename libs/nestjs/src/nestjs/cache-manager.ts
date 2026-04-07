@@ -1,1 +1,1 @@
-export * from 'cache-manager';
+export * from '@nestjs/cache-manager';

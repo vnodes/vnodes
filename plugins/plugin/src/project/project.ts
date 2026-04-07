@@ -22,7 +22,11 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
 
     await updateJson(tree, 'tsconfig.json', (value) => {
         value.references ??= [];
-        value.references.push({ path: `./${options.directory}` });
+
+        const refPath = `./${options.directory}`;
+        if (!value.references.find((ref: { path: string }) => ref.path === refPath)) {
+            value.references.push({ path: `./${options.directory}` });
+        }
         return value;
     });
     await formatFiles(tree);

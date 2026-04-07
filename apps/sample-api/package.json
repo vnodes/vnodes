@@ -53,7 +53,10 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "@nestjs/common": "^11.1.17",
+    "@nestjs/core": "^11.1.17",
+    "@swc/helpers": "~0.5.18",
+    "@vnodes/sample-service": "workspace:*"
   },
   "devDependencies": {
     "@vnodes/nestjs": "workspace:*",

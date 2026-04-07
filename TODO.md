@@ -1,2 +1,1 @@
-- [ ] Add the nestjs resource module, controller, and service template printer, function that gets model name and print the nestjs controller. 
-- [ ] Create the build script the run resource module, controller, and service template printers in the api projects
+- [ ] get rid of the centeralized nestjs module!

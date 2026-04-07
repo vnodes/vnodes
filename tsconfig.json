@@ -71,6 +71,9 @@
     },
     {
       "path": "./plugins/prisma-plugin-helpers"
+    },
+    {
+      "path": "./libs/sample"
     }
   ]
 }

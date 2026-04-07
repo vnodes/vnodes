@@ -7,7 +7,7 @@
         "emitDeclarationOnly": true,
         "forceConsistentCasingInFileNames": true,
         "types": [
-            "node"
+            "node",
         ]
     },
     "include": [

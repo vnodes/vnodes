@@ -142,7 +142,6 @@
     },
     "generators": {
         "@vnodes/plugin:project": {
-            "projectType": "lib",
             "homepage": "https://vnodes.github.io/vnodes",
             "email": "robert.brightline@gmail.com",
             "author": "Robert Brightline",

@@ -32,6 +32,7 @@ export async function build() {
         '@fastify/helmet',
         'helmet',
         'compress',
+        'cache-manager',
         'multer',
         'pg',
     ];

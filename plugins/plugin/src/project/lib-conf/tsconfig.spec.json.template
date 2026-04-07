@@ -8,11 +8,12 @@
             "vite/client",
             "node",
             "vitest"
-        ]
+        ],
+        "forceConsistentCasingInFileNames": true
     },
     "include": [
         "vitest.config.mts",
-        "src/**/*.spec.ts",
+        "src/**/*.spec.ts"
     ],
     "references": [
         {

@@ -18,6 +18,7 @@
   "bin": {
     "version": "./bin/version.mjs"
   },
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -59,6 +60,7 @@
     "@nestjs/microservices": "^11.1.17",
     "@vnodes/nestjs": "workspace:*",
     "@vnodes/sample-db": "workspace:*",
+    "protobufjs": "^8.0.1",
     "rxjs": "^7.8.2",
     "ts-proto": "^2.11.6"
   },
@@ -68,6 +70,7 @@
     "@nestjs/microservices": "^11.1.17",
     "@vnodes/nestjs": "workspace:*",
     "@vnodes/sample-db": "workspace:*",
+    "protobufjs": "^8.0.1",
     "rxjs": "^7.8.2"
   }
 }

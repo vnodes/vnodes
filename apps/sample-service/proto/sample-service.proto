@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package sample;
 
 // --- Enums ---
@@ -15,8 +17,8 @@ message Category {
   int32 id = 1;
   string name = 2;
   bool active = 3;
-  int64 created_at = 4;
-  int64 updated_at = 5;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
   repeated Sample samples = 6;
 }
 
@@ -25,8 +27,8 @@ message Sample {
   string name = 2;
   bool active = 3;
   optional int32 category_id = 4;
-  int64 created_at = 5;
-  int64 updated_at = 6;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
   optional Category category = 7;
 }
 

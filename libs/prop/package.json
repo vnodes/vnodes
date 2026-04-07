@@ -48,18 +48,18 @@
     "@nestjs/common": "^11.1.17",
     "@nestjs/microservices": "^11.1.17",
     "@nestjs/swagger": "^11.2.6",
+    "@vnodes/types": "workspace:*",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.15.1",
-    "reflect-metadata": "^0.2.2"
+    "class-validator": "^0.15.1"
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18",
-    "@vnodes/types": "workspace:*"
+    "@swc/helpers": "~0.5.18"
   },
   "devDependencies": {
     "@nestjs/common": "^11.1.17",
     "@nestjs/microservices": "^11.1.17",
     "@nestjs/swagger": "^11.2.6",
+    "@vnodes/types": "workspace:*",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "reflect-metadata": "^0.2.2"

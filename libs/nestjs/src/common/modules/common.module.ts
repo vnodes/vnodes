@@ -1,7 +1,7 @@
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR, DiscoveryModule } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
@@ -61,6 +61,6 @@ import { EmitResponseInterceptor } from '../interceptors/emit-response.intercept
             useClass: ThrottlerGuard,
         },
     ],
-    exports: [ConfigModule, EventEmitterModule, ScheduleModule, CacheModule, ThrottlerModule],
+    exports: [ConfigModule, EventEmitterModule, ScheduleModule, CacheModule, ThrottlerModule, DiscoveryModule],
 })
 export class CommonModule {}
