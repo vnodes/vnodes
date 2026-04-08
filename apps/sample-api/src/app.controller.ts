@@ -1,13 +1,26 @@
 import { Controller, Get, Inject } from '@vnodes/nestjs/common';
 import type { ClientGrpc } from '@vnodes/nestjs/microservices';
-import type { SampleServiceClient } from '@vnodes/sample-service';
+import { firstValueFrom } from '@vnodes/nestjs/rxjs';
+import type { CategoryServiceClient, SampleServiceClient } from '@vnodes/sample-service';
 @Controller('apps')
 export class AppController {
     constructor(@Inject('sample') private client: ClientGrpc) {}
 
     @Get('samples')
-    samples() {
-        return this.client.getService<SampleServiceClient>('SampleService').findMany({});
+    async samples() {
+        const result = await firstValueFrom(this.client.getService<SampleServiceClient>('SampleService').findMany({}));
+
+        console.log(result);
+        return result;
+    }
+    @Get('categories')
+    async categories() {
+        const result = await firstValueFrom(
+            this.client.getService<CategoryServiceClient>('CategoryService').findMany({}),
+        );
+
+        console.log(result);
+        return result;
     }
     @Get('whoami')
     whoami() {

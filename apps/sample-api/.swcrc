@@ -1,6 +1,6 @@
 {
     "jsc": {
-        "target": "esnext",
+        "target": "es2021",
         "parser": {
             "syntax": "typescript",
             "decorators": true,
@@ -16,7 +16,7 @@
         "loose": false
     },
     "module": {
-        "type": "nodenext",
+        "type": "commonjs",
         "noInterop": false
     },
     "sourceMaps": true,
