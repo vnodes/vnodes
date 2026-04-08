@@ -1,1 +1,1 @@
-export * from './common/index.js';
+export const NESTJS_COMMON = 'NESTJS_COMMON';

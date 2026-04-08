@@ -74,6 +74,9 @@
     },
     {
       "path": "./libs/sample"
+    },
+    {
+      "path": "./libs/nestjs-common"
     }
   ]
 }

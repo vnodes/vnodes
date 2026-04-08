@@ -1,0 +1,15 @@
+export type {
+    AddContentTypeParser,
+    ConnectionError,
+    ConstructorAction,
+    ContextConfigDefault,
+    DoneFuncWithErrOrRes,
+    FastifyBaseLogger,
+    FastifyBodyParser,
+    FastifyContentTypeParser,
+    FastifyContextConfig,
+    FastifyError,
+    FastifyErrorCodes,
+    FastifyInstance,
+    RequestPayload,
+} from 'fastify';

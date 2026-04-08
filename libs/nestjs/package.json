@@ -56,9 +56,9 @@
    "default": "./dist/nestjs/apollo.js"
   },
   "./cache-manager": {
-   "types": "./dist/nestjs/cache-manager.d.ts",
-   "import": "./dist/nestjs/cache-manager.js",
-   "default": "./dist/nestjs/cache-manager.js"
+   "types": "./dist/manual/cache-manager.d.ts",
+   "import": "./dist/manual/cache-manager.js",
+   "default": "./dist/manual/cache-manager.js"
   },
   "./common": {
    "types": "./dist/nestjs/common.d.ts",
@@ -176,14 +176,14 @@
    "default": "./dist/nestjs/compress.js"
   },
   "./express": {
-   "types": "./dist/nestjs/express.d.ts",
-   "import": "./dist/nestjs/express.js",
-   "default": "./dist/nestjs/express.js"
+   "types": "./dist/manual/express.d.ts",
+   "import": "./dist/manual/express.js",
+   "default": "./dist/manual/express.js"
   },
   "./fastify": {
-   "types": "./dist/nestjs/fastify.d.ts",
-   "import": "./dist/nestjs/fastify.js",
-   "default": "./dist/nestjs/fastify.js"
+   "types": "./dist/manual/fastify.d.ts",
+   "import": "./dist/manual/fastify.js",
+   "default": "./dist/manual/fastify.js"
   },
   "./helmet": {
    "types": "./dist/nestjs/helmet.d.ts",
@@ -196,9 +196,9 @@
    "default": "./dist/nestjs/ioredis.js"
   },
   "./multer": {
-   "types": "./dist/nestjs/multer.d.ts",
-   "import": "./dist/nestjs/multer.js",
-   "default": "./dist/nestjs/multer.js"
+   "types": "./dist/manual/multer.d.ts",
+   "import": "./dist/manual/multer.js",
+   "default": "./dist/manual/multer.js"
   },
   "./prisma": {
    "types": "./dist/nestjs/prisma.d.ts",
@@ -269,6 +269,26 @@
    "types": "./dist/nestjs/swc-helpers.d.ts",
    "import": "./dist/nestjs/swc-helpers.js",
    "default": "./dist/nestjs/swc-helpers.js"
+  },
+  "./@fastify/compress": {
+   "types": "./dist/manual/@fastify/compress.d.ts",
+   "import": "./dist/manual/@fastify/compress.js",
+   "default": "./dist/manual/@fastify/compress.js"
+  },
+  "./@fastify/helmet": {
+   "types": "./dist/manual/@fastify/helmet.d.ts",
+   "import": "./dist/manual/@fastify/helmet.js",
+   "default": "./dist/manual/@fastify/helmet.js"
+  },
+  "./@types/express": {
+   "types": "./dist/manual/@types/express.d.ts",
+   "import": "./dist/manual/@types/express.js",
+   "default": "./dist/manual/@types/express.js"
+  },
+  "./@types/multer": {
+   "types": "./dist/manual/@types/multer.d.ts",
+   "import": "./dist/manual/@types/multer.js",
+   "default": "./dist/manual/@types/multer.js"
   }
  },
  "files": [
@@ -290,17 +310,13 @@
   "@swc/helpers": "~0.5.18"
  },
  "peerDependencies": {
-  "@apollo/server": "^5.5.0",
-  "@as-integrations/express5": "^1.1.2",
   "@fastify/compress": "^8.3.1",
   "@fastify/helmet": "^13.0.2",
-  "@nestjs/apollo": "^13.2.4",
   "@nestjs/cache-manager": "^3.1.0",
   "@nestjs/common": "^11.1.17",
   "@nestjs/config": "^4.0.3",
   "@nestjs/core": "^11.1.17",
   "@nestjs/event-emitter": "^3.0.1",
-  "@nestjs/graphql": "^13.2.4",
   "@nestjs/jwt": "^11.0.2",
   "@nestjs/microservices": "^11.1.17",
   "@nestjs/platform-express": "^11.1.17",
@@ -309,52 +325,26 @@
   "@nestjs/swagger": "^11.2.6",
   "@nestjs/terminus": "^11.1.1",
   "@nestjs/throttler": "^6.5.0",
-  "@prisma/adapter-pg": "^7.6.0",
-  "@prisma/client": "^7.6.0",
   "@scalar/nestjs-api-reference": "^1.1.5",
-  "@vnodes/auth": "workspace:*",
-  "@vnodes/autowire": "workspace:*",
-  "@vnodes/boot-fastify": "workspace:*",
-  "@vnodes/crypto": "workspace:*",
-  "@vnodes/env": "workspace:*",
-  "@vnodes/errors": "workspace:*",
-  "@vnodes/fs": "workspace:*",
-  "@vnodes/names": "workspace:*",
-  "@vnodes/net": "workspace:*",
-  "@vnodes/prisma": "workspace:*",
-  "@vnodes/prop": "workspace:*",
-  "@vnodes/types": "workspace:*",
-  "@vnodes/utils": "workspace:*",
-  "cache-manager": "^7.2.8",
-  "class-transformer": "^0.5.1",
-  "class-validator": "^0.15.1",
-  "compress": "^0.99.0",
-  "express": "^5.2.1",
-  "fastify": "^5.8.4",
-  "graphql": "^16.13.2",
-  "helmet": "^8.1.0",
-  "ioredis": "^5.10.1",
-  "multer": "^2.1.1",
-  "pg": "^8.20.0",
-  "rxjs": "^7.8.2",
-  "@vnodes/metadata": "workspace:*",
-  "@types/express": "^5.0.6",
-  "@types/multer": "^2.1.0"
- },
- "devDependencies": {
   "@types/express": "^5.0.6",
   "@types/multer": "^2.1.0",
-  "@apollo/server": "^5.5.0",
-  "@as-integrations/express5": "^1.1.2",
+  "cache-manager": "^7.2.8",
+  "class-transformer": "^0.5.1",
+  "class-validator": "^0.15.1",
+  "express": "^5.2.1",
+  "fastify": "^5.8.4",
+  "helmet": "^8.1.0",
+  "multer": "^2.1.1",
+  "rxjs": "^7.8.2"
+ },
+ "devDependencies": {
   "@fastify/compress": "^8.3.1",
   "@fastify/helmet": "^13.0.2",
-  "@nestjs/apollo": "^13.2.4",
   "@nestjs/cache-manager": "^3.1.0",
   "@nestjs/common": "^11.1.17",
   "@nestjs/config": "^4.0.3",
   "@nestjs/core": "^11.1.17",
   "@nestjs/event-emitter": "^3.0.1",
-  "@nestjs/graphql": "^13.2.4",
   "@nestjs/jwt": "^11.0.2",
   "@nestjs/microservices": "^11.1.17",
   "@nestjs/platform-express": "^11.1.17",
@@ -363,34 +353,17 @@
   "@nestjs/swagger": "^11.2.6",
   "@nestjs/terminus": "^11.1.1",
   "@nestjs/throttler": "^6.5.0",
-  "@prisma/adapter-pg": "^7.6.0",
-  "@prisma/client": "^7.6.0",
   "@scalar/nestjs-api-reference": "^1.1.5",
-  "@vnodes/auth": "workspace:*",
-  "@vnodes/autowire": "workspace:*",
-  "@vnodes/boot-fastify": "workspace:*",
-  "@vnodes/crypto": "workspace:*",
-  "@vnodes/env": "workspace:*",
-  "@vnodes/errors": "workspace:*",
+  "@types/express": "^5.0.6",
+  "@types/multer": "^2.1.0",
   "@vnodes/fs": "workspace:*",
-  "@vnodes/names": "workspace:*",
-  "@vnodes/net": "workspace:*",
-  "@vnodes/prisma": "workspace:*",
-  "@vnodes/prop": "workspace:*",
-  "@vnodes/types": "workspace:*",
-  "@vnodes/utils": "workspace:*",
   "cache-manager": "^7.2.8",
   "class-transformer": "^0.5.1",
   "class-validator": "^0.15.1",
-  "compress": "^0.99.0",
   "express": "^5.2.1",
   "fastify": "^5.8.4",
-  "graphql": "^16.13.2",
   "helmet": "^8.1.0",
-  "ioredis": "^5.10.1",
   "multer": "^2.1.1",
-  "pg": "^8.20.0",
-  "rxjs": "^7.8.2",
-  "@vnodes/metadata": "workspace:*"
+  "rxjs": "^7.8.2"
  }
 }
