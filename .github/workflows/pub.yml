@@ -13,56 +13,52 @@ jobs:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
-        name: Install pnpm
         with:
           version: 10.24.0
-          run_install: false
 
       - uses: actions/setup-node@v4
-        name: Setup Node
         with:
           node-version: 22.19.0
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        # Better to use frozen-lockfile in CI
+        run: pnpm install --frozen-lockfile
 
-      - name: Lint, test, and build all projects
-        run: npx nx run-many -t test build
+      - name: Lint, test, and build
+        # Note: 'lint' added here since your job name mentioned it
+        run: npx nx run-many -t lint test build
 
   publish:
     needs: lint-test-build
-    environment: Env
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     runs-on: ubuntu-latest
+    environment: Env
     permissions:
       contents: write
       id-token: write
-
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: pnpm/action-setup@v4
-        name: Install pnpm
         with:
           version: 10.24.0
-          run_install: false
 
       - uses: actions/setup-node@v4
-        name: Setup Node
         with:
           node-version: 22.19.0
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
+      # This will be instant if Nx Cloud is enabled
       - name: Build All
         run: npx nx run-many -t build --all
 
       - name: Publish to NPM
         run: npx nx release publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
