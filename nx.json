@@ -167,7 +167,7 @@
             "funding": "https://cash.app/$puqlib",
             "reponame": "vnodes",
             "orgname": "vnodes",
-            "version": "0.0.1"
+            "version": "0.0.20"
         }
     }
 }

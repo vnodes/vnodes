@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 
-export const protobufPackage = 'google.protobuf';
+export const protobufPackage = "google.protobuf";
 
 /**
  * A Timestamp represents a point in time independent of any time zone or local
@@ -100,49 +100,49 @@ export const protobufPackage = 'google.protobuf';
  * ) to obtain a formatter capable of generating timestamps in this format.
  */
 export interface Timestamp {
-    /**
-     * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must
-     * be between -62135596800 and 253402300799 inclusive (which corresponds to
-     * 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z).
-     */
-    seconds: number;
-    /**
-     * Non-negative fractions of a second at nanosecond resolution. This field is
-     * the nanosecond portion of the duration, not an alternative to seconds.
-     * Negative second values with fractions must still have non-negative nanos
-     * values that count forward in time. Must be between 0 and 999,999,999
-     * inclusive.
-     */
-    nanos: number;
+  /**
+   * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must
+   * be between -62135596800 and 253402300799 inclusive (which corresponds to
+   * 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z).
+   */
+  seconds: number;
+  /**
+   * Non-negative fractions of a second at nanosecond resolution. This field is
+   * the nanosecond portion of the duration, not an alternative to seconds.
+   * Negative second values with fractions must still have non-negative nanos
+   * values that count forward in time. Must be between 0 and 999,999,999
+   * inclusive.
+   */
+  nanos: number;
 }
 
-export const GOOGLE_PROTOBUF_PACKAGE_NAME = 'google.protobuf';
+export const GOOGLE_PROTOBUF_PACKAGE_NAME = "google.protobuf";
 
 export const Timestamp: MessageFns<Timestamp> = {
-    fromJSON(object: any): Timestamp {
-        return {
-            seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
-            nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
-        };
-    },
+  fromJSON(object: any): Timestamp {
+    return {
+      seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
+      nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
+    };
+  },
 
-    toJSON(message: Timestamp): unknown {
-        const obj: any = {};
-        if (message.seconds !== 0) {
-            obj.seconds = Math.round(message.seconds);
-        }
-        if (message.nanos !== 0) {
-            obj.nanos = Math.round(message.nanos);
-        }
-        return obj;
-    },
+  toJSON(message: Timestamp): unknown {
+    const obj: any = {};
+    if (message.seconds !== 0) {
+      obj.seconds = Math.round(message.seconds);
+    }
+    if (message.nanos !== 0) {
+      obj.nanos = Math.round(message.nanos);
+    }
+    return obj;
+  },
 };
 
 function isSet(value: any): boolean {
-    return value !== null && value !== undefined;
+  return value !== null && value !== undefined;
 }
 
 export interface MessageFns<T> {
-    fromJSON(object: any): T;
-    toJSON(message: T): unknown;
+  fromJSON(object: any): T;
+  toJSON(message: T): unknown;
 }
