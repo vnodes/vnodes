@@ -137,6 +137,9 @@ importers:
       protobufjs:
         specifier: ^8.0.1
         version: 8.0.1
+      protoc:
+        specifier: ^34.0.0
+        version: 34.0.0
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -342,6 +345,10 @@ importers:
 
   libs/nestjs:
     dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+    devDependencies:
       '@apollo/server':
         specifier: ^5.5.0
         version: 5.5.0(graphql@16.13.2)
@@ -408,9 +415,12 @@ importers:
       '@scalar/nestjs-api-reference':
         specifier: ^1.1.5
         version: 1.1.5
-      '@swc/helpers':
-        specifier: ~0.5.18
-        version: 0.5.19
+      '@types/express':
+        specifier: ^5.0.6
+        version: 5.0.6
+      '@types/multer':
+        specifier: ^2.1.0
+        version: 2.1.0
       '@vnodes/auth':
         specifier: workspace:*
         version: link:../auth
@@ -489,13 +499,6 @@ importers:
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
-    devDependencies:
-      '@types/express':
-        specifier: ^5.0.6
-        version: 5.0.6
-      '@types/multer':
-        specifier: ^2.1.0
-        version: 2.1.0
 
   libs/net:
     dependencies:
@@ -5901,6 +5904,11 @@ packages:
   protobufjs@8.0.1:
     resolution: {integrity: sha512-NWWCCscLjs+cOKF/s/XVNFRW7Yih0fdH+9brffR5NZCy8k42yRdl5KlWKMVXuI1vfCoy4o1z80XR/W/QUb3V3w==}
     engines: {node: '>=12.0.0'}
+
+  protoc@34.0.0:
+    resolution: {integrity: sha512-xaBPda5uAi/wu6VgVrBsLKe9MZbogilWeaxtaBTw5sMQUj5s4Hvywi5dHqbLnGbCCoOV4J9Qj74OnT8wMI6WUg==}
+    engines: {node: '>=20.0.0'}
+    hasBin: true
 
   proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
@@ -12883,6 +12891,8 @@ snapshots:
       '@protobufjs/utf8': 1.1.0
       '@types/node': 20.19.9
       long: 5.3.2
+
+  protoc@34.0.0: {}
 
   proxy-addr@2.0.7:
     dependencies:

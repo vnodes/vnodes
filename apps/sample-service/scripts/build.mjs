@@ -16,10 +16,8 @@ const outputfile = join(output, 'sample-service.ts')
 
 
 async function build() {
-
-
     const result = execSync(`
-        protoc \
+       npx protoc \
         --plugin="${plugin}"\
         --ts_proto_out="${output}" \
         --ts_proto_opt=nestJs=true \
