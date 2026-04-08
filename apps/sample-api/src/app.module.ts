@@ -1,12 +1,13 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@vnodes/nestjs/config';
+import { CommonModule } from '@vnodes/nestjs';
+import { Module } from '@vnodes/nestjs/common';
+import { ConfigService } from '@vnodes/nestjs/config';
 import { ClientsModule, Transport } from '@vnodes/nestjs/microservices';
 import { AppController } from './app.controller.js';
 import { ResourceModule } from './resources/resource.module.js';
 
 @Module({
     imports: [
-        ConfigModule.forRoot({ isGlobal: true }),
+        CommonModule,
         ClientsModule.registerAsync({
             clients: [
                 {
@@ -18,7 +19,7 @@ import { ResourceModule } from './resources/resource.module.js';
                             transport: Transport.GRPC,
                             options: {
                                 package: 'sample',
-                                protoPath: config.getOrThrow('PROTO_PATH'),
+                                protoPath: config.getOrThrow('PROTO_FILE'),
                             },
                         };
                     },

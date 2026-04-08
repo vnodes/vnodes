@@ -15,12 +15,12 @@ export class AppController {
     }
     @Get('categories')
     async categories() {
-        const result = await firstValueFrom(
-            this.client.getService<CategoryServiceClient>('CategoryService').findMany({}),
-        );
+        const result = this.client.getService<CategoryServiceClient>('CategoryService').findMany({});
 
-        console.log(result);
-        return result;
+        result.subscribe((data) => {
+            console.log(data);
+        });
+        return firstValueFrom(result);
     }
     @Get('whoami')
     whoami() {

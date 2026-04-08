@@ -14,6 +14,7 @@ import { EmitResponseInterceptor } from '../interceptors/emit-response.intercept
 @Global()
 @Module({
     imports: [
+        DiscoveryModule,
         ConfigModule.forRoot({
             isGlobal: true,
             cache: true,

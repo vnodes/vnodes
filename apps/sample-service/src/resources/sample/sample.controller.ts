@@ -20,18 +20,13 @@ export class SampleController implements SampleServiceController {
     constructor(protected readonly service: SampleService) {}
     async create(request: CreateSampleInput): Promise<Sample> {
         const result = await this.service.createOne(request);
-
         return result as Any;
     }
     async findMany(request: FindManySampleRequest): Promise<SampleList> {
-        const found = await this.service.findMany({ ...request });
+        const nodes = (await this.service.findMany({ ...request })) as Sample[];
+        const totalCount = await this.service.countByActive(true);
 
-        return {
-            nodes: found.map((e) => {
-                return Sample.fromJSON(e);
-            }) as Any,
-            totalCount: found.length,
-        };
+        return { nodes, totalCount };
     }
     async findOneById(request: UniqueIdRequest): Promise<Sample> {
         const found = await this.service.findOneById(request.id);
