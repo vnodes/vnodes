@@ -1,70 +1,70 @@
 {
-    "name": "@vnodes/autowire",
-    "version": "0.0.50",
-    "description": "@vnodes/autowire",
-    "keywords": [
-        "autowire"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-autowire@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
-    },
-    "homepage": "https://vnodes.github.io/vnodes/libs/autowire",
-    "icon": "https://vnodes.github.io/vnodes/libs/autowire/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
-    },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        }
-    },
-    "files": [
-        "dist",
-        "bin",
-        "!**/*.tsbuildinfo"
-    ],
-    "nx": {
-        "sourceRoot": "libs/autowire/src",
-        "targets": {
-            "build": {},
-            "doc": {},
-            "lint": {}
-        }
-    },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
-    },
-    "devDependencies": {
-        "@nestjs/common": "^11.1.17",
-        "@nestjs/swagger": "^11.2.6",
-        "@vnodes/errors": "workspace:*",
-        "@vnodes/names": "workspace:*",
-        "@vnodes/types": "workspace:*",
-        "@vnodes/utils": "workspace:*",
-        "@vnodes/metadata": "workspace:*",
-        "rxjs": "^7.8.2"
-    },
-    "peerDependencies": {
-        "@nestjs/common": "^11.1.17",
-        "@nestjs/swagger": "^11.2.6",
-        "@vnodes/errors": "workspace:*",
-        "@vnodes/names": "workspace:*",
-        "@vnodes/types": "workspace:*",
-        "@vnodes/utils": "workspace:*",
-        "@vnodes/metadata": "workspace:*",
-        "rxjs": "^7.8.2"
+  "name": "@vnodes/autowire",
+  "version": "0.0.20",
+  "description": "@vnodes/autowire",
+  "keywords": [
+    "autowire"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-autowire@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/libs/autowire",
+  "icon": "https://vnodes.github.io/vnodes/libs/autowire/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/autowire/src",
+    "targets": {
+      "build": {},
+      "doc": {},
+      "lint": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^11.1.17",
+    "@nestjs/swagger": "^11.2.6",
+    "@vnodes/errors": "workspace:*",
+    "@vnodes/names": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*",
+    "@vnodes/metadata": "workspace:*",
+    "rxjs": "^7.8.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.17",
+    "@nestjs/swagger": "^11.2.6",
+    "@vnodes/errors": "workspace:*",
+    "@vnodes/names": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*",
+    "@vnodes/metadata": "workspace:*",
+    "rxjs": "^7.8.2"
+  }
 }
