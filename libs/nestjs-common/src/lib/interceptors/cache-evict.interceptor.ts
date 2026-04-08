@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/style/useImportType: DI */
 
-import { Cache } from '@nestjs/cache-manager';
-import { type CallHandler, type ExecutionContext, Injectable, type NestInterceptor } from '@nestjs/common';
-import { type Observable, tap } from 'rxjs';
+import { Cache } from '@vnodes/nestjs/cache-manager';
+import { type CallHandler, type ExecutionContext, Injectable, type NestInterceptor } from '@vnodes/nestjs/common';
+import { type Observable, tap } from '@vnodes/nestjs/rxjs';
 
 /**
  * Clear cache when create/update operations happen

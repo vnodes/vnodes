@@ -1,10 +1,11 @@
-import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
-import { Global, Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD, APP_INTERCEPTOR, DiscoveryModule } from '@nestjs/core';
-import { EventEmitterModule } from '@nestjs/event-emitter';
-import { ScheduleModule } from '@nestjs/schedule';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { Env } from '@vnodes/env';
+import { CacheInterceptor, CacheModule } from '@vnodes/nestjs/cache-manager';
+import { Global, Module } from '@vnodes/nestjs/common';
+import { ConfigModule, ConfigService } from '@vnodes/nestjs/config';
+import { APP_GUARD, APP_INTERCEPTOR, DiscoveryModule } from '@vnodes/nestjs/core';
+import { EventEmitterModule } from '@vnodes/nestjs/event-emitter';
+import { ScheduleModule } from '@vnodes/nestjs/schedule';
+import { ThrottlerGuard, ThrottlerModule } from '@vnodes/nestjs/throttler';
 import { CacheEvictInterceptor } from '../interceptors/cache-evict.interceptor.js';
 import { EmitResponseInterceptor } from '../interceptors/emit-response.interceptor.js';
 
@@ -28,7 +29,7 @@ import { EmitResponseInterceptor } from '../interceptors/emit-response.intercept
             inject: [ConfigService],
             useFactory(config: ConfigService) {
                 return {
-                    ttl: config.get<number>('CACHE_TTL', 30_000),
+                    ttl: config.get<number>(Env.CACHE_TTL, 30_000),
                 };
             },
         }),
@@ -37,8 +38,8 @@ import { EmitResponseInterceptor } from '../interceptors/emit-response.intercept
             inject: [ConfigService],
             useFactory: (config: ConfigService) => [
                 {
-                    ttl: config.get<number>('THROTTLE_TTL', 60_000),
-                    limit: config.get<number>('THROTTLE_LIMIT', 200),
+                    ttl: config.get<number>(Env.THROTTLE_TTL, 60_000),
+                    limit: config.get<number>(Env.THROTTLE_LIMIT, 200),
                 },
             ],
         }),

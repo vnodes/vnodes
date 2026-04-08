@@ -17,12 +17,22 @@ const manualPackages = [
     "fastify",
 ]
 
+const fileNameMap = {
+    "cache-manager": 'cache'
+}
+
 function fileName(packageName) {
-    return packageName
+    if (fileNameMap[packageName]) {
+        return fileNameMap[packageName]
+    }
+
+    const filename = packageName
         .replace(/@/g, '')
         .replace(/(nestjs|vnodes)\//, '')
         .split(/\//)
         .join('-');
+
+    return `${filename}`
 }
 
 
@@ -30,8 +40,7 @@ export function filePath(fileName) {
     return join(__dirname, '..', 'src', 'nestjs', `${fileName}.ts`)
 }
 
-export function createExport(fileName, dir = 'nestjs') {
-    const exportName = `./${fileName}`;
+export function __createExport(exportName, dir, fileName) {
     return {
         [exportName]: {
             types: `./dist/${dir}/${fileName}.d.ts`,
@@ -39,6 +48,10 @@ export function createExport(fileName, dir = 'nestjs') {
             default: `./dist/${dir}/${fileName}.js`,
         }
     }
+}
+export function createExport(fileName, dir = 'nestjs') {
+    const exportName = `./${fileName}`;
+    return __createExport(exportName, dir, fileName)
 }
 
 export async function writeBarralFile(packageName) {
@@ -58,7 +71,7 @@ export async function build() {
     for (const packageName of peerDependencies) {
         await writeBarralFile(packageName)
     }
-    const manualExports = manualPackages.map(packageName => createExport(packageName, 'manual'))
+    const manualExports = manualPackages.map(packageName => createExport(fileName(packageName, 'manual'), 'manual'))
         .reduce((p, c) => {
             return { ...p, ...c }
         }, {})
