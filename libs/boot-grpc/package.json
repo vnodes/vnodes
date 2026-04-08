@@ -1,68 +1,68 @@
 {
-  "name": "@vnodes/boot-grpc",
-  "version": "0.0.50",
-  "description": "@vnodes/boot-grpc",
-  "keywords": [
-    "boot-grpc"
-  ],
-  "author": {
-    "name": "Robert Brightline",
-    "email": "robert.brightline+vnodes-boot-grpc@gmail.com",
-    "url": "https://vnodes.github.io/vnodes"
-  },
-  "homepage": "https://vnodes.github.io/vnodes/libs/boot-grpc",
-  "icon": "https://vnodes.github.io/vnodes/libs/boot-grpc/assets/favicon.png",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "bin": {
-    "version": "./bin/version.mjs"
-  },
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+    "name": "@vnodes/boot-grpc",
+    "version": "0.0.50",
+    "description": "@vnodes/boot-grpc",
+    "keywords": [
+        "boot-grpc"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-boot-grpc@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
+    },
+    "homepage": "https://vnodes.github.io/vnodes/libs/boot-grpc",
+    "icon": "https://vnodes.github.io/vnodes/libs/boot-grpc/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
+    "bin": {
+        "version": "./bin/version.mjs"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "bin",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/boot-grpc/src",
+        "targets": {
+            "build": {},
+            "doc": {},
+            "lint": {}
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.18"
+    },
+    "devDependencies": {
+        "@nestjs/common": "^11.1.17",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.17",
+        "@nestjs/microservices": "^11.1.17",
+        "@vnodes/env": "workspace:*",
+        "@vnodes/net": "workspace:*",
+        "@vnodes/prop": "workspace:*"
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^11.1.17",
+        "@nestjs/config": "^4.0.3",
+        "@nestjs/core": "^11.1.17",
+        "@nestjs/microservices": "^11.1.17",
+        "@vnodes/env": "workspace:*",
+        "@vnodes/net": "workspace:*",
+        "@vnodes/prop": "workspace:*"
     }
-  },
-  "files": [
-    "dist",
-    "bin",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "sourceRoot": "libs/boot-grpc/src",
-    "targets": {
-      "build": {},
-      "doc": {},
-      "lint": {}
-    }
-  },
-  "dependencies": {
-    "@swc/helpers": "~0.5.18"
-  },
-  "devDependencies": {
-    "@nestjs/common": "^11.1.17",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.17",
-    "@nestjs/microservices": "^11.1.17",
-    "@vnodes/env": "workspace:*",
-    "@vnodes/net": "workspace:*",
-    "@vnodes/prop": "workspace:*"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^11.1.17",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.17",
-    "@nestjs/microservices": "^11.1.17",
-    "@vnodes/env": "workspace:*",
-    "@vnodes/net": "workspace:*",
-    "@vnodes/prop": "workspace:*"
-  }
 }

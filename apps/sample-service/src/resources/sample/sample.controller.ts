@@ -11,7 +11,7 @@ import {
     SampleServiceControllerMethods,
     UniqueIdRequest,
     UpdateSampleInput,
-} from '../../generated/sample-service.js';
+} from '../../proto/sample-service.js';
 import { SampleService } from './sample.service.js';
 
 @Controller()
