@@ -1,5 +1,5 @@
-import { Post, type Type } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
+import { Post, type Type } from '@vnodes/nestjs/common';
+import { ApiCreatedResponse, ApiOperation } from '@vnodes/nestjs/swagger';
 import { CommonMethod } from './common-method.js';
 
 export function CreateOne(resourceName: string, dto: Type): MethodDecorator {

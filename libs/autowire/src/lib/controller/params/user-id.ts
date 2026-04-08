@@ -1,4 +1,4 @@
-import { createParamDecorator } from '@nestjs/common';
+import { createParamDecorator } from '@vnodes/nestjs/common';
 import { definedOrThrow } from '@vnodes/utils';
 
 export const UserId = createParamDecorator((_, context) => {

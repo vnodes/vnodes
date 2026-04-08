@@ -1,9 +1,9 @@
-import { ClassSerializerInterceptor, Logger, type NestApplicationOptions, type Type } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { NestFactory, Reflector } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { apiReference } from '@scalar/nestjs-api-reference';
 import { Env } from '@vnodes/env';
+import { ClassSerializerInterceptor, Logger, type NestApplicationOptions, type Type } from '@vnodes/nestjs/common';
+import { ConfigService } from '@vnodes/nestjs/config';
+import { NestFactory, Reflector } from '@vnodes/nestjs/core';
+import { apiReference } from '@vnodes/nestjs/scalar-nestjs-api-reference';
+import { DocumentBuilder, SwaggerModule } from '@vnodes/nestjs/swagger';
 import { getPort } from '@vnodes/net';
 import { CommonValidationPipe } from '@vnodes/prop';
 

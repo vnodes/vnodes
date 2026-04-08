@@ -2,7 +2,7 @@ export const printNestjsPrinters = () => `
 
 export const printNestjsService = ({ pascal, camel }: Names) => \`
 import { Injectable } from '@vnodes/nestjs/common';
-import { InjectDelegate } from '@vnodes/nestjs/prisma';
+import { InjectDelegate } from '@vnodes/prisma';
 import type { Prisma } from '@vnodes/sample-db/client';
 import { Base\${pascal}Service } from '@vnodes/sample-db/nestjs';
 
@@ -18,7 +18,7 @@ export class \${pascal}Service extends Base\${pascal}Service {
 
 export const printNestjsModule = ({ camel, pascal }: Names) => \`
 import { Module } from '@vnodes/nestjs/common';
-import { PrismaModule } from '@vnodes/nestjs/prisma';
+import { PrismaModule } from '@vnodes/prisma';
 import { \${pascal}Controller } from './\${camel}.controller.js';
 import { \${pascal}Service } from './\${camel}.service.js';
 
@@ -34,7 +34,7 @@ export class \${pascal}Module {}
 export const printNestjsController = ({ pascal, camel }: Names) => \`
 /** biome-ignore-all lint/style/useImportType: NeedMetadata */
 
-import { Autowire, ParamID, type ResourceController } from '@vnodes/nestjs/autowire';
+import { Autowire, ParamID, type ResourceController } from '@vnodes/autowire';
 import { Body, Query } from '@vnodes/nestjs/common';
 import {
     \${pascal}CreateDto as CreateDto,

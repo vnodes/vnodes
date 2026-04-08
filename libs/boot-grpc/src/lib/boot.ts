@@ -1,8 +1,8 @@
-import { ClassSerializerInterceptor, Logger, type Type } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { NestFactory, Reflector } from '@nestjs/core';
-import type { GrpcOptions } from '@nestjs/microservices';
 import { Env } from '@vnodes/env';
+import { ClassSerializerInterceptor, Logger, type Type } from '@vnodes/nestjs/common';
+import { ConfigService } from '@vnodes/nestjs/config';
+import { NestFactory, Reflector } from '@vnodes/nestjs/core';
+import type { GrpcOptions } from '@vnodes/nestjs/microservices';
 import { CommonGRpcValidationPipe } from '@vnodes/prop';
 
 export type BootGRpcOptions = {

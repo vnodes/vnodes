@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/style/useImportType: NeedMetadata */
 
-import { Autowire, ParamID, type ResourceController } from '@vnodes/nestjs/autowire';
+import { Autowire, ParamID, type ResourceController } from '@vnodes/autowire';
 import { Body, Query } from '@vnodes/nestjs/common';
 import {
     CategoryCreateDto as CreateDto,

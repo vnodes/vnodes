@@ -1,5 +1,5 @@
-import type { ApiPropertyOptions } from '@nestjs/swagger';
-import { ArrayMaxSize, ArrayMinSize, type ValidationOptions } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, type ValidationOptions } from '@vnodes/nestjs/class-validator';
+import type { ApiPropertyOptions } from '@vnodes/nestjs/swagger';
 
 export function ArrayProp(options: ApiPropertyOptions, validationOptions?: ValidationOptions): PropertyDecorator {
     return (...args) => {

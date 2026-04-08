@@ -1,6 +1,4 @@
-import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty } from '@nestjs/swagger';
-import type { Any } from '@vnodes/types';
-import { type ClassConstructor, Expose, Type } from 'class-transformer';
+import { type ClassConstructor, Expose, Type } from '@vnodes/nestjs/class-transformer';
 import {
     IsBoolean,
     IsDate,
@@ -9,7 +7,9 @@ import {
     IsOptional,
     ValidateNested,
     type ValidationOptions,
-} from 'class-validator';
+} from '@vnodes/nestjs/class-validator';
+import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty } from '@vnodes/nestjs/swagger';
+import type { Any } from '@vnodes/types';
 import { ArrayProp } from './array-prop.js';
 import { isClassType } from './is-class-type.js';
 import { normalizePropertyOptions } from './normalize-property-options.js';

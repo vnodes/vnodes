@@ -1,7 +1,6 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts'], f => `export * from '${f.path}.js'`)
 export * from './lib/array-prop.js';
 export * from './lib/common-validation-pipe.js';
-export * from './lib/index.js';
 export * from './lib/is-class-type.js';
 export * from './lib/is-enum-type.js';
 export * from './lib/normalize-property-options.js';
@@ -10,4 +9,3 @@ export * from './lib/prop.js';
 export * from './lib/prop-options.js';
 export * from './lib/string-format-prop.js';
 export * from './lib/string-prop.js';
-export * from './lib/swagger.js';

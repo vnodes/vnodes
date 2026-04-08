@@ -4,7 +4,7 @@ import {
     ApiRequestTimeoutResponse,
     ApiUnauthorizedResponse,
     ApiUnprocessableEntityResponse,
-} from '@nestjs/swagger';
+} from '@vnodes/nestjs/swagger';
 
 export function CommonMethod(): MethodDecorator {
     return (...args) => {

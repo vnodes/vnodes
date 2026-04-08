@@ -1,5 +1,5 @@
-import { Controller, type Type } from '@nestjs/common';
 import { names, pluralize } from '@vnodes/names';
+import { Controller, type Type } from '@vnodes/nestjs/common';
 import { definedOrThrow, extractResourceName, getInheritedPropertyDescriptor, getMethodNames } from '@vnodes/utils';
 import type { AutowireMethodName } from './autowire-method-name.js';
 import { CreateOne } from './method/create-one.js';

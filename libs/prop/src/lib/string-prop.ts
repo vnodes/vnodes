@@ -1,5 +1,12 @@
-import type { ApiPropertyOptions } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, Matches, MaxLength, MinLength, type ValidationOptions } from 'class-validator';
+import {
+    IsNotEmpty,
+    IsString,
+    Matches,
+    MaxLength,
+    MinLength,
+    type ValidationOptions,
+} from '@vnodes/nestjs/class-validator';
+import type { ApiPropertyOptions } from '@vnodes/nestjs/swagger';
 import { StringFormatProp } from './string-format-prop.js';
 
 export function StringProp(options: ApiPropertyOptions, validationOptions?: ValidationOptions): PropertyDecorator {

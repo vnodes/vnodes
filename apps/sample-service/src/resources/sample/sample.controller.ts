@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/style/useImportType: NeedMetadata */
 
 import { Controller } from '@vnodes/nestjs/common';
-import { Any } from '@vnodes/nestjs/types';
+import { Any } from '@vnodes/types';
 import {
     CreateSampleInput,
     FindManySampleRequest,

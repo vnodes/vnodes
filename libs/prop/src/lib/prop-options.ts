@@ -1,4 +1,4 @@
-import type { ApiPropertyOptions } from '@nestjs/swagger';
+import type { ApiPropertyOptions } from '@vnodes/nestjs/swagger';
 import type { Keys } from '@vnodes/types';
 
 export type PropOptions = ApiPropertyOptions;

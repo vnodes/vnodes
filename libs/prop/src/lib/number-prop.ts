@@ -1,5 +1,5 @@
-import type { ApiPropertyOptions } from '@nestjs/swagger';
-import { Max, Min, type ValidatorOptions } from 'class-validator';
+import { Max, Min, type ValidatorOptions } from '@vnodes/nestjs/class-validator';
+import type { ApiPropertyOptions } from '@vnodes/nestjs/swagger';
 
 export function NumberProp(options: ApiPropertyOptions, validationOptions?: ValidatorOptions): PropertyDecorator {
     return (...args) => {

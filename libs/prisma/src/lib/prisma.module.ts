@@ -1,5 +1,5 @@
-import { type DynamicModule, Module, type Type } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { type DynamicModule, Module, type Type } from '@vnodes/nestjs/common';
+import { ConfigModule } from '@vnodes/nestjs/config';
 import { prismaClientToken, providePrismaClient } from './providers/prisma-client.provider.js';
 import { prismaDelegateToken, providePrismaDelegate } from './providers/prisma-delegate-provider.js';
 

@@ -48,23 +48,19 @@
     "@swc/helpers": "~0.5.18"
   },
   "devDependencies": {
-    "@nestjs/common": "^11.1.17",
-    "@nestjs/swagger": "^11.2.6",
     "@vnodes/errors": "workspace:*",
-    "@vnodes/names": "workspace:*",
-    "@vnodes/types": "workspace:*",
-    "@vnodes/utils": "workspace:*",
     "@vnodes/metadata": "workspace:*",
-    "rxjs": "^7.8.2"
+    "@vnodes/names": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*"
   },
   "peerDependencies": {
-    "@nestjs/common": "^11.1.17",
-    "@nestjs/swagger": "^11.2.6",
     "@vnodes/errors": "workspace:*",
-    "@vnodes/names": "workspace:*",
-    "@vnodes/types": "workspace:*",
-    "@vnodes/utils": "workspace:*",
     "@vnodes/metadata": "workspace:*",
-    "rxjs": "^7.8.2"
+    "@vnodes/names": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*"
   }
 }

@@ -1,4 +1,4 @@
-import { Query as NestQuery } from '@nestjs/common';
+import { Query as NestQuery } from '@vnodes/nestjs/common';
 
 export function Query(): ParameterDecorator {
     return (...args) => {

@@ -47,11 +47,11 @@
   "dependencies": {
     "@swc/helpers": "~0.5.18"
   },
-  "devDependencies": {
-    "@types/bcrypt": "^6.0.0",
+  "peerDependencies": {
     "bcrypt": "^6.0.0"
   },
-  "peerDependencies": {
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "bcrypt": "^6.0.0"
   }
 }

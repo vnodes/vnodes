@@ -1,5 +1,5 @@
-import { type FactoryProvider, Inject } from '@nestjs/common';
 import { DI } from '@vnodes/env';
+import { type FactoryProvider, Inject } from '@vnodes/nestjs/common';
 import { definedOrThrow, diToken } from '@vnodes/utils';
 import { prismaClientToken } from './prisma-client.provider.js';
 

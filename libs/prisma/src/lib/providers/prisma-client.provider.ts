@@ -1,7 +1,7 @@
-import { type FactoryProvider, Inject, type Type } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaPg } from '@vnodes/db/adapter-pg';
 import { DI, Env } from '@vnodes/env';
+import { type FactoryProvider, Inject, type Type } from '@vnodes/nestjs/common';
+import { ConfigService } from '@vnodes/nestjs/config';
 import { definedOrThrow, diToken } from '@vnodes/utils';
 
 export function prismaClientToken(profile = '') {

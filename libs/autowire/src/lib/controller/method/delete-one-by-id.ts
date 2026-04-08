@@ -1,5 +1,5 @@
-import { Delete, type Type } from '@nestjs/common';
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { Delete, type Type } from '@vnodes/nestjs/common';
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation } from '@vnodes/nestjs/swagger';
 import { CommonMethod } from './common-method.js';
 
 export function DeleteOneById(resourceName: string, dto: Type): MethodDecorator {

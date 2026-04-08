@@ -53,15 +53,24 @@
         }
     },
     "dependencies": {
-        "@swc/helpers": "~0.5.18",
-        "@vnodes/sample-service": "workspace:*"
+        "@swc/helpers": "~0.5.18"
     },
     "devDependencies": {
+        "@vnodes/autowire": "workspace:*",
+        "@vnodes/boot-fastify": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
-        "@vnodes/sample-db": "workspace:*"
+        "@vnodes/nestjs-common": "workspace:*",
+        "@vnodes/prisma": "workspace:*",
+        "@vnodes/sample-db": "workspace:*",
+        "@vnodes/sample-service": "workspace:*"
     },
     "peerDependencies": {
+        "@vnodes/autowire": "workspace:*",
+        "@vnodes/boot-fastify": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
-        "@vnodes/sample-db": "workspace:*"
+        "@vnodes/nestjs-common": "workspace:*",
+        "@vnodes/prisma": "workspace:*",
+        "@vnodes/sample-db": "workspace:*",
+        "@vnodes/sample-service": "workspace:*"
     }
 }

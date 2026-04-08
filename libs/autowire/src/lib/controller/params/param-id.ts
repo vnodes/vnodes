@@ -1,4 +1,4 @@
-import { Param, ParseIntPipe } from '@nestjs/common';
+import { Param, ParseIntPipe } from '@vnodes/nestjs/common';
 
 export function ParamID(): ParameterDecorator {
     return (...args) => {

@@ -2,6 +2,7 @@ import { Controller, Get, Inject } from '@vnodes/nestjs/common';
 import type { ClientGrpc } from '@vnodes/nestjs/microservices';
 import { firstValueFrom } from '@vnodes/nestjs/rxjs';
 import type { CategoryServiceClient, SampleServiceClient } from '@vnodes/sample-service';
+
 @Controller('apps')
 export class AppController {
     constructor(@Inject('sample') private client: ClientGrpc) {}

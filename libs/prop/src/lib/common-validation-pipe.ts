@@ -1,7 +1,7 @@
-import { UnprocessableEntityException, ValidationPipe, type ValidationPipeOptions } from '@nestjs/common';
-import { RpcException } from '@nestjs/microservices';
-import type { ClassTransformOptions } from 'class-transformer';
-import type { ValidatorOptions } from 'class-validator';
+import type { ClassTransformOptions } from '@vnodes/nestjs/class-transformer';
+import type { ValidatorOptions } from '@vnodes/nestjs/class-validator';
+import { UnprocessableEntityException, ValidationPipe, type ValidationPipeOptions } from '@vnodes/nestjs/common';
+import { RpcException } from '@vnodes/nestjs/microservices';
 
 export const __validatorOptions: ValidatorOptions = {
     whitelist: true,

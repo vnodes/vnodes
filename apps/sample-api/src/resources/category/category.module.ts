@@ -1,5 +1,5 @@
 import { Module } from '@vnodes/nestjs/common';
-import { PrismaModule } from '@vnodes/nestjs/prisma';
+import { PrismaModule } from '@vnodes/prisma';
 import { CategoryController } from './category.controller.js';
 import { CategoryService } from './category.service.js';
 

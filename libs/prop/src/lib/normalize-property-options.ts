@@ -1,4 +1,4 @@
-import type { ApiPropertyOptions } from '@nestjs/swagger';
+import type { ApiPropertyOptions } from '@vnodes/nestjs/swagger';
 import { isClassType } from './is-class-type.js';
 
 export function normalizePropertyOptions(

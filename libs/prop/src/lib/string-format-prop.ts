@@ -1,4 +1,3 @@
-import type { ApiPropertyOptions } from '@nestjs/swagger';
 import {
     IsEmail,
     IsFQDN,
@@ -10,7 +9,8 @@ import {
     IsUUID,
     Matches,
     type ValidatorOptions,
-} from 'class-validator';
+} from '@vnodes/nestjs/class-validator';
+import type { ApiPropertyOptions } from '@vnodes/nestjs/swagger';
 
 export function StringFormatProp(options: ApiPropertyOptions, validationOptions?: ValidatorOptions): PropertyDecorator {
     return (...args) => {

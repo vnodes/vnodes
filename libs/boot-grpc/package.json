@@ -48,21 +48,13 @@
     "@swc/helpers": "~0.5.18"
   },
   "devDependencies": {
-    "@nestjs/common": "^11.1.17",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.17",
-    "@nestjs/microservices": "^11.1.17",
     "@vnodes/env": "workspace:*",
-    "@vnodes/net": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
     "@vnodes/prop": "workspace:*"
   },
   "peerDependencies": {
-    "@nestjs/common": "^11.1.17",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.17",
-    "@nestjs/microservices": "^11.1.17",
     "@vnodes/env": "workspace:*",
-    "@vnodes/net": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
     "@vnodes/prop": "workspace:*"
   }
 }

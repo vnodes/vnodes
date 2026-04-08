@@ -1,5 +1,5 @@
-import { type ExecutionContext, SetMetadata } from '@nestjs/common';
-import type { Reflector } from '@nestjs/core';
+import { type ExecutionContext, SetMetadata } from '@vnodes/nestjs/common';
+import type { Reflector } from '@vnodes/nestjs/core';
 
 export function createMetadata<T>(name: string) {
     const token = () => `${name}_METADATA_TOKEN`.toUpperCase();

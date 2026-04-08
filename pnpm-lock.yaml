@@ -96,16 +96,28 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
-      '@vnodes/sample-service':
-        specifier: workspace:*
-        version: link:../sample-service
     devDependencies:
+      '@vnodes/autowire':
+        specifier: workspace:*
+        version: link:../../libs/autowire
+      '@vnodes/boot-fastify':
+        specifier: workspace:*
+        version: link:../../libs/boot-fastify
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
+      '@vnodes/nestjs-common':
+        specifier: workspace:*
+        version: link:../../libs/nestjs-common
+      '@vnodes/prisma':
+        specifier: workspace:*
+        version: link:../../libs/prisma
       '@vnodes/sample-db':
         specifier: workspace:*
         version: link:../../dbs/sample-db
+      '@vnodes/sample-service':
+        specifier: workspace:*
+        version: link:../sample-service
 
   apps/sample-gql:
     dependencies:
@@ -131,9 +143,15 @@ importers:
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
+      '@vnodes/prisma':
+        specifier: workspace:*
+        version: link:../../libs/prisma
       '@vnodes/sample-db':
         specifier: workspace:*
         version: link:../../dbs/sample-db
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
       protobufjs:
         specifier: ^8.0.1
         version: 8.0.1
@@ -152,22 +170,28 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+      pg:
+        specifier: ^8.20.0
+        version: 8.20.0
     devDependencies:
-      '@prisma/adapter-pg':
-        specifier: ^7.6.0
-        version: 7.6.0
-      '@prisma/client':
-        specifier: ^7.6.0
-        version: 7.6.0(prisma@7.6.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
+      '@vnodes/db':
+        specifier: workspace:*
+        version: link:../../libs/db
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
       '@vnodes/prisma-plugin':
         specifier: workspace:*
         version: link:../../plugins/prisma-plugin
-      pg:
-        specifier: ^8.20.0
-        version: 8.20.0
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../../libs/prop
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../libs/types
+      '@vnodes/utils':
+        specifier: workspace:*
+        version: link:../../libs/utils
       prisma:
         specifier: ^7.6.0
         version: 7.6.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
@@ -184,12 +208,6 @@ importers:
         specifier: ~0.5.18
         version: 0.5.19
     devDependencies:
-      '@nestjs/common':
-        specifier: ^11.1.17
-        version: 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/swagger':
-        specifier: ^11.2.6
-        version: 11.2.6(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(class-transformer@0.5.1)(reflect-metadata@0.2.2)
       '@vnodes/errors':
         specifier: workspace:*
         version: link:../errors
@@ -199,46 +217,28 @@ importers:
       '@vnodes/names':
         specifier: workspace:*
         version: link:../names
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../nestjs
       '@vnodes/types':
         specifier: workspace:*
         version: link:../types
       '@vnodes/utils':
         specifier: workspace:*
         version: link:../utils
-      rxjs:
-        specifier: ^7.8.2
-        version: 7.8.2
 
   libs/boot-fastify:
     dependencies:
-      '@nestjs/microservices':
-        specifier: ^11.1.17
-        version: 11.1.17(@grpc/grpc-js@1.14.3)(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(cache-manager@7.2.8)(ioredis@5.10.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
     devDependencies:
-      '@nestjs/common':
-        specifier: ^11.1.17
-        version: 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/config':
-        specifier: ^4.0.3
-        version: 4.0.3(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@nestjs/core':
-        specifier: ^11.1.17
-        version: 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/platform-fastify':
-        specifier: ^11.1.17
-        version: 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)
-      '@nestjs/swagger':
-        specifier: ^11.2.6
-        version: 11.2.6(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(class-transformer@0.5.1)(reflect-metadata@0.2.2)
-      '@scalar/nestjs-api-reference':
-        specifier: ^1.1.5
-        version: 1.1.5
       '@vnodes/env':
         specifier: workspace:*
         version: link:../env
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../nestjs
       '@vnodes/net':
         specifier: workspace:*
         version: link:../net
@@ -252,24 +252,12 @@ importers:
         specifier: ~0.5.18
         version: 0.5.19
     devDependencies:
-      '@nestjs/common':
-        specifier: ^11.1.17
-        version: 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/config':
-        specifier: ^4.0.3
-        version: 4.0.3(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@nestjs/core':
-        specifier: ^11.1.17
-        version: 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/microservices':
-        specifier: ^11.1.17
-        version: 11.1.17(@grpc/grpc-js@1.14.3)(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(cache-manager@7.2.8)(ioredis@5.10.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@vnodes/env':
         specifier: workspace:*
         version: link:../env
-      '@vnodes/net':
+      '@vnodes/nestjs':
         specifier: workspace:*
-        version: link:../net
+        version: link:../nestjs
       '@vnodes/prop':
         specifier: workspace:*
         version: link:../prop
@@ -286,6 +274,25 @@ importers:
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
+
+  libs/db:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+    devDependencies:
+      '@prisma/adapter-pg':
+        specifier: ^7.6.0
+        version: 7.6.0
+      '@prisma/client':
+        specifier: ^7.6.0
+        version: 7.6.0(prisma@7.6.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
+      '@types/pg':
+        specifier: ^8.20.0
+        version: 8.20.0
+      pg:
+        specifier: ^8.20.0
+        version: 8.20.0
 
   libs/env:
     dependencies:
@@ -304,16 +311,16 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+    devDependencies:
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
       '@vnodes/errors':
         specifier: workspace:*
         version: link:../errors
       js-yaml:
         specifier: ^4.1.1
         version: 4.1.1
-    devDependencies:
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
 
   libs/metadata:
     dependencies:
@@ -333,12 +340,10 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+    devDependencies:
       '@vnodes/types':
         specifier: workspace:*
         version: link:../types
-      '@vnodes/utils':
-        specifier: workspace:*
-        version: link:../utils
 
   libs/nestjs:
     dependencies:
@@ -455,19 +460,13 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../nestjs
     devDependencies:
-      '@nestjs/common':
-        specifier: ^11.1.17
-        version: 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/config':
-        specifier: ^4.0.3
-        version: 4.0.3(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@prisma/adapter-pg':
-        specifier: ^7.6.0
-        version: 7.6.0
-      '@prisma/client':
-        specifier: ^7.6.0
-        version: 7.6.0(prisma@7.6.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
+      '@vnodes/db':
+        specifier: workspace:*
+        version: link:../db
       '@vnodes/env':
         specifier: workspace:*
         version: link:../env
@@ -477,9 +476,6 @@ importers:
       '@vnodes/utils':
         specifier: workspace:*
         version: link:../utils
-      pg:
-        specifier: ^8.20.0
-        version: 8.20.0
 
   libs/prop:
     dependencies:
@@ -487,27 +483,12 @@ importers:
         specifier: ~0.5.18
         version: 0.5.19
     devDependencies:
-      '@nestjs/common':
-        specifier: ^11.1.17
-        version: 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/microservices':
-        specifier: ^11.1.17
-        version: 11.1.17(@grpc/grpc-js@1.14.3)(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(cache-manager@7.2.8)(ioredis@5.10.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/swagger':
-        specifier: ^11.2.6
-        version: 11.2.6(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../nestjs
       '@vnodes/types':
         specifier: workspace:*
         version: link:../types
-      class-transformer:
-        specifier: ^0.5.1
-        version: 0.5.1
-      class-validator:
-        specifier: ^0.15.1
-        version: 0.15.1
-      reflect-metadata:
-        specifier: ^0.2.2
-        version: 0.2.2
 
   libs/types:
     dependencies:
@@ -520,13 +501,13 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
-      '@vnodes/types':
-        specifier: workspace:*
-        version: link:../types
     devDependencies:
       '@vnodes/errors':
         specifier: workspace:*
         version: link:../errors
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
 
   plugins/plugin:
     dependencies:
@@ -7960,21 +7941,6 @@ snapshots:
       '@nestjs/microservices': 11.1.17(@grpc/grpc-js@1.14.3)(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(cache-manager@7.2.8)(ioredis@5.10.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/platform-express': 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)
 
-  '@nestjs/core@11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
-    dependencies:
-      '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nuxt/opencollective': 0.4.1
-      fast-safe-stringify: 2.1.1
-      iterare: 1.2.1
-      path-to-regexp: 8.3.0
-      reflect-metadata: 0.2.2
-      rxjs: 7.8.2
-      tslib: 2.8.1
-      uid: 2.0.2
-    optionalDependencies:
-      '@nestjs/microservices': 11.1.17(@grpc/grpc-js@1.14.3)(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(cache-manager@7.2.8)(ioredis@5.10.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/platform-express': 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)
-
   '@nestjs/event-emitter@3.0.1(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)':
     dependencies:
       '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -8008,19 +7974,6 @@ snapshots:
       cache-manager: 7.2.8
       ioredis: 5.10.1
 
-  '@nestjs/microservices@11.1.17(@grpc/grpc-js@1.14.3)(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(cache-manager@7.2.8)(ioredis@5.10.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
-    dependencies:
-      '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      iterare: 1.2.1
-      reflect-metadata: 0.2.2
-      rxjs: 7.8.2
-      tslib: 2.8.1
-    optionalDependencies:
-      '@grpc/grpc-js': 1.14.3
-      cache-manager: 7.2.8
-      ioredis: 5.10.1
-
   '@nestjs/platform-express@11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)':
     dependencies:
       '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -8033,40 +7986,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nestjs/platform-express@11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)':
-    dependencies:
-      '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      cors: 2.8.6
-      express: 5.2.1
-      multer: 2.1.1
-      path-to-regexp: 8.3.0
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - supports-color
-    optional: true
-
   '@nestjs/platform-fastify@11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)':
     dependencies:
       '@fastify/cors': 11.2.0
       '@fastify/formbody': 8.0.2
       '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/core': 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      fast-querystring: 1.1.2
-      fastify: 5.8.2
-      fastify-plugin: 5.1.0
-      find-my-way: 9.5.0
-      light-my-request: 6.6.0
-      path-to-regexp: 8.3.0
-      reusify: 1.1.0
-      tslib: 2.8.1
-
-  '@nestjs/platform-fastify@11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)':
-    dependencies:
-      '@fastify/cors': 11.2.0
-      '@fastify/formbody': 8.0.2
-      '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       fast-querystring: 1.1.2
       fastify: 5.8.2
       fastify-plugin: 5.1.0
@@ -8096,20 +8021,6 @@ snapshots:
     optionalDependencies:
       class-transformer: 0.5.1
       class-validator: 0.15.1
-
-  '@nestjs/swagger@11.2.6(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(class-transformer@0.5.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@microsoft/tsdoc': 0.16.0
-      '@nestjs/common': 11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.17)(@nestjs/platform-express@11.1.17)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/mapped-types': 2.1.0(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)
-      js-yaml: 4.1.1
-      lodash: 4.17.23
-      path-to-regexp: 8.3.0
-      reflect-metadata: 0.2.2
-      swagger-ui-dist: 5.31.0
-    optionalDependencies:
-      class-transformer: 0.5.1
 
   '@nestjs/terminus@11.1.1(@grpc/grpc-js@1.14.3)(@grpc/proto-loader@0.8.0)(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(@nestjs/microservices@11.1.17)(@prisma/client@7.6.0(prisma@7.6.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3))(reflect-metadata@0.2.2)(rxjs@7.8.2)':
     dependencies:

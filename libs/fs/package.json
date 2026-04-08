@@ -45,11 +45,15 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18",
+    "@swc/helpers": "~0.5.18"
+  },
+  "peerDependencies": {
     "@vnodes/errors": "workspace:*",
     "js-yaml": "^4.1.1"
   },
   "devDependencies": {
+    "@vnodes/errors": "workspace:*",
+    "js-yaml": "^4.1.1",
     "@types/js-yaml": "^4.0.9"
   }
 }

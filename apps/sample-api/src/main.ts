@@ -1,5 +1,5 @@
 import '@vnodes/nestjs/core';
-import { boot } from '@vnodes/nestjs/boot-fastify';
+import { boot } from '@vnodes/boot-fastify';
 
 import { AppModule } from './app.module.js';
 

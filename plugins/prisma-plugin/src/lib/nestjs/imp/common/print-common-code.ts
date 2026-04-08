@@ -9,11 +9,12 @@ export function printCommonCode(generatorOptions: DtoGeneratorOptions) {
     return joinLines(
         `import type { ValidationError } from '@vnodes/nestjs/class-validator';`,
         `import { NotFoundException, UnprocessableEntityException } from '@vnodes/nestjs/common';`,
-        `import { Prop } from '@vnodes/nestjs/prop';`,
         `import { PartialType } from '@vnodes/nestjs/swagger';`,
-        `import { keys, pick } from '@vnodes/nestjs/utils';`,
-        `import type { Names } from '@vnodes/nestjs/types'`,
+        `import { Prop } from '@vnodes/prop';`,
+        `import type { Names } from '@vnodes/types';`,
+        `import { keys, pick } from '@vnodes/utils';`,
         `import { Prisma } from '${prismaClientPath}';`,
+
         ``,
         ``,
         `export class PaginationDto {`,
