@@ -39,6 +39,9 @@
     ],
     "nx": {
         "sourceRoot": "apps/sample-service/src",
+        "tags": [
+            "app"
+        ],
         "targets": {
             "build": {
                 "options": {

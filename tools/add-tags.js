@@ -24,12 +24,7 @@ async function addTags() {
 
 
 
-            if (!value.nx.tags) {
-                value.nx.tags = []
-            }
-
-            value.nx.tags =
-                [...new Set([...value.nx.tags, 'tag:lib'])]
+            value.nx.tags = ["lib"]
 
             return value;
         })

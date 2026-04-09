@@ -37,6 +37,9 @@
     ],
     "nx": {
         "sourceRoot": "apps/sample-gql/src",
+        "tags": [
+            "app"
+        ],
         "targets": {
             "build": {},
             "dependsOn": [

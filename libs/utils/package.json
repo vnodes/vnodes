@@ -1,58 +1,61 @@
 {
-  "name": "@vnodes/utils",
-  "version": "0.0.20",
-  "description": "@vnodes/utils",
-  "keywords": [
-    "utils"
-  ],
-  "author": {
-    "name": "Robert Brightline",
-    "email": "robert.brightline+vnodes-utils@gmail.com",
-    "url": "https://vnodes.github.io/vnodes"
-  },
-  "homepage": "https://vnodes.github.io/vnodes/libs/utils",
-  "icon": "https://vnodes.github.io/vnodes/libs/utils/assets/favicon.png",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "bin": {
-    "version": "./bin/version.mjs"
-  },
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "dist",
-    "bin",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "sourceRoot": "libs/utils/src",
-    "targets": {
-      "build": {},
-      "doc": {},
-      "lint": {}
-    }
-  },
-  "dependencies": {
-    "@swc/helpers": "~0.5.18"
-  },
-  "peerDependencies": {
-    "@vnodes/types": "workspace:*",
-    "@vnodes/errors": "workspace:*"
-  },
-  "devDependencies": {
-    "@vnodes/types": "workspace:*",
-    "@vnodes/errors": "workspace:*"
+ "name": "@vnodes/utils",
+ "version": "0.0.20",
+ "description": "@vnodes/utils",
+ "keywords": [
+  "utils"
+ ],
+ "author": {
+  "name": "Robert Brightline",
+  "email": "robert.brightline+vnodes-utils@gmail.com",
+  "url": "https://vnodes.github.io/vnodes"
+ },
+ "homepage": "https://vnodes.github.io/vnodes/libs/utils",
+ "icon": "https://vnodes.github.io/vnodes/libs/utils/assets/favicon.png",
+ "funding": [
+  "https://cash.app/$puqlib"
+ ],
+ "bin": {
+  "version": "./bin/version.mjs"
+ },
+ "type": "module",
+ "main": "./dist/index.js",
+ "module": "./dist/index.js",
+ "types": "./dist/index.d.ts",
+ "exports": {
+  "./package.json": "./package.json",
+  ".": {
+   "@vnodes/source": "./src/index.ts",
+   "types": "./dist/index.d.ts",
+   "import": "./dist/index.js",
+   "default": "./dist/index.js"
   }
+ },
+ "files": [
+  "dist",
+  "bin",
+  "!**/*.tsbuildinfo"
+ ],
+ "nx": {
+  "sourceRoot": "libs/utils/src",
+  "targets": {
+   "build": {},
+   "doc": {},
+   "lint": {}
+  },
+  "tags": [
+   "lib"
+  ]
+ },
+ "dependencies": {
+  "@swc/helpers": "~0.5.18"
+ },
+ "peerDependencies": {
+  "@vnodes/types": "workspace:*",
+  "@vnodes/errors": "workspace:*"
+ },
+ "devDependencies": {
+  "@vnodes/types": "workspace:*",
+  "@vnodes/errors": "workspace:*"
+ }
 }
