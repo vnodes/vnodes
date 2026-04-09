@@ -24,7 +24,10 @@ async function addTags() {
 
 
 
-            value.nx.tags = ["lib"]
+            value.publishConfig = {
+                "access": "public",
+                "tag": "latest"
+            }
 
             return value;
         })

@@ -1,65 +1,69 @@
 {
-  "name": "@vnodes/prisma-plugin",
-  "version": "0.0.23",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "bin",
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
-  "bin": {
-    "nestjs": "./bin/nestjs.mjs"
-  },
-  "nx": {
-    "sourceRoot": "plugins/prisma-plugin/src",
-    "targets": {
-      "build": {
-        "executor": "@nx/js:swc",
-        "outputs": [
-          "{options.outputPath}"
-        ],
-        "options": {
-          "outputPath": "plugins/prisma-plugin/dist",
-          "main": "plugins/prisma-plugin/src/index.ts",
-          "tsConfig": "plugins/prisma-plugin/tsconfig.lib.json",
-          "skipTypeCheck": true,
-          "stripLeadingPaths": true
-        }
-      }
-    },
-    "tags": [
-      "lib"
-    ]
-  },
-  "dependencies": {
-    "@prisma/generator-helper": "^7.6.0",
-    "@swc/helpers": "~0.5.18",
-    "@vnodes/fs": "workspace:*"
-  },
-  "devDependencies": {
-    "@vnodes/errors": "workspace:*",
-    "@vnodes/names": "workspace:*",
-    "@vnodes/prisma-plugin-helpers": "workspace:*",
-    "@vnodes/types": "workspace:*",
-    "@vnodes/utils": "workspace:*"
-  },
-  "peerDependencies": {
-    "@vnodes/errors": "workspace:*",
-    "@vnodes/names": "workspace:*",
-    "@vnodes/prisma-plugin-helpers": "workspace:*",
-    "@vnodes/types": "workspace:*",
-    "@vnodes/utils": "workspace:*"
+ "name": "@vnodes/prisma-plugin",
+ "version": "0.0.23",
+ "type": "module",
+ "main": "./dist/index.js",
+ "module": "./dist/index.js",
+ "types": "./dist/index.d.ts",
+ "exports": {
+  "./package.json": "./package.json",
+  ".": {
+   "@vnodes/source": "./src/index.ts",
+   "types": "./dist/index.d.ts",
+   "import": "./dist/index.js",
+   "default": "./dist/index.js"
   }
+ },
+ "files": [
+  "bin",
+  "dist",
+  "!**/*.tsbuildinfo"
+ ],
+ "bin": {
+  "nestjs": "./bin/nestjs.mjs"
+ },
+ "nx": {
+  "sourceRoot": "plugins/prisma-plugin/src",
+  "targets": {
+   "build": {
+    "executor": "@nx/js:swc",
+    "outputs": [
+     "{options.outputPath}"
+    ],
+    "options": {
+     "outputPath": "plugins/prisma-plugin/dist",
+     "main": "plugins/prisma-plugin/src/index.ts",
+     "tsConfig": "plugins/prisma-plugin/tsconfig.lib.json",
+     "skipTypeCheck": true,
+     "stripLeadingPaths": true
+    }
+   }
+  },
+  "tags": [
+   "lib"
+  ]
+ },
+ "dependencies": {
+  "@prisma/generator-helper": "^7.6.0",
+  "@swc/helpers": "~0.5.18",
+  "@vnodes/fs": "workspace:*"
+ },
+ "devDependencies": {
+  "@vnodes/errors": "workspace:*",
+  "@vnodes/names": "workspace:*",
+  "@vnodes/prisma-plugin-helpers": "workspace:*",
+  "@vnodes/types": "workspace:*",
+  "@vnodes/utils": "workspace:*"
+ },
+ "peerDependencies": {
+  "@vnodes/errors": "workspace:*",
+  "@vnodes/names": "workspace:*",
+  "@vnodes/prisma-plugin-helpers": "workspace:*",
+  "@vnodes/types": "workspace:*",
+  "@vnodes/utils": "workspace:*"
+ },
+ "publishConfig": {
+  "access": "public",
+  "tag": "latest"
+ }
 }
