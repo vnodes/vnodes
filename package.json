@@ -19,6 +19,7 @@
     "@swc/helpers": "~0.5.18",
     "@types/node": "20.19.9",
     "@vitest/coverage-v8": "~4.0.0",
+    "@vnodes/fs": "workspace:*",
     "@vnodes/plugin": "workspace:*",
     "axios": "^1.6.0",
     "chokidar": "^5.0.0",

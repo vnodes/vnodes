@@ -48,6 +48,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ~4.0.0
         version: 4.0.18(vitest@4.0.18(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(tsx@4.21.0)(yaml@2.8.3))
+      '@vnodes/fs':
+        specifier: workspace:*
+        version: link:libs/fs
       '@vnodes/plugin':
         specifier: workspace:*
         version: link:plugins/plugin

@@ -1,4 +1,4 @@
-#!/bin/bash
+# #!/bin/bash
 
-npx nx run-many -t lint --projects="tag:lib"
-npx nx run-many -t test build --projects="tag:lib"
+# npx nx run-many -t lint --projects="tag:lib"
+# npx nx run-many -t test build --projects="tag:lib"

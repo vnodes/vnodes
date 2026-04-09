@@ -31,9 +31,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: build
-        run: npx nx run-many -t build
+        run: npx nx run-many -t build --projects="tag:lib"
 
       - name: Publish to NPM
-        run: npx nx release publish
+        run: npx nx release publish --projects="tag:lib"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
