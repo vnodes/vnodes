@@ -133,7 +133,29 @@
         }
     },
     "release": {
-        "projects": [],
+        "projects": [
+            "fs",
+            "types",
+            "errors",
+            "utils",
+            "names",
+            "nestjs",
+            "env",
+            "prop",
+            "db",
+            "metadata",
+            "prisma",
+            "net",
+            "boot-grpc",
+            "boot-fastify",
+            "autowire",
+            "nestjs-common",
+            "crypto",
+            "auth",
+            "prisma-plugin-helpers",
+            "prisma-plugin",
+            "plugin"
+        ],
         "version": {
             "preVersionCommand": "pnpm dlx nx run-many -t build"
         }
