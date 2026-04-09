@@ -20,7 +20,19 @@ async function addTags() {
     for (const p of [...libPacks, ...pluginPacks]) {
 
         console.log(p);
-        // await updateJsonFile()
+        await updateJsonFile(p, (value) => {
+
+
+
+            if (!value.nx.tags) {
+                value.nx.tags = []
+            }
+
+            value.nx.tags =
+                [...new Set([...value.nx.tags, 'tag:lib'])]
+
+            return value;
+        })
     }
 
 }
