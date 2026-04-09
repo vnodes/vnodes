@@ -1,3 +1,28 @@
+## 0.0.23 (2026-04-09)
+
+### 🚀 Features
+
+- fixed the centeralized nestjs package ([55014ec](https://github.com/vnodes/vnodes/commit/55014ec))
+- organized the dependencies ([d52a624](https://github.com/vnodes/vnodes/commit/d52a624))
+- configured the micro service (grpc) boot function ([54a4958](https://github.com/vnodes/vnodes/commit/54a4958))
+- ci workflow fix ([738dafd](https://github.com/vnodes/vnodes/commit/738dafd))
+- ci workflow fix ([68725ac](https://github.com/vnodes/vnodes/commit/68725ac))
+- fixing tags ([99bc4dd](https://github.com/vnodes/vnodes/commit/99bc4dd))
+- tag updater ([c758c71](https://github.com/vnodes/vnodes/commit/c758c71))
+
+### 🩹 Fixes
+
+- build dependencies ([7933ec5](https://github.com/vnodes/vnodes/commit/7933ec5))
+- publish workflow fix ([2aef49a](https://github.com/vnodes/vnodes/commit/2aef49a))
+- workflow fix ([4b0431f](https://github.com/vnodes/vnodes/commit/4b0431f))
+- reworked the centeralized package ([421e390](https://github.com/vnodes/vnodes/commit/421e390))
+- fixed the build process ([0f51c58](https://github.com/vnodes/vnodes/commit/0f51c58))
+- release configurations ([4d4d10f](https://github.com/vnodes/vnodes/commit/4d4d10f))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.20 (2026-04-08)
 
 ### 🚀 Features
