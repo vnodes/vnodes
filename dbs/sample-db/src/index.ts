@@ -1,1 +1,1 @@
-export const sampleDb = 'sample-db';
+export const SAMPLE_DB = 'SAMPLE_DB';

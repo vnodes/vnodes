@@ -24,6 +24,9 @@ export class Env {
     static readonly THROTTLE_TTL = 'THROTTLE_TTL';
     static readonly THROTTLE_LIMIT = 'THROTTLE_LIMIT';
 
+    static readonly PROTO_DIR = 'PROTO_DIR';
+    static readonly PROTO_FILE_PATH = 'PROTO_FILE_PATH';
+
     readonly APP_ID: string;
     readonly APP_DESC: string;
     readonly PORT: string;
@@ -45,6 +48,9 @@ export class Env {
     readonly CACHE_TTL: string;
     readonly THROTTLE_TTL: string;
     readonly THROTTLE_LIMIT: string;
+
+    readonly PROTO_DIR: string;
+    readonly PROTO_FILE_PATH: string;
 
     constructor(private readonly _prefix = '') {
         this.APP_ID = this.pre(Env.APP_ID);
@@ -68,6 +74,9 @@ export class Env {
         this.CACHE_TTL = this.pre(Env.CACHE_TTL);
         this.THROTTLE_TTL = this.pre(Env.THROTTLE_TTL);
         this.THROTTLE_LIMIT = this.pre(Env.THROTTLE_LIMIT);
+
+        this.PROTO_DIR = this.pre(Env.PROTO_DIR);
+        this.PROTO_FILE_PATH = this.pre(Env.PROTO_FILE_PATH);
     }
 
     private pre(key: string) {

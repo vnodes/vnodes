@@ -64,6 +64,7 @@
     "files": [
         "dist",
         "bin",
+        "prisma",
         "!**/*.tsbuildinfo"
     ],
     "nx": {
@@ -81,20 +82,21 @@
         "@swc/helpers": "~0.5.18"
     },
     "peerDependencies": {
-        "@vnodes/nestjs": "workspace:*",
+        "@prisma/client": "^7.6.0",
         "@vnodes/db": "workspace:*",
+        "@vnodes/nestjs": "workspace:*",
         "@vnodes/prop": "workspace:*",
         "@vnodes/types": "workspace:*",
-        "@vnodes/utils": "workspace:*",
-        "pg": "^8.20.0"
+        "@vnodes/utils": "workspace:*"
     },
     "devDependencies": {
-        "@vnodes/nestjs": "workspace:*",
+        "@prisma/client": "^7.6.0",
         "@vnodes/db": "workspace:*",
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/prisma-plugin": "workspace:*",
         "@vnodes/prop": "workspace:*",
         "@vnodes/types": "workspace:*",
         "@vnodes/utils": "workspace:*",
-        "prisma": "^7.6.0",
-        "@vnodes/prisma-plugin": "workspace:*"
+        "prisma": "^7.6.0"
     }
 }

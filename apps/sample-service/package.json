@@ -1,7 +1,7 @@
 {
     "name": "@vnodes/sample-service",
     "version": "0.0.50",
-    "description": "@vnodes/sample-service",
+    "description": "Sample gRpc service",
     "keywords": [
         "sample-service"
     ],
@@ -33,6 +33,7 @@
     "files": [
         "dist",
         "bin",
+        "proto",
         "scripts",
         "!**/*.tsbuildinfo"
     ],
@@ -60,6 +61,8 @@
         "@grpc/grpc-js": "^1.14.3",
         "@grpc/proto-loader": "^0.8.0",
         "@nestjs/microservices": "^11.1.17",
+        "@vnodes/boot-grpc": "workspace:*",
+        "@vnodes/fs": "^0.0.15",
         "@vnodes/nestjs": "workspace:*",
         "@vnodes/prisma": "workspace:*",
         "@vnodes/sample-db": "workspace:*",
@@ -73,6 +76,7 @@
         "@grpc/grpc-js": "^1.14.3",
         "@grpc/proto-loader": "^0.8.0",
         "@nestjs/microservices": "^11.1.17",
+        "@vnodes/boot-grpc": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
         "@vnodes/sample-db": "workspace:*",
         "@vnodes/types": "workspace:*",
