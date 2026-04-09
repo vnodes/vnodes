@@ -29,6 +29,19 @@ export async function configs() {
     };
 }
 
+/**
+ * Sample env
+ *
+ * ````env
+ * APP_ID="sample"
+ * APP_DESC="sample app"
+ * DB_URL="postgres://admin:password@localhost:5432/vnodes?schema=sample"
+ * DB_SCHEMA="sample"
+ * PROTO_DIR=apps/sample-service/proto
+ * PROTO_FILE_PATH=sample-service.proto
+ * ````
+ * @param options
+ */
 export async function boot(options: BootGRpcOptions) {
     const NODE_ENV = process.env[Env.NODE_ENV];
     const IS_PROD = NODE_ENV === 'production';
