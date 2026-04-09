@@ -67,6 +67,7 @@
                 "stripLeadingPaths": true
             },
             "dependsOn": [
+                "^build",
                 "build-script",
                 "prisma-generate"
             ]
