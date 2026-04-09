@@ -38,6 +38,9 @@
   ],
   "nx": {
     "sourceRoot": "libs/auth/src",
+    "tags": [
+      "lib"
+    ],
     "targets": {
       "build": {},
       "doc": {},
