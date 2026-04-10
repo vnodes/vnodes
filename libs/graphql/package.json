@@ -1,0 +1,68 @@
+{
+    "name": "@vnodes/graphql",
+    "version": "0.0.20",
+    "description": "@vnodes/graphql",
+    "keywords": [
+        "graphql"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-graphql@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
+    },
+    "homepage": "https://vnodes.github.io/vnodes/libs/graphql",
+    "icon": "https://vnodes.github.io/vnodes/libs/graphql/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
+    "bin": {
+        "version": "./bin/version.mjs"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "bin",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "sourceRoot": "libs/graphql/src",
+        "targets": {
+            "build": {},
+            "doc": {},
+            "lint": {}
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.18"
+    },
+    "devDependencies": {
+        "@apollo/server": "^5.5.0",
+        "@as-integrations/express5": "^1.1.2",
+        "@nestjs/apollo": "^13.2.5",
+        "@nestjs/graphql": "^13.2.5",
+        "@nestjs/mercurius": "^13.2.5",
+        "graphql": "^16.13.2",
+        "graphql-subscriptions": "^3.0.0"
+    },
+    "peerDependencies": {
+        "@apollo/server": "^5.5.0",
+        "@as-integrations/express5": "^1.1.2",
+        "@nestjs/apollo": "^13.2.5",
+        "@nestjs/graphql": "^13.2.5",
+        "@nestjs/mercurius": "^13.2.5",
+        "graphql": "^16.13.2",
+        "graphql-subscriptions": "^3.0.0"
+    }
+}

@@ -19,9 +19,6 @@
       "path": "./apps/sample-api"
     },
     {
-      "path": "./apps/sample-gql"
-    },
-    {
       "path": "./apps/sample-service"
     },
     {
@@ -77,6 +74,12 @@
     },
     {
       "path": "./libs/db"
+    },
+    {
+      "path": "./apps/sample-gql"
+    },
+    {
+      "path": "./libs/graphql"
     }
   ]
 }

@@ -10,7 +10,7 @@
 
 ## @vnodes/sample-api
 
-IO
+Sample rest api
 
 ## Installation
 

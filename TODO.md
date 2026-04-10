@@ -1,1 +1,1 @@
-- [ ] get rid of the centeralized nestjs module!
+- [ ] create api, service, db generators in plugin project. 

@@ -10,7 +10,7 @@
 
 ## @vnodes/sample-gql
 
-IO
+Rest Api | @vnodes/sample-gql
 
 ## Installation
 

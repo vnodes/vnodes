@@ -7,8 +7,10 @@ const __dirname = dirname(__filename);
 const packageJsonPath = join(__dirname, '..', 'package.json');
 
 const manualPackages = [
+    "@as-integrations/fastify",
     "@fastify/compress",
     "@fastify/helmet",
+    "@fastify/static",
     "@types/express",
     "@types/multer",
     'multer',

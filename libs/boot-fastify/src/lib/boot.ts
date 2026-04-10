@@ -2,6 +2,7 @@ import { Env } from '@vnodes/env';
 import { ClassSerializerInterceptor, Logger, type NestApplicationOptions, type Type } from '@vnodes/nestjs/common';
 import { ConfigService } from '@vnodes/nestjs/config';
 import { NestFactory, Reflector } from '@vnodes/nestjs/core';
+import { FastifyAdapter } from '@vnodes/nestjs/platform-fastify';
 import { apiReference } from '@vnodes/nestjs/scalar-nestjs-api-reference';
 import { DocumentBuilder, SwaggerModule } from '@vnodes/nestjs/swagger';
 import { getPort } from '@vnodes/net';
@@ -18,7 +19,16 @@ export async function boot(options: BootOptions, appOptions?: NestApplicationOpt
     const DEFAULT_API_PREFIX = 'api';
     const SWAGGER_PATH = 'docs';
     const SCALAR_PATH = 'refs';
-    const app = await NestFactory.create(options.module, {
+
+    // 1. Initialize the Fastify Adapter
+    const adapter = new FastifyAdapter({
+        // Enabling trustProxy ensures req.ip is correctly populated when behind Nginx/Cloudflare
+        trustProxy: true,
+        // Increase body limit if you plan to handle large GraphQL uploads
+        bodyLimit: 10485760, // 10MB
+    });
+
+    const app = await NestFactory.create(options.module, adapter, {
         ...appOptions,
         logger: IS_PROD ? ['fatal', 'error'] : undefined,
         bufferLogs: true,
@@ -64,7 +74,7 @@ export async function boot(options: BootOptions, appOptions?: NestApplicationOpt
     await app.listen(PORT);
 
     const url = await app.getUrl();
-    logger.log(`${NODE_ENV} | Running at ${url}}`);
+    logger.log(`${NODE_ENV} | Running at ${url}`);
     logger.log(`Swagger: ${url}/${SWAGGER_PATH} `);
     logger.log(`Swagger: ${url}/${SCALAR_PATH} `);
 

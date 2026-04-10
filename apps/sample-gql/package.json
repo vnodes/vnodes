@@ -1,6 +1,6 @@
 {
     "name": "@vnodes/sample-gql",
-    "version": "0.0.50",
+    "version": "0.0.20",
     "description": "@vnodes/sample-gql",
     "keywords": [
         "sample-gql"
@@ -16,7 +16,7 @@
         "https://cash.app/$puqlib"
     ],
     "bin": {
-        "version": "./bin/version.mjs"
+        "sample-gql": "./bin/sample-gql.mjs"
     },
     "main": "./dist/index.js",
     "module": "./dist/index.js",
@@ -33,6 +33,8 @@
     "files": [
         "dist",
         "bin",
+        "assets",
+        "scripts",
         "!**/*.tsbuildinfo"
     ],
     "nx": {
@@ -41,15 +43,36 @@
             "app"
         ],
         "targets": {
-            "build": {},
-            "dependsOn": [
-                "@vnodes/sample-db:build"
-            ],
+            "build": {
+                "options": {
+                    "main": "{projectRoot}/src/main.cts"
+                }
+            },
+            "build-script": {},
             "doc": {},
-            "lint": {}
+            "lint": {},
+            "serve": {}
         }
     },
     "dependencies": {
         "@swc/helpers": "~0.5.18"
+    },
+    "devDependencies": {
+        "@nestjs/testing": "^11.1.18",
+        "@types/supertest": "^7.2.0",
+        "@vnodes/autowire": "workspace:*",
+        "@vnodes/boot-fastify": "workspace:*",
+        "@vnodes/graphql": "workspace:*",
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/nestjs-common": "workspace:*",
+        "@vnodes/types": "^0.0.23",
+        "supertest": "^7.2.2"
+    },
+    "peerDependencies": {
+        "@vnodes/autowire": "workspace:*",
+        "@vnodes/boot-fastify": "workspace:*",
+        "@vnodes/graphql": "workspace:*",
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/nestjs-common": "workspace:*"
     }
 }

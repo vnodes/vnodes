@@ -16,7 +16,7 @@
         "https://cash.app/$puqlib"
     ],
     "bin": {
-        "version": "./bin/version.mjs"
+        "sample-api": "./bin/cli.mjs"
     },
     "main": "./dist/index.js",
     "module": "./dist/index.js",
@@ -33,19 +33,20 @@
     "files": [
         "dist",
         "bin",
+        "assets",
+        "scripts",
         "!**/*.tsbuildinfo"
     ],
     "nx": {
         "sourceRoot": "apps/sample-api/src",
-        "tags": ["app"],
+        "tags": [
+            "app"
+        ],
         "targets": {
             "build": {
                 "options": {
                     "main": "{projectRoot}/src/main.cts"
-                },
-                "dependsOn": [
-                    "@vnodes/sample-db:build"
-                ]
+                }
             },
             "build-script": {},
             "doc": {},
@@ -57,21 +58,19 @@
         "@swc/helpers": "~0.5.18"
     },
     "devDependencies": {
+        "@nestjs/testing": "^11.1.18",
+        "@types/supertest": "^7.2.0",
         "@vnodes/autowire": "workspace:*",
         "@vnodes/boot-fastify": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
         "@vnodes/nestjs-common": "workspace:*",
-        "@vnodes/prisma": "workspace:*",
-        "@vnodes/sample-db": "workspace:*",
-        "@vnodes/sample-service": "workspace:*"
+        "@vnodes/types": "^0.0.23",
+        "supertest": "^7.2.2"
     },
     "peerDependencies": {
         "@vnodes/autowire": "workspace:*",
         "@vnodes/boot-fastify": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
-        "@vnodes/nestjs-common": "workspace:*",
-        "@vnodes/prisma": "workspace:*",
-        "@vnodes/sample-db": "workspace:*",
-        "@vnodes/sample-service": "workspace:*"
+        "@vnodes/nestjs-common": "workspace:*"
     }
 }
