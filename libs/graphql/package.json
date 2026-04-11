@@ -53,6 +53,8 @@
         "@nestjs/apollo": "^13.2.5",
         "@nestjs/graphql": "^13.2.5",
         "@nestjs/mercurius": "^13.2.5",
+        "@vnodes/prop": "workspace:^",
+        "@vnodes/types": "workspace:*",
         "graphql": "^16.13.2",
         "graphql-subscriptions": "^3.0.0"
     },
@@ -62,6 +64,8 @@
         "@nestjs/apollo": "^13.2.5",
         "@nestjs/graphql": "^13.2.5",
         "@nestjs/mercurius": "^13.2.5",
+        "@vnodes/prop": "workspace:^",
+        "@vnodes/types": "workspace:*",
         "graphql": "^16.13.2",
         "graphql-subscriptions": "^3.0.0"
     }

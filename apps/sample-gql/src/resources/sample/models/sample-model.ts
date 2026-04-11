@@ -1,20 +1,20 @@
-import { Field, ID, ObjectType } from '@vnodes/graphql';
+import { ObjectType, Prop } from '@vnodes/graphql';
 
 @ObjectType({ description: 'samples' })
 export class SampleModel {
-    @Field(() => ID)
-    id?: string = 'id';
+    @Prop()
+    id?: string = '1';
 
-    @Field(() => String)
+    @Prop()
     title?: string = 'Defautl title';
 
-    @Field({ nullable: true })
+    @Prop()
     description?: string = 'Default description';
 
-    @Field()
+    @Prop()
     creationDate?: Date = new Date();
 
-    @Field(() => [String])
+    @Prop({}, () => [String])
     ingredients: string[] = [];
 
     constructor(data: Partial<SampleModel> = {}) {

@@ -130,6 +130,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
+      '@vnodes/boot-fastify':
+        specifier: workspace:*
+        version: link:../../libs/boot-fastify
     devDependencies:
       '@nestjs/testing':
         specifier: ^11.1.18
@@ -140,9 +143,9 @@ importers:
       '@vnodes/autowire':
         specifier: workspace:*
         version: link:../../libs/autowire
-      '@vnodes/boot-fastify':
+      '@vnodes/boot-express':
         specifier: workspace:*
-        version: link:../../libs/boot-fastify
+        version: link:../../libs/boot-express
       '@vnodes/graphql':
         specifier: workspace:*
         version: link:../../libs/graphql
@@ -267,6 +270,28 @@ importers:
         specifier: workspace:*
         version: link:../utils
 
+  libs/boot-express:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+    devDependencies:
+      '@vnodes/env':
+        specifier: workspace:*
+        version: link:../env
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../nestjs
+      '@vnodes/net':
+        specifier: workspace:*
+        version: link:../net
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../prop
+      '@vnodes/types':
+        specifier: ^0.0.23
+        version: 0.0.23
+
   libs/boot-fastify:
     dependencies:
       '@swc/helpers':
@@ -383,6 +408,12 @@ importers:
       '@nestjs/mercurius':
         specifier: ^13.2.5
         version: 13.2.5(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/graphql@13.2.5(@fastify/websocket@11.2.0)(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.17)(class-transformer@0.5.1)(class-validator@0.15.1)(graphql@16.13.2)(reflect-metadata@0.2.2))(fastify@5.8.4)(graphql@16.13.2)(mercurius@16.9.0(graphql@16.13.2))
+      '@vnodes/prop':
+        specifier: workspace:^
+        version: link:../prop
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
       graphql:
         specifier: ^16.13.2
         version: 16.13.2

@@ -1,8 +1,4 @@
-import {
-    GraphQLModule,
-    MercuriusDriver,
-    type MercuriusDriverConfig
-} from '@vnodes/graphql';
+import { ApolloDriver, type ApolloDriverConfig, GraphQLModule } from '@vnodes/graphql';
 import { Module } from '@vnodes/nestjs/common';
 import { CommonGrapqlModule } from '@vnodes/nestjs-common';
 import { AppController } from './app.controller.js';
@@ -12,11 +8,17 @@ import { ResourceModule } from './resources/resource.module.js';
 @Module({
     imports: [
         CommonGrapqlModule,
-        GraphQLModule.forRoot<MercuriusDriverConfig>({
-            driver: MercuriusDriver,
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
             autoSchemaFile: true,
-            sortSchema: true,
-            introspection: true,
+            // Disable the old GraphQL Playground
+            playground: false,
+            // Enable the modern Apollo Sandbox Explorer
+            installSubscriptionHandlers: true,
+            subscriptions: {
+                'graphql-ws': true,
+                'subscriptions-transport-ws': true,
+            },
         }),
         ResourceModule,
     ],

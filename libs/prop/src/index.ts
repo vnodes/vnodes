@@ -7,5 +7,6 @@ export * from './lib/normalize-property-options.js';
 export * from './lib/number-prop.js';
 export * from './lib/prop.js';
 export * from './lib/prop-options.js';
+export * from './lib/prop-validation.js';
 export * from './lib/string-format-prop.js';
 export * from './lib/string-prop.js';

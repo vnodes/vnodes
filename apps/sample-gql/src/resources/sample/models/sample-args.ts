@@ -1,14 +1,10 @@
-import { ArgsType, Field, Int } from '@vnodes/graphql';
-import { Max, Min } from '@vnodes/nestjs/class-validator';
+import { ArgsType, Prop } from '@vnodes/graphql';
 
 @ArgsType()
 export class SampleArgs {
-    @Field(() => Int)
-    @Min(0)
-    skip = 0;
+    @Prop({ minimum: 0 })
+    skip: number = 0;
 
-    @Field(() => Int)
-    @Min(1)
-    @Max(50)
-    take = 25;
+    @Prop({ minimum: 1 })
+    take: number = 25;
 }

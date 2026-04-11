@@ -1,21 +1,8 @@
-import { type ClassConstructor, Expose, Type } from '@vnodes/nestjs/class-transformer';
-import {
-    IsBoolean,
-    IsDate,
-    IsDefined,
-    IsEnum,
-    IsOptional,
-    ValidateNested,
-    type ValidationOptions,
-} from '@vnodes/nestjs/class-validator';
+import type { ValidationOptions } from '@vnodes/nestjs/class-validator';
 import { type ApiPropertyOptions as __ApiPropertyOptions, ApiProperty } from '@vnodes/nestjs/swagger';
-import type { Any } from '@vnodes/types';
-import { ArrayProp } from './array-prop.js';
-import { isClassType } from './is-class-type.js';
 import { normalizePropertyOptions } from './normalize-property-options.js';
-import { NumberProp } from './number-prop.js';
 import type { PropOptions } from './prop-options.js';
-import { StringProp } from './string-prop.js';
+import { PropValidation } from './prop-validation.js';
 
 /**
  * ## Examples
@@ -49,42 +36,10 @@ export function Prop(options: PropOptions = {}, validationOptions?: ValidationOp
             }
         };
 
-        if (options.enum) {
-            if (!Array.isArray(options.enum)) {
-                options.enum = Object.values(options.enum);
-            }
-            add(IsEnum(options.enum, { ...validationOptions, message: `$property should be one of ${options.enum}` }));
-        }
-
-        if (Array.isArray(options.type)) {
-            add(ArrayProp(options, validationOptions));
-            add(Prop({ ...options.items, type: options.type[0] } as Any, { each: true }));
-        } else if (options.type === String) {
-            add(StringProp(options, validationOptions));
-        } else if (options.type === Number) {
-            add(NumberProp(options, validationOptions));
-        } else if (options.type === Boolean) {
-            add(IsBoolean(validationOptions));
-        } else if (options.type === Date) {
-            add(IsDate(validationOptions));
-        } else if (isClassType(options.type)) {
-            options.type = new (options.type as Any)();
-            add(Type(() => options.type as ClassConstructor<unknown>));
-            add(ValidateNested(validationOptions));
-        } else if (typeof options.type === 'function') {
-            add(Type(options.type as () => ClassConstructor<Any>));
-            add(ValidateNested(validationOptions));
-        }
+        add(PropValidation(options, validationOptions));
 
         if (!validationOptions) {
             add(ApiProperty({ ...options, type: safeType } as __ApiPropertyOptions));
-            add(Expose());
-
-            if (options.required === true) {
-                add(IsDefined(validationOptions));
-            } else {
-                add(IsOptional(validationOptions));
-            }
         }
 
         for (const decorator of [...decorators]) {

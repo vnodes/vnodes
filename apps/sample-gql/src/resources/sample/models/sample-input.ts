@@ -1,17 +1,13 @@
-import { Field, InputType } from '@vnodes/graphql';
-import { IsOptional, Length, MaxLength } from '@vnodes/nestjs/class-validator';
+import { InputType, Prop } from '@vnodes/graphql';
 
 @InputType()
 export class SampleInput {
-    @Field()
-    @MaxLength(30)
+    @Prop({ maximum: 50, required: true })
     title: string;
 
-    @Field({ nullable: true })
-    @IsOptional()
-    @Length(30, 255)
+    @Prop({ minimum: 30, maximum: 400 })
     description?: string;
 
-    @Field((type) => [String])
+    @Prop({}, () => [String])
     ingredients: string[];
 }

@@ -61,7 +61,7 @@
         "@nestjs/testing": "^11.1.18",
         "@types/supertest": "^7.2.0",
         "@vnodes/autowire": "workspace:*",
-        "@vnodes/boot-fastify": "workspace:*",
+        "@vnodes/boot-express": "workspace:*",
         "@vnodes/graphql": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
         "@vnodes/nestjs-common": "workspace:*",
@@ -70,6 +70,7 @@
     },
     "peerDependencies": {
         "@vnodes/autowire": "workspace:*",
+        "@vnodes/boot-express": "workspace:*",
         "@vnodes/boot-fastify": "workspace:*",
         "@vnodes/graphql": "workspace:*",
         "@vnodes/nestjs": "workspace:*",

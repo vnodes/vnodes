@@ -1,17 +1,17 @@
 {
-    "name": "@vnodes/prop",
-    "version": "0.0.23",
-    "description": "@vnodes/prop",
+    "name": "@vnodes/boot-express",
+    "version": "0.0.20",
+    "description": "@vnodes/boot-express",
     "keywords": [
-        "prop"
+        "boot-express"
     ],
     "author": {
         "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-prop@gmail.com",
+        "email": "robert.brightline+vnodes-boot-express@gmail.com",
         "url": "https://vnodes.github.io/vnodes"
     },
-    "homepage": "https://vnodes.github.io/vnodes/libs/prop",
-    "icon": "https://vnodes.github.io/vnodes/libs/prop/assets/favicon.png",
+    "homepage": "https://vnodes.github.io/vnodes/libs/boot-express",
+    "icon": "https://vnodes.github.io/vnodes/libs/boot-express/assets/favicon.png",
     "funding": [
         "https://cash.app/$puqlib"
     ],
@@ -37,29 +37,28 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "libs/prop/src",
+        "sourceRoot": "libs/boot-express/src",
         "targets": {
             "build": {},
             "doc": {},
             "lint": {}
-        },
-        "tags": [
-            "lib"
-        ]
+        }
     },
     "dependencies": {
         "@swc/helpers": "~0.5.18"
     },
-    "peerDependencies": {
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/types": "workspace:*"
-    },
     "devDependencies": {
+        "@vnodes/env": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
-        "@vnodes/types": "workspace:*"
+        "@vnodes/net": "workspace:*",
+        "@vnodes/prop": "workspace:*",
+        "@vnodes/types": "^0.0.23"
     },
-    "publishConfig": {
-        "access": "public",
-        "tag": "latest"
+    "peerDependencies": {
+        "@vnodes/env": "workspace:*",
+        "@vnodes/nestjs": "workspace:*",
+        "@vnodes/net": "workspace:*",
+        "@vnodes/prop": "workspace:*",
+        "@vnodes/types": "^0.0.23"
     }
 }

@@ -1,0 +1,105 @@
+import { type ClassConstructor, Expose, Type } from '@vnodes/nestjs/class-transformer';
+import {
+    IsBoolean,
+    IsDate,
+    IsDefined,
+    IsEnum,
+    IsOptional,
+    ValidateNested,
+    type ValidationOptions,
+} from '@vnodes/nestjs/class-validator';
+import type { Any } from '@vnodes/types';
+import { ArrayProp } from './array-prop.js';
+import { isClassType } from './is-class-type.js';
+import { normalizePropertyOptions } from './normalize-property-options.js';
+import { NumberProp } from './number-prop.js';
+import type { PropOptions } from './prop-options.js';
+import { StringProp } from './string-prop.js';
+
+/**
+ * ## Examples
+ * ```typescript
+ *   \@PropValidation() value: string;
+ *   \@PropValidation() value: number;
+ *   \@PropValidation() value: boolean;
+ *   \@PropValidation() value: Date;
+ *   \@PropValidation({ type: CustomObject }) value: CustomObject;
+ *   \@PropValidation({ type: [String] }) value: string[];
+ *   \@PropValidation({ enum: EnumClss }) value: EnumClss;
+ *   \@PropValidation({ type:[EnumClss] enum: EnumClss }) value: EnumClss;
+ *
+ * ## Notes
+ * - properties are optional by defualt if required is not set true
+ * ```
+ * @param options Open api property options
+ * @param validationOptions property validation options from class-validator
+ * @returns -- {@link PropertyDecorator}
+ */
+export function PropValidation(options: PropOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator {
+    return (...args) => {
+        options = normalizePropertyOptions(options, args[0], args[1]);
+
+        const decorators = new Set<PropertyDecorator>();
+        const add = (...propertyDecorators: PropertyDecorator[]) => {
+            for (const propertyDecorator of propertyDecorators) {
+                decorators.add(propertyDecorator);
+            }
+        };
+
+        if (options.enum) {
+            if (!Array.isArray(options.enum)) {
+                options.enum = Object.values(options.enum);
+            }
+            add(IsEnum(options.enum, { ...validationOptions, message: `$property should be one of ${options.enum}` }));
+        }
+
+        if (Array.isArray(options.type)) {
+            add(ArrayProp(options, validationOptions));
+            add(PropValidation({ ...options.items, type: options.type[0] } as Any, { each: true }));
+        } else if (options.type === String) {
+            add(StringProp(options, validationOptions));
+        } else if (options.type === Number) {
+            add(NumberProp(options, validationOptions));
+        } else if (options.type === Boolean) {
+            add(IsBoolean(validationOptions));
+        } else if (options.type === Date) {
+            add(IsDate(validationOptions));
+        } else if (isClassType(options.type)) {
+            options.type = new (options.type as Any)();
+            add(Type(() => options.type as ClassConstructor<unknown>));
+            add(ValidateNested(validationOptions));
+        } else if (typeof options.type === 'function') {
+            add(Type(options.type as () => ClassConstructor<Any>));
+            add(ValidateNested(validationOptions));
+        }
+
+        if (!validationOptions) {
+            add(Expose());
+
+            if (options.required === true) {
+                add(IsDefined(validationOptions));
+            } else {
+                add(IsOptional(validationOptions));
+            }
+        }
+
+        for (const decorator of [...decorators]) {
+            decorator(...args);
+        }
+    };
+}
+
+export function OptionalPropValidation(
+    options: PropOptions = {},
+    validationOptions?: ValidationOptions,
+): PropertyDecorator {
+    return (...args) => {
+        PropValidation(
+            {
+                ...options,
+                required: false,
+            } as PropOptions,
+            validationOptions,
+        )(...args);
+    };
+}

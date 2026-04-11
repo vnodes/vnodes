@@ -22,7 +22,8 @@ export class SamplesResolver {
 
     @Mutation(() => SampleModel)
     async createSample(@Args('sample') data: SampleInput) {
-        return data;
+        await pubSub.publish('sampleAdded', { sampleAdded: new SampleModel(data) });
+        return new SampleModel(data);
     }
 
     @Mutation(() => Boolean)
@@ -31,7 +32,7 @@ export class SamplesResolver {
     }
 
     @Subscription(() => SampleModel)
-    sampleAdded() {
-        return pubSub.asyncIterableIterator('sampleAdded') as Any;
+    sampleAdded(): Any {
+        return pubSub.asyncIterableIterator('sampleAdded');
     }
 }
