@@ -18,6 +18,10 @@
     "bin": {
         "sample-gql": "./bin/sample-gql.mjs"
     },
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",

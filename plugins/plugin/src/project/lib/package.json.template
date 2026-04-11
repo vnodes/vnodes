@@ -15,6 +15,10 @@
     "funding": [
         "<%- funding %>"
     ],
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
     "bin": {
         "version": "./bin/version.mjs"
     },

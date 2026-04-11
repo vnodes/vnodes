@@ -15,6 +15,10 @@
     "funding": [
         "<%- funding %>"
     ],
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
     "bin": {
         "<%- fileName %>": "./bin/<%- fileName %>.mjs"
     },

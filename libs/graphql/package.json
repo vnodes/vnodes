@@ -18,6 +18,10 @@
     "bin": {
         "version": "./bin/version.mjs"
     },
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
     "type": "module",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
