@@ -1,0 +1,16 @@
+import { InputType, PartialType, Prop } from '@vnodes/graphql';
+
+@InputType()
+export class SampleCreateInput {
+    @Prop({ maximum: 50, required: true })
+    title: string;
+
+    @Prop({ minimum: 30, maximum: 400 })
+    description?: string;
+
+    @Prop({}, () => [String])
+    ingredients?: string[];
+}
+
+@InputType()
+export class SampleUpdateInput extends PartialType(SampleCreateInput) {}

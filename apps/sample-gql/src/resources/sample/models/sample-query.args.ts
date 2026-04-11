@@ -1,7 +1,7 @@
 import { ArgsType, Prop } from '@vnodes/graphql';
 
 @ArgsType()
-export class SampleArgs {
+export class SampleQueryArgs {
     @Prop({ minimum: 0 })
     skip: number = 0;
 

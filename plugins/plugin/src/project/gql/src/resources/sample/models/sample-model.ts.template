@@ -15,7 +15,7 @@ export class SampleModel {
     creationDate?: Date = new Date();
 
     @Prop({}, () => [String])
-    ingredients?: string[] = [];
+    ingredients: string[] = [];
 
     constructor(data: Partial<SampleModel> = {}) {
         Object.assign(this, data);

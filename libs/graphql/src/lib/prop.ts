@@ -1,5 +1,5 @@
 import { Field, type FieldOptions, type ReturnTypeFunc } from '@nestjs/graphql';
-import { type PropOptions, PropValidation } from '@vnodes/prop';
+import { normalizePropertyOptions, type PropOptions, PropValidation } from '@vnodes/prop';
 
 export function Prop(
     validationOptions?: PropOptions,
@@ -7,8 +7,9 @@ export function Prop(
     fieldOptions?: FieldOptions,
 ): PropertyDecorator {
     return (...args) => {
-        const nullable = validationOptions?.required !== true;
-        Field(type, { ...fieldOptions, nullable })(...args);
+        const options = normalizePropertyOptions(validationOptions ?? {}, args[0], args[1]);
+        const isNullable = validationOptions?.required !== true;
         PropValidation(validationOptions)(...args);
+        Field(type ?? (() => options.type), { ...fieldOptions, nullable: isNullable })(...args);
     };
 }
