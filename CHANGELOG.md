@@ -1,3 +1,23 @@
+## 0.0.25 (2026-04-11)
+
+### 🚀 Features
+
+- publish configuration ([40980ad](https://github.com/vnodes/vnodes/commit/40980ad))
+- publish configuration ([07b88a5](https://github.com/vnodes/vnodes/commit/07b88a5))
+- configured the basic gql server with apollo ([920e926](https://github.com/vnodes/vnodes/commit/920e926))
+- created the basic grapqhql server and tested query and mutations ([a636b30](https://github.com/vnodes/vnodes/commit/a636b30))
+- added the graph logo to the gql generator ([4bca5b3](https://github.com/vnodes/vnodes/commit/4bca5b3))
+
+### 🩹 Fixes
+
+- publish config ([56a1f95](https://github.com/vnodes/vnodes/commit/56a1f95))
+- publish config ([ace9d58](https://github.com/vnodes/vnodes/commit/ace9d58))
+- fixed the nullable field options ([d01c659](https://github.com/vnodes/vnodes/commit/d01c659))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.23 (2026-04-09)
 
 ### 🚀 Features

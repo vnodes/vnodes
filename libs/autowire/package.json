@@ -1,73 +1,73 @@
 {
- "name": "@vnodes/autowire",
- "version": "0.0.23",
- "description": "@vnodes/autowire",
- "keywords": [
-  "autowire"
- ],
- "author": {
-  "name": "Robert Brightline",
-  "email": "robert.brightline+vnodes-autowire@gmail.com",
-  "url": "https://vnodes.github.io/vnodes"
- },
- "homepage": "https://vnodes.github.io/vnodes/libs/autowire",
- "icon": "https://vnodes.github.io/vnodes/libs/autowire/assets/favicon.png",
- "funding": [
-  "https://cash.app/$puqlib"
- ],
- "bin": {
-  "version": "./bin/version.mjs"
- },
- "type": "module",
- "main": "./dist/index.js",
- "module": "./dist/index.js",
- "types": "./dist/index.d.ts",
- "exports": {
-  "./package.json": "./package.json",
-  ".": {
-   "@vnodes/source": "./src/index.ts",
-   "types": "./dist/index.d.ts",
-   "import": "./dist/index.js",
-   "default": "./dist/index.js"
-  }
- },
- "files": [
-  "dist",
-  "bin",
-  "!**/*.tsbuildinfo"
- ],
- "nx": {
-  "sourceRoot": "libs/autowire/src",
-  "tags": [
-   "lib"
+  "name": "@vnodes/autowire",
+  "version": "0.0.25",
+  "description": "@vnodes/autowire",
+  "keywords": [
+    "autowire"
   ],
-  "targets": {
-   "build": {},
-   "doc": {},
-   "lint": {}
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-autowire@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/libs/autowire",
+  "icon": "https://vnodes.github.io/vnodes/libs/autowire/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/autowire/src",
+    "tags": [
+      "lib"
+    ],
+    "targets": {
+      "build": {},
+      "doc": {},
+      "lint": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "devDependencies": {
+    "@vnodes/errors": "workspace:*",
+    "@vnodes/metadata": "workspace:*",
+    "@vnodes/names": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*"
+  },
+  "peerDependencies": {
+    "@vnodes/errors": "workspace:*",
+    "@vnodes/metadata": "workspace:*",
+    "@vnodes/names": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
   }
- },
- "dependencies": {
-  "@swc/helpers": "~0.5.18"
- },
- "devDependencies": {
-  "@vnodes/errors": "workspace:*",
-  "@vnodes/metadata": "workspace:*",
-  "@vnodes/names": "workspace:*",
-  "@vnodes/nestjs": "workspace:*",
-  "@vnodes/types": "workspace:*",
-  "@vnodes/utils": "workspace:*"
- },
- "peerDependencies": {
-  "@vnodes/errors": "workspace:*",
-  "@vnodes/metadata": "workspace:*",
-  "@vnodes/names": "workspace:*",
-  "@vnodes/nestjs": "workspace:*",
-  "@vnodes/types": "workspace:*",
-  "@vnodes/utils": "workspace:*"
- },
- "publishConfig": {
-  "access": "public",
-  "tag": "latest"
- }
 }
