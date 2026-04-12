@@ -62,7 +62,6 @@
         "@vnodes/graphql": "workspace:*",
         "@vnodes/metadata": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
-        "@vnodes/nestjs-common": "workspace:*",
         "@vnodes/types": "workspace:*"
     },
     "peerDependencies": {
@@ -70,7 +69,6 @@
         "@vnodes/graphql": "workspace:*",
         "@vnodes/metadata": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
-        "@vnodes/nestjs-common": "workspace:*",
         "@vnodes/types": "workspace:*"
     }
 }

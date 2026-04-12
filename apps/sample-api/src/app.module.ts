@@ -1,5 +1,5 @@
+import { CommonAppModule } from '@vnodes/common/nestjs';
 import { Module } from '@vnodes/nestjs/common';
-import { CommonAppModule } from '@vnodes/nestjs-common';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 

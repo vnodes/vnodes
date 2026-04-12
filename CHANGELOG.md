@@ -1,3 +1,19 @@
+## 0.0.27 (2026-04-12)
+
+### 🚀 Features
+
+- improved the basic resolver example ([9fcd7c5](https://github.com/vnodes/vnodes/commit/9fcd7c5))
+- created autowire resolver decorator ([3e1c80c](https://github.com/vnodes/vnodes/commit/3e1c80c))
+- created the custom cache interceptor for grapqhl ([d1fc04d](https://github.com/vnodes/vnodes/commit/d1fc04d))
+
+### 🩹 Fixes
+
+- graphql publish config ([96a67e6](https://github.com/vnodes/vnodes/commit/96a67e6))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.25 (2026-04-11)
 
 ### 🚀 Features

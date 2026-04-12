@@ -112,12 +112,12 @@ importers:
       '@vnodes/boot-fastify':
         specifier: workspace:*
         version: link:../../libs/boot-fastify
+      '@vnodes/common':
+        specifier: workspace:*
+        version: link:../../libs/common
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
-      '@vnodes/nestjs-common':
-        specifier: workspace:*
-        version: link:../../libs/nestjs-common
       '@vnodes/types':
         specifier: ^0.0.23
         version: 0.0.23
@@ -152,9 +152,6 @@ importers:
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
-      '@vnodes/nestjs-common':
-        specifier: workspace:*
-        version: link:../../libs/nestjs-common
       '@vnodes/types':
         specifier: ^0.0.23
         version: 0.0.23
@@ -348,9 +345,6 @@ importers:
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../nestjs
-      '@vnodes/nestjs-common':
-        specifier: workspace:*
-        version: link:../nestjs-common
       '@vnodes/types':
         specifier: workspace:*
         version: link:../types
@@ -565,28 +559,6 @@ importers:
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
-
-  libs/nestjs-common:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.18
-        version: 0.5.19
-    devDependencies:
-      '@vnodes/env':
-        specifier: workspace:*
-        version: link:../env
-      '@vnodes/graphql':
-        specifier: workspace:*
-        version: link:../graphql
-      '@vnodes/metadata':
-        specifier: workspace:*
-        version: link:../metadata
-      '@vnodes/nestjs':
-        specifier: workspace:*
-        version: link:../nestjs
-      '@vnodes/types':
-        specifier: workspace:*
-        version: link:../types
 
   libs/net:
     dependencies:

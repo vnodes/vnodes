@@ -70,9 +70,6 @@
       "path": "./plugins/prisma-plugin-helpers"
     },
     {
-      "path": "./libs/nestjs-common"
-    },
-    {
       "path": "./libs/db"
     },
     {
