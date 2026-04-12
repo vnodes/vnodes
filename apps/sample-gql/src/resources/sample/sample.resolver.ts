@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/style/useImportType: DI */
 
 import { ArgsData, ArgsID, Autowire, ResourceResolver } from '@vnodes/autowire/resolver';
+import { PubSubService } from '@vnodes/common/graphql';
 import { Args } from '@vnodes/graphql';
-import { PubSubService } from '@vnodes/nestjs-common';
 import { Any } from '@vnodes/types';
 import { SampleCreateInput, SampleUpdateInput } from './models/sample-create.input.js';
 import { SampleModel } from './models/sample-model.js';

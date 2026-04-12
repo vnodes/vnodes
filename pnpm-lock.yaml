@@ -130,9 +130,6 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.19
-      '@vnodes/boot-fastify':
-        specifier: workspace:*
-        version: link:../../libs/boot-fastify
     devDependencies:
       '@nestjs/testing':
         specifier: ^11.1.18
@@ -146,6 +143,9 @@ importers:
       '@vnodes/boot-express':
         specifier: workspace:*
         version: link:../../libs/boot-express
+      '@vnodes/common':
+        specifier: workspace:*
+        version: link:../../libs/common
       '@vnodes/graphql':
         specifier: workspace:*
         version: link:../../libs/graphql
@@ -329,6 +329,31 @@ importers:
       '@vnodes/prop':
         specifier: workspace:*
         version: link:../prop
+
+  libs/common:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+    devDependencies:
+      '@vnodes/env':
+        specifier: workspace:*
+        version: link:../env
+      '@vnodes/graphql':
+        specifier: workspace:*
+        version: link:../graphql
+      '@vnodes/metadata':
+        specifier: workspace:*
+        version: link:../metadata
+      '@vnodes/nestjs':
+        specifier: workspace:*
+        version: link:../nestjs
+      '@vnodes/nestjs-common':
+        specifier: workspace:*
+        version: link:../nestjs-common
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
 
   libs/crypto:
     dependencies:

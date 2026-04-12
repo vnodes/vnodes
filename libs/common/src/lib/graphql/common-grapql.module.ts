@@ -1,28 +1,20 @@
 import { Env } from '@vnodes/env';
-import { CacheInterceptor, CacheModule } from '@vnodes/nestjs/cache-manager';
+import { ApolloDriver, type ApolloDriverConfig, GraphQLModule } from '@vnodes/graphql';
+import { CacheModule } from '@vnodes/nestjs/cache-manager';
 import { Global, Module } from '@vnodes/nestjs/common';
 import { ConfigModule, ConfigService } from '@vnodes/nestjs/config';
 import { APP_GUARD, APP_INTERCEPTOR, DiscoveryModule } from '@vnodes/nestjs/core';
 import { EventEmitterModule } from '@vnodes/nestjs/event-emitter';
 import { ScheduleModule } from '@vnodes/nestjs/schedule';
-import { ThrottlerGuard, ThrottlerModule } from '@vnodes/nestjs/throttler';
-import { CacheEvictInterceptor } from '../api/cache-evict.interceptor.js';
-import { EmitResponseInterceptor } from '../api/emit-response.interceptor.js';
+import { ThrottlerModule } from '@vnodes/nestjs/throttler';
+import type { Any } from '@vnodes/types';
+import { GqlCacheInterceptor } from './gql-cache.interceptor.js';
+import { GqlCacheEvictInterceptor } from './gql-cache-evict.interceptor.js';
+import { GqlThrottlerGuard } from './gql-throttler.guard.js';
+import { PubSubService } from './pub-sub.service.js';
 
 /**
- * Common rest api module that provides common modules as listed below
- * - DiscoveryModule
- * - ConfigModule
- * - EventEmitterModule
- * - ScheduleModule
- * - CacheModule
- * - ThrottlerModule
  *
- * Also provides the common interceptors and guards
- * - CacheInterceptor
- * - CacheEvictInterceptor
- * - EmitResponseInterceptor
- * - ThrottlerGuard
  */
 @Global()
 @Module({
@@ -33,8 +25,7 @@ import { EmitResponseInterceptor } from '../api/emit-response.interceptor.js';
             cache: true,
             expandVariables: true,
         }),
-        EventEmitterModule.forRoot({ delimiter: '.', global: true }),
-        ScheduleModule.forRoot(),
+
         CacheModule.registerAsync({
             isGlobal: true,
             imports: [ConfigModule],
@@ -55,25 +46,44 @@ import { EmitResponseInterceptor } from '../api/emit-response.interceptor.js';
                 },
             ],
         }),
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
+            autoSchemaFile: true,
+            playground: false,
+            installSubscriptionHandlers: true,
+            subscriptions: {
+                'graphql-ws': true,
+                'subscriptions-transport-ws': true,
+            },
+            context: ({ req, res }: Any) => ({ req, res }),
+        }),
+        EventEmitterModule.forRoot({ delimiter: '.', global: true }),
+        ScheduleModule.forRoot(),
     ],
     providers: [
+        PubSubService,
         {
             provide: APP_INTERCEPTOR,
-            useClass: CacheInterceptor,
+            useClass: GqlCacheInterceptor,
         },
         {
             provide: APP_INTERCEPTOR,
-            useClass: CacheEvictInterceptor,
-        },
-        {
-            provide: APP_INTERCEPTOR,
-            useClass: EmitResponseInterceptor,
+            useClass: GqlCacheEvictInterceptor,
         },
         {
             provide: APP_GUARD,
-            useClass: ThrottlerGuard,
+            useClass: GqlThrottlerGuard,
         },
     ],
-    exports: [ConfigModule, EventEmitterModule, ScheduleModule, CacheModule, ThrottlerModule, DiscoveryModule],
+    exports: [
+        ConfigModule,
+        GraphQLModule,
+        EventEmitterModule,
+        ScheduleModule,
+        CacheModule,
+        ThrottlerModule,
+        DiscoveryModule,
+        PubSubService,
+    ],
 })
-export class CommonAppModule {}
+export class CommonGrapqlModule {}

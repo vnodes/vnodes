@@ -1,5 +1,5 @@
+import { CommonGrapqlModule } from '@vnodes/common/graphql';
 import { Module } from '@vnodes/nestjs/common';
-import { CommonGrapqlModule } from '@vnodes/nestjs-common';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { ResourceModule } from './resources/resource.module.js';

@@ -2,7 +2,7 @@
 
 import { ArgsData, ArgsID, Autowire, ResourceResolver } from '@vnodes/autowire/resolver';
 import { Args } from '@vnodes/graphql';
-import { PubSubService } from '@vnodes/nestjs-common';
+import { PubSubService } from '@vnodes/common/graphql';
 import { Any } from '@vnodes/types';
 import { SampleCreateInput, SampleUpdateInput } from './models/sample-create.input.js';
 import { SampleModel } from './models/sample-model.js';

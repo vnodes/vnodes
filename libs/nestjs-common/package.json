@@ -29,6 +29,12 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./graphql": {
+      
+      "types": "./dist/lib/gql/index.d.ts",
+      "import": "./dist/lib/gql/index.js",
+      "default": "./dist/lib/gql/index.js"
     }
   },
   "files": [

@@ -1,8 +1,8 @@
 import { Resolver, Subscription } from '@vnodes/graphql';
 import { names, pluralize } from '@vnodes/names';
 import type { Type } from '@vnodes/nestjs/common';
+import { SkipThrottle } from '@vnodes/nestjs/throttler';
 import { definedOrThrow, extractResourceName, getInheritedPropertyDescriptor, getMethodNames } from '@vnodes/utils';
-
 import type { ResourceResolverMethodName } from '../common/resource-resolver.js';
 import { CreateOne } from './method/create-one.js';
 import { DeleteOneById } from './method/delete-one-by-id.js';
@@ -90,6 +90,7 @@ export function Autowire(options: AutowireResolverOptions): ClassDecorator {
                 case 'updated':
                 case 'deleted':
                 case 'created': {
+                    SkipThrottle()(...methodArgs);
                     Subscription(() => options.model, { name: `${methodName}${pascal}` })(...methodArgs);
                     break;
                 }
