@@ -76,6 +76,5 @@ export async function boot(options: BootOptions, appOptions?: NestApplicationOpt
     logger.log(`${NODE_ENV} | Running at ${url}`);
     logger.log(`Swagger: ${url}/${SWAGGER_PATH} `);
     logger.log(`Swagger: ${url}/${SCALAR_PATH} `);
-
     logger.log(`Allowed origins: ${ALLOWED_ORIGINS}`);
 }

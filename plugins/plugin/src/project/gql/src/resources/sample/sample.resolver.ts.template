@@ -1,45 +1,45 @@
 /** biome-ignore-all lint/style/useImportType: DI */
-
-import { Args, Mutation, PubSub, Query, Resolver, Subscription } from '@vnodes/graphql';
-import type { Any } from '@vnodes/types';
+import { Args, Mutation, Query, Resolver, Subscription } from '@vnodes/graphql';
+import { PubSubService } from '@vnodes/nestjs-common';
+import { Any } from '@vnodes/types';
 import { SampleCreateInput, SampleUpdateInput } from './models/sample-create.input.js';
 import { SampleModel } from './models/sample-model.js';
 import { SampleQueryArgs } from './models/sample-query.args.js';
 
-const pubSub = new PubSub();
-
 @Resolver(() => SampleModel)
 export class SamplesResolver {
-    @Query(() => SampleModel)
-    async findSampleById(@Args('id') id: string) {
+    constructor(protected readonly pubSub: PubSubService) {}
+
+    @Query(() => SampleModel, { name: 'findSampleById' })
+    async findById(@Args('id') id: string) {
         return new SampleModel({ id });
     }
 
-    @Query(() => [SampleModel])
-    async findManySample(@Args() sampleArgs: SampleQueryArgs) {
+    @Query(() => [SampleModel], { name: 'findManySamples' })
+    async findMany(@Args() sampleArgs: SampleQueryArgs) {
+        console.log(sampleArgs);
         return [new SampleModel(), new SampleModel()];
     }
 
-    @Mutation(() => SampleModel)
-    async createSample(@Args('sample') data: SampleCreateInput) {
+    @Mutation(() => SampleModel, { name: 'createSample' })
+    async create(@Args('sample') data: SampleCreateInput) {
         const result = new SampleModel(data);
-        await pubSub.publish('sampleAdded', { sampleAdded: result });
-
+        await this.pubSub.publish('sampleCreated', { sampleCreated: result });
         return result;
     }
 
-    @Mutation(() => SampleModel)
-    async deleteSampleById(@Args('id') id: string) {
+    @Mutation(() => SampleModel, { name: 'deleteSampleById' })
+    async deleteById(@Args('id') id: string) {
         return { id };
     }
 
-    @Mutation(() => SampleModel)
-    async udpatesample(@Args('id') id: string, @Args('sample') data: SampleUpdateInput) {
-        return { id };
+    @Mutation(() => SampleModel, { name: 'updateSampleById' })
+    async updateById(@Args('id') id: string, @Args('sample') data: SampleUpdateInput) {
+        return { id, ...data };
     }
 
-    @Subscription(() => SampleModel)
-    sampleAdded(): Any {
-        return pubSub.asyncIterableIterator('sampleAdded');
+    @Subscription(() => SampleModel, { name: 'sampleCreated' })
+    onCreate(): AsyncIterableIterator<Any, Any> {
+        return this.pubSub.asyncIterableIterator('sampleCreated');
     }
 }

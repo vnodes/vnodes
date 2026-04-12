@@ -556,6 +556,9 @@ importers:
       '@vnodes/nestjs':
         specifier: workspace:*
         version: link:../nestjs
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
 
   libs/net:
     dependencies:

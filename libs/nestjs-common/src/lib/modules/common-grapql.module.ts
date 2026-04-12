@@ -4,6 +4,7 @@ import { ConfigModule } from '@vnodes/nestjs/config';
 import { DiscoveryModule } from '@vnodes/nestjs/core';
 import { EventEmitterModule } from '@vnodes/nestjs/event-emitter';
 import { ScheduleModule } from '@vnodes/nestjs/schedule';
+import { PubSubService } from '../gql/pub-sub.service.js';
 /**
  *
  */
@@ -29,6 +30,7 @@ import { ScheduleModule } from '@vnodes/nestjs/schedule';
         EventEmitterModule.forRoot({ delimiter: '.', global: true }),
         ScheduleModule.forRoot(),
     ],
-    exports: [ConfigModule, GraphQLModule, EventEmitterModule, ScheduleModule, DiscoveryModule],
+    providers: [PubSubService],
+    exports: [ConfigModule, GraphQLModule, EventEmitterModule, ScheduleModule, DiscoveryModule, PubSubService],
 })
 export class CommonGrapqlModule {}

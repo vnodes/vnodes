@@ -54,13 +54,15 @@
     "@vnodes/env": "workspace:*",
     "@vnodes/graphql": "workspace:*",
     "@vnodes/metadata": "workspace:*",
-    "@vnodes/nestjs": "workspace:*"
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*"
   },
   "peerDependencies": {
     "@vnodes/env": "workspace:*",
     "@vnodes/graphql": "workspace:*",
     "@vnodes/metadata": "workspace:*",
-    "@vnodes/nestjs": "workspace:*"
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*"
   },
   "publishConfig": {
     "access": "public",
