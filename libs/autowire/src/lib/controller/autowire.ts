@@ -1,7 +1,7 @@
 import { names, pluralize } from '@vnodes/names';
 import { Controller, type Type } from '@vnodes/nestjs/common';
 import { definedOrThrow, extractResourceName, getInheritedPropertyDescriptor, getMethodNames } from '@vnodes/utils';
-import type { AutowireMethodName } from './autowire-method-name.js';
+import type { ResourceControllerMethodName } from '../common/resource-controller.js';
 import { CreateOne } from './method/create-one.js';
 import { DeleteOneById } from './method/delete-one-by-id.js';
 import { FindMany } from './method/find-many.js';
@@ -13,7 +13,7 @@ export type AutowireOptions = {
 };
 
 /**
- * Autowire rest controller and its methods {@link AutowireMethodName}
+ * Autowire rest controller and its methods {@link ResourceControllerMethodName}
  * @param options
  * @returns
  */
@@ -32,7 +32,7 @@ export function Autowire(options: AutowireOptions): ClassDecorator {
         for (const methodName of methodNames) {
             const descriptor = definedOrThrow(getInheritedPropertyDescriptor(target, methodName));
             const methodArgs = [prototype, methodName, descriptor] as Parameters<MethodDecorator>;
-            switch (methodName as AutowireMethodName) {
+            switch (methodName as ResourceControllerMethodName) {
                 case 'findMany': {
                     FindMany(resourceName, options.readDto)(...methodArgs);
                     break;

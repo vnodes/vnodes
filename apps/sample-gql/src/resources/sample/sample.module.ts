@@ -1,7 +1,7 @@
 import { Module } from '@vnodes/nestjs/common';
-import { SamplesResolver } from './sample.resolver';
+import { SampleResolver } from './sample.resolver';
 
 @Module({
-    providers: [SamplesResolver],
+    providers: [SampleResolver],
 })
 export class SampleModule {}

@@ -14,6 +14,7 @@ const errors = [
     'NotObject',
     'EmptyString',
     'InvalidDate',
+    'InvalidName',
     'Unsupported'
 ];
 

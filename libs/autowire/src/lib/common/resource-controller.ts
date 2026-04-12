@@ -1,6 +1,6 @@
 import type { Any } from '@vnodes/types';
 
-export type AutowireMethodName = 'findMany' | 'findOneById' | 'createOne' | 'updateOneById' | 'deleteOneById';
+export type ResourceControllerMethodName = 'findMany' | 'findOneById' | 'createOne' | 'updateOneById' | 'deleteOneById';
 
 export interface ResourceController<ID extends number | string = number> {
     findMany(query: Any): Promise<Any>;

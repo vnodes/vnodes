@@ -254,6 +254,9 @@ importers:
       '@vnodes/errors':
         specifier: workspace:*
         version: link:../errors
+      '@vnodes/graphql':
+        specifier: workspace:*
+        version: link:../graphql
       '@vnodes/metadata':
         specifier: workspace:*
         version: link:../metadata

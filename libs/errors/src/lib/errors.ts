@@ -108,6 +108,16 @@ export class InvalidDateError extends Error {
         }
     }
 }
+export class InvalidNameError extends Error {
+    constructor(message = '') {
+        super(message);
+        Object.setPrototypeOf(this, InvalidNameError.prototype);
+        this.name = this.constructor.name;
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, this.constructor);
+        }
+    }
+}
 export class UnsupportedError extends Error {
     constructor(message = '') {
         super(message);

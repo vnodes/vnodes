@@ -5,6 +5,7 @@ import { DiscoveryModule } from '@vnodes/nestjs/core';
 import { EventEmitterModule } from '@vnodes/nestjs/event-emitter';
 import { ScheduleModule } from '@vnodes/nestjs/schedule';
 import { PubSubService } from '../gql/pub-sub.service.js';
+
 /**
  *
  */

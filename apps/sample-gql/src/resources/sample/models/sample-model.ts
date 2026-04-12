@@ -3,7 +3,7 @@ import { ObjectType, Prop } from '@vnodes/graphql';
 @ObjectType({ description: 'samples' })
 export class SampleModel {
     @Prop()
-    id?: string = '1';
+    id?: number = 1;
 
     @Prop()
     title?: string = 'Defautl title';
