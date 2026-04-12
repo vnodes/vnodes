@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/boot-grpc",
-  "version": "0.0.27",
+  "version": "0.0.33",
   "description": "@vnodes/boot-grpc",
   "keywords": [
     "boot-grpc"

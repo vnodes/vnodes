@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/auth",
-  "version": "0.0.27",
+  "version": "0.0.33",
   "description": "@vnodes/auth",
   "publishConfig": {
     "access": "public",

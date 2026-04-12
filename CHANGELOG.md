@@ -1,3 +1,17 @@
+## 0.0.33 (2026-04-12)
+
+### 🚀 Features
+
+- created the cli project generator ([ce921fe](https://github.com/vnodes/vnodes/commit/ce921fe))
+
+### 🩹 Fixes
+
+- fixed the dependencies of the genrators ([d777918](https://github.com/vnodes/vnodes/commit/d777918))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.27 (2026-04-12)
 
 ### 🚀 Features
