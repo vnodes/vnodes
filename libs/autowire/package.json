@@ -30,6 +30,11 @@
       "import": "./dist/lib/controller/index.js",
       "default": "./dist/lib/controller/index.js"
     },
+    "./controller": {
+      "types": "./dist/lib/controller/index.d.ts",
+      "import": "./dist/lib/controller/index.js",
+      "default": "./dist/lib/controller/index.js"
+    },
     "./resolver": {
       "types": "./dist/lib/resolver/index.d.ts",
       "import": "./dist/lib/resolver/index.js",

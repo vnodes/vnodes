@@ -84,5 +84,5 @@ export async function boot(options: BootGRpcOptions) {
 
     await app.listen();
 
-    logger.log(`${NODE_ENV}| gRpc Microservice | Running at ${GRPC_URL}`);
+    logger.log(`${NODE_ENV} | gRpc Microservice | Running at ${GRPC_URL}`);
 }

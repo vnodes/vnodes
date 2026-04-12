@@ -62,23 +62,22 @@
         "@swc/helpers": "~0.5.18"
     },
     
+    "peerDependencies": {
+        "@vnodes/autowire": "workspace:*",
+        "@vnodes/boot-express": "workspace:*",
+        "@vnodes/common": "workspace:*",
+        "@vnodes/graphql": "workspace:*",
+        "@vnodes/nestjs": "workspace:*"
+    },
     "devDependencies": {
         "@nestjs/testing": "^11.1.18",
         "@types/supertest": "^7.2.0",
         "@vnodes/autowire": "workspace:*",
         "@vnodes/boot-express": "workspace:*",
+        "@vnodes/common": "workspace:*",
         "@vnodes/graphql": "workspace:*",
         "@vnodes/nestjs": "workspace:*",
-        "@vnodes/nestjs-common": "workspace:*",
         "@vnodes/types": "^0.0.23",
         "supertest": "^7.2.2"
-    },
-    "peerDependencies": {
-        "@vnodes/autowire": "workspace:*",
-        "@vnodes/boot-express": "workspace:*",
-        "@vnodes/boot-fastify": "workspace:*",
-        "@vnodes/graphql": "workspace:*",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/nestjs-common": "workspace:*"
     }
 }
