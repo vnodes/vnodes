@@ -49,7 +49,7 @@
         "targets": {
             "build": {
                 "options": {
-                    "main": "{projectRoot}/src/main.cts"
+                    "main": "{projectRoot}/src/main.ts"
                 }
             },
             "build-script": {},

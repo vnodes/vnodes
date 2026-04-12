@@ -20,7 +20,7 @@
         "tag": "latest"
     },
     "bin": {
-        "version": "./bin/version.mjs"
+        "<%- fileName %>": "./bin/<%- fileName %>.mjs"
     },
     "type": "module",
     "main": "./dist/index.js",
@@ -42,7 +42,9 @@
     ],
     "nx": {
         "sourceRoot": "<%- directory %>/src",
-        "tags":["lib"]
+        "tags":[
+            "app" 
+        ]
         "targets": {
             "build": {},
             "doc":{},
@@ -51,5 +53,11 @@
     },
     "dependencies": {
         "@swc/helpers": "~0.5.18"
+    },
+    "devDependencies": {
+        "commander": "^14.0.3"
+    },
+    "peerDependencies": {
+        "commander": "^14.0.3"
     }
 }

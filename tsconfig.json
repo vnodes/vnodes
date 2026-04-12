@@ -83,6 +83,9 @@
     },
     {
       "path": "./libs/common"
+    },
+    {
+      "path": "./apps/sample-cli"
     }
   ]
 }

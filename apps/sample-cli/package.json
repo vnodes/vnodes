@@ -1,27 +1,28 @@
 {
-    "name": "@vnodes/sample-api",
-    "version": "0.0.50",
-    "description": "@vnodes/sample-api",
+    "name": "@vnodes/sample-cli",
+    "version": "0.0.20",
+    "description": "@vnodes/sample-cli",
     "keywords": [
-        "sample-api"
+        "sample-cli"
     ],
     "author": {
         "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-sample-api@gmail.com",
+        "email": "robert.brightline+vnodes-sample-cli@gmail.com",
         "url": "https://vnodes.github.io/vnodes"
     },
-    "homepage": "https://vnodes.github.io/vnodes/apps/sample-api",
-    "icon": "https://vnodes.github.io/vnodes/apps/sample-api/assets/favicon.png",
+    "homepage": "https://vnodes.github.io/vnodes/apps/sample-cli",
+    "icon": "https://vnodes.github.io/vnodes/apps/sample-cli/assets/favicon.png",
     "funding": [
         "https://cash.app/$puqlib"
     ],
-    "bin": {
-        "sample-api": "./bin/cli.mjs"
-    },
     "publishConfig": {
         "access": "public",
         "tag": "latest"
     },
+    "bin": {
+        "sample-cli": "./bin/sample-cli.mjs"
+    },
+    "type": "module",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -37,12 +38,10 @@
     "files": [
         "dist",
         "bin",
-        "assets",
-        "scripts",
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "apps/sample-api/src",
+        "sourceRoot": "apps/sample-cli/src",
         "tags": [
             "app"
         ],
@@ -52,29 +51,18 @@
                     "main": "{projectRoot}/src/main.ts"
                 }
             },
-            "build-script": {},
+            "serve": {},
             "doc": {},
-            "lint": {},
-            "serve": {}
+            "lint": {}
         }
     },
     "dependencies": {
         "@swc/helpers": "~0.5.18"
     },
-    "peerDependencies": {
-        "@vnodes/autowire": "workspace:*",
-        "@vnodes/boot-fastify": "workspace:*",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/common": "workspace:*"
-    },
     "devDependencies": {
-        "@nestjs/testing": "^11.1.18",
-        "@types/supertest": "^7.2.0",
-        "@vnodes/autowire": "workspace:*",
-        "@vnodes/boot-fastify": "workspace:*",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/common": "workspace:*",
-        "@vnodes/types": "^0.0.23",
-        "supertest": "^7.2.2"
+        "commander": "^14.0.3"
+    },
+    "peerDependencies": {
+        "commander": "^14.0.3"
     }
 }

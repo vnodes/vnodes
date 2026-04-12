@@ -1,2 +1,2 @@
 # for file in *; do [ -f "$file" ] && mv "$file" "${file}.template"; done
-for file in *; do [ -f "$file" ] && echo "${file}.template"; done
+for file in * */* */*/*; do [ -f "$file" ] && mv $file "${file}.template"; done
