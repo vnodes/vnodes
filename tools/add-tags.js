@@ -23,11 +23,11 @@ async function addTags() {
         await updateJsonFile(p, (value) => {
 
 
+            value.files = [...new Set([
 
-            value.publishConfig = {
-                "access": "public",
-                "tag": "latest"
-            }
+                ...value.files,
+                "assets"
+            ])]
 
             return value;
         })
