@@ -6,11 +6,6 @@ generator client {
   moduleFormat           = "esm"
 }
 
-generator nestjs {
-  provider = "nestjs"
-  output   = "../src/generated/nestjs"
-}
-
 datasource db {
   provider = "postgresql"
 }

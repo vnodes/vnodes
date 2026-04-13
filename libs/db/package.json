@@ -1,84 +1,84 @@
 {
-  "name": "@vnodes/db",
-  "version": "0.0.35",
-  "description": "@vnodes/db",
-  "keywords": [
-    "db"
-  ],
-  "author": {
-    "name": "Robert Brightline",
-    "email": "robert.brightline+vnodes-db@gmail.com",
-    "url": "https://vnodes.github.io/vnodes"
-  },
-  "homepage": "https://vnodes.github.io/vnodes/libs/db",
-  "icon": "https://vnodes.github.io/vnodes/libs/db/assets/favicon.png",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "bin": {
-    "version": "./bin/version.mjs"
-  },
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+    "name": "@vnodes/db",
+    "version": "0.0.35",
+    "description": "@vnodes/db",
+    "keywords": [
+        "db"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-db@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
     },
-    "./adapter-pg": {
-      "types": "./dist/lib/adapter-pg.d.ts",
-      "import": "./dist/lib/adapter-pg.js",
-      "default": "./dist/lib/adapter-pg.js"
+    "homepage": "https://vnodes.github.io/vnodes/libs/db",
+    "icon": "https://vnodes.github.io/vnodes/libs/db/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
+    "bin": {
+        "version": "./bin/version.mjs"
     },
-    "./prisma-client": {
-      "types": "./dist/lib/prisma-client.d.ts",
-      "import": "./dist/lib/prisma-client.js",
-      "default": "./dist/lib/prisma-client.js"
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./adapter-pg": {
+            "types": "./dist/lib/adapter-pg.d.ts",
+            "import": "./dist/lib/adapter-pg.js",
+            "default": "./dist/lib/adapter-pg.js"
+        },
+        "./prisma-client": {
+            "types": "./dist/lib/prisma-client.d.ts",
+            "import": "./dist/lib/prisma-client.js",
+            "default": "./dist/lib/prisma-client.js"
+        },
+        "./pg": {
+            "types": "./dist/lib/pg.d.ts",
+            "import": "./dist/lib/pg.js",
+            "default": "./dist/lib/pg.js"
+        }
     },
-    "./pg": {
-      "types": "./dist/lib/pg.d.ts",
-      "import": "./dist/lib/pg.js",
-      "default": "./dist/lib/pg.js"
+    "files": [
+        "dist",
+        "bin",
+        "!**/*.tsbuildinfo",
+        "assets"
+    ],
+    "nx": {
+        "sourceRoot": "libs/db/src",
+        "targets": {
+            "build": {},
+            "doc": {},
+            "lint": {}
+        },
+        "tags": [
+            "lib"
+        ]
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.18"
+    },
+    "peerDependencies": {
+        "@prisma/adapter-pg": "^7.6.0",
+        "@prisma/client": "^7.6.0",
+        "pg": "^8.20.0"
+    },
+    "devDependencies": {
+        "@prisma/adapter-pg": "^7.6.0",
+        "@prisma/client": "^7.6.0",
+        "@types/pg": "^8.20.0",
+        "pg": "^8.20.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
     }
-  },
-  "files": [
-    "dist",
-    "bin",
-    "!**/*.tsbuildinfo",
-    "assets"
-  ],
-  "nx": {
-    "sourceRoot": "libs/db/src",
-    "targets": {
-      "build": {},
-      "doc": {},
-      "lint": {}
-    },
-    "tags": [
-      "lib"
-    ]
-  },
-  "dependencies": {
-    "@swc/helpers": "~0.5.18"
-  },
-  "peerDependencies": {
-    "@prisma/adapter-pg": "^7.6.0",
-    "@prisma/client": "^7.6.0",
-    "pg": "^8.20.0"
-  },
-  "devDependencies": {
-    "@prisma/adapter-pg": "^7.6.0",
-    "@prisma/client": "^7.6.0",
-    "@types/pg": "^8.20.0",
-    "pg": "^8.20.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  }
 }
