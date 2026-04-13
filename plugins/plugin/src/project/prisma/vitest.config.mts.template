@@ -2,9 +2,9 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig(() => ({
     root: __dirname,
-    cacheDir: '../../node_modules/.vite/dbs/sample-db',
+    cacheDir: '../../node_modules/.vite/<%- directory %>',
     test: {
-        name: '@vnodes/sample-db',
+        name: '@<%- orgname %>/<%- fileName %>',
         watch: false,
         globals: true,
         environment: 'node',

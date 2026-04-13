@@ -1,26 +1,26 @@
 {
-    "name": "@vnodes/sample-db",
-    "version": "0.0.50",
-    "description": "@vnodes/sample-db",
+    "name": "<%- projectName %>",
+    "version": "<%- version %>",
+    "description": "Prisma | <%- projectName %>",
     "keywords": [
-        "sample-db"
+        "<%- fileName %>"
     ],
     "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-sample-db@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
+        "name": "<%- author %>",
+        "email": "<%- email %>",
+        "url": "<%- homepage %>"
     },
-    "homepage": "https://vnodes.github.io/vnodes/dbs/sample-db",
-    "icon": "https://vnodes.github.io/vnodes/dbs/sample-db/assets/favicon.png",
+    "homepage": "<%- homepage %>/<%- directory %>",
+    "icon": "<%- homepage %>/<%- directory %>/assets/favicon.png",
     "funding": [
-        "https://cash.app/$puqlib"
+        "<%- funding %>"
     ],
-    "bin": {
-        "version": "./bin/version.mjs"
-    },
     "publishConfig": {
         "access": "public",
         "tag": "latest"
+    },
+    "bin": {
+        "version": "./bin/version.mjs"
     },
     "type": "module",
     "main": "./dist/index.js",
@@ -29,7 +29,7 @@
     "exports": {
         "./package.json": "./package.json",
         ".": {
-            "@vnodes/source": "./src/index.ts",
+            "@<%- reponame %>/source": "./src/index.ts",
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js",
             "default": "./dist/index.js"
@@ -59,11 +59,6 @@
             "import": "./dist/generated/prisma/commonInputTypes.js",
             "default": "./dist/generated/prisma/commonInputTypes.js"
         },
-        "./nestjs": {
-            "types": "./dist/generated/nestjs/nestjs.d.ts",
-            "import": "./dist/generated/nestjs/nestjs.js",
-            "default": "./dist/generated/nestjs/nestjs.js"
-        }
     },
     "files": [
         "dist",
@@ -72,22 +67,18 @@
         "!**/*.tsbuildinfo"
     ],
     "nx": {
-        "sourceRoot": "dbs/sample-db/src",
-        "tags": [
-            "db"
-        ],
+        "sourceRoot": "<%- directory %>/src",
+        "tags":["lib"]
         "targets": {
             "build": {},
-            "doc": {},
-            "lint": {},
-            "prisma-generate": {},
-            "prisma-migrate": {},
-            "prisma-reset": {}
+            "doc":{},
+            "lint":{}
         }
     },
     "dependencies": {
         "@swc/helpers": "~0.5.18"
     },
+
     "peerDependencies": {
         "@prisma/client": "^7.6.0"
     },

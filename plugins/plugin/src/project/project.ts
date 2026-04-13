@@ -14,6 +14,7 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
 
     options.email = options.email.split('@').join(`+${options.reponame}-${shortProjectNames.fileName}@`);
 
+    
     generateFiles(tree, path.join(__dirname, options.projectType), projectRoot, {
         ...shortProjectNames,
         projectName,

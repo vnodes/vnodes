@@ -20,11 +20,5 @@
         "noInterop": false
     },
     "sourceMaps": true,
-    "exclude": [
-        "vitest.config.mts",
-        "prisma.config.ts",
-        ".*\\.spec.ts$",
-        ".*\\.test.ts$",
-        ".*.js$"
-    ]
+    "exclude": ["vitest.config.mts", "prisma.config.ts", ".*\\.spec.ts$", ".*\\.test.ts$", ".*.js$"]
 }
