@@ -15,6 +15,7 @@
     }
   },
   "files": [
+    "assets",
     "bin",
     "dist",
     "!**/*.tsbuildinfo"

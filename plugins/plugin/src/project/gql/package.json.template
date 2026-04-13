@@ -35,9 +35,9 @@
         }
     },
     "files": [
+        "assets",
         "dist",
         "bin",
-        "assets",
         "scripts",
         "!**/*.tsbuildinfo"
     ],

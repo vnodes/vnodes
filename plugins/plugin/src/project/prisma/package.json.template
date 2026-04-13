@@ -3,6 +3,7 @@
     "version": "<%- version %>",
     "description": "Prisma | <%- projectName %>",
     "keywords": [
+        "prisma",
         "<%- fileName %>"
     ],
     "author": {
@@ -61,6 +62,7 @@
         },
     },
     "files": [
+        "assets",
         "dist",
         "bin",
         "prisma",
@@ -68,7 +70,7 @@
     ],
     "nx": {
         "sourceRoot": "<%- directory %>/src",
-        "tags":["lib"]
+        "tags":["app"]
         "targets": {
             "build": {},
             "doc":{},
