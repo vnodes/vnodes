@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/crypto",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/crypto",
   "keywords": [
     "crypto"
@@ -34,7 +34,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/crypto/src",

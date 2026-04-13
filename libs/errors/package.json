@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/errors",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/errors",
   "keywords": [
     "errors"
@@ -34,7 +34,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/errors/src",

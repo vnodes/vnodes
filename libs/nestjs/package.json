@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/nestjs",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/nestjs",
   "keywords": [
     "nestjs"
@@ -175,7 +175,8 @@
     "dist",
     "bin",
     "scripts",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/nestjs/src",

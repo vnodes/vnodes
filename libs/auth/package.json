@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/auth",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/auth",
   "publishConfig": {
     "access": "public",
@@ -38,7 +38,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/auth/src",

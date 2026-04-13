@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/autowire",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/autowire",
   "keywords": [
     "autowire"
@@ -44,7 +44,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/autowire/src",

@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/types",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/types",
   "keywords": [
     "types"
@@ -34,7 +34,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/types/src",

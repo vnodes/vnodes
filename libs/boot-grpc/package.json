@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/boot-grpc",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/boot-grpc",
   "keywords": [
     "boot-grpc"
@@ -34,7 +34,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/boot-grpc/src",

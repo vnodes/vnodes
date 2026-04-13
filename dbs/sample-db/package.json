@@ -58,11 +58,6 @@
             "types": "./dist/generated/prisma/commonInputTypes.d.ts",
             "import": "./dist/generated/prisma/commonInputTypes.js",
             "default": "./dist/generated/prisma/commonInputTypes.js"
-        },
-        "./nestjs": {
-            "types": "./dist/generated/nestjs/nestjs.d.ts",
-            "import": "./dist/generated/nestjs/nestjs.js",
-            "default": "./dist/generated/nestjs/nestjs.js"
         }
     },
     "files": [

@@ -1,74 +1,75 @@
 {
-    "name": "@vnodes/common",
-    "version": "0.0.20",
-    "description": "Nestjs Common Modules",
-    "keywords": [
-        "common"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-common@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
+  "name": "@vnodes/common",
+  "version": "0.0.35",
+  "description": "Nestjs Common Modules",
+  "keywords": [
+    "common"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-common@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/libs/common",
+  "icon": "https://vnodes.github.io/vnodes/libs/common/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "homepage": "https://vnodes.github.io/vnodes/libs/common",
-    "icon": "https://vnodes.github.io/vnodes/libs/common/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
+    "./nestjs": {
+      "types": "./dist/lib/nestjs/index.d.ts",
+      "import": "./dist/lib/nestjs/index.js",
+      "default": "./dist/lib/nestjs/index.js"
     },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        },
-        "./nestjs": {
-            "types": "./dist/lib/nestjs/index.d.ts",
-            "import": "./dist/lib/nestjs/index.js",
-            "default": "./dist/lib/nestjs/index.js"
-        },
-        "./graphql": {
-            "types": "./dist/lib/graphql/index.d.ts",
-            "import": "./dist/lib/graphql/index.js",
-            "default": "./dist/lib/graphql/index.js"
-        }
-    },
-    "files": [
-        "dist",
-        "bin",
-        "!**/*.tsbuildinfo"
-    ],
-    "nx": {
-        "sourceRoot": "libs/common/src",
-        "targets": {
-            "build": {},
-            "doc": {},
-            "lint": {}
-        }
-    },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
-    },
-    "devDependencies": {
-        "@vnodes/env": "workspace:*",
-        "@vnodes/graphql": "workspace:*",
-        "@vnodes/metadata": "workspace:*",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/types": "workspace:*"
-    },
-    "peerDependencies": {
-        "@vnodes/env": "workspace:*",
-        "@vnodes/graphql": "workspace:*",
-        "@vnodes/metadata": "workspace:*",
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/types": "workspace:*"
+    "./graphql": {
+      "types": "./dist/lib/graphql/index.d.ts",
+      "import": "./dist/lib/graphql/index.js",
+      "default": "./dist/lib/graphql/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo",
+    "assets"
+  ],
+  "nx": {
+    "sourceRoot": "libs/common/src",
+    "targets": {
+      "build": {},
+      "doc": {},
+      "lint": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "devDependencies": {
+    "@vnodes/env": "workspace:*",
+    "@vnodes/graphql": "workspace:*",
+    "@vnodes/metadata": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*"
+  },
+  "peerDependencies": {
+    "@vnodes/env": "workspace:*",
+    "@vnodes/graphql": "workspace:*",
+    "@vnodes/metadata": "workspace:*",
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*"
+  }
 }

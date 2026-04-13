@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/db",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "description": "@vnodes/db",
   "keywords": [
     "db"
@@ -49,7 +49,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "assets"
   ],
   "nx": {
     "sourceRoot": "libs/db/src",

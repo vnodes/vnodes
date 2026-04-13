@@ -1,3 +1,15 @@
+## 0.0.35 (2026-04-13)
+
+### 🚀 Features
+
+- created the prisma project generator ([3db38ac](https://github.com/vnodes/vnodes/commit/3db38ac))
+- added favicons ([c467047](https://github.com/vnodes/vnodes/commit/c467047))
+- fixing the package files ([facaa21](https://github.com/vnodes/vnodes/commit/facaa21))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.33 (2026-04-12)
 
 ### 🚀 Features
