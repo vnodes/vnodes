@@ -1,3 +1,13 @@
+## 0.0.37 (2026-04-15)
+
+### 🚀 Features
+
+- created component genreator ([6803d0a](https://github.com/vnodes/vnodes/commit/6803d0a))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.35 (2026-04-13)
 
 ### 🚀 Features

@@ -1,258 +1,258 @@
 {
-    "name": "@vnodes/nestjs",
-    "version": "0.0.35",
-    "description": "@vnodes/nestjs",
-    "keywords": [
-        "nestjs"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-nestjs@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
+  "name": "@vnodes/nestjs",
+  "version": "0.0.37",
+  "description": "@vnodes/nestjs",
+  "keywords": [
+    "nestjs"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-nestjs@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
+  "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
-    "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
+    "./cache-manager": {
+      "types": "./dist/nestjs/cache-manager.d.ts",
+      "import": "./dist/nestjs/cache-manager.js",
+      "default": "./dist/nestjs/cache-manager.js"
     },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        },
-        "./cache-manager": {
-            "types": "./dist/nestjs/cache-manager.d.ts",
-            "import": "./dist/nestjs/cache-manager.js",
-            "default": "./dist/nestjs/cache-manager.js"
-        },
-        "./common": {
-            "types": "./dist/nestjs/common.d.ts",
-            "import": "./dist/nestjs/common.js",
-            "default": "./dist/nestjs/common.js"
-        },
-        "./config": {
-            "types": "./dist/nestjs/config.d.ts",
-            "import": "./dist/nestjs/config.js",
-            "default": "./dist/nestjs/config.js"
-        },
-        "./core": {
-            "types": "./dist/nestjs/core.d.ts",
-            "import": "./dist/nestjs/core.js",
-            "default": "./dist/nestjs/core.js"
-        },
-        "./event-emitter": {
-            "types": "./dist/nestjs/event-emitter.d.ts",
-            "import": "./dist/nestjs/event-emitter.js",
-            "default": "./dist/nestjs/event-emitter.js"
-        },
-        "./jwt": {
-            "types": "./dist/nestjs/jwt.d.ts",
-            "import": "./dist/nestjs/jwt.js",
-            "default": "./dist/nestjs/jwt.js"
-        },
-        "./microservices": {
-            "types": "./dist/nestjs/microservices.d.ts",
-            "import": "./dist/nestjs/microservices.js",
-            "default": "./dist/nestjs/microservices.js"
-        },
-        "./platform-express": {
-            "types": "./dist/nestjs/platform-express.d.ts",
-            "import": "./dist/nestjs/platform-express.js",
-            "default": "./dist/nestjs/platform-express.js"
-        },
-        "./platform-fastify": {
-            "types": "./dist/nestjs/platform-fastify.d.ts",
-            "import": "./dist/nestjs/platform-fastify.js",
-            "default": "./dist/nestjs/platform-fastify.js"
-        },
-        "./schedule": {
-            "types": "./dist/nestjs/schedule.d.ts",
-            "import": "./dist/nestjs/schedule.js",
-            "default": "./dist/nestjs/schedule.js"
-        },
-        "./swagger": {
-            "types": "./dist/nestjs/swagger.d.ts",
-            "import": "./dist/nestjs/swagger.js",
-            "default": "./dist/nestjs/swagger.js"
-        },
-        "./terminus": {
-            "types": "./dist/nestjs/terminus.d.ts",
-            "import": "./dist/nestjs/terminus.js",
-            "default": "./dist/nestjs/terminus.js"
-        },
-        "./throttler": {
-            "types": "./dist/nestjs/throttler.d.ts",
-            "import": "./dist/nestjs/throttler.js",
-            "default": "./dist/nestjs/throttler.js"
-        },
-        "./scalar-nestjs-api-reference": {
-            "types": "./dist/nestjs/scalar-nestjs-api-reference.d.ts",
-            "import": "./dist/nestjs/scalar-nestjs-api-reference.js",
-            "default": "./dist/nestjs/scalar-nestjs-api-reference.js"
-        },
-        "./class-transformer": {
-            "types": "./dist/nestjs/class-transformer.d.ts",
-            "import": "./dist/nestjs/class-transformer.js",
-            "default": "./dist/nestjs/class-transformer.js"
-        },
-        "./class-validator": {
-            "types": "./dist/nestjs/class-validator.d.ts",
-            "import": "./dist/nestjs/class-validator.js",
-            "default": "./dist/nestjs/class-validator.js"
-        },
-        "./helmet": {
-            "types": "./dist/nestjs/helmet.d.ts",
-            "import": "./dist/nestjs/helmet.js",
-            "default": "./dist/nestjs/helmet.js"
-        },
-        "./rxjs": {
-            "types": "./dist/nestjs/rxjs.d.ts",
-            "import": "./dist/nestjs/rxjs.js",
-            "default": "./dist/nestjs/rxjs.js"
-        },
-        "./fastify-compress": {
-            "types": "./dist/manual/fastify-compress.d.ts",
-            "import": "./dist/manual/fastify-compress.js",
-            "default": "./dist/manual/fastify-compress.js"
-        },
-        "./fastify-static": {
-            "types": "./dist/manual/fastify-static.d.ts",
-            "import": "./dist/manual/fastify-static.js",
-            "default": "./dist/manual/fastify-static.js"
-        },
-        "./fastify-helmet": {
-            "types": "./dist/manual/fastify-helmet.d.ts",
-            "import": "./dist/manual/fastify-helmet.js",
-            "default": "./dist/manual/fastify-helmet.js"
-        },
-        "./as-integrations-fastify": {
-            "types": "./dist/manual/as-integrations-fastify.d.ts",
-            "import": "./dist/manual/as-integrations-fastify.js",
-            "default": "./dist/manual/as-integrations-fastify.js"
-        },
-        "./types-express": {
-            "types": "./dist/manual/types-express.d.ts",
-            "import": "./dist/manual/types-express.js",
-            "default": "./dist/manual/types-express.js"
-        },
-        "./types-multer": {
-            "types": "./dist/manual/types-multer.d.ts",
-            "import": "./dist/manual/types-multer.js",
-            "default": "./dist/manual/types-multer.js"
-        },
-        "./multer": {
-            "types": "./dist/manual/multer.d.ts",
-            "import": "./dist/manual/multer.js",
-            "default": "./dist/manual/multer.js"
-        },
-        "./cache": {
-            "types": "./dist/manual/cache.d.ts",
-            "import": "./dist/manual/cache.js",
-            "default": "./dist/manual/cache.js"
-        },
-        "./express": {
-            "types": "./dist/manual/express.d.ts",
-            "import": "./dist/manual/express.js",
-            "default": "./dist/manual/express.js"
-        },
-        "./fastify": {
-            "types": "./dist/manual/fastify.d.ts",
-            "import": "./dist/manual/fastify.js",
-            "default": "./dist/manual/fastify.js"
-        }
+    "./common": {
+      "types": "./dist/nestjs/common.d.ts",
+      "import": "./dist/nestjs/common.js",
+      "default": "./dist/nestjs/common.js"
     },
-    "files": [
-        "dist",
-        "bin",
-        "scripts",
-        "!**/*.tsbuildinfo",
-        "assets"
-    ],
-    "nx": {
-        "sourceRoot": "libs/nestjs/src",
-        "targets": {
-            "build": {},
-            "doc": {},
-            "lint": {}
-        },
-        "tags": [
-            "lib"
-        ]
+    "./config": {
+      "types": "./dist/nestjs/config.d.ts",
+      "import": "./dist/nestjs/config.js",
+      "default": "./dist/nestjs/config.js"
     },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
+    "./core": {
+      "types": "./dist/nestjs/core.d.ts",
+      "import": "./dist/nestjs/core.js",
+      "default": "./dist/nestjs/core.js"
     },
-    "peerDependencies": {
-        "@as-integrations/fastify": "^3.1.0",
-        "@fastify/compress": "^8.3.1",
-        "@fastify/helmet": "^13.0.2",
-        "@fastify/static": "^9.1.0",
-        "@nestjs/cache-manager": "^3.1.0",
-        "@nestjs/common": "^11.1.17",
-        "@nestjs/config": "^4.0.3",
-        "@nestjs/core": "^11.1.17",
-        "@nestjs/event-emitter": "^3.0.1",
-        "@nestjs/jwt": "^11.0.2",
-        "@nestjs/microservices": "^11.1.17",
-        "@nestjs/platform-express": "^11.1.17",
-        "@nestjs/platform-fastify": "^11.1.17",
-        "@nestjs/schedule": "^6.1.1",
-        "@nestjs/swagger": "^11.2.6",
-        "@nestjs/terminus": "^11.1.1",
-        "@nestjs/throttler": "^6.5.0",
-        "@scalar/nestjs-api-reference": "^1.1.5",
-        "cache-manager": "^7.2.8",
-        "class-transformer": "^0.5.1",
-        "class-validator": "^0.15.1",
-        "express": "^5.2.1",
-        "fastify": "^5.8.4",
-        "helmet": "^8.1.0",
-        "multer": "^2.1.1",
-        "rxjs": "^7.8.2"
+    "./event-emitter": {
+      "types": "./dist/nestjs/event-emitter.d.ts",
+      "import": "./dist/nestjs/event-emitter.js",
+      "default": "./dist/nestjs/event-emitter.js"
     },
-    "devDependencies": {
-        "@as-integrations/fastify": "^3.1.0",
-        "@fastify/compress": "^8.3.1",
-        "@fastify/helmet": "^13.0.2",
-        "@fastify/static": "^9.1.0",
-        "@nestjs/cache-manager": "^3.1.0",
-        "@nestjs/common": "^11.1.17",
-        "@nestjs/config": "^4.0.3",
-        "@nestjs/core": "^11.1.17",
-        "@nestjs/event-emitter": "^3.0.1",
-        "@nestjs/jwt": "^11.0.2",
-        "@nestjs/microservices": "^11.1.17",
-        "@nestjs/platform-express": "^11.1.17",
-        "@nestjs/platform-fastify": "^11.1.17",
-        "@nestjs/schedule": "^6.1.1",
-        "@nestjs/swagger": "^11.2.6",
-        "@nestjs/terminus": "^11.1.1",
-        "@nestjs/throttler": "^6.5.0",
-        "@scalar/nestjs-api-reference": "^1.1.5",
-        "@types/express": "^5.0.6",
-        "@types/multer": "^2.1.0",
-        "@vnodes/fs": "workspace:*",
-        "cache-manager": "^7.2.8",
-        "class-transformer": "^0.5.1",
-        "class-validator": "^0.15.1",
-        "express": "^5.2.1",
-        "fastify": "^5.8.4",
-        "helmet": "^8.1.0",
-        "multer": "^2.1.1",
-        "rxjs": "^7.8.2"
+    "./jwt": {
+      "types": "./dist/nestjs/jwt.d.ts",
+      "import": "./dist/nestjs/jwt.js",
+      "default": "./dist/nestjs/jwt.js"
     },
-    "publishConfig": {
-        "access": "public",
-        "tag": "latest"
+    "./microservices": {
+      "types": "./dist/nestjs/microservices.d.ts",
+      "import": "./dist/nestjs/microservices.js",
+      "default": "./dist/nestjs/microservices.js"
+    },
+    "./platform-express": {
+      "types": "./dist/nestjs/platform-express.d.ts",
+      "import": "./dist/nestjs/platform-express.js",
+      "default": "./dist/nestjs/platform-express.js"
+    },
+    "./platform-fastify": {
+      "types": "./dist/nestjs/platform-fastify.d.ts",
+      "import": "./dist/nestjs/platform-fastify.js",
+      "default": "./dist/nestjs/platform-fastify.js"
+    },
+    "./schedule": {
+      "types": "./dist/nestjs/schedule.d.ts",
+      "import": "./dist/nestjs/schedule.js",
+      "default": "./dist/nestjs/schedule.js"
+    },
+    "./swagger": {
+      "types": "./dist/nestjs/swagger.d.ts",
+      "import": "./dist/nestjs/swagger.js",
+      "default": "./dist/nestjs/swagger.js"
+    },
+    "./terminus": {
+      "types": "./dist/nestjs/terminus.d.ts",
+      "import": "./dist/nestjs/terminus.js",
+      "default": "./dist/nestjs/terminus.js"
+    },
+    "./throttler": {
+      "types": "./dist/nestjs/throttler.d.ts",
+      "import": "./dist/nestjs/throttler.js",
+      "default": "./dist/nestjs/throttler.js"
+    },
+    "./scalar-nestjs-api-reference": {
+      "types": "./dist/nestjs/scalar-nestjs-api-reference.d.ts",
+      "import": "./dist/nestjs/scalar-nestjs-api-reference.js",
+      "default": "./dist/nestjs/scalar-nestjs-api-reference.js"
+    },
+    "./class-transformer": {
+      "types": "./dist/nestjs/class-transformer.d.ts",
+      "import": "./dist/nestjs/class-transformer.js",
+      "default": "./dist/nestjs/class-transformer.js"
+    },
+    "./class-validator": {
+      "types": "./dist/nestjs/class-validator.d.ts",
+      "import": "./dist/nestjs/class-validator.js",
+      "default": "./dist/nestjs/class-validator.js"
+    },
+    "./helmet": {
+      "types": "./dist/nestjs/helmet.d.ts",
+      "import": "./dist/nestjs/helmet.js",
+      "default": "./dist/nestjs/helmet.js"
+    },
+    "./rxjs": {
+      "types": "./dist/nestjs/rxjs.d.ts",
+      "import": "./dist/nestjs/rxjs.js",
+      "default": "./dist/nestjs/rxjs.js"
+    },
+    "./fastify-compress": {
+      "types": "./dist/manual/fastify-compress.d.ts",
+      "import": "./dist/manual/fastify-compress.js",
+      "default": "./dist/manual/fastify-compress.js"
+    },
+    "./fastify-static": {
+      "types": "./dist/manual/fastify-static.d.ts",
+      "import": "./dist/manual/fastify-static.js",
+      "default": "./dist/manual/fastify-static.js"
+    },
+    "./fastify-helmet": {
+      "types": "./dist/manual/fastify-helmet.d.ts",
+      "import": "./dist/manual/fastify-helmet.js",
+      "default": "./dist/manual/fastify-helmet.js"
+    },
+    "./as-integrations-fastify": {
+      "types": "./dist/manual/as-integrations-fastify.d.ts",
+      "import": "./dist/manual/as-integrations-fastify.js",
+      "default": "./dist/manual/as-integrations-fastify.js"
+    },
+    "./types-express": {
+      "types": "./dist/manual/types-express.d.ts",
+      "import": "./dist/manual/types-express.js",
+      "default": "./dist/manual/types-express.js"
+    },
+    "./types-multer": {
+      "types": "./dist/manual/types-multer.d.ts",
+      "import": "./dist/manual/types-multer.js",
+      "default": "./dist/manual/types-multer.js"
+    },
+    "./multer": {
+      "types": "./dist/manual/multer.d.ts",
+      "import": "./dist/manual/multer.js",
+      "default": "./dist/manual/multer.js"
+    },
+    "./cache": {
+      "types": "./dist/manual/cache.d.ts",
+      "import": "./dist/manual/cache.js",
+      "default": "./dist/manual/cache.js"
+    },
+    "./express": {
+      "types": "./dist/manual/express.d.ts",
+      "import": "./dist/manual/express.js",
+      "default": "./dist/manual/express.js"
+    },
+    "./fastify": {
+      "types": "./dist/manual/fastify.d.ts",
+      "import": "./dist/manual/fastify.js",
+      "default": "./dist/manual/fastify.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "scripts",
+    "!**/*.tsbuildinfo",
+    "assets"
+  ],
+  "nx": {
+    "sourceRoot": "libs/nestjs/src",
+    "targets": {
+      "build": {},
+      "doc": {},
+      "lint": {}
+    },
+    "tags": [
+      "lib"
+    ]
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "peerDependencies": {
+    "@as-integrations/fastify": "^3.1.0",
+    "@fastify/compress": "^8.3.1",
+    "@fastify/helmet": "^13.0.2",
+    "@fastify/static": "^9.1.0",
+    "@nestjs/cache-manager": "^3.1.0",
+    "@nestjs/common": "^11.1.17",
+    "@nestjs/config": "^4.0.3",
+    "@nestjs/core": "^11.1.17",
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/microservices": "^11.1.17",
+    "@nestjs/platform-express": "^11.1.17",
+    "@nestjs/platform-fastify": "^11.1.17",
+    "@nestjs/schedule": "^6.1.1",
+    "@nestjs/swagger": "^11.2.6",
+    "@nestjs/terminus": "^11.1.1",
+    "@nestjs/throttler": "^6.5.0",
+    "@scalar/nestjs-api-reference": "^1.1.5",
+    "cache-manager": "^7.2.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "express": "^5.2.1",
+    "fastify": "^5.8.4",
+    "helmet": "^8.1.0",
+    "multer": "^2.1.1",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@as-integrations/fastify": "^3.1.0",
+    "@fastify/compress": "^8.3.1",
+    "@fastify/helmet": "^13.0.2",
+    "@fastify/static": "^9.1.0",
+    "@nestjs/cache-manager": "^3.1.0",
+    "@nestjs/common": "^11.1.17",
+    "@nestjs/config": "^4.0.3",
+    "@nestjs/core": "^11.1.17",
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/microservices": "^11.1.17",
+    "@nestjs/platform-express": "^11.1.17",
+    "@nestjs/platform-fastify": "^11.1.17",
+    "@nestjs/schedule": "^6.1.1",
+    "@nestjs/swagger": "^11.2.6",
+    "@nestjs/terminus": "^11.1.1",
+    "@nestjs/throttler": "^6.5.0",
+    "@scalar/nestjs-api-reference": "^1.1.5",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.1.0",
+    "@vnodes/fs": "workspace:*",
+    "cache-manager": "^7.2.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "express": "^5.2.1",
+    "fastify": "^5.8.4",
+    "helmet": "^8.1.0",
+    "multer": "^2.1.1",
+    "rxjs": "^7.8.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  }
 }
