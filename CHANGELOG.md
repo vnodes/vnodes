@@ -1,3 +1,13 @@
+## 0.1.0 (2026-04-17)
+
+### 🚀 Features
+
+- fixed the component genreators ([c154d3b](https://github.com/vnodes/vnodes/commit/c154d3b))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.0.37 (2026-04-15)
 
 ### 🚀 Features

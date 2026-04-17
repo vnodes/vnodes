@@ -1,66 +1,66 @@
 {
-    "name": "@vnodes/prop",
-    "version": "0.0.37",
-    "description": "@vnodes/prop",
-    "keywords": [
-        "prop"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-prop@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
-    },
-    "homepage": "https://vnodes.github.io/vnodes/libs/prop",
-    "icon": "https://vnodes.github.io/vnodes/libs/prop/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
-    },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        }
-    },
-    "files": [
-        "dist",
-        "bin",
-        "!**/*.tsbuildinfo",
-        "assets"
-    ],
-    "nx": {
-        "sourceRoot": "libs/prop/src",
-        "targets": {
-            "build": {},
-            "doc": {},
-            "lint": {}
-        },
-        "tags": [
-            "lib"
-        ]
-    },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
-    },
-    "peerDependencies": {
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/types": "workspace:*"
-    },
-    "devDependencies": {
-        "@vnodes/nestjs": "workspace:*",
-        "@vnodes/types": "workspace:*"
-    },
-    "publishConfig": {
-        "access": "public",
-        "tag": "latest"
+  "name": "@vnodes/prop",
+  "version": "0.1.0",
+  "description": "@vnodes/prop",
+  "keywords": [
+    "prop"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-prop@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/libs/prop",
+  "icon": "https://vnodes.github.io/vnodes/libs/prop/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo",
+    "assets"
+  ],
+  "nx": {
+    "sourceRoot": "libs/prop/src",
+    "targets": {
+      "build": {},
+      "doc": {},
+      "lint": {}
+    },
+    "tags": [
+      "lib"
+    ]
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "peerDependencies": {
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@vnodes/nestjs": "workspace:*",
+    "@vnodes/types": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  }
 }
