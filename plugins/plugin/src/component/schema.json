@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/schema",
+  "$schema": "https://json-schema.org/draft-07/schema#",
   "$id": "Component",
   "title": "",
   "type": "object",
@@ -12,7 +12,19 @@
         "index": 0
       },
       "x-prompt": "What name would you like to use?"
+    },
+    "prefix": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What prefix would you like to use?"
     }
   },
-  "required": ["name"]
+  "required": [
+    "name",
+    "prefix"
+  ]
 }
