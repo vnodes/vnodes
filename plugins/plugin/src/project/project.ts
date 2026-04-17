@@ -1,5 +1,5 @@
 import * as path from 'node:path';
-import { formatFiles, generateFiles, names, type Tree, updateJson } from '@nx/devkit';
+import { formatFiles, generateFiles, names, OverwriteStrategy, type Tree, updateJson } from '@nx/devkit';
 import { ProjectGeneratorSchema } from './schema.js';
 
 export async function projectGenerator(tree: Tree, options: ProjectGeneratorSchema) {
@@ -14,12 +14,17 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
 
     options.email = options.email.split('@').join(`+${options.reponame}-${shortProjectNames.fileName}@`);
 
-    
-    generateFiles(tree, path.join(__dirname, options.projectType), projectRoot, {
-        ...shortProjectNames,
-        projectName,
-        ...options,
-    });
+    generateFiles(
+        tree,
+        path.join(__dirname, options.projectType),
+        projectRoot,
+        {
+            ...shortProjectNames,
+            projectName,
+            ...options,
+        },
+        { overwriteStrategy: OverwriteStrategy.ThrowIfExisting },
+    );
 
     await updateJson(tree, 'tsconfig.json', (value) => {
         value.references ??= [];
