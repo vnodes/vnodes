@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/source",
-  "version": "0.0.0",
+  "version":"0.1.0",
   "description": "Vnodes packages",
   "license": "MIT",
   "scripts": {
