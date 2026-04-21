@@ -1,0 +1,22 @@
+import type { Meta, StoryObj } from '@storybook/angular';
+import { expect } from 'storybook/test';
+import { <%-  className %>Component } from './<%- fileName %>';
+
+const meta: Meta<<%-  className %>Component> = {
+  component: <%-  className %>Component,
+  title: '<%-  className %>Component',
+};
+export default meta;
+
+type Story = StoryObj<<%-  className %>Component>;
+
+export const Primary: Story = {
+  args: {},
+};
+
+export const Heading: Story = {
+  args: {},
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText(/<%- fileName %>/gi)).toBeTruthy();
+  },
+};

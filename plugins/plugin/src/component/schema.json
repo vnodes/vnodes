@@ -6,25 +6,25 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "",
+      "description": "component name",
       "$default": {
         "$source": "argv",
         "index": 0
       },
       "x-prompt": "What name would you like to use?"
     },
-    "prefix": {
+    "project": {
       "type": "string",
-      "description": "",
+      "description": "component selector project",
       "$default": {
         "$source": "argv",
         "index": 1
       },
-      "x-prompt": "What prefix would you like to use?"
+      "x-prompt": "What project would you like to use?"
     }
   },
   "required": [
     "name",
-    "prefix"
+    "project"
   ]
 }
