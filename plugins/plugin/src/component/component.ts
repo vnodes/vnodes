@@ -8,6 +8,7 @@ import {
     readProjectConfiguration,
     type Tree,
     updateJson,
+    workspaceRoot,
 } from '@nx/devkit';
 import type { ComponentGeneratorSchema } from './schema';
 
@@ -18,7 +19,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     };
     const sourceRoot = joinPathFragments(root, 'src');
     const packageJsonFilePath = joinPathFragments(root, 'package.json');
-    const tsconfigLibJsonFilePath = joinPathFragments(root, 'tsconfig.lib.json');
+    const tsconfigLibJsonFilePath = joinPathFragments(workspaceRoot, 'tsconfig.base.json');
     const { name: project } = await readJson(tree, packageJsonFilePath);
 
     const nameVariants = names(options.name);
