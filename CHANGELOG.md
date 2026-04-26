@@ -1,3 +1,20 @@
+## 0.1.1 (2026-04-26)
+
+### 🚀 Features
+
+- component generator can udpate tsconfig reference and package.json exports ([f64ea02](https://github.com/vnodes/vnodes/commit/f64ea02))
+- creted the date component ([8cdd3dd](https://github.com/vnodes/vnodes/commit/8cdd3dd))
+- created common expression in utils library ([e789d74](https://github.com/vnodes/vnodes/commit/e789d74))
+- types added for constraints ([ef9f76f](https://github.com/vnodes/vnodes/commit/ef9f76f))
+
+### 🩹 Fixes
+
+- fixed the component generator target path ([f444f4d](https://github.com/vnodes/vnodes/commit/f444f4d))
+
+### ❤️ Thank You
+
+- robert-brightline @vnodes
+
 ## 0.1.0 (2026-04-17)
 
 ### 🚀 Features

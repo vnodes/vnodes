@@ -1,59 +1,59 @@
 {
-    "name": "@vnodes/errors",
-    "version": "0.1.0",
-    "description": "@vnodes/errors",
-    "keywords": [
-        "errors"
-    ],
-    "author": {
-        "name": "Robert Brightline",
-        "email": "robert.brightline+vnodes-errors@gmail.com",
-        "url": "https://vnodes.github.io/vnodes"
-    },
-    "homepage": "https://vnodes.github.io/vnodes/libs/errors",
-    "icon": "https://vnodes.github.io/vnodes/libs/errors/assets/favicon.png",
-    "funding": [
-        "https://cash.app/$puqlib"
-    ],
-    "bin": {
-        "version": "./bin/version.mjs"
-    },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "@vnodes/source": "./src/index.ts",
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        }
-    },
-    "files": [
-        "dist",
-        "bin",
-        "!**/*.tsbuildinfo",
-        "assets"
-    ],
-    "nx": {
-        "sourceRoot": "libs/errors/src",
-        "targets": {
-            "build-script": {},
-            "build": {},
-            "doc": {},
-            "lint": {}
-        },
-        "tags": [
-            "lib"
-        ]
-    },
-    "dependencies": {
-        "@swc/helpers": "~0.5.18"
-    },
-    "publishConfig": {
-        "access": "public",
-        "tag": "latest"
+  "name": "@vnodes/errors",
+  "version": "0.1.1",
+  "description": "@vnodes/errors",
+  "keywords": [
+    "errors"
+  ],
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline+vnodes-errors@gmail.com",
+    "url": "https://vnodes.github.io/vnodes"
+  },
+  "homepage": "https://vnodes.github.io/vnodes/libs/errors",
+  "icon": "https://vnodes.github.io/vnodes/libs/errors/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "version": "./bin/version.mjs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo",
+    "assets"
+  ],
+  "nx": {
+    "sourceRoot": "libs/errors/src",
+    "targets": {
+      "build-script": {},
+      "build": {},
+      "doc": {},
+      "lint": {}
+    },
+    "tags": [
+      "lib"
+    ]
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  }
 }
