@@ -1,58 +1,58 @@
 {
-  "name": "@vnodes/auth",
-  "version": "0.1.1",
-  "description": "@vnodes/auth",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  },
-  "keywords": [
-    "auth"
-  ],
-  "author": {
-    "name": "Robert Brightline",
-    "email": "robert.brightline+vnodes-auth@gmail.com",
-    "url": "https://vnodes.github.io/vnodes"
-  },
-  "homepage": "https://vnodes.github.io/vnodes/libs/auth",
-  "icon": "https://vnodes.github.io/vnodes/libs/auth/assets/favicon.png",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "bin": {
-    "version": "./bin/version.mjs"
-  },
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "dist",
-    "bin",
-    "!**/*.tsbuildinfo",
-    "assets"
-  ],
-  "nx": {
-    "sourceRoot": "libs/auth/src",
-    "tags": [
-      "lib"
+    "name": "@vnodes/auth",
+    "version": "0.1.1",
+    "description": "@vnodes/auth",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "keywords": [
+        "auth"
     ],
-    "targets": {
-      "build": {},
-      "doc": {},
-      "lint": {}
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-auth@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
+    },
+    "homepage": "https://vnodes.github.io/vnodes/libs/auth",
+    "icon": "https://vnodes.github.io/vnodes/libs/auth/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
+    "bin": {
+        "version": "./bin/version.mjs"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "bin",
+        "!**/*.tsbuildinfo",
+        "assets"
+    ],
+    "nx": {
+        "sourceRoot": "libs/auth/src",
+        "tags": [
+            "lib"
+        ],
+        "targets": {
+            "build": {},
+            "doc": {},
+            "lint": {}
+        }
+    },
+    "dependencies": {
+        "@swc/helpers": "~0.5.18"
     }
-  },
-  "dependencies": {
-    "@swc/helpers": "~0.5.18"
-  }
 }
