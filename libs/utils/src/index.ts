@@ -1,5 +1,6 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts'], f => `export * from '${f.path}.js'`)
 export * from './di/di-token.js';
+export * from './exp/exp.js';
 export * from './nestjs/extract-resource-name.js';
 export * from './object/get-method-names.js';
 export * from './object/get-property-descriptors.js';
