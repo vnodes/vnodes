@@ -9,5 +9,6 @@ export * from './common/record.js';
 export * from './common/some.js';
 export * from './common/type.js';
 export * from './dev/package-json.js';
+export * from './input/error-message.js';
 export * from './names/names.js';
 export * from './ts/ts-scalar-types.js';

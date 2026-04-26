@@ -596,6 +596,16 @@ importers:
         specifier: workspace:*
         version: link:../types
 
+  libs/registry:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.19
+    devDependencies:
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
+
   libs/types:
     dependencies:
       '@swc/helpers':

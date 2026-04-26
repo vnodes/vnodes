@@ -43,7 +43,7 @@
     ],
     "nx": {
         "sourceRoot": "<%- directory %>/src",
-        "tags":["lib"]
+        "tags":["lib"],
         "targets": {
             "build": {},
             "doc":{},
