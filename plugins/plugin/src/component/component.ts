@@ -13,11 +13,12 @@ import {
 import type { ComponentGeneratorSchema } from './schema';
 
 export async function componentGenerator(tree: Tree, options: ComponentGeneratorSchema) {
-    const { root, prefix } = (await readProjectConfiguration(tree, options.project)) as {
+    let { root, prefix, sourceRoot } = (await readProjectConfiguration(tree, options.project)) as {
         root: string;
         prefix: string;
+        sourceRoot: string;
     };
-    const sourceRoot = joinPathFragments(root, 'src');
+    sourceRoot ??= joinPathFragments(root, 'src');
     const packageJsonFilePath = joinPathFragments(root, 'package.json');
     const tsconfigLibJsonFilePath = joinPathFragments(workspaceRoot, 'tsconfig.base.json');
     const { name: project } = await readJson(tree, packageJsonFilePath);
@@ -39,13 +40,15 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     await updateJson(tree, tsconfigLibJsonFilePath, (value) => {
         value.compilerOptions ??= {};
         value.compilerOptions.paths ??= {};
-        const referencePath = `${project}/${nameVariants.fileName}`;
+        const referenceName = `${project}/${nameVariants.fileName}`;
 
-        if (value.compilerOptions.paths[referencePath]) {
-            throw new Error(`Reference path ${referencePath} already exists`);
+        if (value.compilerOptions.paths[referenceName]) {
+            throw new Error(`Reference path ${referenceName} already exists`);
         }
 
-        value.compilerOptions.paths[referencePath] = [`./src/${nameVariants.fileName}/public-api.ts`];
+        const referencePath = `${sourceRoot}/${nameVariants.fileName}/public-api.ts`;
+
+        value.compilerOptions.paths[referenceName] = [referencePath];
         return value;
     });
 
