@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: '<%- prefix %>-<%-  fileName %>',
-  standalone: true,
   imports: [],
-  template: `<p><%-  fileName %></p>`,
-  styles: ``,
+  template: `<p><%-  fileName %></p>`
 })
 export class <%-  className %>Component { }
