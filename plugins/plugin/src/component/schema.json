@@ -15,7 +15,7 @@
     },
     "project": {
       "type": "string",
-      "description": "component selector project",
+      "description": "Project name",
       "$default": {
         "$source": "argv",
         "index": 1

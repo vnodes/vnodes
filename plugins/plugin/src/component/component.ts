@@ -1,7 +1,7 @@
+import { join } from 'node:path';
 import {
     formatFiles,
     generateFiles,
-    joinPathFragments,
     names,
     OverwriteStrategy,
     readJson,
@@ -18,21 +18,16 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
         prefix: string;
         sourceRoot: string;
     };
-    sourceRoot ??= joinPathFragments(root, 'src');
-    const packageJsonFilePath = joinPathFragments(root, 'package.json');
-    const tsconfigLibJsonFilePath = joinPathFragments(workspaceRoot, 'tsconfig.base.json');
+    sourceRoot ??= join(root, 'src');
+    const packageJsonFilePath = join(root, 'package.json');
+    const tsconfigLibJsonFilePath = join(workspaceRoot, 'tsconfig.base.json');
     const { name: project } = await readJson(tree, packageJsonFilePath);
-
     const nameVariants = names(options.name);
     generateFiles(
         tree,
-        joinPathFragments(__dirname, 'files'),
+        join(__dirname, 'files'),
         sourceRoot,
-        {
-            project,
-            prefix,
-            ...nameVariants,
-        },
+        { project, prefix, ...nameVariants },
         { overwriteStrategy: OverwriteStrategy.ThrowIfExisting },
     );
 
