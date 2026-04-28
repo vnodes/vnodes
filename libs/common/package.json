@@ -2,6 +2,10 @@
   "name": "@vnodes/common",
   "version": "0.1.1",
   "description": "Nestjs Common Modules",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "keywords": [
     "common"
   ],
