@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- 2. Primary Meta Tags -->
+  <title></title>
+  <meta name="description" content="Full-stack Node.js and TypeScript libraries for enterprise-grade applications.">
+  <link rel="canonical" href="https://vnodes.github.io">
+
+  <!-- 1. Technical & Character Set -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/x-icon" href="./favicon.png" />
+  <link rel="manifest" href="manifest.webmanifest">
+  <base href="." />
+
+
+  <!-- 3. Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vnodes.github.io">
+  <meta property="og:title" content="Vnodes">
+  <meta property="og:description" content="Vnodes libraries">
+  <meta property="og:image" content="https://vnodes.github.io/icons/icon-512x512.png">
+
+  <!-- 4. Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://vnodes.github.io">
+  <meta name="twitter:title" content="Vnodes">
+  <meta name="twitter:description" content="Vnodes libraries">
+  <meta name="twitter:image" content="https://vnodes.github.io/icons/icon-512x512.png">
+
+  <!-- 5. Performance & Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+  <!-- 6. Favicons & Branding -->
+  <link rel="icon" href="./favicon.png" sizes="any">
+  <!-- <link rel="icon" href="/favicon.png" type="image/svg+xml"> -->
+  <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+
+
+  <!-- 7. Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Vnodes",
+      "operatingSystem": "Cross-platform",
+      "applicationCategory": "DeveloperApplication",
+      "description": "Full-stack Node.js and TypeScript libraries for enterprise-grade applications.",
+      "url": "https://vnodes.github.io",
+      "author": {
+        "@type": "Organization",
+        "name": "vnodes"
+      },
+      "sameAs": [
+        "https://twitter.com/vnodes",
+        "https://github.com/vnodes"
+      ]
+    }
+  </script>
+</head>
+
+<body>
+  <vn-root></vn-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+
+</html>

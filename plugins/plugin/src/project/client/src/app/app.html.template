@@ -1,0 +1,7 @@
+<vn-layout type="app">
+    <div vnSidenav>
+        Sidenav content
+    </div>
+    
+    <router-outlet vnContentTop></router-outlet>
+</vn-layout>

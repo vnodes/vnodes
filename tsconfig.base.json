@@ -24,5 +24,91 @@
         "customConditions": [
             "@vnodes/source"
         ]
-    }
+    },
+    "references": [
+        {
+            "path": "./plugins/plugin"
+        },
+        {
+            "path": "./plugins/prisma-plugin"
+        },
+        {
+            "path": "./libs/fs"
+        },
+        {
+            "path": "./dbs/sample-db"
+        },
+        {
+            "path": "./apps/sample-api"
+        },
+        {
+            "path": "./apps/sample-service"
+        },
+        {
+            "path": "./libs/types"
+        },
+        {
+            "path": "./libs/names"
+        },
+        {
+            "path": "./libs/crypto"
+        },
+        {
+            "path": "./libs/prop"
+        },
+        {
+            "path": "./libs/utils"
+        },
+        {
+            "path": "./libs/nestjs"
+        },
+        {
+            "path": "./libs/env"
+        },
+        {
+            "path": "./libs/errors"
+        },
+        {
+            "path": "./libs/prisma"
+        },
+        {
+            "path": "./libs/auth"
+        },
+        {
+            "path": "./libs/autowire"
+        },
+        {
+            "path": "./libs/metadata"
+        },
+        {
+            "path": "./libs/boot-fastify"
+        },
+        {
+            "path": "./libs/net"
+        },
+        {
+            "path": "./libs/boot-grpc"
+        },
+        {
+            "path": "./plugins/prisma-plugin-helpers"
+        },
+        {
+            "path": "./libs/db"
+        },
+        {
+            "path": "./apps/sample-gql"
+        },
+        {
+            "path": "./libs/graphql"
+        },
+        {
+            "path": "./libs/boot-express"
+        },
+        {
+            "path": "./libs/common"
+        },
+        {
+            "path": "./apps/sample-cli"
+        }
+    ]
 }

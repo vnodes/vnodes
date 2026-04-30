@@ -26,9 +26,8 @@ export async function projectGenerator(tree: Tree, options: ProjectGeneratorSche
         { overwriteStrategy: OverwriteStrategy.ThrowIfExisting },
     );
 
-    await updateJson(tree, 'tsconfig.json', (value) => {
+    await updateJson(tree, 'tsconfig.base.json', (value) => {
         value.references ??= [];
-
         const refPath = `./${options.directory}`;
         if (!value.references.find((ref: { path: string }) => ref.path === refPath)) {
             value.references.push({ path: `./${options.directory}` });

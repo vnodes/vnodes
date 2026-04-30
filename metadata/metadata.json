@@ -1,3 +1,516 @@
-[ 
-    {}
+[
+    {
+        "name": "@vnodes/sample-api",
+        "description": "@vnodes/sample-api",
+        "version": "0.0.50",
+        "icon": "https://vnodes.github.io/vnodes/apps/sample-api/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/apps/sample-api",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/autowire": "workspace:*",
+            "@vnodes/boot-fastify": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/common": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/sample-cli",
+        "description": "@vnodes/sample-cli",
+        "version": "0.0.20",
+        "icon": "https://vnodes.github.io/vnodes/apps/sample-cli/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/apps/sample-cli",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "commander": "^14.0.3"
+        }
+    },
+    {
+        "name": "@vnodes/sample-gql",
+        "description": "@vnodes/sample-gql",
+        "version": "0.0.20",
+        "icon": "https://vnodes.github.io/vnodes/apps/sample-gql/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/apps/sample-gql",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/autowire": "workspace:*",
+            "@vnodes/boot-express": "workspace:*",
+            "@vnodes/common": "workspace:*",
+            "@vnodes/graphql": "workspace:*",
+            "@vnodes/nestjs": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/sample-service",
+        "description": "Sample gRpc service",
+        "version": "0.0.50",
+        "icon": "https://vnodes.github.io/vnodes/apps/sample-service/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/apps/sample-service",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@grpc/grpc-js": "^1.14.3",
+            "@grpc/proto-loader": "^0.8.0",
+            "@nestjs/microservices": "^11.1.17",
+            "@vnodes/boot-grpc": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/sample-db": "workspace:*",
+            "@vnodes/types": "workspace:*",
+            "protobufjs": "^8.0.1",
+            "rxjs": "^7.8.2"
+        }
+    },
+    {
+        "name": "@vnodes/sample-db",
+        "description": "@vnodes/sample-db",
+        "version": "0.0.50",
+        "icon": "https://vnodes.github.io/vnodes/dbs/sample-db/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/dbs/sample-db",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@prisma/client": "^7.6.0"
+        }
+    },
+    {
+        "name": "@vnodes/auth",
+        "description": "@vnodes/auth",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/auth/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/auth",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        }
+    },
+    {
+        "name": "@vnodes/autowire",
+        "description": "@vnodes/autowire",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/autowire/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/autowire",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/errors": "workspace:*",
+            "@vnodes/graphql": "workspace:*",
+            "@vnodes/metadata": "workspace:*",
+            "@vnodes/names": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/types": "workspace:*",
+            "@vnodes/utils": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/boot-express",
+        "description": "@vnodes/boot-express",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/boot-express/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/boot-express",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/env": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/net": "workspace:*",
+            "@vnodes/prop": "workspace:*",
+            "@vnodes/types": "^0.0.23"
+        }
+    },
+    {
+        "name": "@vnodes/boot-fastify",
+        "description": "@vnodes/boot-fastify",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/boot-fastify/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/boot-fastify",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/env": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/net": "workspace:*",
+            "@vnodes/prop": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/boot-grpc",
+        "description": "@vnodes/boot-grpc",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/boot-grpc/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/boot-grpc",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/env": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/prop": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/common",
+        "description": "Nestjs Common Modules",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/common/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/common",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/env": "workspace:*",
+            "@vnodes/graphql": "workspace:*",
+            "@vnodes/metadata": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/types": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/crypto",
+        "description": "@vnodes/crypto",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/crypto/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/crypto",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "bcrypt": "^6.0.0"
+        }
+    },
+    {
+        "name": "@vnodes/db",
+        "description": "@vnodes/db",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/db/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/db",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@prisma/adapter-pg": "^7.6.0",
+            "@prisma/client": "^7.6.0",
+            "pg": "^8.20.0"
+        }
+    },
+    {
+        "name": "@vnodes/env",
+        "description": "@vnodes/env",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/env/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/env",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        }
+    },
+    {
+        "name": "@vnodes/errors",
+        "description": "@vnodes/errors",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/errors/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/errors",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        }
+    },
+    {
+        "name": "@vnodes/fs",
+        "description": "@vnodes/fs",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/fs/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/fs",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/errors": "workspace:*",
+            "js-yaml": "^4.1.1"
+        }
+    },
+    {
+        "name": "@vnodes/graphql",
+        "description": "@vnodes/graphql",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/graphql/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/graphql",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@apollo/server": "^5.5.0",
+            "@as-integrations/express5": "^1.1.2",
+            "@nestjs/apollo": "^13.2.5",
+            "@nestjs/graphql": "^13.2.5",
+            "@nestjs/mercurius": "^13.2.5",
+            "@vnodes/prop": "workspace:^",
+            "@vnodes/types": "workspace:*",
+            "graphql": "^16.13.2",
+            "graphql-subscriptions": "^3.0.0"
+        }
+    },
+    {
+        "name": "@vnodes/metadata",
+        "description": "@vnodes/metadata",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/metadata/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/metadata",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/env": "workspace:*",
+            "@vnodes/nestjs": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/names",
+        "description": "@vnodes/names",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/names/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/names",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/types": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/nestjs",
+        "description": "@vnodes/nestjs",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/nestjs/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/nestjs",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@as-integrations/fastify": "^3.1.0",
+            "@fastify/compress": "^8.3.1",
+            "@fastify/helmet": "^13.0.2",
+            "@fastify/static": "^9.1.0",
+            "@nestjs/cache-manager": "^3.1.0",
+            "@nestjs/common": "^11.1.17",
+            "@nestjs/config": "^4.0.3",
+            "@nestjs/core": "^11.1.17",
+            "@nestjs/event-emitter": "^3.0.1",
+            "@nestjs/jwt": "^11.0.2",
+            "@nestjs/microservices": "^11.1.17",
+            "@nestjs/platform-express": "^11.1.17",
+            "@nestjs/platform-fastify": "^11.1.17",
+            "@nestjs/schedule": "^6.1.1",
+            "@nestjs/swagger": "^11.2.6",
+            "@nestjs/terminus": "^11.1.1",
+            "@nestjs/throttler": "^6.5.0",
+            "@scalar/nestjs-api-reference": "^1.1.5",
+            "cache-manager": "^7.2.8",
+            "class-transformer": "^0.5.1",
+            "class-validator": "^0.15.1",
+            "express": "^5.2.1",
+            "fastify": "^5.8.4",
+            "helmet": "^8.1.0",
+            "multer": "^2.1.1",
+            "rxjs": "^7.8.2"
+        }
+    },
+    {
+        "name": "@vnodes/net",
+        "description": "@vnodes/net",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/net/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/net",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        }
+    },
+    {
+        "name": "@vnodes/prisma",
+        "description": "@vnodes/prisma",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/prisma/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/prisma",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/db": "workspace:*",
+            "@vnodes/env": "workspace:*",
+            "@vnodes/errors": "workspace:*",
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/utils": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/prop",
+        "description": "@vnodes/prop",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/prop/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/prop",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/nestjs": "workspace:*",
+            "@vnodes/types": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/types",
+        "description": "@vnodes/types",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/types/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/types",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        }
+    },
+    {
+        "name": "@vnodes/utils",
+        "description": "@vnodes/utils",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/libs/utils/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/libs/utils",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@vnodes/types": "workspace:*",
+            "@vnodes/errors": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/source",
+        "description": "Vnodes packages",
+        "version": "0.1.0",
+        "dependencies": {
+            "@nx/devkit": "22.6.1"
+        }
+    },
+    {
+        "name": "@vnodes/plugin",
+        "version": "0.1.4",
+        "dependencies": {
+            "@nx/devkit": "22.6.1",
+            "tslib": "^2.3.0"
+        }
+    },
+    {
+        "name": "@vnodes/prisma-plugin",
+        "version": "0.1.1",
+        "dependencies": {
+            "@prisma/generator-helper": "^7.6.0",
+            "@swc/helpers": "~0.5.18",
+            "@vnodes/fs": "workspace:*"
+        },
+        "peerDependencies": {
+            "@vnodes/errors": "workspace:*",
+            "@vnodes/names": "workspace:*",
+            "@vnodes/prisma-plugin-helpers": "workspace:*",
+            "@vnodes/types": "workspace:*",
+            "@vnodes/utils": "workspace:*"
+        }
+    },
+    {
+        "name": "@vnodes/prisma-plugin-helpers",
+        "description": "@vnodes/prisma-plugin-helpers",
+        "version": "0.1.1",
+        "icon": "https://vnodes.github.io/vnodes/plugins/prisma-plugin-helpers/assets/favicon.png",
+        "homepage": "https://vnodes.github.io/vnodes/plugins/prisma-plugin-helpers",
+        "funding": [
+            "https://cash.app/$puqlib"
+        ],
+        "dependencies": {
+            "@swc/helpers": "~0.5.18"
+        },
+        "peerDependencies": {
+            "@prisma/generator-helper": "^7.6.0",
+            "@vnodes/errors": "workspace:*",
+            "@vnodes/prop": "workspace:*",
+            "@vnodes/types": "workspace:*",
+            "@vnodes/utils": "workspace:*"
+        }
+    }
 ]
