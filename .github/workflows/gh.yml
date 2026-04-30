@@ -39,6 +39,7 @@ jobs:
 
       - name: Generate docs
         run: |
+          npx nx run-many -t build
           npx nx run-many -t doc
           npx nx g @vnodes/plugin:metadata
 
