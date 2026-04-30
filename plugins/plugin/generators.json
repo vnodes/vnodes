@@ -9,6 +9,11 @@
             "factory": "./dist/component/component.js",
             "schema": "./dist/component/schema.json",
             "description": "component generator"
+        },
+        "metadata": {
+            "factory": "./dist/metadata/metadata.js",
+            "schema": "./dist/metadata/schema.json",
+            "description": "metadata generator"
         }
     }
 }
