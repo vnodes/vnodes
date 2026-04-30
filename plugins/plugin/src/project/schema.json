@@ -6,15 +6,7 @@
     "properties": {
         "projectType": {
             "type": "string",
-            "enum": [
-                "lib",
-                "lib-conf",
-                "api",
-                "cli",
-                "prisma",
-                "gql",
-                "grpc"
-            ],
+            "enum": ["lib", "lib-conf", "api", "cli", "prisma", "gql", "grpc"],
             "$default": {
                 "$source": "argv",
                 "index": 0
@@ -51,8 +43,5 @@
             "type": "string"
         }
     },
-    "required": [
-        "projectType",
-        "directory"
-    ]
+    "required": ["projectType", "directory"]
 }
