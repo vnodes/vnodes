@@ -4,7 +4,7 @@ import { formatFiles, generateFiles, getProjects, type Tree } from '@nx/devkit';
 import { readJsonFile } from '@vnodes/fs';
 
 export async function metadataGenerator(tree: Tree) {
-    const projectRoot = `metadata`;
+    const projectRoot = `public`;
 
     const projects = getProjects(tree);
 

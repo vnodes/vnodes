@@ -37,8 +37,10 @@ jobs:
 
       - run: pnpm install --no-frozen-lockfile
 
-      - name: Build main app
-        run: npx nx run-many -t doc
+      - name: Generate docs
+        run: |
+          npx nx run-many -t doc
+          npx nx g @vnodes/plugin:metadata
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
