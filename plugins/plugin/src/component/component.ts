@@ -20,7 +20,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     };
     sourceRoot ??= join(root, 'src');
     const packageJsonFilePath = join(root, 'package.json');
-    const tsconfigLibJsonFilePath = join(workspaceRoot, 'tsconfig.base.json');
+    const tsconfigBaseJson = join(workspaceRoot, 'tsconfig.base.json');
     const { name: project } = await readJson(tree, packageJsonFilePath);
     const nameVariants = names(options.name);
     generateFiles(
@@ -32,7 +32,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     );
 
     // update tsconfig.lib.json references
-    await updateJson(tree, tsconfigLibJsonFilePath, (value) => {
+    await updateJson(tree, tsconfigBaseJson, (value) => {
         value.compilerOptions ??= {};
         value.compilerOptions.paths ??= {};
         const referenceName = `${project}/${nameVariants.fileName}`;
