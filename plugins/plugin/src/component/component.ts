@@ -8,7 +8,6 @@ import {
     readProjectConfiguration,
     type Tree,
     updateJson,
-    workspaceRoot,
 } from '@nx/devkit';
 import type { ComponentGeneratorSchema } from './schema';
 
@@ -19,9 +18,9 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
         sourceRoot: string;
     };
     sourceRoot ??= join(root, 'src');
-    const packageJsonFilePath = join(root, 'package.json');
-    const tsconfigBaseJson = join(workspaceRoot, 'tsconfig.base.json');
-    const { name: project } = await readJson(tree, packageJsonFilePath);
+    const packageJSONPath = 'package.json';
+    const tsconfigJSONPath = tree.exists('tsconfig.base.json') ? 'tsconfig.base.json' : 'tsconfig.json';
+    const { name: project } = await readJson(tree, packageJSONPath);
     const nameVariants = names(options.name);
     generateFiles(
         tree,
@@ -32,7 +31,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     );
 
     // update tsconfig.lib.json references
-    await updateJson(tree, tsconfigBaseJson, (value) => {
+    await updateJson(tree, tsconfigJSONPath, (value) => {
         value.compilerOptions ??= {};
         value.compilerOptions.paths ??= {};
         const referenceName = `${project}/${nameVariants.fileName}`;
@@ -54,7 +53,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     //   "default": "./src/flex/public-api.ts"
     // },
 
-    await updateJson(tree, packageJsonFilePath, (value) => {
+    await updateJson(tree, packageJSONPath, (value) => {
         value.exports ??= {};
 
         value.exports[`./${nameVariants.fileName}`] = {
