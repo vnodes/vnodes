@@ -18,7 +18,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
         sourceRoot: string;
     };
     sourceRoot ??= join(root, 'src');
-    const packageJSONPath = 'package.json';
+    const packageJSONPath = join(root, 'package.json');
     const tsconfigJSONPath = tree.exists('tsconfig.base.json') ? 'tsconfig.base.json' : 'tsconfig.json';
     const { name: project } = await readJson(tree, packageJSONPath);
     const nameVariants = names(options.name);
@@ -46,13 +46,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
         return value;
     });
 
-    // Update package.json exports
-
-    // "./flex": {
-    //   "types": "./src/flex/public-api.ts",
-    //   "default": "./src/flex/public-api.ts"
-    // },
-
+    // update exports
     await updateJson(tree, packageJSONPath, (value) => {
         value.exports ??= {};
 
@@ -63,7 +57,6 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
         return value;
     });
 
-    // Add tsconfig reference
     await formatFiles(tree);
 }
 
