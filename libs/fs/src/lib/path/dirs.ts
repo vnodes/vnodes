@@ -6,19 +6,25 @@ export type DirsOptions = {
     recursive?: boolean;
 };
 
-export type Stat = {
+export type Dir = {
     relativePath: string;
     absolutePath: string;
     fileName: string;
     isFile: boolean;
     isDirectory: boolean;
-    children?: Stat[];
+    children?: Dir[];
 };
 
-export async function dirs(rootPath: string, options?: DirsOptions): Promise<Stat[]> {
+/**
+ * List files/directories
+ * @param rootPath root directory path
+ * @param options {@link DirsOptions}
+ * @returns dirs {@link Dir[]}
+ */
+export async function dirs(rootPath: string, options?: DirsOptions): Promise<Dir[]> {
     const foundPaths = await readdir(rootPath, { encoding: 'utf8' });
 
-    const result: Stat[] = [];
+    const result: Dir[] = [];
 
     for (const fileName of foundPaths) {
         const absolutePath = resolve(join(rootPath, fileName));
@@ -26,7 +32,7 @@ export async function dirs(rootPath: string, options?: DirsOptions): Promise<Sta
         const __stat = await stat(absolutePath);
         const isDirectory = __stat.isDirectory();
         const isFile = __stat.isFile();
-        let children: Stat[] | undefined;
+        let children: Dir[] | undefined;
 
         if (isDirectory && options?.recursive === true) {
             children = await dirs(absolutePath, options);

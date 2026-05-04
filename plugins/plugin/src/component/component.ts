@@ -22,7 +22,7 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     const tsconfigJSONPath = tree.exists('tsconfig.base.json') ? 'tsconfig.base.json' : 'tsconfig.json';
     const { name: project } = await readJson(tree, packageJSONPath);
     const nameVariants = names(options.name);
-    
+
     generateFiles(
         tree,
         join(__dirname, 'files'),
