@@ -1,6 +1,20 @@
 {
     "name": "@vnodes/plugin",
     "version": "0.1.10",
+    "description": "NX plugin with nestjs and angular generators",
+    "keywords": [
+        "plugin"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-auth@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
+    },
+    "homepage": "https://vnodes.github.io/vnodes/plugins/plugin",
+    "icon": "https://vnodes.github.io/vnodes/plugins/plugin/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
