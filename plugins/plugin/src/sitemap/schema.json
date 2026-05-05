@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "Sitemap",
+  "title": "Sitemap generator",
+  "type": "object",
+  "properties": {
+    "baseUrl": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What baseUrl would you like to use?"
+    },
+    "pages": {
+      "type": "string",
+      "description": "List of pages",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "List of pages"
+    }
+  }
+}

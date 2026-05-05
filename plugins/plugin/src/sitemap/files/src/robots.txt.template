@@ -1,0 +1,11 @@
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Prevent crawlers from indexing specific technical or private folders
+Disallow: /admin/
+Disallow: /vnodes/
+Disallow: /libs/
+
+# Point to your sitemap to help crawlers find your hash-based sub-pages
+Sitemap: <%- baseUrl %>/sitemap.xml
