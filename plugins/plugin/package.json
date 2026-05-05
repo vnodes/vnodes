@@ -1,79 +1,79 @@
 {
-  "name": "@vnodes/plugin",
-  "version": "0.1.10",
-  "description": "NX plugin with nestjs and angular generators",
-  "keywords": [
-    "plugin"
-  ],
-  "author": {
-    "name": "Robert Brightline",
-    "email": "robert.brightline+vnodes-auth@gmail.com",
-    "url": "https://vnodes.github.io/vnodes"
-  },
-  "homepage": "https://vnodes.github.io/vnodes/plugins/plugin",
-  "icon": "https://vnodes.github.io/vnodes/plugins/plugin/assets/favicon.png",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "@vnodes/source": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "assets",
-    "dist",
-    "generators.json",
-    "!**/*.tsbuildinfo"
-  ],
-  "nx": {
-    "targets": {
-      "build": {
-        "executor": "@nx/js:tsc",
-        "outputs": [
-          "{options.outputPath}"
-        ],
-        "options": {
-          "outputPath": "plugins/plugin/dist",
-          "main": "plugins/plugin/src/index.ts",
-          "tsConfig": "plugins/plugin/tsconfig.lib.json",
-          "rootDir": "plugins/plugin/src",
-          "generatePackageJson": false,
-          "assets": [
-            {
-              "input": "./plugins/plugin/src",
-              "glob": "**/!(*.ts)",
-              "output": "."
-            },
-            {
-              "input": "./plugins/plugin/src",
-              "glob": "**/*.d.ts",
-              "output": "."
-            }
-          ]
-        }
-      },
-      "doc": {},
-      "lint": {}
+    "name": "@vnodes/plugin",
+    "version": "0.1.11",
+    "description": "NX plugin with nestjs and angular generators",
+    "keywords": [
+        "plugin"
+    ],
+    "author": {
+        "name": "Robert Brightline",
+        "email": "robert.brightline+vnodes-auth@gmail.com",
+        "url": "https://vnodes.github.io/vnodes"
     },
-    "tags": [
-      "lib"
-    ]
-  },
-  "dependencies": {
-    "@nx/devkit": "22.6.1",
-    "tslib": "^2.3.0"
-  },
-  "generators": "./generators.json",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  }
+    "homepage": "https://vnodes.github.io/vnodes/plugins/plugin",
+    "icon": "https://vnodes.github.io/vnodes/plugins/plugin/assets/favicon.png",
+    "funding": [
+        "https://cash.app/$puqlib"
+    ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@vnodes/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "assets",
+        "dist",
+        "generators.json",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "targets": {
+            "build": {
+                "executor": "@nx/js:tsc",
+                "outputs": [
+                    "{options.outputPath}"
+                ],
+                "options": {
+                    "outputPath": "plugins/plugin/dist",
+                    "main": "plugins/plugin/src/index.ts",
+                    "tsConfig": "plugins/plugin/tsconfig.lib.json",
+                    "rootDir": "plugins/plugin/src",
+                    "generatePackageJson": false,
+                    "assets": [
+                        {
+                            "input": "./plugins/plugin/src",
+                            "glob": "**/!(*.ts)",
+                            "output": "."
+                        },
+                        {
+                            "input": "./plugins/plugin/src",
+                            "glob": "**/*.d.ts",
+                            "output": "."
+                        }
+                    ]
+                }
+            },
+            "doc": {},
+            "lint": {}
+        },
+        "tags": [
+            "lib"
+        ]
+    },
+    "dependencies": {
+        "@nx/devkit": "22.6.1",
+        "tslib": "^2.3.0"
+    },
+    "generators": "./generators.json",
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    }
 }
