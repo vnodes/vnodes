@@ -25,10 +25,7 @@
         "type": {
             "type": "string",
             "description": "Component type",
-            "enum": [
-                "component",
-                "pipe"
-            ],
+            "enum": ["component", "pipe"],
             "$default": {
                 "$source": "argv",
                 "index": 2
@@ -36,8 +33,5 @@
             "x-prompt": "What component type would you like to use?"
         }
     },
-    "required": [
-        "name",
-        "project"
-    ]
+    "required": ["name", "project"]
 }
