@@ -21,7 +21,23 @@
                 "index": 1
             },
             "x-prompt": "What project would you like to use?"
+        },
+        "type": {
+            "type": "string",
+            "description": "Component type",
+            "enum": [
+                "component",
+                "pipe"
+            ],
+            "$default": {
+                "$source": "argv",
+                "index": 2
+            },
+            "x-prompt": "What component type would you like to use?"
         }
     },
-    "required": ["name", "project"]
+    "required": [
+        "name",
+        "project"
+    ]
 }

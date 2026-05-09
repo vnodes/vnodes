@@ -22,10 +22,11 @@ export async function componentGenerator(tree: Tree, options: ComponentGenerator
     const tsconfigJSONPath = tree.exists('tsconfig.base.json') ? 'tsconfig.base.json' : 'tsconfig.json';
     const { name: project } = await readJson(tree, packageJSONPath);
     const nameVariants = names(options.name);
+    const type = options.type ?? 'component';
 
     generateFiles(
         tree,
-        join(__dirname, 'files'),
+        join(__dirname, type),
         sourceRoot,
         { project, prefix, ...nameVariants },
         { overwriteStrategy: OverwriteStrategy.ThrowIfExisting },
