@@ -157,7 +157,8 @@
             "prisma",
             "prop",
             "types",
-            "utils"
+            "utils",
+            "otp"
         ],
         "version": {
             "preVersionCommand": "pnpm dlx nx run-many -t build"
