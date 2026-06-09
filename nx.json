@@ -57,7 +57,13 @@
       "skipTypeCheck": false,
       "tags": "lib:shared"
     },
-    "@nx/node:application": {},
+    "@vnodes/cli:project": {
+      "projectType": "lib",
+      "orgName": "vnodes",
+      "repoName": "vnodes",
+      "email": "robert.brightline@gmail.com",
+      "homePageUrl": "https://vnodes.github.io"
+    },
     "@nx/plugin:plugin": {
       "compiler": "swc",
       "unitTestRunner": "vitest",

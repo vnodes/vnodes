@@ -1,36 +1,37 @@
 {
-  "name": "@vnodes/types",
-  "version": "0.0.1",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "name": "<%- projectName %>",
+  "version": "<%- version %>",
+
   "author": {
-    "email": "robert.brightline+vnodes-types@gmail.com",
-    "name": "Robert Brightline",
-    "url": "https://vnodes.github.io/profile/robert-brightline"
+    "email": "<%- email %>",
+    "name": "<%- authorName %>",
+    "url": "<%- homePage %>"
   },
   "keywords": [
     "library",
     "types"
   ],
   "bugs": {
-    "email": "robert.brightline+vnodes-types-bug@gmail.com",
-    "url": "https://github.com/vnodes/vnodes/issues"
+    "email": "<%- email %>",
+    "url": "https://github.com/<%- orgName %>/<%- repoName %>/issues"
   },
-  "homepage": "https://vnodes.github.io/packages/types",
+  "homepage": "<%- homePageUrl %>/<%- directory %>",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "funding": [
-    "https://cash.app/$puqlib"
+    "<%- fundingUrl %>"
   ],
   "files": [
     "dist",
     "assets",
     "!**/*.tsbuildinfo"
   ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -41,7 +42,7 @@
     }
   },
   "nx": {
-    "sourceRoot": "packages/types/src",
+    "sourceRoot": "{projectRoot}/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -49,16 +50,16 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "packages/types/dist",
-          "main": "packages/types/src/index.ts",
-          "tsConfig": "packages/types/tsconfig.lib.json",
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/index.ts",
+          "tsConfig": "{projectRoot}/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": false
         }
       }
     },
     "tags": [
-      "lib:types"
+      "lib:shared"
     ]
   },
   "dependencies": {

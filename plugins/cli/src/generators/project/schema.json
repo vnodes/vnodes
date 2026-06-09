@@ -4,17 +4,91 @@
   "title": "Project generator schema",
   "type": "object",
   "properties": {
-    "name": {
+    "directory": {
       "type": "string",
-      "description": "",
+      "description": "Project directory",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "What directory would you like to use?"
+    },
+    "projectType": {
+      "type": "string",
+      "description": "Project projectType",
+      "enum": [
+        "lib",
+        "api"
+      ],
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What projectType would you like to use?"
+    },
+    "orgName": {
+      "type": "string",
+      "description": "Organization name",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "What organization name would you like to use?"
+    },
+    "repoName": {
+      "type": "string",
+      "description": "Repository name",
+      "$default": {
+        "$source": "argv",
+        "index": 3
+      },
+      "x-prompt": "What repository name would you like to use?"
+    },
+    "homePageUrl": {
+      "type": "string",
+      "description": "Documentation homepage url",
+      "$default": {
+        "$source": "argv",
+        "index": 4
+      },
+      "x-prompt": "What is the homepage url for documentation website?"
+    },
+    "email": {
+      "type": "string",
+      "description": "Author email address",
+      "$default": {
+        "$source": "argv",
+        "index": 5
+      },
+      "x-prompt": "What is the auther email address url for documentation website?"
+    },
+    "fundingUrl": {
+      "type": "string",
+      "description": "Funding url",
+      "$default": {
+        "$source": "argv",
+        "index": 6
+      },
+      "x-prompt": "What is the funding url?"
+    },
+    "authorName": {
+      "type": "string",
+      "description": "Funding url",
+      "$default": {
+        "$source": "argv",
+        "index": 7
+      },
+      "x-prompt": "What is the author name?"
     }
   },
   "required": [
-    "name"
+    "directory",
+    "projectType",
+    "orgName",
+    "repoName",
+    "homePageUrl",
+    "email",
+    "fundingUrl",
+    "authorName"
   ]
 }
