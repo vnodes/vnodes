@@ -1,0 +1,1 @@
+for file in *; do [ -f "$file" ] && mv "$file" "${file}.template"; done
