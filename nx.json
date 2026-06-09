@@ -58,6 +58,8 @@
       "tags": "lib:shared"
     },
     "@vnodes/cli:project": {
+      "funding": "https://cash.app/$puqlib",
+      "authorName": "Robert Brightline",
       "projectType": "lib",
       "orgName": "vnodes",
       "repoName": "vnodes",
