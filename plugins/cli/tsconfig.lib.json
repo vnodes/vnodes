@@ -3,14 +3,15 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
   "include": [
     "src/**/*.ts"
   ],
-  "references": [],
   "exclude": [
-    "vitest.config.mts",
     "src/**/*.spec.ts"
-  ]
+  ],
+  "references": [],
 }

@@ -5,7 +5,7 @@ import {
   type Tree,
 } from '@nx/devkit';
 import { join } from 'node:path';
-import { type ProjectGeneratorSchema } from './schema.js';
+import { type ProjectGeneratorSchema } from './schema.d.js';
 
 export async function projectGenerator(
   tree: Tree,

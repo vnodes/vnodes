@@ -12,14 +12,18 @@
     },
     "keepClassNames": true,
     "externalHelpers": true,
-    "loose": true
+    "loose": false
   },
   "module": {
-    "type": "nodenext"
+    "type": "nodenext",
+    "strict": true,
+    "strictMode": true
   },
   "sourceMaps": true,
   "exclude": [
-    "vitest.config.mts",
-    ".*\\.spec.ts$"
+    "node_modules",
+    ".*\\.spec\\.ts$",
+    "vitest\\.config\\.[cm]?ts$",
+    "eslint\\.config\\.[cm]?js$"
   ]
 }

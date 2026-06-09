@@ -1,7 +1,7 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing.js';
 import { type Tree, readProjectConfiguration } from '@nx/devkit';
 import { projectGenerator } from './project.js';
-import type { ProjectGeneratorSchema } from './schema.js';
+import type { ProjectGeneratorSchema } from './schema.d.js';
 
 describe('project generator', () => {
   let tree: Tree;

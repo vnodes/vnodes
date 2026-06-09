@@ -1,0 +1,15 @@
+# #!/bin/bash
+
+
+pnpm dlx nx run-many -t lint
+pnpm dlx nx run-many -t build --projects=lib:types
+pnpm dlx nx run-many -t build --projects=lib:shared
+pnpm dlx nx run-many -t build --projects=lib:core
+pnpm dlx nx run-many -t build --projects=app:*
+
+pnpm dlx nx run-many -t typecheck
+
+pnpm dlx nx run-many -t test
+
+
+
