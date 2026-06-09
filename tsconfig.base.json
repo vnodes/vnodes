@@ -4,18 +4,27 @@
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
-    "isolatedModules": true,
-    "lib": ["es2022"],
+    "isolatedModules": false,
+    "lib": [
+      "ES2022"
+    ],
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "exactOptionalPropertyTypes": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "verbatimModuleSyntax": true,
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@vnodes/source"]
+    "customConditions": [
+      "@vnodes/source"
+    ]
   }
 }
