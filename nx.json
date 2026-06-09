@@ -51,6 +51,15 @@
       "strict": true,
       "skipTypeCheck": false,
       "tags": "lib:shared"
+    },
+    "@nx/plugin:plugin": {
+      "compiler": "swc",
+      "unitTestRunner": "vitest",
+      "linter": "eslint",
+      "publishable": true,
+      "strict": true,
+      "skipTypeCheck": false,
+      "tags": "app:cli"
     }
   },
   "targetDefaults": {

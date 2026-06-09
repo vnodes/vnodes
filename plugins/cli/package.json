@@ -1,5 +1,5 @@
 {
-  "name": "@vnodes/types",
+  "name": "@vnodes/cli",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
@@ -16,10 +16,11 @@
   },
   "files": [
     "dist",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "generators.json"
   ],
   "nx": {
-    "sourceRoot": "packages/types/src",
+    "sourceRoot": "plugins/cli/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -27,19 +28,33 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "packages/types/dist",
-          "main": "packages/types/src/index.ts",
-          "tsConfig": "packages/types/tsconfig.lib.json",
+          "outputPath": "plugins/cli/dist",
+          "main": "plugins/cli/src/index.ts",
+          "tsConfig": "plugins/cli/tsconfig.lib.json",
           "skipTypeCheck": false,
-          "stripLeadingPaths": false
+          "stripLeadingPaths": false,
+          "assets": [
+            {
+              "input": "./plugins/cli/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "./plugins/cli/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
         }
       }
     },
     "tags": [
-      "lib:types"
+      "app:cli"
     ]
   },
   "dependencies": {
+    "@nx/devkit": "22.7.5",
     "@swc/helpers": "~0.5.18"
-  }
+  },
+  "generators": "./generators.json"
 }

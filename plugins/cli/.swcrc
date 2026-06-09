@@ -15,14 +15,11 @@
     "loose": true
   },
   "module": {
-    "type": "nodenext",
-    "strict": true,
-    "strictMode": true
+    "type": "nodenext"
   },
   "sourceMaps": true,
   "exclude": [
-    ".*\\.spec.ts$",
     "vitest.config.mts",
-    "eslint.config.mjs"
+    ".*\\.spec.ts$"
   ]
 }
