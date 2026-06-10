@@ -19,9 +19,5 @@
     "strict": true,
     "strictMode": true
   },
-  "sourceMaps": true,
-  "exclude": [
-    "vitest\\.config\\.[cm]?ts$",
-    "eslint\\.config\\.[cm]?js$"
-  ]
+  "sourceMaps": true
 }

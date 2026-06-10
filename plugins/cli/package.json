@@ -21,6 +21,9 @@
   ],
   "nx": {
     "sourceRoot": "plugins/cli/src",
+    "tags": [
+      "app:cli"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -28,29 +31,26 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "plugins/cli/dist",
-          "main": "plugins/cli/src/index.ts",
-          "tsConfig": "plugins/cli/tsconfig.lib.json",
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/index.ts",
+          "tsConfig": "{projectRoot}/tsconfig.lib.json",
           "skipTypeCheck": false,
-          "stripLeadingPaths": false,
+          "stripLeadingPaths": true,
           "assets": [
             {
-              "input": "./plugins/cli/src",
+              "input": "{projectRoot}/src",
               "glob": "**/!(*.ts)",
               "output": "."
             },
             {
-              "input": "./plugins/cli/src",
+              "input": "{projectRoot}/src",
               "glob": "**/*.d.ts",
               "output": "."
             }
           ]
         }
       }
-    },
-    "tags": [
-      "app:cli"
-    ]
+    }
   },
   "dependencies": {
     "@nx/devkit": "22.7.5",

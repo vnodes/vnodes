@@ -11,7 +11,7 @@ export default defineConfig(() => ({
     include: ['src/**/*.spec.ts'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: './test-output/vitest/coverage',
+      reportsDirectory: 'tmp/vitest/errors/coverage',
       provider: 'v8' as const,
     },
   },

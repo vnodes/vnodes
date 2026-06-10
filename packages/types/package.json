@@ -42,6 +42,9 @@
   },
   "nx": {
     "sourceRoot": "packages/types/src",
+    "tags": [
+      "lib:types"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -56,10 +59,7 @@
           "stripLeadingPaths": false
         }
       }
-    },
-    "tags": [
-      "lib:types"
-    ]
+    }
   },
   "dependencies": {
     "@swc/helpers": "~0.5.18"

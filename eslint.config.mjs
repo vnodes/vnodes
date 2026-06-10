@@ -5,7 +5,29 @@ export default [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', '**/out-tsc', '**/vitest.config.*.timestamp*'],
+    ignores: [
+      '**/dist',
+      '**/out-tsc',
+      '**/vitest.config.*.timestamp*',
+      '**/vitet.config.mjs',
+      '**/generated/**',
+      '**/eslint.config.mjs',
+    ],
+  },
+
+  {
+    files: ['**/*.json'],
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          ignoredFiles: ['**/eslint.config.mjs', '**/vitest.config.mts'],
+        },
+      ],
+    },
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
   },
   {
     files: ['**/*.json'],
@@ -27,13 +49,13 @@ export default [
   },
 
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.ts', '**/package.json'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
         {
           enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+          allow: ['^.*/eslint(\\.base)?\\.config\\.mjs$'],
           depConstraints: [
             {
               sourceTag: 'lib:core',
@@ -43,31 +65,13 @@ export default [
               sourceTag: 'lib:shared',
               onlyDependOnLibsWithTags: ['lib:types'],
             },
+            {
+              sourceTag: 'lib:types',
+              onlyDependOnLibsWithTags: ['no:dependency'],
+            },
           ],
         },
       ],
-    },
-  },
-  {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
-    // Override or add rules here
-    rules: {},
-  },
-  {
-    files: ['**/*.json'],
-    // Override or add rules here
-    rules: {},
-    languageOptions: {
-      parser: await import('jsonc-eslint-parser'),
     },
   },
 ];

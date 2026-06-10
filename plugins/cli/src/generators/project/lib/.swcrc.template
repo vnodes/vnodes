@@ -19,11 +19,5 @@
     "strict": true,
     "strictMode": true
   },
-  "sourceMaps": true,
-  "exclude": [
-    "node_modules",
-    ".*\\.spec\\.ts$",
-    "vitest\\.config\\.[cm]?ts$",
-    "eslint\\.config\\.[cm]?js$"
-  ]
+  "sourceMaps": true
 }

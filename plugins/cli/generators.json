@@ -1,7 +1,7 @@
 {
   "generators": {
     "project": {
-      "factory": "./dist/generators/project/project",
+      "factory": "./dist/generators/project/project.js",
       "schema": "./dist/generators/project/schema.json",
       "description": "project generator"
     }

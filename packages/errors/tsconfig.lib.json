@@ -1,13 +1,16 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "tsBuildInfoFile": "../../tmp/builds/packages/errors/ts-build-info.json",
     "rootDir": "src",
     "outDir": "dist",
     "emitDeclarationOnly": true,
-    "tsBuildInfoFile": "./out-tsc/tsbuild.info.json",
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"],
-  "references": []
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
 }
