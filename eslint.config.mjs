@@ -58,6 +58,10 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.mjs$'],
           depConstraints: [
             {
+              sourceTag: 'app:*',
+              onlyDependOnLibsWithTags: ['lib:core', 'lib:shared', 'lib:types'],
+            },
+            {
               sourceTag: 'lib:core',
               onlyDependOnLibsWithTags: ['lib:shared', 'lib:types'],
             },
