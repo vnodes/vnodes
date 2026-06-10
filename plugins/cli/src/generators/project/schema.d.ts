@@ -40,9 +40,4 @@ export interface ProjectGeneratorSchema {
    * Author's full name
    */
   authorName: string;
-
-  /**
-   * Explicit project name
-   */
-  projectName?: string;
 }

@@ -5,17 +5,25 @@ import {
   updateJson,
   type Tree,
 } from '@nx/devkit';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { type ProjectGeneratorSchema } from './schema.d.js';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
+  projectName: string;
   shortName: string;
   sourceRoot: string;
   targetRoot: string;
 };
+
 export function normalizeProjectSchema(
   options: ProjectGeneratorSchema,
 ): NormalizedProjectGeneratorOptions {
+  const normalizedOptions = { ...options } as NormalizedProjectGeneratorOptions;
+
   const shortName = options.directory.split('/').pop();
 
   if (typeof shortName !== 'string') {
@@ -23,30 +31,32 @@ export function normalizeProjectSchema(
       `Could not resolve the short name of the project form ${options.directory}`,
     );
   }
+  normalizedOptions.shortName = shortName;
+  normalizedOptions.sourceRoot = join(__dirname, options.projectType);
+  normalizedOptions.targetRoot = join(options.directory);
+  normalizedOptions.projectName = `@${options.orgName}/${shortName}`;
 
-  const sourceRoot = join(__dirname, options.projectType);
-  const targetRoot = join(options.directory);
-
-  if (!options.projectName) {
-    options.projectName = `@${options.orgName}/${shortName}`;
-  }
-
-  options.email = options.email
+  normalizedOptions.email = options.email
     .split('@')
-    .join(`-${options.orgName}-${shortName}@`);
+    .join(`+${options.orgName}-${shortName}@`);
 
-  return { ...options, shortName, sourceRoot, targetRoot };
+  return normalizedOptions;
 }
 export async function projectGenerator(
   tree: Tree,
   options: ProjectGeneratorSchema,
 ) {
-  const { shortName, sourceRoot, targetRoot } = normalizeProjectSchema(options);
+  const normalizedOptions = normalizeProjectSchema(options);
 
-  generateFiles(tree, sourceRoot, targetRoot, {
-    ...options,
-    ...names(shortName),
-  });
+  generateFiles(
+    tree,
+    normalizedOptions.sourceRoot,
+    normalizedOptions.targetRoot,
+    {
+      ...normalizedOptions,
+      ...names(normalizedOptions.shortName),
+    },
+  );
 
   updateJson(tree, 'tsconfig.json', (value) => {
     if (!value.references) {

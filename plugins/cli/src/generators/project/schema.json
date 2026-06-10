@@ -79,15 +79,6 @@
         "index": 7
       },
       "x-prompt": "What is the author name?"
-    },
-    "projectName": {
-      "type": "string",
-      "description": "Explicit project name",
-      "$default": {
-        "$source": "argv",
-        "index": 8
-      },
-      "x-prompt": "What is the project name"
     }
   },
   "required": [

@@ -20,6 +20,7 @@
     "@swc/helpers": "~0.5.18",
     "@types/node": "20.19.9",
     "@vitest/coverage-v8": "~4.1.0",
+    "@vnodes/cli": "workspace:*",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "husky": "^9.1.7",
