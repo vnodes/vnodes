@@ -102,9 +102,6 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
-      '@vnodes/errors':
-        specifier: workspace:*
-        version: link:../errors
 
   plugins/cli:
     dependencies:
