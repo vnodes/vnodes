@@ -56,7 +56,7 @@
           "main": "packages/types/src/index.ts",
           "tsConfig": "packages/types/tsconfig.lib.json",
           "skipTypeCheck": false,
-          "stripLeadingPaths": false
+          "stripLeadingPaths": true
         }
       }
     }

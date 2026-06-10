@@ -1,0 +1,158 @@
+{
+  "name": "@vnodes/sample-api",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": {
+    "email": "robert.brightline+vnodes-types@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io/profile/robert-brightline"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "robert.brightline+vnodes-types-bug@gmail.com",
+    "url": "https://github.com/vnodes/vnodes/issues"
+  },
+  "homepage": "https://vnodes.github.io/packages/types",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "apis/sample-api/dist",
+          "main": "apis/sample-api/src/app/index.ts",
+          "tsConfig": "apis/sample-api/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "bundle": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "apis/sample-api/out",
+          "format": [
+            "cjs"
+          ],
+          "bundle": true,
+          "main": "apis/sample-api/src/main.ts",
+          "tsConfig": "apis/sample-api/tsconfig.app.json",
+          "assets": [
+            "apis/sample-api/src/assets"
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "prune-lockfile": {
+        "dependsOn": [
+          "bundle"
+        ],
+        "cache": true,
+        "executor": "@nx/js:prune-lockfile",
+        "outputs": [
+          "{workspaceRoot}/apis/sample-api/dist/package.json",
+          "{workspaceRoot}/apis/sample-api/dist/pnpm-lock.yaml"
+        ],
+        "options": {
+          "buildTarget": "bundle"
+        }
+      },
+      "copy-workspace-modules": {
+        "dependsOn": [
+          "bundle"
+        ],
+        "cache": true,
+        "outputs": [
+          "{workspaceRoot}/apis/sample-api/dist/workspace_modules"
+        ],
+        "executor": "@nx/js:copy-workspace-modules",
+        "options": {
+          "buildTarget": "bundle"
+        }
+      },
+      "prune": {
+        "dependsOn": [
+          "prune-lockfile",
+          "copy-workspace-modules"
+        ],
+        "executor": "nx:noop"
+      },
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "bundle"
+        ],
+        "options": {
+          "buildTarget": "@vnodes/sample-api:bundle",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "@vnodes/sample-api:bundle:development"
+          },
+          "production": {
+            "buildTarget": "@vnodes/sample-api:bundle:production"
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.26",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.26"
+  }
+}

@@ -1,8 +1,10 @@
 packages:
   - 'packages/*'
   - 'plugins/*'
+  - 'apis/*'
 allowBuilds:
   '@swc/core': true
+  esbuild: true
   nx: true
   unrs-resolver: true
 autoInstallPeers: true

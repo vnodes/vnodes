@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "../../tmp/builds/apis/sample-api/ts-build-info.json",
+    "rootDir": "src/app",
+    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/app/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
+}
