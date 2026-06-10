@@ -64,7 +64,9 @@
       "orgName": "vnodes",
       "repoName": "vnodes",
       "email": "robert.brightline@gmail.com",
-      "homePageUrl": "https://vnodes.github.io"
+      "homePageUrl": "https://vnodes.github.io",
+      "fundingUrl": "https://cash.app/$puqlib",
+      "version": "1.0.0"
     },
     "@nx/plugin:plugin": {
       "compiler": "swc",

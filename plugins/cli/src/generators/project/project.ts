@@ -6,12 +6,9 @@ export async function projectGenerator(
   tree: Tree,
   options: ProjectGeneratorSchema,
 ) {
-  if (!/\^[a-z]{1,}\/[a-z]{1,}$/.test(options.directory)) {
-    throw new Error(`Invalid directory parameter ${options.directory}`);
-  }
   const name = options.directory.split(/\//).pop();
   if (!name) throw new Error(`Cannot extract name from ${options.directory}`);
-  const projectName = `@${options.orgName}/`;
+  const projectName = `@${options.orgName}/${name}`;
   const sourceRoot = join(__dirname, options.projectType);
   const targetRoot = join(options.directory);
 

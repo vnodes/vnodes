@@ -1,27 +1,26 @@
 {
-  "name": "<%- projectName %>",
-  "version": "<%- version %>",
-
+  "name": "@vnodes/errors",
+  "version": "1.0.0",
   "author": {
-    "email": "<%- email %>",
-    "name": "<%- authorName %>",
-    "url": "<%- homePageUrl %>"
+    "email": "robert.brightline+errors@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io"
   },
   "keywords": [
     "library",
     "types"
   ],
   "bugs": {
-    "email": "<%- email %>",
-    "url": "https://github.com/<%- orgName %>/<%- repoName %>/issues"
+    "email": "robert.brightline+errors@gmail.com",
+    "url": "https://github.com/vnodes/vnodes/issues"
   },
-  "homepage": "<%- homePageUrl %>/<%- directory %>",
+  "homepage": "https://vnodes.github.io/packages/errors",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "funding": [
-    "<%- fundingUrl %>"
+    "https://cash.app/$puqlib"
   ],
   "files": [
     "dist",

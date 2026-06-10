@@ -8,6 +8,9 @@
     },
     {
       "path": "./plugins/cli"
+    },
+    {
+      "path": "./packages/errors"
     }
   ]
 }
