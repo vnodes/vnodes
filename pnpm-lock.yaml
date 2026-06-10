@@ -105,6 +105,10 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
+    devDependencies:
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
 
   packages/types:
     dependencies:

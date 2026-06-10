@@ -56,6 +56,7 @@ export default [
         {
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.mjs$'],
+
           depConstraints: [
             {
               sourceTag: 'app:*',

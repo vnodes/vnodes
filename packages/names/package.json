@@ -61,6 +61,12 @@
       }
     }
   },
+  "peerDependencies": {
+    "@vnodes/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@vnodes/types": "workspace:*"
+  },
   "dependencies": {
     "@swc/helpers": "~0.5.18"
   }
