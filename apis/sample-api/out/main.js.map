@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/app/app.controller.ts", "../src/app/app.module.ts", "../src/app/bootstrap.ts", "../src/main.ts"],
+  "sourcesContent": ["import { Controller, Get } from '@nestjs/common';\n\n@Controller('apps')\nexport class AppController {\n  @Get('hello')\n  hello() {\n    return { message: 'Hello' };\n  }\n}\n", "import { Module } from '@nestjs/common';\nimport { ConfigModule } from '@nestjs/config';\nimport { AppController } from './app.controller.js';\n\n@Module({ imports: [ConfigModule], controllers: [AppController] })\nexport class AppModule {}\n", "import { NestFactory } from '@nestjs/core';\nimport { AppModule } from './app.module.js';\n\nexport async function bootstrap() {\n  const app = await NestFactory.create(AppModule);\n  await app.listen(3000);\n}\n", "import { bootstrap } from './app/index.js';\n\nbootstrap();\n"],
+  "mappings": ";;;;;;;;;;;;AAAA,SAAS,YAAY,WAAW;AAGzB,IAAM,gBAAN,MAAoB;AAAA,EAEzB,QAAQ;AACN,WAAO,EAAE,SAAS,QAAQ;AAAA,EAC5B;AACF;AAHE;AAAA,EADC,IAAI,OAAO;AAAA,GADD,cAEX;AAFW,gBAAN;AAAA,EADN,WAAW,MAAM;AAAA,GACL;;;ACHb,SAAS,cAAc;AACvB,SAAS,oBAAoB;AAItB,IAAM,YAAN,MAAgB;AAAC;AAAX,YAAN;AAAA,EADN,OAAO,EAAE,SAAS,CAAC,YAAY,GAAG,aAAa,CAAC,aAAa,EAAE,CAAC;AAAA,GACpD;;;ACLb,SAAS,mBAAmB;AAG5B,eAAsB,YAAY;AAChC,QAAM,MAAM,MAAM,YAAY,OAAO,SAAS;AAC9C,QAAM,IAAI,OAAO,GAAI;AACvB;;;ACJA,UAAU;",
+  "names": []
+}

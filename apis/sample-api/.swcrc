@@ -20,5 +20,9 @@
     "strict": true,
     "strictMode": true
   },
-  "sourceMaps": true
+  "sourceMaps": true,
+  "exclude": [
+    ".*\\.spec\\.ts$",
+    "^src/[^/]*\\.ts$"
+  ]
 }

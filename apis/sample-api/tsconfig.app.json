@@ -1,14 +1,18 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "out",
+    "outDir": "../../temp/builds/apis/sample-api/dist",
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
+    "noEmit": true,
     "types": [
       "node"
-    ],
-    "rootDir": "src",
-    "tsBuildInfoFile": "../.../tmp/builds/apis/sample-api/ts-build-info.json"
+    ]
   },
   "include": [
     "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
   ]
 }

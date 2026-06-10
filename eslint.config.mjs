@@ -7,6 +7,7 @@ export default [
   {
     ignores: [
       '**/dist',
+      '**/out',
       '**/out-tsc',
       '**/vitest.config.*.timestamp*',
       '**/vitet.config.mjs',
