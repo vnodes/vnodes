@@ -64,6 +64,27 @@
           "buildTarget": "build",
           "watch": true
         }
+      },
+      "prisma:migrate": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "pnpm prisma migrate dev --name updated",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "prisma:reset": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "pnpm prisma migrate reset -f",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "prisma:generate": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "pnpm prisma generate",
+          "cwd": "{projectRoot}"
+        }
       }
     }
   },
@@ -83,6 +104,7 @@
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@vnodes/nest": "workspace:*",
+    "@vnodes/prisma": "workspace:*",
     "cache-manager": "^7.2.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
@@ -102,6 +124,7 @@
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@vnodes/nest": "workspace:*",
+    "@vnodes/prisma": "workspace:*",
     "@vnodes/types": "workspace:*",
     "cache-manager": "^7.2.8",
     "class-transformer": "^0.5.1",

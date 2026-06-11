@@ -22,6 +22,9 @@
     },
     {
       "path": "./apis/test-api"
+    },
+    {
+      "path": "./packages/prisma"
     }
   ]
 }

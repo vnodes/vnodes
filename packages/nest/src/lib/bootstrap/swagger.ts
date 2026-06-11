@@ -1,6 +1,6 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import type { Env } from '../constants/env.js';
 import type { INestApplication } from '@nestjs/common';
+import type { Env } from '@vnodes/types';
 
 export function swagger(app: INestApplication, options: Env) {
   const { APP_ID, DESC, PREFIX } = options;

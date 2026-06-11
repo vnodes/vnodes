@@ -9,7 +9,9 @@ export default [
       '**/dist',
       '**/out',
       '**/out-tsc',
+      '**/generated/*',
       '**/vitest.config.*.timestamp*',
+      '**/prisma.config.ts',
       '**/vitet.config.mjs',
       '**/generated/**',
       '**/eslint.config.mjs',
@@ -24,7 +26,7 @@ export default [
         {
           ignoredFiles: [
             '{projectRoot}/eslint.config.mjs',
-            '{projectRoot}/prisma.config.mts',
+            '{projectRoot}/prisma.config.ts',
             '{projectRoot}/vitest.config.mts',
           ],
         },

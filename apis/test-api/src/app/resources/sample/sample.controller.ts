@@ -11,35 +11,42 @@ import {
   ResourceController,
 } from '@vnodes/nest';
 import { SampleCreateDto } from './sample.dto.js';
+import { InjectDelegate } from '@vnodes/prisma';
+import { Prisma } from '../../../generated/prisma/client.js';
 
 @ResourceController('samples')
 export class SampleController {
+  constructor(
+    @InjectDelegate(Prisma.ModelName.Sample)
+    protected readonly repo: Prisma.SampleDelegate,
+  ) {}
+
   @EmitResponse()
   @GetAll()
   getAll() {
-    return [{ id: 2 }];
+    return this.repo.findMany();
   }
 
   @EmitRequest()
   @GetOneById()
   getOneById(@ParamId() id: number) {
-    return { id: id + 1 };
+    return this.repo.findUnique({ where: { id } });
   }
 
   @EmitRequest()
   @EmitResponse()
   @PostOne()
-  postOne(@Body() body: SampleCreateDto) {
-    return { ...body, response: true };
+  postOne(@Body() data: SampleCreateDto) {
+    return this.repo.create({ data });
   }
 
   @PutOneById()
-  putOneById(@ParamId() id: number) {
-    return { id };
+  putOneById(@ParamId() id: number, @Body() data: SampleCreateDto) {
+    return this.repo.update({ where: { id }, data });
   }
 
   @DeleteOneById()
   deleteOneById(@ParamId() id: number) {
-    return { id };
+    return this.repo.delete({ where: { id } });
   }
 }

@@ -1,6 +1,6 @@
 import { applyDecorators, SetMetadata } from '@nestjs/common';
-import { MetadataToken } from '../constants/metadata-token.js';
 import { ApiTags } from '@nestjs/swagger';
+import { MetadataToken } from '@vnodes/types';
 
 export const Permissions = (...permissions: string[]) =>
   applyDecorators(

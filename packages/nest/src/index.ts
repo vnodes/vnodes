@@ -1,10 +1,7 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
 export * from './lib/bootstrap/bootstrap.js';
 export * from './lib/bootstrap/swagger.js';
-export * from './lib/constants/constants.js';
 export * from './lib/constants/env.js';
-export * from './lib/constants/internal-role.js';
-export * from './lib/constants/metadata-token.js';
 export * from './lib/decorators/common.js';
 export * from './lib/decorators/delete-one.js';
 export * from './lib/decorators/event-listener.js';
@@ -32,5 +29,4 @@ export * from './lib/metadata/scope.js';
 export * from './lib/metadata/strict-rate-limit.js';
 export * from './lib/modules/common.module.js';
 export * from './lib/pipes/global-validation-pipe.js';
-export * from './lib/types.js';
 export * from './peer-dependencies.js';
