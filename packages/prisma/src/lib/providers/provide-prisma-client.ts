@@ -64,7 +64,9 @@ export function providePrismaClient<PrismaClient>(
   };
 }
 
-export function InjectPrismaClient(name = ''): ParameterDecorator {
+export function InjectPrismaClient(
+  name = DEFAULT_PRISMA_CLIENT_NAME,
+): ParameterDecorator {
   return (...args) => {
     Inject(prismaClientToken(name))(...args);
   };

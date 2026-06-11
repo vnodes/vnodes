@@ -1,5 +1,5 @@
 import { CommonModule, Module } from '@vnodes/nest';
-import { SampleModule } from './resources/sample/sample.module.js';
+import { ResourceModule } from './resources/resource.module.js';
 
-@Module({ imports: [CommonModule, SampleModule] })
+@Module({ imports: [CommonModule, ResourceModule] })
 export class AppModule {}
