@@ -1,14 +1,16 @@
-import { Logger, Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { Env, Profile } from '../constants/env.js';
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { Constant } from '../constants/constants.js';
 import { MetadataModule } from '../metadata/metadata.module.js';
 import { MetadataService } from '../metadata/metadata.service.js';
+import { EmitInterceptor } from '../interceptors/emit.interceptor.js';
+import { GlobalValidationPipe } from '../pipes/global-validation-pipe.js';
 
 @Module({
   imports: [
@@ -93,6 +95,18 @@ import { MetadataService } from '../metadata/metadata.service.js';
     {
       provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: EmitInterceptor,
+    },
+    {
+      provide: APP_PIPE,
+      useValue: GlobalValidationPipe,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useValue: ClassSerializerInterceptor,
     },
   ],
 })

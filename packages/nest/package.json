@@ -75,7 +75,10 @@
     "@nestjs/swagger": "^11.4.4",
     "@nestjs/throttler": "^6.5.0",
     "@vnodes/types": "workspace:*",
-    "cache-manager": "^7.2.8"
+    "cache-manager": "^7.2.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "rxjs": "^7.8.2"
   },
   "peerDependencies": {
     "@nestjs/cache-manager": "^3.1.2",
@@ -88,6 +91,9 @@
     "@nestjs/swagger": "^11.4.4",
     "@nestjs/throttler": "^6.5.0",
     "@vnodes/types": "workspace:*",
-    "cache-manager": "^7.2.8"
+    "cache-manager": "^7.2.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "rxjs": "^7.8.2"
   }
 }

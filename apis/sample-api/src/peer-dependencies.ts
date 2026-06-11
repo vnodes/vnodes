@@ -8,4 +8,7 @@ import '@nestjs/schedule';
 import '@nestjs/swagger';
 import '@nestjs/throttler';
 import 'cache-manager';
+import 'rxjs';
+import 'class-validator';
+import 'class-transformer';
 

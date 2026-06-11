@@ -1,26 +1,36 @@
+import { Body } from '@nestjs/common';
 import {
-  AdminOnly,
   DeleteOneById,
+  EmitRequest,
+  EmitResponse,
   GetAll,
   GetOneById,
   ParamId,
+  PostOne,
   PutOneById,
   ResourceController,
-  StrictRateLimit,
 } from '@vnodes/nest';
+import { SampleCreateDto } from './sample.dto.js';
 
 @ResourceController('samples')
 export class SampleController {
-  @StrictRateLimit()
+  @EmitResponse()
   @GetAll()
   getAll() {
-    return [];
+    return [{ id: 2 }];
   }
 
-  @AdminOnly()
+  @EmitRequest()
   @GetOneById()
   getOneById(@ParamId() id: number) {
-    return { id };
+    return { id: id + 1 };
+  }
+
+  @EmitRequest()
+  @EmitResponse()
+  @PostOne()
+  postOne(@Body() body: SampleCreateDto) {
+    return { ...body, response: true };
   }
 
   @PutOneById()

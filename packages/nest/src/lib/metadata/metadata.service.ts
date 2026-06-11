@@ -42,10 +42,18 @@ export class MetadataService {
     );
   }
 
-  isEmitted(context: ExecutionContext): boolean {
+  isEmittedResponse(context: ExecutionContext): boolean {
     return (
       this.getFromHandler<boolean>(
-        MetadataToken.EMIT_METADATA_TOKEN,
+        MetadataToken.EMIT_RESPONSE_METADATA_TOKEN,
+        context,
+      ) === true
+    );
+  }
+  isEmittedRequest(context: ExecutionContext): boolean {
+    return (
+      this.getFromHandler<boolean>(
+        MetadataToken.EMIT_REQUEST_METADATA_TOKEN,
         context,
       ) === true
     );
@@ -87,6 +95,19 @@ export class MetadataService {
     return this.getFromHandler<string>(
       MetadataToken.OPERATION_NAME_METADATA_TOKEN,
       context,
+    );
+  }
+
+  defaultEventName(context: ExecutionContext) {
+    return `${this.getScope(context)}.${this.getResourceName(context)}.${this.getOperationName(context)}`;
+  }
+
+  getEventName(context: ExecutionContext): string {
+    return (
+      this.getFromHandler<string>(
+        MetadataToken.OPERATION_NAME_METADATA_TOKEN,
+        context,
+      ) ?? this.defaultEventName(context)
     );
   }
 
