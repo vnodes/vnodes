@@ -1,6 +1,5 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller.js';
+import { CommonModule, Module } from '@vnodes/nest';
+import { SampleModule } from './resources/sample/sample.module.js';
 
-@Module({ imports: [ConfigModule], controllers: [AppController] })
+@Module({ imports: [CommonModule, SampleModule] })
 export class AppModule {}

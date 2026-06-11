@@ -17,6 +17,9 @@
     },
     {
       "path": "./apis/sample-api"
+    },
+    {
+      "path": "./packages/nest"
     }
   ]
 }

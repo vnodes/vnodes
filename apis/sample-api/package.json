@@ -40,6 +40,9 @@
     }
   },
   "nx": {
+    "tags": [
+      "app:api"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -151,12 +154,30 @@
     "@swc/helpers": "~0.5.18"
   },
   "peerDependencies": {
+    "@nestjs/cache-manager": "^3.1.2",
     "@nestjs/common": "^11.1.26",
     "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.1.26",
-    "@nestjs/platform-express": "^11.1.26"
+    "@nestjs/event-emitter": "^3.1.0",
+    "@nestjs/platform-express": "^11.1.26",
+    "@nestjs/schedule": "^6.1.3",
+    "@nestjs/swagger": "^11.4.4",
+    "@nestjs/throttler": "^6.5.0",
+    "cache-manager": "^7.2.8",
+    "@vnodes/nest": "workspace:*"
   },
   "devDependencies": {
-    "@nestjs/platform-express": "^11.1.26"
+    "@nestjs/cache-manager": "^3.1.2",
+    "@nestjs/common": "^11.1.26",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.26",
+    "@nestjs/event-emitter": "^3.1.0",
+    "@nestjs/platform-express": "^11.1.26",
+    "@nestjs/schedule": "^6.1.3",
+    "@nestjs/swagger": "^11.4.4",
+    "@nestjs/throttler": "^6.5.0",
+    "cache-manager": "^7.2.8",
+    "@vnodes/nest": "workspace:*",
+    "@vnodes/types": "workspace:*"
   }
 }

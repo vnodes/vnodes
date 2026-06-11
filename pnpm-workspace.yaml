@@ -3,6 +3,7 @@ packages:
   - 'plugins/*'
   - 'apis/*'
 allowBuilds:
+  '@scarf/scarf': true
   '@swc/core': true
   esbuild: true
   nx: true

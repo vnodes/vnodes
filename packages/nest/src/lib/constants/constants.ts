@@ -1,0 +1,4 @@
+export enum Constant {
+  THROTTLER_GLOBAL_NAME = 'GLOBAL',
+  THROTTLER_STRICT_NAME = 'STRICT',
+}

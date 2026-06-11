@@ -4,6 +4,7 @@
     "declarationMap": true,
     "importHelpers": true,
     "isolatedModules": false,
+    "allowUnusedLabels": true,
     "lib": [
       "ES2022"
     ],
@@ -24,6 +25,9 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": true,
     "target": "es2022",
     "customConditions": [
       "@vnodes/source"
