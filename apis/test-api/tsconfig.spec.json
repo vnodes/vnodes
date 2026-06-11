@@ -10,7 +10,9 @@
       "vitest"
     ]
   },
-  "include": ["src/**/*.spec.ts"],
+  "include": [
+    "src/**/*.spec.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.lib.json"
