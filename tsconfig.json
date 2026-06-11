@@ -20,6 +20,9 @@
     },
     {
       "path": "./packages/nest"
+    },
+    {
+      "path": "./apis/test-api"
     }
   ]
 }

@@ -1,0 +1,107 @@
+{
+  "name": "@vnodes/test-api",
+  "version": "1.0.0",
+  "author": {
+    "email": "robert.brightline+vnodes-test-api@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "robert.brightline+vnodes-test-api@gmail.com",
+    "url": "https://github.com/vnodes/vnodes/issues"
+  },
+  "homepage": "https://vnodes.github.io/apis/test-api",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "apis/test-api/src",
+    "tags": [
+      "app:api"
+    ],
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/main.ts",
+          "tsConfig": "{projectRoot}/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "serve": {
+        "executor": "@nx/js:node",
+        "options": {
+          "buildTarget": "build",
+          "watch": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "peerDependencies": {
+    "@nestjs/cache-manager": "^3.1.2",
+    "@nestjs/common": "^11.1.26",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.26",
+    "@nestjs/event-emitter": "^3.1.0",
+    "@nestjs/platform-express": "^11.1.26",
+    "@nestjs/schedule": "^6.1.3",
+    "@nestjs/swagger": "^11.4.4",
+    "@nestjs/throttler": "^6.5.0",
+    "@vnodes/nest": "workspace:*",
+    "cache-manager": "^7.2.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cache-manager": "^3.1.2",
+    "@nestjs/common": "^11.1.26",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.26",
+    "@nestjs/event-emitter": "^3.1.0",
+    "@nestjs/platform-express": "^11.1.26",
+    "@nestjs/schedule": "^6.1.3",
+    "@nestjs/swagger": "^11.4.4",
+    "@nestjs/throttler": "^6.5.0",
+    "@vnodes/nest": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "cache-manager": "^7.2.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "rxjs": "^7.8.2"
+  }
+}
