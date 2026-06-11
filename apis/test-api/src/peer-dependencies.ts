@@ -12,3 +12,7 @@ import 'rxjs';
 import 'class-validator';
 import 'class-transformer';
 
+import 'pg';
+import '@prisma/client';
+import '@prisma/adapter-pg';
+
