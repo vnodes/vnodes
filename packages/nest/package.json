@@ -32,6 +32,7 @@
   "types": "./src/index.d.ts",
   "module": "./src/index.js",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "@vnodes/source": "./src/index.ts",
       "types": "./dist/index.d.ts",

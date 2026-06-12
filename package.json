@@ -6,6 +6,19 @@
     "prepare": "husky"
   },
   "private": true,
+  "nx": {
+    "includedScripts": [],
+    "targets": {
+      "local-registry": {
+        "executor": "@nx/js:verdaccio",
+        "options": {
+          "port": 4873,
+          "config": ".verdaccio/config.yml",
+          "storage": "tmp/local-registry/storage"
+        }
+      }
+    }
+  },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@nx/esbuild": "22.7.5",
@@ -40,19 +53,6 @@
     "verdaccio": "^6.3.2",
     "vite": "^8.0.0",
     "vitest": "~4.1.0"
-  },
-  "nx": {
-    "includedScripts": [],
-    "targets": {
-      "local-registry": {
-        "executor": "@nx/js:verdaccio",
-        "options": {
-          "port": 4873,
-          "config": ".verdaccio/config.yml",
-          "storage": "tmp/local-registry/storage"
-        }
-      }
-    }
   },
   "dependencies": {
     "@nx/devkit": "22.7.5"
