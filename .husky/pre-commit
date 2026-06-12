@@ -1,13 +1,13 @@
 # #!/bin/bash
 
 
-pnpm dlx nx run-many -t lint
-pnpm dlx nx run-many -t build --projects=lib:types
-pnpm dlx nx run-many -t build --projects=lib:shared
-pnpm dlx nx run-many -t build --projects=lib:core
-pnpm dlx nx run-many -t build --projects=app:*
+pnpm nx run-many -t lint
+pnpm nx run-many -t build --projects="tag:lib:types"
+pnpm nx run-many -t build --projects="tag:lib:shared"
+pnpm nx run-many -t build --projects="tag:lib:module"
+pnpm nx run-many -t build --projects="tag:app:*"
 
-pnpm dlx nx run-many -t test
+pnpm nx run-many -t test
 
 
 
