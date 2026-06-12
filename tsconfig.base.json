@@ -31,6 +31,6 @@
     "target": "es2022",
     "customConditions": [
       "@vnodes/source"
-    ]
+    ],
   }
 }

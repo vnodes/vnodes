@@ -28,11 +28,10 @@
     "!**/*.tsbuildinfo"
   ],
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "module": "./src/index.js",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "@vnodes/source": "./src/index.ts",
       "types": "./dist/index.d.ts",

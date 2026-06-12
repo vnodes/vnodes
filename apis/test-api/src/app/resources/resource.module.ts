@@ -1,7 +1,7 @@
 import { Module } from '@vnodes/nest';
 import { SampleModule } from './sample/sample.module.js';
 import { PrismaModule } from '@vnodes/prisma';
-import { PrismaClient } from '../../generated/prisma/client.js';
+import { PrismaClient } from '@vnodes/test-api/client';
 
 @Module({
   imports: [PrismaModule.forRoot({ client: PrismaClient }), SampleModule],

@@ -5,7 +5,8 @@
     "rootDir": "src",
     "outDir": "dist",
     "emitDeclarationOnly": true,
-    "forceConsistentCasingInFileNames": true
+    "resolvePackageJsonExports": true,
+    "forceConsistentCasingInFileNames": true,
   },
   "include": [
     "src/**/*.ts"

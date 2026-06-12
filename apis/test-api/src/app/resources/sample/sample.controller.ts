@@ -12,7 +12,7 @@ import {
 } from '@vnodes/nest';
 import { SampleCreateDto } from './sample.dto.js';
 import { InjectDelegate } from '@vnodes/prisma';
-import { Prisma } from '../../../generated/prisma/client.js';
+import { Prisma } from '@vnodes/test-api/client';
 
 @ResourceController('samples')
 export class SampleController {
