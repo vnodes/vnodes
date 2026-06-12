@@ -1,6 +1,8 @@
 import { Inject, Injectable, type ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { MetadataToken, Profile, type Some } from '@vnodes/types';
+import type { Profile } from '@vnodes/config';
+import type { Some } from '@vnodes/types';
+import { MetadataToken } from '../constants/metadata-token.js';
 
 @Injectable()
 export class MetadataService {

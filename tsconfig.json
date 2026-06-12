@@ -25,6 +25,9 @@
     },
     {
       "path": "./packages/prisma"
+    },
+    {
+      "path": "./packages/config"
     }
   ]
 }

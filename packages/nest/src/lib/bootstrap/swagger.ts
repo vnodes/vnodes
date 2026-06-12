@@ -1,20 +1,17 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import type { INestApplication } from '@nestjs/common';
-import type { Env } from '@vnodes/types';
+import { EnvService } from '@vnodes/config';
 
-export function swagger(app: INestApplication, options: Env) {
-  const { APP_ID, DESC, PREFIX } = options;
-
+export function swagger(app: INestApplication, env: EnvService) {
   const swaggerConf = new DocumentBuilder()
-    .setTitle(APP_ID)
-    .setDescription(DESC)
+    .setTitle(env.APP_ID)
+    .setDescription(env.DESC)
     .addBearerAuth({ type: 'http' })
-
     .build();
 
   const doc = SwaggerModule.createDocument(app, swaggerConf, {
     autoTagControllers: true,
   });
 
-  SwaggerModule.setup(PREFIX, app, doc);
+  SwaggerModule.setup(env.PREFIX, app, doc);
 }

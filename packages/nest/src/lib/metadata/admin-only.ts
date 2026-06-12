@@ -1,7 +1,8 @@
 import { applyDecorators, SetMetadata } from '@nestjs/common';
 import { Roles } from './roles.js';
 import { ApiTags } from '@nestjs/swagger';
-import { InternalRole, MetadataToken } from '@vnodes/types';
+import { InternalRole } from '../constants/internal-role.js';
+import { MetadataToken } from '../constants/metadata-token.js';
 
 export const AdminOnly = () =>
   applyDecorators(

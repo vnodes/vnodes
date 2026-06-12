@@ -1,112 +1,28 @@
-import { ClassSerializerInterceptor, Logger, Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Global, Module } from '@nestjs/common';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
-import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { CacheModule } from '@nestjs/cache-manager';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { MetadataModule } from '../metadata/metadata.module.js';
-import { MetadataService } from '../metadata/metadata.service.js';
-import { EmitInterceptor } from '../interceptors/emit.interceptor.js';
-import { GlobalValidationPipe } from '../pipes/global-validation-pipe.js';
-import { Env, Constant, Profile } from '@vnodes/types';
+import { throttlerAsyncOptions } from './throttler-module-options.js';
+import { cacheModuleAsyncOptions } from './cache-module-options.js';
+import { EnvyModule } from '@vnodes/config';
+import { provideCommons } from './provide-commons.js';
 
+@Global()
 @Module({
   imports: [
     MetadataModule,
-    ConfigModule.forRoot({ cache: true, isGlobal: true }),
+    EnvyModule,
     EventEmitterModule.forRoot({
       delimiter: '.',
       global: true,
       wildcard: true,
     }),
     ScheduleModule.forRoot(),
-    CacheModule.registerAsync({
-      inject: [ConfigService],
-      useFactory(config: ConfigService) {
-        const ttl = Number(config.get(Env.CACHE_TTL) || Env.DEFAULT_CACHE_TTL);
-        return { ttl };
-      },
-    }),
-
-    ThrottlerModule.forRootAsync({
-      imports: [MetadataModule],
-      inject: [ConfigService, MetadataService],
-      useFactory(config: ConfigService, metadataService: MetadataService) {
-        const logger = new Logger(ThrottlerModule.name);
-        const profile = config.get(Env.PROFILE, Env.DEFAULT_PROFILE);
-        const ttl = Number(
-          config.get(Env.THROTTLER_TTL) || Env.DEFAULT_THROTTLER_TTL,
-        );
-        const limit = Number(
-          config.get(Env.THROTTLER_LIMIT) || Env.DEFAULT_THROTTLER_LIMIT,
-        );
-
-        logger.log(`ttl : ${ttl} miliseconds`);
-        logger.log(`limit : ${limit} number of requests`);
-
-        return {
-          throttlers: [
-            { name: Constant.THROTTLER_GLOBAL_NAME, limit, ttl },
-            {
-              name: Constant.THROTTLER_STRICT_NAME,
-              ttl: 20_000,
-              limit: 6,
-              skipIf(context) {
-                if (!metadataService.isStrictRateLimit(context)) {
-                  return true;
-                }
-
-                const explictProfile = metadataService.getProfile(context);
-                if (explictProfile && explictProfile !== Profile.PROD) {
-                  logger.log(
-                    `ignoring throttler becuase the operation has explict profile ${explictProfile}`,
-                  );
-                  return true;
-                }
-
-                if (profile && profile !== Profile.PROD) {
-                  logger.log(
-                    `ignoring throttler becuase the system is running under the profile ${profile}`,
-                  );
-                }
-
-                if (metadataService.isAdminOnly(context)) {
-                  logger.log(
-                    `ignoring throttler becuase the request is an administrative`,
-                  );
-                  return true;
-                }
-
-                return false;
-              },
-            },
-          ],
-        };
-      },
-    }),
+    CacheModule.registerAsync(cacheModuleAsyncOptions()),
+    ThrottlerModule.forRootAsync(throttlerAsyncOptions()),
   ],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: ThrottlerGuard,
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: CacheInterceptor,
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: EmitInterceptor,
-    },
-    {
-      provide: APP_PIPE,
-      useValue: GlobalValidationPipe,
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useValue: ClassSerializerInterceptor,
-    },
-  ],
+  providers: [...provideCommons()],
 })
 export class CommonModule {}

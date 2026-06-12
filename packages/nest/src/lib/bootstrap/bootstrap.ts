@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
 import { Logger, type Type } from '@nestjs/common';
-import { env } from '../constants/env.js';
 import { swagger } from './swagger.js';
+import { EnvService } from '@vnodes/config';
 
 export type BootstrapOptions = {
   module: Type;
@@ -13,20 +12,20 @@ export async function bootstrap(options: BootstrapOptions) {
 
   const app = await NestFactory.create(options.module);
 
-  const config = app.get(ConfigService);
+  const env = app.get(EnvService);
 
-  const vars = env(config);
+  if (!env) throw new Error(`EnvService is not provided!`);
 
-  app.setGlobalPrefix(vars.PREFIX);
+  app.setGlobalPrefix(env.PREFIX);
   app.enableCors();
 
-  swagger(app, vars);
+  swagger(app, env);
 
-  await app.listen(vars.PORT);
+  await app.listen(env.PORT);
 
   const URL = await app.getUrl();
-  logger.log(`BASE_URL : ${URL}`);
-  logger.log(`APP_ID   : ${vars.APP_ID}`);
-  logger.log(`DESC     : ${vars.DESC}`);
-  logger.log(`PROFILE  : ${vars.PROFILE}`);
+  logger.log(`URL      : ${URL}`);
+  logger.log(`APP_ID   : ${env.APP_ID}`);
+  logger.log(`DESC     : ${env.DESC}`);
+  logger.log(`PROFILE  : ${env.PROFILE}`);
 }

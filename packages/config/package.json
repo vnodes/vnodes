@@ -1,8 +1,8 @@
 {
-  "name": "@vnodes/prisma",
+  "name": "@vnodes/config",
   "version": "1.0.0",
   "author": {
-    "email": "robert.brightline+vnodes-prisma@gmail.com",
+    "email": "robert.brightline+vnodes-config@gmail.com",
     "name": "Robert Brightline",
     "url": "https://vnodes.github.io"
   },
@@ -11,10 +11,10 @@
     "types"
   ],
   "bugs": {
-    "email": "robert.brightline+vnodes-prisma@gmail.com",
+    "email": "robert.brightline+vnodes-config@gmail.com",
     "url": "https://github.com/vnodes/vnodes/issues"
   },
-  "homepage": "https://vnodes.github.io/packages/prisma",
+  "homepage": "https://vnodes.github.io/packages/config",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -41,7 +41,7 @@
     }
   },
   "nx": {
-    "sourceRoot": "packages/prisma/src",
+    "sourceRoot": "packages/config/src",
     "tags": [
       "lib:module"
     ],
@@ -66,16 +66,10 @@
   },
   "devDependencies": {
     "@nestjs/common": "^11.1.26",
-    "@nestjs/config": "^4.0.4",
-    "@prisma/adapter-pg": "^7.8.0",
-    "@vnodes/config": "workspace:*",
-    "@vnodes/names": "workspace:*",
-    "@vnodes/types": "workspace:*"
+    "@nestjs/config": "^4.0.4"
   },
   "peerDependencies": {
     "@nestjs/common": "^11.1.26",
-    "@prisma/adapter-pg": "^7.8.0",
-    "@vnodes/config": "workspace:*",
-    "@vnodes/names": "workspace:*"
+    "@nestjs/config": "^4.0.4"
   }
 }

@@ -1,9 +1,8 @@
-import { type FactoryProvider, Inject } from '@nestjs/common';
+import { type FactoryProvider } from '@nestjs/common';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
   prismaClientToken,
 } from './provide-prisma-client.js';
-import { lowerCaseFirst } from '@vnodes/names';
 
 export function prismaDelegateToken(
   modelName: string,
@@ -25,15 +24,5 @@ export function providePrismaDelegate<
     useFactory(client: PrismaClient) {
       return client[modelName];
     },
-  };
-}
-
-export function InjectDelegate(
-  modelName: string,
-  clientName: string = DEFAULT_PRISMA_CLIENT_NAME,
-): ParameterDecorator {
-  return (...args) => {
-    modelName = lowerCaseFirst(modelName);
-    Inject(prismaDelegateToken(modelName, clientName))(...args);
   };
 }

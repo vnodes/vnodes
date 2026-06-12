@@ -1,4 +1,4 @@
-// @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
+// @index(['./**/*.ts', '!./**/*.spec.ts', '!./lib/providers/*',], f => `export * from '${f.path}.js'`)
+export * from './lib/injectors/inject-delegate.js';
+export * from './lib/injectors/inject-prisma-client.js';
 export * from './lib/prisma.module.js';
-export * from './lib/providers/provide-prisma-client.js';
-export * from './lib/providers/provide-prisma-delegate.js';

@@ -1,5 +1,6 @@
 import { SetMetadata } from '@nestjs/common';
-import { Profile, MetadataToken } from '@vnodes/types';
+import type { Profile } from '@vnodes/config';
+import { MetadataToken } from '../constants/metadata-token.js';
 
 export const Profiles = (...profiles: Profile[]) =>
   SetMetadata(MetadataToken.PROFILES_METADATA_TOKEN, profiles);
