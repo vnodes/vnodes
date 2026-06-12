@@ -1,12 +1,9 @@
 # #!/bin/bash
 
 
+pnpm nx run-many -t prisma:generate 
 pnpm nx run-many -t lint
-pnpm nx run-many -t build --projects="tag:lib:types"
-pnpm nx run-many -t build --projects="tag:lib:shared"
-pnpm nx run-many -t build --projects="tag:lib:module"
-pnpm nx run-many -t build --projects="tag:app:*"
-
+pnpm nx run-many -t build
 pnpm nx run-many -t test
 
 

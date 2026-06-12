@@ -27,20 +27,19 @@ jobs:
           node-version: 24
           registry-url: "https://registry.npmjs.org"
           cache: "pnpm"
-      
-      
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint and Generate 
-        run: | 
+      - name: Lint and Generate
+        run: |
           pnpm nx run-many -t lint
           pnpm nx run-many -t prisma:generate
-          
+
       - name: build
         run: pnpm nx run-many -t build
 
       - name: Publish libraries to npm registry
-        run: pnpm nx affected --target=publish --projects="tag:lib:*"
+        run: pnpm nx release --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

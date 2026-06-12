@@ -2,7 +2,10 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "analytics": false,
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -10,7 +13,9 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "plugins": [
     {
@@ -76,28 +81,41 @@
   "targetDefaults": {
     "@nx/js:swc": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "@nx/esbuild:esbuild": {
       "cache": true,
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "inputs": [
         "production",
         "^production",
         {
           "json": "{workspaceRoot}/tsconfig.json",
-          "fields": ["extends", "files", "include"]
+          "fields": [
+            "extends",
+            "files",
+            "include"
+          ]
         }
       ]
     }
   },
   "release": {
-    "version": {
-      "preVersionCommand": "pnpm dlx nx run-many -t build --tags=lib:*"
-    }
+    "projects": [
+      "tag:lib:*"
+    ]
   }
 }
