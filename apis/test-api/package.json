@@ -27,24 +27,24 @@
     "assets"
   ],
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "default": "./src/index.js"
     },
     "./client": {
-      "types": "./dist/generated/prisma/client.d.ts",
-      "import": "./dist/generated/prisma/client.js",
-      "default": "./dist/generated/prisma/client.js"
+      "types": "./src/generated/prisma/client.d.ts",
+      "import": "./src/generated/prisma/client.js",
+      "default": "./src/generated/prisma/client.js"
     },
     "./browser": {
-      "types": "./dist/generated/prisma/browser.d.ts",
-      "import": "./dist/generated/prisma/browser.js",
-      "default": "./dist/generated/prisma/browser.js"
+      "types": "./src/generated/prisma/browser.d.ts",
+      "import": "./src/generated/prisma/browser.js",
+      "default": "./src/generated/prisma/browser.js"
     }
   },
   "nx": {
@@ -63,9 +63,7 @@
           "main": "{projectRoot}/src/main.ts",
           "tsConfig": "{projectRoot}/tsconfig.lib.json",
           "skipTypeCheck": false,
-          "stripLeadingPaths": true,
-          "generateLockfile": false,
-          "generatePackageJson": false
+          "stripLeadingPaths": false
         }
       },
       "serve": {

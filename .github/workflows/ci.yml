@@ -42,7 +42,7 @@ jobs:
           pnpm nx run-many -t prisma:generate
 
       - name: build
-        run: pnpm run-many -t build
+        run: pnpm nx run-many -t build
 
       - name: Fix ci
         run: pnpm nx fix-ci

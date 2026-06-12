@@ -38,7 +38,7 @@ jobs:
           pnpm nx run-many -t prisma:generate
           
       - name: build
-        run: pnpm run-many -t build
+        run: pnpm nx run-many -t build
 
       - name: Publish libraries to npm registry
         run: pnpm nx affected --target=publish --projects="tag:lib:*"
