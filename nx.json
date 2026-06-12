@@ -115,7 +115,8 @@
   },
   "release": {
     "projects": [
-      "tag:lib:*"
+      "tag:lib:*",
+      "tag:app:cli"
     ]
   }
 }
