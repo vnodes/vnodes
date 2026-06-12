@@ -7,11 +7,14 @@
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/app/**/*.ts"
-  ],
-  "exclude": [
-    "src/*.ts",
-    "src/**/*.spec.ts",
+  "include": ["src/app/**/*.ts"],
+  "exclude": ["src/*.ts", "src/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "../../packages/types/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/nest/tsconfig.lib.json"
+    }
   ]
 }

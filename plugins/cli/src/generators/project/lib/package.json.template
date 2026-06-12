@@ -24,17 +24,15 @@
   ],
   "files": [
     "dist",
-    "assets",
-    "!**/*.tsbuildinfo"
+    "assets"
   ],
   "type": "module",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
-  "module": "./src/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "@vnodes/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"

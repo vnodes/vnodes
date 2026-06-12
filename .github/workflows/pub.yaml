@@ -32,13 +32,13 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: build
         run: |
-          pnpm dlx nx run-many -t lint
-          pnpm dlx nx run-many -t build --projects="tag:lib:types"
-          pnpm dlx nx run-many -t build --projects="tag:lib:shared"
-          pnpm dlx nx run-many -t build --projects="tag:lib:module"
-          pnpm dlx nx run-many -t build --projects="tag:app:*"
+          pnpm nx run-many -t lint
+          pnpm nx run-many -t build --projects="tag:lib:types"
+          pnpm nx run-many -t build --projects="tag:lib:shared"
+          pnpm nx run-many -t build --projects="tag:lib:module"
+          pnpm nx run-many -t build --projects="tag:app:*"
 
       - name: Publish libraries to npm registry
-        run: pnpm dlx nx release publish --tags="tag:lib:*"
+        run: pnpm nx affected --target=publish --tag="lib:*"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

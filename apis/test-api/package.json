@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/test-api",
-  "version": "1.0.0",
+  "version": "0.1.2",
   "author": {
     "email": "robert.brightline+vnodes-test-api@gmail.com",
     "name": "Robert Brightline",
@@ -27,9 +27,9 @@
     "assets"
   ],
   "type": "module",
-  "main": "./src/index.js",
-  "module": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -37,9 +37,14 @@
       "default": "./dist/index.js"
     },
     "./client": {
-      "types": "./dist/app/generated/prisma/client.d.ts",
-      "import": "./dist/app/generated/prisma/client.js",
-      "default": "./dist/app/generated/prisma/client.js"
+      "types": "./dist/generated/prisma/client.d.ts",
+      "import": "./dist/generated/prisma/client.js",
+      "default": "./dist/generated/prisma/client.js"
+    },
+    "./browser": {
+      "types": "./dist/generated/prisma/browser.d.ts",
+      "import": "./dist/generated/prisma/browser.js",
+      "default": "./dist/generated/prisma/browser.js"
     }
   },
   "nx": {
@@ -54,12 +59,12 @@
           "{options.outputPath}"
         ],
         "options": {
-          "clean": true,
           "outputPath": "{projectRoot}/dist",
           "main": "{projectRoot}/src/main.ts",
           "tsConfig": "{projectRoot}/tsconfig.lib.json",
-          "skipTypeCheck": true,
+          "skipTypeCheck": false,
           "stripLeadingPaths": true,
+          "generateLockfile": false,
           "generatePackageJson": false
         }
       },

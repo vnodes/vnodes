@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/nest",
-  "version": "1.0.0",
+  "version": "0.1.2",
   "author": {
     "email": "robert.brightline+vnodes-nest@gmail.com",
     "name": "Robert Brightline",
@@ -24,17 +24,15 @@
   ],
   "files": [
     "dist",
-    "assets",
-    "!**/*.tsbuildinfo"
+    "assets"
   ],
   "type": "module",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
-  "module": "./src/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "@vnodes/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -52,6 +50,7 @@
           "{options.outputPath}"
         ],
         "options": {
+          "clean": true,
           "outputPath": "{projectRoot}/dist",
           "main": "{projectRoot}/src/index.ts",
           "tsConfig": "{projectRoot}/tsconfig.lib.json",

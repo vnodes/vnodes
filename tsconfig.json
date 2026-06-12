@@ -6,28 +6,28 @@
       "path": "./packages/types"
     },
     {
-      "path": "./plugins/cli"
-    },
-    {
       "path": "./packages/errors"
     },
     {
       "path": "./packages/names"
     },
     {
-      "path": "./apis/sample-api"
-    },
-    {
       "path": "./packages/nest"
-    },
-    {
-      "path": "./apis/test-api"
     },
     {
       "path": "./packages/prisma"
     },
     {
       "path": "./packages/config"
-    }
+    },
+    {
+      "path": "./apis/sample-api"
+    },
+    {
+      "path": "./apis/test-api"
+    },
+    {
+      "path": "./plugins/cli"
+    },
   ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/cli",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -8,7 +8,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "@vnodes/source": "./src/index.ts",
+      "@vnodes/source": "./dist/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -16,7 +16,6 @@
   },
   "files": [
     "dist",
-    "!**/*.tsbuildinfo",
     "generators.json"
   ],
   "nx": {
@@ -31,6 +30,7 @@
           "{options.outputPath}"
         ],
         "options": {
+          "clean": false,
           "outputPath": "{projectRoot}/dist",
           "main": "{projectRoot}/src/index.ts",
           "tsConfig": "{projectRoot}/tsconfig.lib.json",

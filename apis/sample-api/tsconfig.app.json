@@ -5,14 +5,16 @@
     "declarationMap": false,
     "emitDeclarationOnly": false,
     "noEmit": true,
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "src/**/*.spec.ts"
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "../../packages/types/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/nest/tsconfig.lib.json"
+    }
   ]
 }

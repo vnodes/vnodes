@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "../../tmp/builds/packages/types/ts-build-info.json",
     "rootDir": "src",
     "outDir": "dist",
     "emitDeclarationOnly": true,
