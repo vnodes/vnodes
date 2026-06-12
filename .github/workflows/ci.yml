@@ -36,16 +36,13 @@ jobs:
 
       # Build projects
 
-      - name: Lint project
-        run: pnpm nx run-many -t lint
-
-      - name: Build project
+      - name: Lint and Generate
         run: |
+          pnpm nx run-many -t lint
           pnpm nx run-many -t prisma:generate
-          pnpm nx run-many -t build --projects="tag:lib:types"
-          pnpm nx run-many -t build --projects="tag:lib:shared"
-          pnpm nx run-many -t build --projects="tag:lib:module"
-          pnpm nx run-many -t build --projects="tag:app:*"
+
+      - name: build
+        run: pnpm run-many -t build
 
       - name: Fix ci
         run: pnpm nx fix-ci
