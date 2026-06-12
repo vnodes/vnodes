@@ -19,7 +19,9 @@ export class SampleController {
   constructor(
     @InjectDelegate(Prisma.ModelName.Sample)
     protected readonly repo: Prisma.SampleDelegate,
-  ) {}
+  ) {
+    console.log(SampleController.name + ' is initialized');
+  }
 
   @EmitResponse()
   @GetAll()
