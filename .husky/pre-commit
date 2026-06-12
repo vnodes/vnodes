@@ -1,10 +1,10 @@
 # #!/bin/bash
 
 
-pnpm nx run-many -t prisma:generate 
-pnpm nx run-many -t lint
-pnpm nx run-many -t build
-pnpm nx run-many -t test
+pnpm nx run-many -t prisma:generate  
+pnpm nx run-many -t lint 
+pnpm nx run-many -t build 
+pnpm nx run-many -t test 
 
 
 
