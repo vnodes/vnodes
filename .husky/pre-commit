@@ -1,10 +1,10 @@
 # #!/bin/bash
 
 
-pnpm nx affected -t prisma:generate  
-pnpm nx affected -t lint 
-pnpm nx affected -t build 
-pnpm nx affected -t test 
+pnpm nx affected -t prisma:generate  --tuiAutoExit=true 
+pnpm nx affected -t lint --tuiAutoExit=true 
+pnpm nx affected -t build --tuiAutoExit=true 
+pnpm nx affected -t test --tuiAutoExit=true 
 
 
 
