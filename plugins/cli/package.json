@@ -49,6 +49,11 @@
             }
           ]
         }
+      },
+      "lint": {
+        "dependsOn": [
+          "build"
+        ]
       }
     }
   },
