@@ -29,5 +29,8 @@
     {
       "path": "./plugins/cli"
     },
+    {
+      "path": "./packages/fs"
+    }
   ]
 }

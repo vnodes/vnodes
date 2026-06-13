@@ -66,7 +66,7 @@
       "email": "robert.brightline@gmail.com",
       "homePageUrl": "https://vnodes.github.io",
       "fundingUrl": "https://cash.app/$puqlib",
-      "version": "1.0.0"
+      "version": "0.0.1"
     },
     "@nx/plugin:plugin": {
       "compiler": "swc",
