@@ -14,7 +14,8 @@
     "keepClassNames": true,
     "externalHelpers": true,
     "loose": false,
-    "preserveAllComments": true
+    "preserveAllComments": true,
+    "paths": {}
   },
   "module": {
     "type": "nodenext",
@@ -24,5 +25,5 @@
   "sourceMaps": true,
   "exclude": [
     ".*\\.spec\\.ts$"
-  ],
+  ]
 }

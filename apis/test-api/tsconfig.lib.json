@@ -3,9 +3,16 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "emitDeclarationOnly": true,
     "resolvePackageJsonExports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@vnodes/test-api/client": [
+        "./src/generated/prisma/client.js"
+      ],
+      "@vnodes/test-api/browser": [
+        "./src/generated/prisma/browser.js"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"

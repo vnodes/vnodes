@@ -7,5 +7,7 @@ pnpm nx affected -t build --tuiAutoExit=true
 pnpm nx affected -t test --tuiAutoExit=true 
 
 pnpm nx release version --specifier=patch
+git push 
+
 
 

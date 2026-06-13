@@ -27,24 +27,25 @@
     "assets"
   ],
   "type": "module",
-  "main": "./src/index.js",
-  "module": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
-      "types": "./src/index.d.ts",
-      "import": "./src/index.js",
-      "default": "./src/index.js"
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
     },
     "./client": {
-      "types": "./src/generated/prisma/client.d.ts",
-      "import": "./src/generated/prisma/client.js",
-      "default": "./src/generated/prisma/client.js"
+      "types": "./dist/src/generated/prisma/client.d.ts",
+      "import": "./dist/src/generated/prisma/client.js",
+      "default": "./dist/src/generated/prisma/client.js"
     },
     "./browser": {
-      "types": "./src/generated/prisma/browser.d.ts",
-      "import": "./src/generated/prisma/browser.js",
-      "default": "./src/generated/prisma/browser.js"
+      "types": "./dist/src/generated/prisma/browser.d.ts",
+      "import": "./dist/src/generated/prisma/browser.js",
+      "default": "./dist/src/generated/prisma/browser.js"
     }
   },
   "nx": {
@@ -54,7 +55,7 @@
     ],
     "targets": {
       "build": {
-        "executor": "@nx/js:swc",
+        "executor": "@nx/js:tsc",
         "outputs": [
           "{options.outputPath}"
         ],
@@ -63,15 +64,22 @@
           "main": "{projectRoot}/src/main.ts",
           "tsConfig": "{projectRoot}/tsconfig.lib.json",
           "skipTypeCheck": false,
-          "stripLeadingPaths": false
-        }
+          "generatePackageJson": false,
+          "clean": true
+        },
+        "dependsOn": [
+          "^build"
+        ]
       },
       "serve": {
         "executor": "@nx/js:node",
         "options": {
           "buildTarget": "build",
           "watch": true
-        }
+        },
+        "dependsOn": [
+          "postbuild"
+        ]
       },
       "prisma:migrate": {
         "executor": "nx:run-commands",
@@ -97,7 +105,7 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
     "@nestjs/cache-manager": "^3.1.2",
