@@ -44,19 +44,8 @@
       "lib:types"
     ],
     "targets": {
-      "build": {
-        "executor": "@nx/js:swc",
-        "outputs": [
-          "{options.outputPath}"
-        ],
-        "options": {
-          "outputPath": "packages/types/dist",
-          "main": "packages/types/src/index.ts",
-          "tsConfig": "packages/types/tsconfig.lib.json",
-          "skipTypeCheck": false,
-          "stripLeadingPaths": true
-        }
-      }
+      "build": {},
+      "doc": {}
     }
   },
   "dependencies": {

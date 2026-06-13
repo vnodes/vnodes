@@ -1,16 +1,26 @@
 name: ci
+
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  main:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    environment: Env
-    permissions:
-      contents: write
-      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,10 +46,28 @@ jobs:
           pnpm nx run-many -t lint
           pnpm nx run-many -t prisma:generate
 
-      - name: build
+      - name: Build
         run: pnpm nx run-many -t build
 
       - name: Publish libraries to npm registry
         run: pnpm nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Nx Graph
+        run: pnpm nx graph --file=public/index.html
+
+      - name: Typedoc to public
+        run: pnpm nx run-many -t doc
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
