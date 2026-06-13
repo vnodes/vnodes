@@ -18,7 +18,7 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   sourceRoot: string;
   targetRoot: string;
   tag: string;
-};
+} & ReturnType<typeof names>;
 
 export function normalizeProjectSchema(
   options: ProjectGeneratorSchema,
@@ -41,7 +41,7 @@ export function normalizeProjectSchema(
     .split('@')
     .join(`+${options.orgName}-${shortName}@`);
 
-  return normalizedOptions;
+  return { ...normalizedOptions, ...names(shortName) };
 }
 
 export function autoTag(projectType: ProjectType): string {
@@ -66,11 +66,12 @@ export async function projectGenerator(
     tree,
     normalizedOptions.sourceRoot,
     normalizedOptions.targetRoot,
-    {
-      ...normalizedOptions,
-      ...names(normalizedOptions.shortName),
-    },
+    { ...normalizedOptions },
   );
+
+  generateFiles(tree, join(__dirname, 'common'), normalizedOptions.targetRoot, {
+    ...normalizedOptions,
+  });
 
   updateJson(tree, 'tsconfig.json', (value) => {
     if (!value.references) {

@@ -1,26 +1,24 @@
 {
-  "name": "@vnodes/test-api",
-  "version": "0.1.2",
+  "name": "<%- projectName %>",
+  "description":"- [ ] Add project description",
+  "version": "<%- version %>",
   "author": {
-    "email": "robert.brightline+vnodes-test-api@gmail.com",
-    "name": "Robert Brightline",
-    "url": "https://vnodes.github.io"
+    "email": "<%- email %>",
+    "name": "<%- authorName %>",
+    "url": "<%- homePageUrl %>"
   },
-  "keywords": [
-    "library",
-    "types"
-  ],
+  "keywords": ["nest", "api"],
   "bugs": {
-    "email": "robert.brightline+vnodes-test-api@gmail.com",
-    "url": "https://github.com/vnodes/vnodes/issues"
+    "email": "<%- email %>",
+    "url": "https://github.com/<%- orgName %>/<%- repoName %>/issues"
   },
-  "homepage": "https://vnodes.github.io/apis/test-api",
+  "homepage": "<%- homePageUrl %>/<%- directory %>",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "funding": [
-    "https://cash.app/$puqlib"
+    "<%- fundingUrl %>"
   ],
   "files": [
     "dist",
@@ -49,9 +47,9 @@
     }
   },
   "nx": {
-    "sourceRoot": "apis/test-api/src",
+    "sourceRoot": "<%- directory %>/src",
     "tags": [
-      "app:api"
+      "<%- tag %>"
     ],
     "targets": {
       "build": {
