@@ -1,15 +1,19 @@
 {
   "extends": "../../tsconfig.base.json",
   "exclude": [
+    "eslint.config.mjs",
+    "prisma.config.ts",
     "vitest.config.mts",
-    "eslint.config.mjs"
   ],
   "references": [
     {
-      "path": "../types/tsconfig.lib.json"
+      "path": "../../packages/types/tsconfig.lib.json"
     },
     {
-      "path": "../config/tsconfig.lib.json"
+      "path": "../../packages/prisma/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/nest/tsconfig.lib.json"
     },
     {
       "path": "./tsconfig.lib.json"

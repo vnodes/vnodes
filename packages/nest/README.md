@@ -10,7 +10,7 @@
 
 ## @vnodes/nest
 
-- [ ] Add project description for @vnodes/nest
+Nestjs common
 
 ## Installation
 

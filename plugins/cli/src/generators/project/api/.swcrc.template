@@ -1,0 +1,29 @@
+{
+  "jsc": {
+    "target": "es2022",
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "decoratorMetadata": true,
+      "legacyDecorator": true,
+      "verbatimModuleSyntax": true
+    },
+    "keepClassNames": true,
+    "externalHelpers": true,
+    "loose": false,
+    "preserveAllComments": true,
+    "paths": {}
+  },
+  "module": {
+    "type": "nodenext",
+    "strict": true,
+    "strictMode": true
+  },
+  "sourceMaps": true,
+  "exclude": [
+    ".*\\.spec\\.ts$"
+  ]
+}

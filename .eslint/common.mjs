@@ -14,6 +14,7 @@ export default [
       '**/vitest.config.*.timestamp*',
       '**/prisma.config.ts',
       '**/vitet.config.mjs',
+      '**/vitest.workspace.ts',
       '**/generated/**',
       '**/eslint.config.mjs',
     ],

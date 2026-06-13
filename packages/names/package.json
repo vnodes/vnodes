@@ -1,5 +1,6 @@
 {
   "name": "@vnodes/names",
+  "description": "Names",
   "version": "0.1.4",
   "author": {
     "email": "robert.brightline+vnodes-names@gmail.com",

@@ -10,7 +10,7 @@
 
 ## @vnodes/errors
 
-- [ ] Add project description for @vnodes/errors
+Error classes
 
 ## Installation
 

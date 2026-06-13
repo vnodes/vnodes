@@ -41,7 +41,7 @@
   "nx": {
     "sourceRoot": "<%- directory %>/src",
     "tags": [
-      "lib:shared"
+      "<%- tag %>"
     ],
     "targets": {
       "build": {

@@ -1,18 +1,14 @@
 {
   "extends": "../../tsconfig.base.json",
-  "exclude": [
-    "eslint.config.mjs",
-    "vitest.config.mts"
-  ],
   "references": [
     {
-      "path": "../types"
+      "path": "../types/tsconfig.lib.json"
     },
     {
-      "path": "../names"
+      "path": "../names/tsconfig.lib.json"
     },
     {
-      "path": "../config"
+      "path": "../config/tsconfig.lib.json"
     },
     {
       "path": "./tsconfig.lib.json"

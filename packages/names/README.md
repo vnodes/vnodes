@@ -10,7 +10,7 @@
 
 ## @vnodes/names
 
-- [ ] Add project description for @vnodes/names
+Names
 
 ## Installation
 

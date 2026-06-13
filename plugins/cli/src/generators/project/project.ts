@@ -6,7 +6,7 @@ import {
   type Tree,
 } from '@nx/devkit';
 import { dirname, join } from 'node:path';
-import { type ProjectGeneratorSchema } from './schema.d.js';
+import { type ProjectGeneratorSchema, type ProjectType } from './schema.d.js';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,6 +17,7 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   shortName: string;
   sourceRoot: string;
   targetRoot: string;
+  tag: string;
 };
 
 export function normalizeProjectSchema(
@@ -35,13 +36,26 @@ export function normalizeProjectSchema(
   normalizedOptions.sourceRoot = join(__dirname, options.projectType);
   normalizedOptions.targetRoot = join(options.directory);
   normalizedOptions.projectName = `@${options.orgName}/${shortName}`;
-
+  normalizedOptions.tag = autoTag(normalizedOptions.projectType);
   normalizedOptions.email = options.email
     .split('@')
     .join(`+${options.orgName}-${shortName}@`);
 
   return normalizedOptions;
 }
+
+export function autoTag(projectType: ProjectType): string {
+  switch (projectType) {
+    case 'lib': {
+      return 'lib:shared';
+    }
+    case 'cli':
+    case 'api': {
+      return `app:${projectType}`;
+    }
+  }
+}
+
 export async function projectGenerator(
   tree: Tree,
   options: ProjectGeneratorSchema,

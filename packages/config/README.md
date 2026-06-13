@@ -10,7 +10,7 @@
 
 ## @vnodes/config
 
-- [ ] Add project description for @vnodes/config
+Nestjs config module
 
 ## Installation
 
