@@ -60,6 +60,9 @@ importers:
       '@vnodes/cli':
         specifier: workspace:*
         version: link:plugins/cli
+      '@vnodes/fs':
+        specifier: workspace:*
+        version: link:packages/fs
       chokidar:
         specifier: ^5.0.0
         version: 5.0.0
