@@ -8,6 +8,7 @@ export default [
   {
     ignores: [
       '**/dist',
+      '**/out',
       '**/out-tsc',
       '**/generated/*',
       '**/vitest.config.*.timestamp*',

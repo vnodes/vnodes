@@ -55,7 +55,7 @@
     ],
     "targets": {
       "build": {
-        "executor": "@nx/js:tsc",
+        "executor": "@nx/js:swc",
         "outputs": [
           "{options.outputPath}"
         ],
@@ -64,21 +64,29 @@
           "main": "{projectRoot}/src/main.ts",
           "tsConfig": "{projectRoot}/tsconfig.lib.json",
           "skipTypeCheck": false,
-          "generatePackageJson": false,
-          "clean": true
-        },
-        "dependsOn": [
-          "^build"
-        ]
+          "stripLeadingPaths": false
+        }
+      },
+      "preserve": {
+        "executor": "@nx/js:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "{projectRoot}/out",
+          "main": "{projectRoot}/src/main.ts",
+          "tsConfig": "{projectRoot}/tsconfig.app.json",
+          "generatePackageJson": false
+        }
       },
       "serve": {
         "executor": "@nx/js:node",
         "options": {
-          "buildTarget": "build",
+          "buildTarget": "preserve",
           "watch": true
         },
         "dependsOn": [
-          "postbuild"
+          "preserve"
         ]
       },
       "prisma:migrate": {
@@ -105,7 +113,7 @@
     }
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "@swc/helpers": "~0.5.18"
   },
   "peerDependencies": {
     "@nestjs/cache-manager": "^3.1.2",

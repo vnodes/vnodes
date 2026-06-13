@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "composite": true,
+    "emitDeclarationOnly": true,
+    "forceConsistentCasingInFileNames": true,
     "declarationMap": true,
     "importHelpers": true,
     "isolatedModules": false,
