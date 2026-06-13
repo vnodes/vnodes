@@ -1,3 +1,36 @@
+## 0.1.3 (2026-06-13)
+
+### 🚀 Features
+
+- fixed cli linting which depends on build. ([6e905df](https://github.com/vnodes/vnodes/commit/6e905df))
+- autopilot ([c3ceee1](https://github.com/vnodes/vnodes/commit/c3ceee1))
+- autopilot ([7a8a125](https://github.com/vnodes/vnodes/commit/7a8a125))
+- changed the build configuration from swc to tsc ([d58cc59](https://github.com/vnodes/vnodes/commit/d58cc59))
+- changed the build configuration from swc to tsc ([f015c6f](https://github.com/vnodes/vnodes/commit/f015c6f))
+- configured the api project. Changed the swc to tsc ([2498130](https://github.com/vnodes/vnodes/commit/2498130))
+- created a tsconfig.app.json for dev environment ([3f1e077](https://github.com/vnodes/vnodes/commit/3f1e077))
+- created the api project generator ([30decca](https://github.com/vnodes/vnodes/commit/30decca))
+- improved the eslint for dev dependencies ([2d4d9c4](https://github.com/vnodes/vnodes/commit/2d4d9c4))
+- removed the redundant configuration from tsconfigs from generator ([b29dc7d](https://github.com/vnodes/vnodes/commit/b29dc7d))
+- created the cli project ([d67ddaf](https://github.com/vnodes/vnodes/commit/d67ddaf))
+- created a command to add suffix to file/files ([2e61b62](https://github.com/vnodes/vnodes/commit/2e61b62))
+
+### 🩹 Fixes
+
+- fixed workflow ([1578295](https://github.com/vnodes/vnodes/commit/1578295))
+- fixed publishables ([70f34e4](https://github.com/vnodes/vnodes/commit/70f34e4))
+- fixed husky script ([893a683](https://github.com/vnodes/vnodes/commit/893a683))
+- fixed husky script ([80c6692](https://github.com/vnodes/vnodes/commit/80c6692))
+- fixed the publish workflow ([c4209b0](https://github.com/vnodes/vnodes/commit/c4209b0))
+- fixed the husyk pre-commit adding affected ([1233105](https://github.com/vnodes/vnodes/commit/1233105))
+- fixed the husyk pre-commit adding affected ([e871b36](https://github.com/vnodes/vnodes/commit/e871b36))
+- fixed the husyk pre-commit adding affected ([2ded92c](https://github.com/vnodes/vnodes/commit/2ded92c))
+- removed the redundant ci ([350c849](https://github.com/vnodes/vnodes/commit/350c849))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.2 (2026-06-12)
 
 ### 🚀 Features
