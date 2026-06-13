@@ -1,8 +1,14 @@
 import { Command } from 'commander';
 import { cwd } from 'process';
+
 /**
- * Show working directory
- * @param command
+ * Print the current working directory
+ *
+ * ### Example
+ * ````sh
+ *  vnodes hello --username YourName
+ * ````
+ * @param command main command instance
  */
 export function wd(command: Command) {
   command.command('wd').action(() => {

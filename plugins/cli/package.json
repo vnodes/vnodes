@@ -80,7 +80,8 @@
         "dependsOn": [
           "build"
         ]
-      }
+      },
+      "doc": {}
     }
   },
   "dependencies": {
