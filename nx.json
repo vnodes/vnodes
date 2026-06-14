@@ -143,9 +143,8 @@
       }
     },
     "doc": {
-      "cache": true,
       "executor": "nx:run-commands",
-      "inputs": ["^default", "{projectRoot}"],
+      "inputs": ["^default"],
       "options": {
         "command": "pnpm typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json --skipErrorChecking true"
       }
