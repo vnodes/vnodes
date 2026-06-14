@@ -1,3 +1,21 @@
+## 0.1.6 (2026-06-14)
+
+### 🚀 Features
+
+- updated readme ci badges ([b836a41](https://github.com/vnodes/vnodes/commit/b836a41))
+- created method decorator that infers the method metadata and map the http methods automatically ([5a0746c](https://github.com/vnodes/vnodes/commit/5a0746c))
+- created rm command in cli ([3f87eee](https://github.com/vnodes/vnodes/commit/3f87eee))
+- added scope to the rm command ([ae6eee6](https://github.com/vnodes/vnodes/commit/ae6eee6))
+
+### 🩹 Fixes
+
+- fixed ci ([58a7b90](https://github.com/vnodes/vnodes/commit/58a7b90))
+- fixed ci ([d19dfa8](https://github.com/vnodes/vnodes/commit/d19dfa8))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.5 (2026-06-14)
 
 ### 🚀 Features
