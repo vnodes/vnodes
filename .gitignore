@@ -5,6 +5,7 @@ dist
 tmp
 out
 out-tsc
+public
 
 # dependencies
 node_modules
