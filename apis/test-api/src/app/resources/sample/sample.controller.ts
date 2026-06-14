@@ -14,7 +14,7 @@ import { SampleCreateDto } from './sample.dto.js';
 import { InjectDelegate } from '@vnodes/prisma';
 import { Prisma } from '@vnodes/test-api/client';
 
-@ResourceController('samples')
+@ResourceController()
 export class SampleController {
   constructor(
     @InjectDelegate(Prisma.ModelName.Sample)

@@ -1,13 +1,12 @@
 import { applyDecorators, Delete } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
 import { Messages } from '../constants/messages.js';
-import { ResourcePaths } from '../constants/resource-paths.js';
 import { Operation } from '../metadata/operation.js';
 import { OperationName } from '../constants/operation-name.js';
 
-export const DeleteOneById = () =>
+export const DeleteMany = () =>
   applyDecorators(
-    Delete(ResourcePaths.BY_ID),
-    Operation(OperationName.DELETE_ONE),
-    ApiOperation({ summary: Messages.DELETE_ENTITY_BY_ID }),
+    Delete(),
+    Operation(OperationName.DELETE_MANY),
+    ApiOperation({ summary: Messages.DELETE_ENTITIES }),
   );

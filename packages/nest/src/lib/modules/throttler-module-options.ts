@@ -1,10 +1,14 @@
 import { Logger } from '@nestjs/common';
 import { ThrottlerModule, type ThrottlerAsyncOptions } from '@nestjs/throttler';
 import { EnvService, EnvyModule, Profile } from '@vnodes/config';
-import { Constant } from '../constants/constants.js';
+
 import { MetadataModule } from '../metadata/metadata.module.js';
 import { MetadataService } from '../metadata/metadata.service.js';
+import { Throttler } from '../constants/throttler.js';
 
+/**
+ * Create throttler module options
+ */
 export const throttlerAsyncOptions: () => ThrottlerAsyncOptions = () => ({
   imports: [EnvyModule, MetadataModule],
   inject: [EnvService, MetadataService],
@@ -15,12 +19,12 @@ export const throttlerAsyncOptions: () => ThrottlerAsyncOptions = () => ({
     return {
       throttlers: [
         {
-          name: Constant.THROTTLER_GLOBAL_NAME,
+          name: Throttler.LOOSE,
           limit: env.THROTTLER_LIMIT,
           ttl: env.THROTTLER_TTL,
         },
         {
-          name: Constant.THROTTLER_STRICT_NAME,
+          name: Throttler.STRICT,
           ttl: 20_000,
           limit: 6,
           skipIf(context) {

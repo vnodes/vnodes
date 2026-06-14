@@ -10,6 +10,9 @@ import { tap, type Observable } from 'rxjs';
 import { MetadataService } from '../metadata/metadata.service.js';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
+/**
+ * Emit interceptor checks the method has {@link MetadataToken.EMIT_REQUEST_METADATA_TOKEN}, or {@link MetadataToken.EMIT_RESPONSE_METADATA_TOKEN} and emit the payload.
+ */
 @Injectable()
 export class EmitInterceptor implements NestInterceptor {
   logger = new Logger(EmitInterceptor.name);

@@ -235,6 +235,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
+      '@vnodes/names':
+        specifier: workspace:*
+        version: link:../names
     devDependencies:
       '@nestjs/cache-manager':
         specifier: ^3.1.2

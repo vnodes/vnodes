@@ -5,6 +5,9 @@ import { ThrottlerGuard } from '@nestjs/throttler';
 import { EmitInterceptor } from '../interceptors/emit.interceptor.js';
 import { GlobalValidationPipe } from '../pipes/global-validation-pipe.js';
 
+/**
+ * Provides a list of common providers that are required for almost all projects
+ */
 export function provideCommons(): Provider[] {
   return [
     {

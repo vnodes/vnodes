@@ -1,9 +1,13 @@
-import { applyDecorators, SetMetadata } from '@nestjs/common';
+import { SetMetadata } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { MetadataToken } from '../constants/metadata-token.js';
 
-export const EmitResponse = () =>
-  applyDecorators(
-    SetMetadata(MetadataToken.EMIT_RESPONSE_METADATA_TOKEN, true),
-    ApiTags('Emitted Response Operations'),
-  );
+/**
+ * Method level metadata decorator, sets {@link MetadataToken.EMIT_REQUEST} metadata to the context. {@link EmitInterceptor} emits the response payload with the corresponding event name
+ */
+export function EmitResponse(): MethodDecorator {
+  return (...args) => {
+    SetMetadata(MetadataToken.EMIT_RESPONSE, true)(...args);
+    ApiTags('Emitted Response Operations')(...args);
+  };
+}

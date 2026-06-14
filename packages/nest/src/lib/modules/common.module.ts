@@ -9,6 +9,9 @@ import { cacheModuleAsyncOptions } from './cache-module-options.js';
 import { EnvyModule } from '@vnodes/config';
 import { provideCommons } from './provide-commons.js';
 
+/**
+ * Common nestjs module that includes the common modules required for almost all main modules
+ */
 @Global()
 @Module({
   imports: [

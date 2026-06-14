@@ -4,6 +4,9 @@ import type { Profile } from '@vnodes/config';
 import type { Some } from '@vnodes/types';
 import { MetadataToken } from '../constants/metadata-token.js';
 
+/**
+ * Metadata service that provides a easy access to the provided {@link MetadataToken} in the cotext.
+ */
 @Injectable()
 export class MetadataService {
   constructor(@Inject(Reflector) protected readonly reflector: Reflector) {}
@@ -33,41 +36,46 @@ export class MetadataService {
     ]);
   }
 
+  /**
+   * Get {@link MetadataToken.ADMIN_ONLY}
+   */
   isAdminOnly(context: ExecutionContext): boolean {
     return (
-      this.getAllAndOverride<boolean>(
-        MetadataToken.ADMIN_ONLY_METADATA_TOKEN,
-        context,
-      ) === true
+      this.getAllAndOverride<boolean>(MetadataToken.ADMIN_ONLY, context) ===
+      true
     );
   }
 
+  /**
+   * Get {@link MetadataToken.EMIT_RESPONSE}
+   */
   isEmittedResponse(context: ExecutionContext): boolean {
     return (
-      this.getFromHandler<boolean>(
-        MetadataToken.EMIT_RESPONSE_METADATA_TOKEN,
-        context,
-      ) === true
+      this.getFromHandler<boolean>(MetadataToken.EMIT_RESPONSE, context) ===
+      true
     );
   }
+
+  /**
+   * Get {@link MetadataToken.EMIT_REQUEST}
+   */
   isEmittedRequest(context: ExecutionContext): boolean {
     return (
-      this.getFromHandler<boolean>(
-        MetadataToken.EMIT_REQUEST_METADATA_TOKEN,
-        context,
-      ) === true
+      this.getFromHandler<boolean>(MetadataToken.EMIT_REQUEST, context) === true
     );
   }
-
+  /**
+   * Get {@link MetadataToken.PUBLIC}
+   */
   isPublic(context: ExecutionContext): boolean {
     return (
-      this.getAllAndOverride<boolean>(
-        MetadataToken.PUBLIC_METADATA_TOKEN,
-        context,
-      ) === true
+      this.getAllAndOverride<boolean>(MetadataToken.PUBLIC, context) === true
     );
   }
 
+  /**
+   * Get {@link MetadataToken.STRICT_RATE_LIMIT}
+   */
   isStrictRateLimit(context: ExecutionContext): boolean {
     return (
       this.getAllAndOverride<boolean>(
@@ -77,55 +85,62 @@ export class MetadataService {
     );
   }
 
+  /**
+   * Get {@link MetadataToken.SCOPE}
+   */
   getScope(context: ExecutionContext): Some<string> {
-    return this.getFromHandler<string>(
-      MetadataToken.SCOPE_METADATA_TOKEN,
-      context,
-    );
+    return this.getFromHandler<string>(MetadataToken.SCOPE, context);
   }
 
+  /**
+   * Get {@link MetadataToken.RESOURCE}
+   */
   getResourceName(context: ExecutionContext): Some<string> {
-    return this.getFromHandler<string>(
-      MetadataToken.RESOURCE_NAME_METADATA_TOKEN,
-      context,
-    );
+    return this.getFromHandler<string>(MetadataToken.RESOURCE, context);
   }
 
+  /**
+   * Get {@link MetadataToken.OPERATION}
+   */
   getOperationName(context: ExecutionContext): Some<string> {
-    return this.getFromHandler<string>(
-      MetadataToken.OPERATION_NAME_METADATA_TOKEN,
-      context,
-    );
+    return this.getFromHandler<string>(MetadataToken.OPERATION, context);
   }
 
+  /**
+   * Create the default event name by joining `scope`, `resourceName`, and `operationName` if not provided explicitly with the {@link EventName} metadata decorator
+   */
   defaultEventName(context: ExecutionContext) {
     return `${this.getScope(context)}.${this.getResourceName(context)}.${this.getOperationName(context)}`;
   }
 
+  /**
+   * Get {@link MetadataToken.OPERATION} if provided or get by {@link defaultEventName} method
+   */
   getEventName(context: ExecutionContext): string {
     return (
-      this.getFromHandler<string>(
-        MetadataToken.OPERATION_NAME_METADATA_TOKEN,
-        context,
-      ) ?? this.defaultEventName(context)
+      this.getFromHandler<string>(MetadataToken.OPERATION, context) ??
+      this.defaultEventName(context)
     );
   }
 
+  /**
+   * Get the list of permissions by {@link MetadataToken.PERMISSIONS} if provided
+   */
   getPermissions(context: ExecutionContext): Some<string[]> {
-    return this.getAll<string>(
-      MetadataToken.PERMISSIONS_METADATA_TOKEN,
-      context,
-    );
+    return this.getAll<string>(MetadataToken.PERMISSIONS, context);
   }
 
+  /**
+   * Get the list of roles by {@link MetadataToken.ROLES} if provided
+   */
   getRoles(context: ExecutionContext): Some<string[]> {
-    return this.getAll<string>(MetadataToken.ROLES_METADATA_TOKEN, context);
+    return this.getAll<string>(MetadataToken.ROLES, context);
   }
 
+  /**
+   * Get the profile by {@link MetadataToken.PROFILES}
+   */
   getProfile(context: ExecutionContext): Profile {
-    return this.getAllAndOverride<Profile>(
-      MetadataToken.PROFILES_METADATA_TOKEN,
-      context,
-    );
+    return this.getAllAndOverride<Profile>(MetadataToken.PROFILES, context);
   }
 }
