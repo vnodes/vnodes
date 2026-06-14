@@ -3,6 +3,9 @@
   "exclude": ["vitest.config.mts", "eslint.config.mjs"],
   "references": [
     {
+      "path": "../names"
+    },
+    {
       "path": "../types"
     },
     {

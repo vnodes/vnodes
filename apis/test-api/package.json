@@ -62,6 +62,7 @@
           "prisma:generate"
         ]
       },
+      "prune-dist": {},
       "preserve": {},
       "serve": {},
       "prisma:migrate": {},

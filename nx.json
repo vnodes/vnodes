@@ -84,6 +84,7 @@
     },
     "build": {
       "executor": "@nx/js:swc",
+      "inputs": ["default"],
       "outputs": ["{options.outputPath}"],
       "options": {
         "clean": true,
@@ -98,12 +99,11 @@
       "executor": "nx:run-commands",
       "cache": false,
       "options": {
-        "command": "rm -rf {projectRoot}/dist"
+        "command": "pnpm vnodes rm {projectRoot}/dist"
       }
     },
     "preserve": {
       "executor": "@nx/js:tsc",
-      "cache": false,
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "{projectRoot}/dist",
@@ -115,14 +115,15 @@
     },
     "serve": {
       "executor": "@nx/js:node",
+      "inputs": ["default"],
       "options": {
         "buildTarget": "preserve",
         "watch": true
-      },
-      "dependsOn": ["preserve"]
+      }
     },
     "prisma:migrate": {
       "executor": "nx:run-commands",
+      "inputs": ["default"],
       "options": {
         "command": "pnpm prisma migrate dev --name updated",
         "cwd": "{projectRoot}"
@@ -130,6 +131,7 @@
     },
     "prisma:reset": {
       "executor": "nx:run-commands",
+      "inputs": ["default"],
       "options": {
         "command": "pnpm prisma migrate reset -f",
         "cwd": "{projectRoot}"
@@ -137,6 +139,7 @@
     },
     "prisma:generate": {
       "executor": "nx:run-commands",
+      "inputs": ["default"],
       "options": {
         "command": "pnpm prisma generate",
         "cwd": "{projectRoot}"
@@ -144,6 +147,7 @@
     },
     "doc": {
       "executor": "nx:run-commands",
+
       "inputs": ["^default"],
       "options": {
         "command": "pnpm typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json --skipErrorChecking true"
