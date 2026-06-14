@@ -21,9 +21,6 @@
       "path": "./packages/config"
     },
     {
-      "path": "./apis/sample-api"
-    },
-    {
       "path": "./apis/test-api"
     },
     {
