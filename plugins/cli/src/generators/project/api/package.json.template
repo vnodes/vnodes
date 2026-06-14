@@ -52,7 +52,14 @@
       "<%- tag %>"
     ],
     "targets": {
-      "build": {},
+      "build": {
+        "options": {
+          "stripLeadingPaths": false
+        },
+        "dependsOn": [
+          "prisma:generate"
+        ]
+      },
       "preserve": {},
       "serve": {},
       "prisma:migrate": {},

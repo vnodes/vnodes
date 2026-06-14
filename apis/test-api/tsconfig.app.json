@@ -3,10 +3,19 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
+    "paths": {
+      "@vnodes/test-api/client": [
+        "./src/generated/prisma/client.ts"
+      ]
+    }
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ],
   "references": [
     {
       "path": "../../packages/types/tsconfig.lib.json"

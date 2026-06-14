@@ -34,8 +34,5 @@
     "customConditions": [
       "@vnodes/source"
     ]
-  },
-  "exclude": [
-    "vitest.workspace.ts"
-  ]
+  }
 }

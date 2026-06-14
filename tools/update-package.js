@@ -5,7 +5,7 @@ const { updateJsonFile } = require('@vnodes/fs');
 const { readdirSync } = require('node:fs');
 const { join } = require('node:path');
 
-function updatePackageJson(root, updateHandler) {
+async function updatePackageJson(root, updateHandler) {
   const projectRoots = readdirSync(join(__dirname, '..', root), {
     withFileTypes: true,
   })
@@ -13,8 +13,13 @@ function updatePackageJson(root, updateHandler) {
     .map((e) => `${e.parentPath}/${e.name}`);
 
   for (const rootPath of projectRoots) {
-   await  updateJsonFile(join(rootPath, 'package.json'), (value) => {
-      console.log(value.name);
+    await updateJsonFile(join(rootPath, 'package.json'), (value) => {
+      if (value.nx.targets) {
+        value.nx.targets = {
+          build: {},
+          doc: {},
+        };
+      }
       return value;
     });
   }

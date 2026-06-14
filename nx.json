@@ -2,10 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "analytics": false,
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -13,9 +10,7 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json"
     ],
-    "sharedGlobals": [
-      "{workspaceRoot}/.github/workflows/ci.yml"
-    ]
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "plugins": [
     {
@@ -25,8 +20,8 @@
           "targetName": "typecheck"
         },
         "build": {
-          "targetName": "build",
-          "configName": "tsconfig.lib.json",
+          "targetName": "preserve",
+          "configName": "tsconfig.app.json",
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
@@ -81,61 +76,54 @@
   "targetDefaults": {
     "@nx/js:swc": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     },
     "test": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     },
     "@nx/esbuild:esbuild": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "inputs": [
         "production",
         "^production",
         {
           "json": "{workspaceRoot}/tsconfig.json",
-          "fields": [
-            "extends",
-            "files",
-            "include"
-          ]
+          "fields": ["extends", "files", "include"]
         }
       ]
     },
     "build": {
       "executor": "@nx/js:swc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
+        "clean": true,
         "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/main.ts",
         "tsConfig": "{projectRoot}/tsconfig.lib.json",
         "skipTypeCheck": false,
-        "stripLeadingPaths": false
+        "stripLeadingPaths": true
+      }
+    },
+    "prune-dist": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "rm -rf {projectRoot}/dist"
       }
     },
     "preserve": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "cache": false,
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "{projectRoot}/out",
+        "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/main.ts",
         "tsConfig": "{projectRoot}/tsconfig.app.json",
         "generatePackageJson": false
-      }
+      },
+      "dependsOn": ["prune-dist"]
     },
     "serve": {
       "executor": "@nx/js:node",
@@ -143,9 +131,7 @@
         "buildTarget": "preserve",
         "watch": true
       },
-      "dependsOn": [
-        "preserve"
-      ]
+      "dependsOn": ["preserve"]
     },
     "prisma:migrate": {
       "executor": "nx:run-commands",
@@ -171,19 +157,13 @@
     "doc": {
       "cache": true,
       "executor": "nx:run-commands",
-      "inputs": [
-        "^default",
-        "{projectRoot}"
-      ],
+      "inputs": ["^default", "{projectRoot}"],
       "options": {
         "command": "pnpm typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json --skipErrorChecking true"
       }
     }
   },
   "release": {
-    "projects": [
-      "tag:lib:*",
-      "tag:app:cli"
-    ]
+    "projects": ["tag:lib:*", "tag:app:cli"]
   }
 }
