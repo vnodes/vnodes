@@ -153,5 +153,6 @@
   },
   "release": {
     "projects": ["tag:lib:*", "tag:app:cli"]
-  }
+  },
+  "nxCloudId": "6a2e08076367c5f2058e4ebc"
 }
