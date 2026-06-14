@@ -4,7 +4,6 @@
 pnpm nx run-many  -t prisma:generate  --tuiAutoExit=true 
 pnpm nx run-many  -t lint --tuiAutoExit=true 
 
-
 pnpm nx run-many  -t build --tuiAutoExit=true  --parallel=1  
 pnpm nx run-many  -t test --tuiAutoExit=true  --parallel=1 
 
