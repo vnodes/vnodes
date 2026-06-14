@@ -324,6 +324,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
+      '@vnodes/fs':
+        specifier: workspace:*
+        version: link:../../packages/fs
       commander:
         specifier: ^15.0.0
         version: 15.0.0

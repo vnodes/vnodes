@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import { rmSync } from 'node:fs';
-
+import { scope } from '@vnodes/fs';
+import { cwd } from 'node:process';
 /**
  * Remove files/directories
  *
@@ -15,6 +16,7 @@ export function rm(command: Command) {
     .command('rm')
     .requiredOption('-p, --path <string>', 'What is your name')
     .action(({ path }) => {
-      rmSync(path, { recursive: true });
+      const resolve = scope(cwd());
+      rmSync(resolve(path), { recursive: true });
     });
 }
