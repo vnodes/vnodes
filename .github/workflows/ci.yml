@@ -47,7 +47,12 @@ jobs:
           pnpm nx run-many -t prisma:generate
 
       - name: Build
-        run: pnpm nx run-many -t build --parallel=1  
+        run: |
+          pnpm nx run-many  -t build --projects="tag:lib:types"  
+          pnpm nx run-many  -t build --projects="tag:lib:shared"  
+          pnpm nx run-many  -t build --projects="tag:lib:module"  
+          pnpm nx run-many  -t build --projects="tag:lib:core"  
+          pnpm nx run-many  -t build --projects="tag:app:*"
 
       - name: Publish libraries to npm registry
         run: pnpm nx release publish

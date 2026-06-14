@@ -80,19 +80,7 @@
       "inputs": ["production", "^production"]
     },
     "test": {
-      "dependsOn": ["^build"]
-    },
-    "@nx/esbuild:esbuild": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": [
-        "production",
-        "^production",
-        {
-          "json": "{workspaceRoot}/tsconfig.json",
-          "fields": ["extends", "files", "include"]
-        }
-      ]
+      "inputs": ["default", "^default"]
     },
     "build": {
       "executor": "@nx/js:swc",

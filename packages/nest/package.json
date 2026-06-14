@@ -42,7 +42,7 @@
     "nx": {
         "sourceRoot": "packages/nest/src",
         "tags": [
-            "lib:module"
+            "lib:core"
         ],
         "targets": {
             "build": {},

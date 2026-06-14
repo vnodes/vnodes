@@ -42,7 +42,7 @@
   "nx": {
     "sourceRoot": "packages/config/src",
     "tags": [
-      "lib:module"
+      "lib:shared"
     ],
     "targets": {
       "build": {},
