@@ -1,7 +1,6 @@
 ![Npm version](https://img.shields.io/npm/v/@vnodes/names)
 ![Npm downloads](https://img.shields.io/npm/dm/@vnodes/names)
 ![Build Status](https://img.shields.io/github/actions/workflow/status/vnodes/vnodes/ci.yml)
-![Doc Status](https://img.shields.io/github/actions/workflow/status/vnodes/vnodes/doc.yml)
 ![Bundle size](https://img.shields.io/bundlephobia/min/@vnodes/names)
 
 <p align="center">

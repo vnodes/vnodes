@@ -1,7 +1,6 @@
 ![Npm version](https://img.shields.io/npm/v/@vnodes/test-api)
 ![Npm downloads](https://img.shields.io/npm/dm/@vnodes/test-api)
 ![Build Status](https://img.shields.io/github/actions/workflow/status/vnodes/vnodes/ci.yml)
-![Doc Status](https://img.shields.io/github/actions/workflow/status/vnodes/vnodes/doc.yml)
 ![Bundle size](https://img.shields.io/bundlephobia/min/@vnodes/test-api)
 
 <p align="center">
