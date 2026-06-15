@@ -58,11 +58,7 @@
       "app:db"
     ],
     "targets": {
-      "build": {
-        "dependsOn": [
-          "prisma:generate"
-        ]
-      },
+      "build": {},
       "prisma:migrate": {},
       "prisma:reset": {},
       "prisma:generate": {},
