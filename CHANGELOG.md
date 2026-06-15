@@ -1,3 +1,17 @@
+## 0.1.8 (2026-06-15)
+
+### 🚀 Features
+
+- created a standalone env package ([1d075f2](https://github.com/vnodes/vnodes/commit/1d075f2))
+
+### 🩹 Fixes
+
+- fixed the prisma generator templates ([6e3baf2](https://github.com/vnodes/vnodes/commit/6e3baf2))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.7 (2026-06-15)
 
 This was a version bump only, there were no code changes.
