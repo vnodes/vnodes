@@ -9,7 +9,7 @@
 
 ## @vnodes/env
 
-- [ ] Add project description for @vnodes/env
+Node env
 
 ## Installation
 

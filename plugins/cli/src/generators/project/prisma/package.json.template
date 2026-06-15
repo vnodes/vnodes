@@ -29,7 +29,9 @@
   "files": [
     "bin",
     "dist",
-    "assets"
+    "assets", 
+    "prisma",
+    "prisma.config.ts"
   ],
   "type": "module",
   "main": "./dist/index.js",

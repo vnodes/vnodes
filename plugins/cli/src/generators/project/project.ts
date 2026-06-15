@@ -1,10 +1,4 @@
-import {
-  formatFiles,
-  generateFiles,
-  names,
-  updateJson,
-  type Tree,
-} from '@nx/devkit';
+import { formatFiles, generateFiles, names, updateJson, type Tree } from '@nx/devkit';
 import { dirname, join } from 'node:path';
 import { type ProjectGeneratorSchema, type ProjectType } from './schema.d.js';
 import { fileURLToPath } from 'node:url';
@@ -21,9 +15,13 @@ export function autoTag(projectType: ProjectType): string {
       return `app:${projectType}`;
     }
     case 'prisma': {
-      return `lib:core`;
+      return `app:db`;
     }
   }
+}
+
+export function brandEmail(orgName: string, shortName: string, email: string) {
+  return email.split('@').join(`+${orgName}-${shortName}@`);
 }
 
 export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
@@ -35,42 +33,28 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   workspaceVersion: string;
 } & ReturnType<typeof names>;
 
-export function normalizeProjectSchema(
-  options: ProjectGeneratorSchema,
-): NormalizedProjectGeneratorOptions {
+export function normalizeProjectSchema(options: ProjectGeneratorSchema): NormalizedProjectGeneratorOptions {
   const normalizedOptions = { ...options } as NormalizedProjectGeneratorOptions;
 
   const shortName = options.directory.split('/').pop();
 
   if (typeof shortName !== 'string') {
-    throw new Error(
-      `Could not resolve the short name of the project form ${options.directory}`,
-    );
+    throw new Error(`Could not resolve the short name of the project form ${options.directory}`);
   }
   normalizedOptions.shortName = shortName;
   normalizedOptions.sourceRoot = join(__dirname, options.projectType);
   normalizedOptions.targetRoot = join(options.directory);
   normalizedOptions.projectName = `@${options.orgName}/${shortName}`;
   normalizedOptions.tag = autoTag(normalizedOptions.projectType);
-  normalizedOptions.email = options.email
-    .split('@')
-    .join(`+${options.orgName}-${shortName}@`);
+  normalizedOptions.email = brandEmail(options.orgName, shortName, options.email);
 
   return { ...normalizedOptions, ...names(shortName) };
 }
 
-export async function projectGenerator(
-  tree: Tree,
-  options: ProjectGeneratorSchema,
-) {
+export async function projectGenerator(tree: Tree, options: ProjectGeneratorSchema) {
   const normalizedOptions = normalizeProjectSchema(options);
 
-  generateFiles(
-    tree,
-    normalizedOptions.sourceRoot,
-    normalizedOptions.targetRoot,
-    { ...normalizedOptions },
-  );
+  generateFiles(tree, normalizedOptions.sourceRoot, normalizedOptions.targetRoot, { ...normalizedOptions });
 
   generateFiles(tree, join(__dirname, 'common'), normalizedOptions.targetRoot, {
     ...normalizedOptions,

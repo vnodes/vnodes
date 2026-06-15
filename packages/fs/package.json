@@ -42,7 +42,7 @@
   "nx": {
     "sourceRoot": "packages/fs/src",
     "tags": [
-      "lib:module"
+      "lib:shared"
     ],
     "targets": {
       "build": {},
@@ -50,9 +50,10 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18",
-    "js-yaml": "^4.2.0",
-    "@nx/devkit": "22.7.5"
+    "@swc/helpers": "~0.5.18"
+  },
+  "peerDependencies": {
+    "js-yaml": "^4.2.0"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9"

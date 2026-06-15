@@ -47,7 +47,7 @@
       "email": "robert.brightline@gmail.com",
       "homePageUrl": "https://vnodes.github.io",
       "fundingUrl": "https://cash.app/$puqlib",
-      "version": "0.0.1",
+      "version": "0.1.8",
       "workspaceVersion": "workspace:*"
     },
     "@nx/plugin:plugin": {
@@ -63,7 +63,6 @@
   "targetDefaults": {
     "@nx/js:swc": {
       "cache": true,
-      "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
     "test": {
@@ -71,7 +70,9 @@
     },
     "build": {
       "executor": "@nx/js:swc",
-      "inputs": ["default"],
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "{projectRoot}/dist",

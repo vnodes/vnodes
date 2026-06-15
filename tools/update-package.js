@@ -25,4 +25,4 @@ async function updatePackageJson(root, updateHandler) {
   }
 }
 
-updatePackageJson('packages', () => ({}));
+updatePackageJson('packages', (value) => value);

@@ -27,6 +27,7 @@
     "bin",
     "dist",
     "assets",
+    "prisma",
     "prisma.config.ts"
   ],
   "type": "module",
