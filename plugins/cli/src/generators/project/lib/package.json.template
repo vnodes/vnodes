@@ -23,7 +23,11 @@
   "funding": [
     "<%- fundingUrl %>"
   ],
+  "bin":{
+    "<%- fileName %>":"./bin/<%- fileName %>.mjs"
+  },
   "files": [
+    "bin",
     "dist",
     "assets"
   ],

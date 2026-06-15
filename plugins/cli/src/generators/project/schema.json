@@ -16,10 +16,7 @@
     "projectType": {
       "type": "string",
       "description": "Project projectType",
-      "enum": [
-        "lib",
-        "api"
-      ],
+      "enum": ["lib", "api", "prisma"],
       "$default": {
         "$source": "argv",
         "index": 1
@@ -79,6 +76,15 @@
         "index": 7
       },
       "x-prompt": "What is the author name?"
+    },
+    "workspaceVersion": {
+      "type": "string",
+      "description": "Vnodes workspace version",
+      "$default": {
+        "$source": "argv",
+        "index": 8
+      },
+      "x-prompt": "What is the current version of vnodes packages?"
     }
   },
   "required": [
@@ -89,6 +95,7 @@
     "homePageUrl",
     "email",
     "fundingUrl",
-    "authorName"
+    "authorName",
+    "workspaceVersion"
   ]
 }

@@ -1,4 +1,4 @@
-export type ProjectType = 'lib' | 'api' | 'cli';
+export type ProjectType = 'lib' | 'api' | 'cli' | 'prisma';
 
 export interface ProjectGeneratorSchema {
   /**

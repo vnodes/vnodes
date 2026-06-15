@@ -6,7 +6,7 @@ import {
 } from '@vnodes/nest';
 import { SampleCreateDto } from './sample.dto.js';
 import { InjectDelegate } from '@vnodes/prisma';
-import { Prisma } from '@vnodes/test-api/client';
+import { Prisma } from '@vnodes/test-db/client';
 
 @ResourceController()
 @ResourceControllerMethods()
@@ -16,7 +16,7 @@ export class SampleController {
     protected readonly repo: Prisma.SampleDelegate,
   ) {}
 
-  findAll() {
+  findMany() {
     return this.repo.findMany();
   }
 

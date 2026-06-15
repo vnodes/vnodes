@@ -11,6 +11,9 @@
       "path": "../../packages/nest"
     },
     {
+      "path": "../test-db"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

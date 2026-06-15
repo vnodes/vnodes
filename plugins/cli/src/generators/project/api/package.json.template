@@ -20,7 +20,11 @@
   "funding": [
     "<%- fundingUrl %>"
   ],
+  "bin":{
+    "<%- fileName %>":"./bin/<%- fileName %>.mjs"
+  },
   "files": [
+    "bin",
     "dist",
     "assets"
   ],
@@ -34,16 +38,6 @@
       "types": "./dist/src/index.d.ts",
       "import": "./dist/src/index.js",
       "default": "./dist/src/index.js"
-    },
-    "./client": {
-      "types": "./dist/src/generated/prisma/client.d.ts",
-      "import": "./dist/src/generated/prisma/client.js",
-      "default": "./dist/src/generated/prisma/client.js"
-    },
-    "./browser": {
-      "types": "./dist/src/generated/prisma/browser.d.ts",
-      "import": "./dist/src/generated/prisma/browser.js",
-      "default": "./dist/src/generated/prisma/browser.js"
     }
   },
   "nx": {
@@ -52,19 +46,8 @@
       "<%- tag %>"
     ],
     "targets": {
-      "build": {
-        "options": {
-          "stripLeadingPaths": false
-        },
-        "dependsOn": [
-          "prisma:generate"
-        ]
-      },
-      "preserve": {},
+      "build": {},
       "serve": {},
-      "prisma:migrate": {},
-      "prisma:reset": {},
-      "prisma:generate": {}, 
       "doc":{}
     }
   },
@@ -83,8 +66,9 @@
     "@nestjs/throttler": "^6.5.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
-    "@vnodes/nest": "workspace:*",
-    "@vnodes/prisma": "workspace:*",
+    "@vnodes/nest": "<%- workspaceVersion %>",
+    "@vnodes/prisma": "<%- workspaceVersion %>",
+    "<%- projectName %>-db": "workspace:*",
     "cache-manager": "^7.2.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
@@ -103,9 +87,10 @@
     "@nestjs/throttler": "^6.5.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
-    "@vnodes/nest": "workspace:*",
-    "@vnodes/prisma": "workspace:*",
-    "@vnodes/types": "workspace:*",
+    "@vnodes/nest": "<%- workspaceVersion %>",
+    "@vnodes/prisma": "<%- workspaceVersion %>",
+    "@vnodes/types": "<%- workspaceVersion %>",
+    "<%- projectName %>-db": "workspace:*",
     "cache-manager": "^7.2.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",

@@ -4,9 +4,16 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ],
   "references": [
+    {
+      "path": "../test-db/tsconfig.lib.json"
+    },
     {
       "path": "../../packages/types/tsconfig.lib.json"
     },

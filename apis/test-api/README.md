@@ -9,7 +9,7 @@
 
 ## @vnodes/test-api
 
-- [ ] Add project description for @vnodes/test-api
+Sample api project
 
 ## Installation
 

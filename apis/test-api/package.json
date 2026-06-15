@@ -27,25 +27,15 @@
     "assets"
   ],
   "type": "module",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./dist/src/index.js",
-      "default": "./dist/src/index.js"
-    },
-    "./client": {
-      "types": "./dist/src/generated/prisma/client.d.ts",
-      "import": "./dist/src/generated/prisma/client.js",
-      "default": "./dist/src/generated/prisma/client.js"
-    },
-    "./browser": {
-      "types": "./dist/src/generated/prisma/browser.d.ts",
-      "import": "./dist/src/generated/prisma/browser.js",
-      "default": "./dist/src/generated/prisma/browser.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "nx": {
@@ -54,26 +44,13 @@
       "app:api"
     ],
     "targets": {
-      "build": {
-        "options": {
-          "stripLeadingPaths": false
-        },
-        "dependsOn": [
-          "prisma:generate"
-        ]
-      },
-      "prune-dist": {},
-      "preserve": {},
+      "build": {},
       "serve": {},
-      "prisma:migrate": {},
-      "prisma:reset": {},
-      "prisma:generate": {},
       "doc": {}
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18",
-    "tslib": "^2.3.0"
+    "@swc/helpers": "~0.5.18"
   },
   "peerDependencies": {
     "@nestjs/cache-manager": "^3.1.2",
@@ -89,6 +66,7 @@
     "@prisma/client": "^7.8.0",
     "@vnodes/nest": "workspace:*",
     "@vnodes/prisma": "workspace:*",
+    "@vnodes/test-db": "workspace:*",
     "cache-manager": "^7.2.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
@@ -107,9 +85,10 @@
     "@nestjs/throttler": "^6.5.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
+    "@vnodes/types": "workspace:*",
     "@vnodes/nest": "workspace:*",
     "@vnodes/prisma": "workspace:*",
-    "@vnodes/types": "workspace:*",
+    "@vnodes/test-db": "workspace:*",
     "cache-manager": "^7.2.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",

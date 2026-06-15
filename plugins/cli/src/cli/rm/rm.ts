@@ -17,6 +17,6 @@ export function rm(command: Command) {
     .requiredOption('-p, --path <string>', 'What is your name')
     .action(({ path }) => {
       const resolve = scope(cwd());
-      rmSync(resolve(path), { recursive: true });
+      rmSync(resolve(path), { recursive: true, force: true });
     });
 }

@@ -28,6 +28,9 @@
     },
     {
       "path": "./packages/fs"
+    },
+    {
+      "path": "./apis/test-db"
     }
   ]
 }

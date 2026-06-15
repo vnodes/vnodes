@@ -7,5 +7,10 @@
             "export const $1s = Object.keys($1) as Readonly<$1[]>;",
         ],
         "scope": "typescript"
+    },
+    "_dirname": {
+        "prefix": "_dirname",
+        "body": "const __dirname = dirname(fileURLToPath(import.meta.url));",
+        "scope": "typescript"
     }
 }

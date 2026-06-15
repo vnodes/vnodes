@@ -123,9 +123,6 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
-      tslib:
-        specifier: ^2.3.0
-        version: 2.8.1
     devDependencies:
       '@nestjs/cache-manager':
         specifier: ^3.1.2
@@ -166,6 +163,9 @@ importers:
       '@vnodes/prisma':
         specifier: workspace:*
         version: link:../../packages/prisma
+      '@vnodes/test-db':
+        specifier: workspace:*
+        version: link:../test-db
       '@vnodes/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -184,6 +184,16 @@ importers:
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
+
+  apis/test-db:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.23
+    devDependencies:
+      '@prisma/client':
+        specifier: ^7.8.0
+        version: 7.8.0(prisma@7.8.0(@types/react@19.2.17)(magicast@0.5.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@5.9.3))(typescript@5.9.3)
 
   packages/config:
     dependencies:

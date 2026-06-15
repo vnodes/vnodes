@@ -1,0 +1,83 @@
+{
+  "name": "<%- projectName %>",
+  "description":"- [ ] Add project description",
+  "version": "<%- version %>",
+  "author": {
+    "email": "<%- email %>",
+    "name": "<%- authorName %>",
+    "url": "<%- homePageUrl %>"
+  },
+  "keywords": [
+    "database",
+    "prisma"
+  ],
+  "bugs": {
+    "email": "<%- email %>",
+    "url": "https://github.com/<%- orgName %>/<%- repoName %>/issues"
+  },
+  "homepage": "<%- homePageUrl %>/<%- directory %>",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "<%- fundingUrl %>"
+  ],
+  "bin":{
+    "<%- fileName %>":"./bin/<%- fileName %>.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "assets"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+
+    "./client": {
+      "types": "./dist/generated/prisma/client.d.ts",
+      "import": "./dist/generated/prisma/client.js",
+      "default": "./dist/generated/prisma/client.js"
+    },
+    "./browser": {
+      "types": "./dist/generated/prisma/browser.d.ts",
+      "import": "./dist/generated/prisma/browser.js",
+      "default": "./dist/generated/prisma/browser.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "<%- directory %>/src",
+    "tags": [
+      "<%- tag %>"
+    ],
+    "targets": {
+      "build": {
+        "dependsOn": [
+          "prisma:generate"
+        ]
+      },
+      "prisma:migrate": {},
+      "prisma:reset": {},
+      "prisma:generate": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "peerDependencies": {
+    "@prisma/client": "^7.8.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^7.8.0"
+  }
+}

@@ -9,8 +9,22 @@ import { dirname, join } from 'node:path';
 import { type ProjectGeneratorSchema, type ProjectType } from './schema.d.js';
 import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export function autoTag(projectType: ProjectType): string {
+  switch (projectType) {
+    case 'lib': {
+      return 'lib:shared';
+    }
+    case 'cli':
+    case 'api': {
+      return `app:${projectType}`;
+    }
+    case 'prisma': {
+      return `lib:core`;
+    }
+  }
+}
 
 export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   projectName: string;
@@ -18,6 +32,7 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   sourceRoot: string;
   targetRoot: string;
   tag: string;
+  workspaceVersion: string;
 } & ReturnType<typeof names>;
 
 export function normalizeProjectSchema(
@@ -42,18 +57,6 @@ export function normalizeProjectSchema(
     .join(`+${options.orgName}-${shortName}@`);
 
   return { ...normalizedOptions, ...names(shortName) };
-}
-
-export function autoTag(projectType: ProjectType): string {
-  switch (projectType) {
-    case 'lib': {
-      return 'lib:shared';
-    }
-    case 'cli':
-    case 'api': {
-      return `app:${projectType}`;
-    }
-  }
 }
 
 export async function projectGenerator(

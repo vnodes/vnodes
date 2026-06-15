@@ -1,5 +1,8 @@
 import { Logger } from '@nestjs/common';
-import { ResourceMethod } from '../constants/resource-method.js';
+import {
+  ResourceMethod,
+  ResourceMethods,
+} from '../constants/resource-method.js';
 import { PostOne } from './post-one.js';
 import { PostMany } from './post-many.js';
 import { GetAll } from './get-all.js';
@@ -22,7 +25,9 @@ const logger = new Logger('ResourceMethods');
 export function ResourceControllerMethods(): ClassDecorator {
   return (...args) => {
     const classType = args[0];
-    const methods = Object.getOwnPropertyNames(classType.prototype);
+    const methods = Object.getOwnPropertyNames(classType.prototype).filter(
+      (e) => e !== 'constructor',
+    );
 
     for (const methodName of methods) {
       const descriptor = Object.getOwnPropertyDescriptor(
@@ -92,7 +97,7 @@ export function ResourceControllerMethods(): ClassDecorator {
         }
       } else {
         logger.warn(
-          `Resource's method name should be one of ${ResourceControllerMethods} but found ${methodName}`,
+          `Resource's method name, ${methodName}, should be one of ${ResourceMethods} but found ${methodName}`,
         );
       }
     }
