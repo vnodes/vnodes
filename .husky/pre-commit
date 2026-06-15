@@ -8,13 +8,10 @@ pnpm nx run-many  -t build --projects="tag:lib:types"  --tuiAutoExit=true
 pnpm nx run-many  -t build --projects="tag:lib:shared"  --tuiAutoExit=true
 pnpm nx run-many  -t build --projects="tag:lib:module"  --tuiAutoExit=true
 pnpm nx run-many  -t build --projects="tag:lib:core"  --tuiAutoExit=true
-pnpm nx run-many  -t build --projects="tag:app:*"  --tuiAutoExit=true
+pnpm nx run-many  -t build --projects="tag:app:db*"  --tuiAutoExit=true
+pnpm nx run-many  -t build --projects="tag:app:api*"  --tuiAutoExit=true
 
-pnpm nx run-many  -t test --projects="tag:lib:types"  --tuiAutoExit=true
-pnpm nx run-many  -t test --projects="tag:lib:shared"  --tuiAutoExit=true
-pnpm nx run-many  -t test --projects="tag:lib:module"  --tuiAutoExit=true
-pnpm nx run-many  -t test --projects="tag:lib:core"  --tuiAutoExit=true
-pnpm nx run-many  -t test --projects="tag:app:*"  --tuiAutoExit=true
+pnpm nx run-many -t test 
 
 
 

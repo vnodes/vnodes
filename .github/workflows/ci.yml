@@ -51,7 +51,9 @@ jobs:
           pnpm nx run-many  -t build --projects="tag:lib:shared"  
           pnpm nx run-many  -t build --projects="tag:lib:module"  
           pnpm nx run-many  -t build --projects="tag:lib:core"  
-          pnpm nx run-many  -t build --projects="tag:app:*"
+          pnpm nx run-many  -t build --projects="tag:app:cli"
+          pnpm nx run-many  -t build --projects="tag:app:db"
+          pnpm nx run-many  -t build --projects="tag:app:api"
 
       - name: Publish libraries to npm registry
         run: pnpm nx release publish
