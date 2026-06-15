@@ -24,7 +24,7 @@ export async function bootstrap(options: BootstrapOptions) {
   await app.listen(env.PORT);
 
   const URL = await app.getUrl();
-  logger.log(`URL      : ${URL}`);
+  logger.log(`URL      : ${URL}/api`);
   logger.log(`APP_ID   : ${env.APP_ID}`);
   logger.log(`DESC     : ${env.DESC}`);
   logger.log(`PROFILE  : ${env.PROFILE}`);

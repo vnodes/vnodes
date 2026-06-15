@@ -31,3 +31,5 @@ export type NumberRecord<T extends Obj> = CustomRecord<T, number>;
 export type BooleanRecord<T extends Obj> = CustomRecord<T, boolean>;
 
 export type Any = any;
+
+export type AnyFunction = (...args: Any[]) => Any;

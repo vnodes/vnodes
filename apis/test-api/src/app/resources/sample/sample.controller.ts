@@ -1,16 +1,11 @@
 import { Body } from '@nestjs/common';
-import {
-  ParamId,
-  ResourceController,
-  ResourceControllerMethods,
-} from '@vnodes/nest';
+import { ParamId, ResourceController, type ResourceOperation } from '@vnodes/nest';
 import { SampleCreateDto } from './sample.dto.js';
 import { InjectDelegate } from '@vnodes/prisma';
 import { Prisma } from '@vnodes/test-db/client';
 
 @ResourceController()
-@ResourceControllerMethods()
-export class SampleController {
+export class SampleController implements ResourceOperation {
   constructor(
     @InjectDelegate(Prisma.ModelName.Sample)
     protected readonly repo: Prisma.SampleDelegate,
@@ -34,5 +29,18 @@ export class SampleController {
 
   deleteOneById(@ParamId() id: number) {
     return this.repo.delete({ where: { id } });
+  }
+
+  addRelation() {
+    return {};
+  }
+  removeRelation() {
+    return {};
+  }
+  setRelation() {
+    return {};
+  }
+  unsetRelation() {
+    return {};
   }
 }
