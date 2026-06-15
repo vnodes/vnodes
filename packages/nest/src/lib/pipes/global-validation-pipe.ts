@@ -10,8 +10,12 @@ export const GlobalValidationPipe = new ValidationPipe({
   exceptionFactory(errors) {
     throw new UnprocessableEntityException({ errors });
   },
+
   transformOptions: {
     exposeDefaultValues: true,
     exposeUnsetFields: false,
+    excludeExtraneousValues: true,
+    strategy: 'excludeAll',
+    enableImplicitConversion: true,
   },
 });

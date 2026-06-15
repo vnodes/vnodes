@@ -34,6 +34,9 @@
     },
     {
       "path": "./packages/env"
+    },
+    {
+      "path": "./packages/prop"
     }
   ]
 }

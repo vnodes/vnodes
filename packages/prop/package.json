@@ -1,0 +1,70 @@
+{
+  "name": "@vnodes/prop",
+  "description": "Data transfer object property decorator",
+  "version": "0.1.8",
+  "author": {
+    "email": "robert.brightline+vnodes-prop@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "robert.brightline+vnodes-prop@gmail.com",
+    "url": "https://github.com/vnodes/vnodes/issues"
+  },
+  "homepage": "https://vnodes.github.io/packages/prop",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "prop": "./bin/prop.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "assets"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "packages/prop/src",
+    "tags": [
+      "lib:core"
+    ],
+    "targets": {
+      "build": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "devDependencies": {
+    "@nestjs/swagger": "^11.4.4",
+    "@vnodes/types": "workspace:*",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1"
+  },
+  "peerDependencies": {
+    "@nestjs/swagger": "^11.4.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1"
+  }
+}

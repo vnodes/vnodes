@@ -46,6 +46,7 @@ export * from './lib/modules/cache-module-options.js';
 export * from './lib/modules/common.module.js';
 export * from './lib/modules/provide-commons.js';
 export * from './lib/modules/throttler-module-options.js';
+export * from './lib/objects/relation-params.js';
 export * from './lib/pipes/global-validation-pipe.js';
 export * from './lib/utils/infer-event-name.js';
 export * from './lib/utils/infer-operation-name.js';

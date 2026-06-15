@@ -166,6 +166,9 @@ importers:
       '@vnodes/prisma':
         specifier: workspace:*
         version: link:../../packages/prisma
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../../packages/prop
       '@vnodes/test-db':
         specifier: workspace:*
         version: link:../test-db
@@ -331,6 +334,25 @@ importers:
       '@vnodes/names':
         specifier: workspace:*
         version: link:../names
+
+  packages/prop:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.23
+    devDependencies:
+      '@nestjs/swagger':
+        specifier: ^11.4.4
+        version: 11.4.4(@nestjs/common@11.1.26(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.26)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
+      class-transformer:
+        specifier: ^0.5.1
+        version: 0.5.1
+      class-validator:
+        specifier: ^0.15.1
+        version: 0.15.1
 
   packages/types:
     dependencies:

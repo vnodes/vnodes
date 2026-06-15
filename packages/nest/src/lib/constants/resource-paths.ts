@@ -1,6 +1,6 @@
 export const ResourcePathParams = {
   ID: 'id',
-  RELATION_NAME: 'releationName',
+  RELATION_NAME: 'relationName',
   RELATION_ID: 'relationId',
 };
 

@@ -1,6 +1,6 @@
-import { Body } from '@nestjs/common';
-import { ParamId, ResourceController, type ResourceOperation } from '@vnodes/nest';
-import { SampleCreateDto } from './sample.dto.js';
+import { Body, Param, Query } from '@nestjs/common';
+import { GlobalValidationPipe, ParamId, ResourceController, type ResourceOperation } from '@vnodes/nest';
+import { SampleCreateDto, SampleProjectionDto, SampleQueryDto, SampleRelationDto, SampleUnsetRelationDto } from './sample.dto.js';
 import { InjectDelegate } from '@vnodes/prisma';
 import { Prisma } from '@vnodes/test-db/client';
 
@@ -11,8 +11,8 @@ export class SampleController implements ResourceOperation {
     protected readonly repo: Prisma.SampleDelegate,
   ) {}
 
-  findMany() {
-    return this.repo.findMany();
+  findMany(@Query() query: SampleQueryDto, @Query(GlobalValidationPipe) projection: SampleProjectionDto) {
+    return this.repo.findMany({ ...query, select: projection });
   }
 
   findOneById(@ParamId() id: number) {
@@ -31,16 +31,16 @@ export class SampleController implements ResourceOperation {
     return this.repo.delete({ where: { id } });
   }
 
-  addRelation() {
-    return {};
+  addRelation(@Param() params: SampleRelationDto) {
+    return params;
   }
-  removeRelation() {
-    return {};
+  removeRelation(@Param() params: SampleRelationDto) {
+    return params;
   }
-  setRelation() {
-    return {};
+  setRelation(@Param() params: SampleRelationDto) {
+    return params;
   }
-  unsetRelation() {
-    return {};
+  unsetRelation(@Param() params: SampleUnsetRelationDto) {
+    return params;
   }
 }
