@@ -26,7 +26,8 @@
   "files": [
     "bin",
     "dist",
-    "assets"
+    "assets",
+    "prisma.config.ts"
   ],
   "type": "module",
   "main": "./dist/index.js",
@@ -53,7 +54,7 @@
   "nx": {
     "sourceRoot": "apis/test-db/src",
     "tags": [
-      "lib:core"
+      "app:db"
     ],
     "targets": {
       "build": {
@@ -71,9 +72,11 @@
     "@swc/helpers": "~0.5.18"
   },
   "peerDependencies": {
-    "@prisma/client": "^7.8.0"
+    "@prisma/client": "^7.8.0",
+    "@vnodes/env": "workspace:*"
   },
   "devDependencies": {
-    "@prisma/client": "^7.8.0"
+    "@prisma/client": "^7.8.0",
+    "@vnodes/env": "workspace:*"
   }
 }

@@ -9,6 +9,5 @@ datasource db {
 
 model Sample {
   id Int @id @default(autoincrement())
-
   name String
 }

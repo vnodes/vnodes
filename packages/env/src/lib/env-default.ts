@@ -13,6 +13,8 @@ export const EnvDefault = {
   DB_HOST: 'localhost',
   DB_PORT: 5432,
   DB_URL: 'postgres://vnodes:password@localhost:5432/vnodes?schema=sample',
+  DB_MIGRATIONS_PATH: 'prisma/migrations',
+  DB_PRISMA_SCHEMA_PATH: 'prisma/schema.prisma',
   ROOT_USERNAME: 'root',
   ROOT_PASSWORD: '!Password123.',
   JWT_SECRET: 'dev_secret',

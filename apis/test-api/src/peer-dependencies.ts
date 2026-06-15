@@ -7,6 +7,8 @@ import '@nestjs/platform-express';
 import '@nestjs/schedule';
 import '@nestjs/swagger';
 import '@nestjs/throttler';
+import '@vnodes/env';
+
 import 'cache-manager';
 import 'rxjs';
 import 'class-validator';

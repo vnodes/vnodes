@@ -1,10 +1,11 @@
 import { Logger } from '@nestjs/common';
 import { ThrottlerModule, type ThrottlerAsyncOptions } from '@nestjs/throttler';
-import { EnvService, EnvyModule, Profile } from '@vnodes/config';
+import { EnvService, EnvyModule } from '@vnodes/config';
 
 import { MetadataModule } from '../metadata/metadata.module.js';
 import { MetadataService } from '../metadata/metadata.service.js';
 import { Throttler } from '../constants/throttler.js';
+import { Profile } from '@vnodes/env';
 
 /**
  * Create throttler module options
@@ -35,22 +36,16 @@ export const throttlerAsyncOptions: () => ThrottlerAsyncOptions = () => ({
             const explictProfile = meta.getProfile(context);
 
             if (explictProfile && explictProfile !== Profile.PROD) {
-              logger.log(
-                `Eplicit Profile: ${explictProfile}, skipping strict rate limiting`,
-              );
+              logger.log(`Eplicit Profile: ${explictProfile}, skipping strict rate limiting`);
               return true;
             }
 
             if (profile && profile !== Profile.PROD) {
-              logger.log(
-                `Env Profile: ${profile}, skipping strict rate limiting`,
-              );
+              logger.log(`Env Profile: ${profile}, skipping strict rate limiting`);
             }
 
             if (meta.isAdminOnly(context)) {
-              logger.log(
-                `Administrative operation: skipping strict rate limiting`,
-              );
+              logger.log(`Administrative operation: skipping strict rate limiting`);
               return true;
             }
 

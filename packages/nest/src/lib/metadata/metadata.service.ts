@@ -1,6 +1,6 @@
 import { Inject, Injectable, type ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import type { Profile } from '@vnodes/config';
+import type { Profile } from '@vnodes/env';
 import type { Some } from '@vnodes/types';
 import { MetadataToken } from '../constants/metadata-token.js';
 
@@ -11,14 +11,8 @@ import { MetadataToken } from '../constants/metadata-token.js';
 export class MetadataService {
   constructor(@Inject(Reflector) protected readonly reflector: Reflector) {}
 
-  protected getAllAndOverride<T>(
-    token: MetadataToken,
-    context: ExecutionContext,
-  ) {
-    return this.reflector.getAllAndOverride<T>(token, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+  protected getAllAndOverride<T>(token: MetadataToken, context: ExecutionContext) {
+    return this.reflector.getAllAndOverride<T>(token, [context.getHandler(), context.getClass()]);
   }
 
   protected getFromHandler<T>(token: MetadataToken, context: ExecutionContext) {
@@ -30,59 +24,41 @@ export class MetadataService {
   }
 
   protected getAll<T>(token: MetadataToken, context: ExecutionContext) {
-    return this.reflector.getAll<T[]>(token, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    return this.reflector.getAll<T[]>(token, [context.getHandler(), context.getClass()]);
   }
 
   /**
    * Get {@link MetadataToken.ADMIN_ONLY}
    */
   isAdminOnly(context: ExecutionContext): boolean {
-    return (
-      this.getAllAndOverride<boolean>(MetadataToken.ADMIN_ONLY, context) ===
-      true
-    );
+    return this.getAllAndOverride<boolean>(MetadataToken.ADMIN_ONLY, context) === true;
   }
 
   /**
    * Get {@link MetadataToken.EMIT_RESPONSE}
    */
   isEmittedResponse(context: ExecutionContext): boolean {
-    return (
-      this.getFromHandler<boolean>(MetadataToken.EMIT_RESPONSE, context) ===
-      true
-    );
+    return this.getFromHandler<boolean>(MetadataToken.EMIT_RESPONSE, context) === true;
   }
 
   /**
    * Get {@link MetadataToken.EMIT_REQUEST}
    */
   isEmittedRequest(context: ExecutionContext): boolean {
-    return (
-      this.getFromHandler<boolean>(MetadataToken.EMIT_REQUEST, context) === true
-    );
+    return this.getFromHandler<boolean>(MetadataToken.EMIT_REQUEST, context) === true;
   }
   /**
    * Get {@link MetadataToken.PUBLIC}
    */
   isPublic(context: ExecutionContext): boolean {
-    return (
-      this.getAllAndOverride<boolean>(MetadataToken.PUBLIC, context) === true
-    );
+    return this.getAllAndOverride<boolean>(MetadataToken.PUBLIC, context) === true;
   }
 
   /**
    * Get {@link MetadataToken.STRICT_RATE_LIMIT}
    */
   isStrictRateLimit(context: ExecutionContext): boolean {
-    return (
-      this.getAllAndOverride<boolean>(
-        MetadataToken.STRICT_RATE_LIMIT,
-        context,
-      ) === true
-    );
+    return this.getAllAndOverride<boolean>(MetadataToken.STRICT_RATE_LIMIT, context) === true;
   }
 
   /**
@@ -117,10 +93,7 @@ export class MetadataService {
    * Get {@link MetadataToken.OPERATION} if provided or get by {@link defaultEventName} method
    */
   getEventName(context: ExecutionContext): string {
-    return (
-      this.getFromHandler<string>(MetadataToken.OPERATION, context) ??
-      this.defaultEventName(context)
-    );
+    return this.getFromHandler<string>(MetadataToken.OPERATION, context) ?? this.defaultEventName(context);
   }
 
   /**

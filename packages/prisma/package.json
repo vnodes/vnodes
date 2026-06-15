@@ -42,7 +42,7 @@
   "nx": {
     "sourceRoot": "packages/prisma/src",
     "tags": [
-      "lib:module"
+      "lib:core"
     ],
     "targets": {
       "build": {},
@@ -52,16 +52,15 @@
   "dependencies": {
     "@swc/helpers": "~0.5.18"
   },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.26",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@vnodes/config": "workspace:*",
+    "@vnodes/names": "workspace:*"
+  },
   "devDependencies": {
     "@nestjs/common": "^11.1.26",
     "@nestjs/config": "^4.0.4",
-    "@prisma/adapter-pg": "^7.8.0",
-    "@vnodes/config": "workspace:*",
-    "@vnodes/names": "workspace:*",
-    "@vnodes/types": "workspace:*"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^11.1.26",
     "@prisma/adapter-pg": "^7.8.0",
     "@vnodes/config": "workspace:*",
     "@vnodes/names": "workspace:*"

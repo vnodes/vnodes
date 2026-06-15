@@ -1,7 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { EnvDefault } from './env-default.js';
-import { EnvKey } from './env-key.js';
+import { EnvKey, EnvDefault } from '@vnodes/env';
 
 @Injectable()
 export class EnvService {

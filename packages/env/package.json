@@ -1,9 +1,9 @@
 {
-  "name": "@vnodes/config",
-  "description": "Nestjs config module",
-  "version": "0.1.7",
+  "name": "@vnodes/env",
+  "description": "- [ ] Add project description",
+  "version": "0.0.1",
   "author": {
-    "email": "robert.brightline+vnodes-config@gmail.com",
+    "email": "robert.brightline+vnodes-env@gmail.com",
     "name": "Robert Brightline",
     "url": "https://vnodes.github.io"
   },
@@ -12,10 +12,10 @@
     "types"
   ],
   "bugs": {
-    "email": "robert.brightline+vnodes-config@gmail.com",
+    "email": "robert.brightline+vnodes-env@gmail.com",
     "url": "https://github.com/vnodes/vnodes/issues"
   },
-  "homepage": "https://vnodes.github.io/packages/config",
+  "homepage": "https://vnodes.github.io/packages/env",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -23,7 +23,11 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
+  "bin": {
+    "env": "./bin/env.mjs"
+  },
   "files": [
+    "bin",
     "dist",
     "assets"
   ],
@@ -40,9 +44,9 @@
     }
   },
   "nx": {
-    "sourceRoot": "packages/config/src",
+    "sourceRoot": "packages/env/src",
     "tags": [
-      "lib:module"
+      "lib:types"
     ],
     "targets": {
       "build": {},
@@ -50,15 +54,6 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18",
-    "@vnodes/env": "workspace:*"
-  },
-  "devDependencies": {
-    "@nestjs/common": "^11.1.26",
-    "@nestjs/config": "^4.0.4"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^11.1.26",
-    "@nestjs/config": "^4.0.4"
+    "@swc/helpers": "~0.5.18"
   }
 }

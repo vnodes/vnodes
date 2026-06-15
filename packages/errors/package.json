@@ -42,7 +42,7 @@
   "nx": {
     "sourceRoot": "packages/errors/src",
     "tags": [
-      "lib:shared"
+      "lib:types"
     ],
     "targets": {
       "build": {},

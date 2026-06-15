@@ -1,12 +1,19 @@
 import 'dotenv/config';
 import { defineConfig } from 'prisma/config';
+import { envOrThrow, EnvKey, EnvDefault } from '@vnodes/env';
 
 export default defineConfig({
-  schema: 'prisma/schema.prisma',
+  schema: envOrThrow(
+    EnvKey.DB_PRISMA_SCHEMA_PATH,
+    EnvDefault.DB_PRISMA_SCHEMA_PATH,
+  ),
   migrations: {
-    path: 'prisma/migrations',
+    path: envOrThrow<string>(
+      EnvKey.DB_MIGRATIONS_PATH,
+      EnvDefault.DB_MIGRATIONS_PATH,
+    ),
   },
   datasource: {
-    url: process.env['DB_URL']!,
+    url: envOrThrow(EnvKey.DB_URL),
   },
 });
