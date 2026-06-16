@@ -1,29 +1,34 @@
 import { copyFiles } from '@vnodes/fs';
 import { Command } from 'commander';
 import { dirname, join } from 'node:path';
-import { cwd } from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { readdir } from 'node:fs/promises';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import ejs from 'ejs';
+import { names } from '@nx/devkit';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 async function geneateFiles(name: string) {
-  await copyFiles(join(__dirname, 'files'), join(cwd(), name), (filePath: string) => {
+  await copyFiles(join(__dirname, 'files'), join(name), (filePath: string) => {
     return filePath.slice(0, -'.template'.length);
   });
 }
 
 async function generateTemplates(name: string) {
-  const templateFiles = await readdir(join(__dirname, 'templates'), { recursive: true, withFileTypes: true });
+  const templateRootDir = join(__dirname, 'templates');
+  const templateFiles = await readdir(templateRootDir, { recursive: true, withFileTypes: true });
 
   for (const t of templateFiles) {
     if (!t.isFile()) continue;
 
-    const templateContent = readFileSync(join(t.parentPath, t.name), { encoding: 'utf-8' });
-    const targetFilePath = join(cwd(), name, t.parentPath, t.name.slice(0, -'.ejs'.length));
-    mkdirSync(dirname(targetFilePath), { recursive: true });
-    writeFileSync(targetFilePath, templateContent, { encoding: 'utf-8' });
+    const templateFilePath = join(t.parentPath, t.name);
+    const templateFileContent = readFileSync(templateFilePath, { encoding: 'utf-8' });
+    const targetTemplateFilePath = join('./', name, templateFilePath.replace(templateRootDir, '')).slice(0, -'.ejs'.length);
+
+    mkdirSync(dirname(targetTemplateFilePath), { recursive: true });
+    const renderedContent = ejs.render(templateFileContent, { ...names(name), email: `${name}@${name}.com` });
+    writeFileSync(targetTemplateFilePath, renderedContent, { encoding: 'utf-8' });
   }
 }
 
