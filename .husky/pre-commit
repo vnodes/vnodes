@@ -1,17 +1,21 @@
 # #!/bin/bash
 
 
+
+
 pnpm nx affected  -t prisma:generate --tuiAutoExit=true 
 pnpm nx affected  -t lint --tuiAutoExit=true 
+pnpm nx affected  -t build --tuiAutoExit=true 
+pnpm nx affected  -t test --tuiAutoExit=true 
 
-pnpm nx affected  -t build --projects="tag:lib:types"  --tuiAutoExit=true
-pnpm nx affected  -t build --projects="tag:lib:shared"  --tuiAutoExit=true
-pnpm nx affected  -t build --projects="tag:lib:module"  --tuiAutoExit=true
-pnpm nx affected  -t build --projects="tag:lib:core"  --tuiAutoExit=true
-pnpm nx affected  -t build --projects="tag:app:db*"  --tuiAutoExit=true
-pnpm nx affected  -t build --projects="tag:app:api*"  --tuiAutoExit=true
+# pnpm nx affected  -t build --projects="tag:lib:types"  --tuiAutoExit=true
+# pnpm nx affected  -t build --projects="tag:lib:shared"  --tuiAutoExit=true
+# pnpm nx affected  -t build --projects="tag:lib:module"  --tuiAutoExit=true
+# pnpm nx affected  -t build --projects="tag:lib:core"  --tuiAutoExit=true
+# pnpm nx affected  -t build --projects="tag:app:db*"  --tuiAutoExit=true
+# pnpm nx affected  -t build --projects="tag:app:api*"  --tuiAutoExit=true
 
-pnpm nx affected -t test 
+# pnpm nx affected -t test 
 
 
 
