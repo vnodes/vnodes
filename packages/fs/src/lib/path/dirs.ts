@@ -22,10 +22,7 @@ export type Dir = {
  * @param options {@link DirsOptions}
  * @returns dirs {@link Dir[]}
  */
-export async function dirs(
-  rootPath: string,
-  options?: DirsOptions,
-): Promise<Dir[]> {
+export async function dirs(rootPath: string, options?: DirsOptions): Promise<Dir[]> {
   const foundPaths = await readdir(rootPath, { encoding: 'utf8' });
 
   const result: Dir[] = [];

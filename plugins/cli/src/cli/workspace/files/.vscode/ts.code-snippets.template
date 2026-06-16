@@ -1,0 +1,16 @@
+{
+    "enum": {
+        "prefix": "enum",
+        "body": [
+            "export const $1 = { } as const;",
+            "export type $1 = keyof typeof $1;",
+            "export const $1s = Object.keys($1) as Readonly<$1[]>;",
+        ],
+        "scope": "typescript"
+    },
+    "_dirname": {
+        "prefix": "_dirname",
+        "body": "const __dirname = dirname(fileURLToPath(import.meta.url));",
+        "scope": "typescript"
+    }
+}

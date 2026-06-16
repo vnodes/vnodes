@@ -1,4 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/copy/copy-files.js';
 export * from './lib/file-system/abstract-file.js';
 export * from './lib/file-system/json-file.js';
 export * from './lib/file-system/text-file.js';

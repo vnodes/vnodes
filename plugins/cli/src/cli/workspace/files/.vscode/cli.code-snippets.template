@@ -1,0 +1,25 @@
+{
+    "command": {
+        "prefix": "command",
+        "body": [
+            "import { Command } from 'commander';",
+            "",
+            "/**",
+            " * Say hello to the user",
+            " *",
+            " * ### Example",
+            " * ````sh",
+            " *  vnodes $1 --username YourName",
+            " * ````",
+            " * @param command main command instance",
+            " */",
+            "export function $1(command: Command) {",
+            "  command",
+            "    .command('$1')",
+            "    .requiredOption('-u, --username <string>', 'What is your name')",
+            "    .action(({ username }) => console.log(`Hello, \\${username}`));",
+            "}",
+        ],
+        "scope": "typescript"
+    }
+}
