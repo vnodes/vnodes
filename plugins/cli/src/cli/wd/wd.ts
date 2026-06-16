@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { cwd } from 'process';
+import { cwd } from 'node:process';
 
 /**
  * Print the current working directory

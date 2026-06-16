@@ -1,5 +1,5 @@
 import { formatFiles, generateFiles, names, updateJson, type Tree } from '@nx/devkit';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { type ProjectGeneratorSchema, type ProjectType } from './schema.d.js';
 import { fileURLToPath } from 'node:url';
 
@@ -36,11 +36,8 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
 export function normalizeProjectSchema(options: ProjectGeneratorSchema): NormalizedProjectGeneratorOptions {
   const normalizedOptions = { ...options } as NormalizedProjectGeneratorOptions;
 
-  const shortName = options.directory.split('/').pop();
+  const shortName = basename(options.directory);
 
-  if (typeof shortName !== 'string') {
-    throw new Error(`Could not resolve the short name of the project form ${options.directory}`);
-  }
   normalizedOptions.shortName = shortName;
   normalizedOptions.sourceRoot = join(__dirname, options.projectType);
   normalizedOptions.targetRoot = join(options.directory);
