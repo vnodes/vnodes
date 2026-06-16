@@ -1,3 +1,27 @@
+## 0.1.9 (2026-06-16)
+
+### 🚀 Features
+
+- created a generic resource controller interface ([4aebd14](https://github.com/vnodes/vnodes/commit/4aebd14))
+- created the sample resource cotnroller and defined a structure ([b1c638d](https://github.com/vnodes/vnodes/commit/b1c638d))
+- created cli project geneator ([77dfd53](https://github.com/vnodes/vnodes/commit/77dfd53))
+- flex the pre-commit script ([1f51a5e](https://github.com/vnodes/vnodes/commit/1f51a5e))
+- flex the pre-commit script ([b78eb64](https://github.com/vnodes/vnodes/commit/b78eb64))
+- created generator generator and cli project generrator ([da2baea](https://github.com/vnodes/vnodes/commit/da2baea))
+- created command generator ([5721466](https://github.com/vnodes/vnodes/commit/5721466))
+- created the command generator ([fdf0f8e](https://github.com/vnodes/vnodes/commit/fdf0f8e))
+- created workspace generator ([2d6b54c](https://github.com/vnodes/vnodes/commit/2d6b54c))
+- created workspace generator ([95b768f](https://github.com/vnodes/vnodes/commit/95b768f))
+- created workspace generator ([f9f32fd](https://github.com/vnodes/vnodes/commit/f9f32fd))
+
+### 🩹 Fixes
+
+- ci ([28337cf](https://github.com/vnodes/vnodes/commit/28337cf))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.8 (2026-06-15)
 
 ### 🚀 Features
