@@ -16,7 +16,7 @@
     "projectType": {
       "type": "string",
       "description": "Project projectType",
-      "enum": ["lib", "api", "prisma"],
+      "enum": ["lib", "api", "prisma", "cli"],
       "$default": {
         "$source": "argv",
         "index": 1
@@ -87,15 +87,5 @@
       "x-prompt": "What is the current version of vnodes packages?"
     }
   },
-  "required": [
-    "directory",
-    "projectType",
-    "orgName",
-    "repoName",
-    "homePageUrl",
-    "email",
-    "fundingUrl",
-    "authorName",
-    "workspaceVersion"
-  ]
+  "required": ["directory", "projectType", "orgName", "repoName", "homePageUrl", "email", "fundingUrl", "authorName", "workspaceVersion"]
 }

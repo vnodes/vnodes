@@ -37,6 +37,9 @@
     },
     {
       "path": "./packages/prop"
+    },
+    {
+      "path": "./plugins/test-cli"
     }
   ]
 }

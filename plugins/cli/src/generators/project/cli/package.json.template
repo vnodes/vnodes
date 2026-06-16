@@ -8,10 +8,6 @@
     "name": "<%- authorName %>",
     "url": "<%- homePageUrl %>"
   },
-  "keywords": [
-    "library",
-    "types"
-  ],
   "bugs": {
     "email": "<%- email %>",
     "url": "https://github.com/<%- orgName %>/<%- repoName %>/issues"

@@ -1,0 +1,17 @@
+import { Command } from 'commander';
+
+/**
+ * Say <%- fileName %> 
+ *
+ * ### Example
+ * ````sh
+ *  vnodes <%- fileName %> --username YourName
+ * ````
+ * @param command main command instance
+ */
+export function <%- fileName %>(command: Command) {
+  command
+    .command('<%- fileName %>')
+    .requiredOption('-u, --username <string>', 'What is your name')
+    .action(({ username }) => console.log(`Hello, ${username}`));
+}

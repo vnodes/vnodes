@@ -41,7 +41,6 @@
     "@vnodes/cli:project": {
       "funding": "https://cash.app/$puqlib",
       "authorName": "Robert Brightline",
-      "projectType": "lib",
       "orgName": "vnodes",
       "repoName": "vnodes",
       "email": "robert.brightline@gmail.com",
