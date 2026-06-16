@@ -1,11 +1,6 @@
 {
   "generators": {
     "project": {
-      "factory": "./dist/generators/project/project.js",
-      "schema": "./dist/generators/project/schema.json",
-      "description": "project generator"
-    },
-    "hello": {
       "factory": "./dist/generators/hello/hello.js",
       "schema": "./dist/generators/hello/schema.json",
       "description": "hello generator"

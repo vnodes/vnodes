@@ -1,0 +1,100 @@
+{
+  
+  "name": "<%- projectName %>",
+  "description":"- [ ] Add project description",
+  "version": "<%- version %>",
+  "author": {
+    "email": "<%- email %>",
+    "name": "<%- authorName %>",
+    "url": "<%- homePageUrl %>"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "<%- email %>",
+    "url": "https://github.com/<%- orgName %>/<%- repoName %>/issues"
+  },
+  "homepage": "<%- homePageUrl %>/<%- directory %>",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "<%- fundingUrl %>"
+  ],
+  "bin":{
+    "<%- fileName %>":"./bin/<%- fileName %>.mjs"
+  },
+  "keywords": [
+    "nx",
+    "cli",
+    "plugin"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./dist/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "bin",
+    "assets",
+    "dist",
+    "generators.json"
+  ],
+  "nx": {
+    "sourceRoot": "plugins/cli/src",
+    "tags": [
+      "<%- tag %>"
+    ],
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "clean": true,
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/index.ts",
+          "tsConfig": "{projectRoot}/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true,
+          "assets": [
+            {
+              "input": "{projectRoot}/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "{projectRoot}/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      },
+      "lint": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@nx/devkit": "22.7.5",
+    "@swc/helpers": "~0.5.18",
+    "commander": "^15.0.0"
+  },
+  "generators": "./generators.json"
+}
