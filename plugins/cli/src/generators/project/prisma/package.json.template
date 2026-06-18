@@ -65,8 +65,7 @@
       "build": {},
       "prisma:migrate": {},
       "prisma:reset": {},
-      "prisma:generate": {},
-      "doc": {}
+      "prisma:generate": {}
     }
   },
   "dependencies": {
