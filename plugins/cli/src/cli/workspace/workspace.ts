@@ -36,6 +36,7 @@ async function generateTemplates(name: string) {
     const renderedContent = ejs.render(templateFileContent, {
       ...names(name),
       email: `${name}@${name}.com`,
+      workspaceVersion: '0.1.11',
     });
     await writeTextFile(targetFilePath, renderedContent);
     console.log(`[ Created ] ${relativeTemplateFilePath} `);

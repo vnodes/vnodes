@@ -57,6 +57,7 @@ export function normalizeProjectSchema(
   }
 
   n.commonShortName = n.shortName.replace(/-api$/, '').replace(/-db$/, '');
+  n.workspaceVersion ??= '0.1.11';
 
   return { ...n, ...names(shortName) };
 }
