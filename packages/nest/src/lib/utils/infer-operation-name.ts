@@ -1,9 +1,7 @@
 import { OperationName } from '../constants/operation-name.js';
-import { ResourceMethod } from '../constants/resource-method.js';
+import { type ResourceMethod } from '../constants/resource-method.js';
 
-export function inferOperationName(
-  resourceMethod: ResourceMethod,
-): OperationName {
+export function inferOperationName(resourceMethod: ResourceMethod): OperationName {
   switch (resourceMethod) {
     case 'createOne':
       return OperationName.CREATE_ONE;

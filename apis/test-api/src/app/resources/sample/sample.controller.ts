@@ -1,6 +1,6 @@
 import { Body, Param, Query } from '@nestjs/common';
 import { ParamId, ResourceController, type ResourceOperation } from '@vnodes/nest';
-import { SampleCreateDto, SamplePagination, SampleRelationDto, SampleUnsetRelationDto } from './sample.dto.js';
+import { type SampleCreateDto, type SamplePagination, type SampleRelationDto, type SampleUnsetRelationDto } from './sample.dto.js';
 import { InjectDelegate } from '@vnodes/prisma';
 import { Prisma } from '@vnodes/test-db/client';
 

@@ -1,5 +1,5 @@
 import { type ResourceOperation } from '@vnodes/nest';
-import { Prisma } from '@vnodes/test-db';
+import { type Prisma } from '@vnodes/test-db';
 
 export class SampleQueryDto {
   take?: number;

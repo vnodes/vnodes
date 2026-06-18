@@ -1,4 +1,4 @@
-import { ResourceMethod } from '../constants/resource-method.js';
+import { type ResourceMethod } from '../constants/resource-method.js';
 import { inferOperationName } from './infer-operation-name.js';
 import { inferResourceName } from './infer-resource-name.js';
 

@@ -183,4 +183,6 @@ model Sample {
   createdByUserId Int?      @map("created_by_user_id")
   name            String    @unique
   description     String?
+
+  @@map("samples")
 }

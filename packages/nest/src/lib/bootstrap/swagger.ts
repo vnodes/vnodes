@@ -1,6 +1,6 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import type { INestApplication } from '@nestjs/common';
-import { EnvService } from '@vnodes/config';
+import { type EnvService } from '@vnodes/config';
 
 export function swagger(app: INestApplication, env: EnvService) {
   const swaggerConf = new DocumentBuilder()

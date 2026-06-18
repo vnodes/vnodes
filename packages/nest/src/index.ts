@@ -26,6 +26,7 @@ export * from './lib/decorators/resource-controller-methods.js';
 export * from './lib/decorators/resource-controller.js';
 export * from './lib/decorators/set-relation.js';
 export * from './lib/decorators/unset-relation.js';
+export * from './lib/decorators/user-id.js';
 export * from './lib/interceptors/emit.interceptor.js';
 export * from './lib/interfaces/resource-operation.js';
 export * from './lib/metadata/admin-only.js';
