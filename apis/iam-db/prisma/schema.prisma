@@ -1,0 +1,184 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id              Int       @id @default(autoincrement())
+  uuid            String    @unique @default(uuid(7))
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdBy       User?     @relation("created_by_audit", fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdByUserId Int?      @map("created_by_user_id")
+
+  username               String  @unique
+  password               String /// @hash
+  isTwoFactorAuthEnabled Boolean @default(false)
+
+  lastLoginAt DateTime?
+
+  userRoles UserRole[]
+
+  createdUsers        User[]        @relation("created_by_audit")
+  createdRoles        Role[]
+  createdPermissions  Permission[]
+  createdHttpHooks    HttpHook[]
+  createdAccessTokens AccessToken[]
+  createdEvents       Event[]
+  creatdSamples       Sample[]
+
+  @@map("users")
+}
+
+model Role {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdByUserId Int?      @map("created_by_user_id")
+
+  name        String  @unique
+  description String?
+
+  rolePermissions RolePermission[]
+  userRoles       UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdByUserId Int?      @map("created_by_user_id")
+
+  name String @unique
+
+  rolePermissions        RolePermission[]
+  accessTokenPermissions AccessTokenPermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roleId Int  @map("role_id")
+
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permissionId Int        @map("permission_id")
+
+  @@unique([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId Int  @map("user_id")
+
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roleId Int  @map("role_id")
+
+  @@unique([userId, roleId])
+  @@map("user_roles")
+}
+
+model AccessToken {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdByUserId Int?      @map("created_by_user_id")
+
+  name  String @unique
+  token String /// @hash()
+
+  isExpired Boolean @default(false) @map("is_expired")
+
+  accessTokenPermissions AccessTokenPermission[]
+
+  @@map("access_tokens")
+}
+
+model AccessTokenPermission {
+  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  accessTokenId Int         @map("access_token_id")
+
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permissionId Int        @map("permission_id")
+
+  @@unique([accessTokenId, permissionId])
+  @@map("access_token_permissions")
+}
+
+model Event {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdByUserId Int?      @map("created_by_user_id")
+
+  name        String  @unique
+  description String?
+
+  httpHookEvents HttpHookEvent[]
+
+  @@map("events")
+}
+
+model HttpHook {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdByUserId Int?      @map("created_by_user_id")
+
+  name          String    @unique
+  description   String?
+  url           String /// @format(url)
+  retryCount    Int       @default(3) @map("retry_count")
+  failureCount  Int       @default(0) @map("failure_count")
+  lastFailureAt DateTime? @map("last_failure_at")
+  lastSuccessAt DateTime? @map("last_success_at")
+
+  httpHookEvents HttpHookEvent[]
+
+  @@map("http_hooks")
+}
+
+model HttpHookEvent {
+  httpHook   HttpHook @relation(fields: [httpHookId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  httpHookId Int      @map("http_hook_id")
+
+  event   Event @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  eventId Int   @map("event_id")
+
+  @@unique([httpHookId, eventId])
+  @@map("http_hook_events")
+}
+
+model Sample {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdByUserId Int?      @map("created_by_user_id")
+}

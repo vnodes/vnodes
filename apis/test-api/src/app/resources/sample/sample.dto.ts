@@ -9,10 +9,19 @@ export class SampleCreateDto {
 
 export class SampleUpdateDto extends PartialType(SampleCreateDto) {}
 
-export class SampleQueryDto {
+export class SamplePagination {
   @Prop() take?: number;
   @Prop() skip?: number;
+}
+
+export class SampleQueryDto {
+  @Prop() search?: string;
   @Prop({ enum: Object.keys(Prisma.SampleScalarFieldEnum) }) distinct?: Prisma.SampleScalarFieldEnum;
+}
+
+export class SampleOrderByDto {
+  @Prop({ enum: Object.keys(Prisma.SampleScalarFieldEnum) }) orderBy?: Prisma.SampleScalarFieldEnum;
+  @Prop({ enum: Object.keys(Prisma.SortOrder) }) orderDir?: Prisma.SortOrder;
 }
 
 export class SampleProjectionDto {

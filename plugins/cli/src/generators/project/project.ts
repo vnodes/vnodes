@@ -31,21 +31,28 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   targetRoot: string;
   tag: string;
   workspaceVersion: string;
+  databaseProjectName: string;
 } & ReturnType<typeof names>;
 
 export function normalizeProjectSchema(options: ProjectGeneratorSchema): NormalizedProjectGeneratorOptions {
-  const normalizedOptions = { ...options } as NormalizedProjectGeneratorOptions;
+  const n = { ...options } as NormalizedProjectGeneratorOptions;
 
   const shortName = basename(options.directory);
 
-  normalizedOptions.shortName = shortName;
-  normalizedOptions.sourceRoot = join(__dirname, options.projectType);
-  normalizedOptions.targetRoot = join(options.directory);
-  normalizedOptions.projectName = `@${options.orgName}/${shortName}`;
-  normalizedOptions.tag = autoTag(normalizedOptions.projectType);
-  normalizedOptions.email = brandEmail(options.orgName, shortName, options.email);
+  n.shortName = shortName;
+  n.sourceRoot = join(__dirname, options.projectType);
+  n.targetRoot = join(options.directory);
+  n.projectName = `@${options.orgName}/${shortName}`;
+  n.tag = autoTag(n.projectType);
+  n.email = brandEmail(options.orgName, shortName, options.email);
 
-  return { ...normalizedOptions, ...names(shortName) };
+  if (n.projectName.match(/-api$/)) {
+    n.databaseProjectName = n.projectName.replace(/-api$/, '-db');
+  } else {
+    n.databaseProjectName = n.projectName + '-db';
+  }
+
+  return { ...n, ...names(shortName) };
 }
 
 export async function projectGenerator(tree: Tree, options: ProjectGeneratorSchema) {

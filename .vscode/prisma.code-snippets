@@ -1,0 +1,33 @@
+{
+    "prisma model": {
+        "prefix": "model",
+        "body": [
+            "model $1 {",
+            "id              Int       @id @default(autoincrement())",
+            "createdAt       DateTime  @default(now()) @map(\"created_at\")",
+            "updatedAt       DateTime  @updatedAt @map(\"updated_at\")",
+            "deletedAt       DateTime? @map(\"deleted_at\")",
+            "isActive        Boolean   @default(true) @map(\"is_active\")",
+            "createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)",
+            "createdByUserId Int?      @map(\"created_by_user_id\")",
+            "$0",
+            "}",
+        ],
+        "scope": "prisma"
+    },
+    "prisma model map": {
+        "prefix": "prisma model map",
+        "body": [
+            "model $1$2 {",
+            "  $3   $1 @relation(fields: [$3Id], references: [id], onDelete: Cascade, onUpdate: Cascade)",
+            "  $3Id Int",
+            "",
+            "  $4   $2 @relation(fields: [$4Id], references: [id], onDelete: Cascade, onUpdate: Cascade)",
+            "  $4Id Int",
+            "",
+            "  @@unique([$3Id, $4Id])",
+            "  @@map(\"$5\")",
+            "}",
+        ]
+    }
+}

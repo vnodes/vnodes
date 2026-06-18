@@ -1,6 +1,6 @@
 import { Body, Param, Query } from '@nestjs/common';
-import { GlobalValidationPipe, ParamId, ResourceController, type ResourceOperation } from '@vnodes/nest';
-import { SampleCreateDto, SampleProjectionDto, SampleQueryDto, SampleRelationDto, SampleUnsetRelationDto } from './sample.dto.js';
+import { ParamId, ResourceController, type ResourceOperation } from '@vnodes/nest';
+import { SampleCreateDto, SamplePagination, SampleRelationDto, SampleUnsetRelationDto } from './sample.dto.js';
 import { InjectDelegate } from '@vnodes/prisma';
 import { Prisma } from '@vnodes/test-db/client';
 
@@ -11,8 +11,8 @@ export class SampleController implements ResourceOperation {
     protected readonly repo: Prisma.SampleDelegate,
   ) {}
 
-  findMany(@Query() query: SampleQueryDto, @Query(GlobalValidationPipe) projection: SampleProjectionDto) {
-    return this.repo.findMany({ ...query, select: projection });
+  findMany(@Query() pagination: SamplePagination) {
+    return this.repo.findMany({ ...pagination });
   }
 
   findOneById(@ParamId() id: number) {

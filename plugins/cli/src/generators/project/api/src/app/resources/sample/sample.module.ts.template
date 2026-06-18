@@ -1,7 +1,7 @@
 import { Module } from '@vnodes/nest';
 import { SampleController } from './sample.controller.js';
 import { PrismaModule } from '@vnodes/prisma';
-import { Prisma } from '<%- projectName %>-db/client'';
+import { Prisma } from '<%- projectName %>-db/client';
 
 @Module({
   imports: [PrismaModule.forFeature({ models: [Prisma.ModelName.Sample] })],

@@ -37,6 +37,12 @@
     },
     {
       "path": "./packages/prop"
+    },
+    {
+      "path": "./apis/iam-db"
+    },
+    {
+      "path": "./apis/iam-api"
     }
   ]
 }
