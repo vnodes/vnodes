@@ -1,7 +1,7 @@
 {
   "name": "@vnodes/errors",
   "description": "Error classes",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "author": {
     "email": "robert.brightline+errors@gmail.com",
     "name": "Robert Brightline",

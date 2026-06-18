@@ -1,3 +1,20 @@
+## 0.1.11 (2026-06-18)
+
+### 🚀 Features
+
+- created the sample module based on the current version ([1d73e57](https://github.com/vnodes/vnodes/commit/1d73e57))
+- updated the workspace generator ([c373e89](https://github.com/vnodes/vnodes/commit/c373e89))
+
+### 🩹 Fixes
+
+- removed the doc task for database projects ([f084a55](https://github.com/vnodes/vnodes/commit/f084a55))
+- precommit script ([ecc400e](https://github.com/vnodes/vnodes/commit/ecc400e))
+- fixed the schema name for prisma and api generators ([636adc7](https://github.com/vnodes/vnodes/commit/636adc7))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.10 (2026-06-18)
 
 ### 🚀 Features
