@@ -17,11 +17,14 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
+      "source.organizeImports": "always",
+      "source.sortImports": "always",
+      "source.fixAll.ts": "always",
       "source.fixAll.prettier": "always",
       "source.fixAll.eslint": "always",
       "source.removeUnused.ts": "always",
       "source.addMissingImports.ts": "always",
-      "source.removeUnusedImports": "always",
+      "source.removeUnusedImports": "always"
     }
-  },
+  }
 }

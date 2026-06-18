@@ -5,9 +5,9 @@
 
 pnpm nx affected  -t prisma:generate --tuiAutoExit=true 
 pnpm nx affected  -t lint --fix --tuiAutoExit=true 
-git add .
 pnpm nx affected  -t build --tuiAutoExit=true 
 pnpm nx affected  -t test --tuiAutoExit=true 
+git add .
 
 
 

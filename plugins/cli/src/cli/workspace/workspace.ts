@@ -1,11 +1,10 @@
+import { names } from '@nx/devkit';
 import { copyFilesGenerator, filesGenerator, readTextFile, writeTextFile } from '@vnodes/fs';
 import { type Command } from 'commander';
-import { basename, dirname, join, relative } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import ejs from 'ejs';
-import { names } from '@nx/devkit';
 import { mkdir } from 'node:fs/promises';
-import { cwd } from 'node:process';
+import { dirname, join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -13,7 +12,11 @@ async function geneateFiles(name: string) {
   const removeTemplateSuffix = (filePath: string) => {
     return filePath.slice(0, -'.template'.length);
   };
-  const copyFilesGeneartor = copyFilesGenerator(join(__dirname, 'files'), join(name), removeTemplateSuffix);
+  const copyFilesGeneartor = copyFilesGenerator(
+    join(__dirname, 'files'),
+    join(name),
+    removeTemplateSuffix,
+  );
 
   for await (const entry of copyFilesGeneartor) {
     console.log(`[ Created ] ${entry}`);
@@ -25,13 +28,17 @@ async function generateTemplates(name: string) {
   const templateFiles = filesGenerator(templateRootDir);
 
   for await (const filePath of templateFiles) {
-    const templateFilePath = join(filePath, basename(filePath));
-    const templateFileContent = await readTextFile(templateFilePath);
-    const targetTemplateFilePath = relative(cwd(), templateFilePath).slice(0, -'.ejs'.length);
+    const templateFileContent = await readTextFile(filePath);
+    const relativeTemplateFilePath = relative(templateRootDir, filePath).slice(0, -'.ejs'.length);
 
-    await mkdir(dirname(targetTemplateFilePath), { recursive: true });
-    const renderedContent = ejs.render(templateFileContent, { ...names(name), email: `${name}@${name}.com` });
-    await writeTextFile(targetTemplateFilePath, renderedContent);
+    const targetFilePath = join(name, relativeTemplateFilePath);
+    await mkdir(dirname(targetFilePath), { recursive: true });
+    const renderedContent = ejs.render(templateFileContent, {
+      ...names(name),
+      email: `${name}@${name}.com`,
+    });
+    await writeTextFile(targetFilePath, renderedContent);
+    console.log(`[ Created ] ${relativeTemplateFilePath} `);
   }
 }
 

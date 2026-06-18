@@ -1,5 +1,6 @@
 import { type Command } from 'commander';
-import { readdirSync, renameSync } from 'node:fs';
+import { renameSync } from 'node:fs';
+import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 /**
@@ -22,12 +23,14 @@ export function suffix(command: Command) {
     .option('-r, --recursive', 'Apply suffix to all files under sub directories')
     .requiredOption('-s, --suffix <string>', 'Suffix to append to the file names')
     .action(async ({ suffix, recursive, undo }) => {
-      const absolutePaths = readdirSync('', {
+      const foundDirs = await readdir('./', {
         recursive: !!recursive,
         withFileTypes: true,
-      })
+      });
+
+      const absolutePaths = foundDirs
         .filter((e) => e.isFile())
-        .map((e) => join('./', e.parentPath, e.name));
+        .map((e) => join(e.parentPath, e.name));
 
       const createNewFilepath = (filePath: string) => {
         return undo ? filePath.replace(new RegExp(`${suffix}$`), '') : `${filePath}${suffix}`;
