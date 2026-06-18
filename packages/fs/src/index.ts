@@ -5,6 +5,7 @@ export * from './lib/file-system/json-file.js';
 export * from './lib/file-system/text-file.js';
 export * from './lib/file-system/yaml-file.js';
 export * from './lib/path/dirs.js';
+export * from './lib/path/files.js';
 export * from './lib/path/scope.js';
 export * from './lib/read/read-json-file.js';
 export * from './lib/read/read-text-file.js';

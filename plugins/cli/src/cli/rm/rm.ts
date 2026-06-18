@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { rmSync } from 'node:fs';
+import { rm as nodeRm } from 'node:fs/promises';
 import { scope } from '@vnodes/fs';
 import { cwd } from 'node:process';
 /**
@@ -16,8 +16,8 @@ export function rm(command: Command) {
     .command('rm')
     .description('Remove all directories/files under the given path.')
     .requiredOption('-p, --path <string>', 'Path to delete')
-    .action(({ path }) => {
+    .action(async ({ path }) => {
       const resolve = scope(cwd());
-      rmSync(resolve(path), { recursive: true, force: true });
+      await nodeRm(resolve(path), { recursive: true, force: true, maxRetries: 3, retryDelay: 400 });
     });
 }

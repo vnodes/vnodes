@@ -3,10 +3,10 @@
 
 
 
-# pnpm nx affected  -t prisma:generate --tuiAutoExit=true 
-# pnpm nx affected  -t lint --tuiAutoExit=true 
-# pnpm nx affected  -t build --tuiAutoExit=true 
-# pnpm nx affected  -t test --tuiAutoExit=true 
+pnpm nx affected  -t prisma:generate --tuiAutoExit=true 
+pnpm nx affected  -t lint --tuiAutoExit=true 
+pnpm nx affected  -t build --tuiAutoExit=true 
+pnpm nx affected  -t test --tuiAutoExit=true 
 
 
 
