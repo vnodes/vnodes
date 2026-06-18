@@ -1,43 +1,46 @@
-import { copyFiles } from '@vnodes/fs';
+import { copyFilesGenerator, filesGenerator, readTextFile, writeTextFile } from '@vnodes/fs';
 import { Command } from 'commander';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readdir } from 'node:fs/promises';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import ejs from 'ejs';
 import { names } from '@nx/devkit';
+import { mkdir } from 'node:fs/promises';
+import { cwd } from 'node:process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 async function geneateFiles(name: string) {
-  await copyFiles(join(__dirname, 'files'), join(name), (filePath: string) => {
+  const removeTemplateSuffix = (filePath: string) => {
     return filePath.slice(0, -'.template'.length);
-  });
+  };
+  const copyFilesGeneartor = copyFilesGenerator(join(__dirname, 'files'), join(name), removeTemplateSuffix);
+
+  for await (const entry of copyFilesGeneartor) {
+    console.log(`[ Created ] ${entry}`);
+  }
 }
 
 async function generateTemplates(name: string) {
   const templateRootDir = join(__dirname, 'templates');
-  const templateFiles = await readdir(templateRootDir, { recursive: true, withFileTypes: true });
+  const templateFiles = filesGenerator(templateRootDir);
 
-  for (const t of templateFiles) {
-    if (!t.isFile()) continue;
+  for await (const filePath of templateFiles) {
+    const templateFilePath = join(filePath, basename(filePath));
+    const templateFileContent = await readTextFile(templateFilePath);
+    const targetTemplateFilePath = relative(cwd(), templateFilePath).slice(0, -'.ejs'.length);
 
-    const templateFilePath = join(t.parentPath, t.name);
-    const templateFileContent = readFileSync(templateFilePath, { encoding: 'utf-8' });
-    const targetTemplateFilePath = join('./', name, templateFilePath.replace(templateRootDir, '')).slice(0, -'.ejs'.length);
-
-    mkdirSync(dirname(targetTemplateFilePath), { recursive: true });
+    await mkdir(dirname(targetTemplateFilePath), { recursive: true });
     const renderedContent = ejs.render(templateFileContent, { ...names(name), email: `${name}@${name}.com` });
-    writeFileSync(targetTemplateFilePath, renderedContent, { encoding: 'utf-8' });
+    await writeTextFile(targetTemplateFilePath, renderedContent);
   }
 }
 
 /**
- * Say workspace
+ * Generate nx workspace
  *
  * ### Example
  * ````sh
- *  vnodes workspace --username YourName
+ *  vnodes workspace --name WorkSpaceName
  * ````
  * @param command main command instance
  */

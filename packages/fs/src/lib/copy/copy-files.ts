@@ -1,25 +1,38 @@
-import { copyFile, mkdir, readdir } from 'node:fs/promises';
+import { copyFile, mkdir } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
+import { filesGenerator } from '../path/files.js';
 
-export async function copyFiles(sourcePath: string, targetPath: string, ...pipes: ((path: string) => string)[]) {
-  const items = await readdir(sourcePath, { recursive: true, withFileTypes: true });
+/**
+ * Copy files recursively by consuming a streaming files generator.
+ * @param sourcePath Base source directory
+ * @param targetPath Base destination directory
+ * @param pipes Transformation functions for the destination path
+ */
+export async function* copyFilesGenerator(
+  sourcePath: string,
+  targetPath: string,
+  ...pipes: ((path: string) => string)[]
+): AsyncGenerator<string, void, unknown> {
+  // Consume the stream of file paths directly
+  const files = filesGenerator(sourcePath);
 
-  for (const item of items) {
-    if (!item.isFile()) continue;
+  for await (const currentSourcePath of files) {
+    // 1. Isolate the nested folder path structure relative to the root sourcePath
+    // E.g., relative('src', 'src/modules/user/user.service.ts') -> 'modules/user/user.service.ts'
+    const relativeFilePath = relative(sourcePath, currentSourcePath);
 
-    // 1. Extract the actual source path of the file without duplication
-    const __sourcePath = join(item.parentPath, item.name);
+    // 2. Append that clean relative path directly onto your output folder base
+    const resolvedTargetPath = join(targetPath, relativeFilePath);
 
-    // 2. Isolate the nested folder path structure (e.g., 'modules/user/user.service.ts')
-    const relativeFilePath = relative(sourcePath, __sourcePath);
+    // 3. Apply transformations if pipes exist
+    const finalTargetPath =
+      pipes.length > 0 ? pipes.reduce((acc, currentPipe) => currentPipe(acc), resolvedTargetPath) : resolvedTargetPath;
 
-    // 3. Append that clean relative path directly onto your output folder base
-    const __resolvedTargetPath = join(targetPath, relativeFilePath);
+    // 4. Ensure directory exists and copy the file
+    await mkdir(dirname(finalTargetPath), { recursive: true });
+    await copyFile(currentSourcePath, finalTargetPath);
 
-    const __targetPath =
-      pipes.length > 0 ? pipes.reduce((acc, currentPipe) => currentPipe(acc), __resolvedTargetPath) : __resolvedTargetPath;
-
-    await mkdir(dirname(__targetPath), { recursive: true });
-    await copyFile(__sourcePath, __targetPath);
+    // 5. Yield the final target path back to the consumer
+    yield finalTargetPath;
   }
 }
