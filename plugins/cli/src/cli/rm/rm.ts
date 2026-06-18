@@ -7,14 +7,15 @@ import { cwd } from 'node:process';
  *
  * ### Example
  * ````sh
- *  vnodes rm --username YourName
+ *  vnodes rm --path some/path/to/delete
  * ````
  * @param command main command instance
  */
 export function rm(command: Command) {
   command
     .command('rm')
-    .requiredOption('-p, --path <string>', 'What is your name')
+    .description('Remove all directories/files under the given path.')
+    .requiredOption('-p, --path <string>', 'Path to delete')
     .action(({ path }) => {
       const resolve = scope(cwd());
       rmSync(resolve(path), { recursive: true, force: true });

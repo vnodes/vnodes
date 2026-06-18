@@ -1,56 +1,44 @@
-import { readdir, stat } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
-import { cwd } from 'node:process';
-
-export type DirsOptions = {
-  recursive?: boolean;
-};
-
-export type Dir = {
-  relativePath: string;
-  absolutePath: string;
-  fileName: string;
-  isFile: boolean;
-  isDirectory: boolean;
-  children?: Dir[];
-};
+import { opendir, readdir } from 'node:fs/promises';
+import { join } from 'node:path';
 
 /**
- * List files/directories
- *
- * @param rootPath root directory path
- * @param options {@link DirsOptions}
- * @returns dirs {@link Dir[]}
+ * List all directories/files path under the {@link rootPath}.
+ * @param rootPath
+ * @returns
  */
-export async function dirs(rootPath: string, options?: DirsOptions): Promise<Dir[]> {
-  const foundPaths = await readdir(rootPath, { encoding: 'utf8' });
+export async function dirs(rootPath: string) {
+  return await readdir(rootPath, { recursive: true, withFileTypes: true });
+}
 
-  const result: Dir[] = [];
-
-  for (const fileName of foundPaths) {
-    const absolutePath = resolve(join(rootPath, fileName));
-    const relativePath = absolutePath.replace(`${cwd()}/`, './');
-    const __stat = await stat(absolutePath);
-    const isDirectory = __stat.isDirectory();
-    const isFile = __stat.isFile();
-
-    const newDir: Dir = {
-      fileName,
-      relativePath,
-      absolutePath,
-      isDirectory,
-      isFile,
-    };
-
-    if (isDirectory && options?.recursive === true) {
-      const children = await dirs(absolutePath, options);
-
-      if (children) {
-        newDir.children = children;
-      }
-    }
-    result.push(newDir);
+/**
+ * High-performance, streaming directory traversal using Async Generators.
+ * Memory footprint stays near zero regardless of whether there are 10 or 1,000,000 files.
+ * * @param rootPath The directory to traverse
+ */
+export async function* dirsGenerator(rootPath: string): AsyncGenerator<string> {
+  let dir;
+  try {
+    // opendir streams directory entries instead of loading them all at once
+    dir = await opendir(rootPath);
+  } catch (err) {
+    // Handle or ignore permission errors/missing folders
+    return;
   }
 
-  return result;
+  try {
+    for await (const entry of dir) {
+      const fullPath = join(rootPath, entry.name);
+
+      if (entry.isDirectory()) {
+        // Recursively yield files from subdirectories without deep stacking arrays
+        yield* dirsGenerator(fullPath);
+      } else if (entry.isFile()) {
+        // Immediately stream the file path out to the consumer
+        yield fullPath;
+      }
+    }
+  } finally {
+    // Explicitly close the directory handle
+    await dir.close();
+  }
 }

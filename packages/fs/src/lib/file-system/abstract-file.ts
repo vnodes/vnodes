@@ -1,9 +1,9 @@
-import type { ScopedResolver } from '../path/scope.js';
+import type { resolve as ResolveFn } from 'node:path';
 
 export class AbstractFile<T> {
   constructor(
     private readonly filepath: string,
-    private readonly scopedResolver?: ScopedResolver,
+    private readonly scopedResolver?: typeof ResolveFn,
   ) {}
 
   protected resolve() {

@@ -181,4 +181,6 @@ model Sample {
   isActive        Boolean   @default(true) @map("is_active")
   createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
   createdByUserId Int?      @map("created_by_user_id")
+  name            String    @unique
+  description     String?
 }

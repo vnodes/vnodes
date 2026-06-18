@@ -43,6 +43,8 @@ export type SampleMinAggregateOutputType = {
   deletedAt: Date | null
   isActive: boolean | null
   createdByUserId: number | null
+  name: string | null
+  description: string | null
 }
 
 export type SampleMaxAggregateOutputType = {
@@ -52,6 +54,8 @@ export type SampleMaxAggregateOutputType = {
   deletedAt: Date | null
   isActive: boolean | null
   createdByUserId: number | null
+  name: string | null
+  description: string | null
 }
 
 export type SampleCountAggregateOutputType = {
@@ -61,6 +65,8 @@ export type SampleCountAggregateOutputType = {
   deletedAt: number
   isActive: number
   createdByUserId: number
+  name: number
+  description: number
   _all: number
 }
 
@@ -82,6 +88,8 @@ export type SampleMinAggregateInputType = {
   deletedAt?: true
   isActive?: true
   createdByUserId?: true
+  name?: true
+  description?: true
 }
 
 export type SampleMaxAggregateInputType = {
@@ -91,6 +99,8 @@ export type SampleMaxAggregateInputType = {
   deletedAt?: true
   isActive?: true
   createdByUserId?: true
+  name?: true
+  description?: true
 }
 
 export type SampleCountAggregateInputType = {
@@ -100,6 +110,8 @@ export type SampleCountAggregateInputType = {
   deletedAt?: true
   isActive?: true
   createdByUserId?: true
+  name?: true
+  description?: true
   _all?: true
 }
 
@@ -196,6 +208,8 @@ export type SampleGroupByOutputType = {
   deletedAt: Date | null
   isActive: boolean
   createdByUserId: number | null
+  name: string
+  description: string | null
   _count: SampleCountAggregateOutputType | null
   _avg: SampleAvgAggregateOutputType | null
   _sum: SampleSumAggregateOutputType | null
@@ -228,6 +242,8 @@ export type SampleWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Sample"> | boolean
   createdByUserId?: Prisma.IntNullableFilter<"Sample"> | number | null
+  name?: Prisma.StringFilter<"Sample"> | string
+  description?: Prisma.StringNullableFilter<"Sample"> | string | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
@@ -238,11 +254,14 @@ export type SampleOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdBy?: Prisma.UserOrderByWithRelationInput
 }
 
 export type SampleWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  name?: string
   AND?: Prisma.SampleWhereInput | Prisma.SampleWhereInput[]
   OR?: Prisma.SampleWhereInput[]
   NOT?: Prisma.SampleWhereInput | Prisma.SampleWhereInput[]
@@ -251,8 +270,9 @@ export type SampleWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Sample"> | boolean
   createdByUserId?: Prisma.IntNullableFilter<"Sample"> | number | null
+  description?: Prisma.StringNullableFilter<"Sample"> | string | null
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-}, "id">
+}, "id" | "name">
 
 export type SampleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -261,6 +281,8 @@ export type SampleOrderByWithAggregationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SampleCountOrderByAggregateInput
   _avg?: Prisma.SampleAvgOrderByAggregateInput
   _max?: Prisma.SampleMaxOrderByAggregateInput
@@ -278,6 +300,8 @@ export type SampleScalarWhereWithAggregatesInput = {
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Sample"> | boolean
   createdByUserId?: Prisma.IntNullableWithAggregatesFilter<"Sample"> | number | null
+  name?: Prisma.StringWithAggregatesFilter<"Sample"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Sample"> | string | null
 }
 
 export type SampleCreateInput = {
@@ -285,6 +309,8 @@ export type SampleCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
+  name: string
+  description?: string | null
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatdSamplesInput
 }
 
@@ -295,6 +321,8 @@ export type SampleUncheckedCreateInput = {
   deletedAt?: Date | string | null
   isActive?: boolean
   createdByUserId?: number | null
+  name: string
+  description?: string | null
 }
 
 export type SampleUpdateInput = {
@@ -302,6 +330,8 @@ export type SampleUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdBy?: Prisma.UserUpdateOneWithoutCreatdSamplesNestedInput
 }
 
@@ -312,6 +342,8 @@ export type SampleUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SampleCreateManyInput = {
@@ -321,6 +353,8 @@ export type SampleCreateManyInput = {
   deletedAt?: Date | string | null
   isActive?: boolean
   createdByUserId?: number | null
+  name: string
+  description?: string | null
 }
 
 export type SampleUpdateManyMutationInput = {
@@ -328,6 +362,8 @@ export type SampleUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SampleUncheckedUpdateManyInput = {
@@ -337,6 +373,8 @@ export type SampleUncheckedUpdateManyInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SampleListRelationFilter = {
@@ -356,6 +394,8 @@ export type SampleCountOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
 }
 
 export type SampleAvgOrderByAggregateInput = {
@@ -370,6 +410,8 @@ export type SampleMaxOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
 }
 
 export type SampleMinOrderByAggregateInput = {
@@ -379,6 +421,8 @@ export type SampleMinOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
 }
 
 export type SampleSumOrderByAggregateInput = {
@@ -433,6 +477,8 @@ export type SampleCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
+  name: string
+  description?: string | null
 }
 
 export type SampleUncheckedCreateWithoutCreatedByInput = {
@@ -441,6 +487,8 @@ export type SampleUncheckedCreateWithoutCreatedByInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
+  name: string
+  description?: string | null
 }
 
 export type SampleCreateOrConnectWithoutCreatedByInput = {
@@ -479,6 +527,8 @@ export type SampleScalarWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Sample"> | boolean
   createdByUserId?: Prisma.IntNullableFilter<"Sample"> | number | null
+  name?: Prisma.StringFilter<"Sample"> | string
+  description?: Prisma.StringNullableFilter<"Sample"> | string | null
 }
 
 export type SampleCreateManyCreatedByInput = {
@@ -487,6 +537,8 @@ export type SampleCreateManyCreatedByInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
+  name: string
+  description?: string | null
 }
 
 export type SampleUpdateWithoutCreatedByInput = {
@@ -494,6 +546,8 @@ export type SampleUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SampleUncheckedUpdateWithoutCreatedByInput = {
@@ -502,6 +556,8 @@ export type SampleUncheckedUpdateWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SampleUncheckedUpdateManyWithoutCreatedByInput = {
@@ -510,6 +566,8 @@ export type SampleUncheckedUpdateManyWithoutCreatedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -521,6 +579,8 @@ export type SampleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   deletedAt?: boolean
   isActive?: boolean
   createdByUserId?: boolean
+  name?: boolean
+  description?: boolean
   createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
@@ -531,6 +591,8 @@ export type SampleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   deletedAt?: boolean
   isActive?: boolean
   createdByUserId?: boolean
+  name?: boolean
+  description?: boolean
   createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
@@ -541,6 +603,8 @@ export type SampleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   deletedAt?: boolean
   isActive?: boolean
   createdByUserId?: boolean
+  name?: boolean
+  description?: boolean
   createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
@@ -551,9 +615,11 @@ export type SampleSelectScalar = {
   deletedAt?: boolean
   isActive?: boolean
   createdByUserId?: boolean
+  name?: boolean
+  description?: boolean
 }
 
-export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "createdByUserId", ExtArgs["result"]["sample"]>
+export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "createdByUserId" | "name" | "description", ExtArgs["result"]["sample"]>
 export type SampleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
 }
@@ -576,6 +642,8 @@ export type $SamplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     deletedAt: Date | null
     isActive: boolean
     createdByUserId: number | null
+    name: string
+    description: string | null
   }, ExtArgs["result"]["sample"]>
   composites: {}
 }
@@ -1006,6 +1074,8 @@ export interface SampleFieldRefs {
   readonly deletedAt: Prisma.FieldRef<"Sample", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"Sample", 'Boolean'>
   readonly createdByUserId: Prisma.FieldRef<"Sample", 'Int'>
+  readonly name: Prisma.FieldRef<"Sample", 'String'>
+  readonly description: Prisma.FieldRef<"Sample", 'String'>
 }
     
 

@@ -12,7 +12,9 @@ export class SampleQueryDto {
 export class SampleService implements ResourceOperation {
   constructor(protected readonly delegate: Prisma.SampleDelegate) {}
 
-  protected toWhere() {}
+  protected toWhere() {
+    return {};
+  }
 
   findMany(query: Prisma.SampleFindManyArgs) {
     return this.delegate.findMany(query);

@@ -1397,7 +1397,9 @@ export const SampleScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId'
+  createdByUserId: 'createdByUserId',
+  name: 'name',
+  description: 'description'
 } as const
 
 export type SampleScalarFieldEnum = (typeof SampleScalarFieldEnum)[keyof typeof SampleScalarFieldEnum]

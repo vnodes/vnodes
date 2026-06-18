@@ -3,25 +3,26 @@ import { readdirSync, renameSync } from 'node:fs';
 import { join } from 'node:path';
 
 /**
- * Suffix file/files recursive
+ * Suffix file/files recursive (optional)
  *
  * ### Example
  * ````sh
- *  vnodes suffix --username YourName
+ *  # Add .template suffix
+ *  vnodes suffix --s .template -r
+ *
+ *  # Remove the .template suffix
+ *  vnodes suffix --s .template -r -u
  * ````
  * @param command main command instance
  */
 export function suffix(command: Command) {
   command
     .command('suffix')
-    .option('-u, --undo', 'Would you like to undo the suffix?')
-    .option('-r, --recursive', 'Would you like to do recursively?')
-    .requiredOption(
-      '-s, --suffix <string>',
-      'What suffix would you like to add?',
-    )
+    .option('-u, --undo', 'Remove the suffix from file names')
+    .option('-r, --recursive', 'Apply suffix to all files under sub directories')
+    .requiredOption('-s, --suffix <string>', 'Suffix to append to the file names')
     .action(async ({ suffix, recursive, undo }) => {
-      const filePaths = readdirSync('./', {
+      const absolutePaths = readdirSync('', {
         recursive: !!recursive,
         withFileTypes: true,
       })
@@ -29,12 +30,10 @@ export function suffix(command: Command) {
         .map((e) => join('./', e.parentPath, e.name));
 
       const createNewFilepath = (filePath: string) => {
-        return undo
-          ? filePath.replace(new RegExp(`${suffix}$`), '')
-          : `${filePath}${suffix}`;
+        return undo ? filePath.replace(new RegExp(`${suffix}$`), '') : `${filePath}${suffix}`;
       };
 
-      for (const filePath of filePaths) {
+      for (const filePath of absolutePaths) {
         renameSync(filePath, createNewFilepath(filePath));
       }
     });

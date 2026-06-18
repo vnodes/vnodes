@@ -1,24 +1,23 @@
-import { rm } from 'node:fs/promises';
-import { join } from 'node:path';
-import { workspaceRoot } from '@nx/devkit';
-import { relativeScope } from '../path/scope.js';
-import { writeTextFile } from '../write/write-text-file.js';
+import { readFile } from 'fs/promises';
 import { readTextFile } from './read-text-file.js';
 
+// 1. Mock the readTextFile dependency
+vi.mock('fs/promises"', () => ({
+  readFile: vi.fn(),
+}));
+
 describe('readTextFile', () => {
-    const resolve = relativeScope(join(workspaceRoot, 'tmp', 'test', 'readTextFile'));
-    const filepath = resolve('test.txt');
+  beforeAll(() => {
+    vi.resetAllMocks();
+  });
 
-    beforeAll(async () => {
-        await writeTextFile(filepath, 'true');
-    });
+  it('should read text file', async () => {
+    const mockValue = 'Some content';
+    const filePath = 'file.txt';
+    vi.mocked(readFile).mockResolvedValue(mockValue);
+    const result = await readTextFile(filePath);
 
-    afterAll(async () => {
-        await rm(resolve(), { recursive: true });
-    });
-
-    it('should read json file', async () => {
-        const content = await readTextFile(filepath);
-        expect(content).toEqual('true');
-    });
+    expect(readFile).toHaveBeenCalledWith(filePath);
+    expect(result).toEqual(mockValue);
+  });
 });

@@ -1,6 +1,4 @@
-import { resolve as nodeResolve } from 'node:path';
-
-export type ScopedResolver = (...segments: string[]) => string;
+import { resolve as nodeResolve, relative, sep } from 'node:path';
 
 /**
  * Create a scoped resolver that resolves path segments and compre the absolute result with the {@link scopedPath}.
@@ -9,27 +7,22 @@ export type ScopedResolver = (...segments: string[]) => string;
  * @param scopedPath scoped path.
  * @returns -- {@link ScopedResolver}
  */
-export function scope(scopedPath: string): ScopedResolver {
-    const absoluteRoot = nodeResolve(scopedPath);
+export function scope(scopedPath: string): typeof nodeResolve {
+  const absoluteRoot = nodeResolve(scopedPath);
 
-    return (...segments: string[]) => {
-        const absolutePath = nodeResolve(...segments);
+  return (...segments: string[]) => {
+    const absolutePath = nodeResolve(absoluteRoot, ...segments);
 
-        if (absolutePath.startsWith(absoluteRoot)) {
-            return absolutePath;
-        }
-        throw new Error(`Access denied to the path, ${absolutePath}`);
-    };
-}
+    // Determine the relative path from the root to the target
+    const relativePath = relative(absoluteRoot, absolutePath);
 
-/**
- * Create a resolver function that resolves the segments following the defined scoped path
- *
- * @param scopedPath scoped path
- * @returns -- {@link ScopedResolver}
- */
-export function relativeScope(scopedPath: string) {
-    const rootPath = nodeResolve(scopedPath);
-    const resolve = scope(scopedPath);
-    return (...segments: string[]) => resolve(rootPath, ...segments);
+    // Security Check: If it starts with '..' or moves up the tree, block it.
+    const isUnderRoot = relativePath === '' || (!relativePath.startsWith('..') && !relativePath.startsWith(sep));
+
+    if (isUnderRoot) {
+      return absolutePath;
+    }
+
+    throw new Error(`Access denied: Path ${absolutePath} escapes the scoped directory ${absoluteRoot}`);
+  };
 }
