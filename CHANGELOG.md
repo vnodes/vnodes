@@ -1,3 +1,19 @@
+## 0.1.10 (2026-06-18)
+
+### 🚀 Features
+
+- creatd iam datbase ([581c4e9](https://github.com/vnodes/vnodes/commit/581c4e9))
+- created fs fns ([61f9ef5](https://github.com/vnodes/vnodes/commit/61f9ef5))
+
+### 🩹 Fixes
+
+- fixed the scope resolver ([a096dfc](https://github.com/vnodes/vnodes/commit/a096dfc))
+- fixed the workspace generator ([473ab18](https://github.com/vnodes/vnodes/commit/473ab18))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.9 (2026-06-16)
 
 ### 🚀 Features

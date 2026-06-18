@@ -1,7 +1,7 @@
 {
   "name": "@vnodes/config",
   "description": "Nestjs config module",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": {
     "email": "robert.brightline+vnodes-config@gmail.com",
     "name": "Robert Brightline",
