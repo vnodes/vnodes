@@ -32,6 +32,7 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   tag: string;
   workspaceVersion: string;
   databaseProjectName: string;
+  commonShortName: string;
 } & ReturnType<typeof names>;
 
 export function normalizeProjectSchema(
@@ -54,6 +55,8 @@ export function normalizeProjectSchema(
   } else {
     n.databaseProjectName = n.projectName + '-db';
   }
+
+  n.commonShortName = n.shortName.replace(/-api$/, '').replace(/-db$/, '');
 
   return { ...n, ...names(shortName) };
 }
