@@ -87,7 +87,7 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId',
+  updatedById: 'updatedById',
   username: 'username',
   password: 'password',
   isTwoFactorAuthEnabled: 'isTwoFactorAuthEnabled',
@@ -103,7 +103,7 @@ export const RoleScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId',
+  updatedById: 'updatedById',
   name: 'name',
   description: 'description'
 } as const
@@ -117,7 +117,7 @@ export const PermissionScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId',
+  updatedById: 'updatedById',
   name: 'name'
 } as const
 
@@ -146,7 +146,7 @@ export const AccessTokenScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId',
+  updatedById: 'updatedById',
   name: 'name',
   token: 'token',
   isExpired: 'isExpired'
@@ -169,7 +169,7 @@ export const EventScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId',
+  updatedById: 'updatedById',
   name: 'name',
   description: 'description'
 } as const
@@ -183,7 +183,7 @@ export const HttpHookScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId',
+  updatedById: 'updatedById',
   name: 'name',
   description: 'description',
   url: 'url',
@@ -210,7 +210,7 @@ export const SampleScalarFieldEnum = {
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   isActive: 'isActive',
-  createdByUserId: 'createdByUserId',
+  updatedById: 'updatedById',
   name: 'name',
   description: 'description'
 } as const

@@ -8,9 +8,9 @@ export function inferOperationName(resourceMethod: ResourceMethod): OperationNam
     case 'createMany':
       return OperationName.CREATE_MANY;
     case 'findMany':
-      return OperationName.READ_MANY;
+      return OperationName.FIND_MANY;
     case 'findOneById':
-      return OperationName.READ_ONE;
+      return OperationName.FIND_ONE;
     case 'updateOneById':
       return OperationName.UPDATE_ONE;
     case 'updateMany':

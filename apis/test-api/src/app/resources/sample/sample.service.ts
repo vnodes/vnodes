@@ -1,4 +1,4 @@
-import { type ResourceOperation } from '@vnodes/nest';
+import { type ResourceControllerInterface } from '@vnodes/nest';
 import { type Prisma } from '@vnodes/test-db';
 
 export class SampleQueryDto {
@@ -9,7 +9,7 @@ export class SampleQueryDto {
   search?: string;
 }
 
-export class SampleService implements ResourceOperation {
+export class SampleService implements ResourceControllerInterface {
   constructor(protected readonly delegate: Prisma.SampleDelegate) {}
 
   protected toWhere() {

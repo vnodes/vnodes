@@ -1,38 +1,57 @@
 import { Body } from '@nestjs/common';
-import { DeleteOneById, GetAll, GetOneById, ParamId, PostOne, PutOneById, ResourceController } from '@vnodes/nest';
-import { type SampleCreateDto } from './sample.dto.js';
-import { InjectDelegate } from '@vnodes/prisma';
 import { Prisma } from '@vnodes/iam-db/client';
+import {
+  ParamId,
+  ResourceController,
+  UserId,
+  type ResourceControllerInterface,
+} from '@vnodes/nest';
+import { InjectDelegate } from '@vnodes/prisma';
+import { type SampleCreateDto, type SampleCreateManyDto } from './sample.dto.js';
 
 @ResourceController()
-export class SampleController {
+export class SampleController implements ResourceControllerInterface {
   constructor(
     @InjectDelegate(Prisma.ModelName.Sample)
     protected readonly repo: Prisma.SampleDelegate,
   ) {}
 
-  @GetAll()
-  getAll() {
+  createOne(@Body() data: SampleCreateDto, @UserId() updatedById: number) {
+    return this.repo.create({ data: { ...data, updatedById } });
+  }
+
+  findMany() {
     return this.repo.findMany();
   }
 
-  @GetOneById()
-  getOneById(@ParamId() id: number) {
+  findOneById(@ParamId() id: number) {
     return this.repo.findUnique({ where: { id } });
   }
 
-  @PostOne()
-  postOne(@Body() data: SampleCreateDto) {
-    return this.repo.create({ data });
+  updateOneById(
+    @ParamId() id: number,
+    @Body() data: SampleCreateDto,
+    @UserId() updatedById: number,
+  ) {
+    return this.repo.update({ where: { id }, data: { ...data, updatedById } });
   }
 
-  @PutOneById()
-  putOneById(@ParamId() id: number, @Body() data: SampleCreateDto) {
-    return this.repo.update({ where: { id }, data });
-  }
-
-  @DeleteOneById()
   deleteOneById(@ParamId() id: number) {
     return this.repo.delete({ where: { id } });
+  }
+
+  createMany(@Body() body: SampleCreateManyDto, @UserId() updatedById: number) {
+    return this.repo.createMany({
+      data: [...body.data.map((e) => ({ ...e, updatedById }))],
+      skipDuplicates: true,
+    });
+  }
+
+  updateMany(@Body() body: SampleCreateManyDto, @UserId() updatedById: number) {
+    return this.repo.updateMany({ data: body.data.map((e) => ({ ...e, updatedById })) });
+  }
+
+  deleteMany() {
+    return this.repo.deleteMany();
   }
 }

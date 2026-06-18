@@ -1,9 +1,9 @@
 import { Controller } from '@nestjs/common';
-import { inferResourceName } from '../utils/infer-resource-name.js';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { names, pluralize } from '@vnodes/names';
 import { Resource } from '../metadata/resource.js';
+import { inferResourceName } from '../utils/infer-resource-name.js';
 import { ResourceControllerMethods } from './resource-controller-methods.js';
-import { ApiBearerAuth } from '@nestjs/swagger';
 
 export type Parameter<T> = Exclude<T, undefined | null>;
 
@@ -13,9 +13,8 @@ export function ResourceController(): ClassDecorator {
     const className = classType.name;
     const { pascal, kebab } = names(pluralize(inferResourceName(className)));
 
-    Controller(kebab)(...args);
-    ApiBearerAuth()(...args);
-    Resource(pascal)(...args);
-    ResourceControllerMethods()(...args);
+    [Controller(kebab), ApiBearerAuth(), Resource(pascal), ResourceControllerMethods()].forEach(
+      (e) => e(...args),
+    );
   };
 }

@@ -1,7 +1,7 @@
 import { formatFiles, generateFiles, names, updateJson, type Tree } from '@nx/devkit';
 import { basename, dirname, join } from 'node:path';
-import { type ProjectGeneratorSchema, type ProjectType } from './schema.d.js';
 import { fileURLToPath } from 'node:url';
+import { type ProjectGeneratorSchema, type ProjectType } from './schema.d.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -34,12 +34,15 @@ export type NormalizedProjectGeneratorOptions = ProjectGeneratorSchema & {
   databaseProjectName: string;
 } & ReturnType<typeof names>;
 
-export function normalizeProjectSchema(options: ProjectGeneratorSchema): NormalizedProjectGeneratorOptions {
+export function normalizeProjectSchema(
+  options: ProjectGeneratorSchema,
+): NormalizedProjectGeneratorOptions {
   const n = { ...options } as NormalizedProjectGeneratorOptions;
 
   const shortName = basename(options.directory);
 
   n.shortName = shortName;
+
   n.sourceRoot = join(__dirname, options.projectType);
   n.targetRoot = join(options.directory);
   n.projectName = `@${options.orgName}/${shortName}`;
@@ -58,7 +61,9 @@ export function normalizeProjectSchema(options: ProjectGeneratorSchema): Normali
 export async function projectGenerator(tree: Tree, options: ProjectGeneratorSchema) {
   const normalizedOptions = normalizeProjectSchema(options);
 
-  generateFiles(tree, normalizedOptions.sourceRoot, normalizedOptions.targetRoot, { ...normalizedOptions });
+  generateFiles(tree, normalizedOptions.sourceRoot, normalizedOptions.targetRoot, {
+    ...normalizedOptions,
+  });
 
   generateFiles(tree, join(__dirname, 'common'), normalizedOptions.targetRoot, {
     ...normalizedOptions,

@@ -1,4 +1,4 @@
-import { Command } from 'commander';
+import { type Command } from 'commander';
 import { rm as nodeRm } from 'node:fs/promises';
 import { scope } from '@vnodes/fs';
 import { cwd } from 'node:process';

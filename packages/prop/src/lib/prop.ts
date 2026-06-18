@@ -1,10 +1,11 @@
 import { ApiProperty, type ApiPropertyOptions } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
-import { IsIn } from 'class-validator';
+import { Expose, Type, type ClassConstructor } from 'class-transformer';
+import { IsIn, ValidateNested } from 'class-validator';
 
 export type PropOptions = {
   required?: boolean;
   enum?: string[];
+  type?: () => ClassConstructor<any>;
 };
 
 export function Prop(options?: PropOptions): PropertyDecorator {
@@ -18,7 +19,13 @@ export function Prop(options?: PropOptions): PropertyDecorator {
       IsIn(options.enum)(...args);
     }
 
-    ApiProperty({ ...normalizedOptions })(...args);
+    if (typeof options?.type === 'function') {
+      Type(options.type)(...args);
+      ValidateNested()(...args);
+      ApiProperty({ type: options.type, ...normalizedOptions })(...args);
+    } else {
+      ApiProperty({ ...normalizedOptions })(...args);
+    }
     Expose()(...args);
   };
 }

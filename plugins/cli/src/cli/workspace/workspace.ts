@@ -1,5 +1,5 @@
 import { copyFilesGenerator, filesGenerator, readTextFile, writeTextFile } from '@vnodes/fs';
-import { Command } from 'commander';
+import { type Command } from 'commander';
 import { basename, dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ejs from 'ejs';

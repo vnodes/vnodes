@@ -28,14 +28,14 @@ export type AggregateHttpHook = {
 
 export type HttpHookAvgAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
   retryCount: number | null
   failureCount: number | null
 }
 
 export type HttpHookSumAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
   retryCount: number | null
   failureCount: number | null
 }
@@ -46,7 +46,7 @@ export type HttpHookMinAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   name: string | null
   description: string | null
   url: string | null
@@ -62,7 +62,7 @@ export type HttpHookMaxAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   name: string | null
   description: string | null
   url: string | null
@@ -78,7 +78,7 @@ export type HttpHookCountAggregateOutputType = {
   updatedAt: number
   deletedAt: number
   isActive: number
-  createdByUserId: number
+  updatedById: number
   name: number
   description: number
   url: number
@@ -92,14 +92,14 @@ export type HttpHookCountAggregateOutputType = {
 
 export type HttpHookAvgAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
   retryCount?: true
   failureCount?: true
 }
 
 export type HttpHookSumAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
   retryCount?: true
   failureCount?: true
 }
@@ -110,7 +110,7 @@ export type HttpHookMinAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   description?: true
   url?: true
@@ -126,7 +126,7 @@ export type HttpHookMaxAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   description?: true
   url?: true
@@ -142,7 +142,7 @@ export type HttpHookCountAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   description?: true
   url?: true
@@ -245,7 +245,7 @@ export type HttpHookGroupByOutputType = {
   updatedAt: Date
   deletedAt: Date | null
   isActive: boolean
-  createdByUserId: number | null
+  updatedById: number | null
   name: string
   description: string | null
   url: string
@@ -284,7 +284,7 @@ export type HttpHookWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"HttpHook"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"HttpHook"> | Date | string | null
   isActive?: Prisma.BoolFilter<"HttpHook"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"HttpHook"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"HttpHook"> | number | null
   name?: Prisma.StringFilter<"HttpHook"> | string
   description?: Prisma.StringNullableFilter<"HttpHook"> | string | null
   url?: Prisma.StringFilter<"HttpHook"> | string
@@ -292,7 +292,7 @@ export type HttpHookWhereInput = {
   failureCount?: Prisma.IntFilter<"HttpHook"> | number
   lastFailureAt?: Prisma.DateTimeNullableFilter<"HttpHook"> | Date | string | null
   lastSuccessAt?: Prisma.DateTimeNullableFilter<"HttpHook"> | Date | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   httpHookEvents?: Prisma.HttpHookEventListRelationFilter
 }
 
@@ -302,7 +302,7 @@ export type HttpHookOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   url?: Prisma.SortOrder
@@ -310,7 +310,7 @@ export type HttpHookOrderByWithRelationInput = {
   failureCount?: Prisma.SortOrder
   lastFailureAt?: Prisma.SortOrderInput | Prisma.SortOrder
   lastSuccessAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdBy?: Prisma.UserOrderByWithRelationInput
+  updatedBy?: Prisma.UserOrderByWithRelationInput
   httpHookEvents?: Prisma.HttpHookEventOrderByRelationAggregateInput
 }
 
@@ -324,14 +324,14 @@ export type HttpHookWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"HttpHook"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"HttpHook"> | Date | string | null
   isActive?: Prisma.BoolFilter<"HttpHook"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"HttpHook"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"HttpHook"> | number | null
   description?: Prisma.StringNullableFilter<"HttpHook"> | string | null
   url?: Prisma.StringFilter<"HttpHook"> | string
   retryCount?: Prisma.IntFilter<"HttpHook"> | number
   failureCount?: Prisma.IntFilter<"HttpHook"> | number
   lastFailureAt?: Prisma.DateTimeNullableFilter<"HttpHook"> | Date | string | null
   lastSuccessAt?: Prisma.DateTimeNullableFilter<"HttpHook"> | Date | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   httpHookEvents?: Prisma.HttpHookEventListRelationFilter
 }, "id" | "name">
 
@@ -341,7 +341,7 @@ export type HttpHookOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   url?: Prisma.SortOrder
@@ -365,7 +365,7 @@ export type HttpHookScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"HttpHook"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"HttpHook"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"HttpHook"> | boolean
-  createdByUserId?: Prisma.IntNullableWithAggregatesFilter<"HttpHook"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"HttpHook"> | number | null
   name?: Prisma.StringWithAggregatesFilter<"HttpHook"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"HttpHook"> | string | null
   url?: Prisma.StringWithAggregatesFilter<"HttpHook"> | string
@@ -387,7 +387,7 @@ export type HttpHookCreateInput = {
   failureCount?: number
   lastFailureAt?: Date | string | null
   lastSuccessAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedHttpHooksInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedHttpHooksInput
   httpHookEvents?: Prisma.HttpHookEventCreateNestedManyWithoutHttpHookInput
 }
 
@@ -397,7 +397,7 @@ export type HttpHookUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   description?: string | null
   url: string
@@ -420,7 +420,7 @@ export type HttpHookUpdateInput = {
   failureCount?: Prisma.IntFieldUpdateOperationsInput | number
   lastFailureAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastSuccessAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedHttpHooksNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedHttpHooksNestedInput
   httpHookEvents?: Prisma.HttpHookEventUpdateManyWithoutHttpHookNestedInput
 }
 
@@ -430,7 +430,7 @@ export type HttpHookUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   url?: Prisma.StringFieldUpdateOperationsInput | string
@@ -447,7 +447,7 @@ export type HttpHookCreateManyInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   description?: string | null
   url: string
@@ -477,7 +477,7 @@ export type HttpHookUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   url?: Prisma.StringFieldUpdateOperationsInput | string
@@ -503,7 +503,7 @@ export type HttpHookCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   url?: Prisma.SortOrder
@@ -515,7 +515,7 @@ export type HttpHookCountOrderByAggregateInput = {
 
 export type HttpHookAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   retryCount?: Prisma.SortOrder
   failureCount?: Prisma.SortOrder
 }
@@ -526,7 +526,7 @@ export type HttpHookMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   url?: Prisma.SortOrder
@@ -542,7 +542,7 @@ export type HttpHookMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   url?: Prisma.SortOrder
@@ -554,7 +554,7 @@ export type HttpHookMinOrderByAggregateInput = {
 
 export type HttpHookSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   retryCount?: Prisma.SortOrder
   failureCount?: Prisma.SortOrder
 }
@@ -564,45 +564,45 @@ export type HttpHookScalarRelationFilter = {
   isNot?: Prisma.HttpHookWhereInput
 }
 
-export type HttpHookCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutCreatedByInput, Prisma.HttpHookUncheckedCreateWithoutCreatedByInput> | Prisma.HttpHookCreateWithoutCreatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutCreatedByInput | Prisma.HttpHookCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.HttpHookCreateManyCreatedByInputEnvelope
+export type HttpHookCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutUpdatedByInput, Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput> | Prisma.HttpHookCreateWithoutUpdatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput | Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.HttpHookCreateManyUpdatedByInputEnvelope
   connect?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
 }
 
-export type HttpHookUncheckedCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutCreatedByInput, Prisma.HttpHookUncheckedCreateWithoutCreatedByInput> | Prisma.HttpHookCreateWithoutCreatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutCreatedByInput | Prisma.HttpHookCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.HttpHookCreateManyCreatedByInputEnvelope
+export type HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutUpdatedByInput, Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput> | Prisma.HttpHookCreateWithoutUpdatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput | Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.HttpHookCreateManyUpdatedByInputEnvelope
   connect?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
 }
 
-export type HttpHookUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutCreatedByInput, Prisma.HttpHookUncheckedCreateWithoutCreatedByInput> | Prisma.HttpHookCreateWithoutCreatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutCreatedByInput | Prisma.HttpHookCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.HttpHookUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.HttpHookUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.HttpHookCreateManyCreatedByInputEnvelope
+export type HttpHookUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutUpdatedByInput, Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput> | Prisma.HttpHookCreateWithoutUpdatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput | Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.HttpHookUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.HttpHookUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.HttpHookCreateManyUpdatedByInputEnvelope
   set?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
   disconnect?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
   delete?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
   connect?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
-  update?: Prisma.HttpHookUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.HttpHookUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.HttpHookUpdateManyWithWhereWithoutCreatedByInput | Prisma.HttpHookUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.HttpHookUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.HttpHookUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.HttpHookUpdateManyWithWhereWithoutUpdatedByInput | Prisma.HttpHookUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.HttpHookScalarWhereInput | Prisma.HttpHookScalarWhereInput[]
 }
 
-export type HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutCreatedByInput, Prisma.HttpHookUncheckedCreateWithoutCreatedByInput> | Prisma.HttpHookCreateWithoutCreatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutCreatedByInput | Prisma.HttpHookCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.HttpHookUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.HttpHookUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.HttpHookCreateManyCreatedByInputEnvelope
+export type HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.HttpHookCreateWithoutUpdatedByInput, Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput> | Prisma.HttpHookCreateWithoutUpdatedByInput[] | Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput | Prisma.HttpHookCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.HttpHookUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.HttpHookUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.HttpHookCreateManyUpdatedByInputEnvelope
   set?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
   disconnect?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
   delete?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
   connect?: Prisma.HttpHookWhereUniqueInput | Prisma.HttpHookWhereUniqueInput[]
-  update?: Prisma.HttpHookUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.HttpHookUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.HttpHookUpdateManyWithWhereWithoutCreatedByInput | Prisma.HttpHookUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.HttpHookUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.HttpHookUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.HttpHookUpdateManyWithWhereWithoutUpdatedByInput | Prisma.HttpHookUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.HttpHookScalarWhereInput | Prisma.HttpHookScalarWhereInput[]
 }
 
@@ -620,7 +620,7 @@ export type HttpHookUpdateOneRequiredWithoutHttpHookEventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.HttpHookUpdateToOneWithWhereWithoutHttpHookEventsInput, Prisma.HttpHookUpdateWithoutHttpHookEventsInput>, Prisma.HttpHookUncheckedUpdateWithoutHttpHookEventsInput>
 }
 
-export type HttpHookCreateWithoutCreatedByInput = {
+export type HttpHookCreateWithoutUpdatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -635,7 +635,7 @@ export type HttpHookCreateWithoutCreatedByInput = {
   httpHookEvents?: Prisma.HttpHookEventCreateNestedManyWithoutHttpHookInput
 }
 
-export type HttpHookUncheckedCreateWithoutCreatedByInput = {
+export type HttpHookUncheckedCreateWithoutUpdatedByInput = {
   id?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -651,30 +651,30 @@ export type HttpHookUncheckedCreateWithoutCreatedByInput = {
   httpHookEvents?: Prisma.HttpHookEventUncheckedCreateNestedManyWithoutHttpHookInput
 }
 
-export type HttpHookCreateOrConnectWithoutCreatedByInput = {
+export type HttpHookCreateOrConnectWithoutUpdatedByInput = {
   where: Prisma.HttpHookWhereUniqueInput
-  create: Prisma.XOR<Prisma.HttpHookCreateWithoutCreatedByInput, Prisma.HttpHookUncheckedCreateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.HttpHookCreateWithoutUpdatedByInput, Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type HttpHookCreateManyCreatedByInputEnvelope = {
-  data: Prisma.HttpHookCreateManyCreatedByInput | Prisma.HttpHookCreateManyCreatedByInput[]
+export type HttpHookCreateManyUpdatedByInputEnvelope = {
+  data: Prisma.HttpHookCreateManyUpdatedByInput | Prisma.HttpHookCreateManyUpdatedByInput[]
   skipDuplicates?: boolean
 }
 
-export type HttpHookUpsertWithWhereUniqueWithoutCreatedByInput = {
+export type HttpHookUpsertWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.HttpHookWhereUniqueInput
-  update: Prisma.XOR<Prisma.HttpHookUpdateWithoutCreatedByInput, Prisma.HttpHookUncheckedUpdateWithoutCreatedByInput>
-  create: Prisma.XOR<Prisma.HttpHookCreateWithoutCreatedByInput, Prisma.HttpHookUncheckedCreateWithoutCreatedByInput>
+  update: Prisma.XOR<Prisma.HttpHookUpdateWithoutUpdatedByInput, Prisma.HttpHookUncheckedUpdateWithoutUpdatedByInput>
+  create: Prisma.XOR<Prisma.HttpHookCreateWithoutUpdatedByInput, Prisma.HttpHookUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type HttpHookUpdateWithWhereUniqueWithoutCreatedByInput = {
+export type HttpHookUpdateWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.HttpHookWhereUniqueInput
-  data: Prisma.XOR<Prisma.HttpHookUpdateWithoutCreatedByInput, Prisma.HttpHookUncheckedUpdateWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.HttpHookUpdateWithoutUpdatedByInput, Prisma.HttpHookUncheckedUpdateWithoutUpdatedByInput>
 }
 
-export type HttpHookUpdateManyWithWhereWithoutCreatedByInput = {
+export type HttpHookUpdateManyWithWhereWithoutUpdatedByInput = {
   where: Prisma.HttpHookScalarWhereInput
-  data: Prisma.XOR<Prisma.HttpHookUpdateManyMutationInput, Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.HttpHookUpdateManyMutationInput, Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByInput>
 }
 
 export type HttpHookScalarWhereInput = {
@@ -686,7 +686,7 @@ export type HttpHookScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"HttpHook"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"HttpHook"> | Date | string | null
   isActive?: Prisma.BoolFilter<"HttpHook"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"HttpHook"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"HttpHook"> | number | null
   name?: Prisma.StringFilter<"HttpHook"> | string
   description?: Prisma.StringNullableFilter<"HttpHook"> | string | null
   url?: Prisma.StringFilter<"HttpHook"> | string
@@ -708,7 +708,7 @@ export type HttpHookCreateWithoutHttpHookEventsInput = {
   failureCount?: number
   lastFailureAt?: Date | string | null
   lastSuccessAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedHttpHooksInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedHttpHooksInput
 }
 
 export type HttpHookUncheckedCreateWithoutHttpHookEventsInput = {
@@ -717,7 +717,7 @@ export type HttpHookUncheckedCreateWithoutHttpHookEventsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   description?: string | null
   url: string
@@ -755,7 +755,7 @@ export type HttpHookUpdateWithoutHttpHookEventsInput = {
   failureCount?: Prisma.IntFieldUpdateOperationsInput | number
   lastFailureAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastSuccessAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedHttpHooksNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedHttpHooksNestedInput
 }
 
 export type HttpHookUncheckedUpdateWithoutHttpHookEventsInput = {
@@ -764,7 +764,7 @@ export type HttpHookUncheckedUpdateWithoutHttpHookEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   url?: Prisma.StringFieldUpdateOperationsInput | string
@@ -774,7 +774,7 @@ export type HttpHookUncheckedUpdateWithoutHttpHookEventsInput = {
   lastSuccessAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type HttpHookCreateManyCreatedByInput = {
+export type HttpHookCreateManyUpdatedByInput = {
   id?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -789,7 +789,7 @@ export type HttpHookCreateManyCreatedByInput = {
   lastSuccessAt?: Date | string | null
 }
 
-export type HttpHookUpdateWithoutCreatedByInput = {
+export type HttpHookUpdateWithoutUpdatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -804,7 +804,7 @@ export type HttpHookUpdateWithoutCreatedByInput = {
   httpHookEvents?: Prisma.HttpHookEventUpdateManyWithoutHttpHookNestedInput
 }
 
-export type HttpHookUncheckedUpdateWithoutCreatedByInput = {
+export type HttpHookUncheckedUpdateWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -820,7 +820,7 @@ export type HttpHookUncheckedUpdateWithoutCreatedByInput = {
   httpHookEvents?: Prisma.HttpHookEventUncheckedUpdateManyWithoutHttpHookNestedInput
 }
 
-export type HttpHookUncheckedUpdateManyWithoutCreatedByInput = {
+export type HttpHookUncheckedUpdateManyWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -872,7 +872,7 @@ export type HttpHookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
   url?: boolean
@@ -880,7 +880,7 @@ export type HttpHookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   failureCount?: boolean
   lastFailureAt?: boolean
   lastSuccessAt?: boolean
-  createdBy?: boolean | Prisma.HttpHook$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.HttpHook$updatedByArgs<ExtArgs>
   httpHookEvents?: boolean | Prisma.HttpHook$httpHookEventsArgs<ExtArgs>
   _count?: boolean | Prisma.HttpHookCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["httpHook"]>
@@ -891,7 +891,7 @@ export type HttpHookSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
   url?: boolean
@@ -899,7 +899,7 @@ export type HttpHookSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   failureCount?: boolean
   lastFailureAt?: boolean
   lastSuccessAt?: boolean
-  createdBy?: boolean | Prisma.HttpHook$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.HttpHook$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["httpHook"]>
 
 export type HttpHookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -908,7 +908,7 @@ export type HttpHookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
   url?: boolean
@@ -916,7 +916,7 @@ export type HttpHookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   failureCount?: boolean
   lastFailureAt?: boolean
   lastSuccessAt?: boolean
-  createdBy?: boolean | Prisma.HttpHook$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.HttpHook$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["httpHook"]>
 
 export type HttpHookSelectScalar = {
@@ -925,7 +925,7 @@ export type HttpHookSelectScalar = {
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
   url?: boolean
@@ -935,23 +935,23 @@ export type HttpHookSelectScalar = {
   lastSuccessAt?: boolean
 }
 
-export type HttpHookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "createdByUserId" | "name" | "description" | "url" | "retryCount" | "failureCount" | "lastFailureAt" | "lastSuccessAt", ExtArgs["result"]["httpHook"]>
+export type HttpHookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "updatedById" | "name" | "description" | "url" | "retryCount" | "failureCount" | "lastFailureAt" | "lastSuccessAt", ExtArgs["result"]["httpHook"]>
 export type HttpHookInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.HttpHook$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.HttpHook$updatedByArgs<ExtArgs>
   httpHookEvents?: boolean | Prisma.HttpHook$httpHookEventsArgs<ExtArgs>
   _count?: boolean | Prisma.HttpHookCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type HttpHookIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.HttpHook$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.HttpHook$updatedByArgs<ExtArgs>
 }
 export type HttpHookIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.HttpHook$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.HttpHook$updatedByArgs<ExtArgs>
 }
 
 export type $HttpHookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "HttpHook"
   objects: {
-    createdBy: Prisma.$UserPayload<ExtArgs> | null
+    updatedBy: Prisma.$UserPayload<ExtArgs> | null
     httpHookEvents: Prisma.$HttpHookEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -960,7 +960,7 @@ export type $HttpHookPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     updatedAt: Date
     deletedAt: Date | null
     isActive: boolean
-    createdByUserId: number | null
+    updatedById: number | null
     name: string
     description: string | null
     /**
@@ -1365,7 +1365,7 @@ readonly fields: HttpHookFieldRefs;
  */
 export interface Prisma__HttpHookClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  createdBy<T extends Prisma.HttpHook$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HttpHook$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  updatedBy<T extends Prisma.HttpHook$updatedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HttpHook$updatedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   httpHookEvents<T extends Prisma.HttpHook$httpHookEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HttpHook$httpHookEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HttpHookEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1401,7 +1401,7 @@ export interface HttpHookFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"HttpHook", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"HttpHook", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"HttpHook", 'Boolean'>
-  readonly createdByUserId: Prisma.FieldRef<"HttpHook", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"HttpHook", 'Int'>
   readonly name: Prisma.FieldRef<"HttpHook", 'String'>
   readonly description: Prisma.FieldRef<"HttpHook", 'String'>
   readonly url: Prisma.FieldRef<"HttpHook", 'String'>
@@ -1810,9 +1810,9 @@ export type HttpHookDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * HttpHook.createdBy
+ * HttpHook.updatedBy
  */
-export type HttpHook$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type HttpHook$updatedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

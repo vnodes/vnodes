@@ -1,4 +1,6 @@
-
+/**
+ * Resource methods utilized accross the resource service and controller classes
+ */
 export const ResourceMethod = {
   createOne: 'createOne',
   createMany: 'createMany',
@@ -19,8 +21,12 @@ export const ResourceMethod = {
   unsetRelation: 'unsetRelation',
 } as const;
 
+/**
+ * Resource method name type
+ */
 export type ResourceMethod = keyof typeof ResourceMethod;
 
-export const ResourceMethods = Object.keys(ResourceMethod) as Readonly<
-  ResourceMethod[]
->;
+/**
+ * Resource methods as a readable list
+ */
+export const ResourceMethods = Object.keys(ResourceMethod) as Readonly<ResourceMethod[]>;

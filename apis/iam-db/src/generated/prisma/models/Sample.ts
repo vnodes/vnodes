@@ -28,12 +28,12 @@ export type AggregateSample = {
 
 export type SampleAvgAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
 }
 
 export type SampleSumAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
 }
 
 export type SampleMinAggregateOutputType = {
@@ -42,7 +42,7 @@ export type SampleMinAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   name: string | null
   description: string | null
 }
@@ -53,7 +53,7 @@ export type SampleMaxAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   name: string | null
   description: string | null
 }
@@ -64,7 +64,7 @@ export type SampleCountAggregateOutputType = {
   updatedAt: number
   deletedAt: number
   isActive: number
-  createdByUserId: number
+  updatedById: number
   name: number
   description: number
   _all: number
@@ -73,12 +73,12 @@ export type SampleCountAggregateOutputType = {
 
 export type SampleAvgAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
 }
 
 export type SampleSumAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
 }
 
 export type SampleMinAggregateInputType = {
@@ -87,7 +87,7 @@ export type SampleMinAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   description?: true
 }
@@ -98,7 +98,7 @@ export type SampleMaxAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   description?: true
 }
@@ -109,7 +109,7 @@ export type SampleCountAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   description?: true
   _all?: true
@@ -207,7 +207,7 @@ export type SampleGroupByOutputType = {
   updatedAt: Date
   deletedAt: Date | null
   isActive: boolean
-  createdByUserId: number | null
+  updatedById: number | null
   name: string
   description: string | null
   _count: SampleCountAggregateOutputType | null
@@ -241,10 +241,10 @@ export type SampleWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Sample"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"Sample"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Sample"> | number | null
   name?: Prisma.StringFilter<"Sample"> | string
   description?: Prisma.StringNullableFilter<"Sample"> | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type SampleOrderByWithRelationInput = {
@@ -253,10 +253,10 @@ export type SampleOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdBy?: Prisma.UserOrderByWithRelationInput
+  updatedBy?: Prisma.UserOrderByWithRelationInput
 }
 
 export type SampleWhereUniqueInput = Prisma.AtLeast<{
@@ -269,9 +269,9 @@ export type SampleWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Sample"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"Sample"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Sample"> | number | null
   description?: Prisma.StringNullableFilter<"Sample"> | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "name">
 
 export type SampleOrderByWithAggregationInput = {
@@ -280,7 +280,7 @@ export type SampleOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SampleCountOrderByAggregateInput
@@ -299,7 +299,7 @@ export type SampleScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Sample"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Sample"> | boolean
-  createdByUserId?: Prisma.IntNullableWithAggregatesFilter<"Sample"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Sample"> | number | null
   name?: Prisma.StringWithAggregatesFilter<"Sample"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Sample"> | string | null
 }
@@ -311,7 +311,7 @@ export type SampleCreateInput = {
   isActive?: boolean
   name: string
   description?: string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatdSamplesInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatdSamplesInput
 }
 
 export type SampleUncheckedCreateInput = {
@@ -320,7 +320,7 @@ export type SampleUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   description?: string | null
 }
@@ -332,7 +332,7 @@ export type SampleUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatdSamplesNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatdSamplesNestedInput
 }
 
 export type SampleUncheckedUpdateInput = {
@@ -341,7 +341,7 @@ export type SampleUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -352,7 +352,7 @@ export type SampleCreateManyInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   description?: string | null
 }
@@ -372,7 +372,7 @@ export type SampleUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -393,14 +393,14 @@ export type SampleCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
 export type SampleAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SampleMaxOrderByAggregateInput = {
@@ -409,7 +409,7 @@ export type SampleMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
@@ -420,59 +420,59 @@ export type SampleMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
 export type SampleSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
-export type SampleCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.SampleCreateWithoutCreatedByInput, Prisma.SampleUncheckedCreateWithoutCreatedByInput> | Prisma.SampleCreateWithoutCreatedByInput[] | Prisma.SampleUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCreatedByInput | Prisma.SampleCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.SampleCreateManyCreatedByInputEnvelope
+export type SampleCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutUpdatedByInput, Prisma.SampleUncheckedCreateWithoutUpdatedByInput> | Prisma.SampleCreateWithoutUpdatedByInput[] | Prisma.SampleUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutUpdatedByInput | Prisma.SampleCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.SampleCreateManyUpdatedByInputEnvelope
   connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
 }
 
-export type SampleUncheckedCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.SampleCreateWithoutCreatedByInput, Prisma.SampleUncheckedCreateWithoutCreatedByInput> | Prisma.SampleCreateWithoutCreatedByInput[] | Prisma.SampleUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCreatedByInput | Prisma.SampleCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.SampleCreateManyCreatedByInputEnvelope
+export type SampleUncheckedCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutUpdatedByInput, Prisma.SampleUncheckedCreateWithoutUpdatedByInput> | Prisma.SampleCreateWithoutUpdatedByInput[] | Prisma.SampleUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutUpdatedByInput | Prisma.SampleCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.SampleCreateManyUpdatedByInputEnvelope
   connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
 }
 
-export type SampleUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.SampleCreateWithoutCreatedByInput, Prisma.SampleUncheckedCreateWithoutCreatedByInput> | Prisma.SampleCreateWithoutCreatedByInput[] | Prisma.SampleUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCreatedByInput | Prisma.SampleCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.SampleUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.SampleCreateManyCreatedByInputEnvelope
+export type SampleUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutUpdatedByInput, Prisma.SampleUncheckedCreateWithoutUpdatedByInput> | Prisma.SampleCreateWithoutUpdatedByInput[] | Prisma.SampleUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutUpdatedByInput | Prisma.SampleCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.SampleUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.SampleCreateManyUpdatedByInputEnvelope
   set?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
   disconnect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
   delete?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
   connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
-  update?: Prisma.SampleUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.SampleUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutCreatedByInput | Prisma.SampleUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.SampleUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.SampleUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutUpdatedByInput | Prisma.SampleUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
 }
 
-export type SampleUncheckedUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.SampleCreateWithoutCreatedByInput, Prisma.SampleUncheckedCreateWithoutCreatedByInput> | Prisma.SampleCreateWithoutCreatedByInput[] | Prisma.SampleUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCreatedByInput | Prisma.SampleCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.SampleUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.SampleCreateManyCreatedByInputEnvelope
+export type SampleUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutUpdatedByInput, Prisma.SampleUncheckedCreateWithoutUpdatedByInput> | Prisma.SampleCreateWithoutUpdatedByInput[] | Prisma.SampleUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutUpdatedByInput | Prisma.SampleCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.SampleUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.SampleCreateManyUpdatedByInputEnvelope
   set?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
   disconnect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
   delete?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
   connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
-  update?: Prisma.SampleUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.SampleUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutCreatedByInput | Prisma.SampleUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.SampleUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.SampleUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutUpdatedByInput | Prisma.SampleUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
 }
 
-export type SampleCreateWithoutCreatedByInput = {
+export type SampleCreateWithoutUpdatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -481,7 +481,7 @@ export type SampleCreateWithoutCreatedByInput = {
   description?: string | null
 }
 
-export type SampleUncheckedCreateWithoutCreatedByInput = {
+export type SampleUncheckedCreateWithoutUpdatedByInput = {
   id?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -491,30 +491,30 @@ export type SampleUncheckedCreateWithoutCreatedByInput = {
   description?: string | null
 }
 
-export type SampleCreateOrConnectWithoutCreatedByInput = {
+export type SampleCreateOrConnectWithoutUpdatedByInput = {
   where: Prisma.SampleWhereUniqueInput
-  create: Prisma.XOR<Prisma.SampleCreateWithoutCreatedByInput, Prisma.SampleUncheckedCreateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.SampleCreateWithoutUpdatedByInput, Prisma.SampleUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type SampleCreateManyCreatedByInputEnvelope = {
-  data: Prisma.SampleCreateManyCreatedByInput | Prisma.SampleCreateManyCreatedByInput[]
+export type SampleCreateManyUpdatedByInputEnvelope = {
+  data: Prisma.SampleCreateManyUpdatedByInput | Prisma.SampleCreateManyUpdatedByInput[]
   skipDuplicates?: boolean
 }
 
-export type SampleUpsertWithWhereUniqueWithoutCreatedByInput = {
+export type SampleUpsertWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.SampleWhereUniqueInput
-  update: Prisma.XOR<Prisma.SampleUpdateWithoutCreatedByInput, Prisma.SampleUncheckedUpdateWithoutCreatedByInput>
-  create: Prisma.XOR<Prisma.SampleCreateWithoutCreatedByInput, Prisma.SampleUncheckedCreateWithoutCreatedByInput>
+  update: Prisma.XOR<Prisma.SampleUpdateWithoutUpdatedByInput, Prisma.SampleUncheckedUpdateWithoutUpdatedByInput>
+  create: Prisma.XOR<Prisma.SampleCreateWithoutUpdatedByInput, Prisma.SampleUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type SampleUpdateWithWhereUniqueWithoutCreatedByInput = {
+export type SampleUpdateWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.SampleWhereUniqueInput
-  data: Prisma.XOR<Prisma.SampleUpdateWithoutCreatedByInput, Prisma.SampleUncheckedUpdateWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.SampleUpdateWithoutUpdatedByInput, Prisma.SampleUncheckedUpdateWithoutUpdatedByInput>
 }
 
-export type SampleUpdateManyWithWhereWithoutCreatedByInput = {
+export type SampleUpdateManyWithWhereWithoutUpdatedByInput = {
   where: Prisma.SampleScalarWhereInput
-  data: Prisma.XOR<Prisma.SampleUpdateManyMutationInput, Prisma.SampleUncheckedUpdateManyWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.SampleUpdateManyMutationInput, Prisma.SampleUncheckedUpdateManyWithoutUpdatedByInput>
 }
 
 export type SampleScalarWhereInput = {
@@ -526,12 +526,12 @@ export type SampleScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Sample"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"Sample"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Sample"> | number | null
   name?: Prisma.StringFilter<"Sample"> | string
   description?: Prisma.StringNullableFilter<"Sample"> | string | null
 }
 
-export type SampleCreateManyCreatedByInput = {
+export type SampleCreateManyUpdatedByInput = {
   id?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -541,7 +541,7 @@ export type SampleCreateManyCreatedByInput = {
   description?: string | null
 }
 
-export type SampleUpdateWithoutCreatedByInput = {
+export type SampleUpdateWithoutUpdatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -550,7 +550,7 @@ export type SampleUpdateWithoutCreatedByInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type SampleUncheckedUpdateWithoutCreatedByInput = {
+export type SampleUncheckedUpdateWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -560,7 +560,7 @@ export type SampleUncheckedUpdateWithoutCreatedByInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type SampleUncheckedUpdateManyWithoutCreatedByInput = {
+export type SampleUncheckedUpdateManyWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -578,10 +578,10 @@ export type SampleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
-  createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Sample$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -590,10 +590,10 @@ export type SampleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
-  createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Sample$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -602,10 +602,10 @@ export type SampleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
-  createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Sample$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectScalar = {
@@ -614,26 +614,26 @@ export type SampleSelectScalar = {
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   description?: boolean
 }
 
-export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "createdByUserId" | "name" | "description", ExtArgs["result"]["sample"]>
+export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "updatedById" | "name" | "description", ExtArgs["result"]["sample"]>
 export type SampleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Sample$updatedByArgs<ExtArgs>
 }
 export type SampleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Sample$updatedByArgs<ExtArgs>
 }
 export type SampleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.Sample$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.Sample$updatedByArgs<ExtArgs>
 }
 
 export type $SamplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Sample"
   objects: {
-    createdBy: Prisma.$UserPayload<ExtArgs> | null
+    updatedBy: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -641,7 +641,7 @@ export type $SamplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     updatedAt: Date
     deletedAt: Date | null
     isActive: boolean
-    createdByUserId: number | null
+    updatedById: number | null
     name: string
     description: string | null
   }, ExtArgs["result"]["sample"]>
@@ -1038,7 +1038,7 @@ readonly fields: SampleFieldRefs;
  */
 export interface Prisma__SampleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  createdBy<T extends Prisma.Sample$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sample$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  updatedBy<T extends Prisma.Sample$updatedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sample$updatedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1073,7 +1073,7 @@ export interface SampleFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"Sample", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Sample", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"Sample", 'Boolean'>
-  readonly createdByUserId: Prisma.FieldRef<"Sample", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Sample", 'Int'>
   readonly name: Prisma.FieldRef<"Sample", 'String'>
   readonly description: Prisma.FieldRef<"Sample", 'String'>
 }
@@ -1477,9 +1477,9 @@ export type SampleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Sample.createdBy
+ * Sample.updatedBy
  */
-export type Sample$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Sample$updatedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

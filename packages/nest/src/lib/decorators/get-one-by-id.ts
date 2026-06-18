@@ -1,5 +1,9 @@
-import { applyDecorators, Get } from '@nestjs/common';
+import { Get } from '@nestjs/common';
 import { ApiParam } from '@nestjs/swagger';
+import { ResourcePathName, ResourcePaths } from '../constants/resource-paths.js';
 
-export const GetOneById = () =>
-  applyDecorators(Get(':id'), ApiParam({ name: 'id' }));
+export function GetOneById(): MethodDecorator {
+  return (...args) => {
+    [Get(ResourcePaths.BY_ID), ApiParam({ name: ResourcePathName.ID })].forEach((e) => e(...args));
+  };
+}

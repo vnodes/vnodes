@@ -172,6 +172,9 @@ importers:
       '@vnodes/prisma':
         specifier: workspace:*
         version: link:../../packages/prisma
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../../packages/prop
       '@vnodes/types':
         specifier: workspace:*
         version: link:../../packages/types

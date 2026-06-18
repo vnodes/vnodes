@@ -1,4 +1,4 @@
-import { Command } from 'commander';
+import { type Command } from 'commander';
 import { readdirSync, renameSync } from 'node:fs';
 import { join } from 'node:path';
 

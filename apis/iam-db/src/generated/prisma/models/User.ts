@@ -28,12 +28,12 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
 }
 
 export type UserSumAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -43,7 +43,7 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   username: string | null
   password: string | null
   isTwoFactorAuthEnabled: boolean | null
@@ -57,7 +57,7 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   username: string | null
   password: string | null
   isTwoFactorAuthEnabled: boolean | null
@@ -71,7 +71,7 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   deletedAt: number
   isActive: number
-  createdByUserId: number
+  updatedById: number
   username: number
   password: number
   isTwoFactorAuthEnabled: number
@@ -82,12 +82,12 @@ export type UserCountAggregateOutputType = {
 
 export type UserAvgAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -97,7 +97,7 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   username?: true
   password?: true
   isTwoFactorAuthEnabled?: true
@@ -111,7 +111,7 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   username?: true
   password?: true
   isTwoFactorAuthEnabled?: true
@@ -125,7 +125,7 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   username?: true
   password?: true
   isTwoFactorAuthEnabled?: true
@@ -226,7 +226,7 @@ export type UserGroupByOutputType = {
   updatedAt: Date
   deletedAt: Date | null
   isActive: boolean
-  createdByUserId: number | null
+  updatedById: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled: boolean
@@ -263,12 +263,12 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   isActive?: Prisma.BoolFilter<"User"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"User"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"User"> | number | null
   username?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   isTwoFactorAuthEnabled?: Prisma.BoolFilter<"User"> | boolean
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   userRoles?: Prisma.UserRoleListRelationFilter
   createdUsers?: Prisma.UserListRelationFilter
   createdRoles?: Prisma.RoleListRelationFilter
@@ -286,12 +286,12 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   isTwoFactorAuthEnabled?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdBy?: Prisma.UserOrderByWithRelationInput
+  updatedBy?: Prisma.UserOrderByWithRelationInput
   userRoles?: Prisma.UserRoleOrderByRelationAggregateInput
   createdUsers?: Prisma.UserOrderByRelationAggregateInput
   createdRoles?: Prisma.RoleOrderByRelationAggregateInput
@@ -313,11 +313,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   isActive?: Prisma.BoolFilter<"User"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"User"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"User"> | number | null
   password?: Prisma.StringFilter<"User"> | string
   isTwoFactorAuthEnabled?: Prisma.BoolFilter<"User"> | boolean
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   userRoles?: Prisma.UserRoleListRelationFilter
   createdUsers?: Prisma.UserListRelationFilter
   createdRoles?: Prisma.RoleListRelationFilter
@@ -335,7 +335,7 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   isTwoFactorAuthEnabled?: Prisma.SortOrder
@@ -357,7 +357,7 @@ export type UserScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  createdByUserId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   username?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
   isTwoFactorAuthEnabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
@@ -374,15 +374,15 @@ export type UserCreateInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -392,19 +392,19 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUpdateInput = {
@@ -417,15 +417,15 @@ export type UserUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -435,19 +435,19 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -457,7 +457,7 @@ export type UserCreateManyInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
@@ -483,7 +483,7 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -512,7 +512,7 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   isTwoFactorAuthEnabled?: Prisma.SortOrder
@@ -521,7 +521,7 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -531,7 +531,7 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   isTwoFactorAuthEnabled?: Prisma.SortOrder
@@ -545,7 +545,7 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   isTwoFactorAuthEnabled?: Prisma.SortOrder
@@ -554,7 +554,7 @@ export type UserMinOrderByAggregateInput = {
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -568,17 +568,17 @@ export type UserCreateNestedOneWithoutCreatedUsersInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedByInput, Prisma.UserUncheckedCreateWithoutCreatedByInput> | Prisma.UserCreateWithoutCreatedByInput[] | Prisma.UserUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedByInput | Prisma.UserCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.UserCreateManyCreatedByInputEnvelope
+export type UserCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedByInput, Prisma.UserUncheckedCreateWithoutUpdatedByInput> | Prisma.UserCreateWithoutUpdatedByInput[] | Prisma.UserUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedByInput | Prisma.UserCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.UserCreateManyUpdatedByInputEnvelope
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
 }
 
-export type UserUncheckedCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedByInput, Prisma.UserUncheckedCreateWithoutCreatedByInput> | Prisma.UserCreateWithoutCreatedByInput[] | Prisma.UserUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedByInput | Prisma.UserCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.UserCreateManyCreatedByInputEnvelope
+export type UserUncheckedCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedByInput, Prisma.UserUncheckedCreateWithoutUpdatedByInput> | Prisma.UserCreateWithoutUpdatedByInput[] | Prisma.UserUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedByInput | Prisma.UserCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.UserCreateManyUpdatedByInputEnvelope
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
 }
 
@@ -608,17 +608,17 @@ export type UserUpdateOneWithoutCreatedUsersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedUsersInput, Prisma.UserUpdateWithoutCreatedUsersInput>, Prisma.UserUncheckedUpdateWithoutCreatedUsersInput>
 }
 
-export type UserUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedByInput, Prisma.UserUncheckedCreateWithoutCreatedByInput> | Prisma.UserCreateWithoutCreatedByInput[] | Prisma.UserUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedByInput | Prisma.UserCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.UserUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.UserCreateManyCreatedByInputEnvelope
+export type UserUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedByInput, Prisma.UserUncheckedCreateWithoutUpdatedByInput> | Prisma.UserCreateWithoutUpdatedByInput[] | Prisma.UserUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedByInput | Prisma.UserCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.UserUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.UserCreateManyUpdatedByInputEnvelope
   set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.UserUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCreatedByInput | Prisma.UserUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.UserUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutUpdatedByInput | Prisma.UserUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
@@ -638,17 +638,17 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type UserUncheckedUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedByInput, Prisma.UserUncheckedCreateWithoutCreatedByInput> | Prisma.UserCreateWithoutCreatedByInput[] | Prisma.UserUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedByInput | Prisma.UserCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.UserUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.UserCreateManyCreatedByInputEnvelope
+export type UserUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedByInput, Prisma.UserUncheckedCreateWithoutUpdatedByInput> | Prisma.UserCreateWithoutUpdatedByInput[] | Prisma.UserUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedByInput | Prisma.UserCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.UserUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.UserCreateManyUpdatedByInputEnvelope
   set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.UserUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCreatedByInput | Prisma.UserUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.UserUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutUpdatedByInput | Prisma.UserUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
@@ -772,14 +772,14 @@ export type UserCreateWithoutCreatedUsersInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedUsersInput = {
@@ -789,18 +789,18 @@ export type UserUncheckedCreateWithoutCreatedUsersInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedUsersInput = {
@@ -808,7 +808,7 @@ export type UserCreateOrConnectWithoutCreatedUsersInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutCreatedUsersInput, Prisma.UserUncheckedCreateWithoutCreatedUsersInput>
 }
 
-export type UserCreateWithoutCreatedByInput = {
+export type UserCreateWithoutUpdatedByInput = {
   uuid?: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -819,16 +819,16 @@ export type UserCreateWithoutCreatedByInput = {
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
-export type UserUncheckedCreateWithoutCreatedByInput = {
+export type UserUncheckedCreateWithoutUpdatedByInput = {
   id?: number
   uuid?: string
   createdAt?: Date | string
@@ -840,22 +840,22 @@ export type UserUncheckedCreateWithoutCreatedByInput = {
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
-export type UserCreateOrConnectWithoutCreatedByInput = {
+export type UserCreateOrConnectWithoutUpdatedByInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedByInput, Prisma.UserUncheckedCreateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUpdatedByInput, Prisma.UserUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type UserCreateManyCreatedByInputEnvelope = {
-  data: Prisma.UserCreateManyCreatedByInput | Prisma.UserCreateManyCreatedByInput[]
+export type UserCreateManyUpdatedByInputEnvelope = {
+  data: Prisma.UserCreateManyUpdatedByInput | Prisma.UserCreateManyUpdatedByInput[]
   skipDuplicates?: boolean
 }
 
@@ -880,14 +880,14 @@ export type UserUpdateWithoutCreatedUsersInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedUsersInput = {
@@ -897,34 +897,34 @@ export type UserUncheckedUpdateWithoutCreatedUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
-export type UserUpsertWithWhereUniqueWithoutCreatedByInput = {
+export type UserUpsertWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.UserWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedByInput, Prisma.UserUncheckedUpdateWithoutCreatedByInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedByInput, Prisma.UserUncheckedCreateWithoutCreatedByInput>
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUpdatedByInput, Prisma.UserUncheckedUpdateWithoutUpdatedByInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUpdatedByInput, Prisma.UserUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type UserUpdateWithWhereUniqueWithoutCreatedByInput = {
+export type UserUpdateWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.UserWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedByInput, Prisma.UserUncheckedUpdateWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUpdatedByInput, Prisma.UserUncheckedUpdateWithoutUpdatedByInput>
 }
 
-export type UserUpdateManyWithWhereWithoutCreatedByInput = {
+export type UserUpdateManyWithWhereWithoutUpdatedByInput = {
   where: Prisma.UserScalarWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutUpdatedByInput>
 }
 
 export type UserScalarWhereInput = {
@@ -937,7 +937,7 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   isActive?: Prisma.BoolFilter<"User"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"User"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"User"> | number | null
   username?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   isTwoFactorAuthEnabled?: Prisma.BoolFilter<"User"> | boolean
@@ -954,14 +954,14 @@ export type UserCreateWithoutCreatedRolesInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedRolesInput = {
@@ -971,18 +971,18 @@ export type UserUncheckedCreateWithoutCreatedRolesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedRolesInput = {
@@ -1011,14 +1011,14 @@ export type UserUpdateWithoutCreatedRolesInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedRolesInput = {
@@ -1028,18 +1028,18 @@ export type UserUncheckedUpdateWithoutCreatedRolesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedPermissionsInput = {
@@ -1052,14 +1052,14 @@ export type UserCreateWithoutCreatedPermissionsInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPermissionsInput = {
@@ -1069,18 +1069,18 @@ export type UserUncheckedCreateWithoutCreatedPermissionsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPermissionsInput = {
@@ -1109,14 +1109,14 @@ export type UserUpdateWithoutCreatedPermissionsInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPermissionsInput = {
@@ -1126,18 +1126,18 @@ export type UserUncheckedUpdateWithoutCreatedPermissionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateWithoutUserRolesInput = {
@@ -1150,14 +1150,14 @@ export type UserCreateWithoutUserRolesInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutUserRolesInput = {
@@ -1167,18 +1167,18 @@ export type UserUncheckedCreateWithoutUserRolesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutUserRolesInput = {
@@ -1207,14 +1207,14 @@ export type UserUpdateWithoutUserRolesInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserRolesInput = {
@@ -1224,18 +1224,18 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedAccessTokensInput = {
@@ -1248,14 +1248,14 @@ export type UserCreateWithoutCreatedAccessTokensInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedAccessTokensInput = {
@@ -1265,18 +1265,18 @@ export type UserUncheckedCreateWithoutCreatedAccessTokensInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedAccessTokensInput = {
@@ -1305,14 +1305,14 @@ export type UserUpdateWithoutCreatedAccessTokensInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedAccessTokensInput = {
@@ -1322,18 +1322,18 @@ export type UserUncheckedUpdateWithoutCreatedAccessTokensInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedEventsInput = {
@@ -1346,14 +1346,14 @@ export type UserCreateWithoutCreatedEventsInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEventsInput = {
@@ -1363,18 +1363,18 @@ export type UserUncheckedCreateWithoutCreatedEventsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEventsInput = {
@@ -1403,14 +1403,14 @@ export type UserUpdateWithoutCreatedEventsInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEventsInput = {
@@ -1420,18 +1420,18 @@ export type UserUncheckedUpdateWithoutCreatedEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedHttpHooksInput = {
@@ -1444,14 +1444,14 @@ export type UserCreateWithoutCreatedHttpHooksInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedHttpHooksInput = {
@@ -1461,18 +1461,18 @@ export type UserUncheckedCreateWithoutCreatedHttpHooksInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
-  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
+  creatdSamples?: Prisma.SampleUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedHttpHooksInput = {
@@ -1501,14 +1501,14 @@ export type UserUpdateWithoutCreatedHttpHooksInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedHttpHooksInput = {
@@ -1518,18 +1518,18 @@ export type UserUncheckedUpdateWithoutCreatedHttpHooksInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateWithoutCreatdSamplesInput = {
@@ -1542,14 +1542,14 @@ export type UserCreateWithoutCreatdSamplesInput = {
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatdSamplesInput = {
@@ -1559,18 +1559,18 @@ export type UserUncheckedCreateWithoutCreatdSamplesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   username: string
   password: string
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatedByInput
-  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutCreatedByInput
-  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutCreatedByInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutCreatedByInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput
-  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdRoles?: Prisma.RoleUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdPermissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutUpdatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatdSamplesInput = {
@@ -1599,14 +1599,14 @@ export type UserUpdateWithoutCreatdSamplesInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatdSamplesInput = {
@@ -1616,21 +1616,21 @@ export type UserUncheckedUpdateWithoutCreatdSamplesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
-export type UserCreateManyCreatedByInput = {
+export type UserCreateManyUpdatedByInput = {
   id?: number
   uuid?: string
   createdAt?: Date | string
@@ -1643,7 +1643,7 @@ export type UserCreateManyCreatedByInput = {
   lastLoginAt?: Date | string | null
 }
 
-export type UserUpdateWithoutCreatedByInput = {
+export type UserUpdateWithoutUpdatedByInput = {
   uuid?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1654,16 +1654,16 @@ export type UserUpdateWithoutCreatedByInput = {
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUpdateManyWithoutUpdatedByNestedInput
 }
 
-export type UserUncheckedUpdateWithoutCreatedByInput = {
+export type UserUncheckedUpdateWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   uuid?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1675,16 +1675,16 @@ export type UserUncheckedUpdateWithoutCreatedByInput = {
   isTwoFactorAuthEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput
-  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
-  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdRoles?: Prisma.RoleUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdPermissions?: Prisma.PermissionUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdHttpHooks?: Prisma.HttpHookUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdAccessTokens?: Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutUpdatedByNestedInput
+  creatdSamples?: Prisma.SampleUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
-export type UserUncheckedUpdateManyWithoutCreatedByInput = {
+export type UserUncheckedUpdateManyWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   uuid?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1798,12 +1798,12 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   username?: boolean
   password?: boolean
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: boolean
-  createdBy?: boolean | Prisma.User$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.User$updatedByArgs<ExtArgs>
   userRoles?: boolean | Prisma.User$userRolesArgs<ExtArgs>
   createdUsers?: boolean | Prisma.User$createdUsersArgs<ExtArgs>
   createdRoles?: boolean | Prisma.User$createdRolesArgs<ExtArgs>
@@ -1822,12 +1822,12 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   username?: boolean
   password?: boolean
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: boolean
-  createdBy?: boolean | Prisma.User$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.User$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1837,12 +1837,12 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   username?: boolean
   password?: boolean
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: boolean
-  createdBy?: boolean | Prisma.User$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.User$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1852,16 +1852,16 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   username?: boolean
   password?: boolean
   isTwoFactorAuthEnabled?: boolean
   lastLoginAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uuid" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "createdByUserId" | "username" | "password" | "isTwoFactorAuthEnabled" | "lastLoginAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uuid" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "updatedById" | "username" | "password" | "isTwoFactorAuthEnabled" | "lastLoginAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.User$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.User$updatedByArgs<ExtArgs>
   userRoles?: boolean | Prisma.User$userRolesArgs<ExtArgs>
   createdUsers?: boolean | Prisma.User$createdUsersArgs<ExtArgs>
   createdRoles?: boolean | Prisma.User$createdRolesArgs<ExtArgs>
@@ -1873,16 +1873,16 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.User$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.User$updatedByArgs<ExtArgs>
 }
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.User$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.User$updatedByArgs<ExtArgs>
 }
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    createdBy: Prisma.$UserPayload<ExtArgs> | null
+    updatedBy: Prisma.$UserPayload<ExtArgs> | null
     userRoles: Prisma.$UserRolePayload<ExtArgs>[]
     createdUsers: Prisma.$UserPayload<ExtArgs>[]
     createdRoles: Prisma.$RolePayload<ExtArgs>[]
@@ -1899,7 +1899,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     deletedAt: Date | null
     isActive: boolean
-    createdByUserId: number | null
+    updatedById: number | null
     username: string
     /**
      * @hash
@@ -2301,7 +2301,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  createdBy<T extends Prisma.User$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  updatedBy<T extends Prisma.User$updatedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$updatedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   userRoles<T extends Prisma.User$userRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdUsers<T extends Prisma.User$createdUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdRoles<T extends Prisma.User$createdRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2345,7 +2345,7 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
-  readonly createdByUserId: Prisma.FieldRef<"User", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"User", 'Int'>
   readonly username: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly isTwoFactorAuthEnabled: Prisma.FieldRef<"User", 'Boolean'>
@@ -2751,9 +2751,9 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.createdBy
+ * User.updatedBy
  */
-export type User$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$updatedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

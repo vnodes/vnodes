@@ -1,11 +1,16 @@
 import { Body, Param, Query } from '@nestjs/common';
-import { ParamId, ResourceController, type ResourceOperation } from '@vnodes/nest';
-import { type SampleCreateDto, type SamplePagination, type SampleRelationDto, type SampleUnsetRelationDto } from './sample.dto.js';
+import { ParamId, ResourceController, type ResourceControllerInterface } from '@vnodes/nest';
 import { InjectDelegate } from '@vnodes/prisma';
 import { Prisma } from '@vnodes/test-db/client';
+import {
+    type SampleCreateDto,
+    type SamplePagination,
+    type SampleRelationDto,
+    type SampleUnsetRelationDto,
+} from './sample.dto.js';
 
 @ResourceController()
-export class SampleController implements ResourceOperation {
+export class SampleController implements ResourceControllerInterface {
   constructor(
     @InjectDelegate(Prisma.ModelName.Sample)
     protected readonly repo: Prisma.SampleDelegate,

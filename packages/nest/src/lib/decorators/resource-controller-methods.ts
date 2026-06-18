@@ -1,17 +1,14 @@
 import { Logger } from '@nestjs/common';
-import {
-  ResourceMethod,
-  ResourceMethods,
-} from '../constants/resource-method.js';
-import { PostOne } from './post-one.js';
-import { PostMany } from './post-many.js';
+import { ResourceMethod, ResourceMethods } from '../constants/resource-method.js';
+import { AddRelation } from './add-relation.js';
+import { DeleteMany } from './delete-many.js';
+import { DeleteOneById } from './delete-one-by-id.js';
 import { GetAll } from './get-all.js';
 import { GetOneById } from './get-one-by-id.js';
-import { PutOneById } from './put-one-by-id.js';
+import { PostMany } from './post-many.js';
+import { PostOne } from './post-one.js';
 import { PutMany } from './put-many.js';
-import { DeleteOneById } from './delete-one.js';
-import { DeleteMany } from './delete-many.js';
-import { AddRelation } from './add-relation.js';
+import { PutOneById } from './put-one-by-id.js';
 import { RemoveRelation } from './remove-relation.js';
 import { SetRelation } from './set-relation.js';
 import { UnsetRelation } from './unset-relation.js';
@@ -30,18 +27,10 @@ export function ResourceControllerMethods(): ClassDecorator {
     );
 
     for (const methodName of methods) {
-      const descriptor = Object.getOwnPropertyDescriptor(
-        classType.prototype,
-        methodName,
-      );
-      if (!descriptor)
-        throw new Error(`Decriptor not found for ${classType.prototype} `);
+      const descriptor = Object.getOwnPropertyDescriptor(classType.prototype, methodName);
+      if (!descriptor) throw new Error(`Decriptor not found for ${classType.prototype} `);
 
-      const margs: Parameters<MethodDecorator> = [
-        classType.prototype,
-        methodName,
-        descriptor,
-      ];
+      const margs: Parameters<MethodDecorator> = [classType.prototype, methodName, descriptor];
 
       if (methodName in ResourceMethod) {
         switch (methodName as ResourceMethod) {

@@ -28,12 +28,12 @@ export type AggregateAccessToken = {
 
 export type AccessTokenAvgAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
 }
 
 export type AccessTokenSumAggregateOutputType = {
   id: number | null
-  createdByUserId: number | null
+  updatedById: number | null
 }
 
 export type AccessTokenMinAggregateOutputType = {
@@ -42,7 +42,7 @@ export type AccessTokenMinAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   name: string | null
   token: string | null
   isExpired: boolean | null
@@ -54,7 +54,7 @@ export type AccessTokenMaxAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   isActive: boolean | null
-  createdByUserId: number | null
+  updatedById: number | null
   name: string | null
   token: string | null
   isExpired: boolean | null
@@ -66,7 +66,7 @@ export type AccessTokenCountAggregateOutputType = {
   updatedAt: number
   deletedAt: number
   isActive: number
-  createdByUserId: number
+  updatedById: number
   name: number
   token: number
   isExpired: number
@@ -76,12 +76,12 @@ export type AccessTokenCountAggregateOutputType = {
 
 export type AccessTokenAvgAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
 }
 
 export type AccessTokenSumAggregateInputType = {
   id?: true
-  createdByUserId?: true
+  updatedById?: true
 }
 
 export type AccessTokenMinAggregateInputType = {
@@ -90,7 +90,7 @@ export type AccessTokenMinAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   token?: true
   isExpired?: true
@@ -102,7 +102,7 @@ export type AccessTokenMaxAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   token?: true
   isExpired?: true
@@ -114,7 +114,7 @@ export type AccessTokenCountAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   isActive?: true
-  createdByUserId?: true
+  updatedById?: true
   name?: true
   token?: true
   isExpired?: true
@@ -213,7 +213,7 @@ export type AccessTokenGroupByOutputType = {
   updatedAt: Date
   deletedAt: Date | null
   isActive: boolean
-  createdByUserId: number | null
+  updatedById: number | null
   name: string
   token: string
   isExpired: boolean
@@ -248,11 +248,11 @@ export type AccessTokenWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"AccessToken"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"AccessToken"> | Date | string | null
   isActive?: Prisma.BoolFilter<"AccessToken"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"AccessToken"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"AccessToken"> | number | null
   name?: Prisma.StringFilter<"AccessToken"> | string
   token?: Prisma.StringFilter<"AccessToken"> | string
   isExpired?: Prisma.BoolFilter<"AccessToken"> | boolean
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   accessTokenPermissions?: Prisma.AccessTokenPermissionListRelationFilter
 }
 
@@ -262,11 +262,11 @@ export type AccessTokenOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   token?: Prisma.SortOrder
   isExpired?: Prisma.SortOrder
-  createdBy?: Prisma.UserOrderByWithRelationInput
+  updatedBy?: Prisma.UserOrderByWithRelationInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionOrderByRelationAggregateInput
 }
 
@@ -280,10 +280,10 @@ export type AccessTokenWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"AccessToken"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"AccessToken"> | Date | string | null
   isActive?: Prisma.BoolFilter<"AccessToken"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"AccessToken"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"AccessToken"> | number | null
   token?: Prisma.StringFilter<"AccessToken"> | string
   isExpired?: Prisma.BoolFilter<"AccessToken"> | boolean
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  updatedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   accessTokenPermissions?: Prisma.AccessTokenPermissionListRelationFilter
 }, "id" | "name">
 
@@ -293,7 +293,7 @@ export type AccessTokenOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   token?: Prisma.SortOrder
   isExpired?: Prisma.SortOrder
@@ -313,7 +313,7 @@ export type AccessTokenScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AccessToken"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AccessToken"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"AccessToken"> | boolean
-  createdByUserId?: Prisma.IntNullableWithAggregatesFilter<"AccessToken"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"AccessToken"> | number | null
   name?: Prisma.StringWithAggregatesFilter<"AccessToken"> | string
   token?: Prisma.StringWithAggregatesFilter<"AccessToken"> | string
   isExpired?: Prisma.BoolWithAggregatesFilter<"AccessToken"> | boolean
@@ -327,7 +327,7 @@ export type AccessTokenCreateInput = {
   name: string
   token: string
   isExpired?: boolean
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedAccessTokensInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedAccessTokensInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionCreateNestedManyWithoutAccessTokenInput
 }
 
@@ -337,7 +337,7 @@ export type AccessTokenUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   token: string
   isExpired?: boolean
@@ -352,7 +352,7 @@ export type AccessTokenUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedAccessTokensNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedAccessTokensNestedInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionUpdateManyWithoutAccessTokenNestedInput
 }
 
@@ -362,7 +362,7 @@ export type AccessTokenUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -375,7 +375,7 @@ export type AccessTokenCreateManyInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   token: string
   isExpired?: boolean
@@ -397,7 +397,7 @@ export type AccessTokenUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -419,7 +419,7 @@ export type AccessTokenCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   token?: Prisma.SortOrder
   isExpired?: Prisma.SortOrder
@@ -427,7 +427,7 @@ export type AccessTokenCountOrderByAggregateInput = {
 
 export type AccessTokenAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type AccessTokenMaxOrderByAggregateInput = {
@@ -436,7 +436,7 @@ export type AccessTokenMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   token?: Prisma.SortOrder
   isExpired?: Prisma.SortOrder
@@ -448,7 +448,7 @@ export type AccessTokenMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
   name?: Prisma.SortOrder
   token?: Prisma.SortOrder
   isExpired?: Prisma.SortOrder
@@ -456,7 +456,7 @@ export type AccessTokenMinOrderByAggregateInput = {
 
 export type AccessTokenSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  createdByUserId?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type AccessTokenScalarRelationFilter = {
@@ -464,45 +464,45 @@ export type AccessTokenScalarRelationFilter = {
   isNot?: Prisma.AccessTokenWhereInput
 }
 
-export type AccessTokenCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutCreatedByInput, Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput> | Prisma.AccessTokenCreateWithoutCreatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput | Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.AccessTokenCreateManyCreatedByInputEnvelope
+export type AccessTokenCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput> | Prisma.AccessTokenCreateWithoutUpdatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput | Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.AccessTokenCreateManyUpdatedByInputEnvelope
   connect?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
 }
 
-export type AccessTokenUncheckedCreateNestedManyWithoutCreatedByInput = {
-  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutCreatedByInput, Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput> | Prisma.AccessTokenCreateWithoutCreatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput | Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput[]
-  createMany?: Prisma.AccessTokenCreateManyCreatedByInputEnvelope
+export type AccessTokenUncheckedCreateNestedManyWithoutUpdatedByInput = {
+  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput> | Prisma.AccessTokenCreateWithoutUpdatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput | Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput[]
+  createMany?: Prisma.AccessTokenCreateManyUpdatedByInputEnvelope
   connect?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
 }
 
-export type AccessTokenUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutCreatedByInput, Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput> | Prisma.AccessTokenCreateWithoutCreatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput | Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.AccessTokenUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.AccessTokenUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.AccessTokenCreateManyCreatedByInputEnvelope
+export type AccessTokenUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput> | Prisma.AccessTokenCreateWithoutUpdatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput | Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.AccessTokenUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.AccessTokenUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.AccessTokenCreateManyUpdatedByInputEnvelope
   set?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
   disconnect?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
   delete?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
   connect?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
-  update?: Prisma.AccessTokenUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.AccessTokenUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.AccessTokenUpdateManyWithWhereWithoutCreatedByInput | Prisma.AccessTokenUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.AccessTokenUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.AccessTokenUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.AccessTokenUpdateManyWithWhereWithoutUpdatedByInput | Prisma.AccessTokenUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.AccessTokenScalarWhereInput | Prisma.AccessTokenScalarWhereInput[]
 }
 
-export type AccessTokenUncheckedUpdateManyWithoutCreatedByNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutCreatedByInput, Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput> | Prisma.AccessTokenCreateWithoutCreatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput[]
-  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput | Prisma.AccessTokenCreateOrConnectWithoutCreatedByInput[]
-  upsert?: Prisma.AccessTokenUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.AccessTokenUpsertWithWhereUniqueWithoutCreatedByInput[]
-  createMany?: Prisma.AccessTokenCreateManyCreatedByInputEnvelope
+export type AccessTokenUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessTokenCreateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput> | Prisma.AccessTokenCreateWithoutUpdatedByInput[] | Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput[]
+  connectOrCreate?: Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput | Prisma.AccessTokenCreateOrConnectWithoutUpdatedByInput[]
+  upsert?: Prisma.AccessTokenUpsertWithWhereUniqueWithoutUpdatedByInput | Prisma.AccessTokenUpsertWithWhereUniqueWithoutUpdatedByInput[]
+  createMany?: Prisma.AccessTokenCreateManyUpdatedByInputEnvelope
   set?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
   disconnect?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
   delete?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
   connect?: Prisma.AccessTokenWhereUniqueInput | Prisma.AccessTokenWhereUniqueInput[]
-  update?: Prisma.AccessTokenUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.AccessTokenUpdateWithWhereUniqueWithoutCreatedByInput[]
-  updateMany?: Prisma.AccessTokenUpdateManyWithWhereWithoutCreatedByInput | Prisma.AccessTokenUpdateManyWithWhereWithoutCreatedByInput[]
+  update?: Prisma.AccessTokenUpdateWithWhereUniqueWithoutUpdatedByInput | Prisma.AccessTokenUpdateWithWhereUniqueWithoutUpdatedByInput[]
+  updateMany?: Prisma.AccessTokenUpdateManyWithWhereWithoutUpdatedByInput | Prisma.AccessTokenUpdateManyWithWhereWithoutUpdatedByInput[]
   deleteMany?: Prisma.AccessTokenScalarWhereInput | Prisma.AccessTokenScalarWhereInput[]
 }
 
@@ -520,7 +520,7 @@ export type AccessTokenUpdateOneRequiredWithoutAccessTokenPermissionsNestedInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccessTokenUpdateToOneWithWhereWithoutAccessTokenPermissionsInput, Prisma.AccessTokenUpdateWithoutAccessTokenPermissionsInput>, Prisma.AccessTokenUncheckedUpdateWithoutAccessTokenPermissionsInput>
 }
 
-export type AccessTokenCreateWithoutCreatedByInput = {
+export type AccessTokenCreateWithoutUpdatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -531,7 +531,7 @@ export type AccessTokenCreateWithoutCreatedByInput = {
   accessTokenPermissions?: Prisma.AccessTokenPermissionCreateNestedManyWithoutAccessTokenInput
 }
 
-export type AccessTokenUncheckedCreateWithoutCreatedByInput = {
+export type AccessTokenUncheckedCreateWithoutUpdatedByInput = {
   id?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -543,30 +543,30 @@ export type AccessTokenUncheckedCreateWithoutCreatedByInput = {
   accessTokenPermissions?: Prisma.AccessTokenPermissionUncheckedCreateNestedManyWithoutAccessTokenInput
 }
 
-export type AccessTokenCreateOrConnectWithoutCreatedByInput = {
+export type AccessTokenCreateOrConnectWithoutUpdatedByInput = {
   where: Prisma.AccessTokenWhereUniqueInput
-  create: Prisma.XOR<Prisma.AccessTokenCreateWithoutCreatedByInput, Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.AccessTokenCreateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type AccessTokenCreateManyCreatedByInputEnvelope = {
-  data: Prisma.AccessTokenCreateManyCreatedByInput | Prisma.AccessTokenCreateManyCreatedByInput[]
+export type AccessTokenCreateManyUpdatedByInputEnvelope = {
+  data: Prisma.AccessTokenCreateManyUpdatedByInput | Prisma.AccessTokenCreateManyUpdatedByInput[]
   skipDuplicates?: boolean
 }
 
-export type AccessTokenUpsertWithWhereUniqueWithoutCreatedByInput = {
+export type AccessTokenUpsertWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.AccessTokenWhereUniqueInput
-  update: Prisma.XOR<Prisma.AccessTokenUpdateWithoutCreatedByInput, Prisma.AccessTokenUncheckedUpdateWithoutCreatedByInput>
-  create: Prisma.XOR<Prisma.AccessTokenCreateWithoutCreatedByInput, Prisma.AccessTokenUncheckedCreateWithoutCreatedByInput>
+  update: Prisma.XOR<Prisma.AccessTokenUpdateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedUpdateWithoutUpdatedByInput>
+  create: Prisma.XOR<Prisma.AccessTokenCreateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedCreateWithoutUpdatedByInput>
 }
 
-export type AccessTokenUpdateWithWhereUniqueWithoutCreatedByInput = {
+export type AccessTokenUpdateWithWhereUniqueWithoutUpdatedByInput = {
   where: Prisma.AccessTokenWhereUniqueInput
-  data: Prisma.XOR<Prisma.AccessTokenUpdateWithoutCreatedByInput, Prisma.AccessTokenUncheckedUpdateWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.AccessTokenUpdateWithoutUpdatedByInput, Prisma.AccessTokenUncheckedUpdateWithoutUpdatedByInput>
 }
 
-export type AccessTokenUpdateManyWithWhereWithoutCreatedByInput = {
+export type AccessTokenUpdateManyWithWhereWithoutUpdatedByInput = {
   where: Prisma.AccessTokenScalarWhereInput
-  data: Prisma.XOR<Prisma.AccessTokenUpdateManyMutationInput, Prisma.AccessTokenUncheckedUpdateManyWithoutCreatedByInput>
+  data: Prisma.XOR<Prisma.AccessTokenUpdateManyMutationInput, Prisma.AccessTokenUncheckedUpdateManyWithoutUpdatedByInput>
 }
 
 export type AccessTokenScalarWhereInput = {
@@ -578,7 +578,7 @@ export type AccessTokenScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"AccessToken"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"AccessToken"> | Date | string | null
   isActive?: Prisma.BoolFilter<"AccessToken"> | boolean
-  createdByUserId?: Prisma.IntNullableFilter<"AccessToken"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"AccessToken"> | number | null
   name?: Prisma.StringFilter<"AccessToken"> | string
   token?: Prisma.StringFilter<"AccessToken"> | string
   isExpired?: Prisma.BoolFilter<"AccessToken"> | boolean
@@ -592,7 +592,7 @@ export type AccessTokenCreateWithoutAccessTokenPermissionsInput = {
   name: string
   token: string
   isExpired?: boolean
-  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedAccessTokensInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedAccessTokensInput
 }
 
 export type AccessTokenUncheckedCreateWithoutAccessTokenPermissionsInput = {
@@ -601,7 +601,7 @@ export type AccessTokenUncheckedCreateWithoutAccessTokenPermissionsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   isActive?: boolean
-  createdByUserId?: number | null
+  updatedById?: number | null
   name: string
   token: string
   isExpired?: boolean
@@ -631,7 +631,7 @@ export type AccessTokenUpdateWithoutAccessTokenPermissionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdBy?: Prisma.UserUpdateOneWithoutCreatedAccessTokensNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutCreatedAccessTokensNestedInput
 }
 
 export type AccessTokenUncheckedUpdateWithoutAccessTokenPermissionsInput = {
@@ -640,13 +640,13 @@ export type AccessTokenUncheckedUpdateWithoutAccessTokenPermissionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
-export type AccessTokenCreateManyCreatedByInput = {
+export type AccessTokenCreateManyUpdatedByInput = {
   id?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -657,7 +657,7 @@ export type AccessTokenCreateManyCreatedByInput = {
   isExpired?: boolean
 }
 
-export type AccessTokenUpdateWithoutCreatedByInput = {
+export type AccessTokenUpdateWithoutUpdatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -668,7 +668,7 @@ export type AccessTokenUpdateWithoutCreatedByInput = {
   accessTokenPermissions?: Prisma.AccessTokenPermissionUpdateManyWithoutAccessTokenNestedInput
 }
 
-export type AccessTokenUncheckedUpdateWithoutCreatedByInput = {
+export type AccessTokenUncheckedUpdateWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -680,7 +680,7 @@ export type AccessTokenUncheckedUpdateWithoutCreatedByInput = {
   accessTokenPermissions?: Prisma.AccessTokenPermissionUncheckedUpdateManyWithoutAccessTokenNestedInput
 }
 
-export type AccessTokenUncheckedUpdateManyWithoutCreatedByInput = {
+export type AccessTokenUncheckedUpdateManyWithoutUpdatedByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -728,11 +728,11 @@ export type AccessTokenSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   token?: boolean
   isExpired?: boolean
-  createdBy?: boolean | Prisma.AccessToken$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.AccessToken$updatedByArgs<ExtArgs>
   accessTokenPermissions?: boolean | Prisma.AccessToken$accessTokenPermissionsArgs<ExtArgs>
   _count?: boolean | Prisma.AccessTokenCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["accessToken"]>
@@ -743,11 +743,11 @@ export type AccessTokenSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   token?: boolean
   isExpired?: boolean
-  createdBy?: boolean | Prisma.AccessToken$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.AccessToken$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["accessToken"]>
 
 export type AccessTokenSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -756,11 +756,11 @@ export type AccessTokenSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   token?: boolean
   isExpired?: boolean
-  createdBy?: boolean | Prisma.AccessToken$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.AccessToken$updatedByArgs<ExtArgs>
 }, ExtArgs["result"]["accessToken"]>
 
 export type AccessTokenSelectScalar = {
@@ -769,29 +769,29 @@ export type AccessTokenSelectScalar = {
   updatedAt?: boolean
   deletedAt?: boolean
   isActive?: boolean
-  createdByUserId?: boolean
+  updatedById?: boolean
   name?: boolean
   token?: boolean
   isExpired?: boolean
 }
 
-export type AccessTokenOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "createdByUserId" | "name" | "token" | "isExpired", ExtArgs["result"]["accessToken"]>
+export type AccessTokenOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "updatedById" | "name" | "token" | "isExpired", ExtArgs["result"]["accessToken"]>
 export type AccessTokenInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.AccessToken$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.AccessToken$updatedByArgs<ExtArgs>
   accessTokenPermissions?: boolean | Prisma.AccessToken$accessTokenPermissionsArgs<ExtArgs>
   _count?: boolean | Prisma.AccessTokenCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AccessTokenIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.AccessToken$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.AccessToken$updatedByArgs<ExtArgs>
 }
 export type AccessTokenIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.AccessToken$createdByArgs<ExtArgs>
+  updatedBy?: boolean | Prisma.AccessToken$updatedByArgs<ExtArgs>
 }
 
 export type $AccessTokenPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AccessToken"
   objects: {
-    createdBy: Prisma.$UserPayload<ExtArgs> | null
+    updatedBy: Prisma.$UserPayload<ExtArgs> | null
     accessTokenPermissions: Prisma.$AccessTokenPermissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -800,7 +800,7 @@ export type $AccessTokenPayload<ExtArgs extends runtime.Types.Extensions.Interna
     updatedAt: Date
     deletedAt: Date | null
     isActive: boolean
-    createdByUserId: number | null
+    updatedById: number | null
     name: string
     /**
      * @hash()
@@ -1201,7 +1201,7 @@ readonly fields: AccessTokenFieldRefs;
  */
 export interface Prisma__AccessTokenClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  createdBy<T extends Prisma.AccessToken$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessToken$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  updatedBy<T extends Prisma.AccessToken$updatedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessToken$updatedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   accessTokenPermissions<T extends Prisma.AccessToken$accessTokenPermissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessToken$accessTokenPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessTokenPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1237,7 +1237,7 @@ export interface AccessTokenFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"AccessToken", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"AccessToken", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"AccessToken", 'Boolean'>
-  readonly createdByUserId: Prisma.FieldRef<"AccessToken", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"AccessToken", 'Int'>
   readonly name: Prisma.FieldRef<"AccessToken", 'String'>
   readonly token: Prisma.FieldRef<"AccessToken", 'String'>
   readonly isExpired: Prisma.FieldRef<"AccessToken", 'Boolean'>
@@ -1642,9 +1642,9 @@ export type AccessTokenDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * AccessToken.createdBy
+ * AccessToken.updatedBy
  */
-export type AccessToken$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AccessToken$updatedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

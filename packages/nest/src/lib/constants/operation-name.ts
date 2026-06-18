@@ -12,12 +12,12 @@ export const OperationName = {
   /**
    * Operations with a single read operation such as read by id.
    */
-  READ_ONE: 'READ_ONE',
+  FIND_ONE: 'FIND_ONE',
 
   /**
    * Operations with many read operations such as find all
    */
-  READ_MANY: 'READ_MANY',
+  FIND_MANY: 'FIND_MANY',
 
   /**
    * Operations with a single update operation such as update by id
@@ -43,10 +43,20 @@ export const OperationName = {
    * Operation with multiple sub operations such as creating a new user
    */
   MANAGE: 'MANAGE',
+
+  FIND_ONE_OWN: 'FIND_ONE_OWN',
+  CREATE_ONE_OWN: 'CREATE_ONE_OWN',
+  UPDATE_ONE_OWN: 'UPDATE_ONE_OWN',
+  DELETE_ONE_OWN: 'DELETE_ONE_OWN',
+
+  FIND_MANY_OWN: 'FIND_MANY_OWN',
+  CREATE_MANY_OWN: 'CREATE_MANY_OWN',
+  UPDATE_MANY_OWN: 'UPDATE_MANY_OWN',
+  DELETE_MANY_OWN: 'DELETE_MANY_OWN',
+
+  MANAGE_OWN: 'MANAGE_OWN',
 } as const;
 
 export type OperationName = keyof typeof OperationName;
 
-export const OperationNames = Object.keys(OperationName) as Readonly<
-  OperationName[]
->;
+export const OperationNames = Object.keys(OperationName) as Readonly<OperationName[]>;
