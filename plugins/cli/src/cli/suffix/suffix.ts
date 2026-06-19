@@ -1,7 +1,7 @@
-import { parallel } from '@vnodes/fs';
 import { type Command } from 'commander';
 import { readdir, rename } from 'node:fs/promises';
 import { join } from 'node:path';
+import { cwd } from 'node:process';
 
 /**
  * Suffix file/files recursive (optional)
@@ -21,9 +21,11 @@ export function suffix(command: Command) {
     .command('suffix')
     .option('-u, --undo', 'Remove the suffix from file names')
     .option('-r, --recursive', 'Apply suffix to all files under sub directories')
+    .option('-p, --parallel <>', 'How many concurrent operations', '4')
     .requiredOption('-s, --suffix <string>', 'Suffix to append to the file names')
-    .action(async ({ suffix, recursive, undo }) => {
-      const foundDirs = await readdir('./', {
+    .action(async ({ suffix, parallel, recursive, undo }) => {
+      const PARALLEL = Number(parallel) || 4;
+      const foundDirs = await readdir(cwd(), {
         recursive: !!recursive,
         withFileTypes: true,
       });
@@ -32,14 +34,14 @@ export function suffix(command: Command) {
         .filter((e) => e.isFile())
         .map((e) => join(e.parentPath, e.name));
 
-      const createNewFilepath = (filePath: string) => {
-        return undo ? filePath.replace(new RegExp(`${suffix}$`), '') : `${filePath}${suffix}`;
+      const newFilepath = (filePath: string) => {
+        return undo ? filePath.slice(0, -suffix.length) : `${filePath}${suffix}`;
       };
 
       const asyncOperations = absolutePaths.map(
-        (filePath) => () => rename(filePath, createNewFilepath(filePath)),
+        (filePath) => () => rename(filePath, newFilepath(filePath)),
       );
 
-      await parallel(asyncOperations, 4);
+      await parallel(asyncOperations, PARALLEL);
     });
 }

@@ -33,6 +33,7 @@ async function generateTemplates(name: string) {
 
     const targetFilePath = join(name, relativeTemplateFilePath);
     await mkdir(dirname(targetFilePath), { recursive: true });
+
     const renderedContent = ejs.render(templateFileContent, {
       ...names(name),
       email: `${name}@${name}.com`,
