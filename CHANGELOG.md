@@ -1,3 +1,19 @@
+## 0.1.12 (2026-06-19)
+
+### 🚀 Features
+
+- fixed the workspace version ([4a88674](https://github.com/vnodes/vnodes/commit/4a88674))
+- optimized teh suffix function for large file system. ([832cfd8](https://github.com/vnodes/vnodes/commit/832cfd8))
+- added parallel option to the suffix option ([63b3f1d](https://github.com/vnodes/vnodes/commit/63b3f1d))
+
+### 🩹 Fixes
+
+- fixed the workspace version for workspace generator ([d5e50f9](https://github.com/vnodes/vnodes/commit/d5e50f9))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.11 (2026-06-18)
 
 ### 🚀 Features
