@@ -1,6 +1,6 @@
+import { parallel } from '@vnodes/fs';
 import { type Command } from 'commander';
-import { renameSync } from 'node:fs';
-import { readdir } from 'node:fs/promises';
+import { readdir, rename } from 'node:fs/promises';
 import { join } from 'node:path';
 
 /**
@@ -36,8 +36,10 @@ export function suffix(command: Command) {
         return undo ? filePath.replace(new RegExp(`${suffix}$`), '') : `${filePath}${suffix}`;
       };
 
-      for (const filePath of absolutePaths) {
-        renameSync(filePath, createNewFilepath(filePath));
-      }
+      const asyncOperations = absolutePaths.map(
+        (filePath) => () => rename(filePath, createNewFilepath(filePath)),
+      );
+
+      await parallel(asyncOperations, 4);
     });
 }

@@ -2,10 +2,12 @@
 export * from './lib/copy/copy-files.js';
 export * from './lib/file-system/abstract-file.js';
 export * from './lib/file-system/json-file.js';
+export * from './lib/file-system/parallel.js';
 export * from './lib/file-system/text-file.js';
 export * from './lib/file-system/yaml-file.js';
 export * from './lib/path/dirs.js';
 export * from './lib/path/files.js';
+export * from './lib/path/normalize.js';
 export * from './lib/path/scope.js';
 export * from './lib/read/read-json-file.js';
 export * from './lib/read/read-text-file.js';
@@ -16,3 +18,4 @@ export * from './lib/write/append-text-file.js';
 export * from './lib/write/write-json-file.js';
 export * from './lib/write/write-text-file.js';
 export * from './lib/write/write-yaml-file.js';
+
