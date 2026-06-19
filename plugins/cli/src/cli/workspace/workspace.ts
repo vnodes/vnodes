@@ -5,6 +5,7 @@ import ejs from 'ejs';
 import { mkdir } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getWorkspaceVersion } from '../../utils/get-workspace-version.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -34,11 +35,14 @@ async function generateTemplates(name: string) {
     const targetFilePath = join(name, relativeTemplateFilePath);
     await mkdir(dirname(targetFilePath), { recursive: true });
 
+    const workspaceVersion = await getWorkspaceVersion();
+
     const renderedContent = ejs.render(templateFileContent, {
       ...names(name),
       email: `${name}@${name}.com`,
-      workspaceVersion: '0.1.11',
+      workspaceVersion,
     });
+
     await writeTextFile(targetFilePath, renderedContent);
     console.log(`[ Created ] ${relativeTemplateFilePath} `);
   }
