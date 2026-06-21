@@ -9,7 +9,7 @@
 
 ## @vnodes/iam-db
 
-- [ ] Add project description for @vnodes/iam-db
+Identity and access management database 
 
 ## Installation
 

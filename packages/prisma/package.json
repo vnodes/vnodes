@@ -56,13 +56,15 @@
     "@nestjs/common": "^11.1.26",
     "@prisma/adapter-pg": "^7.8.0",
     "@vnodes/config": "workspace:*",
-    "@vnodes/names": "workspace:*"
+    "@vnodes/names": "workspace:*",
+    "@vnodes/prop": "workspace:*"
   },
   "devDependencies": {
     "@nestjs/common": "^11.1.26",
     "@nestjs/config": "^4.0.4",
     "@prisma/adapter-pg": "^7.8.0",
     "@vnodes/config": "workspace:*",
-    "@vnodes/names": "workspace:*"
+    "@vnodes/names": "workspace:*",
+    "@vnodes/prop": "workspace:*"
   }
 }

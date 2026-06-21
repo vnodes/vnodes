@@ -200,9 +200,39 @@ importers:
         specifier: ~0.5.18
         version: 0.5.23
     devDependencies:
+      '@nestjs/common':
+        specifier: ^11.1.26
+        version: 11.1.26(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/swagger':
+        specifier: ^11.4.4
+        version: 11.4.4(@nestjs/common@11.1.26(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.26)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)
       '@prisma/client':
         specifier: ^7.8.0
         version: 7.8.0(prisma@7.8.0(@types/react@19.2.17)(magicast@0.5.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@5.9.3))(typescript@5.9.3)
+      '@vnodes/names':
+        specifier: workspace:*
+        version: link:../../packages/names
+      '@vnodes/nest':
+        specifier: workspace:*
+        version: link:../../packages/nest
+      '@vnodes/prisma':
+        specifier: workspace:*
+        version: link:../../packages/prisma
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../../packages/prop
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../../packages/types
+      class-transformer:
+        specifier: ^0.5.1
+        version: 0.5.1
+      class-validator:
+        specifier: ^0.15.1
+        version: 0.15.1
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
 
   apis/test-api:
     dependencies:
@@ -423,22 +453,22 @@ importers:
       '@vnodes/names':
         specifier: workspace:*
         version: link:../names
+      '@vnodes/prop':
+        specifier: workspace:*
+        version: link:../prop
 
   packages/prop:
     dependencies:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
-      '@vnodes/names':
-        specifier: workspace:*
-        version: link:../names
     devDependencies:
       '@nestjs/swagger':
         specifier: ^11.4.4
         version: 11.4.4(@nestjs/common@11.1.26(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.26)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)
-      '@vnodes/types':
+      '@vnodes/names':
         specifier: workspace:*
-        version: link:../types
+        version: link:../names
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1

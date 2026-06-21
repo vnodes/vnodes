@@ -46,7 +46,7 @@
   "nx": {
     "sourceRoot": "packages/prop/src",
     "tags": [
-      "lib:core"
+      "lib:module"
     ],
     "targets": {
       "build": {},
@@ -54,19 +54,20 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18",
-    "@vnodes/names": "workspace:*"
+    "@swc/helpers": "~0.5.18"
   },
   "devDependencies": {
     "@nestjs/swagger": "^11.4.4",
-    "@vnodes/types": "workspace:*",
+    "@vnodes/names": "workspace:*",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "reflect-metadata": "^0.2.2"
   },
   "peerDependencies": {
     "@nestjs/swagger": "^11.4.4",
+    "@vnodes/names": "workspace:*",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.15.1"
+    "class-validator": "^0.15.1",
+    "reflect-metadata": "^0.2.2"
   }
 }

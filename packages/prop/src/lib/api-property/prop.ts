@@ -3,6 +3,14 @@ import { DecoratorList } from '../utils/decorator-list.js';
 import { PropValidation } from '../validation/prop.js';
 import type { PropertyOptions } from '../validation/property-options.js';
 
+export {
+  DeepPartialType,
+  IntersectionType,
+  OmitType,
+  PartialType,
+  PickType
+} from '@nestjs/swagger';
+
 export function Prop(propertyOptions?: PropertyOptions): PropertyDecorator {
   return (...args) => {
     const po: PropertyOptions = { ...propertyOptions };
