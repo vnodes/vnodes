@@ -387,7 +387,7 @@ export type HttpHookCreateInput = {
   failureCount?: number
   lastFailureAt?: Date | string | null
   lastSuccessAt?: Date | string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedHttpHooksInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedHttpHooksInput
   httpHookEvents?: Prisma.HttpHookEventCreateNestedManyWithoutHttpHookInput
 }
 
@@ -420,7 +420,7 @@ export type HttpHookUpdateInput = {
   failureCount?: Prisma.IntFieldUpdateOperationsInput | number
   lastFailureAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastSuccessAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedHttpHooksNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedHttpHooksNestedInput
   httpHookEvents?: Prisma.HttpHookEventUpdateManyWithoutHttpHookNestedInput
 }
 
@@ -708,7 +708,7 @@ export type HttpHookCreateWithoutHttpHookEventsInput = {
   failureCount?: number
   lastFailureAt?: Date | string | null
   lastSuccessAt?: Date | string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedHttpHooksInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedHttpHooksInput
 }
 
 export type HttpHookUncheckedCreateWithoutHttpHookEventsInput = {
@@ -755,7 +755,7 @@ export type HttpHookUpdateWithoutHttpHookEventsInput = {
   failureCount?: Prisma.IntFieldUpdateOperationsInput | number
   lastFailureAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastSuccessAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedHttpHooksNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedHttpHooksNestedInput
 }
 
 export type HttpHookUncheckedUpdateWithoutHttpHookEventsInput = {

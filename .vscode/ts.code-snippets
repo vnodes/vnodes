@@ -16,5 +16,58 @@
             "const __dirname = dirname(fileURLToPath(import.meta.url));",
         ],
         "scope": "typescript"
+    },
+    "decorator property": {
+        "prefix": "decorator property",
+        "body": [
+            "export function $1(): PropertyDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator method": {
+        "prefix": "decorator method",
+        "body": [
+            "export function $1(): MethodDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator class": {
+        "prefix": "decorator class",
+        "body": [
+            "export function $1(): ClassDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator paramter": {
+        "prefix": "decorator paramter",
+        "body": [
+            "export function $1(): ParamterDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator combine": {
+        "prefix": "decorator combine",
+        "body": [
+            "const decorators: PropertyDecorator[] = [];",
+            "const add = (...items: PropertyDecorator[]) => decorators.push(...items);",
+            "decorators.forEach((e) => e(...args));",
+        ],
+        "scope": "typescript"
     }
 }

@@ -14,24 +14,24 @@ model User {
   updatedAt   DateTime  @updatedAt @map("updated_at")
   deletedAt   DateTime? @map("deleted_at")
   isActive    Boolean   @default(true) @map("is_active")
-  updatedBy   User?     @relation("created_by_audit", fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  updatedBy   User?     @relation("updated_by_audit", fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
   updatedById Int?      @map("updated_by_id")
 
   username               String  @unique
-  password               String /// @hash
-  isTwoFactorAuthEnabled Boolean @default(false)
+  password               String /// @format(password) @hash()
+  isTwoFactorAuthEnabled Boolean @default(false) @map("is_two_factor_auth_enabled")
 
-  lastLoginAt DateTime?
+  lastLoginAt DateTime? @map("last_login_at")
 
   userRoles UserRole[]
 
-  createdUsers        User[]        @relation("created_by_audit")
-  createdRoles        Role[]
-  createdPermissions  Permission[]
-  createdHttpHooks    HttpHook[]
-  createdAccessTokens AccessToken[]
-  createdEvents       Event[]
-  creatdSamples       Sample[]
+  updatedUsers        User[]        @relation("updated_by_audit")
+  updatedRoles        Role[]
+  updatedPermissions  Permission[]
+  updatedHttpHooks    HttpHook[]
+  updatedAccessTokens AccessToken[]
+  updatedEvents       Event[]
+  updatedSamples      Sample[]
 
   @@map("users")
 }
@@ -78,7 +78,7 @@ model RolePermission {
   permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   permissionId Int        @map("permission_id")
 
-  @@unique([roleId, permissionId])
+  @@id([roleId, permissionId])
   @@map("role_permissions")
 }
 
@@ -89,7 +89,7 @@ model UserRole {
   role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   roleId Int  @map("role_id")
 
-  @@unique([userId, roleId])
+  @@id([userId, roleId])
   @@map("user_roles")
 }
 
@@ -119,7 +119,7 @@ model AccessTokenPermission {
   permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   permissionId Int        @map("permission_id")
 
-  @@unique([accessTokenId, permissionId])
+  @@id([accessTokenId, permissionId])
   @@map("access_token_permissions")
 }
 
@@ -169,7 +169,7 @@ model HttpHookEvent {
   event   Event @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   eventId Int   @map("event_id")
 
-  @@unique([httpHookId, eventId])
+  @@id([httpHookId, eventId])
   @@map("http_hook_events")
 }
 

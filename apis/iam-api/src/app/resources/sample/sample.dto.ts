@@ -1,9 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Prop } from '@vnodes/prop';
 import { Expose, Type } from 'class-transformer';
 import { ValidateNested } from 'class-validator';
 
 export class SampleCreateDto {
-  @ApiProperty() @Expose() name: string;
+  @Prop() name: string;
 }
 
 export class SampleCreateManyDto {

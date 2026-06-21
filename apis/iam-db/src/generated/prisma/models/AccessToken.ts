@@ -327,7 +327,7 @@ export type AccessTokenCreateInput = {
   name: string
   token: string
   isExpired?: boolean
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedAccessTokensInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedAccessTokensInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionCreateNestedManyWithoutAccessTokenInput
 }
 
@@ -352,7 +352,7 @@ export type AccessTokenUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedAccessTokensNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedAccessTokensNestedInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionUpdateManyWithoutAccessTokenNestedInput
 }
 
@@ -592,7 +592,7 @@ export type AccessTokenCreateWithoutAccessTokenPermissionsInput = {
   name: string
   token: string
   isExpired?: boolean
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedAccessTokensInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedAccessTokensInput
 }
 
 export type AccessTokenUncheckedCreateWithoutAccessTokenPermissionsInput = {
@@ -631,7 +631,7 @@ export type AccessTokenUpdateWithoutAccessTokenPermissionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   isExpired?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedAccessTokensNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedAccessTokensNestedInput
 }
 
 export type AccessTokenUncheckedUpdateWithoutAccessTokenPermissionsInput = {

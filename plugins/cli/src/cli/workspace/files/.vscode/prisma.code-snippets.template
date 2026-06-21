@@ -29,7 +29,7 @@
             "  ${2/([A-Z])/${1:/downcase}/g}   $2 @relation(fields: [${2/([A-Z])/${1:/downcase}/g}Id], references: [id], onDelete: Cascade, onUpdate: Cascade)",
             "  ${2/([A-Z])/${1:/downcase}/g}Id Int  @map(\"${2/([A-Z])/${1:/downcase}/g}_id\")",
             "",
-            "  @@unique([${1/([A-Z])/${1:/downcase}/g}Id, ${2/([A-Z])/${1:/downcase}/g}Id])",
+            "  @@id([${1/([A-Z])/${1:/downcase}/g}Id, ${2/([A-Z])/${1:/downcase}/g}Id])",
             "  @@map(\"${1/([A-Z])/${1:/downcase}/g}_${2/([A-Z])/${1:/downcase}/g}s\")",
             "}"
         ],

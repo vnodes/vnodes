@@ -304,7 +304,7 @@ export type PermissionCreateInput = {
   deletedAt?: Date | string | null
   isActive?: boolean
   name: string
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedPermissionsInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedPermissionsInput
   rolePermissions?: Prisma.RolePermissionCreateNestedManyWithoutPermissionInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionCreateNestedManyWithoutPermissionInput
 }
@@ -327,7 +327,7 @@ export type PermissionUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedPermissionsNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedPermissionsNestedInput
   rolePermissions?: Prisma.RolePermissionUpdateManyWithoutPermissionNestedInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionUpdateManyWithoutPermissionNestedInput
 }
@@ -563,7 +563,7 @@ export type PermissionCreateWithoutRolePermissionsInput = {
   deletedAt?: Date | string | null
   isActive?: boolean
   name: string
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedPermissionsInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedPermissionsInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionCreateNestedManyWithoutPermissionInput
 }
 
@@ -600,7 +600,7 @@ export type PermissionUpdateWithoutRolePermissionsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedPermissionsNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedPermissionsNestedInput
   accessTokenPermissions?: Prisma.AccessTokenPermissionUpdateManyWithoutPermissionNestedInput
 }
 
@@ -621,7 +621,7 @@ export type PermissionCreateWithoutAccessTokenPermissionsInput = {
   deletedAt?: Date | string | null
   isActive?: boolean
   name: string
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedPermissionsInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedPermissionsInput
   rolePermissions?: Prisma.RolePermissionCreateNestedManyWithoutPermissionInput
 }
 
@@ -658,7 +658,7 @@ export type PermissionUpdateWithoutAccessTokenPermissionsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedPermissionsNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedPermissionsNestedInput
   rolePermissions?: Prisma.RolePermissionUpdateManyWithoutPermissionNestedInput
 }
 

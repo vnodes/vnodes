@@ -129,6 +129,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
+      '@vnodes/prop':
+        specifier: 0.1.12
+        version: 0.1.12(@nestjs/swagger@11.4.4(@nestjs/common@11.1.26(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.26)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2))(class-transformer@0.5.1)(class-validator@0.15.1)
     devDependencies:
       '@nestjs/cache-manager':
         specifier: ^3.1.2
@@ -172,9 +175,6 @@ importers:
       '@vnodes/prisma':
         specifier: workspace:*
         version: link:../../packages/prisma
-      '@vnodes/prop':
-        specifier: workspace:*
-        version: link:../../packages/prop
       '@vnodes/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -442,6 +442,9 @@ importers:
       class-validator:
         specifier: ^0.15.1
         version: 0.15.1
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
 
   packages/types:
     dependencies:
@@ -2830,6 +2833,14 @@ packages:
 
   '@vitest/utils@4.1.8':
     resolution: {integrity: sha512-uOJamYALNhfJ6iolExyQM40yIQwDqYnkKtQ5VCiSe17E33H0aQ/u+1GlRuz4LZBk6Mm3sg90G9hEbmEt37C1Zg==}
+
+  '@vnodes/prop@0.1.12':
+    resolution: {integrity: sha512-sepcOlUKDcS96xnwRCP1VkS+thDHbKm2WnplsFFt3gfmgfGpISOqms/I8bwq77PRSyp69NJxmzgpQz0A6zOwDQ==}
+    hasBin: true
+    peerDependencies:
+      '@nestjs/swagger': ^11.4.4
+      class-transformer: ^0.5.1
+      class-validator: ^0.15.1
 
   '@xhmikosr/archive-type@8.0.1':
     resolution: {integrity: sha512-toXuiWChyfOpEiCPsIw6HGHaNji5LVkvB6EREL548vGWr+hGaehwxG4LzN20vm9aGFXwnA/Jty8yW2/SmV+1zQ==}
@@ -8967,6 +8978,13 @@ snapshots:
       '@vitest/pretty-format': 4.1.8
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
+
+  '@vnodes/prop@0.1.12(@nestjs/swagger@11.4.4(@nestjs/common@11.1.26(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.26)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2))(class-transformer@0.5.1)(class-validator@0.15.1)':
+    dependencies:
+      '@nestjs/swagger': 11.4.4(@nestjs/common@11.1.26(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.26)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)
+      '@swc/helpers': 0.5.23
+      class-transformer: 0.5.1
+      class-validator: 0.15.1
 
   '@xhmikosr/archive-type@8.0.1':
     dependencies:

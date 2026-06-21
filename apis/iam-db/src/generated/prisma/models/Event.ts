@@ -314,7 +314,7 @@ export type EventCreateInput = {
   isActive?: boolean
   name: string
   description?: string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedEventsInput
   httpHookEvents?: Prisma.HttpHookEventCreateNestedManyWithoutEventInput
 }
 
@@ -337,7 +337,7 @@ export type EventUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedEventsNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedEventsNestedInput
   httpHookEvents?: Prisma.HttpHookEventUpdateManyWithoutEventNestedInput
 }
 
@@ -566,7 +566,7 @@ export type EventCreateWithoutHttpHookEventsInput = {
   isActive?: boolean
   name: string
   description?: string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedEventsInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedEventsInput
 }
 
 export type EventUncheckedCreateWithoutHttpHookEventsInput = {
@@ -603,7 +603,7 @@ export type EventUpdateWithoutHttpHookEventsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedEventsNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedEventsNestedInput
 }
 
 export type EventUncheckedUpdateWithoutHttpHookEventsInput = {

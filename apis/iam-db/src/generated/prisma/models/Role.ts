@@ -317,7 +317,7 @@ export type RoleCreateInput = {
   isActive?: boolean
   name: string
   description?: string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedRolesInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedRolesInput
   rolePermissions?: Prisma.RolePermissionCreateNestedManyWithoutRoleInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutRoleInput
 }
@@ -342,7 +342,7 @@ export type RoleUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedRolesNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedRolesNestedInput
   rolePermissions?: Prisma.RolePermissionUpdateManyWithoutRoleNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutRoleNestedInput
 }
@@ -593,7 +593,7 @@ export type RoleCreateWithoutRolePermissionsInput = {
   isActive?: boolean
   name: string
   description?: string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedRolesInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedRolesInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutRoleInput
 }
 
@@ -632,7 +632,7 @@ export type RoleUpdateWithoutRolePermissionsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedRolesNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedRolesNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutRoleNestedInput
 }
 
@@ -655,7 +655,7 @@ export type RoleCreateWithoutUserRolesInput = {
   isActive?: boolean
   name: string
   description?: string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatedRolesInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedRolesInput
   rolePermissions?: Prisma.RolePermissionCreateNestedManyWithoutRoleInput
 }
 
@@ -694,7 +694,7 @@ export type RoleUpdateWithoutUserRolesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatedRolesNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedRolesNestedInput
   rolePermissions?: Prisma.RolePermissionUpdateManyWithoutRoleNestedInput
 }
 

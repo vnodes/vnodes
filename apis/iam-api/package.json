@@ -55,7 +55,8 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "@swc/helpers": "~0.5.18",
+    "@vnodes/prop": "0.1.12"
   },
   "peerDependencies": {
     "@nestjs/cache-manager": "^3.1.2",

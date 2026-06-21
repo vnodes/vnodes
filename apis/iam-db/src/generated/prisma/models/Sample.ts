@@ -311,7 +311,7 @@ export type SampleCreateInput = {
   isActive?: boolean
   name: string
   description?: string | null
-  updatedBy?: Prisma.UserCreateNestedOneWithoutCreatdSamplesInput
+  updatedBy?: Prisma.UserCreateNestedOneWithoutUpdatedSamplesInput
 }
 
 export type SampleUncheckedCreateInput = {
@@ -332,7 +332,7 @@ export type SampleUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  updatedBy?: Prisma.UserUpdateOneWithoutCreatdSamplesNestedInput
+  updatedBy?: Prisma.UserUpdateOneWithoutUpdatedSamplesNestedInput
 }
 
 export type SampleUncheckedUpdateInput = {
