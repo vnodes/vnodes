@@ -1,3 +1,13 @@
+## 0.1.13 (2026-06-21)
+
+### 🚀 Features
+
+- created property decorator ([1d8cf91](https://github.com/vnodes/vnodes/commit/1d8cf91))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.12 (2026-06-19)
 
 ### 🚀 Features
