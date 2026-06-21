@@ -1,9 +1,11 @@
 import {
   type ValidationOptions,
+  IsCurrency,
   IsEmail,
   IsInt,
   IsIP,
   IsISO8601,
+  IsJSON,
   IsNumber,
   IsStrongPassword,
   IsUrl,
@@ -13,35 +15,7 @@ import {
   Min,
 } from 'class-validator';
 import { DecoratorList } from '../utils/decorator-list.js';
-import type { PropertyOptions } from './property-options.js';
-
-export type OpenApiFormat =
-  | 'int32'
-  | 'int64'
-  | 'float'
-  | 'double'
-  | 'byte'
-  | 'binary'
-  | 'date'
-  | 'date-time'
-  | 'time'
-  | 'duration'
-  | 'password'
-  | 'email'
-  | 'idn-email'
-  | 'hostname'
-  | 'idn-hostname'
-  | 'ipv4'
-  | 'ipv6'
-  | 'uri'
-  | 'uri-reference'
-  | 'uri-template'
-  | 'iri'
-  | 'iri-reference'
-  | 'uuid'
-  | 'json-pointer'
-  | 'relative-json-pointer'
-  | 'regex';
+import type { OpenApiFormat } from './property-options.js';
 
 /**
  * Apply validation by the {@link OpenApiFormat}
@@ -50,11 +24,10 @@ export type OpenApiFormat =
  * @returns
  */
 export function FomatValidation(
-  format: PropertyOptions['format'],
+  format: OpenApiFormat,
   validationOptions?: ValidationOptions,
 ): PropertyDecorator {
   const f = format as OpenApiFormat;
-
   const vo = { ...validationOptions };
 
   return (...args) => {
@@ -75,6 +48,10 @@ export function FomatValidation(
           );
           break;
         }
+        case 'currency': {
+          d.push(IsCurrency({}, vo));
+          break;
+        }
 
         case 'int32':
         case 'int64':
@@ -89,10 +66,7 @@ export function FomatValidation(
               d.push(IsInt(vo));
               break;
             }
-            case 'float':
-            case 'double': {
-              break;
-            }
+
             case 'byte': {
               d.push(Max(255, vo));
               d.push(Min(-255, vo));
@@ -101,7 +75,10 @@ export function FomatValidation(
             case 'duration': {
               d.push(IsInt(vo));
               d.push(Min(0, vo));
+              break;
             }
+            case 'float':
+            case 'double':
           }
           break;
         }
@@ -132,8 +109,17 @@ export function FomatValidation(
           d.push(IsUrl({}, vo));
           break;
         }
-        case 'uuid': {
-          d.push(IsUUID(undefined, vo));
+        case 'uuid4': {
+          d.push(IsUUID('4', vo));
+          break;
+        }
+        case 'uuid7': {
+          d.push(IsUUID('7', vo));
+          break;
+        }
+
+        case 'json': {
+          d.push(IsJSON(vo));
           break;
         }
         case 'idn-email':
@@ -146,6 +132,7 @@ export function FomatValidation(
         case 'iri-reference':
         case 'json-pointer':
         case 'relative-json-pointer': {
+          // Ignore this
           break;
         }
       }

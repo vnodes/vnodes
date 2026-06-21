@@ -1,6 +1,6 @@
 import type { ApiPropertyOptions } from '@nestjs/swagger';
 import { IsString, Matches, MaxLength, MinLength, type ValidationOptions } from 'class-validator';
-import { UndefinedEmptyString } from '../transformers/undefined-empty-string.js';
+import { TrimTransformer } from '../transformers/trim.js';
 import { DecoratorList } from '../utils/decorator-list.js';
 
 /**
@@ -22,7 +22,7 @@ export function StringValidation(
     d.push(IsString(vo));
 
     // Add transformers
-    d.push(UndefinedEmptyString());
+    d.push(TrimTransformer());
 
     // Add validator for defiend constraints
     d.pushIf(po.minLength, (c) => MinLength(c, vo));

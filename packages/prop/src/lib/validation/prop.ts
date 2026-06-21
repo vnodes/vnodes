@@ -1,48 +1,62 @@
-import { Expose } from 'class-transformer';
-import { IsArray, IsDate, type ValidationOptions } from 'class-validator';
+import { Expose, type ExposeOptions } from 'class-transformer';
+import {
+  IsDate,
+  IsDefined,
+  IsEnum,
+  IsIn,
+  IsNotIn,
+  IsOptional,
+  type ValidationOptions,
+} from 'class-validator';
+import { DefaultValueTransformer } from '../transformers/default-value.js';
 import { DecoratorList } from '../utils/decorator-list.js';
+import { ArrayValidation } from './array.js';
 import { BooleanValidation } from './boolean.js';
-import { CommonValidation } from './common.js';
+import { FomatValidation } from './format.js';
 import { NumberValidation } from './number.js';
 import { ObjectValidation } from './object.js';
 import type { PropertyOptions } from './property-options.js';
 import { StringValidation } from './string.js';
-
 export function PropValidation(propertyOptions?: PropertyOptions): PropertyDecorator {
   return (...args) => {
     const po: PropertyOptions = { ...propertyOptions };
-
     const d = new DecoratorList();
-
-    const __type = Reflect.getMetadata('design:type', args[0], args[1]);
-    const isArray = __type === Array;
-    const type = isArray ? po.type : __type;
-
-    if (type === undefined || type === null) {
-      throw new Error('Type could not infered!');
-    }
-
+    const propertyType = Reflect.getMetadata('design:type', args[0], args[1]);
+    const isArray = propertyType === Array;
+    const type = po.type ?? propertyType;
     const vo: ValidationOptions = {};
+    const eo: ExposeOptions = {};
 
     if (po.groups) {
       vo.groups = po.groups;
+      eo.groups = po.groups;
     }
 
-    if (isArray) {
-      vo.each = true;
+    if (isArray) vo.each = true;
+
+    // Common validations
+    if (po.required === true || po.nullable === false) {
+      d.push(IsDefined(vo));
+    } else {
+      d.push(IsOptional(vo));
     }
 
-    d.push(CommonValidation(po, vo));
+    d.pushIf(po.enum, (c) => IsEnum(c, vo));
+    d.pushIf(po.isIn, (c) => IsIn(c, vo));
+    d.pushIf(po.isNotIn, (c) => IsNotIn(c, vo));
+
+    d.pushIf(po.format, (c) => FomatValidation(c, vo));
+
+    // Default value transformer
+    d.pushIf(po.default, (value) => DefaultValueTransformer(value));
 
     if (po.exclude !== true) {
-      d.push(Expose({ groups: po.groups ?? [] }));
+      d.push(Expose(eo));
     }
 
     if (isArray) {
-      if (po.type == undefined || po.type === null) {
-        throw new Error(`For array types, the item type must be provided with the type property`);
-      }
-      d.push(IsArray());
+      const { each, ...arrayValidationOptions } = vo;
+      d.push(ArrayValidation(po, arrayValidationOptions));
     }
 
     if (type === String) {
@@ -53,7 +67,7 @@ export function PropValidation(propertyOptions?: PropertyOptions): PropertyDecor
       d.push(BooleanValidation(vo));
     } else if (type === Date) {
       d.push(IsDate(vo));
-    } else {
+    } else if (type !== Object) {
       d.push(ObjectValidation(po, vo));
     }
 

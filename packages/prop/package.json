@@ -54,7 +54,8 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "@swc/helpers": "~0.5.18",
+    "@vnodes/names": "workspace:*"
   },
   "devDependencies": {
     "@nestjs/swagger": "^11.4.4",

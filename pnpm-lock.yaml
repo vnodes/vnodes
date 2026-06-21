@@ -429,6 +429,9 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
+      '@vnodes/names':
+        specifier: workspace:*
+        version: link:../names
     devDependencies:
       '@nestjs/swagger':
         specifier: ^11.4.4

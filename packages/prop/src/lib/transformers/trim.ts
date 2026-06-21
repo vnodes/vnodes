@@ -1,10 +1,10 @@
 import { Transform } from 'class-transformer';
 
 /**
- * Transform an empty string into undefined
+ * Trim string and if the trimmed string is empty, return undefined
  * @returns
  */
-export function UndefinedEmptyString(): PropertyDecorator {
+export function TrimTransformer(): PropertyDecorator {
   return (...args) => {
     Transform(({ value }) => {
       if (typeof value === 'string') {
