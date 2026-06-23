@@ -18,6 +18,7 @@ export type OpenApiFormat =
   | 'idn-hostname'
   | 'ipv4'
   | 'ipv6'
+  | 'url'
   | 'uri'
   | 'uri-reference'
   | 'uri-template'
@@ -40,4 +41,9 @@ export type PropertyOptions = ApiPropertyOptions & {
 
   exclude?: boolean;
   groups?: string[];
+
+  hash?: boolean;
+  encrypt?: boolean;
+  internal?: boolean;
+  include?: boolean;
 };

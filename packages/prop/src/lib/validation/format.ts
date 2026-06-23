@@ -105,6 +105,7 @@ export function FomatValidation(
           d.push(IsIP('6', vo));
           break;
         }
+        case 'url':
         case 'uri': {
           d.push(IsUrl({}, vo));
           break;

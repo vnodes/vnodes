@@ -23,10 +23,14 @@
     "https://cash.app/$puqlib"
   ],
   "files": [
+    "bin",
     "dist",
     "assets",
     "!**/*.tsbuildinfo"
   ],
+  "bin": {
+    "prisma-nest-dto": "./bin/prisma-nest-dto.mjs"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -50,12 +54,15 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "@swc/helpers": "~0.5.18",
+    "@vnodes/types": "0.1.13"
   },
   "peerDependencies": {
     "@nestjs/common": "^11.1.26",
     "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/generator-helper": "^7.8.0",
     "@vnodes/config": "workspace:*",
+    "@vnodes/fs": "workspace:*",
     "@vnodes/names": "workspace:*",
     "@vnodes/prop": "workspace:*"
   },
@@ -63,8 +70,11 @@
     "@nestjs/common": "^11.1.26",
     "@nestjs/config": "^4.0.4",
     "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/generator-helper": "^7.8.0",
     "@vnodes/config": "workspace:*",
+    "@vnodes/fs": "workspace:*",
     "@vnodes/names": "workspace:*",
-    "@vnodes/prop": "workspace:*"
+    "@vnodes/prop": "workspace:*",
+    "@vnodes/types": "workspace:*"
   }
 }
