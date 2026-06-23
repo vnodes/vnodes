@@ -1,7 +1,6 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
 import type { PropertyOptions } from '@vnodes/prop';
-import type { Any } from '@vnodes/types';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
   isCreateInputField,
@@ -10,46 +9,123 @@ import {
   isRequiredField,
   isUpdateInputField,
 } from '../utils/is-field.js';
-import { openApiType, tsType } from '../utils/ts-type.js';
+import { tsType } from '../utils/ts-type.js';
 
 export function printProperty(name: string, options: string, isRequired: boolean, type: string) {
   return `@Prop(${options}) ${name}${isRequired ? '' : '?'}: ${type};`;
-}
-
-export function printDtoClass(model: DMMF.Model, fields: string, classNameSuffix: string) {
-  return [`export class ${model.name}${classNameSuffix}Dto {`, fields, `}`].join('\n');
 }
 
 export function printDecoratorOptions(
   field: DMMF.Field,
   options: PropertyOptions,
   isRequired: boolean,
-  isReadDto = false,
 ) {
-  const openApiOptions: string[] = [];
+  const ops = new Set<string>();
 
-  const add = (key: keyof PropertyOptions, value: Any) => openApiOptions.push(`${key}: ${value}`);
+  switch (field.kind) {
+    case 'object': {
+      ops.add(`type: ()=>${field.type}ReadDto`);
+      break;
+    }
+    case 'scalar': {
+      switch (field.type) {
+        case 'String':
+        case 'Boolean':
+        case 'BigInt':
+        case 'Number': {
+          ops.add(`type: ${field.type}`);
+          break;
+        }
+        case 'Float':
+        case 'Decimal': {
+          ops.add('type: Number');
+          break;
+        }
+        case 'Int': {
+          ops.add('type: Number');
+          if (options.format) {
+            ops.add(`format: ${options.format}`);
+          } else {
+            ops.add("format: 'int32'");
+          }
+          break;
+        }
+        case 'Date':
+        case 'DateTime': {
+          ops.add('type: Date');
+          break;
+        }
+        case 'Json': {
+          ops.add('type: String');
+          ops.add("format: 'json'");
+          break;
+        }
 
-  add('type', openApiType(field));
-
-  if (field.isList) add('isArray', true);
-
-  if (!isReadDto) {
-    if (isRequired) add('required', true);
-    if (options.format) add('format', `'${options.format}'`);
-    if (options.minLength) add('minLength', options.minLength);
-    if (options.maxLength) add('maxLength', options.minLength);
-    if (options.minimum) add('minimum', options.minLength);
-    if (options.maximum) add('maximum', options.minLength);
+        case 'Bytes': {
+          ops.add('type: String');
+          ops.add("format: 'byte'");
+          break;
+        }
+      }
+      break;
+    }
+    case 'enum': {
+      ops.add(`enum: ${field.type}`);
+      break;
+    }
+    case 'unsupported':
+    default: {
+      throw new Error('Not supported');
+    }
   }
 
-  return ['{', openApiOptions.join(','), '}'].join('');
+  if (field.isList) {
+    ops.add('isArray: true');
+  }
+
+  if (isRequired) {
+    ops.add('required: true');
+  }
+
+  if (options.description) {
+    ops.add(`description: '${options.description}'`);
+  }
+
+  if (options.default) {
+    if (typeof options.default === 'string') {
+      ops.add(`default: '${options.default}'`);
+    } else {
+      ops.add(`default: ${options.default}`);
+    }
+  }
+  if (options.format) ops.add(`format: '${options.format}'`);
+  if (options.minLength) ops.add(`minLength: ${options.minLength}`);
+  if (options.maxLength) ops.add(`maxLength: ${options.maxLength}`);
+  if (options.minimum) ops.add(`minimum: ${options.minimum}`);
+  if (options.maximum) ops.add(`maximum: ${options.maximum}`);
+  if (options.isIn) ops.add(`isIn: ${options.isIn}`);
+  if (options.isNotIn) ops.add(`isNotIn: ${options.isNotIn}`);
+  if (options.hash) ops.add(`hash: ${options.hash}`);
+  if (options.encrypt) ops.add(`encrypt: ${options.encrypt}`);
+  if (options.internal) ops.add(`internal:${options.internal}`);
+  if (options.readOnly) ops.add(`readOnly:${options.readOnly}`);
+  if (options.writeOnly) ops.add(`writeOnly:${options.writeOnly}`);
+  if (options.example) ops.add(`example: ${options.example}`);
+  if (options.examples) ops.add(`examples: ${options.examples}`);
+  if (options.deprecated) ops.add(`deprecated: ${options.deprecated}`);
+
+  if (field.isList) {
+    if (options.maxItems) ops.add(`maxItems: ${options.maxItems}`);
+    if (options.minItems) ops.add(`minItems: ${options.minItems}`);
+  }
+
+  return ['{', [...ops].join(','), '}'].join('');
 }
 
 export function printReadDtoProperty(field: DMMF.Field) {
   return printProperty(
     field.name,
-    printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), false, true),
+    printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), false),
     false,
     tsType(field),
   );
@@ -73,6 +149,10 @@ export function printUpdateDtoProperty(field: DMMF.Field) {
     false,
     tsType(field),
   );
+}
+
+export function printDtoClass(model: DMMF.Model, fields: string, classNameSuffix: string) {
+  return [`export class ${model.name}${classNameSuffix}Dto {`, fields, `}`].join('\n');
 }
 
 export function printCreateDtoClass(model: DMMF.Model) {

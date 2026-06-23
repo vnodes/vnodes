@@ -13,16 +13,19 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  uuid        String    @unique @default(uuid(7))
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
-  deletedAt   DateTime? @map("deleted_at")
-  isActive    Boolean   @default(true) @map("is_active")
-  updatedBy   User?     @relation("updated_by_audit", fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  updatedById Int?      @map("updated_by_id")
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7)) @db.Uuid
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  isActive  Boolean   @default(true) @map("is_active")
 
-  /// @minLength(3) /// @notIn(["Root", "Admin", "Super", "SuperUser"]) @casing(sentence)
+  updatedBy User? @relation("updated_by_audit", fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  /// @internal() @param(userId)
+  updatedById Int? @map("updated_by_id")
+
+  /// @minLength(3) /// @notIn([root, admin, superuser, super, sudo]) @casing(sentence)
   username String @unique
 
   /// @format(password) @hash()
@@ -44,6 +47,7 @@ model User {
   updatedAccessTokens AccessToken[]
   updatedEvents       Event[]
   updatedSamples      Sample[]
+  updatedCategories   Category[]
 
   @@map("users")
 }
@@ -55,6 +59,7 @@ model Role {
   deletedAt   DateTime? @map("deleted_at")
   isActive    Boolean   @default(true) @map("is_active")
   updatedBy   User?     @relation(fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  /// @internal() @param(userId)
   updatedById Int?      @map("updated_by_id")
   /// @minLength(3)
   name        String    @unique
@@ -75,6 +80,7 @@ model Permission {
   deletedAt   DateTime? @map("deleted_at")
   isActive    Boolean   @default(true) @map("is_active")
   updatedBy   User?     @relation(fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  /// @internal() @param(userId)
   updatedById Int?      @map("updated_by_id")
 
   /// @minLength(3)
@@ -115,6 +121,7 @@ model AccessToken {
   deletedAt   DateTime? @map("deleted_at")
   isActive    Boolean   @default(true) @map("is_active")
   updatedBy   User?     @relation(fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  /// @internal() @param(userId)
   updatedById Int?      @map("updated_by_id")
 
   name  String @unique
@@ -145,6 +152,7 @@ model Event {
   deletedAt   DateTime? @map("deleted_at")
   isActive    Boolean   @default(true) @map("is_active")
   updatedBy   User?     @relation(fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  /// @internal() @param(userId)
   updatedById Int?      @map("updated_by_id")
 
   name        String  @unique
@@ -162,6 +170,7 @@ model HttpHook {
   deletedAt   DateTime? @map("deleted_at")
   isActive    Boolean   @default(true) @map("is_active")
   updatedBy   User?     @relation(fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  /// @internal() @param(userId)
   updatedById Int?      @map("updated_by_id")
 
   name          String    @unique
@@ -188,6 +197,29 @@ model HttpHookEvent {
   @@map("http_hook_events")
 }
 
+model Category {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  isActive  Boolean   @default(true) @map("is_active")
+
+  updatedBy User? @relation(fields: [updatedByUserId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  /// @internal() @param(userId)
+  updatedByUserId Int? @map("updated_by_user_id")
+
+  name        String  @unique
+  description String?
+
+  parentCategory   Category? @relation("categories", fields: [parentCategoryId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  parentCategoryId Int?      @map("parent_category_id")
+
+  categories Category[] @relation("categories")
+
+  @@map("categories")
+}
+
 model Sample {
   id          Int       @id @default(autoincrement())
   createdAt   DateTime  @default(now()) @map("created_at")
@@ -195,8 +227,10 @@ model Sample {
   deletedAt   DateTime? @map("deleted_at")
   isActive    Boolean   @default(true) @map("is_active")
   updatedBy   User?     @relation(fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  /// @internal() @param(userId)
   updatedById Int?      @map("updated_by_id")
-  name        String    @unique
+
+  name        String  @unique
   description String?
 
   @@map("samples")
