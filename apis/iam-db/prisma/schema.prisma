@@ -32,7 +32,7 @@ model User {
   /// @internal()
   lastLoginAt DateTime? @map("last_login_at")
 
-  /// @include()
+  /// @select(role)
   userRoles UserRole[]
 
   @@map("users")
@@ -180,7 +180,7 @@ model HttpHook {
   /// @internal()
   lastSuccessAt DateTime? @map("last_success_at")
 
-  /// @include()
+  /// @include(all)
   httpHookEvents HttpHookEvent[]
 
   @@map("http_hooks")

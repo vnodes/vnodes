@@ -34,12 +34,12 @@ export function printDecoratorOptions(
         case 'Boolean':
         case 'BigInt':
         case 'Number': {
-          ops.add(`type: ${field.type}`);
+          if (field.isList) ops.add(`type: ${field.type}`);
           break;
         }
         case 'Float':
         case 'Decimal': {
-          ops.add('type: Number');
+          if (field.isList) ops.add('type: Number');
           break;
         }
         case 'Int': {
@@ -118,7 +118,11 @@ export function printDecoratorOptions(
     if (options.minItems) ops.add(`minItems: ${options.minItems}`);
   }
 
-  return ['{', [...ops].join(','), '}'].join('');
+  const result = [...ops].join(',').trim();
+  if (result.length > 0) {
+    return `{ ${result} }`;
+  }
+  return '';
 }
 
 export function printReadDtoProperty(field: DMMF.Field) {
@@ -171,7 +175,7 @@ export function printReadDtoClass(model: DMMF.Model) {
 export function printUpdateDtoClass(model: DMMF.Model) {
   const content: string = model.fields
     .filter(isUpdateInputField)
-    .map(printCreateDtoProperty)
+    .map(printUpdateDtoProperty)
     .join('\n');
 
   return printDtoClass(model, content, 'Update');
@@ -184,6 +188,7 @@ export function printQueryDtoClass(model: DMMF.Model) {
     ` @Prop({ enum: P.${modelName}ScalarFieldEnum }) distinct?: P.${modelName}ScalarFieldEnum;`,
     ` @Prop({ enum: P.${modelName}ScalarFieldEnum }) orderBy?: P.${modelName}ScalarFieldEnum;`,
     ` @Prop({ enum: P.SortOrder }) orderDir?: P.SortOrder;`,
+    ` @Prop() withDeleted?: boolean;`,
     `}`,
   ].join('\n');
 }
