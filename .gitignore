@@ -7,7 +7,7 @@ out
 out-tsc
 public
 
-generated/*
+**/generated/*
 
 # dependencies
 node_modules
