@@ -1,3 +1,4 @@
+
 import { BaseQueryDto } from '@vnodes/prisma';
 import { Prop } from '@vnodes/prop';
 import { Prisma as P } from '../../prisma/client.js';

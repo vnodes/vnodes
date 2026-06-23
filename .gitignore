@@ -7,6 +7,8 @@ out
 out-tsc
 public
 
+generated/*
+
 # dependencies
 node_modules
 

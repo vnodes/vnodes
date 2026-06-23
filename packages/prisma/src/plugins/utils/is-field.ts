@@ -174,11 +174,16 @@ export function isIncludedField(field: DMMF.Field): boolean {
 
 export function isReadableField(field: DMMF.Field): boolean {
   if (field.documentation) {
-    return isWriteonlyField(field) || isHashedField(field);
+    if (isWriteonlyField(field) || isHashedField(field)) {
+      return false;
+    }
   }
 
   if (field.kind === 'object') {
-    return isIncludedField(field);
+    if (isIncludedField(field)) {
+      return true;
+    }
+    return false;
   }
 
   return true;

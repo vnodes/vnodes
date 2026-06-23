@@ -826,6 +826,9 @@ export type $PermissionPayload<ExtArgs extends runtime.Types.Extensions.Internal
     deletedAt: Date | null
     isActive: boolean
     updatedById: number | null
+    /**
+     * @minLength(3)
+     */
     name: string
   }, ExtArgs["result"]["permission"]>
   composites: {}

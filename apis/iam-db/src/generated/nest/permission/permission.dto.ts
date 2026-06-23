@@ -1,3 +1,4 @@
+
 import { BaseQueryDto } from '@vnodes/prisma';
 import { Prop } from '@vnodes/prop';
 import { Prisma as P } from '../../prisma/client.js';
@@ -18,10 +19,10 @@ export class PermissionQueryDto extends BaseQueryDto {
 export class PermissionCreateDto {
 @Prop({type: Boolean}) isActive?: boolean;
 @Prop({type: Number}) updatedById?: number;
-@Prop({type: String,required: true}) name: string;
+@Prop({type: String,required: true,minLength: 3}) name: string;
 }
 export class PermissionUpdateDto {
 @Prop({type: Boolean}) isActive?: boolean;
 @Prop({type: Number}) updatedById?: number;
-@Prop({type: String,required: true}) name: string;
+@Prop({type: String,required: true,minLength: 3}) name: string;
 }

@@ -1,3 +1,4 @@
+
 import { BaseQueryDto } from '@vnodes/prisma';
 import { Prop } from '@vnodes/prop';
 import { Prisma as P } from '../../prisma/client.js';
@@ -9,7 +10,6 @@ export class AccessTokenReadDto {
 @Prop({type: Boolean}) isActive?: boolean;
 @Prop({type: Number}) updatedById?: number;
 @Prop({type: String}) name?: string;
-@Prop({type: String}) token?: string;
 @Prop({type: Boolean}) isExpired?: boolean;
 }
 export class AccessTokenQueryDto extends BaseQueryDto {

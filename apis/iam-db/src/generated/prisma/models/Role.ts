@@ -871,7 +871,13 @@ export type $RolePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     deletedAt: Date | null
     isActive: boolean
     updatedById: number | null
+    /**
+     * @minLength(3)
+     */
     name: string
+    /**
+     * @minLength(3)
+     */
     description: string | null
   }, ExtArgs["result"]["role"]>
   composites: {}

@@ -1,3 +1,4 @@
+
 import { BaseQueryDto } from '@vnodes/prisma';
 import { Prop } from '@vnodes/prop';
 import { Prisma as P } from '../../prisma/client.js';
@@ -19,12 +20,12 @@ export class RoleQueryDto extends BaseQueryDto {
 export class RoleCreateDto {
 @Prop({type: Boolean}) isActive?: boolean;
 @Prop({type: Number}) updatedById?: number;
-@Prop({type: String,required: true}) name: string;
-@Prop({type: String}) description?: string;
+@Prop({type: String,required: true,minLength: 3}) name: string;
+@Prop({type: String,minLength: 3}) description?: string;
 }
 export class RoleUpdateDto {
 @Prop({type: Boolean}) isActive?: boolean;
 @Prop({type: Number}) updatedById?: number;
-@Prop({type: String,required: true}) name: string;
-@Prop({type: String}) description?: string;
+@Prop({type: String,required: true,minLength: 3}) name: string;
+@Prop({type: String,minLength: 3}) description?: string;
 }

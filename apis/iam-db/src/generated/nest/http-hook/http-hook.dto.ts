@@ -1,3 +1,4 @@
+
 import { BaseQueryDto } from '@vnodes/prisma';
 import { Prop } from '@vnodes/prop';
 import { Prisma as P } from '../../prisma/client.js';
@@ -10,6 +11,7 @@ export class HttpHookReadDto {
 @Prop({type: Number}) updatedById?: number;
 @Prop({type: String}) name?: string;
 @Prop({type: String}) description?: string;
+@Prop({type: String}) url?: string;
 @Prop({type: Number}) retryCount?: number;
 @Prop({type: Number}) failureCount?: number;
 @Prop({type: Date}) lastFailureAt?: Date;

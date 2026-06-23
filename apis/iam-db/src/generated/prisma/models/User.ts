@@ -1883,6 +1883,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     updatedBy: Prisma.$UserPayload<ExtArgs> | null
+    /**
+     * @include()
+     */
     userRoles: Prisma.$UserRolePayload<ExtArgs>[]
     updatedUsers: Prisma.$UserPayload<ExtArgs>[]
     updatedRoles: Prisma.$RolePayload<ExtArgs>[]
@@ -1900,12 +1903,21 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     deletedAt: Date | null
     isActive: boolean
     updatedById: number | null
+    /**
+     * @minLength(3) /// @notIn(["Root", "Admin", "Super", "SuperUser"]) @casing(sentence)
+     */
     username: string
     /**
      * @format(password) @hash()
      */
     password: string
+    /**
+     * @internal()
+     */
     isTwoFactorAuthEnabled: boolean
+    /**
+     * @internal()
+     */
     lastLoginAt: Date | null
   }, ExtArgs["result"]["user"]>
   composites: {}

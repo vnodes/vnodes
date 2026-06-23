@@ -1,14 +1,16 @@
 import type { DMMF } from '@prisma/generator-helper';
+import { names } from '@vnodes/names';
 import type { PropertyOptions } from '@vnodes/prop';
 import type { Any } from '@vnodes/types';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
   isCreateInputField,
+  isIncludedField,
   isReadableField,
   isRequiredField,
   isUpdateInputField,
 } from '../utils/is-field.js';
-import { openApiScalarType, tsType } from '../utils/ts-type.js';
+import { openApiType, tsType } from '../utils/ts-type.js';
 
 export function printProperty(name: string, options: string, isRequired: boolean, type: string) {
   return `@Prop(${options}) ${name}${isRequired ? '' : '?'}: ${type};`;
@@ -28,7 +30,7 @@ export function printDecoratorOptions(
 
   const add = (key: keyof PropertyOptions, value: Any) => openApiOptions.push(`${key}: ${value}`);
 
-  add('type', openApiScalarType(field));
+  add('type', openApiType(field));
 
   if (field.isList) add('isArray', true);
 
@@ -107,7 +109,7 @@ export function printQueryDtoClass(model: DMMF.Model) {
   ].join('\n');
 }
 
-export function printDtoImports() {
+export function printCommonDtoImports() {
   return [
     `import { BaseQueryDto } from '@vnodes/prisma';`,
     `import { Prop } from '@vnodes/prop';`,
@@ -115,9 +117,25 @@ export function printDtoImports() {
   ].join('\n');
 }
 
+export function dtoFilename(name: string, suffix: string, ext = 'ts') {
+  return `${names(name).kebab}-${suffix}.dto.${ext}`;
+}
+export function printDtoImports(model: DMMF.Model) {
+  const relationImports = new Set(
+    model.fields
+      .filter((e) => e.kind === 'object')
+      .filter(isIncludedField)
+      .map((e) => {
+        const { kebab } = names(e.type);
+        return `import { ${e.type}ReadDto } from '../${kebab}/${kebab}.dto.js';`;
+      }),
+  );
+  return [[...relationImports].join('\n'), printCommonDtoImports()].join('\n');
+}
+
 export function printDtos(model: DMMF.Model) {
   return [
-    printDtoImports(),
+    printDtoImports(model),
     printReadDtoClass(model),
     printQueryDtoClass(model),
     printCreateDtoClass(model),

@@ -36,7 +36,9 @@ export function scalarType(field: DMMF.Field) {
       }
     }
   }
-  throw new Error('Not scalar');
+  // throw new Error('Not scalar');
+
+  return '()=>({})';
 }
 
 /**
@@ -106,7 +108,7 @@ export function tsItemType(field: DMMF.Field): string {
   switch (field.kind) {
     case 'enum':
     case 'object': {
-      return `P.${field.type}`;
+      return `P.${field.type}Model`;
     }
     case 'scalar': {
       return scalarType(field);
