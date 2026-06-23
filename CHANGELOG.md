@@ -1,3 +1,20 @@
+## 0.1.14 (2026-06-23)
+
+### 🚀 Features
+
+- created a sample data module in prisma project ([66427f6](https://github.com/vnodes/vnodes/commit/66427f6))
+- created the prisma nest dto generator ([2b686b6](https://github.com/vnodes/vnodes/commit/2b686b6))
+- created prisma nestjs geneator ([0841db5](https://github.com/vnodes/vnodes/commit/0841db5))
+- improved the coerction for dto generator ([b108097](https://github.com/vnodes/vnodes/commit/b108097))
+
+### 🩹 Fixes
+
+- clean up the generated files ([c5ac66a](https://github.com/vnodes/vnodes/commit/c5ac66a))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.13 (2026-06-21)
 
 ### 🚀 Features

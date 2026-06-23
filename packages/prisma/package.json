@@ -1,6 +1,6 @@
 {
   "name": "@vnodes/prisma",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "author": {
     "email": "robert.brightline+vnodes-prisma@gmail.com",
     "name": "Robert Brightline",
@@ -54,12 +54,12 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18",
-    "@vnodes/types": "0.1.13"
+    "@swc/helpers": "~0.5.18"
   },
   "peerDependencies": {
     "@nestjs/common": "^11.1.26",
     "@prisma/adapter-pg": "^7.8.0",
+    "@vnodes/types": "workspace:*",
     "@prisma/generator-helper": "^7.8.0",
     "@vnodes/config": "workspace:*",
     "@vnodes/fs": "workspace:*",

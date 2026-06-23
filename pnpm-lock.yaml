@@ -437,9 +437,6 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.18
         version: 0.5.23
-      '@vnodes/types':
-        specifier: 0.1.13
-        version: 0.1.13
     devDependencies:
       '@nestjs/common':
         specifier: ^11.1.26
@@ -465,6 +462,9 @@ importers:
       '@vnodes/prop':
         specifier: workspace:*
         version: link:../prop
+      '@vnodes/types':
+        specifier: workspace:*
+        version: link:../types
 
   packages/prop:
     dependencies:
@@ -2884,9 +2884,6 @@ packages:
 
   '@vitest/utils@4.1.8':
     resolution: {integrity: sha512-uOJamYALNhfJ6iolExyQM40yIQwDqYnkKtQ5VCiSe17E33H0aQ/u+1GlRuz4LZBk6Mm3sg90G9hEbmEt37C1Zg==}
-
-  '@vnodes/types@0.1.13':
-    resolution: {integrity: sha512-UFcj/UJag9dJ4eSIRHa6sgCMdW18sqNGW2ciODm1K9O+4C4QpOYAp3bWwAbYa9RRsfmsXQd+rSVcYyEBVyxfFQ==}
 
   '@xhmikosr/archive-type@8.0.1':
     resolution: {integrity: sha512-toXuiWChyfOpEiCPsIw6HGHaNji5LVkvB6EREL548vGWr+hGaehwxG4LzN20vm9aGFXwnA/Jty8yW2/SmV+1zQ==}
@@ -9034,10 +9031,6 @@ snapshots:
       '@vitest/pretty-format': 4.1.8
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
-
-  '@vnodes/types@0.1.13':
-    dependencies:
-      '@swc/helpers': 0.5.23
 
   '@xhmikosr/archive-type@8.0.1':
     dependencies:
