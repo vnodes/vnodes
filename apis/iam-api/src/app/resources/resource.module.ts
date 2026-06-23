@@ -1,9 +1,8 @@
-import { Module } from '@vnodes/nest';
-import { SampleModule } from './sample/sample.module.js';
-import { PrismaModule } from '@vnodes/prisma';
 import { PrismaClient } from '@vnodes/iam-db/client';
+import { Module } from '@vnodes/nest';
+import { PrismaModule } from '@vnodes/prisma';
 
 @Module({
-  imports: [PrismaModule.forRoot({ client: PrismaClient }), SampleModule],
+  imports: [PrismaModule.forRoot({ client: PrismaClient })],
 })
 export class ResourceModule {}

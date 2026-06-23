@@ -23,4 +23,14 @@ export default async function onGenerate(options: GeneratorOptions) {
     const content = printDtos(model);
     await writeTextFile(join(output, kebab, `${kebab}.dto.ts`), content);
   }
+
+  const indexExports = models
+    .map((e) => e.name)
+    .map((e) => {
+      const { kebab } = names(e);
+      return `export * from './${kebab}/${kebab}.dto.js';`;
+    })
+    .join('\n');
+
+  await writeTextFile(join(output, 'dtos.ts'), indexExports);
 }

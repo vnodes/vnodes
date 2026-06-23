@@ -1,5 +1,17 @@
 import type { Any } from '@vnodes/types';
 
+export function toArrayString(arr: Array<Any>) {
+  const items = arr
+    .map((e) => {
+      if (typeof e === 'string') {
+        return `'${e}'`;
+      }
+      return e;
+    })
+    .join(',');
+  return `[ ${items}]`;
+}
+
 export function isArrayStructure(stringValue: string) {
   return /^\[.{0,}\]$/.test(stringValue);
 }

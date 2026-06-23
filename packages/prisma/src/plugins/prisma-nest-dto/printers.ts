@@ -1,6 +1,7 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
 import type { PropertyOptions } from '@vnodes/prop';
+import { toArrayString } from '../utils/coerce.js';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
   isCreateInputField,
@@ -43,9 +44,7 @@ export function printDecoratorOptions(
         }
         case 'Int': {
           ops.add('type: Number');
-          if (options.format) {
-            ops.add(`format: ${options.format}`);
-          } else {
+          if (!options.format) {
             ops.add("format: 'int32'");
           }
           break;
@@ -103,8 +102,8 @@ export function printDecoratorOptions(
   if (options.maxLength) ops.add(`maxLength: ${options.maxLength}`);
   if (options.minimum) ops.add(`minimum: ${options.minimum}`);
   if (options.maximum) ops.add(`maximum: ${options.maximum}`);
-  if (options.isIn) ops.add(`isIn: ${options.isIn}`);
-  if (options.isNotIn) ops.add(`isNotIn: ${options.isNotIn}`);
+  if (options.isIn) ops.add(`isIn: ${toArrayString(options.isIn)}`);
+  if (options.isNotIn) ops.add(`isNotIn: ${toArrayString(options.isNotIn)}`);
   if (options.hash) ops.add(`hash: ${options.hash}`);
   if (options.encrypt) ops.add(`encrypt: ${options.encrypt}`);
   if (options.internal) ops.add(`internal:${options.internal}`);
