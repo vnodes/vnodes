@@ -226,6 +226,14 @@ export function isFindByField(field: DMMF.Field) {
   return true;
 }
 
+export function isDeleteByField(field: DMMF.Field) {
+  if (isFindByField(field)) {
+    return field.isId || field.isUnique;
+  }
+
+  return false;
+}
+
 export function isValidPropertyName(name: string) {
   return /[A-Za-z]{1,}/.test(name);
 }

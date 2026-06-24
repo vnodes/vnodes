@@ -2,6 +2,7 @@ import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
+  isDeleteByField,
   isFindByField,
   isIncludedField,
   isSearchableField,
@@ -9,6 +10,16 @@ import {
   isValidPropertyName,
 } from '../utils/is-field.js';
 import { getTsTypeOf } from '../utils/ts-type.js';
+
+export function printDeleteByFn(model: DMMF.Model, field: DMMF.Field) {
+  const { camel: modelCamel } = names(model.name);
+  const { pascal, camel } = names(field.name);
+  return [
+    `deleteOneBy${pascal}(${camel}: ${getTsTypeOf(field)}) {`,
+    `   return this.${modelCamel}Delegate.delete({ where: { ${camel} }  ${printIncludeOption(model)} })`,
+    `}`,
+  ].join('\n');
+}
 
 export function printFindByFn(model: DMMF.Model, field: DMMF.Field) {
   const { camel: modelCamel } = names(model.name);
@@ -138,6 +149,7 @@ export function printServiceClass(model: DMMF.Model) {
   const { pascal, camel, kebab } = names(model.name);
 
   const findByFields = model.fields.filter(isFindByField);
+
   const hasFindByFields = findByFields.length > 0;
 
   const findByFns = hasFindByFields
@@ -146,6 +158,12 @@ export function printServiceClass(model: DMMF.Model) {
           return printFindByFn(model, field);
         })
         .join('\n')
+    : '';
+
+  const deleteByFields = model.fields.filter(isDeleteByField);
+  const hasDeleteByField = deleteByFields.length > 0;
+  const deleteByFns = hasDeleteByField
+    ? deleteByFields.map((field) => printDeleteByFn(model, field)).join('\n')
     : '';
 
   const enumModule = model.fields.some((e) => e.kind === 'enum') ? ',$Enums as E' : '';
@@ -202,6 +220,7 @@ export function printServiceClass(model: DMMF.Model) {
     ``,
 
     findByFns,
+    deleteByFns,
     `}`,
   ].join('\n');
 }
