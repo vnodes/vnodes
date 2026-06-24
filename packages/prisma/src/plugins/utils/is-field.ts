@@ -213,8 +213,19 @@ export function isSoftDeleteField(field: DMMF.Field): boolean {
 }
 
 export function isFindByField(field: DMMF.Field) {
-  if (field.kind === 'object' || isTimestampField(field) || isInternalField(field)) {
+  if (
+    field.kind === 'object' ||
+    field.isList ||
+    field.type === 'Json' ||
+    isTimestampField(field) ||
+    isInternalField(field) ||
+    isHashedField(field)
+  ) {
     return false;
   }
   return true;
+}
+
+export function isValidPropertyName(name: string) {
+  return /[A-Za-z]{1,}/.test(name);
 }

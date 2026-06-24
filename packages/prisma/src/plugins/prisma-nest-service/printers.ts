@@ -1,7 +1,26 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
 import { extractDecorators } from '../utils/extract-decorators.js';
-import { isIncludedField, isSearchableField, isSoftDeleteField } from '../utils/is-field.js';
+import {
+  isFindByField,
+  isIncludedField,
+  isSearchableField,
+  isSoftDeleteField,
+  isValidPropertyName,
+} from '../utils/is-field.js';
+import { getTsTypeOf } from '../utils/ts-type.js';
+
+export function printFindByFn(model: DMMF.Model, field: DMMF.Field) {
+  const { camel: modelCamel } = names(model.name);
+  const { pascal, camel } = names(field.name);
+
+  const delegateMethodName = field.isUnique || field.isId ? 'findUnique' : 'findFirst';
+  return [
+    `findOneBy${pascal}(${camel}: ${getTsTypeOf(field)}) {`,
+    `   return this.${modelCamel}Delegate.${delegateMethodName}({ where: { ${camel} }  ${printIncludeOption(model)} })`,
+    `}`,
+  ].join('\n');
+}
 
 export function printToWhereArgsFn(model: DMMF.Model) {
   const { pascal } = names(model.name);
@@ -29,7 +48,14 @@ export function printToWhereArgsFn(model: DMMF.Model) {
     : '';
 
   const searchCondition = hasSearchable
-    ? [`    if (query.search) {`, `      where.OR = [`, orList, `      ]`, `    }`].join('\n')
+    ? [
+        `    if (query.search) {`,
+        `      where.OR = [`,
+        orList,
+        `      ]`,
+        `return { where  }`,
+        `    }`,
+      ].join('\n')
     : '';
 
   const initWhere = hasSearchable
@@ -60,7 +86,7 @@ export function printIncludeOption(model: DMMF.Model) {
         if (options.select === true) {
           return `${field.name}: true`;
         } else if (typeof options.select === 'string') {
-          if (!/\w+/.test(options.select))
+          if (!isValidPropertyName(options.select))
             throw new Error(
               `${model.name}| ${field.name} | Invalid select option ${options.select}`,
             );
@@ -68,7 +94,7 @@ export function printIncludeOption(model: DMMF.Model) {
         } else if (Array.isArray(options.select)) {
           const includes = options.select
             .map((e) => {
-              if (!/\w+/.test(e))
+              if (!isValidPropertyName(e))
                 throw new Error(
                   `${model.name}| ${field.name} | Invalid select option ${options.select} || ${e}`,
                 );
@@ -81,7 +107,7 @@ export function printIncludeOption(model: DMMF.Model) {
         if (options.include === true) {
           return `${field.name}: true`;
         } else if (typeof options.include === 'string') {
-          if (!/\w+/.test(options.include))
+          if (!isValidPropertyName(options.include))
             throw new Error(
               `${model.name}| ${field.name} | Invalid select option ${options.include}`,
             );
@@ -90,7 +116,7 @@ export function printIncludeOption(model: DMMF.Model) {
         } else if (Array.isArray(options.include)) {
           const includes = options.include
             .map((e) => {
-              if (!/\w+/.test(e))
+              if (!isValidPropertyName(e))
                 throw new Error(
                   `${model.name}| ${field.name} | Invalid select option ${options.include}|| ${e}`,
                 );
@@ -111,10 +137,23 @@ export function printIncludeOption(model: DMMF.Model) {
 export function printServiceClass(model: DMMF.Model) {
   const { pascal, camel, kebab } = names(model.name);
 
+  const findByFields = model.fields.filter(isFindByField);
+  const hasFindByFields = findByFields.length > 0;
+
+  const findByFns = hasFindByFields
+    ? findByFields
+        .map((field) => {
+          return printFindByFn(model, field);
+        })
+        .join('\n')
+    : '';
+
+  const enumModule = model.fields.some((e) => e.kind === 'enum') ? ',$Enums as E' : '';
+
   return [
     `import { Injectable } from '@vnodes/nest';`,
     `import { InjectDelegate } from '@vnodes/prisma';`,
-    `import { Prisma as P } from '../../prisma/client.js';`,
+    `import { Prisma as P ${enumModule} } from '../../prisma/client.js';`,
     `import type { ${pascal}QueryDto, ${pascal}CreateDto, ${pascal}UpdateDto } from './${kebab}.dto.js';`,
     ``,
     ``,
@@ -162,6 +201,7 @@ export function printServiceClass(model: DMMF.Model) {
     `  }`,
     ``,
 
+    findByFns,
     `}`,
   ].join('\n');
 }
