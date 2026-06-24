@@ -15,9 +15,5 @@ export function extractDecorators(doc: string): PropertyOptions {
       return acc;
     }, {});
 
-  console.log('.........Extracted.................');
-  console.table(options);
-
-  console.log('..............End...............');
   return options;
 }

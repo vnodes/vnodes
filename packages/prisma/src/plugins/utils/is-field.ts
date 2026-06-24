@@ -28,7 +28,7 @@ export function isIdField(field: DMMF.Field): boolean {
  */
 export function isRequiredField(field: DMMF.Field): boolean {
   if (field.documentation) {
-    if (/@required\(\)/i.test(field.documentation)) {
+    if (/@required\((.{0,})\)/i.test(field.documentation)) {
       return true;
     } else if (isOptionalField(field)) {
       return false;
@@ -57,7 +57,7 @@ export function isRequiredField(field: DMMF.Field): boolean {
  */
 export function isInternalField(field: DMMF.Field): boolean {
   if (field.documentation) {
-    return /@internal\(\)/i.test(field.documentation);
+    return /@internal\((.{0,})\)/i.test(field.documentation);
   }
   return false;
 }
@@ -69,7 +69,7 @@ export function isInternalField(field: DMMF.Field): boolean {
  */
 export function isReadonlyField(field: DMMF.Field): boolean {
   if (field.documentation) {
-    return /@readonly\(\)/i.test(field.documentation);
+    return /@readonly\((.{0,})\)/i.test(field.documentation);
   }
   return false;
 }
@@ -81,7 +81,7 @@ export function isReadonlyField(field: DMMF.Field): boolean {
  */
 export function isWriteonlyField(field: DMMF.Field): boolean {
   if (field.documentation) {
-    return /@writeonly\(\)/i.test(field.documentation);
+    return /@writeonly\((.{0,})\)/i.test(field.documentation);
   }
   return false;
 }
@@ -93,7 +93,7 @@ export function isWriteonlyField(field: DMMF.Field): boolean {
  */
 export function isOptionalField(field: DMMF.Field): boolean {
   if (field.documentation) {
-    return /@optional\(\)/i.test(field.documentation);
+    return /@optional\((.{0,})\)/i.test(field.documentation);
   }
   return false;
 }
@@ -157,7 +157,7 @@ export function isUpdateInputField(field: DMMF.Field): boolean {
 
 export function isHashedField(field: DMMF.Field): boolean {
   if (field.documentation) {
-    return /@hash\(\)/i.test(field.documentation);
+    return /@hash\((.{0,})\)/i.test(field.documentation);
   }
   return false;
 }
@@ -165,11 +165,11 @@ export function isHashedField(field: DMMF.Field): boolean {
 export function isIncludedField(field: DMMF.Field): boolean {
   if (field.kind === 'object') {
     if (field.documentation) {
-      return /@include\(\)/i.test(field.documentation);
+      return /@(include|select)\((.{0,})\)/i.test(field.documentation);
     }
     return false;
   }
-  throw new Error('Not relation field');
+  throw new Error('Not object field');
 }
 
 export function isReadableField(field: DMMF.Field): boolean {
@@ -202,4 +202,19 @@ export function isSearchableField(field: DMMF.Field): boolean {
   }
 
   return false;
+}
+
+export function hasSoftDeleteField(model: DMMF.Model) {
+  return model.fields.some(isSoftDeleteField);
+}
+
+export function isSoftDeleteField(field: DMMF.Field): boolean {
+  return field.type === 'Date' && field.name === 'deletedAt';
+}
+
+export function isFindByField(field: DMMF.Field) {
+  if (field.kind === 'object' || isTimestampField(field) || isInternalField(field)) {
+    return false;
+  }
+  return true;
 }

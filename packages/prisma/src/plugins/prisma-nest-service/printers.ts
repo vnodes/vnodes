@@ -1,14 +1,35 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { names } from '@vnodes/names';
-import { isSearchableField } from '../utils/is-field.js';
+import { extractDecorators } from '../utils/extract-decorators.js';
+import { isIncludedField, isSearchableField } from '../utils/is-field.js';
 
 export function printServiceClass(model: DMMF.Model) {
   const { pascal, camel, kebab } = names(model.name);
-  const includes = '';
-  const searchableFields = model.fields
-    .filter(isSearchableField)
-    .map((e) => `'${e.name}'`)
+  const __includes = model.fields
+    .filter((e) => e.kind === 'object')
+    .filter(isIncludedField)
+    .map((field) => {
+      const options = extractDecorators(field.documentation ?? '');
+
+      if (options.select) {
+        const selectedItems = [options.select].map((e) => `${e}: true`).join(',');
+        return `${field.name}: { select: { ${selectedItems} } } `;
+      } else if (options.include) {
+        const includedItems = [options.select].map((e) => `${e}: true`).join(',');
+        return `${field.name}: { include: {  ${includedItems} } } `;
+      }
+      return undefined;
+    })
+    .filter((e) => e !== undefined)
     .join(',');
+
+  const includes = __includes ? `include: { ${__includes} }` : '';
+
+  const whereOrList = model.fields
+    .filter(isSearchableField)
+    .map((e) => e.name)
+    .map((e) => `{ ${e}:{ contains: query.search, model:'insensitive' }`)
+    .join(',\n');
 
   return [
     `import { Injectable } from '@vnodes/nest';`,
@@ -19,7 +40,6 @@ export function printServiceClass(model: DMMF.Model) {
     ``,
     `@Injectable()`,
     `export class ${pascal}Service {`,
-    `  protected readonly searchableFields: P.${pascal}ScalarFieldEnum[] = [${searchableFields} ];`,
     ``,
     `  constructor(@InjectDelegate(P.ModelName.${pascal}) protected readonly ${camel}Delegate: P.${pascal}Delegate) {}`,
     ``,
@@ -46,9 +66,9 @@ export function printServiceClass(model: DMMF.Model) {
     `    }`,
     ``,
     `    if (query.search) {`,
-    `      where.OR = this.searchableFields.map((e) => {`,
-    `        return { [e]: { contains: query.search, mode: 'insensitive' } };`,
-    `      });`,
+    `      where.OR = [`,
+    whereOrList,
+    `      ]`,
     `    }`,
     ``,
     `    return undefined;`,
@@ -66,14 +86,14 @@ export function printServiceClass(model: DMMF.Model) {
     `  findMany(query: ${pascal}QueryDto) {`,
     `    return this.${camel}Delegate.findMany({`,
     `      ...this.toFindManyArgs(query),`,
-    `      ${includes},`,
+    `      ${includes}`,
     `    });`,
     `  }`,
     ``,
     `  findOneById(id: number) {`,
     `    return this.${camel}Delegate.findUnique({`,
     `      where: { id },`,
-    `      ${includes},`,
+    `      ${includes}`,
     `    });`,
     `  }`,
     ``,

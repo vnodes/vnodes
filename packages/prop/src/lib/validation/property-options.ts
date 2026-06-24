@@ -45,5 +45,6 @@ export type PropertyOptions = ApiPropertyOptions & {
   hash?: boolean;
   encrypt?: boolean;
   internal?: boolean;
-  include?: boolean;
+  include?: boolean | string | string[];
+  select?: boolean | string | string[];
 };

@@ -12,6 +12,11 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Status {
+  Active
+  Passive
+}
+
 model User {
   id        Int       @id @default(autoincrement())
   uuid      String    @unique @default(uuid(7)) @db.Uuid
@@ -34,6 +39,14 @@ model User {
 
   /// @select(role)
   userRoles UserRole[]
+
+  tags   String[]
+  scores Decimal[]
+  notes  Json?
+  tasks  Json[]
+
+  status Status
+
 
   @@map("users")
 }

@@ -10,7 +10,7 @@ import {
   isRequiredField,
   isUpdateInputField,
 } from '../utils/is-field.js';
-import { tsType } from '../utils/ts-type.js';
+import { getTsTypeOf } from '../utils/ts-type.js';
 
 export function printProperty(name: string, options: string, isRequired: boolean, type: string) {
   return `@Prop(${options}) ${name}${isRequired ? '' : '?'}: ${type};`;
@@ -69,7 +69,7 @@ export function printDecoratorOptions(
       break;
     }
     case 'enum': {
-      ops.add(`enum: ${field.type}`);
+      ops.add(`enum: E.${field.type}`);
       break;
     }
     case 'unsupported':
@@ -130,7 +130,7 @@ export function printReadDtoProperty(field: DMMF.Field) {
     field.name,
     printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), false),
     false,
-    tsType(field),
+    getTsTypeOf(field),
   );
 }
 
@@ -141,7 +141,7 @@ export function printCreateDtoProperty(field: DMMF.Field) {
     field.name,
     printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), required),
     required,
-    tsType(field),
+    getTsTypeOf(field),
   );
 }
 
@@ -150,7 +150,7 @@ export function printUpdateDtoProperty(field: DMMF.Field) {
     field.name,
     printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), false),
     false,
-    tsType(field),
+    getTsTypeOf(field),
   );
 }
 
@@ -193,11 +193,12 @@ export function printQueryDtoClass(model: DMMF.Model) {
   ].join('\n');
 }
 
-export function printCommonDtoImports() {
+export function printCommonDtoImports(model: DMMF.Model) {
+  const enumImport = model.fields.some((e) => e.kind === 'enum') ? `,$Enums as E` : '';
   return [
     `import { BaseQueryDto } from '@vnodes/prisma';`,
     `import { Prop } from '@vnodes/prop';`,
-    `import { Prisma as P } from '../../prisma/client.js';`,
+    `import { Prisma as P ${enumImport}} from '../../prisma/client.js';`,
   ].join('\n');
 }
 
@@ -214,7 +215,7 @@ export function printDtoImports(model: DMMF.Model) {
         return `import { ${e.type}ReadDto } from '../${kebab}/${kebab}.dto.js';`;
       }),
   );
-  return [[...relationImports].join('\n'), printCommonDtoImports()].join('\n');
+  return [[...relationImports].join('\n'), printCommonDtoImports(model)].join('\n');
 }
 
 export function printDtos(model: DMMF.Model) {
