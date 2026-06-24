@@ -29,7 +29,8 @@
     "!**/*.tsbuildinfo"
   ],
   "bin": {
-    "prisma-nest-dto": "./bin/prisma-nest-dto.mjs"
+    "prisma-nest-dto": "./bin/prisma-nest-dto.mjs",
+    "prisma-nest-service": "./bin/prisma-nest-service.mjs"
   },
   "type": "module",
   "main": "./dist/index.js",

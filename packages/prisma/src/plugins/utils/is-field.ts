@@ -195,7 +195,7 @@ export function isReadableField(field: DMMF.Field): boolean {
  */
 export function isSearchableField(field: DMMF.Field): boolean {
   if (field.type === 'String' && field.isList !== true) {
-    if (hasNamedDefaultValue(field) && isHashedField(field)) {
+    if (hasNamedDefaultValue(field) || isHashedField(field)) {
       return false;
     }
     return true;

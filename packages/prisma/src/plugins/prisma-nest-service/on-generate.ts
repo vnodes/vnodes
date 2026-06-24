@@ -6,7 +6,6 @@ import { printServiceClass } from './printers.js';
 
 export type NestjsDtoGeneratorConfig = {
   output: string;
-  clientImportPath: string;
 };
 
 export default async function onGenerate(options: GeneratorOptions) {
@@ -21,7 +20,7 @@ export default async function onGenerate(options: GeneratorOptions) {
   for (const model of models) {
     const { kebab } = names(model.name);
     const content = printServiceClass(model);
-    await writeTextFile(join(output, kebab, `${kebab}.dto.ts`), content);
+    await writeTextFile(join(output, kebab, `${kebab}.service.ts`), content);
   }
 
   const indexExports = models

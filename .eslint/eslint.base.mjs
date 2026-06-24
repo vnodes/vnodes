@@ -6,4 +6,11 @@ import noUndefined from './no-undefined.mjs';
 import nodeProtocol from './node-protocol.mjs';
 import typeImport from './type-import.mjs';
 
-export default [...common, ...dependencyCheck, ...moduleBoundries, ...noUndefined, ...nodeProtocol, ...typeImport];
+export default [
+  ...common,
+  ...dependencyCheck,
+  ...moduleBoundries,
+  ...noUndefined,
+  ...nodeProtocol,
+  ...typeImport,
+];

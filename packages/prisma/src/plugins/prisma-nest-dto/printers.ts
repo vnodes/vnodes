@@ -134,23 +134,46 @@ export function printReadDtoProperty(field: DMMF.Field) {
   );
 }
 
-export function printCreateDtoProperty(field: DMMF.Field) {
+export function printCreateDtoProperty(modelName: string, field: DMMF.Field) {
   const required = isRequiredField(field);
 
+  //         @Prop({ type: String, format: 'json' }) notes?: P.InputJsonValue;
+  // @Prop({ type: String, format: 'json', isArray: true }) tasks?: P.UserUpdatetasksInput;
+  const type = () => {
+    if (field.type === 'Json') {
+      if (field.isList) {
+        return `P.${modelName}Create${field.name}Input`;
+      }
+      return `P.InputJsonValue`;
+    }
+    return undefined;
+  };
   return printProperty(
     field.name,
     printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), required),
     required,
-    getTsTypeOf(field),
+    type() || getTsTypeOf(field),
   );
 }
 
-export function printUpdateDtoProperty(field: DMMF.Field) {
+export function printUpdateDtoProperty(modelName: string, field: DMMF.Field) {
+  //         @Prop({ type: String, format: 'json' }) notes?: P.InputJsonValue;
+  // @Prop({ type: String, format: 'json', isArray: true }) tasks?: P.UserUpdatetasksInput;
+  const type = () => {
+    if (field.type === 'Json') {
+      if (field.isList) {
+        return `P.${modelName}Create${field.name}Input`;
+      }
+      return `P.InputJsonValue`;
+    }
+    return undefined;
+  };
+
   return printProperty(
     field.name,
     printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), false),
     false,
-    getTsTypeOf(field),
+    type() || getTsTypeOf(field),
   );
 }
 
@@ -161,7 +184,7 @@ export function printDtoClass(model: DMMF.Model, fields: string, classNameSuffix
 export function printCreateDtoClass(model: DMMF.Model) {
   const content: string = model.fields
     .filter(isCreateInputField)
-    .map(printCreateDtoProperty)
+    .map((field) => printCreateDtoProperty(model.name, field))
     .join('\n');
 
   return printDtoClass(model, content, 'Create');
@@ -175,7 +198,7 @@ export function printReadDtoClass(model: DMMF.Model) {
 export function printUpdateDtoClass(model: DMMF.Model) {
   const content: string = model.fields
     .filter(isUpdateInputField)
-    .map(printUpdateDtoProperty)
+    .map((field) => printUpdateDtoProperty(model.name, field))
     .join('\n');
 
   return printDtoClass(model, content, 'Update');

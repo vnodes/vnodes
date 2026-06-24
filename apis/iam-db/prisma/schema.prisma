@@ -3,8 +3,13 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
-generator dtos {
+generator nestDtos {
   provider = "prisma-nest-dto"
+  output   = "../src/generated/nest"
+}
+
+generator nestServices {
+  provider = "prisma-nest-service"
   output   = "../src/generated/nest"
 }
 
@@ -47,7 +52,6 @@ model User {
 
   status Status
 
-
   @@map("users")
 }
 
@@ -64,6 +68,7 @@ model Role {
   /// @maxLength(400)
   description String?
 
+  /// @select(permission)
   rolePermissions RolePermission[]
   userRoles       UserRole[]
 
@@ -89,13 +94,17 @@ model Permission {
 model RolePermission {
   id Int @id @default(autoincrement())
 
-  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  /// @minimum(1) @format(int32)
-  roleId Int  @map("role_id")
+  /// @select([id, name])
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   /// @minimum(1) @format(int32)
-  permissionId Int        @map("permission_id")
+  roleId Int @map("role_id")
+
+  /// @select([id, name])
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  /// @minimum(1) @format(int32)
+  permissionId Int @map("permission_id")
 
   @@unique([roleId, permissionId])
   @@map("role_permissions")
@@ -104,13 +113,17 @@ model RolePermission {
 model UserRole {
   id Int @id @default(autoincrement())
 
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  /// @minimum(1) @format(int32)
-  userId Int  @map("user_id")
+  /// @select([id, username])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   /// @minimum(1) @format(int32)
-  roleId Int  @map("role_id")
+  userId Int @map("user_id")
+
+  /// @select([id, name])
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  /// @minimum(1) @format(int32)
+  roleId Int @map("role_id")
 
   @@unique([userId, roleId])
   @@map("user_roles")
@@ -126,10 +139,13 @@ model AccessToken {
   /// @minLength(3) @maxLength(255)
   name String @unique
 
-  /// @hash()
-  token     String
+  /// @hash() @internal() 
+  token String?
+
+  /// @internal() 
   isExpired Boolean @default(false) @map("is_expired")
 
+  /// @select(permission)
   accessTokenPermissions AccessTokenPermission[]
 
   @@map("access_tokens")
@@ -138,10 +154,12 @@ model AccessToken {
 model AccessTokenPermission {
   id Int @id @default(autoincrement())
 
+  /// @select([id, name])
   accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   /// @minimum(1) @format(int32)
   accessTokenId Int         @map("access_token_id")
 
+  /// @select([id, name])
   permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   /// @minimum(1) @format(int32)
   permissionId Int        @map("permission_id")
@@ -193,7 +211,7 @@ model HttpHook {
   /// @internal()
   lastSuccessAt DateTime? @map("last_success_at")
 
-  /// @include(all)
+  /// @include(event)
   httpHookEvents HttpHookEvent[]
 
   @@map("http_hooks")
@@ -202,10 +220,12 @@ model HttpHook {
 model HttpHookEvent {
   id Int @id @default(autoincrement())
 
+  /// @select([id, name])
   httpHook   HttpHook @relation(fields: [httpHookId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   /// @minimum(1) @format(int32)
   httpHookId Int      @map("http_hook_id")
 
+  /// @select([id, name])
   event   Event @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   /// @minimum(1) @format(int32)
   eventId Int   @map("event_id")
