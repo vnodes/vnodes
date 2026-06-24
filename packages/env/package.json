@@ -1,7 +1,7 @@
 {
   "name": "@vnodes/env",
   "description": "Node env",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "author": {
     "email": "robert.brightline+vnodes-env@gmail.com",
     "name": "Robert Brightline",

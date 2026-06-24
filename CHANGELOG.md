@@ -1,3 +1,22 @@
+## 0.1.15 (2026-06-24)
+
+### 🚀 Features
+
+- added with deleted option to the query dto ([9621c34](https://github.com/vnodes/vnodes/commit/9621c34))
+- created the query options including, include, where, pogination etc ([ef72994](https://github.com/vnodes/vnodes/commit/ef72994))
+- added validation to the @select and @inlude decorator options ([645cc51](https://github.com/vnodes/vnodes/commit/645cc51))
+- created findByFn method geneator ([d80fe61](https://github.com/vnodes/vnodes/commit/d80fe61))
+- creatd delete by fns ([cd3c647](https://github.com/vnodes/vnodes/commit/cd3c647))
+- created updated by and deleted by method generators ([b105c53](https://github.com/vnodes/vnodes/commit/b105c53))
+
+### 🩹 Fixes
+
+- fixed the json and json array input types ([31ce7d6](https://github.com/vnodes/vnodes/commit/31ce7d6))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.14 (2026-06-23)
 
 ### 🚀 Features
