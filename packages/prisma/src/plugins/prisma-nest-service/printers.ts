@@ -60,18 +60,43 @@ export function printIncludeOption(model: DMMF.Model) {
         if (options.select === true) {
           return `${field.name}: true`;
         } else if (typeof options.select === 'string') {
+          if (!/\w+/.test(options.select))
+            throw new Error(
+              `${model.name}| ${field.name} | Invalid select option ${options.select}`,
+            );
           return `${field.name}: { select: { ${options.select}:true  } }`;
         } else if (Array.isArray(options.select)) {
-          const includes = options.select.map((e) => `${e}: true`).join(',');
+          const includes = options.select
+            .map((e) => {
+              if (!/\w+/.test(e))
+                throw new Error(
+                  `${model.name}| ${field.name} | Invalid select option ${options.select} || ${e}`,
+                );
+              return `${e}: true`;
+            })
+            .join(',');
           return `${field.name}: { select: {  ${includes} } } `;
         }
       } else if (options.include) {
         if (options.include === true) {
           return `${field.name}: true`;
         } else if (typeof options.include === 'string') {
+          if (!/\w+/.test(options.include))
+            throw new Error(
+              `${model.name}| ${field.name} | Invalid select option ${options.include}`,
+            );
+
           return `${field.name}: { include: { ${options.include}:true  } }`;
         } else if (Array.isArray(options.include)) {
-          const includes = options.include.flatMap((e) => `${e}: true`).join(',');
+          const includes = options.include
+            .map((e) => {
+              if (!/\w+/.test(e))
+                throw new Error(
+                  `${model.name}| ${field.name} | Invalid select option ${options.include}|| ${e}`,
+                );
+              return `${e}: true`;
+            })
+            .join(',');
           return `${field.name}: { include: {  ${includes} } } `;
         }
       }
