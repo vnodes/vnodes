@@ -11,6 +11,15 @@ import {
 } from '../utils/is-field.js';
 import { getTsTypeOf } from '../utils/ts-type.js';
 
+export function printUpdateByFn(model: DMMF.Model, field: DMMF.Field) {
+  const { camel: modelCamel } = names(model.name);
+  const { pascal, camel } = names(field.name);
+  return [
+    `updateOneBy${pascal}(${camel}: ${getTsTypeOf(field)}, data: ${model.name}UpdateDto) {`,
+    `   return this.${modelCamel}Delegate.update({ where: { ${camel} }, data  ${printIncludeOption(model)} })`,
+    `}`,
+  ].join('\n');
+}
 export function printDeleteByFn(model: DMMF.Model, field: DMMF.Field) {
   const { camel: modelCamel } = names(model.name);
   const { pascal, camel } = names(field.name);
@@ -166,6 +175,12 @@ export function printServiceClass(model: DMMF.Model) {
     ? deleteByFields.map((field) => printDeleteByFn(model, field)).join('\n')
     : '';
 
+  const updateByFields = model.fields.filter(isDeleteByField);
+  const hasUpdateByField = updateByFields.length > 0;
+  const updateByFns = hasUpdateByField
+    ? updateByFields.map((field) => printUpdateByFn(model, field)).join('\n')
+    : '';
+
   const enumModule = model.fields.some((e) => e.kind === 'enum') ? ',$Enums as E' : '';
 
   return [
@@ -207,9 +222,6 @@ export function printServiceClass(model: DMMF.Model) {
     `  createOne(data:${pascal}CreateDto){`,
     `     return this.${camel}Delegate.create({ data })`,
     `  }`,
-    `  updateOneById(id:number, data:${pascal}UpdateDto){`,
-    `     return this.${camel}Delegate.update({ where:{ id }, data })`,
-    `  }`,
     ``,
     `  findMany(query: ${pascal}QueryDto) {`,
     `    return this.${camel}Delegate.findMany({`,
@@ -221,6 +233,7 @@ export function printServiceClass(model: DMMF.Model) {
 
     findByFns,
     deleteByFns,
+    updateByFns,
     `}`,
   ].join('\n');
 }
