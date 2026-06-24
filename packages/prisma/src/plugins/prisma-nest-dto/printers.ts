@@ -241,6 +241,21 @@ export function printDtoImports(model: DMMF.Model) {
   return [[...relationImports].join('\n'), printCommonDtoImports(model)].join('\n');
 }
 
+export function printCreateManyDto(model: DMMF.Model) {
+  return [
+    `export class ${model.name}CreateManyDto {`,
+    ` @Prop({ type: ${model.name}CreateDto, isArray: true, required: true }) data:${model.name}CreateDto[] `,
+    `}`,
+  ].join('\n');
+}
+
+export function printUpdateManyDto(model: DMMF.Model) {
+  return [
+    `export class ${model.name}UpdateManyDto {`,
+    ` @Prop({ type: ${model.name}UpdateDto, isArray: true, required: true }) data:${model.name}UpdateDto[] `,
+    `}`,
+  ].join('\n');
+}
 export function printDtos(model: DMMF.Model) {
   return [
     printDtoImports(model),
@@ -248,5 +263,7 @@ export function printDtos(model: DMMF.Model) {
     printQueryDtoClass(model),
     printCreateDtoClass(model),
     printUpdateDtoClass(model),
+    printCreateManyDto(model),
+    printUpdateManyDto(model),
   ].join('\n');
 }

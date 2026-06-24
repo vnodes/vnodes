@@ -234,6 +234,10 @@ export function isDeleteByField(field: DMMF.Field) {
   return false;
 }
 
+export function isDeleteManyByField(field: DMMF.Field) {
+  return isFindByField(field) && !field.isId && !field.isUnique;
+}
+
 export function isUpdatedByField(field: DMMF.Field) {
   if (isFindByField(field)) {
     return field.isId || field.isUnique;

@@ -3,6 +3,7 @@ import { names } from '@vnodes/names';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
   isDeleteByField,
+  isDeleteManyByField,
   isFindByField,
   isIncludedField,
   isSearchableField,
@@ -11,12 +12,50 @@ import {
 } from '../utils/is-field.js';
 import { getTsTypeOf } from '../utils/ts-type.js';
 
+export function printCreateManyFn(model: DMMF.Model) {
+  const { camel: modelCamel } = names(model.name);
+  // const { pascal, camel } = names(field.name);
+  return [
+    `createMany(data: ${model.name}CreateManyDto) {`,
+    `   return this.${modelCamel}Delegate.createMany(data)`,
+    `}`,
+  ].join('\n');
+}
+
+export function printUpdateManyFn(model: DMMF.Model) {
+  const { camel: modelCamel } = names(model.name);
+  // const { pascal, camel } = names(field.name);
+  return [
+    `updateMany(data: ${model.name}UpdateManyDto) {`,
+    `   return this.${modelCamel}Delegate.updateMany(data)`,
+    `}`,
+  ].join('\n');
+}
+
+export function printUpdateManyByFn(model: DMMF.Model, field: DMMF.Field) {
+  const { camel: modelCamel } = names(model.name);
+  const { pascal, camel } = names(field.name);
+  return [
+    `updateManyBy${pascal}(${camel}: ${getTsTypeOf(field)}, data: ${model.name}UpdateDto) {`,
+    `   return this.${modelCamel}Delegate.updateMany({ where: { ${camel} }, data  })`,
+    `}`,
+  ].join('\n');
+}
 export function printUpdateByFn(model: DMMF.Model, field: DMMF.Field) {
   const { camel: modelCamel } = names(model.name);
   const { pascal, camel } = names(field.name);
   return [
     `updateOneBy${pascal}(${camel}: ${getTsTypeOf(field)}, data: ${model.name}UpdateDto) {`,
     `   return this.${modelCamel}Delegate.update({ where: { ${camel} }, data  ${printIncludeOption(model)} })`,
+    `}`,
+  ].join('\n');
+}
+export function printDeleteManyByFn(model: DMMF.Model, field: DMMF.Field) {
+  const { camel: modelCamel } = names(model.name);
+  const { pascal, camel } = names(field.name);
+  return [
+    `deleteManyBy${pascal}(${camel}: ${getTsTypeOf(field)}) {`,
+    `   return this.${modelCamel}Delegate.deleteMany({ where: { ${camel} } })`,
     `}`,
   ].join('\n');
 }
@@ -175,10 +214,22 @@ export function printServiceClass(model: DMMF.Model) {
     ? deleteByFields.map((field) => printDeleteByFn(model, field)).join('\n')
     : '';
 
+  const deleteManyByFields = model.fields.filter(isDeleteManyByField);
+
+  const hasDeleteManyField = deleteManyByFields.length > 0;
+
+  const deleteManyByFns = hasDeleteManyField
+    ? deleteManyByFields.map((field) => printDeleteManyByFn(model, field)).join('\n')
+    : '';
+
   const updateByFields = model.fields.filter(isDeleteByField);
   const hasUpdateByField = updateByFields.length > 0;
   const updateByFns = hasUpdateByField
     ? updateByFields.map((field) => printUpdateByFn(model, field)).join('\n')
+    : '';
+
+  const updateManyByFns = hasUpdateByField
+    ? updateByFields.map((field) => printUpdateManyByFn(model, field)).join('\n')
     : '';
 
   const enumModule = model.fields.some((e) => e.kind === 'enum') ? ',$Enums as E' : '';
@@ -187,7 +238,7 @@ export function printServiceClass(model: DMMF.Model) {
     `import { Injectable } from '@vnodes/nest';`,
     `import { InjectDelegate } from '@vnodes/prisma';`,
     `import { Prisma as P ${enumModule} } from '../../prisma/client.js';`,
-    `import type { ${pascal}QueryDto, ${pascal}CreateDto, ${pascal}UpdateDto } from './${kebab}.dto.js';`,
+    `import type { ${pascal}QueryDto, ${pascal}CreateDto, ${pascal}UpdateDto, ${pascal}CreateManyDto, ${pascal}UpdateManyDto } from './${kebab}.dto.js';`,
     ``,
     ``,
     `@Injectable()`,
@@ -233,7 +284,13 @@ export function printServiceClass(model: DMMF.Model) {
 
     findByFns,
     deleteByFns,
+    deleteManyByFns,
     updateByFns,
+    updateManyByFns,
+
+    printCreateManyFn(model),
+    printUpdateManyFn(model),
+
     `}`,
   ].join('\n');
 }
