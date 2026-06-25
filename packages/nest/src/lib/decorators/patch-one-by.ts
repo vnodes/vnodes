@@ -1,17 +1,17 @@
-import { Delete } from '@nestjs/common';
+import { Put } from '@nestjs/common';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 import { Messages } from '../constants/messages.js';
 import { OperationName } from '../constants/operation-name.js';
 import { ResourcePathName, ResourcePaths } from '../constants/resource-paths.js';
 import { Operation } from '../metadata/operation.js';
 
-export function DeleteOneById(): MethodDecorator {
+export function PatchOneBy(propertyName: string): MethodDecorator {
   return (...args) => {
     [
-      Delete(ResourcePaths.ID),
-      ApiParam({ name: ResourcePathName.ID }),
-      Operation(OperationName.DELETE_ONE),
-      ApiOperation({ summary: Messages.DELETE_ENTITY_BY_ID }),
+      Put(`${propertyName}/${ResourcePaths.VALUE}`),
+      ApiParam({ name: ResourcePathName.VALUE }),
+      Operation(OperationName.UPDATE_ONE),
+      ApiOperation({ summary: `${Messages.UPDATE_ENTITY_BY} ${propertyName}` }),
     ].forEach((e) => e(...args));
   };
 }

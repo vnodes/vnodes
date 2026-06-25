@@ -53,6 +53,11 @@
       "types": "./dist/generated/prisma/browser.d.ts",
       "import": "./dist/generated/prisma/browser.js",
       "default": "./dist/generated/prisma/browser.js"
+    }, 
+    "./nest":{ 
+      "types": "./dist/generated/nest/index.d.ts",
+      "import": "./dist/generated/nest/index.js",
+      "default": "./dist/generated/nest/index.js"
     }
   },
   "nx": {

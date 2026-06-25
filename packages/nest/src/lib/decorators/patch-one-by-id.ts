@@ -8,7 +8,7 @@ import { Operation } from '../metadata/operation.js';
 export function PatchOneById(): MethodDecorator {
   return (...args) => {
     [
-      Put(ResourcePaths.BY_ID),
+      Put(ResourcePaths.ID),
       Operation(OperationName.UPDATE_ONE),
       ApiOperation({ summary: Messages.UPDATE_ENTITY_BY_ID }),
     ].forEach((e) => e(...args));

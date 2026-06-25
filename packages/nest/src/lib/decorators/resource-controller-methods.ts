@@ -1,9 +1,10 @@
-import { Logger } from '@nestjs/common';
-import { ResourceMethod, ResourceMethods } from '../constants/resource-method.js';
+import { names } from '@vnodes/names';
 import { DeleteMany } from './delete-many.js';
 import { DeleteOneById } from './delete-one-by-id.js';
+import { DeleteOneBy } from './delete-one-by.js';
 import { GetAll } from './get-all.js';
 import { GetOneById } from './get-one-by-id.js';
+import { GetOneBy } from './get-one-by.js';
 import { PatchMany } from './patch-many.js';
 import { PatchOneById } from './patch-one-by-id.js';
 import { PostMany } from './post-many.js';
@@ -13,8 +14,6 @@ import { RemoveRelation } from './relation/remove-relation.js';
 import { SetRelation } from './relation/set-relation.js';
 import { UnsetRelation } from './relation/unset-relation.js';
 
-const logger = new Logger('ResourceMethods');
-
 /**
  * Automatically map the resource methods infering the operation from method names
  *
@@ -22,6 +21,7 @@ const logger = new Logger('ResourceMethods');
 export function ResourceControllerMethods(): ClassDecorator {
   return (...args) => {
     const classType = args[0];
+
     const methods = Object.getOwnPropertyNames(classType.prototype).filter(
       (e) => e !== 'constructor',
     );
@@ -31,63 +31,48 @@ export function ResourceControllerMethods(): ClassDecorator {
       if (!descriptor) throw new Error(`Decriptor not found for ${classType.prototype} `);
 
       const margs: Parameters<MethodDecorator> = [classType.prototype, methodName, descriptor];
+      {
+        const check = (exp: RegExp, decorator: () => MethodDecorator) => {
+          if (exp.test(methodName)) {
+            const matched = methodName.match(exp);
+            let pathPrefix = matched?.[1];
+            pathPrefix = pathPrefix ? names(pathPrefix).kebab : undefined;
+            decorator()(...margs);
+            return;
+          }
+          return { match, check };
+        };
+        const match = (exp: RegExp, decorator: (propertyName: string) => MethodDecorator) => {
+          if (exp.test(methodName)) {
+            const matched = methodName.match(exp);
+            let pathPrefix = matched?.[1];
+            pathPrefix = pathPrefix ? names(pathPrefix).kebab : undefined;
 
-      if (methodName in ResourceMethod) {
-        switch (methodName as ResourceMethod) {
-          case 'createOne': {
-            PostOne()(...margs);
-            break;
+            if (!pathPrefix)
+              throw new Error(`Cannot get the property name from the method name, ${methodName}`);
+            decorator(pathPrefix)(...margs);
+            return;
           }
-          case 'createMany': {
-            PostMany()(...margs);
-            break;
-          }
-          case 'findMany': {
-            GetAll()(...margs);
-            break;
-          }
-          case 'findOneById': {
-            GetOneById()(...margs);
-            break;
-          }
-          case 'updateOneById': {
-            PatchOneById()(...margs);
-            break;
-          }
-          case 'updateMany': {
-            PatchMany()(...margs);
-            break;
-          }
-          case 'deleteOneById': {
-            DeleteOneById()(...margs);
-            break;
-          }
-          case 'deleteMany': {
-            DeleteMany()(...margs);
-            break;
-          }
-          case 'addRelation': {
-            AddRelation()(...margs);
+          return { match, check };
+        };
 
-            break;
-          }
-          case 'removeRelation': {
-            RemoveRelation()(...margs);
-            break;
-          }
-          case 'setRelation': {
-            SetRelation()(...margs);
-            break;
-          }
-          case 'unsetRelation': {
-            UnsetRelation()(...margs);
-            break;
-          }
-        }
-      } else {
-        logger.warn(
-          `Resource's method name, ${methodName}, should be one of ${ResourceMethods} but found ${methodName}`,
-        );
+        check(/^createOne$/i, () => PostOne())
+          ?.check(/^createMany$/i, () => PostMany())
+          ?.check(/^findMany$/i, () => GetAll())
+          ?.check(/^findOneById$/i, () => GetOneById())
+          ?.check(/^updateOneById$/i, () => PatchOneById())
+          ?.check(/^updateMany$/i, () => PatchMany())
+          ?.check(/^updateMany$/i, () => PatchMany())
+          ?.check(/^deleteOneById$/i, () => DeleteOneById())
+          ?.check(/^deleteMany$/i, () => DeleteMany())
+          ?.check(/^addRelation$/i, () => AddRelation())
+          ?.check(/^removeRelation$/i, () => RemoveRelation())
+          ?.check(/^setRelation$/i, () => SetRelation())
+          ?.check(/^unsetRelation$/i, () => UnsetRelation())
+          //
+          ?.match(/^findOneBy(\w+)$/i, (propertyName) => GetOneBy(propertyName))
+          ?.match(/^deleteOneBy(\w+)$/i, (propertyName) => DeleteOneBy(propertyName))
+          ?.match(/^updateOneBy(\w+)$/i, (propertyName) => DeleteOneBy(propertyName));
       }
     }
   };

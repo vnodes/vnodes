@@ -3,10 +3,10 @@
  */
 export const ResourcePathName = {
   ID: 'id',
+  VALUE: 'value',
   RELATION: 'relation',
   RELATION_NAME: 'relationName',
   RELATION_ID: 'relationId',
-  BY: 'by',
 };
 
 const R = ResourcePathName;
@@ -15,11 +15,11 @@ const R = ResourcePathName;
  * Paramter paths (: prefixed) used accross the http controllers
  */
 export const ResourcePaths = {
-  BY_ID: `:${R.ID}`,
+  ID: `:${R.ID}`,
+  VALUE: `:${ResourcePathName.VALUE}`,
   RELATION: `:${R.ID}/:${R.RELATION_NAME}/:${R.RELATION_ID}`,
   UNSET_RELATION: `:${R.ID}/:${R.RELATION_NAME}`,
   MANY: 'many',
-  BY: `by/:${ResourcePathName.BY}`,
 };
 
 // Get one          : GET     users/:id
