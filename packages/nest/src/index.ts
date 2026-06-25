@@ -1,4 +1,4 @@
-// @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
+// @index(['./lib/**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
 export * from './lib/bootstrap/bootstrap.js';
 export * from './lib/bootstrap/swagger.js';
 export * from './lib/constants/class-suffix.js';
@@ -9,24 +9,24 @@ export * from './lib/constants/operation-name.js';
 export * from './lib/constants/resource-method.js';
 export * from './lib/constants/resource-paths.js';
 export * from './lib/constants/throttler.js';
-export * from './lib/decorators/add-relation.js';
 export * from './lib/decorators/common.js';
 export * from './lib/decorators/delete-many.js';
 export * from './lib/decorators/delete-one-by-id.js';
 export * from './lib/decorators/get-all.js';
 export * from './lib/decorators/get-one-by-id.js';
-export * from './lib/decorators/param-id.js';
-export * from './lib/decorators/param-uuid.js';
+export * from './lib/decorators/params/param-id.js';
+export * from './lib/decorators/params/param-uuid.js';
+export * from './lib/decorators/params/user-id.js';
+export * from './lib/decorators/patch-many.js';
+export * from './lib/decorators/patch-one-by-id.js';
 export * from './lib/decorators/post-many.js';
 export * from './lib/decorators/post-one.js';
-export * from './lib/decorators/put-many.js';
-export * from './lib/decorators/put-one-by-id.js';
-export * from './lib/decorators/remove-relation.js';
+export * from './lib/decorators/relation/add-relation.js';
+export * from './lib/decorators/relation/remove-relation.js';
+export * from './lib/decorators/relation/set-relation.js';
+export * from './lib/decorators/relation/unset-relation.js';
 export * from './lib/decorators/resource-controller-methods.js';
 export * from './lib/decorators/resource-controller.js';
-export * from './lib/decorators/set-relation.js';
-export * from './lib/decorators/unset-relation.js';
-export * from './lib/decorators/user-id.js';
 export * from './lib/interceptors/emit.interceptor.js';
 export * from './lib/interfaces/resource-controller-interface.js';
 export * from './lib/metadata/admin-only.js';
@@ -52,5 +52,4 @@ export * from './lib/pipes/global-validation-pipe.js';
 export * from './lib/utils/infer-event-name.js';
 export * from './lib/utils/infer-operation-name.js';
 export * from './lib/utils/infer-resource-name.js';
-export * from './peer-dependencies.js';
 

@@ -1,17 +1,17 @@
 import { Logger } from '@nestjs/common';
 import { ResourceMethod, ResourceMethods } from '../constants/resource-method.js';
-import { AddRelation } from './add-relation.js';
 import { DeleteMany } from './delete-many.js';
 import { DeleteOneById } from './delete-one-by-id.js';
 import { GetAll } from './get-all.js';
 import { GetOneById } from './get-one-by-id.js';
+import { PatchMany } from './patch-many.js';
+import { PatchOneById } from './patch-one-by-id.js';
 import { PostMany } from './post-many.js';
 import { PostOne } from './post-one.js';
-import { PutMany } from './put-many.js';
-import { PutOneById } from './put-one-by-id.js';
-import { RemoveRelation } from './remove-relation.js';
-import { SetRelation } from './set-relation.js';
-import { UnsetRelation } from './unset-relation.js';
+import { AddRelation } from './relation/add-relation.js';
+import { RemoveRelation } from './relation/remove-relation.js';
+import { SetRelation } from './relation/set-relation.js';
+import { UnsetRelation } from './relation/unset-relation.js';
 
 const logger = new Logger('ResourceMethods');
 
@@ -51,11 +51,11 @@ export function ResourceControllerMethods(): ClassDecorator {
             break;
           }
           case 'updateOneById': {
-            PutOneById()(...margs);
+            PatchOneById()(...margs);
             break;
           }
           case 'updateMany': {
-            PutMany()(...margs);
+            PatchMany()(...margs);
             break;
           }
           case 'deleteOneById': {

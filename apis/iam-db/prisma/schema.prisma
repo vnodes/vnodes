@@ -45,12 +45,15 @@ model User {
   /// @select(role)
   userRoles UserRole[]
 
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
   tags   String[]
   scores Decimal[]
   notes  Json?
   tasks  Json[]
 
-  status Status
+  status     Status
+  categoryId Int?
 
   @@map("users")
 }
@@ -251,6 +254,8 @@ model Category {
   parentCategoryId Int?      @map("parent_category_id")
 
   categories Category[] @relation("categories")
+
+  users User[]
 
   @@map("categories")
 }

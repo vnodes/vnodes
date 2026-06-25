@@ -7,11 +7,11 @@ import { ResourceControllerMethods } from './resource-controller-methods.js';
 
 export type Parameter<T> = Exclude<T, undefined | null>;
 
-export function ResourceController(): ClassDecorator {
+export function ResourceController(path?: string): ClassDecorator {
   return (...args) => {
     const classType = args[0];
     const className = classType.name;
-    const { pascal, kebab } = names(pluralize(inferResourceName(className)));
+    const { pascal, kebab } = names(path ?? pluralize(inferResourceName(className)));
 
     [Controller(kebab), ApiBearerAuth(), Resource(pascal), ResourceControllerMethods()].forEach(
       (e) => e(...args),
