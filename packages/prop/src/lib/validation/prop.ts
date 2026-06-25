@@ -67,7 +67,7 @@ export function PropValidation(propertyOptions?: PropertyOptions): PropertyDecor
       d.push(BooleanValidation(vo));
     } else if (type === Date) {
       d.push(IsDate(vo));
-    } else if (type !== Object) {
+    } else if (type.name && typeof type.constructor === 'function') {
       d.push(ObjectValidation(po, vo));
     }
 

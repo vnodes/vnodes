@@ -39,7 +39,7 @@ export function isRequiredField(field: DMMF.Field): boolean {
     return false;
   }
 
-  if (field.isId || field.hasDefaultValue || isTimestampField(field)) {
+  if (field.isList || field.isId || field.hasDefaultValue || isTimestampField(field)) {
     return false;
   }
 

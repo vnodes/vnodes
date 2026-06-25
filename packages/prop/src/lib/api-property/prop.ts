@@ -39,7 +39,7 @@ export function Prop(propertyOptions?: PropertyOptions): PropertyDecorator {
     if (po.isNotIn) apiPropertyOptions.not = { enum: po.isNotIn };
     if (po.readOnly) apiPropertyOptions.example = po.readOnly;
     if (isArray) apiPropertyOptions.isArray = true;
-    if (required) apiPropertyOptions.required = required;
+    apiPropertyOptions.required = required;
 
     d.push(ApiProperty({ ...apiPropertyOptions }));
 
