@@ -8,6 +8,8 @@ export const Names = {
   constant: 'constant',
   title: 'title',
   sentence: 'sentence',
+  lower: 'lower',
+  upper: 'upper',
 };
 
 export type Names = StringRecord<typeof Names>;

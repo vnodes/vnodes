@@ -31,12 +31,12 @@ export function Prop(propertyOptions?: PropertyOptions): PropertyDecorator {
     apiPropertyOptions.type = type;
 
     if (po.enum) apiPropertyOptions.enum = po.enum;
+    if (po.isIn) apiPropertyOptions.enum = po.isIn;
+    if (po.isNotIn) apiPropertyOptions.not = { enum: po.isNotIn };
     if (po.description) apiPropertyOptions.description = po.description;
     if (po.default) apiPropertyOptions.default = po.default;
     if (po.example) apiPropertyOptions.example = po.example;
     if (po.examples) apiPropertyOptions.examples = po.examples;
-    if (po.isIn) apiPropertyOptions.enum = po.isIn;
-    if (po.isNotIn) apiPropertyOptions.not = { enum: po.isNotIn };
     if (po.readOnly) apiPropertyOptions.example = po.readOnly;
     if (isArray) apiPropertyOptions.isArray = true;
     apiPropertyOptions.required = required;

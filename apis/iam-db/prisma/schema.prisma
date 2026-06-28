@@ -17,20 +17,20 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Status {
-  Active
-  Passive
+enum Bool {
+  True
+  False
 }
 
 model User {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7)) @db.Uuid
+  uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
+  isActive  Bool      @default(True) @map("is_active")
 
-  /// @minLength(3) @maxLength(255) @isNotIn([admin, root, super, sudo]) @casing(sentence)
+  /// @isNotIn([admin, root, super, sudo]) @casing(lower)
   username String @unique
 
   /// @format(password) @hash()
@@ -45,16 +45,6 @@ model User {
   /// @select(role)
   userRoles UserRole[]
 
-  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull, onUpdate: Cascade)
-
-  tags   String[]
-  scores Decimal[]
-  notes  Json?
-  tasks  Json[]
-
-  status     Status
-  categoryId Int?
-
   @@map("users")
 }
 
@@ -63,12 +53,9 @@ model Role {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
+  isActive  Bool      @default(True) @map("is_active")
 
-  /// @minLength(3) @maxLength(255)
-  name String @unique
-
-  /// @maxLength(400)
+  name        String  @unique
   description String?
 
   /// @select(permission)
@@ -83,10 +70,10 @@ model Permission {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
+  isActive  Bool      @default(True) @map("is_active")
 
-  /// @minLength(3) @maxLength(255)
-  name String @unique
+  name        String  @unique
+  description String?
 
   rolePermissions        RolePermission[]
   accessTokenPermissions AccessTokenPermission[]
@@ -98,16 +85,12 @@ model RolePermission {
   id Int @id @default(autoincrement())
 
   /// @select([id, name])
-  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  /// @minimum(1) @format(int32)
-  roleId Int @map("role_id")
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roleId Int  @map("role_id")
 
   /// @select([id, name])
-  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  /// @minimum(1) @format(int32)
-  permissionId Int @map("permission_id")
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permissionId Int        @map("permission_id")
 
   @@unique([roleId, permissionId])
   @@map("role_permissions")
@@ -117,16 +100,12 @@ model UserRole {
   id Int @id @default(autoincrement())
 
   /// @select([id, username])
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  /// @minimum(1) @format(int32)
-  userId Int @map("user_id")
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId Int  @map("user_id")
 
   /// @select([id, name])
-  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  /// @minimum(1) @format(int32)
-  roleId Int @map("role_id")
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roleId Int  @map("role_id")
 
   @@unique([userId, roleId])
   @@map("user_roles")
@@ -137,16 +116,16 @@ model AccessToken {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
+  isActive  Bool      @default(True) @map("is_active")
 
-  /// @minLength(3) @maxLength(255)
-  name String @unique
+  name        String  @unique
+  description String?
 
   /// @hash() @internal() 
   token String?
 
   /// @internal() 
-  isExpired Boolean @default(false) @map("is_expired")
+  isExpired Bool @default(True) @map("is_expired")
 
   /// @select(permission)
   accessTokenPermissions AccessTokenPermission[]
@@ -159,12 +138,10 @@ model AccessTokenPermission {
 
   /// @select([id, name])
   accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  /// @minimum(1) @format(int32)
   accessTokenId Int         @map("access_token_id")
 
   /// @select([id, name])
   permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  /// @minimum(1) @format(int32)
   permissionId Int        @map("permission_id")
 
   @@unique([accessTokenId, permissionId])
@@ -176,7 +153,7 @@ model Event {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
+  isActive  Bool      @default(True) @map("is_active")
 
   name        String  @unique
   description String?
@@ -191,27 +168,23 @@ model HttpHook {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
+  isActive  Bool      @default(True) @map("is_active")
 
-  /// @minLength(3) @maxLength(255)
-  name String @unique
-
-  /// @maxLength(1000)
+  name        String  @unique
   description String?
 
-  /// @format(url)
   url String
 
-  /// @internal()
-  retryCount Int @default(3) @map("retry_count")
+  /// @readOnly()
+  retryCount Int? @default(0) @map("retry_count")
 
-  /// @internal()
-  failureCount Int @default(0) @map("failure_count")
+  /// @readOnly()
+  failureCount Int? @default(0) @map("failure_count")
 
-  /// @internal()
+  /// @readOnly()
   lastFailureAt DateTime? @map("last_failure_at")
 
-  /// @internal()
+  /// @readOnly()
   lastSuccessAt DateTime? @map("last_success_at")
 
   /// @include(event)
@@ -225,50 +198,12 @@ model HttpHookEvent {
 
   /// @select([id, name])
   httpHook   HttpHook @relation(fields: [httpHookId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  /// @minimum(1) @format(int32)
   httpHookId Int      @map("http_hook_id")
 
   /// @select([id, name])
   event   Event @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  /// @minimum(1) @format(int32)
   eventId Int   @map("event_id")
 
   @@unique([httpHookId, eventId])
   @@map("http_hook_events")
-}
-
-model Category {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
-
-  /// @minLength(3) @maxLength(255)
-  name String @unique
-
-  /// @maxLength(400)
-  description String?
-
-  parentCategory   Category? @relation("categories", fields: [parentCategoryId], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  parentCategoryId Int?      @map("parent_category_id")
-
-  categories Category[] @relation("categories")
-
-  users User[]
-
-  @@map("categories")
-}
-
-model Sample {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  deletedAt DateTime? @map("deleted_at")
-  isActive  Boolean   @default(true) @map("is_active")
-
-  name        String  @unique
-  description String?
-
-  @@map("samples")
 }

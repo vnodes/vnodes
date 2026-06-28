@@ -1,7 +1,7 @@
-import { NestFactory } from '@nestjs/core';
 import { Logger, type Type } from '@nestjs/common';
-import { swagger } from './swagger.js';
+import { NestFactory } from '@nestjs/core';
 import { EnvService } from '@vnodes/config';
+import { swagger } from './swagger.js';
 
 export type BootstrapOptions = {
   module: Type;
@@ -10,7 +10,7 @@ export type BootstrapOptions = {
 export async function bootstrap(options: BootstrapOptions) {
   const logger = new Logger('Bootstrap');
 
-  const app = await NestFactory.create(options.module);
+  const app = await NestFactory.create(options.module, { logger: ['verbose'] });
 
   const env = app.get(EnvService);
 

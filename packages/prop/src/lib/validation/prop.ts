@@ -17,6 +17,7 @@ import { NumberValidation } from './number.js';
 import { ObjectValidation } from './object.js';
 import type { PropertyOptions } from './property-options.js';
 import { StringValidation } from './string.js';
+
 export function PropValidation(propertyOptions?: PropertyOptions): PropertyDecorator {
   return (...args) => {
     const po: PropertyOptions = { ...propertyOptions };

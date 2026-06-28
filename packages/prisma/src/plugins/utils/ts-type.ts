@@ -60,7 +60,7 @@ export function getTsItemTypeOf(field: DMMF.Field): string {
       return `E.${field.type}`;
     }
     case 'object': {
-      return `P.${field.type}Model`;
+      return `${field.type}ReadDto`;
     }
     case 'scalar': {
       return getScalarTypeOf(field);

@@ -16,6 +16,8 @@ describe('names', () => {
     expect(result.sentence).toEqual('Some');
     expect(result.snake).toEqual('some');
     expect(result.title).toEqual('Some');
+    expect(result.lower).toEqual('some');
+    expect(result.upper).toEqual('SOME');
   });
 
   it.each`
@@ -34,5 +36,7 @@ describe('names', () => {
     expect(result.sentence).toEqual('Some other');
     expect(result.snake).toEqual('some_other');
     expect(result.title).toEqual('Some Other');
+    expect(result.upper).toEqual('SOME OTHER');
+    expect(result.lower).toEqual('some other');
   });
 });

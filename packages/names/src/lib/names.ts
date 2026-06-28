@@ -45,6 +45,8 @@ export function names(name: string): Names {
   const constant = snake.toUpperCase();
   const sentence = toSentenceCase(kebab);
   const title = toTitleCase(kebab);
+  const lower = sentence.toLowerCase();
+  const upper = sentence.toUpperCase();
 
   return {
     kebab,
@@ -54,5 +56,7 @@ export function names(name: string): Names {
     constant,
     sentence,
     title,
+    lower,
+    upper,
   };
 }

@@ -6,7 +6,6 @@ export function BooleanValidation(validationOptions?: ValidationOptions): Proper
     const vo = { ...validationOptions };
     const d = new DecoratorList();
     d.push(IsBoolean(vo));
-
     d.forEach((e) => e(...args));
   };
 }

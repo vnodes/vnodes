@@ -5,8 +5,6 @@ import { Resource } from '../metadata/resource.js';
 import { inferResourceName } from '../utils/infer-resource-name.js';
 import { ResourceControllerMethods } from './resource-controller-methods.js';
 
-export type Parameter<T> = Exclude<T, undefined | null>;
-
 export function ResourceController(path?: string): ClassDecorator {
   return (...args) => {
     const classType = args[0];

@@ -5,6 +5,7 @@ import { toArrayString } from '../utils/coerce.js';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
   isCreateInputField,
+  isFindByField,
   isIncludedField,
   isReadableField,
   isRequiredField,
@@ -13,7 +14,91 @@ import {
 import { getTsTypeOf } from '../utils/ts-type.js';
 
 export function printProperty(name: string, options: string, isRequired: boolean, type: string) {
+  if (options === '{}') {
+    options = '';
+  }
   return `@Prop(${options}) ${name}${isRequired ? '' : '?'}: ${type};`;
+}
+
+export function printDecoratorTypeOptions(field: DMMF.Field, options: PropertyOptions): string {
+  const ops = new Set<string>();
+
+  const isList = field.isList;
+
+  const addType = (type: string) => {
+    if (isList) {
+      ops.add(`type: ${type}`);
+    }
+  };
+  const addFormat = (format: string) => {
+    if (isList) {
+      ops.add(`format: '${format}'`);
+    }
+  };
+  const addEnum = () => {
+    if (isList) {
+      ops.add(`enum: E.${field.type}`);
+    }
+  };
+
+  switch (field.kind) {
+    case 'object': {
+      addType(`()=>${field.type}ReadDto`);
+      break;
+    }
+    case 'scalar': {
+      switch (field.type) {
+        case 'String':
+        case 'Json':
+        case 'Bytes': {
+          addType('String');
+          if (field.type == 'Json') {
+            addFormat('json');
+          } else if (field.type === 'Bytes') {
+            addFormat('byte');
+          }
+          break;
+        }
+        case 'Boolean':
+        case 'BigInt': {
+          addType(field.type);
+          break;
+        }
+        case 'Int':
+        case 'Number':
+        case 'Float':
+        case 'Decimal': {
+          addType('Number');
+          if (field.type === 'Int') {
+            if (!options.format) {
+              addFormat('int32');
+            }
+          }
+          break;
+        }
+        case 'Date':
+        case 'DateTime': {
+          addType('Date');
+          break;
+        }
+      }
+      break;
+    }
+    case 'enum': {
+      addEnum();
+      break;
+    }
+    case 'unsupported':
+    default: {
+      throw new Error('Not supported');
+    }
+  }
+
+  if (isList) {
+    ops.add('isArray: true');
+  }
+
+  return [...ops].join(',');
 }
 
 export function printDecoratorOptions(
@@ -23,64 +108,7 @@ export function printDecoratorOptions(
 ) {
   const ops = new Set<string>();
 
-  switch (field.kind) {
-    case 'object': {
-      ops.add(`type: ()=>${field.type}ReadDto`);
-      break;
-    }
-    case 'scalar': {
-      switch (field.type) {
-        case 'String':
-        case 'Boolean':
-        case 'BigInt':
-        case 'Number': {
-          if (field.isList) ops.add(`type: ${field.type}`);
-          break;
-        }
-        case 'Float':
-        case 'Decimal': {
-          if (field.isList) ops.add('type: Number');
-          break;
-        }
-        case 'Int': {
-          ops.add('type: Number');
-          if (!options.format) {
-            ops.add("format: 'int32'");
-          }
-          break;
-        }
-        case 'Date':
-        case 'DateTime': {
-          ops.add('type: Date');
-          break;
-        }
-        case 'Json': {
-          ops.add('type: String');
-          ops.add("format: 'json'");
-          break;
-        }
-
-        case 'Bytes': {
-          ops.add('type: String');
-          ops.add("format: 'byte'");
-          break;
-        }
-      }
-      break;
-    }
-    case 'enum': {
-      ops.add(`enum: E.${field.type}`);
-      break;
-    }
-    case 'unsupported':
-    default: {
-      throw new Error('Not supported');
-    }
-  }
-
-  if (field.isList) {
-    ops.add('isArray: true');
-  }
+  ops.add(printDecoratorTypeOptions(field, options));
 
   if (isRequired) {
     ops.add('required: true');
@@ -97,6 +125,7 @@ export function printDecoratorOptions(
       ops.add(`default: ${options.default}`);
     }
   }
+
   if (options.format) ops.add(`format: '${options.format}'`);
   if (options.minLength) ops.add(`minLength: ${options.minLength}`);
   if (options.maxLength) ops.add(`maxLength: ${options.maxLength}`);
@@ -118,7 +147,10 @@ export function printDecoratorOptions(
     if (options.minItems) ops.add(`minItems: ${options.minItems}`);
   }
 
-  const result = [...ops].join(',').trim();
+  const result = [...ops]
+    .filter((e) => e.trim())
+    .join(',')
+    .trim();
   if (result.length > 0) {
     return `{ ${result} }`;
   }
@@ -128,17 +160,15 @@ export function printDecoratorOptions(
 export function printReadDtoProperty(field: DMMF.Field) {
   return printProperty(
     field.name,
-    printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), false),
+    `{${printDecoratorTypeOptions(field, extractDecorators(field.documentation ?? ''))}}`,
     false,
     getTsTypeOf(field),
   );
 }
 
-export function printCreateDtoProperty(modelName: string, field: DMMF.Field) {
-  const required = isRequiredField(field);
+export function printCreateDtoProperty(modelName: string, field: DMMF.Field, isRequried?: boolean) {
+  const required = isRequried ? true : isRequiredField(field);
 
-  //         @Prop({ type: String, format: 'json' }) notes?: P.InputJsonValue;
-  // @Prop({ type: String, format: 'json', isArray: true }) tasks?: P.UserUpdatetasksInput;
   const type = () => {
     if (field.type === 'Json') {
       if (field.isList) {
@@ -148,6 +178,7 @@ export function printCreateDtoProperty(modelName: string, field: DMMF.Field) {
     }
     return undefined;
   };
+
   return printProperty(
     field.name,
     printDecoratorOptions(field, extractDecorators(field.documentation ?? ''), required),
@@ -157,8 +188,6 @@ export function printCreateDtoProperty(modelName: string, field: DMMF.Field) {
 }
 
 export function printUpdateDtoProperty(modelName: string, field: DMMF.Field) {
-  //         @Prop({ type: String, format: 'json' }) notes?: P.InputJsonValue;
-  // @Prop({ type: String, format: 'json', isArray: true }) tasks?: P.UserUpdatetasksInput;
   const type = () => {
     if (field.type === 'Json') {
       if (field.isList) {
@@ -256,6 +285,27 @@ export function printUpdateManyDto(model: DMMF.Model) {
     `}`,
   ].join('\n');
 }
+
+export function printByDtos(model: DMMF.Model) {
+  const byFields = model.fields.filter(isFindByField);
+  const hasByField = byFields.length > 0;
+
+  if (hasByField) {
+    return model.fields
+      .filter(isFindByField)
+      .map((field) => {
+        return [
+          `export class ${model.name}By${names(field.name).pascal}Dto {`,
+          printCreateDtoProperty(model.name, field, true),
+          `}`,
+        ].join('\n');
+      })
+      .join('\n\n');
+  }
+
+  return undefined;
+}
+
 export function printDtos(model: DMMF.Model) {
   return [
     printDtoImports(model),
@@ -265,5 +315,8 @@ export function printDtos(model: DMMF.Model) {
     printUpdateDtoClass(model),
     printCreateManyDto(model),
     printUpdateManyDto(model),
-  ].join('\n');
+    printByDtos(model),
+  ]
+    .filter((e) => e)
+    .join('\n');
 }
