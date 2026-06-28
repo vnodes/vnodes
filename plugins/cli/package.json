@@ -1,7 +1,7 @@
 {
   "name": "@vnodes/cli",
   "description": "Vnodes cli",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "author": {
     "email": "robert.brightline+vnodes-prisma@gmail.com",
     "name": "Robert Brightline",

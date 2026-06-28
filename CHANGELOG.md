@@ -1,3 +1,17 @@
+## 0.1.16 (2026-06-28)
+
+### 🚀 Features
+
+- created bulk operation like create-many, update-many, and delete-many ([2287c66](https://github.com/vnodes/vnodes/commit/2287c66))
+- created bulk operation like create-many, update-many, and delete-many ([f301e2f](https://github.com/vnodes/vnodes/commit/f301e2f))
+- created the detailed rest paths for find, delete, and update by operations ([f899263](https://github.com/vnodes/vnodes/commit/f899263))
+- fixed the enum property ([d66cda6](https://github.com/vnodes/vnodes/commit/d66cda6))
+- created by dto generator ([cc1b204](https://github.com/vnodes/vnodes/commit/cc1b204))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.15 (2026-06-24)
 
 ### 🚀 Features

@@ -1,7 +1,7 @@
 {
   "name": "@vnodes/prop",
   "description": "Data transfer object property decorator",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "author": {
     "email": "robert.brightline+vnodes-prop@gmail.com",
     "name": "Robert Brightline",
