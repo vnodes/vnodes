@@ -11,6 +11,7 @@ export default [
       '**/out',
       '**/out-tsc',
       '**/generated/prisma/**',
+      '**/generated/nest/**',
       '**/vitest.config.*.timestamp*',
       '**/prisma.config.ts',
       '**/vitet.config.mjs',

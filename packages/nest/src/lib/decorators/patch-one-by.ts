@@ -1,4 +1,4 @@
-import { Put } from '@nestjs/common';
+import { Patch } from '@nestjs/common';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 import { names } from '@vnodes/names';
 import { Messages } from '../constants/messages.js';
@@ -9,7 +9,7 @@ export function PatchOneBy(propertyName: string): MethodDecorator {
   const { camel, kebab } = names(propertyName);
   return (...args) => {
     [
-      Put(`${kebab}/:${camel}`),
+      Patch(`${kebab}/:${camel}`),
       ApiParam({ name: camel }),
       Operation(OperationName.UPDATE_ONE),
       ApiOperation({ summary: `${Messages.UPDATE_ENTITY_BY} ${propertyName}` }),

@@ -46,7 +46,7 @@
       "email": "robert.brightline@gmail.com",
       "homePageUrl": "https://vnodes.github.io",
       "fundingUrl": "https://cash.app/$puqlib",
-      "version": "0.1.8",
+      "version": "0.1.19",
       "workspaceVersion": "workspace:*"
     },
     "@nx/plugin:plugin": {
