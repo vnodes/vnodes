@@ -53,11 +53,26 @@
       "types": "./dist/generated/prisma/browser.d.ts",
       "import": "./dist/generated/prisma/browser.js",
       "default": "./dist/generated/prisma/browser.js"
-    }, 
-    "./nest":{ 
+    },
+    "./nest": {
       "types": "./dist/generated/nest/index.d.ts",
       "import": "./dist/generated/nest/index.js",
       "default": "./dist/generated/nest/index.js"
+    },
+    "./controllers": {
+      "types": "./dist/generated/nest/controllers.d.ts",
+      "import": "./dist/generated/nest/controllers.js",
+      "default": "./dist/generated/nest/controllers.js"
+    },
+    "./services": {
+      "types": "./dist/generated/nest/services.d.ts",
+      "import": "./dist/generated/nest/services.js",
+      "default": "./dist/generated/nest/services.js"
+    },
+    "./modules": {
+      "types": "./dist/generated/nest/modules.d.ts",
+      "import": "./dist/generated/nest/modules.js",
+      "default": "./dist/generated/nest/modules.js"
     }
   },
   "nx": {

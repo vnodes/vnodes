@@ -2,7 +2,7 @@ import type { GeneratorOptions } from '@prisma/generator-helper';
 import { writeTextFile } from '@vnodes/fs';
 import { names } from '@vnodes/names';
 import { join } from 'node:path';
-import { printNestModule } from './printers.js';
+import { printNestDataModule, printNestModule } from './printers.js';
 
 export type NestjsControllerGeneratorConfig = {
   output: string;
@@ -19,15 +19,24 @@ export default async function onGenerate(options: GeneratorOptions) {
 
   for (const model of models) {
     const { kebab } = names(model.name);
-    const content = printNestModule(model);
-    await writeTextFile(join(output, kebab, `${kebab}.module.ts`), content);
+    {
+      const content = printNestModule(model);
+      await writeTextFile(join(output, kebab, `${kebab}.module.ts`), content);
+    }
+    {
+      const content = printNestDataModule(model);
+      await writeTextFile(join(output, kebab, `${kebab}-data.module.ts`), content);
+    }
   }
 
   const indexExports = models
     .map((e) => e.name)
-    .map((e) => {
+    .flatMap((e) => {
       const { kebab } = names(e);
-      return `export * from './${kebab}/${kebab}.module.js';`;
+      return [
+        `export * from './${kebab}/${kebab}.module.js';`,
+        `export * from './${kebab}/${kebab}-data.module.js';`,
+      ];
     })
     .join('\n');
 

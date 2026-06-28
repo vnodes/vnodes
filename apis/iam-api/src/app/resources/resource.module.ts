@@ -5,7 +5,6 @@ import { PrismaModule } from '@vnodes/prisma';
 
 @Module({
   imports: [PrismaModule.forRoot({ client: PrismaClient }), UserModule],
-
   providers: [],
 })
 export class ResourceModule {}
