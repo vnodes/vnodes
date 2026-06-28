@@ -30,7 +30,9 @@
   ],
   "bin": {
     "prisma-nest-dto": "./bin/prisma-nest-dto.mjs",
-    "prisma-nest-service": "./bin/prisma-nest-service.mjs"
+    "prisma-nest-service": "./bin/prisma-nest-service.mjs",
+    "prisma-nest-controller": "./bin/prisma-nest-controller.mjs",
+    "prisma-nest-module": "./bin/prisma-nest-module.mjs"
   },
   "type": "module",
   "main": "./dist/index.js",

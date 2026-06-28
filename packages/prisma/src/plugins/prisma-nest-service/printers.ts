@@ -3,83 +3,13 @@ import { names } from '@vnodes/names';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
   isDeleteByField,
-  isDeleteManyByField,
   isFindByField,
   isIncludedField,
   isSearchableField,
   isSoftDeleteField,
+  isUpdatedByField,
   isValidPropertyName,
 } from '../utils/is-field.js';
-import { getTsTypeOf } from '../utils/ts-type.js';
-
-export function printCreateManyFn(model: DMMF.Model) {
-  const { camel: modelCamel } = names(model.name);
-  // const { pascal, camel } = names(field.name);
-  return [
-    `createMany(data: ${model.name}CreateManyDto) {`,
-    `   return this.${modelCamel}Delegate.createMany(data)`,
-    `}`,
-  ].join('\n');
-}
-
-export function printUpdateManyFn(model: DMMF.Model) {
-  const { camel: modelCamel } = names(model.name);
-  // const { pascal, camel } = names(field.name);
-  return [
-    `updateMany(data: ${model.name}UpdateManyDto) {`,
-    `   return this.${modelCamel}Delegate.updateMany(data)`,
-    `}`,
-  ].join('\n');
-}
-
-export function printUpdateManyByFn(model: DMMF.Model, field: DMMF.Field) {
-  const { camel: modelCamel } = names(model.name);
-  const { pascal, camel } = names(field.name);
-  return [
-    `updateManyBy${pascal}(${camel}: ${getTsTypeOf(field)}, data: ${model.name}UpdateDto) {`,
-    `   return this.${modelCamel}Delegate.updateMany({ where: { ${camel} }, data  })`,
-    `}`,
-  ].join('\n');
-}
-export function printUpdateByFn(model: DMMF.Model, field: DMMF.Field) {
-  const { camel: modelCamel } = names(model.name);
-  const { pascal, camel } = names(field.name);
-  return [
-    `updateOneBy${pascal}(${camel}: ${getTsTypeOf(field)}, data: ${model.name}UpdateDto) {`,
-    `   return this.${modelCamel}Delegate.update({ where: { ${camel} }, data  ${printIncludeOption(model)} })`,
-    `}`,
-  ].join('\n');
-}
-export function printDeleteManyByFn(model: DMMF.Model, field: DMMF.Field) {
-  const { camel: modelCamel } = names(model.name);
-  const { pascal, camel } = names(field.name);
-  return [
-    `deleteManyBy${pascal}(${camel}: ${getTsTypeOf(field)}) {`,
-    `   return this.${modelCamel}Delegate.deleteMany({ where: { ${camel} } })`,
-    `}`,
-  ].join('\n');
-}
-export function printDeleteByFn(model: DMMF.Model, field: DMMF.Field) {
-  const { camel: modelCamel } = names(model.name);
-  const { pascal, camel } = names(field.name);
-  return [
-    `deleteOneBy${pascal}(${camel}: ${getTsTypeOf(field)}) {`,
-    `   return this.${modelCamel}Delegate.delete({ where: { ${camel} }  ${printIncludeOption(model)} })`,
-    `}`,
-  ].join('\n');
-}
-
-export function printFindByFn(model: DMMF.Model, field: DMMF.Field) {
-  const { camel: modelCamel } = names(model.name);
-  const { pascal, camel } = names(field.name);
-
-  const delegateMethodName = field.isUnique || field.isId ? 'findUnique' : 'findFirst';
-  return [
-    `findOneBy${pascal}(${camel}: ${getTsTypeOf(field)}) {`,
-    `   return this.${modelCamel}Delegate.${delegateMethodName}({ where: { ${camel} }  ${printIncludeOption(model)} })`,
-    `}`,
-  ].join('\n');
-}
 
 export function printToWhereArgsFn(model: DMMF.Model) {
   const { pascal } = names(model.name);
@@ -103,7 +33,9 @@ export function printToWhereArgsFn(model: DMMF.Model) {
         `    if (query.withDeleted !== true) {`,
         `      where.deletedAt = { equals: null };`,
         `    }`,
-      ].join('\n')
+      ]
+        .filter((e) => e)
+        .join('\n')
     : '';
 
   const searchCondition = hasSearchable
@@ -114,7 +46,9 @@ export function printToWhereArgsFn(model: DMMF.Model) {
         `      ]`,
         `return { where  }`,
         `    }`,
-      ].join('\n')
+      ]
+        .filter((e) => e)
+        .join('\n')
     : '';
 
   const initWhere = hasSearchable
@@ -123,7 +57,7 @@ export function printToWhereArgsFn(model: DMMF.Model) {
       )
     : '';
   return [
-    `  protected toWhereArgs(query: ${pascal}QueryDto): P.${pascal}FindManyArgs | undefined {`,
+    `  protected toWhereArgs(query: D.${pascal}QueryDto): P.${pascal}FindManyArgs | undefined {`,
     initWhere,
     ``,
     softDelete,
@@ -131,7 +65,9 @@ export function printToWhereArgsFn(model: DMMF.Model) {
     searchCondition,
     `return undefined`,
     `    }`,
-  ].join('\n');
+  ]
+    .filter((e) => e)
+    .join('\n');
 }
 
 export function printIncludeOption(model: DMMF.Model) {
@@ -194,66 +130,99 @@ export function printIncludeOption(model: DMMF.Model) {
 }
 
 export function printServiceClass(model: DMMF.Model) {
-  const { pascal, camel, kebab } = names(model.name);
+  const { pascal: modelPascal, camel: modelCamel, kebab } = names(model.name);
+
+  const delegateName = `${modelCamel}Delegate`;
+  const delegateClassName = `P.${modelPascal}Delegate`;
+  const queryDtoName = `D.${modelPascal}QueryDto`;
+
+  const includeOptions = printIncludeOption(model);
+
+  const updateDtoName = `D.${modelPascal}UpdateDto`;
+  const createDtoName = `D.${modelPascal}CreateDto`;
+  const createManyDtoName = `D.${modelPascal}CreateManyDto`;
+
+  function printByFn(
+    prefix: 'findOneBy' | 'deleteOneBy' | 'updateOneBy' | 'updateManyBy',
+    field: DMMF.Field,
+  ) {
+    const { pascal: fieldPascal } = names(field.name);
+
+    const methodName = `${prefix}${fieldPascal}`;
+
+    const byQueryDtoName = `D.${modelPascal}By${fieldPascal}Dto`;
+
+    if (prefix === 'findOneBy') {
+      const delegateMethod = field.isUnique || field.isId ? 'findUnique' : 'findFirst';
+      return [
+        `${methodName}(where: ${byQueryDtoName}){`,
+        `   return this.${delegateName}.${delegateMethod}({ where ${includeOptions} })`,
+        `}`,
+      ].join('\n');
+    } else if (prefix === 'updateOneBy') {
+      return [
+        `${methodName}(where: ${byQueryDtoName}, data: ${updateDtoName}){`,
+        `return this.${delegateName}.update({ where , data ${includeOptions} })`,
+        `}`,
+      ].join('\n');
+    } else if (prefix === 'deleteOneBy') {
+      return [
+        `${methodName}(where: ${byQueryDtoName}){`,
+        `return this.${delegateName}.delete({ where ${includeOptions} })`,
+        `}`,
+      ].join('\n');
+    }
+
+    return undefined;
+  }
 
   const findByFields = model.fields.filter(isFindByField);
-
   const hasFindByFields = findByFields.length > 0;
-
   const findByFns = hasFindByFields
     ? findByFields
-        .map((field) => {
-          return printFindByFn(model, field);
-        })
+        .map((field) => printByFn('findOneBy', field))
+        .filter((e) => e)
+        .join('\n')
+    : '';
+
+  const updateByFields = model.fields.filter(isUpdatedByField);
+  const hasUpdateByField = updateByFields.length > 0;
+  const updateByFns = hasUpdateByField
+    ? updateByFields
+        .map((field) => printByFn('updateOneBy', field))
+        .filter((e) => e)
         .join('\n')
     : '';
 
   const deleteByFields = model.fields.filter(isDeleteByField);
   const hasDeleteByField = deleteByFields.length > 0;
   const deleteByFns = hasDeleteByField
-    ? deleteByFields.map((field) => printDeleteByFn(model, field)).join('\n')
+    ? deleteByFields
+        .map((field) => printByFn('deleteOneBy', field))
+        .filter((e) => e)
+        .join('\n')
     : '';
-
-  const deleteManyByFields = model.fields.filter(isDeleteManyByField);
-
-  const hasDeleteManyField = deleteManyByFields.length > 0;
-
-  const deleteManyByFns = hasDeleteManyField
-    ? deleteManyByFields.map((field) => printDeleteManyByFn(model, field)).join('\n')
-    : '';
-
-  const updateByFields = model.fields.filter(isDeleteByField);
-  const hasUpdateByField = updateByFields.length > 0;
-  const updateByFns = hasUpdateByField
-    ? updateByFields.map((field) => printUpdateByFn(model, field)).join('\n')
-    : '';
-
-  const updateManyByFns = hasUpdateByField
-    ? updateByFields.map((field) => printUpdateManyByFn(model, field)).join('\n')
-    : '';
-
-  const enumModule = model.fields.some((e) => e.kind === 'enum') ? ',$Enums as E' : '';
 
   return [
     `import { Injectable } from '@vnodes/nest';`,
     `import { InjectDelegate } from '@vnodes/prisma';`,
-    `import { Prisma as P ${enumModule} } from '../../prisma/client.js';`,
-    `import type { ${pascal}QueryDto, ${pascal}CreateDto, ${pascal}UpdateDto, ${pascal}CreateManyDto, ${pascal}UpdateManyDto } from './${kebab}.dto.js';`,
+    `import { Prisma as P } from '../../prisma/client.js';`,
+    `import * as D  from './${kebab}.dto.js';`,
     ``,
     ``,
     `@Injectable()`,
-    `export class ${pascal}Service {`,
+    `export class ${modelPascal}Service {`,
     ``,
-    `  constructor(@InjectDelegate(P.ModelName.${pascal}) protected readonly ${camel}Delegate: P.${pascal}Delegate) {}`,
+    `  constructor(@InjectDelegate(P.ModelName.${modelPascal}) protected readonly ${delegateName}: ${delegateClassName}) {}`,
     ``,
-    `  protected toPaginationArgs(query: ${pascal}QueryDto): P.${pascal}FindManyArgs {`,
+    `  protected toPaginationArgs(query: ${queryDtoName}): P.${modelPascal}FindManyArgs {`,
     `    return {`,
     `      take: query.take ?? 20,`,
     `      skip: query.skip ?? 0,`,
     `    };`,
     `  }`,
     ``,
-    `  protected toOrderByArgs(query: ${pascal}QueryDto): P.${pascal}FindManyArgs | undefined {`,
+    `  protected toOrderByArgs(query: ${queryDtoName}): P.${modelPascal}FindManyArgs | undefined {`,
     `    return {`,
     `      orderBy: { [query.orderBy ?? 'id']: query.orderDir ?? 'asc' },`,
     `    };`,
@@ -261,7 +230,7 @@ export function printServiceClass(model: DMMF.Model) {
     ``,
     printToWhereArgsFn(model),
     ``,
-    `  protected toFindManyArgs(query: ${pascal}QueryDto): P.${pascal}FindManyArgs {`,
+    `  protected toFindManyArgs(query: ${queryDtoName}): P.${modelPascal}FindManyArgs {`,
     `    return {`,
     `      ...this.toWhereArgs(query),`,
     `      ...this.toOrderByArgs(query),`,
@@ -270,27 +239,26 @@ export function printServiceClass(model: DMMF.Model) {
     `    };`,
     `  }`,
     ``,
-    `  createOne(data:${pascal}CreateDto){`,
-    `     return this.${camel}Delegate.create({ data })`,
+    `  createOne(data: ${createDtoName}){`,
+    `     return this.${delegateName}.create({ data })`,
     `  }`,
     ``,
-    `  findMany(query: ${pascal}QueryDto) {`,
-    `    return this.${camel}Delegate.findMany({`,
+    `  createMany(data: ${createManyDtoName}){`,
+    `     return this.${delegateName}.createMany(data)`,
+    `  }`,
+    ``,
+    `  findMany(query: ${queryDtoName}) {`,
+    `    return this.${delegateName}.findMany({`,
     `      ...this.toFindManyArgs(query)`,
-    `      ${printIncludeOption(model)}`,
+    `      ${includeOptions}`,
     `    });`,
     `  }`,
     ``,
-
     findByFns,
-    deleteByFns,
-    deleteManyByFns,
     updateByFns,
-    updateManyByFns,
-
-    printCreateManyFn(model),
-    printUpdateManyFn(model),
-
+    deleteByFns,
     `}`,
-  ].join('\n');
+  ]
+    .filter((e) => e)
+    .join('\n');
 }

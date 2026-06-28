@@ -13,6 +13,16 @@ generator nestServices {
   output   = "../src/generated/nest"
 }
 
+generator nestControllers {
+  provider = "prisma-nest-controller"
+  output   = "../src/generated/nest"
+}
+
+generator nestModules {
+  provider = "prisma-nest-module"
+  output   = "../src/generated/nest"
+}
+
 datasource db {
   provider = "postgresql"
 }

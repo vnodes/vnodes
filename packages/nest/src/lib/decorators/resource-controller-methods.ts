@@ -7,6 +7,7 @@ import { GetOneById } from './get-one-by-id.js';
 import { GetOneBy } from './get-one-by.js';
 import { PatchMany } from './patch-many.js';
 import { PatchOneById } from './patch-one-by-id.js';
+import { PatchOneBy } from './patch-one-by.js';
 import { PostMany } from './post-many.js';
 import { PostOne } from './post-one.js';
 import { AddRelation } from './relation/add-relation.js';
@@ -72,7 +73,7 @@ export function ResourceControllerMethods(): ClassDecorator {
           //
           ?.match(/^findOneBy(\w+)$/i, (propertyName) => GetOneBy(propertyName))
           ?.match(/^deleteOneBy(\w+)$/i, (propertyName) => DeleteOneBy(propertyName))
-          ?.match(/^updateOneBy(\w+)$/i, (propertyName) => DeleteOneBy(propertyName));
+          ?.match(/^updateOneBy(\w+)$/i, (propertyName) => PatchOneBy(propertyName));
       }
     }
   };
