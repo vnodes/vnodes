@@ -1,3 +1,14 @@
+## 0.1.17 (2026-06-28)
+
+### 🚀 Features
+
+- created nest module generator ([d6b9e2c](https://github.com/vnodes/vnodes/commit/d6b9e2c))
+- seperated the data module from the rest module ([a36f045](https://github.com/vnodes/vnodes/commit/a36f045))
+
+### ❤️ Thank You
+
+- Robert Brightline @vnodes
+
 ## 0.1.16 (2026-06-28)
 
 ### 🚀 Features
