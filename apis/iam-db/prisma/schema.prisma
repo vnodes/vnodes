@@ -94,11 +94,9 @@ model Permission {
 model RolePermission {
   id Int @id @default(autoincrement())
 
-  /// @select([id, name])
   role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   roleId Int  @map("role_id")
 
-  /// @select([id, name])
   permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   permissionId Int        @map("permission_id")
 
@@ -109,11 +107,9 @@ model RolePermission {
 model UserRole {
   id Int @id @default(autoincrement())
 
-  /// @select([id, username])
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId Int  @map("user_id")
 
-  /// @select([id, name])
   role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   roleId Int  @map("role_id")
 
@@ -146,11 +142,9 @@ model AccessToken {
 model AccessTokenPermission {
   id Int @id @default(autoincrement())
 
-  /// @select([id, name])
   accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   accessTokenId Int         @map("access_token_id")
 
-  /// @select([id, name])
   permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   permissionId Int        @map("permission_id")
 
@@ -206,11 +200,9 @@ model HttpHook {
 model HttpHookEvent {
   id Int @id @default(autoincrement())
 
-  /// @select([id, name])
   httpHook   HttpHook @relation(fields: [httpHookId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   httpHookId Int      @map("http_hook_id")
 
-  /// @select([id, name])
   event   Event @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   eventId Int   @map("event_id")
 

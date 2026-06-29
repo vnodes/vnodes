@@ -217,12 +217,15 @@ export function isFindByField(field: DMMF.Field) {
     field.kind === 'object' ||
     field.isList ||
     field.type === 'Json' ||
+    field.type === 'Boolean' ||
+    field.type === 'Byptes' ||
     isTimestampField(field) ||
     isInternalField(field) ||
     isHashedField(field)
   ) {
     return false;
   }
+
   return true;
 }
 
@@ -234,16 +237,28 @@ export function isDeleteByField(field: DMMF.Field) {
   return false;
 }
 
-export function isDeleteManyByField(field: DMMF.Field) {
-  return isFindByField(field) && !field.isId && !field.isUnique;
-}
-
 export function isUpdatedByField(field: DMMF.Field) {
   if (isFindByField(field)) {
     return field.isId || field.isUnique;
   }
 
   return false;
+}
+
+export function isFindManyByField(field: DMMF.Field) {
+  if (isFindByField(field)) {
+    return !field.isId && !field.isUnique;
+  }
+
+  return false;
+}
+
+export function isUpdateManyByField(field: DMMF.Field) {
+  return isFindManyByField(field);
+}
+
+export function isDeleteManyByField(field: DMMF.Field) {
+  return isFindManyByField(field);
 }
 
 export function isValidPropertyName(name: string) {

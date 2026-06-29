@@ -2,7 +2,7 @@ import type { GeneratorOptions } from '@prisma/generator-helper';
 import { writeTextFile } from '@vnodes/fs';
 import { names } from '@vnodes/names';
 import { join } from 'node:path';
-import { printNestDataModule, printNestModule } from './printers.js';
+import { printNestDataModule, printNestModule, printResourceModule } from './printers.js';
 
 export type NestjsControllerGeneratorConfig = {
   output: string;
@@ -29,16 +29,30 @@ export default async function onGenerate(options: GeneratorOptions) {
     }
   }
 
-  const indexExports = models
-    .map((e) => e.name)
-    .flatMap((e) => {
-      const { kebab } = names(e);
-      return [
-        `export * from './${kebab}/${kebab}.module.js';`,
-        `export * from './${kebab}/${kebab}-data.module.js';`,
-      ];
-    })
-    .join('\n');
+  {
+    const indexExports = models
+      .map((e) => e.name)
+      .flatMap((e) => {
+        const { kebab } = names(e);
+        return [`export * from './${kebab}/${kebab}.module.js';`];
+      })
+      .join('\n');
 
-  await writeTextFile(join(output, 'modules.ts'), indexExports);
+    await writeTextFile(join(output, 'modules.ts'), indexExports);
+  }
+  {
+    const indexExports = models
+      .map((e) => e.name)
+      .flatMap((e) => {
+        const { kebab } = names(e);
+        return [`export * from './${kebab}/${kebab}-data.module.js';`];
+      })
+      .join('\n');
+
+    await writeTextFile(join(output, 'data-modules.ts'), indexExports);
+  }
+
+  const resoucrModuleContent = printResourceModule();
+
+  await writeTextFile(join(output, 'resource.module.ts'), resoucrModuleContent);
 }

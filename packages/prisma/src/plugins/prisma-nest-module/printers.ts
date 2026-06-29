@@ -34,3 +34,17 @@ export function printNestDataModule(model: DMMF.Model) {
     `export class ${pascal}DataModule {}`,
   ].join('\n');
 }
+
+export function printResourceModule() {
+  return [
+    `import { Module } from '@nestjs/common';`,
+    `import { PrismaModule } from '@vnodes/prisma';`,
+    `import { PrismaClient } from '../prisma/client.js';`,
+    `import * as Modules from './modules.js';`,
+    ``,
+    `@Module({`,
+    `  imports: [PrismaModule.forRoot({ client: PrismaClient }), ...Object.values(Modules)],`,
+    `})`,
+    `export class ResourceModule {}`,
+  ].join('\n');
+}

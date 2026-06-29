@@ -73,6 +73,16 @@
       "types": "./dist/generated/nest/modules.d.ts",
       "import": "./dist/generated/nest/modules.js",
       "default": "./dist/generated/nest/modules.js"
+    },
+    "./data-modules": {
+      "types": "./dist/generated/nest/data-modules.d.ts",
+      "import": "./dist/generated/nest/data-modules.js",
+      "default": "./dist/generated/nest/data-modules.js"
+    },
+    "./resource-module": {
+      "types": "./dist/generated/nest/resource.module.d.ts",
+      "import": "./dist/generated/nest/resource.module.js",
+      "default": "./dist/generated/nest/resource.module.js"
     }
   },
   "nx": {

@@ -3,11 +3,14 @@ import { names } from '@vnodes/names';
 import { extractDecorators } from '../utils/extract-decorators.js';
 import {
   isDeleteByField,
+  isDeleteManyByField,
   isFindByField,
+  isFindManyByField,
   isIncludedField,
   isSearchableField,
   isSoftDeleteField,
   isUpdatedByField,
+  isUpdateManyByField,
   isValidPropertyName,
 } from '../utils/is-field.js';
 
@@ -139,18 +142,25 @@ export function printServiceClass(model: DMMF.Model) {
   const includeOptions = printIncludeOption(model);
 
   const updateDtoName = `D.${modelPascal}UpdateDto`;
+  const updateWithoutUnqiueDtoName = `D.${modelPascal}UpdateWithoutUniqueDto`;
   const createDtoName = `D.${modelPascal}CreateDto`;
   const createManyDtoName = `D.${modelPascal}CreateManyDto`;
 
   function printByFn(
-    prefix: 'findOneBy' | 'deleteOneBy' | 'updateOneBy' | 'updateManyBy',
+    prefix:
+      | 'findOneBy'
+      | 'deleteOneBy'
+      | 'updateOneBy'
+      | 'findManyBy'
+      | 'deleteManyBy'
+      | 'updateManyBy',
     field: DMMF.Field,
   ) {
     const { pascal: fieldPascal } = names(field.name);
 
     const methodName = `${prefix}${fieldPascal}`;
-
     const byQueryDtoName = `D.${modelPascal}By${fieldPascal}Dto`;
+    const queryDtoName = `D.${modelPascal}QueryDto`;
 
     if (prefix === 'findOneBy') {
       const delegateMethod = field.isUnique || field.isId ? 'findUnique' : 'findFirst';
@@ -169,6 +179,24 @@ export function printServiceClass(model: DMMF.Model) {
       return [
         `${methodName}(where: ${byQueryDtoName}){`,
         `return this.${delegateName}.delete({ where ${includeOptions} })`,
+        `}`,
+      ].join('\n');
+    } else if (prefix === 'findManyBy') {
+      return [
+        `${methodName}(query:${queryDtoName}, where: ${byQueryDtoName}){`,
+        `   return this.${delegateName}.findMany({ ...this.toFindManyArgs(query), where ${includeOptions} })`,
+        `}`,
+      ].join('\n');
+    } else if (prefix === 'deleteManyBy') {
+      return [
+        `${methodName}(where: ${byQueryDtoName}){`,
+        `   return this.${delegateName}.deleteMany({ where })`,
+        `}`,
+      ].join('\n');
+    } else if (prefix === 'updateManyBy') {
+      return [
+        `${methodName}(where: ${byQueryDtoName}, data: ${updateWithoutUnqiueDtoName}){`,
+        `   return this.${delegateName}.updateMany({ where, data })`,
         `}`,
       ].join('\n');
     }
@@ -199,6 +227,33 @@ export function printServiceClass(model: DMMF.Model) {
   const deleteByFns = hasDeleteByField
     ? deleteByFields
         .map((field) => printByFn('deleteOneBy', field))
+        .filter((e) => e)
+        .join('\n')
+    : '';
+
+  const findManyByFields = model.fields.filter(isFindManyByField);
+  const hasFindManyField = findManyByFields.length > 0;
+  const findManyFns = hasFindManyField
+    ? findManyByFields
+        .map((field) => printByFn('findManyBy', field))
+        .filter((e) => e)
+        .join('\n')
+    : '';
+
+  const updateManyByFields = model.fields.filter(isUpdateManyByField);
+  const hasUpdateManyField = updateManyByFields.length > 0;
+  const updateManyFns = hasUpdateManyField
+    ? updateManyByFields
+        .map((field) => printByFn('updateManyBy', field))
+        .filter((e) => e)
+        .join('\n')
+    : '';
+
+  const deleteManyByFields = model.fields.filter(isDeleteManyByField);
+  const hasDeleteManyField = deleteManyByFields.length > 0;
+  const deleteManyFns = hasDeleteManyField
+    ? deleteManyByFields
+        .map((field) => printByFn('deleteManyBy', field))
         .filter((e) => e)
         .join('\n')
     : '';
@@ -257,6 +312,9 @@ export function printServiceClass(model: DMMF.Model) {
     findByFns,
     updateByFns,
     deleteByFns,
+    findManyFns,
+    updateManyFns,
+    deleteManyFns,
     `}`,
   ]
     .filter((e) => e)

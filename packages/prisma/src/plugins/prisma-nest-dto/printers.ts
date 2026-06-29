@@ -233,6 +233,16 @@ export function printUpdateDtoClass(model: DMMF.Model) {
   return printDtoClass(model, content, 'Update');
 }
 
+export function printUpdateWithoutUniueDtoClass(model: DMMF.Model) {
+  const content: string = model.fields
+    .filter(isUpdateInputField)
+    .filter((e) => !e.isId && !e.isUnique)
+    .map((field) => printUpdateDtoProperty(model.name, field))
+    .join('\n');
+
+  return printDtoClass(model, content, 'UpdateWithoutUnique');
+}
+
 export function printQueryDtoClass(model: DMMF.Model) {
   const modelName = model.name;
   return [
@@ -316,6 +326,7 @@ export function printDtos(model: DMMF.Model) {
     printCreateManyDto(model),
     printUpdateManyDto(model),
     printByDtos(model),
+    printUpdateWithoutUniueDtoClass(model),
   ]
     .filter((e) => e)
     .join('\n');
