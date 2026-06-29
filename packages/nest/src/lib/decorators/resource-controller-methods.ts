@@ -1,12 +1,11 @@
+import { ApiOperation } from '@nestjs/swagger';
 import { names } from '@vnodes/names';
 import { DeleteMany } from './delete-many.js';
-import { DeleteOneById } from './delete-one-by-id.js';
 import { DeleteOneBy } from './delete-one-by.js';
 import { GetAll } from './get-all.js';
-import { GetOneById } from './get-one-by-id.js';
+import { GetManyBy } from './get-many-by.js';
 import { GetOneBy } from './get-one-by.js';
 import { PatchMany } from './patch-many.js';
-import { PatchOneById } from './patch-one-by-id.js';
 import { PatchOneBy } from './patch-one-by.js';
 import { PostMany } from './post-many.js';
 import { PostOne } from './post-one.js';
@@ -32,6 +31,8 @@ export function ResourceControllerMethods(): ClassDecorator {
       if (!descriptor) throw new Error(`Decriptor not found for ${classType.prototype} `);
 
       const margs: Parameters<MethodDecorator> = [classType.prototype, methodName, descriptor];
+
+      ApiOperation({ operationId: methodName, summary: names(methodName).sentence })(...margs);
       {
         const check = (exp: RegExp, decorator: () => MethodDecorator) => {
           if (exp.test(methodName)) {
@@ -60,11 +61,8 @@ export function ResourceControllerMethods(): ClassDecorator {
         check(/^createOne$/i, () => PostOne())
           ?.check(/^createMany$/i, () => PostMany())
           ?.check(/^findMany$/i, () => GetAll())
-          ?.check(/^findOneById$/i, () => GetOneById())
-          ?.check(/^updateOneById$/i, () => PatchOneById())
           ?.check(/^updateMany$/i, () => PatchMany())
           ?.check(/^updateMany$/i, () => PatchMany())
-          ?.check(/^deleteOneById$/i, () => DeleteOneById())
           ?.check(/^deleteMany$/i, () => DeleteMany())
           ?.check(/^addRelation$/i, () => AddRelation())
           ?.check(/^removeRelation$/i, () => RemoveRelation())
@@ -73,7 +71,11 @@ export function ResourceControllerMethods(): ClassDecorator {
           //
           ?.match(/^findOneBy(\w+)$/i, (propertyName) => GetOneBy(propertyName))
           ?.match(/^deleteOneBy(\w+)$/i, (propertyName) => DeleteOneBy(propertyName))
-          ?.match(/^updateOneBy(\w+)$/i, (propertyName) => PatchOneBy(propertyName));
+          ?.match(/^updateOneBy(\w+)$/i, (propertyName) => PatchOneBy(propertyName))
+
+          ?.match(/^findManyBy(\w+)$/i, (propertyName) => GetManyBy(propertyName))
+          ?.match(/^deleteManyBy(\w+)$/i, (propertyName) => DeleteOneBy(propertyName))
+          ?.match(/^updateManyBy(\w+)$/i, (propertyName) => PatchOneBy(propertyName));
       }
     }
   };
