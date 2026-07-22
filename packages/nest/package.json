@@ -1,7 +1,7 @@
 {
   "name": "@vnodes/nest",
   "description": "Nestjs common",
-  "version": "0.1.21",
+  "version": "0.1.30",
   "author": {
     "email": "robert.brightline+vnodes-nest@gmail.com",
     "name": "Robert Brightline",
