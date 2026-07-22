@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+generator nestDtos {
+  provider = "prisma-nest-dto"
+  output   = "../src/generated/nest"
+}
+
+generator nestServices {
+  provider = "prisma-nest-service"
+  output   = "../src/generated/nest"
+}
+
+generator nestControllers {
+  provider = "prisma-nest-controller"
+  output   = "../src/generated/nest"
+}
+
+generator nestModules {
+  provider = "prisma-nest-module"
+  output   = "../src/generated/nest"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  isActive  Boolean   @default(true) @map("is_active")
+
+  /// @isNotIn([admin, root, super, sudo]) @citext()
+  username String @unique(map: "Username must be unique")
+
+  /// @format(password) @hash()
+  password String
+
+  /// @internal()
+  isTwoFactorAuthEnabled Boolean @default(false) @map("is_two_factor_auth_enabled")
+
+  /// @internal()
+  lastLoginAt DateTime? @map("last_login_at")
+
+  /// @select(role)
+  userRoles UserRole[]
+
+  @@map("users")
+}
+
+model Role {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  isActive  Boolean   @default(true) @map("is_active")
+
+  /// @citext()
+  name        String  @unique
+  description String?
+
+  /// @select(permission)
+  rolePermissions RolePermission[]
+  userRoles       UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  isActive    Boolean   @default(true) @map("is_active")
+  /// @citext()
+  name        String    @unique
+  description String?
+
+  rolePermissions        RolePermission[]
+  accessTokenPermissions AccessTokenPermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  id Int @id @default(autoincrement())
+
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roleId Int  @map("role_id")
+
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permissionId Int        @map("permission_id")
+
+  @@unique([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  id Int @id @default(autoincrement())
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId Int  @map("user_id")
+
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roleId Int  @map("role_id")
+
+  @@unique([userId, roleId])
+  @@map("user_roles")
+}
+
+model AccessToken {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  isActive    Boolean   @default(true) @map("is_active")
+  /// @citext()
+  name        String    @unique
+  description String?
+
+  /// @hash() @internal() 
+  token String?
+
+  /// @internal() 
+  isExpired Boolean @default(true) @map("is_expired")
+
+  /// @select(permission)
+  accessTokenPermissions AccessTokenPermission[]
+
+  @@map("access_tokens")
+}
+
+model AccessTokenPermission {
+  id Int @id @default(autoincrement())
+
+  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  accessTokenId Int         @map("access_token_id")
+
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permissionId Int        @map("permission_id")
+
+  @@unique([accessTokenId, permissionId])
+  @@map("access_token_permissions")
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  isActive    Boolean   @default(true) @map("is_active")
+  /// @citext()
+  name        String    @unique
+  description String?
+
+  httpHookEvents HttpHookEvent[]
+
+  @@map("events")
+}
+
+model HttpHook {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  isActive    Boolean   @default(true) @map("is_active")
+  /// @citext()
+  name        String    @unique
+  description String?
+
+  url String
+
+  /// @readOnly()
+  retryCount Int? @default(0) @map("retry_count")
+
+  /// @readOnly()
+  failureCount Int? @default(0) @map("failure_count")
+
+  /// @readOnly()
+  lastFailureAt DateTime? @map("last_failure_at")
+
+  /// @readOnly()
+  lastSuccessAt DateTime? @map("last_success_at")
+
+  /// @include(event)
+  httpHookEvents HttpHookEvent[]
+
+  @@map("http_hooks")
+}
+
+model HttpHookEvent {
+  id Int @id @default(autoincrement())
+
+  httpHook   HttpHook @relation(fields: [httpHookId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  httpHookId Int      @map("http_hook_id")
+
+  event   Event @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  eventId Int   @map("event_id")
+
+  @@unique([httpHookId, eventId])
+  @@map("http_hook_events")
+}

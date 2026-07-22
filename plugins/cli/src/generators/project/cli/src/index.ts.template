@@ -1,0 +1,4 @@
+// @index(['./generators/**/*.ts','./cli/*/**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
+export * from './cli/hello/hello.js';
+export * from './generators/hello/hello.js';
+export * from './generators/hello/schema.d.js';

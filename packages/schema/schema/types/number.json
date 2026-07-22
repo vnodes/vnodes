@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "NumberColumnType",
+  "enum": [
+    "smallint",
+    "int2",
+    "integer",
+    "int",
+    "int4",
+    "real",
+    "float4",
+    "double precision",
+    "float8",
+    "oid"
+  ]
+}

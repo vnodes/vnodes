@@ -1,0 +1,48 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "references": [
+    {
+      "path": "./packages/types"
+    },
+    {
+      "path": "./packages/errors"
+    },
+    {
+      "path": "./packages/names"
+    },
+    {
+      "path": "./packages/nest"
+    },
+    {
+      "path": "./packages/prisma"
+    },
+    {
+      "path": "./packages/config"
+    },
+    {
+      "path": "./plugins/cli"
+    },
+    {
+      "path": "./packages/fs"
+    },
+    {
+      "path": "./packages/env"
+    },
+    {
+      "path": "./packages/prop"
+    },
+    {
+      "path": "./apis/iam-db"
+    },
+    {
+      "path": "./apis/iam-api"
+    },
+    {
+      "path": "./packages/schema"
+    },
+    {
+      "path": "./packages/utils"
+    }
+  ]
+}

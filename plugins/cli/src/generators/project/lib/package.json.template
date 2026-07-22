@@ -1,0 +1,59 @@
+{
+  "name": "<%- projectName %>",
+  "description":"- [ ] Add project description",
+  "version": "<%- version %>",
+  "author": {
+    "email": "<%- email %>",
+    "name": "<%- authorName %>",
+    "url": "<%- homePageUrl %>"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "<%- email %>",
+    "url": "https://github.com/<%- orgName %>/<%- repoName %>/issues"
+  },
+  "homepage": "<%- homePageUrl %>/<%- directory %>",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "<%- fundingUrl %>"
+  ],
+  "bin":{
+    "<%- fileName %>":"./bin/<%- fileName %>.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "assets"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "<%- directory %>/src",
+    "tags": [
+      "<%- tag %>"
+    ],
+    "targets": {
+      "build": {},
+      "doc":{}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "analytics": false,
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.mjs",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json"
+    ],
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/vitest",
+      "options": {
+        "testTargetName": "test",
+        "ciTargetName": "test-ci",
+        "testMode": "watch"
+      }
+    }
+  ],
+  "generators": {
+    "@nx/js:library": {
+      "bundler": "swc",
+      "unitTestRunner": "vitest",
+      "linter": "eslint",
+      "publishable": true,
+      "strict": true,
+      "skipTypeCheck": false,
+      "tags": "lib:shared"
+    },
+    "@vnodes/cli:project": {
+      "funding": "https://cash.app/$puqlib",
+      "authorName": "Robert Brightline",
+      "orgName": "<%- fileName %>",
+      "repoName": "<%- fileName %>",
+      "email": "robert.brightline@gmail.com",
+      "homePageUrl": "https://<%- fileName %>.github.io",
+      "fundingUrl": "https://cash.app/$puqlib",
+      "version": "0.0.1",
+      "workspaceVersion": "<%- workspaceVersion %>"
+    },
+    "@nx/plugin:plugin": {
+      "compiler": "swc",
+      "unitTestRunner": "vitest",
+      "linter": "eslint",
+      "publishable": true,
+      "strict": true,
+      "skipTypeCheck": false,
+      "tags": "app:cli"
+    }
+  },
+  "targetDefaults": {
+    "@nx/js:swc": {
+      "cache": true,
+      "inputs": ["production", "^production"]
+    },
+    "test": {
+      "inputs": ["default", "^default"]
+    },
+    "build": {
+      "executor": "@nx/js:swc",
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "{projectRoot}/dist",
+        "main": "{projectRoot}/src/main.ts",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "skipTypeCheck": false,
+        "stripLeadingPaths": true
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "build",
+        "watch": true
+      }
+    },
+    "prisma:migrate": {
+      "executor": "nx:run-commands",
+      "inputs": ["default"],
+      "options": {
+        "command": "pnpm prisma migrate dev --name updated",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prisma:reset": {
+      "executor": "nx:run-commands",
+      "inputs": ["default"],
+      "options": {
+        "command": "pnpm prisma migrate reset -f",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prisma:generate": {
+      "executor": "nx:run-commands",
+      "inputs": ["default"],
+      "options": {
+        "command": "pnpm prisma generate",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "doc": {
+      "executor": "nx:run-commands",
+
+      "inputs": ["^default"],
+      "options": {
+        "command": "pnpm typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json --skipErrorChecking true"
+      }
+    }
+  },
+  "release": {
+    "projects": ["tag:lib:*", "tag:app:cli"]
+  }
+}

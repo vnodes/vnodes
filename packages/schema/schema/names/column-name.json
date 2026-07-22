@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "ColumnName",
+  "description": "Column name enum",
+  "anyOf": [{ "$ref": "#/definitions/Common" }, { "$ref": "#/definitions/User" }],
+
+  "definitions": {
+    "Common": {
+      "title": "CommonColumnName",
+      "enum": [
+        "id",
+        "uuid",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+        "isActive",
+        "name",
+        "description",
+        "note"
+      ]
+    },
+    "User": {
+      "title": "UserColumnName",
+      "enum": ["username", "password", "isTwoFactorEnabled"]
+    }
+  }
+}

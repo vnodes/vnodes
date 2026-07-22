@@ -1,0 +1,59 @@
+{
+  "name": "@vnodes/env",
+  "description": "Node env",
+  "version": "0.1.21",
+  "author": {
+    "email": "robert.brightline+vnodes-env@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "robert.brightline+vnodes-env@gmail.com",
+    "url": "https://github.com/vnodes/vnodes/issues"
+  },
+  "homepage": "https://vnodes.github.io/packages/env",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "env": "./bin/env.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "assets"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "packages/env/src",
+    "tags": [
+      "lib:types"
+    ],
+    "targets": {
+      "build": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  }
+}

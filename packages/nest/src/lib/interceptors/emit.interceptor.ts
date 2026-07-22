@@ -1,0 +1,44 @@
+import {
+  Inject,
+  Injectable,
+  Logger,
+  type CallHandler,
+  type ExecutionContext,
+  type NestInterceptor,
+} from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { tap, type Observable } from 'rxjs';
+import { MetadataService } from '../metadata/metadata.service.js';
+
+/**
+ * Emit interceptor checks the method has {@link MetadataToken.EMIT_REQUEST_METADATA_TOKEN}, or {@link MetadataToken.EMIT_RESPONSE_METADATA_TOKEN} and emit the payload.
+ */
+@Injectable()
+export class EmitInterceptor implements NestInterceptor {
+  logger = new Logger(EmitInterceptor.name);
+  constructor(
+    @Inject(MetadataService)
+    protected readonly metadataService: MetadataService,
+    @Inject(EventEmitter2)
+    protected readonly eventEmitterService: EventEmitter2,
+  ) {}
+
+  intercept(
+    context: ExecutionContext,
+    next: CallHandler<any>,
+  ): Observable<any> | Promise<Observable<any>> {
+    const eventName = this.metadataService.getEventName(context);
+    if (this.metadataService.isEmittedRequest(context)) {
+      const req = context.switchToHttp().getRequest();
+
+      this.eventEmitterService.emit(eventName, req.body);
+    }
+    return next.handle().pipe(
+      tap((payload) => {
+        if (this.metadataService.isEmittedResponse(context)) {
+          this.eventEmitterService.emit(eventName, payload);
+        }
+      }),
+    );
+  }
+}

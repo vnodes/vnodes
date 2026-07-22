@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=./../model/model.json
+type: model
+properties:
+  - name: name
+    type: text
+    dependencies:
+      - column: name
+        isDefined: true

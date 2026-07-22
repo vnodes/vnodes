@@ -1,0 +1,54 @@
+{
+  "name": "@vnodes/types",
+  "version": "0.1.21",
+  "type": "module",
+  "author": {
+    "email": "robert.brightline+vnodes-types@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io/profile/robert-brightline"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "robert.brightline+vnodes-types-bug@gmail.com",
+    "url": "https://github.com/vnodes/vnodes/issues"
+  },
+  "homepage": "https://vnodes.github.io/packages/types",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "packages/types/src",
+    "tags": [
+      "lib:types"
+    ],
+    "targets": {
+      "build": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "NumberColumnOptions",
+  "description": "Number column options",
+  "properties": {
+    "type": { "$ref": "../types/number.json" },
+    "format": { "$ref": "./../formats/number.json" },
+    "minimum": { "type": "number" },
+    "maximum": { "type": "number" },
+    "isIn": { "type": "array", "items": { "type": "number" }, "uniqueItems": true },
+    "isNotIn": { "type": "array", "items": { "type": "number" }, "uniqueItems": true }
+  }
+}

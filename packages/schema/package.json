@@ -1,0 +1,74 @@
+{
+  "name": "@vnodes/schema",
+  "description": "- [ ] Add project description",
+  "version": "0.1.21",
+  "author": {
+    "email": "robert.brightline+vnodes-schema@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://vnodes.github.io"
+  },
+  "keywords": [
+    "library",
+    "types"
+  ],
+  "bugs": {
+    "email": "robert.brightline+vnodes-schema@gmail.com",
+    "url": "https://github.com/vnodes/vnodes/issues"
+  },
+  "homepage": "https://vnodes.github.io/packages/schema",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "bin": {
+    "schema": "./bin/schema.mjs"
+  },
+  "files": [
+    "schema",
+    "bin",
+    "dist",
+    "assets"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "packages/schema/src",
+    "tags": [
+      "lib:shared"
+    ],
+    "targets": {
+      "build": {
+        "dependsOn": [
+          "generate:types"
+        ]
+      },
+      "doc": {},
+      "generate:types": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "pnpm json2ts --additionalProperties=false  --unreachableDefinitions=true  --cwd=./schema/model ./schema/model/model.json > ./src/lib/model.ts",
+          "cwd": "{projectRoot}"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.18"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^15.0.4"
+  }
+}

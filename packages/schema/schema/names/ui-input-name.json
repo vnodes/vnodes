@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "UIInputName",
+  "enum": [
+    "text",
+    "textarea",
+    "texteditor",
+    "number",
+    "integer",
+    "radio",
+    "checkbox",
+
+    "date",
+    "time",
+    "datetime",
+
+    "autocomplete",
+    "select",
+    "list-select",
+    "slider",
+    "gauge",
+    "slide-toggle",
+    "button-toggle"
+  ]
+  
+}

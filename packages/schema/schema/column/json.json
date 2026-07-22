@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "JsonColumnOptions",
+  "description": "Json column options",
+  "properties": {
+    "type": { "$ref": "../types/json.json" },
+    "objectName": { "type": "string", "description": "Optional object type" }
+  }
+}

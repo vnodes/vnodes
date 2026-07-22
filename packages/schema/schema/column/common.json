@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "CommonColumnOptions",
+  "description": "Common column options",
+  "properties": {
+    "name": { "$ref": "../names/column-name.json", "description": "Column name" },
+    "type": { "$ref": "./../types/column-type.json", "description": "Column type" },
+    "isArray": { "type": "boolean", "description": "Is array column?" },
+    "description": { "type": "string", "description": "Column description" },
+    "required": { "type": "boolean", "description": "Is column required?" },
+    "unique": { "type": "boolean", "description": "Is column unique?" },
+    "readOnly": { "type": "boolean", "description": "Is readonly column?" },
+    "writeOnly": { "type": "boolean", "description": "Is writeonly column?" },
+
+    "dependencies": {
+      "type": "array",
+      "description": "List of dependencies of this column",
+      "items": { "$ref": "../types/dependency.json" }
+    },
+    "internal": { "type": "boolean", "description": "Is internal column?" },
+    "hash": {
+      "type": "boolean",
+      "description": "Store the hashed input to the database"
+    },
+    "encript": {
+      "type": "boolean",
+      "description": "Store the encripted input to the database"
+    },
+    "inputControl": {
+      "type": "string",
+      "description": "UI input control such as text, textarea,"
+    },
+    "label": { "type": "string", "description": "Descriptive label for ui input element" },
+    "prefixIcon": { "$ref": "../names/icon-name.json", "description": "Google material icon" },
+    "suffixIcon": { "$ref": "../names/icon-name.json", "description": "Google material icon" },
+
+    "prefixText": { "type": "string", "description": "Prefix text" },
+    "suffixText": { "type": "string", "description": "Suffix text" },
+    "hint": { "type": "string", "description": "Hint for the ui input" }
+  },
+  "required": ["name", "type"]
+}

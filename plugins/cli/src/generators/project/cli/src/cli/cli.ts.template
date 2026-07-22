@@ -1,0 +1,11 @@
+import { program } from 'commander';
+import { hello } from './hello/hello.js';
+program
+  .name('<%- fileName %>')
+  .description('<%- fileName %> description')
+  .version('0.1.0')
+  .showHelpAfterError(true);
+
+[hello].map((c) => c(program));
+
+program.parse();

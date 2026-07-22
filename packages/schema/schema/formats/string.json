@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "StringFormat",
+  "enum": [
+    "email",
+    "password",
+    "phone",
+    "url",
+    "fqdn",
+    "ip",
+    "port",
+    "uuid",
+    "hash",
+    "jwt",
+    "mongoId",
+    "firebasePushId",
+    "bic",
+    "isin",
+    "iban",
+    "postalCode",
+    "locale",
+    "mimeType",
+    "hexColor",
+    "rgbColor",
+    "hslColor",
+    "json",
+    "base64",
+    "semVer"
+  ]
+}

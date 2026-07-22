@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "EnumModel",
+  "properties": {
+    "type": { "const": "enum" },
+    "name": {
+      "$ref": "../names/enum-name.json"
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": ["name", "values"]
+}

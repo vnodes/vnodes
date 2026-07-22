@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "BufferColumnOptions",
+  "description": "Buffer options",
+  "properties": {
+    "type": { "$ref": "../types/buffer.json" },
+    "maxSize": {
+      "type": "number"
+    },
+    "minSize": {
+      "type": "number"
+    }
+  }
+}

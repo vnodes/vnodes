@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "allOf": [
+    {
+      "$ref": "#/definitions/CommonFieldOptions"
+    },
+    {
+      "oneOf": [
+        { "$ref": "#/definitions/StringFieldOptions" },
+        { "$ref": "#/definitions/NumberFieldOptions" },
+        { "$ref": "#/definitions/BooleanFieldOptions" },
+        { "$ref": "#/definitions/DateFieldOptions" },
+        { "$ref": "#/definitions/ObjectFieldOptions" },
+        { "$ref": "#/definitions/JsonFieldOptions" }
+      ]
+    }
+  ],
+  "definitions": {
+    "StringFieldOptions": {
+      "properties": {
+        "type": { "const": "string" },
+        "format": { "$ref": "#/definitions/StringFormat" },
+        "pattern": { "type": "string" },
+        "isNotIn": {
+          "type": "array",
+          "description": "List of forbidden/reserved string values",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "NumberFieldOptions": {
+      "properties": {
+        "type": { "const": "number" },
+        "range": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true
+        },
+        "isArray": { "type": "boolean" }
+      }
+    },
+    "BooleanFieldOptions": {
+      "properties": {
+        "type": { "const": "boolean" }
+      }
+    },
+    "DateFieldOptions": {
+      "properties": {
+        "type": { "const": "date" },
+        "future": { "type": "boolean", "description": "The date input should be a future date" },
+        "past": { "type": "boolean", "description": "The date input should be a past date" },
+        "days": {
+          "type": "array",
+          "description": "The date input should be one of the week day such as 0 for sunday; 1 for monday etc.",
+          "items": { "enum": [0, 1, 2, 3, 4, 5, 6] },
+          "uniqueItems": true
+        }
+      }
+    },
+    "ObjectFieldOptions": {
+      "description": "Strictly defined object defintion options",
+      "properties": {
+        "type": { "const": "object" },
+        "objectName": { "type": "string" }
+      },
+      "required": ["type", "objectName"]
+    },
+    "JsonFieldOptions": {
+      "properties": {
+        "type": { "const": "json" }
+      }
+    },
+    "CommonFieldOptions": {
+      "description": "Common field options for all field types",
+      "properties": {
+        "type": { "$ref": "#/definitions/FieldType" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "isRequired": { "type": "boolean", "default": true },
+        "isUnique": { "type": "boolean", "default": true },
+        "dependencies": { "type": "array", "items": { "type": "array" }, "uniqueItems": true }
+      },
+      "required": ["type"]
+    },
+    "FieldType": {
+      "enum": ["string", "number", "boolean", "date", "object", "json"]
+    },
+    "StringFormat": {
+      "description": "String format such as email, password, uuid etc",
+      "enum": ["short", "long", "email", "password", "uuid", "number", "integer"]
+    },
+    "Day": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "Days": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Day"
+      },
+      "uniqueItems": true
+    },
+    "Hour": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 23
+    },
+    "Hours": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Hour"
+      },
+      "uniqueItems": true
+    }
+  }
+}

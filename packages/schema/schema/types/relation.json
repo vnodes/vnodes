@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "RelationColumnType",
+  "enum": ["one-to-one", "many-to-one", "many-to-many", "one-to-many"]
+}

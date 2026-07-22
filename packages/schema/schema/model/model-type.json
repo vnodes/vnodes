@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "ModelType",
+  "description": "Model type",
+  "enum": ["abstract", "model", "object"]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "RelationColumnOptions",
+  "description": "Relation column options",
+  "properties": {
+    "type": {
+      "$ref": "../types/relation.json"
+    },
+    "target": {
+      "type": "string",
+      "description": "Target relation model name"
+    },
+    "fields": {
+      "type": "array",
+      "description": "Corresponding foreign keys for the reference fields",
+      "items": { "type": "string" },
+      "default": ["modelId"]
+    },
+    "references": {
+      "type": "array",
+      "description": "The reference fields from the target model",
+      "items": {
+        "type": "string"
+      },
+      "default": ["id"]
+    },
+    "onDelete": { "$ref": "#/definitions/onOperation" },
+    "onUpdate": { "$ref": "#/definitions/onOperation" }
+  },
+  "definitions": {
+    "onOperation": {
+      "title": "OnOperation",
+      "enum": ["cascade", "set null", "set default", "no action", "restrict"]
+    }
+  }
+}

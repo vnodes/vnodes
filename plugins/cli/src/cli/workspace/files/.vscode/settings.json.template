@@ -1,0 +1,30 @@
+{
+  "eslint.validate": [
+    "json"
+  ],
+  "github.copilot.enable": {
+    "*": false
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "IronGeek.vscode-env"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "always",
+      "source.sortImports": "always",
+      "source.fixAll.ts": "always",
+      "source.fixAll.prettier": "always",
+      "source.fixAll.eslint": "always",
+      "source.removeUnused.ts": "always",
+      "source.addMissingImports.ts": "always",
+      "source.removeUnusedImports": "always"
+    }
+  }
+}

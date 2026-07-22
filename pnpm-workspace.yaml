@@ -1,0 +1,14 @@
+packages:
+  - 'packages/*'
+  - 'plugins/*'
+  - 'apis/*'
+allowBuilds:
+  '@openapitools/openapi-generator-cli': true
+  '@prisma/engines': true
+  '@scarf/scarf': true
+  '@swc/core': true
+  esbuild: true
+  nx: true
+  prisma: true
+  unrs-resolver: true
+autoInstallPeers: true

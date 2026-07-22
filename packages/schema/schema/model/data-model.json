@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "DataModel",
+  "properties": {
+    "type": {
+      "$ref": "./model-type.json",
+      "description": "Model type"
+    },
+    "name": {
+      "$ref": "../names/model-name.json"
+    },
+    "extendings": {
+      "type": "array",
+      "description": "List of extended model names",
+      "items": {
+        "$ref": "./../names/model-name.json"
+      },
+      "uniqueItems": true
+    },
+    "properties": {
+      "type": "array",
+      "description": "List of column options",
+      "items": {
+        "$ref": "./../column/column.json"
+      }
+    },
+    "required": {
+      "$ref": "#/definitions/ColumnNames"
+    },
+    "uniques": {
+      "$ref": "#/definitions/ColumnNames"
+    },
+    "indexes": {
+      "$ref": "#/definitions/ColumnNames"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["type"],
+  "definitions": {
+    "ColumnNames": {
+      "type": "array",
+      "items": {
+        "$ref": "./../names/column-name.json"
+      },
+      "uniqueItems": true
+    }
+  }
+}

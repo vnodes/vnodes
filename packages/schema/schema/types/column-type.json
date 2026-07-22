@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "ColumnType",
+  "oneOf": [
+    { "$ref": "./bigint.json" },
+    { "$ref": "./boolean.json" },
+    { "$ref": "./buffer.json" },
+    { "$ref": "./date.json" },
+    { "$ref": "./interval.json" },
+    { "$ref": "./number.json" },
+    { "$ref": "./string.json" },
+    { "$ref": "./relation.json" }
+  ]
+}

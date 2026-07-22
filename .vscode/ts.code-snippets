@@ -1,0 +1,73 @@
+{
+    "enum": {
+        "prefix": "enum",
+        "body": [
+            "export const $1 = { } as const;",
+            "export type $1 = keyof typeof $1;",
+            "export const $1s = Object.keys($1) as Readonly<$1[]>;",
+        ],
+        "scope": "typescript"
+    },
+    "_dirname": {
+        "prefix": "_dirname",
+        "body": [
+            "import { dirname, join } from 'path'",
+            "import { fileURLToPath } from 'url';",
+            "const __dirname = dirname(fileURLToPath(import.meta.url));",
+        ],
+        "scope": "typescript"
+    },
+    "decorator property": {
+        "prefix": "decorator property",
+        "body": [
+            "export function $1(): PropertyDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator method": {
+        "prefix": "decorator method",
+        "body": [
+            "export function $1(): MethodDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator class": {
+        "prefix": "decorator class",
+        "body": [
+            "export function $1(): ClassDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator paramter": {
+        "prefix": "decorator paramter",
+        "body": [
+            "export function $1(): ParamterDecorator {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "decorator combine": {
+        "prefix": "decorator combine",
+        "body": [
+            "const decorators: PropertyDecorator[] = [];",
+            "const add = (...items: PropertyDecorator[]) => decorators.push(...items);",
+            "decorators.forEach((e) => e(...args));",
+        ],
+        "scope": "typescript"
+    }
+}

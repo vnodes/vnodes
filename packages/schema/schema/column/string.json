@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "StringColumnOptions",
+  "description": "String column options",
+  "properties": {
+    "type": { "$ref": "../types/string.json" },
+    "minLength": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Minimum length of the string input"
+    },
+    "maxLength": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum length of the string input"
+    },
+    "format": { "$ref": "../formats/string.json" },
+    "isIn": { "type": "array", "items": { "type": "number" }, "uniqueItems": true },
+    "isNotIn": { "type": "array", "items": { "type": "number" }, "uniqueItems": true }
+  }
+}

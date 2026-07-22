@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Dependency",
+  "properties": {
+    "column": { "$ref": "../names/column-name.json" },
+    "isEqual": {
+      "type": "string",
+      "description": "Check the input is euqla to the other input"
+    },
+    "isNotEqual": {
+      "type": "string",
+      "description": "Check the input is not equal to the other input"
+    },
+    "isDefined": { "type": "boolean", "description": "Check the other input is defined" },
+    "isNotDefined": {
+      "type": "boolean",
+      "description": "Check the other input is not defined"
+    },
+    "isTrue": { "type": "boolean", "description": "Check the other input is true" },
+    "isFalse": { "type": "boolean", "description": "Check the other input is false" },
+    "isGreaterThan": {
+      "type": "boolean",
+      "description": "Check the input is greater than the other input"
+    },
+    "isGreaterThanOrEqual": {
+      "type": "boolean",
+      "description": "Check the input is greater than or equal to the other input"
+    },
+    "isLessThan": {
+      "type": "boolean",
+      "description": "Check the input is less than the other input"
+    },
+    "isLessThanOrEqual": {
+      "type": "boolean",
+      "description": "Check the input is less than or equal to the other input"
+    }
+  }
+}
