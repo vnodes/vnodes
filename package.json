@@ -2,7 +2,9 @@
   "name": "@vnodes/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",
