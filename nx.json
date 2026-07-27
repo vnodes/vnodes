@@ -16,7 +16,9 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": { "targetName": "typecheck" },
+        "typecheck": {
+          "targetName": "typecheck"
+        },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -25,7 +27,12 @@
         }
       }
     },
-    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
     {
       "plugin": "@nx/vitest",
       "options": {
@@ -36,15 +43,92 @@
     }
   ],
   "targetDefaults": {
-    "@nx/js:tsc": {
+    "@nx/js:swc": {
       "cache": true,
-      "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
-    "test": { "dependsOn": ["^build"] }
+    "test": {
+      "inputs": ["default", "^default"]
+    },
+    "build": {
+      "executor": "@nx/js:swc",
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "{projectRoot}/dist",
+        "main": "{projectRoot}/src/main.ts",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "skipTypeCheck": false,
+        "stripLeadingPaths": true
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "build",
+        "watch": true
+      }
+    },
+    "prisma:migrate": {
+      "executor": "nx:run-commands",
+      "inputs": ["default"],
+      "options": {
+        "command": "pnpm prisma migrate dev --name updated",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prisma:reset": {
+      "executor": "nx:run-commands",
+      "inputs": ["default"],
+      "options": {
+        "command": "pnpm prisma migrate reset -f",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prisma:generate": {
+      "executor": "nx:run-commands",
+      "inputs": ["default"],
+      "options": {
+        "command": "pnpm prisma generate",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "doc": {
+      "executor": "nx:run-commands",
+      "inputs": ["^default"],
+      "options": {
+        "command": "pnpm typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json --skipErrorChecking true"
+      }
+    }
   },
+
   "release": {
-    "version": { "preVersionCommand": "pnpm dlx nx run-many -t build" }
+    "projects": ["tag:lib:*", "tag:app:cli"],
+    "version": {
+      "preVersionCommand": "pnpm dlx nx run-many -t build"
+    }
+  },
+  "generators": {
+    "@nx/js:library": {
+      "bundler": "swc",
+      "unitTestRunner": "vitest",
+      "linter": "eslint",
+      "publishable": true,
+      "strict": true,
+      "skipTypeCheck": false,
+      "tags": "lib:shared"
+    },
+    "@nx/plugin:plugin": {
+      "compiler": "swc",
+      "unitTestRunner": "vitest",
+      "linter": "eslint",
+      "publishable": true,
+      "strict": true,
+      "skipTypeCheck": false,
+      "tags": "app:cli"
+    }
   },
   "nxCloudId": "6a2e08076367c5f2058e4ebc"
 }

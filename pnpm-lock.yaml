@@ -94,6 +94,21 @@ importers:
         specifier: ~4.1.0
         version: 4.1.10(@types/node@22.20.1)(@vitest/coverage-v8@4.1.10)(jsdom@27.4.0)(vite@8.1.5(@types/node@22.20.1)(yaml@2.9.0))
 
+  packages/types:
+    dependencies:
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
+  plugins/cli:
+    dependencies:
+      '@nx/devkit':
+        specifier: 23.1.0
+        version: 23.1.0(nx@23.1.0(@swc-node/register@1.11.1(@swc/core@1.15.46(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@6.0.3))(@swc/core@1.15.46(@swc/helpers@0.5.23)))
+      '@swc/helpers':
+        specifier: ~0.5.18
+        version: 0.5.23
+
 packages:
 
   '@acemir/cssom@0.9.31':

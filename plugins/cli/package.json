@@ -1,0 +1,61 @@
+{
+  "name": "@vnodes/cli",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@vnodes/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "generators.json",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "plugins/cli/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "plugins/cli/dist",
+          "main": "plugins/cli/src/index.ts",
+          "tsConfig": "plugins/cli/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true,
+          "assets": [
+            {
+              "input": "./plugins/cli/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "./plugins/cli/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      }
+    },
+    "tags": [
+      "app:cli"
+    ]
+  },
+  "dependencies": {
+    "@nx/devkit": "23.1.0",
+    "@swc/helpers": "~0.5.18"
+  },
+  "generators": "./generators.json"
+}
