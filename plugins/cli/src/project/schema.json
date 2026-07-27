@@ -1,18 +1,59 @@
 {
   "$schema": "https://json-schema.org/schema",
   "$id": "Project",
-  "title": "",
+  "title": "ProjectGeneratorSchema",
   "type": "object",
   "properties": {
-    "name": {
+    "directory": {
       "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "What is directory?",
+      "$default": { "$source": "argv", "index": 0 }
+    },
+    "projectName": {
+      "type": "string",
+      "x-prompt": "What is projectName?",
+      "$default": { "$source": "argv", "index": 1 }
+    },
+    "shortProjectName": {
+      "type": "string",
+      "x-prompt": "What is shortProjectName?",
+      "$default": { "$source": "argv", "index": 2 }
+    },
+    "email": {
+      "type": "string",
+      "x-prompt": "What is email?",
+      "$default": { "$source": "argv", "index": 3 }
+    },
+    "fundingUrl": {
+      "type": "string",
+      "x-prompt": "What is fundingUrl?",
+      "$default": { "$source": "argv", "index": 4 }
+    },
+    "repoName": {
+      "type": "string",
+      "x-prompt": "What is repoName?",
+      "$default": { "$source": "argv", "index": 5 }
+    },
+    "originName": {
+      "type": "string",
+      "x-prompt": "What is originName?",
+      "$default": { "$source": "argv", "index": 6 }
+    },
+    "type": {
+      "type": "string",
+      "x-prompt": "What is type?",
+      "$default": { "$source": "argv", "index": 7 }
+    },
+    "authorName": {
+      "type": "string",
+      "x-prompt": "What is authorName?",
+      "$default": { "$source": "argv", "index": 8 }
+    },
+    "tags": {
+      "type": "string",
+      "x-prompt": "What is tags?",
+      "$default": { "$source": "argv", "index": 9 }
     }
   },
-  "required": ["name"]
+  "required": ["directory"]
 }
