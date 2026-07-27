@@ -1,0 +1,40 @@
+{
+    "prisma model": {
+        "prefix": "model",
+        "body": [
+            "model $1 {",
+            "   id        Int       @id @default(autoincrement())",
+            "   uuid      String    @unique @default(uuid(7))",
+            "   createdAt DateTime  @default(now()) @map(\"created_at\")",
+            "   updatedAt DateTime  @updatedAt @map(\"updated_at\")",
+            "   deletedAt DateTime? @map(\"deleted_at\")",
+            "   isActive  Bool      @default(True) @map(\"is_active\")",
+            "",
+            "   name            String    @unique",
+            "   description     String?",
+            "",
+            "$0",
+            "@@map(\"${1/(^[A-Z])|(?<=[a-z0-9])([A-Z])/${1:/downcase}${2:+_${2:/downcase}/g}s\")",
+            "}",
+        ],
+        "scope": "prisma"
+    },
+    "prisma model map": {
+        "prefix": "prisma model map",
+        "body": [
+            "model ${1}${2} {",
+            "  ${1/([A-Z])/${1:/downcase}/g}   $1 @relation(fields: [${1/([A-Z])/${1:/downcase}/g}Id], references: [id], onDelete: Cascade, onUpdate: Cascade)",
+            "  /// @format(int32)",
+            "  ${1/([A-Z])/${1:/downcase}/g}Id Int  @map(\"${1/([A-Z])/${1:/downcase}/g}_id\")",
+            "",
+            "  ${2/([A-Z])/${1:/downcase}/g}   $2 @relation(fields: [${2/([A-Z])/${1:/downcase}/g}Id], references: [id], onDelete: Cascade, onUpdate: Cascade)",
+            "  /// @format(int32)",
+            "  ${2/([A-Z])/${1:/downcase}/g}Id Int  @map(\"${2/([A-Z])/${1:/downcase}/g}_id\")",
+            "",
+            "  @@id([${1/([A-Z])/${1:/downcase}/g}Id, ${2/([A-Z])/${1:/downcase}/g}Id])",
+            "  @@map(\"${1/([A-Z])/${1:/downcase}/g}_${2/([A-Z])/${1:/downcase}/g}s\")",
+            "}"
+        ],
+        "scope": "prisma"
+    }
+}

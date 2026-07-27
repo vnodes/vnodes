@@ -1,47 +1,79 @@
-name: CI
+name: ci
 
 on:
   push:
     branches:
       - main
-  pull_request:
 
 permissions:
-  actions: read
-  contents: read
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  main:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          filter: tree:0
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          version: 9.8.0
-          run_install: false
+          version: 11.3.0
 
-      # This enables task distribution via Nx Cloud
-      # Run this command as early as possible, before dependencies are installed
-      # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
-      # Connect your workspace by running "nx connect" and uncomment this line to enable task distribution
-      # - run: pnpm dlx nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
-
-      # Cache node_modules
-      - uses: actions/setup-node@v4
+      - name: Configure cache
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'pnpm'
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      # Prepend any command with "nx record --" to record its logs to Nx Cloud
-      # - run: pnpm exec nx record -- echo Hello World
-      - run: pnpm exec nx run-many -t lint test build typecheck
-      # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
-      - run: pnpm exec nx fix-ci
-        if: always()
+      - name: Lint
+        run: |
+          pnpm nx run-many -t lint
+
+      - name: Build
+        run: |
+          pnpm nx run-many  -t build --projects="tag:lib:types"  
+          pnpm nx run-many  -t build --projects="tag:lib:shared"  
+          pnpm nx run-many  -t build --projects="tag:lib:module"  
+          pnpm nx run-many  -t build --projects="tag:lib:core"  
+          pnpm nx run-many  -t build --projects="tag:app:cli"
+          pnpm nx run-many  -t build --projects="tag:app:db"
+          pnpm nx run-many  -t build --projects="tag:app:api"
+
+      - name: Publish libraries to npm registry
+        run: pnpm nx release publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Nx Graph
+        run: pnpm nx graph --file=public/index.html
+
+      - name: Typedoc to public
+        run: pnpm nx run-many -t doc
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
