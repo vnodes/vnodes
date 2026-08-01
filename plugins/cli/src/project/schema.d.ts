@@ -23,4 +23,6 @@ export interface ProjectGeneratorSchema {
   tags?: string;
   names?: ReturnType<typeof names>;
   homePageUrl?: string;
+  workspaceVersion?: string;
+  dbProjectName?: string;
 }

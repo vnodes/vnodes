@@ -85,7 +85,12 @@
   "dependencies": {
     "@nx/devkit": "23.1.0",
     "@swc/helpers": "~0.5.18",
-    "@vnodes/utils": "workspace:*"
+    "@vnodes/fs": "workspace:*",
+    "@vnodes/types": "workspace:*",
+    "@vnodes/utils": "workspace:*",
+    "commander": "^15.0.0",
+    "@types/ejs": "^3.1.5"
   },
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "devDependencies": {}
 }

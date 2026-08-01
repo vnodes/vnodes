@@ -53,6 +53,21 @@
       "type": "string",
       "x-prompt": "What is tags?",
       "$default": { "$source": "argv", "index": 9 }
+    },
+    "workspaceVersion": {
+      "type": "string",
+      "x-prompt": "What is workspaceVersion?",
+      "$default": { "$source": "argv", "index": 10 }
+    },
+    "dbProjectName": {
+      "type": "string",
+      "x-prompt": "What is dbProjectName?",
+      "$default": { "$source": "argv", "index": 11 }
+    },
+    "homePageUrl": {
+      "type": "string",
+      "x-prompt": "What is homePageUrl?",
+      "$default": { "$source": "argv", "index": 12 }
     }
   },
   "required": ["directory"]

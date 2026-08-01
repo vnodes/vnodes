@@ -1,0 +1,79 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.3.0
+
+      - name: Configure cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: |
+          pnpm nx run-many -t lint
+
+      - name: Build
+        run: |
+          pnpm nx run-many  -t build --projects="tag:lib:types"  
+          pnpm nx run-many  -t build --projects="tag:lib:shared"  
+          pnpm nx run-many  -t build --projects="tag:lib:module"  
+          pnpm nx run-many  -t build --projects="tag:lib:core"  
+          pnpm nx run-many  -t build --projects="tag:app:cli"
+          pnpm nx run-many  -t build --projects="tag:app:db"
+          pnpm nx run-many  -t build --projects="tag:app:api"
+
+      - name: Publish libraries to npm registry
+        run: pnpm nx release publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Nx Graph
+        run: pnpm nx graph --file=public/index.html
+
+      - name: Typedoc to public
+        run: pnpm nx run-many -t doc
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

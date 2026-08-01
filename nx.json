@@ -128,6 +128,17 @@
       "strict": true,
       "skipTypeCheck": false,
       "tags": "app:cli"
+    }, 
+    "@vnodes/cli:project": {
+      "funding": "https://cash.app/$puqlib",
+      "authorName": "Robert Brightline",
+      "orgName": "vnodes",
+      "repoName": "vnodes",
+      "email": "robert.brightline@gmail.com",
+      "homePageUrl": "https://vnodes.github.io",
+      "fundingUrl": "https://cash.app/$puqlib",
+      "version": "0.1.19",
+      "workspaceVersion": "workspace:*"
     }
   },
   "nxCloudId": "6a2e08076367c5f2058e4ebc"

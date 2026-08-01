@@ -11,6 +11,15 @@
     },
     {
       "path": "./packages/utils"
+    },
+    {
+      "path": "./packages/fs"
+    },
+    {
+      "path": "./packages/errors"
+    },
+    {
+      "path": "./packages/names"
     }
   ]
 }

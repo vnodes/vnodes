@@ -1,0 +1,16 @@
+// @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/copy/copy-files.js';
+export * from './lib/path/dirs.js';
+export * from './lib/path/files.js';
+export * from './lib/path/normalize.js';
+export * from './lib/path/scope.js';
+export * from './lib/read/read-json-file.js';
+export * from './lib/read/read-text-file.js';
+export * from './lib/read/read-yaml-file.js';
+export * from './lib/update/update-json-file.js';
+export * from './lib/update/update-yaml-file.js';
+export * from './lib/write/append-text-file.js';
+export * from './lib/write/write-json-file.js';
+export * from './lib/write/write-text-file.js';
+export * from './lib/write/write-yaml-file.js';
+

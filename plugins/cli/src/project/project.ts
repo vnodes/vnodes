@@ -74,13 +74,15 @@ export function normalizeProjectOptions(
 
   const projectShortName =
     options.projectShortName ?? basename(options.directory);
+  const projectName =
+    options.projectName ?? `@${options.repoName}/${options.projectShortName}`;
+
   const normalOptions: Required<ProjectGeneratorSchema> = {
     directory: options.directory,
     originName: options.originName ?? getGitOriginName(originUrl),
     repoName: options.repoName ?? getGitRepoName(originUrl),
     projectShortName,
-    projectName:
-      options.projectName ?? `@${options.repoName}/${options.projectShortName}`,
+    projectName,
     email: options.email ?? getGitEmail(workspaceRoot),
     fundingUrl: options.fundingUrl ?? 'https://cash.app/$puqlib',
     type: projectType,
@@ -88,6 +90,8 @@ export function normalizeProjectOptions(
     tags: normalizeTags(projectType, options.tags),
     names: names(projectShortName),
     homePageUrl: `${getGitHubPageUrl(originUrl)}/${options.directory}`,
+    workspaceVersion: options.workspaceVersion ?? '0',
+    dbProjectName: options.dbProjectName ?? `${projectName}-db`,
   };
 
   return normalOptions;
