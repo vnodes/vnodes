@@ -9,7 +9,43 @@
 
 ## @vnodes/prop
 
-- [ ] Add project description for @vnodes/prop
+
+## Example
+
+
+```typescript 
+
+
+class CreateUserDto { 
+
+  @Prop({ minLength: 3 , required: true}) 
+  firstName: string; 
+
+  @Prop({ minLength: 3 , required: true}) 
+  lastName: string; 
+
+  @Prop({ minLength: 3 }) 
+  middleName?: string; 
+
+
+  @Prop({format:'email', required:true})
+  username: string; 
+  
+  @Prop({format:'password', required: true})
+  password: string
+
+  @Prop({ format:"int", minimum: 18  })
+  age?: number; 
+
+  @Prop()
+  dob?: Date; 
+
+  @Prop({type: String, isArray:true,  minLength: 3, maxLength:255})
+  roles: string[]
+
+}
+
+```
 
 ## Installation
 
