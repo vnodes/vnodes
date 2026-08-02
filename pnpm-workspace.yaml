@@ -5,7 +5,7 @@ packages:
 autoInstallPeers: true
 allowBuilds:
   '@prisma/engines': true
-  '@scarf/scarf': set this to true or false
+  '@scarf/scarf': true
   '@swc/core': true
   nx: true
   prisma: true
